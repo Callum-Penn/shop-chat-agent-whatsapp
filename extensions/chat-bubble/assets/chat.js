@@ -349,6 +349,20 @@
 
         messagesContainer.appendChild(toolUseElement);
         ShopAIChat.UI.scrollToBottom();
+      },
+
+      /**
+       * Show a bot message in the chat
+       * @param {string} text - Message content
+       * @param {HTMLElement} messagesContainer - The messages container
+       */
+      showBotMessage: function(text, messagesContainer) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('shop-ai-message', 'assistant');
+        messageElement.dataset.rawText = text;
+        ShopAIChat.Formatting.formatMessageContent(messageElement);
+        messagesContainer.appendChild(messageElement);
+        ShopAIChat.UI.scrollToBottom();
       }
     },
 
@@ -481,7 +495,7 @@
             prompt_type: promptType
           });
 
-          const streamUrl = 'https://localhost:3458/chat';
+          const streamUrl = 'https://shop-chat-agent-whatsapp.onrender.com/chat';
           const shopId = window.shopId;
 
           const response = await fetch(streamUrl, {
@@ -630,7 +644,7 @@
           messagesContainer.appendChild(loadingMessage);
 
           // Fetch history from the server
-          const historyUrl = `https://localhost:3458/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
+          const historyUrl = `https://shop-chat-agent-whatsapp.onrender.com/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
           console.log('Fetching history from:', historyUrl);
 
           const response = await fetch(historyUrl, {
@@ -779,7 +793,7 @@
           attemptCount++;
 
           try {
-            const tokenUrl = 'https://localhost:3458/auth/token-status?conversation_id=' +
+            const tokenUrl = 'https://shop-chat-agent-whatsapp.onrender.com/auth/token-status?conversation_id=' +
               encodeURIComponent(conversationId);
             const response = await fetch(tokenUrl);
 
@@ -925,8 +939,77 @@
     }
   };
 
+  // Add this function near the top-level of the IIFE
+  function showInitialChannelChoice() {
+    const { messagesContainer } = ShopAIChat.UI.elements;
+
+    // Clear previous messages (optional)
+    messagesContainer.innerHTML = '';
+
+    // Create the initial message
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'shop-ai-message shop-ai-message-bot';
+    msgDiv.innerHTML = `
+      <div class="shop-ai-message-content">
+        👋 Hi there! How can I help you today?<br>
+        <strong>Would you like to chat here or on WhatsApp?</strong>
+        <div style="margin-top: 10px;">
+          <button id="chat-here-btn" class="shop-ai-choice-btn">Chat here</button>
+          <button id="chat-whatsapp-btn" class="shop-ai-choice-btn">Chat on WhatsApp</button>
+        </div>
+      </div>
+    `;
+    messagesContainer.appendChild(msgDiv);
+
+    // Add event listeners for the buttons
+    document.getElementById('chat-here-btn').onclick = function() {
+      // Remove the choice message and continue as normal
+      msgDiv.remove();
+      ShopAIChat.Message.showBotMessage("Great! How can I assist you today?");
+    };
+
+    document.getElementById('chat-whatsapp-btn').onclick = function() {
+      // Replace with phone number input
+      msgDiv.innerHTML = `
+        <div class="shop-ai-message-content">
+          Please enter your WhatsApp number (with country code):<br>
+          <input type="text" id="whatsapp-number-input" placeholder="+1234567890" style="margin-top:5px;">
+          <button id="send-whatsapp-invite-btn" class="shop-ai-choice-btn" style="margin-left:5px;">Send Invite</button>
+        </div>
+      `;
+      document.getElementById('send-whatsapp-invite-btn').onclick = async function() {
+        const phoneNumber = document.getElementById('whatsapp-number-input').value.trim();
+        if (!phoneNumber) {
+          alert('Please enter a valid phone number.');
+          return;
+        }
+        // Call backend to send WhatsApp invite
+        const res = await fetch('https://shop-chat-agent-whatsapp.onrender.com/api/send-whatsapp-invite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phoneNumber })
+        });
+        if (res.ok) {
+          msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">We’ve sent you a message on WhatsApp! Please check your phone.</div>`;
+        } else {
+          msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">Sorry, there was a problem sending the WhatsApp invite.</div>`;
+        }
+      };
+    };
+  }
+
+  // In the UI init or chat window open logic, show the choice on first open
+  const originalToggleChatWindow = ShopAIChat.UI.toggleChatWindow;
+  ShopAIChat.UI.toggleChatWindow = function() {
+    originalToggleChatWindow.call(this);
+    if (!window._shopAIChatStarted && this.elements.chatWindow.classList.contains('active')) {
+      showInitialChannelChoice();
+      window._shopAIChatStarted = true;
+    }
+  };
+
   // Initialize the application when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
     ShopAIChat.init();
   });
-})();
+})(); 
