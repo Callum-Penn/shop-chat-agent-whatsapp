@@ -495,7 +495,7 @@
             prompt_type: promptType
           });
 
-          const streamUrl = 'https://shop-chat-agent-whatsapp.onrender.com/chat';
+          const streamUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat';
           const shopId = window.shopId;
 
           const response = await fetch(streamUrl, {
@@ -644,7 +644,7 @@
           messagesContainer.appendChild(loadingMessage);
 
           // Fetch history from the server
-          const historyUrl = `https://shop-chat-agent-whatsapp.onrender.com/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
+          const historyUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
           console.log('Fetching history from:', historyUrl);
 
           const response = await fetch(historyUrl, {
@@ -793,7 +793,7 @@
           attemptCount++;
 
           try {
-            const tokenUrl = 'https://shop-chat-agent-whatsapp.onrender.com/auth/token-status?conversation_id=' +
+            const tokenUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/auth/token-status?conversation_id=' +
               encodeURIComponent(conversationId);
             const response = await fetch(tokenUrl);
 
@@ -984,7 +984,7 @@
           return;
         }
         // Call backend to send WhatsApp invite
-        const res = await fetch('https://shop-chat-agent-whatsapp.onrender.com/api/send-whatsapp-invite', {
+        const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phoneNumber })

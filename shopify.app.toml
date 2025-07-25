@@ -3,7 +3,7 @@
 client_id = "2e3c83cf5137ea1144373e0b5fe9c0dd"
 organization_id = "154347161"
 name = "shop-chat-agent"
-application_url = "https://shop-chat-agent-whatsapp.onrender.com"
+application_url = "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app"
 embedded = true
 
 [build]
@@ -17,4 +17,4 @@ api_version = "2025-10"
 scopes = "customer_read_customers,customer_read_orders,customer_read_store_credit_account_transactions,customer_read_store_credit_accounts,unauthenticated_read_product_listings"
 
 [auth]
-redirect_urls = [ "https://shop-chat-agent-whatsapp.onrender.com/api/auth" ]
+redirect_urls = [ "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/auth" ]
