@@ -1,0 +1,56 @@
+2025-07-27T16:30:24.200960958Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-27T16:30:24.201486011Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-27T16:30:24.201630692Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-27T16:30:24.995836327Z 
+2025-07-27T16:30:24.995874009Z > start
+2025-07-27T16:30:24.995879267Z > remix-serve ./build/server/index.js
+2025-07-27T16:30:24.995883760Z 
+2025-07-27T16:30:28.626761804Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-27T16:30:28.663921839Z [remix-serve] http://localhost:8080 (http://10.244.21.191:8080)
+2025-07-27T16:30:28.860197689Z Error obtaining session table: PrismaClientKnownRequestError: 
+2025-07-27T16:30:28.860235162Z Invalid `prisma.session.count()` invocation:
+2025-07-27T16:30:28.860239390Z 
+2025-07-27T16:30:28.860243096Z 
+2025-07-27T16:30:28.860247912Z The table `public.Session` does not exist in the current database.
+2025-07-27T16:30:33.865202732Z Error obtaining session table: PrismaClientKnownRequestError: 
+2025-07-27T16:30:33.865238958Z Invalid `prisma.session.count()` invocation:
+2025-07-27T16:30:33.865242353Z 
+2025-07-27T16:30:33.865244872Z 
+2025-07-27T16:30:33.865248479Z The table `public.Session` does not exist in the current database.
+2025-07-27T16:30:38.877494683Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
+2025-07-27T16:30:38.877546933Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
+2025-07-27T16:30:38.909338131Z npm notice
+2025-07-27T16:30:38.909363556Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
+2025-07-27T16:30:38.909369221Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
+2025-07-27T16:30:38.909372482Z npm notice To update run: npm install -g npm@11.5.1
+2025-07-27T16:30:38.909375809Z npm notice
+2025-07-27T16:30:00.684208854Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-27T16:30:00.684743929Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-27T16:30:00.684913046Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-27T16:30:01.573160674Z 
+2025-07-27T16:30:01.573210518Z > start
+2025-07-27T16:30:01.573217385Z > remix-serve ./build/server/index.js
+2025-07-27T16:30:01.573222629Z 
+2025-07-27T16:30:05.474195447Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-27T16:30:05.485831454Z [remix-serve] http://localhost:8080 (http://10.244.4.64:8080)
+2025-07-27T16:30:05.681224869Z Error obtaining session table: PrismaClientKnownRequestError: 
+2025-07-27T16:30:05.681259764Z Invalid `prisma.session.count()` invocation:
+2025-07-27T16:30:05.681263373Z 
+2025-07-27T16:30:05.681265783Z 
+2025-07-27T16:30:05.681269062Z The table `public.Session` does not exist in the current database.
+2025-07-27T16:30:10.686544571Z Error obtaining session table: PrismaClientKnownRequestError: 
+2025-07-27T16:30:10.686594869Z Invalid `prisma.session.count()` invocation:
+2025-07-27T16:30:10.686600529Z 
+2025-07-27T16:30:10.686604046Z 
+2025-07-27T16:30:10.686608510Z The table `public.Session` does not exist in the current database.
+2025-07-27T16:30:15.697290477Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
+2025-07-27T16:30:15.697336051Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
+2025-07-27T16:30:15.726555377Z npm notice
+2025-07-27T16:30:15.726583247Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
+2025-07-27T16:30:15.726589620Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
+2025-07-27T16:30:15.726593185Z npm notice To update run: npm install -g npm@11.5.1
+2025-07-27T16:30:15.726596754Z npm notice
+2025-07-27T16:30:01Z ERROR failed health checks after 8 attempts with error Readiness probe failed: dial tcp 10.244.4.64:8080: connect: connection refused
+2025-07-27T16:30:51Z ERROR failed health checks after 8 attempts with error Readiness probe failed: dial tcp 10.244.21.191:8080: connect: connection refused
+2025-07-27T16:30:39Z ERROR component terminated with non-zero exit code: 1,
+2025-07-27T16:30:15Z ERROR component terminated with non-zero exit code: 1,
