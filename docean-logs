@@ -1,0 +1,28 @@
+2025-07-25T15:40:31.621096655Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-25T15:40:31.621471266Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-25T15:40:31.621715038Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-25T15:40:32.405725576Z 
+2025-07-25T15:40:32.405760547Z > start
+2025-07-25T15:40:32.405765023Z > remix-serve ./build/server/index.js
+2025-07-25T15:40:32.405771424Z 
+2025-07-25T15:40:35.948667324Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-25T15:40:35.959371286Z [remix-serve] http://localhost:8080 (http://10.244.20.90:8080)
+2025-07-25T15:40:36.201503679Z Error obtaining session table: PrismaClientInitializationError: 
+2025-07-25T15:40:36.201552239Z Invalid `prisma.session.count()` invocation:
+2025-07-25T15:40:36.201561309Z 
+2025-07-25T15:40:36.201565251Z 
+2025-07-25T15:40:36.201568529Z Error querying the database: FATAL: Tenant or user not found
+2025-07-25T15:40:41.347889063Z Error obtaining session table: PrismaClientInitializationError: 
+2025-07-25T15:40:41.347942245Z Invalid `prisma.session.count()` invocation:
+2025-07-25T15:40:41.348350393Z 
+2025-07-25T15:40:41.348361591Z 
+2025-07-25T15:40:41.348367762Z Error querying the database: FATAL: Tenant or user not found
+2025-07-25T15:40:46.360878841Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
+2025-07-25T15:40:46.360920611Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
+2025-07-25T15:40:46.383091766Z npm notice
+2025-07-25T15:40:46.383132801Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
+2025-07-25T15:40:46.383142137Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
+2025-07-25T15:40:46.383145805Z npm notice To update run: npm install -g npm@11.5.1
+2025-07-25T15:40:46.383149256Z npm notice
+2025-07-25T15:40:32Z ERROR failed health checks after 7 attempts with error Readiness probe failed: dial tcp 10.244.20.90:8080: connect: connection refused
+2025-07-25T15:40:46Z ERROR component terminated with non-zero exit code: 1,
