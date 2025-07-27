@@ -1,28 +1,130 @@
-2025-07-25T15:40:31.621096655Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-25T15:40:31.621471266Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-25T15:40:31.621715038Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-25T15:40:32.405725576Z 
-2025-07-25T15:40:32.405760547Z > start
-2025-07-25T15:40:32.405765023Z > remix-serve ./build/server/index.js
-2025-07-25T15:40:32.405771424Z 
-2025-07-25T15:40:35.948667324Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-25T15:40:35.959371286Z [remix-serve] http://localhost:8080 (http://10.244.20.90:8080)
-2025-07-25T15:40:36.201503679Z Error obtaining session table: PrismaClientInitializationError: 
-2025-07-25T15:40:36.201552239Z Invalid `prisma.session.count()` invocation:
-2025-07-25T15:40:36.201561309Z 
-2025-07-25T15:40:36.201565251Z 
-2025-07-25T15:40:36.201568529Z Error querying the database: FATAL: Tenant or user not found
-2025-07-25T15:40:41.347889063Z Error obtaining session table: PrismaClientInitializationError: 
-2025-07-25T15:40:41.347942245Z Invalid `prisma.session.count()` invocation:
-2025-07-25T15:40:41.348350393Z 
-2025-07-25T15:40:41.348361591Z 
-2025-07-25T15:40:41.348367762Z Error querying the database: FATAL: Tenant or user not found
-2025-07-25T15:40:46.360878841Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
-2025-07-25T15:40:46.360920611Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
-2025-07-25T15:40:46.383091766Z npm notice
-2025-07-25T15:40:46.383132801Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-25T15:40:46.383142137Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-25T15:40:46.383145805Z npm notice To update run: npm install -g npm@11.5.1
-2025-07-25T15:40:46.383149256Z npm notice
-2025-07-25T15:40:32Z ERROR failed health checks after 7 attempts with error Readiness probe failed: dial tcp 10.244.20.90:8080: connect: connection refused
-2025-07-25T15:40:46Z ERROR component terminated with non-zero exit code: 1,
+2025-07-27T15:57:32.616460147Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+2025-07-27T15:57:32.616481714Z [34m│[0m [34m › fetching app source code[0m
+2025-07-27T15:57:32.616484694Z [34m│[0m => Selecting branch "main"
+2025-07-27T15:57:32.616487335Z [34m│[0m => Checking out commit "e0fbbce934424b83f1b50b8445b2d758bb4c236e"
+2025-07-27T15:57:32.616489655Z [34m│[0m 
+2025-07-27T15:57:32.616492082Z [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+2025-07-27T15:57:32.643984294Z [34m╰────────────────────────────────────────╼[0m
+2025-07-27T15:57:32.643996084Z 
+2025-07-27T15:57:33.020286697Z [34m › configuring build-time app environment variables:[0m
+2025-07-27T15:57:33.020467714Z      DIRECT_URL CLAUDE_API_KEY WHATSAPP_VERIFY_TOKEN SHOPIFY_APP_URL SHOPIFY_API_KEY WHATSAPP_PHONE_NUMBER_ID SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL WHATSAPP_TOKEN SHOPIFY_API_SECRET
+2025-07-27T15:57:33.020479975Z 
+2025-07-27T15:57:33.022409843Z [34m › configuring custom build command to be run at the end of the build:[0m
+2025-07-27T15:57:33.026112864Z    [34m│[0m npm run build
+2025-07-27T15:57:33.026117486Z 
+2025-07-27T15:57:33.125239426Z [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+2025-07-27T15:57:33.145443893Z [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+2025-07-27T15:57:34.192551396Z [34m│[0m Detected the following buildpacks suitable to build your app:
+2025-07-27T15:57:34.192570237Z [34m│[0m 
+2025-07-27T15:57:34.192572655Z [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+2025-07-27T15:57:34.192574538Z [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+2025-07-27T15:57:34.192576226Z [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+2025-07-27T15:57:34.192578185Z [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+2025-07-27T15:57:34.195835750Z [34m╰─────────────────────────────────────────────╼[0m
+2025-07-27T15:57:34.195849050Z 
+2025-07-27T15:57:34.198147760Z [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+2025-07-27T15:57:34.200208719Z [34m│[0m [34m › checking for cache from a previous build[0m
+2025-07-27T15:57:34.424087948Z [34m│[0m Timer: Analyzer started at 2025-07-27T15:57:34Z
+2025-07-27T15:57:34.952393480Z [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+2025-07-27T15:57:34.952585078Z [34m│[0m Timer: Analyzer ran for 528.589075ms and ended at 2025-07-27T15:57:34Z
+2025-07-27T15:57:35.115333419Z [34m│[0m Timer: Restorer started at 2025-07-27T15:57:35Z
+2025-07-27T15:57:35.254541985Z [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+2025-07-27T15:57:37.300551453Z [34m│[0m Timer: Restorer ran for 2.185426429s and ended at 2025-07-27T15:57:37Z
+2025-07-27T15:57:37.320487629Z [34m╰───────────────────────────────────────╼[0m
+2025-07-27T15:57:37.320493136Z 
+2025-07-27T15:57:37.322967557Z [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+2025-07-27T15:57:37.359324538Z [34m│[0m Timer: Builder started at 2025-07-27T15:57:37Z
+2025-07-27T15:57:37.793496247Z [34m│[0m        
+2025-07-27T15:57:37.793861202Z [34m│[0m -----> Creating runtime environment
+2025-07-27T15:57:37.839652894Z [34m│[0m        
+2025-07-27T15:57:37.841084954Z [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+2025-07-27T15:57:37.846942731Z [34m│[0m        NODE_VERBOSE=false
+2025-07-27T15:57:37.846956868Z [34m│[0m        NODE_ENV=
+2025-07-27T15:57:37.846958981Z [34m│[0m        NODE_MODULES_CACHE=true
+2025-07-27T15:57:37.851854583Z [34m│[0m        
+2025-07-27T15:57:37.851860524Z [34m│[0m -----> Installing binaries
+2025-07-27T15:57:37.946803227Z [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+2025-07-27T15:57:37.947034651Z [34m│[0m        engines.npm (package.json):    unspecified (use default)
+2025-07-27T15:57:37.947040729Z [34m│[0m        
+2025-07-27T15:57:38.077532872Z [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+2025-07-27T15:57:38.088929942Z [34m│[0m        Downloading and installing node 24.2.0...
+2025-07-27T15:57:42.566667754Z [34m│[0m        Using default npm version: 11.3.0
+2025-07-27T15:57:43.322794160Z [34m│[0m        
+2025-07-27T15:57:43.322970790Z [34m│[0m -----> Restoring cache
+2025-07-27T15:57:43.325473872Z [34m│[0m        - npm cache
+2025-07-27T15:57:43.423817152Z [34m│[0m        
+2025-07-27T15:57:43.423837927Z [34m│[0m -----> Installing dependencies
+2025-07-27T15:57:43.506059681Z [34m│[0m        Installing node modules
+2025-07-27T15:57:59.589909638Z [34m│[0m        
+2025-07-27T15:57:59.589945928Z [34m│[0m        added 1217 packages, and audited 1218 packages in 16s
+2025-07-27T15:57:59.590155184Z [34m│[0m        
+2025-07-27T15:57:59.590175868Z [34m│[0m        302 packages are looking for funding
+2025-07-27T15:57:59.590369931Z [34m│[0m          run `npm fund` for details
+2025-07-27T15:57:59.613508269Z [34m│[0m        
+2025-07-27T15:57:59.613523861Z [34m│[0m        14 vulnerabilities (4 low, 8 moderate, 1 high, 1 critical)
+2025-07-27T15:57:59.613526625Z [34m│[0m        
+2025-07-27T15:57:59.613528674Z [34m│[0m        To address issues that do not require attention, run:
+2025-07-27T15:57:59.613531104Z [34m│[0m          npm audit fix
+2025-07-27T15:57:59.613533039Z [34m│[0m        
+2025-07-27T15:57:59.613535216Z [34m│[0m        Some issues need review, and may require choosing
+2025-07-27T15:57:59.613537216Z [34m│[0m        a different dependency.
+2025-07-27T15:57:59.613539521Z [34m│[0m        
+2025-07-27T15:57:59.613541414Z [34m│[0m        Run `npm audit` for details.
+2025-07-27T15:57:59.731318980Z [34m│[0m        
+2025-07-27T15:57:59.731333895Z [34m│[0m -----> Build
+2025-07-27T15:57:59.812415369Z [34m│[0m        
+2025-07-27T15:57:59.812431587Z [34m│[0m -----> Caching build
+2025-07-27T15:57:59.813692763Z [34m│[0m        - npm cache
+2025-07-27T15:57:59.895441770Z [34m│[0m        
+2025-07-27T15:57:59.895457840Z [34m│[0m -----> Pruning devDependencies
+2025-07-27T15:57:59.969312379Z [34m│[0m        Skipping because NODE_ENV is not 'production'
+2025-07-27T15:58:00.000085129Z [34m│[0m        
+2025-07-27T15:58:00.000103466Z [34m│[0m -----> Build succeeded!
+2025-07-27T15:58:00.492799904Z [34m│[0m Running custom build command: npm run build
+2025-07-27T15:58:00.566584927Z [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-27T15:58:00.566970852Z [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-27T15:58:00.566976612Z [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-27T15:58:00.691743790Z [34m│[0m 
+2025-07-27T15:58:00.691784191Z [34m│[0m > build
+2025-07-27T15:58:00.691789236Z [34m│[0m > prisma generate && npx prisma db push && remix vite:build
+2025-07-27T15:58:00.691792572Z [34m│[0m 
+2025-07-27T15:58:01.293805543Z [34m│[0m Prisma schema loaded from prisma/schema.prisma
+2025-07-27T15:58:01.425713462Z [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-27T15:58:01.594564517Z [34m│[0m 
+2025-07-27T15:58:01.594595375Z [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 53ms
+2025-07-27T15:58:01.594601260Z [34m│[0m 
+2025-07-27T15:58:01.594603433Z [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-27T15:58:01.594605563Z [34m│[0m 
+2025-07-27T15:58:01.594610242Z [34m│[0m Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+2025-07-27T15:58:01.594612330Z [34m│[0m 
+2025-07-27T15:58:01.713317374Z [34m│[0m npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-27T15:58:01.713547153Z [34m│[0m npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-27T15:58:01.713562252Z [34m│[0m npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-27T15:58:01.713565858Z [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-27T15:58:01.713569163Z [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-27T15:58:01.713572481Z [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-27T15:58:02.488951447Z [34m│[0m Prisma schema loaded from prisma/schema.prisma
+2025-07-27T15:58:02.499288546Z [34m│[0m Error: Prisma schema validation - (get-config wasm)
+2025-07-27T15:58:02.499305883Z [34m│[0m Error code: P1012
+2025-07-27T15:58:02.499309024Z [34m│[0m error: Environment variable not found: DATABASE_URL.
+2025-07-27T15:58:02.499311894Z [34m│[0m   -->  prisma/schema.prisma:10
+2025-07-27T15:58:02.499314773Z [34m│[0m    | 
+2025-07-27T15:58:02.499317364Z [34m│[0m  9 |   provider = "postgresql"
+2025-07-27T15:58:02.499319578Z [34m│[0m 10 |   url      = env("DATABASE_URL")
+2025-07-27T15:58:02.499321741Z [34m│[0m    | 
+2025-07-27T15:58:02.499323964Z [34m│[0m 
+2025-07-27T15:58:02.499326243Z [34m│[0m Validation Error Count: 1
+2025-07-27T15:58:02.499329410Z [34m│[0m [Context: getConfig]
+2025-07-27T15:58:02.499332068Z [34m│[0m 
+2025-07-27T15:58:02.499333937Z [34m│[0m Prisma CLI Version : 6.6.0
+2025-07-27T15:58:02.515952410Z [34m│[0m npm notice
+2025-07-27T15:58:02.515970093Z [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.5.1
+2025-07-27T15:58:02.515973977Z [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
+2025-07-27T15:58:02.515976620Z [34m│[0m npm notice To update run: npm install -g npm@11.5.1
+2025-07-27T15:58:02.515978735Z [34m│[0m npm notice
+2025-07-27T15:58:02.521060673Z [34m│[0m building: exit status 1
+2025-07-27T15:58:02.521622164Z [34m│[0m Timer: Builder ran for 25.162539238s and ended at 2025-07-27T15:58:02Z
+2025-07-27T15:58:02.521638282Z [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+2025-07-27T15:58:02.747297314Z [34m│[0m 
+2025-07-27T15:58:02.751055014Z [34m│[0m 
+2025-07-27T15:58:02.759824042Z [34m│[0m [31m ✘ build failed[0m

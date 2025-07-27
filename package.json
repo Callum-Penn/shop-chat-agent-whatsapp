@@ -2,7 +2,7 @@
   "name": "shop-chat-agent",
   "private": true,
   "scripts": {
-    "build": "prisma generate && npx prisma db push && remix vite:build",
+    "build": "prisma generate && remix vite:build",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
@@ -10,6 +10,7 @@
     "config:use": "shopify app config use",
     "env": "shopify app env",
     "start": "remix-serve ./build/server/index.js",
+    "start:with-db": "chmod +x start.sh && ./start.sh",
     "docker-start": "npm run setup && npm run start",
     "setup": "prisma generate && prisma migrate deploy",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
