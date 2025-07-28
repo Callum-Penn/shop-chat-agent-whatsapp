@@ -22,11 +22,24 @@ async function sendWhatsAppMessage(to, text) {
 export const action = async ({ request }) => {
   const { phoneNumber } = await request.json();
   if (!phoneNumber) {
-    return json({ error: "Phone number is required." }, { status: 400 });
+    return json({ error: "Phone number is required." }, { 
+      status: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
   }
   // Send WhatsApp invite message
   await sendWhatsAppMessage(phoneNumber, "Hi! You can continue your chat with our AI assistant here on WhatsApp.");
-  return json({ status: "sent" });
+  return json({ status: "sent" }, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+  });
 };
 
 // Handle CORS preflight requests (OPTIONS)

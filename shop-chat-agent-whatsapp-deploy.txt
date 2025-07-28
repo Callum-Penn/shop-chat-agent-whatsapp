@@ -1,92 +1,92 @@
-2025-07-28T08:53:28.656403385Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:53:28.656690645Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:53:28.656736455Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.425031519Z 
-2025-07-28T08:53:29.425067963Z > shop-chat-agent@1.0.4 start:with-db
-2025-07-28T08:53:29.425072090Z > chmod +x start.sh && ./start.sh
-2025-07-28T08:53:29.425074252Z 
-2025-07-28T08:53:29.927945142Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.928429917Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.928566807Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.928774997Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.928833878Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:53:29.928914593Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:53:31.862453767Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T08:53:32.030049677Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T08:53:32.228247320Z 
-2025-07-28T08:53:32.228271467Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 161ms
-2025-07-28T08:53:32.228273474Z 
-2025-07-28T08:53:32.228275280Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-28T08:53:32.228276751Z 
-2025-07-28T08:53:32.228279047Z Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
-2025-07-28T08:53:32.228281792Z 
-2025-07-28T08:53:33.148451827Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:53:33.148914385Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:53:33.149029211Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:53:33.149205882Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:53:33.149402662Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:53:33.149559893Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:53:35.145357315Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T08:53:35.165809087Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-2025-07-28T08:53:35.686479187Z 
-2025-07-28T08:53:35.686519890Z The database is already in sync with the Prisma schema.
-2025-07-28T08:53:35.686899836Z 
-2025-07-28T08:53:35.691390660Z Running generate... (Use --skip-generate to skip the generators)
-2025-07-28T08:53:35.752314014Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T08:53:35.763510604Z [2K[1A[2K[GRunning generate... - Prisma Client
-2025-07-28T08:53:35.946829497Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 182ms
-2025-07-28T08:53:35.946980416Z 
-2025-07-28T08:53:36.061393393Z ┌─────────────────────────────────────────────────────────┐
-2025-07-28T08:53:36.061419667Z │  Update available 6.6.0 -> 6.12.0                       │
-2025-07-28T08:53:36.061423052Z │  Run the following to update                            │
-2025-07-28T08:53:36.061425618Z │    npm i --save-dev prisma@latest                       │
-2025-07-28T08:53:36.061428316Z │    npm i @prisma/client@latest                          │
-2025-07-28T08:53:36.061430831Z └─────────────────────────────────────────────────────────┘
-2025-07-28T08:53:39.690153087Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-28T08:53:39.699192662Z [remix-serve] http://localhost:8080 (http://10.244.20.209:8080)
-2025-07-28T08:52:34.243512346Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:52:34.243934695Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:52:34.244060627Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.080900497Z 
-2025-07-28T08:52:35.080942677Z > shop-chat-agent@1.0.4 start:with-db
-2025-07-28T08:52:35.080960397Z > chmod +x start.sh && ./start.sh
-2025-07-28T08:52:35.080964763Z 
-2025-07-28T08:52:35.594529949Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.595375692Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.595393736Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.595398152Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.596093253Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:52:35.596499680Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:52:37.572522589Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T08:52:37.689449705Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T08:52:37.950079891Z 
-2025-07-28T08:52:37.950114856Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 171ms
-2025-07-28T08:52:37.950119364Z 
-2025-07-28T08:52:37.950121961Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-28T08:52:37.950124291Z 
-2025-07-28T08:52:37.950126741Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-07-28T08:52:37.950129054Z 
-2025-07-28T08:52:38.896119264Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:52:38.897095915Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:52:38.897417524Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:52:38.897461035Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T08:52:38.897640393Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T08:52:38.897728720Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T08:52:40.889461630Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T08:52:40.944585085Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-2025-07-28T08:52:41.563871730Z 
-2025-07-28T08:52:41.563912187Z The database is already in sync with the Prisma schema.
-2025-07-28T08:52:41.563916562Z 
-2025-07-28T08:52:41.578522379Z Running generate... (Use --skip-generate to skip the generators)
-2025-07-28T08:52:41.667604040Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T08:52:41.682487596Z [2K[1A[2K[GRunning generate... - Prisma Client
-2025-07-28T08:52:41.883395482Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 200ms
-2025-07-28T08:52:41.883542538Z 
-2025-07-28T08:52:42.047664312Z ┌─────────────────────────────────────────────────────────┐
-2025-07-28T08:52:42.047695513Z │  Update available 6.6.0 -> 6.12.0                       │
-2025-07-28T08:52:42.047699448Z │  Run the following to update                            │
-2025-07-28T08:52:42.047702063Z │    npm i --save-dev prisma@latest                       │
-2025-07-28T08:52:42.047704510Z │    npm i @prisma/client@latest                          │
-2025-07-28T08:52:42.047707023Z └─────────────────────────────────────────────────────────┘
-2025-07-28T08:52:46.057600252Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-28T08:52:46.067884550Z [remix-serve] http://localhost:8080 (http://10.244.31.29:8080)
+2025-07-28T10:02:28.940315265Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:02:28.940792914Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:02:28.940862151Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:02:29.981644499Z 
+2025-07-28T10:02:29.981681910Z > shop-chat-agent@1.0.8 start
+2025-07-28T10:02:29.981689146Z > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+2025-07-28T10:02:29.981694200Z 
+2025-07-28T10:02:30.577159057Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:02:30.577626944Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:02:30.577829822Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:02:30.578110654Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:02:30.578364662Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:02:30.578472142Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:02:33.178196370Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T10:02:33.364188744Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T10:02:33.633015695Z 
+2025-07-28T10:02:33.633045354Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 217ms
+2025-07-28T10:02:33.633048834Z 
+2025-07-28T10:02:33.633051986Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-28T10:02:33.633054812Z 
+2025-07-28T10:02:33.633059475Z Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+2025-07-28T10:02:33.633062875Z 
+2025-07-28T10:02:34.886000453Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:02:34.886520811Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:02:34.886548938Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:02:34.886800071Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:02:34.886934798Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:02:34.887117080Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:02:37.622870807Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T10:02:37.683363698Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+2025-07-28T10:02:38.501609952Z 
+2025-07-28T10:02:38.501647109Z The database is already in sync with the Prisma schema.
+2025-07-28T10:02:38.501926649Z 
+2025-07-28T10:02:38.504296337Z Running generate... (Use --skip-generate to skip the generators)
+2025-07-28T10:02:38.668965577Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T10:02:38.692069906Z [2K[1A[2K[GRunning generate... - Prisma Client
+2025-07-28T10:02:38.986172261Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 290ms
+2025-07-28T10:02:38.986196315Z 
+2025-07-28T10:02:39.179727300Z ┌─────────────────────────────────────────────────────────┐
+2025-07-28T10:02:39.179750119Z │  Update available 6.6.0 -> 6.12.0                       │
+2025-07-28T10:02:39.179754859Z │  Run the following to update                            │
+2025-07-28T10:02:39.179759174Z │    npm i --save-dev prisma@latest                       │
+2025-07-28T10:02:39.179763787Z │    npm i @prisma/client@latest                          │
+2025-07-28T10:02:39.179768014Z └─────────────────────────────────────────────────────────┘
+2025-07-28T10:02:44.524869780Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-28T10:02:44.540846941Z [remix-serve] http://localhost:8080 (http://10.244.42.3:8080)
+2025-07-28T10:01:42.926284088Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:01:42.926743457Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:01:42.926790653Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:01:43.694731322Z 
+2025-07-28T10:01:43.694770550Z > shop-chat-agent@1.0.8 start
+2025-07-28T10:01:43.694777816Z > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+2025-07-28T10:01:43.694782090Z 
+2025-07-28T10:01:44.110916049Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:01:44.111380478Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:01:44.111473771Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:01:44.111733924Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:01:44.111935465Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:01:44.112104662Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:01:46.120918295Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T10:01:46.274396586Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T10:01:46.479434382Z 
+2025-07-28T10:01:46.479462983Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 171ms
+2025-07-28T10:01:46.479466304Z 
+2025-07-28T10:01:46.479469049Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-28T10:01:46.479471380Z 
+2025-07-28T10:01:46.479479071Z Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+2025-07-28T10:01:46.479481655Z 
+2025-07-28T10:01:47.413168175Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:01:47.413573264Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:01:47.413708379Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:01:47.413867083Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T10:01:47.413994041Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T10:01:47.414116478Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T10:01:49.400091073Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T10:01:49.466763092Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+2025-07-28T10:01:50.057171365Z 
+2025-07-28T10:01:50.057231840Z The database is already in sync with the Prisma schema.
+2025-07-28T10:01:50.058746869Z 
+2025-07-28T10:01:50.060803257Z Running generate... (Use --skip-generate to skip the generators)
+2025-07-28T10:01:50.183393651Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T10:01:50.198491572Z [2K[1A[2K[GRunning generate... - Prisma Client
+2025-07-28T10:01:50.368942538Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 168ms
+2025-07-28T10:01:50.369029162Z 
+2025-07-28T10:01:50.492820528Z ┌─────────────────────────────────────────────────────────┐
+2025-07-28T10:01:50.492839839Z │  Update available 6.6.0 -> 6.12.0                       │
+2025-07-28T10:01:50.492842709Z │  Run the following to update                            │
+2025-07-28T10:01:50.492845065Z │    npm i --save-dev prisma@latest                       │
+2025-07-28T10:01:50.492847705Z │    npm i @prisma/client@latest                          │
+2025-07-28T10:01:50.492851018Z └─────────────────────────────────────────────────────────┘
+2025-07-28T10:01:54.439286317Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-28T10:01:54.472102525Z [remix-serve] http://localhost:8080 (http://10.244.21.28:8080)
