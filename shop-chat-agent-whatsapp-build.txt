@@ -1,178 +1,209 @@
-2025-07-28T10:00:03.076427535Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-2025-07-28T10:00:03.076554881Z [34m│[0m [34m › fetching app source code[0m
-2025-07-28T10:00:03.076558154Z [34m│[0m => Selecting branch "main"
-2025-07-28T10:00:03.741133047Z [34m│[0m => Checking out commit "01aeeef98edccfd2d84fc67b2af428987bb1bbe5"
-2025-07-28T10:00:03.754666686Z [34m│[0m 
-2025-07-28T10:00:03.758001999Z [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-2025-07-28T10:00:03.778564894Z [34m╰────────────────────────────────────────╼[0m
-2025-07-28T10:00:03.778698739Z 
-2025-07-28T10:00:04.014996941Z [34m › configuring build-time app environment variables:[0m
-2025-07-28T10:00:04.015009781Z      SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL WHATSAPP_TOKEN SHOPIFY_APP_URL SHOPIFY_API_SECRET DIRECT_URL SHOPIFY_API_KEY WHATSAPP_PHONE_NUMBER_ID CLAUDE_API_KEY WHATSAPP_VERIFY_TOKEN
-2025-07-28T10:00:04.015172766Z 
-2025-07-28T10:00:04.017787074Z [34m › configuring custom build command to be run at the end of the build:[0m
-2025-07-28T10:00:04.021078781Z    [34m│[0m npm run build
-2025-07-28T10:00:04.021088439Z 
-2025-07-28T10:00:04.110405867Z [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-2025-07-28T10:00:04.124957645Z [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-2025-07-28T10:00:05.157868891Z [34m│[0m Detected the following buildpacks suitable to build your app:
-2025-07-28T10:00:05.157887473Z [34m│[0m 
-2025-07-28T10:00:05.157890268Z [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-2025-07-28T10:00:05.157892191Z [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-2025-07-28T10:00:05.157894123Z [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-2025-07-28T10:00:05.157896025Z [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-2025-07-28T10:00:05.160660988Z [34m╰─────────────────────────────────────────────╼[0m
-2025-07-28T10:00:05.160840709Z 
-2025-07-28T10:00:05.162993154Z [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-2025-07-28T10:00:05.164866252Z [34m│[0m [34m › checking for cache from a previous build[0m
-2025-07-28T10:00:05.366657310Z [34m│[0m Timer: Analyzer started at 2025-07-28T10:00:05Z
-2025-07-28T10:00:05.850964280Z [34m│[0m Layer cache not found
-2025-07-28T10:00:05.909451250Z [34m│[0m Timer: Analyzer ran for 542.799023ms and ended at 2025-07-28T10:00:05Z
-2025-07-28T10:00:06.031076347Z [34m│[0m Timer: Restorer started at 2025-07-28T10:00:06Z
-2025-07-28T10:00:06.050002771Z [34m│[0m Layer cache not found
-2025-07-28T10:00:06.090378745Z [34m│[0m Timer: Restorer ran for 59.377061ms and ended at 2025-07-28T10:00:06Z
-2025-07-28T10:00:06.107179711Z [34m╰───────────────────────────────────────╼[0m
-2025-07-28T10:00:06.107191448Z 
-2025-07-28T10:00:06.109540783Z [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-2025-07-28T10:00:06.146873240Z [34m│[0m Timer: Builder started at 2025-07-28T10:00:06Z
-2025-07-28T10:00:06.615598141Z [34m│[0m        
-2025-07-28T10:00:06.615849611Z [34m│[0m -----> Creating runtime environment
-2025-07-28T10:00:06.668289052Z [34m│[0m        
-2025-07-28T10:00:06.669918108Z [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-2025-07-28T10:00:06.675798690Z [34m│[0m        NODE_VERBOSE=false
-2025-07-28T10:00:06.675817120Z [34m│[0m        NODE_ENV=
-2025-07-28T10:00:06.675968415Z [34m│[0m        NODE_MODULES_CACHE=true
-2025-07-28T10:00:06.680801497Z [34m│[0m        
-2025-07-28T10:00:06.680813347Z [34m│[0m -----> Installing binaries
-2025-07-28T10:00:06.777005138Z [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-2025-07-28T10:00:06.777018197Z [34m│[0m        engines.npm (package.json):    unspecified (use default)
-2025-07-28T10:00:06.777025042Z [34m│[0m        
-2025-07-28T10:00:06.897856044Z [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-2025-07-28T10:00:06.908126792Z [34m│[0m        Downloading and installing node 24.2.0...
-2025-07-28T10:00:11.496786794Z [34m│[0m        Using default npm version: 11.3.0
-2025-07-28T10:00:12.326087869Z [34m│[0m        
-2025-07-28T10:00:12.326314134Z [34m│[0m -----> Installing dependencies
-2025-07-28T10:00:12.328651531Z [34m│[0m        Installing node modules
-2025-07-28T10:00:32.355263753Z [34m│[0m        
-2025-07-28T10:00:32.355289783Z [34m│[0m        added 1217 packages, and audited 1218 packages in 20s
-2025-07-28T10:00:32.355291865Z [34m│[0m        
-2025-07-28T10:00:32.355294108Z [34m│[0m        302 packages are looking for funding
-2025-07-28T10:00:32.355296817Z [34m│[0m          run `npm fund` for details
-2025-07-28T10:00:32.371568824Z [34m│[0m        
-2025-07-28T10:00:32.371572724Z [34m│[0m        14 vulnerabilities (4 low, 8 moderate, 1 high, 1 critical)
-2025-07-28T10:00:32.371574563Z [34m│[0m        
-2025-07-28T10:00:32.371576340Z [34m│[0m        To address issues that do not require attention, run:
-2025-07-28T10:00:32.371578498Z [34m│[0m          npm audit fix
-2025-07-28T10:00:32.371580383Z [34m│[0m        
-2025-07-28T10:00:32.371582192Z [34m│[0m        Some issues need review, and may require choosing
-2025-07-28T10:00:32.371583902Z [34m│[0m        a different dependency.
-2025-07-28T10:00:32.371585623Z [34m│[0m        
-2025-07-28T10:00:32.371587498Z [34m│[0m        Run `npm audit` for details.
-2025-07-28T10:00:32.372715674Z [34m│[0m        npm notice
-2025-07-28T10:00:32.372724504Z [34m│[0m        npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-28T10:00:32.372726450Z [34m│[0m        npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-28T10:00:32.372728407Z [34m│[0m        npm notice To update run: npm install -g npm@11.5.1
-2025-07-28T10:00:32.372730327Z [34m│[0m        npm notice
-2025-07-28T10:00:32.490471064Z [34m│[0m        
-2025-07-28T10:00:32.490487049Z [34m│[0m -----> Build
-2025-07-28T10:00:32.570235361Z [34m│[0m        
-2025-07-28T10:00:32.570502806Z [34m│[0m -----> Caching build
-2025-07-28T10:00:32.572038685Z [34m│[0m        - npm cache
-2025-07-28T10:00:32.655787270Z [34m│[0m        
-2025-07-28T10:00:32.655801411Z [34m│[0m -----> Pruning devDependencies
-2025-07-28T10:00:32.728299221Z [34m│[0m        Skipping because NODE_ENV is not 'production'
-2025-07-28T10:00:32.759236193Z [34m│[0m        
-2025-07-28T10:00:32.759248022Z [34m│[0m -----> Build succeeded!
-2025-07-28T10:00:33.239694908Z [34m│[0m Running custom build command: npm run build
-2025-07-28T10:00:33.310763717Z [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:00:33.311001498Z [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:00:33.311015872Z [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:00:33.439565251Z [34m│[0m 
-2025-07-28T10:00:33.439578737Z [34m│[0m > shop-chat-agent@1.0.8 build
-2025-07-28T10:00:33.439581169Z [34m│[0m > prisma generate && remix vite:build
-2025-07-28T10:00:33.439582924Z [34m│[0m 
-2025-07-28T10:00:34.053143448Z [34m│[0m Prisma schema loaded from prisma/schema.prisma
-2025-07-28T10:00:34.190156970Z [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T10:00:34.358810250Z [34m│[0m 
-2025-07-28T10:00:34.358833325Z [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 52ms
-2025-07-28T10:00:34.358836095Z [34m│[0m 
-2025-07-28T10:00:34.358837907Z [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-28T10:00:34.358840136Z [34m│[0m 
-2025-07-28T10:00:34.358841999Z [34m│[0m Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-07-28T10:00:34.358843735Z [34m│[0m 
-2025-07-28T10:00:35.133550389Z [34m│[0m vite v6.3.3 building for production...
-2025-07-28T10:00:35.179411495Z [34m│[0m transforming...
-2025-07-28T10:00:37.352886366Z [34m│[0m ✓ 1487 modules transformed.
-2025-07-28T10:00:37.372932568Z [34m│[0m Generated an empty chunk: "api.send-whatsapp-invite".
-2025-07-28T10:00:37.447424507Z [34m│[0m Generated an empty chunk: "api.whatsapp-webhook".
-2025-07-28T10:00:37.447434539Z [34m│[0m Generated an empty chunk: "auth.token-status".
-2025-07-28T10:00:37.447684444Z [34m│[0m Generated an empty chunk: "auth.callback".
-2025-07-28T10:00:37.447963839Z [34m│[0m Generated an empty chunk: "api.webhooks".
-2025-07-28T10:00:37.447966510Z [34m│[0m Generated an empty chunk: "auth._".
-2025-07-28T10:00:37.448203891Z [34m│[0m Generated an empty chunk: "chat".
-2025-07-28T10:00:37.474938522Z [34m│[0m rendering chunks...
-2025-07-28T10:00:37.544220460Z [34m│[0m computing gzip size...
-2025-07-28T10:00:37.553535435Z [34m│[0m build/client/.vite/manifest.json                            4.10 kB │ gzip:  0.68 kB
-2025-07-28T10:00:37.553539360Z [34m│[0m build/client/assets/styles-BeiPL2RV.css                   444.11 kB │ gzip: 52.26 kB
-2025-07-28T10:00:37.553804461Z [34m│[0m build/client/assets/api.send-whatsapp-invite-l0sNRNKZ.js    0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553962449Z [34m│[0m build/client/assets/api.whatsapp-webhook-l0sNRNKZ.js        0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553964555Z [34m│[0m build/client/assets/auth.token-status-l0sNRNKZ.js           0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553966619Z [34m│[0m build/client/assets/auth.callback-l0sNRNKZ.js               0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553968333Z [34m│[0m build/client/assets/api.webhooks-l0sNRNKZ.js                0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553970172Z [34m│[0m build/client/assets/auth._-l0sNRNKZ.js                      0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553971947Z [34m│[0m build/client/assets/chat-l0sNRNKZ.js                        0.00 kB │ gzip:  0.02 kB
-2025-07-28T10:00:37.553973721Z [34m│[0m build/client/assets/_index-BERXFHcf.js                      0.58 kB │ gzip:  0.39 kB
-2025-07-28T10:00:37.553975408Z [34m│[0m build/client/assets/root-XV_X14gd.js                        1.57 kB │ gzip:  0.90 kB
-2025-07-28T10:00:37.554130504Z [34m│[0m build/client/assets/entry.client-CujeWy8_.js                3.90 kB │ gzip:  1.49 kB
-2025-07-28T10:00:37.554147908Z [34m│[0m build/client/assets/jsx-runtime-0DLF9kdB.js                 7.76 kB │ gzip:  2.96 kB
-2025-07-28T10:00:37.554296083Z [34m│[0m build/client/assets/app-blN_pzVf.js                        52.30 kB │ gzip: 17.49 kB
-2025-07-28T10:00:37.554298954Z [34m│[0m build/client/assets/app._index-C9bxN1Ig.js                 92.30 kB │ gzip: 28.02 kB
-2025-07-28T10:00:37.554500522Z [34m│[0m build/client/assets/components-B7VPHH4w.js                112.98 kB │ gzip: 36.86 kB
-2025-07-28T10:00:37.554602610Z [34m│[0m build/client/assets/index-BfNS1TAq.js                     135.31 kB │ gzip: 43.53 kB
-2025-07-28T10:00:37.554787730Z [34m│[0m build/client/assets/context-B6g4z3qC.js                   151.69 kB │ gzip: 17.04 kB
-2025-07-28T10:00:37.555321771Z [34m│[0m ✓ built in 2.40s
-2025-07-28T10:00:37.621402291Z [34m│[0m vite v6.3.3 building SSR bundle for production...
-2025-07-28T10:00:37.627169550Z [34m│[0m transforming...
-2025-07-28T10:00:37.716474939Z [34m│[0m ✓ 25 modules transformed.
-2025-07-28T10:00:37.764437073Z [34m│[0m [plugin vite:reporter] 
-2025-07-28T10:00:37.764459276Z [34m│[0m (!) /workspace/app/db.server.js is dynamically imported by /workspace/app/auth.server.js, /workspace/app/auth.server.js, /workspace/app/routes/auth.callback.jsx but also statically imported by /workspace/app/mcp-client.js, /workspace/app/routes/api.webhooks.jsx, /workspace/app/routes/auth.callback.jsx, /workspace/app/routes/auth.token-status.jsx, /workspace/app/routes/chat.jsx, /workspace/app/services/tool.server.js, /workspace/app/shopify.server.js, dynamic import will not move module into another chunk.
-2025-07-28T10:00:37.764462872Z [34m│[0m 
-2025-07-28T10:00:37.764465047Z [34m│[0m rendering chunks...
-2025-07-28T10:00:37.768048299Z [34m│[0m build/server/.vite/manifest.json           0.40 kB
-2025-07-28T10:00:37.768167305Z [34m│[0m build/server/assets/styles-BeiPL2RV.css  444.11 kB
-2025-07-28T10:00:37.768261409Z [34m│[0m build/server/index.js                     61.40 kB
-2025-07-28T10:00:37.769327674Z [34m│[0m ✓ built in 148ms
-2025-07-28T10:00:37.787505083Z [34m│[0m npm notice
-2025-07-28T10:00:37.787519466Z [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-28T10:00:37.787522686Z [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-28T10:00:37.787525348Z [34m│[0m npm notice To update run: npm install -g npm@11.5.1
-2025-07-28T10:00:37.787527802Z [34m│[0m npm notice
-2025-07-28T10:00:37.792788714Z [34m│[0m Timer: Builder ran for 31.646212889s and ended at 2025-07-28T10:00:37Z
-2025-07-28T10:00:38.022937284Z [34m╰───────────────────────────────────╼[0m
-2025-07-28T10:00:38.022952633Z 
-2025-07-28T10:00:38.030949772Z [34m╭────────────[34m[30m[44m app upload [0m[0m[34m───────────╼[0m
-2025-07-28T10:00:38.042641288Z [34m│[0m [34m › uploading app container image to DOCR[0m
-2025-07-28T10:00:38.197887453Z [34m│[0m Reusing layers from image <registry-uri-0>
-2025-07-28T10:00:39.157771983Z [34m│[0m Timer: Exporter started at 2025-07-28T10:00:39Z
-2025-07-28T10:00:39.159178836Z [34m│[0m Reusing layer 'heroku/nodejs:profile'
-2025-07-28T10:00:50.897394711Z [34m│[0m Adding 1/1 app layer(s)
-2025-07-28T10:00:50.924136115Z [34m│[0m Reusing layer 'buildpacksio/lifecycle:launcher'
-2025-07-28T10:00:50.924678912Z [34m│[0m Reusing layer 'buildpacksio/lifecycle:config'
-2025-07-28T10:00:50.925134694Z [34m│[0m Reusing layer 'buildpacksio/lifecycle:process-types'
-2025-07-28T10:00:50.925550118Z [34m│[0m Adding label 'io.buildpacks.lifecycle.metadata'
-2025-07-28T10:00:50.925878433Z [34m│[0m Adding label 'io.buildpacks.build.metadata'
-2025-07-28T10:00:50.925880437Z [34m│[0m Adding label 'io.buildpacks.project.metadata'
-2025-07-28T10:00:50.926305022Z [34m│[0m Setting default process type 'web'
-2025-07-28T10:00:50.926524396Z [34m│[0m Timer: Saving <image-1>... started at 2025-07-28T10:00:50Z
-2025-07-28T10:01:00.648838353Z [34m│[0m *** Images (sha256:7f8850221ddee5f4e25b462636fdefa31473da4f66aaca4833ceae0b2a1b2b71):
-2025-07-28T10:01:00.648863026Z [34m│[0m       <image-2>
-2025-07-28T10:01:00.649131844Z [34m│[0m Timer: Saving <image-3>... ran for 9.722009265s and ended at 2025-07-28T10:01:00Z
-2025-07-28T10:01:00.649137072Z [34m│[0m Timer: Exporter ran for 21.49090104s and ended at 2025-07-28T10:01:00Z
-2025-07-28T10:01:00.649140224Z [34m│[0m Timer: Cache started at 2025-07-28T10:01:00Z
-2025-07-28T10:01:00.768988262Z [34m│[0m Layer cache not found
-2025-07-28T10:01:01.986714168Z [34m│[0m Adding cache layer 'heroku/nodejs:shim'
-2025-07-28T10:01:08.540318697Z [34m│[0m Timer: Cache ran for 7.891568482s and ended at 2025-07-28T10:01:08Z
-2025-07-28T10:01:08.659404981Z [34m│[0m [32m ✔ uploaded app image to DOCR[0m
-2025-07-28T10:01:08.663775905Z [34m╰────────────────────────────────────╼[0m
-2025-07-28T10:01:08.663786968Z 
-2025-07-28T10:01:08.675332471Z [32m ✔ [0m[30m[42m build complete [0m[0m
-2025-07-28T10:01:08.675344671Z 
+2025-07-28T11:51:51.375650070Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+2025-07-28T11:51:51.408819222Z [34m│[0m [34m › fetching app source code[0m
+2025-07-28T11:51:51.441402598Z [34m│[0m => Selecting branch "main"
+2025-07-28T11:51:52.045224748Z [34m│[0m => Checking out commit "09b38be336b3e8165d5676e5f75697dbd2a0d7ac"
+2025-07-28T11:51:52.059130802Z [34m│[0m 
+2025-07-28T11:51:52.062430236Z [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+2025-07-28T11:51:52.082408833Z [34m╰────────────────────────────────────────╼[0m
+2025-07-28T11:51:52.082422717Z 
+2025-07-28T11:51:52.309270973Z [34m › configuring build-time app environment variables:[0m
+2025-07-28T11:51:52.309290455Z      SHOPIFY_API_SECRET SHOPIFY_API_KEY CLAUDE_API_KEY WHATSAPP_TOKEN SHOPIFY_CHAT_BUBBLE_ID DIRECT_URL REDIRECT_URL WHATSAPP_VERIFY_TOKEN WHATSAPP_PHONE_NUMBER_ID SHOPIFY_APP_URL
+2025-07-28T11:51:52.309293938Z 
+2025-07-28T11:51:52.311264688Z [34m › configuring custom build command to be run at the end of the build:[0m
+2025-07-28T11:51:52.313965868Z    [34m│[0m npm run build
+2025-07-28T11:51:52.313979671Z 
+2025-07-28T11:51:52.405994828Z [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+2025-07-28T11:51:52.424409957Z [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+2025-07-28T11:51:53.501090331Z [34m│[0m Detected the following buildpacks suitable to build your app:
+2025-07-28T11:51:53.501114862Z [34m│[0m 
+2025-07-28T11:51:53.501119069Z [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+2025-07-28T11:51:53.501121936Z [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+2025-07-28T11:51:53.501124779Z [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+2025-07-28T11:51:53.501127715Z [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+2025-07-28T11:51:53.504780970Z [34m╰─────────────────────────────────────────────╼[0m
+2025-07-28T11:51:53.504799733Z 
+2025-07-28T11:51:53.507663893Z [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+2025-07-28T11:51:53.509789141Z [34m│[0m [34m › checking for cache from a previous build[0m
+2025-07-28T11:51:53.729813619Z [34m│[0m Timer: Analyzer started at 2025-07-28T11:51:53Z
+2025-07-28T11:51:54.303823691Z [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+2025-07-28T11:51:54.304171302Z [34m│[0m Timer: Analyzer ran for 574.893351ms and ended at 2025-07-28T11:51:54Z
+2025-07-28T11:51:54.507384758Z [34m│[0m Timer: Restorer started at 2025-07-28T11:51:54Z
+2025-07-28T11:51:54.667359568Z [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+2025-07-28T11:51:56.533485312Z [34m│[0m Timer: Restorer ran for 2.025854601s and ended at 2025-07-28T11:51:56Z
+2025-07-28T11:51:56.556510551Z [34m╰───────────────────────────────────────╼[0m
+2025-07-28T11:51:56.556626714Z 
+2025-07-28T11:51:56.559105280Z [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+2025-07-28T11:51:56.596688156Z [34m│[0m Timer: Builder started at 2025-07-28T11:51:56Z
+2025-07-28T11:51:57.033836779Z [34m│[0m        
+2025-07-28T11:51:57.034073040Z [34m│[0m -----> Creating runtime environment
+2025-07-28T11:51:57.080322240Z [34m│[0m        
+2025-07-28T11:51:57.081939587Z [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+2025-07-28T11:51:57.088313071Z [34m│[0m        NODE_VERBOSE=false
+2025-07-28T11:51:57.088548899Z [34m│[0m        NODE_ENV=
+2025-07-28T11:51:57.088567550Z [34m│[0m        NODE_MODULES_CACHE=true
+2025-07-28T11:51:57.093762445Z [34m│[0m        
+2025-07-28T11:51:57.094239913Z [34m│[0m -----> Installing binaries
+2025-07-28T11:51:57.188087401Z [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+2025-07-28T11:51:57.188385731Z [34m│[0m        engines.npm (package.json):    unspecified (use default)
+2025-07-28T11:51:57.188407360Z [34m│[0m        
+2025-07-28T11:51:57.313036000Z [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+2025-07-28T11:51:57.324092543Z [34m│[0m        Downloading and installing node 24.2.0...
+2025-07-28T11:52:02.026036421Z [34m│[0m        Using default npm version: 11.3.0
+2025-07-28T11:52:02.780761351Z [34m│[0m        
+2025-07-28T11:52:02.780792831Z [34m│[0m -----> Restoring cache
+2025-07-28T11:52:02.783915967Z [34m│[0m        - npm cache
+2025-07-28T11:52:02.881764996Z [34m│[0m        
+2025-07-28T11:52:02.882335016Z [34m│[0m -----> Installing dependencies
+2025-07-28T11:52:02.963281371Z [34m│[0m        Installing node modules
+2025-07-28T11:52:19.811810925Z [34m│[0m        
+2025-07-28T11:52:19.811847285Z [34m│[0m        added 1217 packages, and audited 1218 packages in 17s
+2025-07-28T11:52:19.811852015Z [34m│[0m        
+2025-07-28T11:52:19.811855529Z [34m│[0m        302 packages are looking for funding
+2025-07-28T11:52:19.811859016Z [34m│[0m          run `npm fund` for details
+2025-07-28T11:52:19.834382652Z [34m│[0m        
+2025-07-28T11:52:19.834407063Z [34m│[0m        14 vulnerabilities (4 low, 8 moderate, 1 high, 1 critical)
+2025-07-28T11:52:19.834734446Z [34m│[0m        
+2025-07-28T11:52:19.834969709Z [34m│[0m        To address issues that do not require attention, run:
+2025-07-28T11:52:19.834982567Z [34m│[0m          npm audit fix
+2025-07-28T11:52:19.834986622Z [34m│[0m        
+2025-07-28T11:52:19.834989845Z [34m│[0m        Some issues need review, and may require choosing
+2025-07-28T11:52:19.834992744Z [34m│[0m        a different dependency.
+2025-07-28T11:52:19.834996267Z [34m│[0m        
+2025-07-28T11:52:19.834999482Z [34m│[0m        Run `npm audit` for details.
+2025-07-28T11:52:19.918622102Z [34m│[0m        
+2025-07-28T11:52:19.918645098Z [34m│[0m -----> Build
+2025-07-28T11:52:20.000079783Z [34m│[0m        
+2025-07-28T11:52:20.000102793Z [34m│[0m -----> Caching build
+2025-07-28T11:52:20.001109669Z [34m│[0m        - npm cache
+2025-07-28T11:52:20.214212041Z [34m│[0m        
+2025-07-28T11:52:20.214234968Z [34m│[0m -----> Pruning devDependencies
+2025-07-28T11:52:20.288566344Z [34m│[0m        Skipping because NODE_ENV is not 'production'
+2025-07-28T11:52:20.319476164Z [34m│[0m        
+2025-07-28T11:52:20.319723281Z [34m│[0m -----> Build succeeded!
+2025-07-28T11:52:20.809257412Z [34m│[0m Running custom build command: npm run build
+2025-07-28T11:52:20.880606396Z [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T11:52:20.880796772Z [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T11:52:20.880801924Z [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T11:52:21.006099786Z [34m│[0m 
+2025-07-28T11:52:21.006120022Z [34m│[0m > shop-chat-agent@1.0.13 build
+2025-07-28T11:52:21.006123029Z [34m│[0m > prisma generate && remix vite:build
+2025-07-28T11:52:21.006125302Z [34m│[0m 
+2025-07-28T11:52:21.630166444Z [34m│[0m Prisma schema loaded from prisma/schema.prisma
+2025-07-28T11:52:21.763723341Z [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T11:52:21.937499156Z [34m│[0m 
+2025-07-28T11:52:21.937534211Z [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 49ms
+2025-07-28T11:52:21.937543506Z [34m│[0m 
+2025-07-28T11:52:21.937546861Z [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-28T11:52:21.937549669Z [34m│[0m 
+2025-07-28T11:52:21.937553419Z [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-07-28T11:52:21.937556240Z [34m│[0m 
+2025-07-28T11:52:22.738447737Z [34m│[0m vite v6.3.3 building for production...
+2025-07-28T11:52:22.780101410Z [34m│[0m transforming...
+2025-07-28T11:52:24.905042048Z [34m│[0m ✓ 1487 modules transformed.
+2025-07-28T11:52:24.919619709Z [34m│[0m Generated an empty chunk: "api.send-whatsapp-invite".
+2025-07-28T11:52:24.995163501Z [34m│[0m Generated an empty chunk: "api.whatsapp-webhook".
+2025-07-28T11:52:24.995193793Z [34m│[0m Generated an empty chunk: "auth.token-status".
+2025-07-28T11:52:24.995306649Z [34m│[0m Generated an empty chunk: "auth.callback".
+2025-07-28T11:52:24.995315950Z [34m│[0m Generated an empty chunk: "api.webhooks".
+2025-07-28T11:52:24.995320820Z [34m│[0m Generated an empty chunk: "auth._".
+2025-07-28T11:52:24.995488853Z [34m│[0m Generated an empty chunk: "chat".
+2025-07-28T11:52:25.023425184Z [34m│[0m rendering chunks...
+2025-07-28T11:52:25.109341416Z [34m│[0m computing gzip size...
+2025-07-28T11:52:25.118931348Z [34m│[0m build/client/.vite/manifest.json                            4.10 kB │ gzip:  0.68 kB
+2025-07-28T11:52:25.118952956Z [34m│[0m build/client/assets/styles-BeiPL2RV.css                   444.11 kB │ gzip: 52.26 kB
+2025-07-28T11:52:25.118956837Z [34m│[0m build/client/assets/api.send-whatsapp-invite-l0sNRNKZ.js    0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.118959997Z [34m│[0m build/client/assets/api.whatsapp-webhook-l0sNRNKZ.js        0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.118962963Z [34m│[0m build/client/assets/auth.token-status-l0sNRNKZ.js           0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.119231168Z [34m│[0m build/client/assets/auth.callback-l0sNRNKZ.js               0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.119237789Z [34m│[0m build/client/assets/api.webhooks-l0sNRNKZ.js                0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.119241329Z [34m│[0m build/client/assets/auth._-l0sNRNKZ.js                      0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.119244155Z [34m│[0m build/client/assets/chat-l0sNRNKZ.js                        0.00 kB │ gzip:  0.02 kB
+2025-07-28T11:52:25.119246768Z [34m│[0m build/client/assets/_index-BERXFHcf.js                      0.58 kB │ gzip:  0.39 kB
+2025-07-28T11:52:25.119250188Z [34m│[0m build/client/assets/root-XV_X14gd.js                        1.57 kB │ gzip:  0.90 kB
+2025-07-28T11:52:25.119253230Z [34m│[0m build/client/assets/entry.client-CujeWy8_.js                3.90 kB │ gzip:  1.49 kB
+2025-07-28T11:52:25.119564635Z [34m│[0m build/client/assets/jsx-runtime-0DLF9kdB.js                 7.76 kB │ gzip:  2.96 kB
+2025-07-28T11:52:25.119890270Z [34m│[0m build/client/assets/app-blN_pzVf.js                        52.30 kB │ gzip: 17.49 kB
+2025-07-28T11:52:25.120859714Z [34m│[0m build/client/assets/app._index-C9bxN1Ig.js                 92.30 kB │ gzip: 28.02 kB
+2025-07-28T11:52:25.121163397Z [34m│[0m build/client/assets/components-B7VPHH4w.js                112.98 kB │ gzip: 36.86 kB
+2025-07-28T11:52:25.121174249Z [34m│[0m build/client/assets/index-BfNS1TAq.js                     135.31 kB │ gzip: 43.53 kB
+2025-07-28T11:52:25.121176949Z [34m│[0m build/client/assets/context-B6g4z3qC.js                   151.69 kB │ gzip: 17.04 kB
+2025-07-28T11:52:25.122445386Z [34m│[0m ✓ built in 2.36s
+2025-07-28T11:52:25.172038772Z [34m│[0m vite v6.3.3 building SSR bundle for production...
+2025-07-28T11:52:25.174241380Z [34m│[0m transforming...
+2025-07-28T11:52:25.258637126Z [34m│[0m ✓ 25 modules transformed.
+2025-07-28T11:52:25.264790942Z [34m│[0m ✗ Build failed in 93ms
+2025-07-28T11:52:25.265471363Z [34m│[0m app/routes/api.whatsapp-webhook.jsx (7:9): "prisma" is not exported by "app/db.server.js", imported by "app/routes/api.whatsapp-webhook.jsx".
+2025-07-28T11:52:25.265483373Z [34m│[0m file: /workspace/app/routes/api.whatsapp-webhook.jsx:7:9
+2025-07-28T11:52:25.265487202Z [34m│[0m 
+2025-07-28T11:52:25.265490691Z [34m│[0m 5: import MCPClient from "../mcp-client";
+2025-07-28T11:52:25.265493956Z [34m│[0m 6: import AppConfig from "../services/config.server";
+2025-07-28T11:52:25.265497410Z [34m│[0m 7: import { prisma } from "../db.server";
+2025-07-28T11:52:25.265501240Z [34m│[0m             ^
+2025-07-28T11:52:25.265504214Z [34m│[0m 8: 
+2025-07-28T11:52:25.265506968Z [34m│[0m 9: // Helper to send a message back to WhatsApp
+2025-07-28T11:52:25.265509810Z [34m│[0m 
+2025-07-28T11:52:25.265512885Z [34m│[0m     at getRollupError (file:///workspace/node_modules/rollup/dist/es/shared/parseAst.js:397:41)
+2025-07-28T11:52:25.265515673Z [34m│[0m     at error (file:///workspace/node_modules/rollup/dist/es/shared/parseAst.js:393:42)
+2025-07-28T11:52:25.265518460Z [34m│[0m     at Module.error (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:16750:16)
+2025-07-28T11:52:25.265521835Z [34m│[0m     at Module.traceVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:17199:29)
+2025-07-28T11:52:25.265524113Z [34m│[0m     at ModuleScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:14855:39)
+2025-07-28T11:52:25.265525976Z [34m│[0m     at ReturnValueScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
+2025-07-28T11:52:25.265528100Z [34m│[0m     at FunctionBodyScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
+2025-07-28T11:52:25.265530148Z [34m│[0m     at TrackingScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
+2025-07-28T11:52:25.265532083Z [34m│[0m     at BlockScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
+2025-07-28T11:52:25.265533909Z [34m│[0m     at BlockScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38) {
+2025-07-28T11:52:25.265537055Z [34m│[0m   binding: 'prisma',
+2025-07-28T11:52:25.265538973Z [34m│[0m   code: 'MISSING_EXPORT',
+2025-07-28T11:52:25.265640908Z [34m│[0m   exporter: '/workspace/app/db.server.js',
+2025-07-28T11:52:25.265654545Z [34m│[0m   id: '/workspace/app/routes/api.whatsapp-webhook.jsx',
+2025-07-28T11:52:25.265673411Z [34m│[0m   url: 'https://rollupjs.org/troubleshooting/#error-name-is-not-exported-by-module',
+2025-07-28T11:52:25.265675768Z [34m│[0m   pos: 333,
+2025-07-28T11:52:25.265677891Z [34m│[0m   loc: {
+2025-07-28T11:52:25.265680152Z [34m│[0m     column: 9,
+2025-07-28T11:52:25.265682264Z [34m│[0m     file: '/workspace/app/routes/api.whatsapp-webhook.jsx',
+2025-07-28T11:52:25.265684232Z [34m│[0m     line: 7
+2025-07-28T11:52:25.265685991Z [34m│[0m   },
+2025-07-28T11:52:25.265687908Z [34m│[0m   frame: '5: import MCPClient from "../mcp-client";\n' +
+2025-07-28T11:52:25.265689873Z [34m│[0m     '6: import AppConfig from "../services/config.server";\n' +
+2025-07-28T11:52:25.265691783Z [34m│[0m     '7: import { prisma } from "../db.server";\n' +
+2025-07-28T11:52:25.265693975Z [34m│[0m     '            ^\n' +
+2025-07-28T11:52:25.265695927Z [34m│[0m     '8: \n' +
+2025-07-28T11:52:25.265697876Z [34m│[0m     '9: // Helper to send a message back to WhatsApp',
+2025-07-28T11:52:25.265699786Z [34m│[0m   watchFiles: [
+2025-07-28T11:52:25.265701652Z [34m│[0m     '/workspace/app/entry.server.jsx',
+2025-07-28T11:52:25.265703453Z [34m│[0m     '/workspace/app/root.jsx',
+2025-07-28T11:52:25.265705451Z [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+2025-07-28T11:52:25.265708848Z [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+2025-07-28T11:52:25.265710721Z [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+2025-07-28T11:52:25.265712495Z [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+2025-07-28T11:52:25.265714461Z [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+2025-07-28T11:52:25.265716281Z [34m│[0m     '/workspace/app/routes/_index.jsx',
+2025-07-28T11:52:25.265718197Z [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+2025-07-28T11:52:25.265719986Z [34m│[0m     '/workspace/app/routes/chat.jsx',
+2025-07-28T11:52:25.265721896Z [34m│[0m     '/workspace/app/routes/app.jsx',
+2025-07-28T11:52:25.265723808Z [34m│[0m     '/workspace/app/routes/app._index.jsx',
+2025-07-28T11:52:25.265725678Z [34m│[0m     '/workspace/package.json',
+2025-07-28T11:52:25.265727546Z [34m│[0m     '/workspace/app/shopify.server.js',
+2025-07-28T11:52:25.265729464Z [34m│[0m     '/workspace/app/services/config.server.js',
+2025-07-28T11:52:25.265731315Z [34m│[0m     '/workspace/app/mcp-client.js',
+2025-07-28T11:52:25.265733084Z [34m│[0m     '/workspace/app/services/streaming.server.js',
+2025-07-28T11:52:25.265734946Z [34m│[0m     '/workspace/app/services/claude.server.js',
+2025-07-28T11:52:25.265736868Z [34m│[0m     '/workspace/app/services/tool.server.js',
+2025-07-28T11:52:25.265738768Z [34m│[0m     '/workspace/app/db.server.js',
+2025-07-28T11:52:25.265740770Z [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/styles.css',
+2025-07-28T11:52:25.265742778Z [34m│[0m     '/workspace/app/auth.server.js',
+2025-07-28T11:52:25.265744677Z [34m│[0m     '/workspace/app/prompts/prompts.json'
+2025-07-28T11:52:25.265746493Z [34m│[0m   ],
+2025-07-28T11:52:25.265748452Z [34m│[0m   Symbol(augmented): true
+2025-07-28T11:52:25.265750421Z [34m│[0m }
+2025-07-28T11:52:25.283836761Z [34m│[0m npm notice
+2025-07-28T11:52:25.283853153Z [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.5.1
+2025-07-28T11:52:25.283856107Z [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
+2025-07-28T11:52:25.283858624Z [34m│[0m npm notice To update run: npm install -g npm@11.5.1
+2025-07-28T11:52:25.283860838Z [34m│[0m npm notice
+2025-07-28T11:52:25.288619387Z [34m│[0m building: exit status 1
+2025-07-28T11:52:25.289238038Z [34m│[0m Timer: Builder ran for 28.692789637s and ended at 2025-07-28T11:52:25Z
+2025-07-28T11:52:25.289252947Z [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+2025-07-28T11:52:25.514011250Z [34m│[0m 
+2025-07-28T11:52:25.517524900Z [34m│[0m 
+2025-07-28T11:52:25.526316544Z [34m│[0m [31m ✘ build failed[0m
