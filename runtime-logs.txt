@@ -1,183 +1,186 @@
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] > shop-chat-agent@1.0.22 start
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 158ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 143ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] > shop-chat-agent@1.0.22 start
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:51] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-28 14:55:51] [remix-serve] http://localhost:8080 (http://10.244.16.10:8080)
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:22] POST /api/whatsapp-webhook 200 - - 14.863 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Connected to storefront MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Total MCP tools available: 9
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: MCP tool names: [
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'search_shop_catalog',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'update_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'search_shop_policies_and_faqs',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_product_details',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_most_recent_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_store_credit_balances',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'request_return'
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] ]
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:32] POST /api/whatsapp-webhook 200 - - 4047.213 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 223ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:30] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:30] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 151ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:35] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-28 14:56:35] [remix-serve] http://localhost:8080 (http://10.244.11.9:8080)
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Connected to storefront MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Total MCP tools available: 9
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: MCP tool names: [
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'search_shop_catalog',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'update_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'search_shop_policies_and_faqs',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_product_details',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_most_recent_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_store_credit_balances',
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'request_return'
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] ]
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:21] POST /api/whatsapp-webhook 200 - - 3315.903 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:22] POST /api/whatsapp-webhook 200 - - 2.751 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:33] POST /api/whatsapp-webhook 200 - - 1.951 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:57:33] POST /api/whatsapp-webhook 200 - - 1.772 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Connected to storefront MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Total MCP tools available: 9
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: MCP tool names: [
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'search_shop_catalog',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'update_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'search_shop_policies_and_faqs',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_product_details',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_most_recent_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_store_credit_balances',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'request_return'
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] ]
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:07] POST /api/whatsapp-webhook 200 - - 5972.952 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:08] POST /api/whatsapp-webhook 200 - - 1.856 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:08] POST /api/whatsapp-webhook 200 - - 2.051 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Connected to storefront MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Total MCP tools available: 9
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: MCP tool names: [
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'search_shop_catalog',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'update_cart',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'search_shop_policies_and_faqs',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_product_details',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_most_recent_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_order_status',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_store_credit_balances',
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'request_return'
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] ]
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:19] POST /api/whatsapp-webhook 200 - - 3366.953 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 2.087 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 2.516 ms
-[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 1.532 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:46] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:46] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:46] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] > shop-chat-agent@1.0.23 start
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:47] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:49] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:49] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 168ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:50] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:51] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:53] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 195ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] │  Update available 6.6.0 -> 6.12.0                       │
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:54] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:58] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-28 15:02:58] [remix-serve] http://localhost:8080 (http://10.244.34.207:8080)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:03] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:03] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:04] ]
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10] WhatsApp: Executing tool: search_shop_catalog
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10] Calling storefront tool search_shop_catalog {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]   query: 'SKE Crystal',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]   context: 'Customer looking for SKE Crystal product'
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10] }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10] WhatsApp: Tool response: {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]   content: [
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]     {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]       type: 'text',
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]       text: '{"products":[{"product_id":"gid://shopify/Product/15153133683036","title":"Crystal 600 Pro Pods Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Menthol","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0005_9398iD_A_2pcs_I_aA_di_dMenthol.webp?v=1753712567","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","export","hot","menthol","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119382511964","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0005_9398iD_A_2pcs_I_aA_di_dMenthol.webp?v=1753712567","available":false}]},{"product_id":"gid://shopify/Product/15153132994908","title":"Crystal 600 Pro Pods Vmtice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Vmtice","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0001_9398iD_A_2pcs_I_aA_di_dVMTIce.webp?v=1753712546","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","export","hot","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119380414812","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0001_9398iD_A_2pcs_I_aA_di_dVMTIce.webp?v=1753712546","available":false}]},{"product_id":"gid://shopify/Product/15153133650268","title":"Crystal 600 Pro Kit Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Kit 400mAh 600 Puffs 2ml Liquid Rechargeable Refillable Post Ban Compliant","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600prokit_0005_9398S_II_Menthol.webp?v=1753712565","price_range":{"min":"2.05","max":"2.05","currency":"GBP"},"product_type":"Compliant 600 Puffs","tags":["600","export","hot","menthol","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119382479196","title":"Default Title","price":"2.05","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600prokit_0005_9398S_II_Menthol.webp?v=1753712565","available":false}]},{"product_id":"gid://shopify/Product/15153132831068","title":"Crystal 600 Pro Kit Vmtice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Kit 400mAh 600 Puffs 2ml Liquid Rechargeable Refillable Post Ban Compliant","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600prokit_0001_9398S_II_VMTIce.webp?v=1753712543","price_range":{"min":"2.05","max":"2.05","currency":"GBP"},"product_type":"Compliant 600 Puffs","tags":["600","export","hot","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119380087132","title":"Default Title","price":"2.05","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600prokit_0001_9398S_II_VMTIce.webp?v=1753712543","available":false}]},{"product_id":"gid://shopify/Product/15153134272860","title":"Crystal 600 Pro Pods Cola Ice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Colaice","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0009_9398iD_A_2pcs_I_aA_di_dColaIce.webp?v=1753712588","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","cola","drink-flavour","export","hot","ice","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119383593308","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0009_9398iD_A_2pcs_I_aA_di_dColaIce.webp?v=1753712588","available":false}]},{"product_id":"gid://shopify/Product/15153135059292","title":"Crystal 600 Pro Pods Blueberry Raspberries","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Blueberry Raspberries","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0012_9398iD_A_2pcs_I_aA_di_dBlueberryRaspberries.webp?v=1753712605","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","blueberry","export","fruit","hot","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119386607964","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0012_9398iD_A_2pcs_I_aA_di_dBlueberryRaspberries.webp?v=1753712605","available":false}]},{"product_id":"gid://shopify/Product/15153134600540","title":"Crystal 600 Pro Pods Cherry Ice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Cherry Ice","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0010_9398iD_A_2pcs_I_aA_di_dCherryIce.webp?v=1753712594","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","cherry","export","fruit","hot","ice","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119384379740","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0010_9398iD_A_2pcs_I_aA_di_dCherryIce.webp?v=1753712594","available":false}]},{"product_id":"gid://shopify/Product/15153134141788","title":"Crystal 600 Pro Pods Fizzy Cherry","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Fizzy Cherry","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0008_9398iD_A_2pcs_I_aA_di_dFizzyCherry.webp?v=1753712583","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","cherry","export","fruit","hot","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119383396700","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0008_9398iD_A_2pcs_I_aA_di_dFizzyCherry.webp?v=1753712583","available":false}]},{"product_id":"gid://shopify/Product/15153133846876","title":"Crystal 600 Pro Pods Lemon \\u0026 Lime","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Lemon \\u0026 Lime","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0006_9398iD_A_2pcs_I_aA_di_dLemon_Lime.webp?v=1753712573","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","export","fruit","hot","lemon","New"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119382675804","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0006_9398iD_A_2pcs_I_aA_di_dLemon_Lime.webp?v=1753712573","available":false}]},{"product_id":"gid://shopify/Product/15153133551964","title":"Crystal 600 Pro Pods Pineapple Ice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Pods Pineapple Ice","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0004_9398iD_A_2pcs_I_aA_di_dPineappleIce.webp?v=1753712562","price_range":{"min":"1.85","max":"1.85","currency":"GBP"},"product_type":"Pre-Filled Pods","tags":["600","export","fruit","hot","ice","New","pineapple"],"variants":[{"variant_id":"gid://shopify/ProductVariant/55119381889372","title":"Default Title","price":"1.85","currency":"GBP","image_url":"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600propods_0004_9398iD_A_2pcs_I_aA_di_dPineappleIce.webp?v=1753712562","available":false}]}],"pagination":{"hasNextPage":true,"hasPreviousPage":false,"startCursor":"eyJwYWdlIjoxLCJsYXN0X2lkIjoxNTE1MzEzMzY4MzAzNiwicmV2ZXJzZSI6dHJ1ZSwib2Zmc2V0IjowfQ==","endCursor":"eyJwYWdlIjoyLCJsYXN0X2lkIjoxNTE1MzEzMzU1MTk2NCwicmV2ZXJzZSI6dHJ1ZSwib2Zmc2V0Ijo5fQ==","currentPage":1,"nextPage":2,"maxPages":2500,"limitReached":false},"available_filters":[{"label":"Availability","values":{"label":["Out of stock","In stock"],"input_options":[{"label":"Out of stock","input":{"available":false}},{"label":"In stock","input":{"available":true}}]}},{"label":"Price","values":{"label":["Price"],"input_options":[{"label":"Price","input":{"price":{"min":0,"max":2.05}}}]}}],"instructions":"Use markdown to render product titles as links to their respective product pages using the URL property.\\n\\nFor product data:\\n- If variants are included in the response, those are the only variants available\\n- If variants are not included, use the options and availability matrix with get_product_details tool\\n- Check product_type, tags, and other properties to help the user find what they need\\n\\nFor filters:\\n- Mention available filters to the user if they might be helpful\\n- Use filters ONLY from available_filters in follow-up searches\\n- If a search term matches a filter, do a follow-up search with the filter applied\\n\\nFor pagination:\\n- Show only the first set of results initially\\n- If pagination.hasNextPage is true, ask if the user wants to see more\\n- Only fetch additional pages when explicitly requested\\n"}'
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]     }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]   ],
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10]   isError: false
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:10] }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11] WhatsApp chat error: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.50: `tool_use` ids were found without `tool_result` blocks immediately after: toolu_01CWbkE3rmp2q9v6b6QFYKmT. Each `tool_use` block must have a corresponding `tool_result` block in the next message."}}
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] > shop-chat-agent@1.0.23 start
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:27] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 153ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:29] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:30] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:32] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:32] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at Object.getConversationResponse (file:///workspace/build/server/index.js?t=315532801000:450:22)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at action$3 (file:///workspace/build/server/index.js?t=315532801000:936:24)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     at async Promise.all (index 0) {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   status: 400,
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   headers: {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'cf-cache-status': 'DYNAMIC',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'cf-ray': '966553222f4b1b54-LHR',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     connection: 'keep-alive',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'content-length': '277',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'content-type': 'application/json',
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 190ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] 
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] │  Update available 6.6.0 -> 6.12.0                       │
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:33] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:37] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-28 15:03:37] [remix-serve] http://localhost:8080 (http://10.244.28.67:8080)
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:37] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     date: 'Mon, 28 Jul 2025 15:14:11 GMT',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'request-id': 'req_011CRZdmgoEBi9y419AXuc4Z',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     server: 'cloudflare',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     via: '1.1 google',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'x-robots-tag': 'none',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     'x-should-retry': 'false'
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   },
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   request_id: 'req_011CRZdmgoEBi9y419AXuc4Z',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   error: {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     type: 'error',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     error: {
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]       type: 'invalid_request_error',
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]       message: 'messages.50: `tool_use` ids were found without `tool_result` blocks immediately after: toolu_01CWbkE3rmp2q9v6b6QFYKmT. Each `tool_use` block must have a corresponding `tool_result` block in the next message.'
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]     }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11]   }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11] }
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:11] POST /api/whatsapp-webhook 200 - - 7951.172 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:12] POST /api/whatsapp-webhook 200 - - 2.311 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:38] ]
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:45] POST /api/whatsapp-webhook 200 - - 8094.416 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:46] POST /api/whatsapp-webhook 200 - - 2.817 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:13:46] POST /api/whatsapp-webhook 200 - - 2.298 ms
+[shop-chat-agent-whatsapp] [2025-07-28 15:14:13] POST /api/whatsapp-webhook 200 - - 1.871 ms

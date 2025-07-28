@@ -105,7 +105,7 @@ export const action = async ({ request }) => {
             const toolResponse = await mcpClient.callTool(content.name, content.input);
             console.log('WhatsApp: Tool response:', toolResponse);
             
-            // Add tool result to conversation
+            // Add tool result to conversation in proper format
             conversationHistory.push({
               role: 'assistant',
               content: [content]
@@ -113,7 +113,11 @@ export const action = async ({ request }) => {
             
             conversationHistory.push({
               role: 'user',
-              content: `Tool result: ${JSON.stringify(toolResponse)}`
+              content: [{
+                type: 'tool_result',
+                tool_use_id: content.id,
+                content: toolResponse.content[0].text
+              }]
             });
             
             // Get final response with tool results
