@@ -4,6 +4,7 @@ import { createToolService } from "../services/tool.server";
 import { saveMessage, getConversationHistory } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
+import { prisma } from "../db.server";
 
 // Helper to send a message back to WhatsApp
 async function sendWhatsAppMessage(to, text) {
@@ -40,8 +41,29 @@ export const action = async ({ request }) => {
       const claudeService = createClaudeService();
       const toolService = createToolService();
       
-      // Get the default shop domain from environment or use a fallback
-      const shopDomain = process.env.SHOPIFY_APP_URL?.replace('https://', '').replace('http://', '') || 'your-store.myshopify.com';
+      // Get the shop domain from the database (from the first installed session)
+      let shopDomain = 'your-store.myshopify.com'; // fallback
+      try {
+        const session = await prisma.session.findFirst({
+          where: {
+            shop: {
+              not: null
+            }
+          },
+          orderBy: {
+            createdAt: 'desc'
+          }
+        });
+        
+        if (session && session.shop) {
+          shopDomain = session.shop;
+          console.log('WhatsApp: Using shop domain from database:', shopDomain);
+        } else {
+          console.warn('WhatsApp: No shop domain found in database, using fallback');
+        }
+      } catch (error) {
+        console.error('WhatsApp: Error getting shop domain from database:', error);
+      }
       
       // Initialize MCP client for store access
       const mcpClient = new MCPClient(
