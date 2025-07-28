@@ -7,4 +7,4 @@ npx prisma generate
 npx prisma db push
 
 # Start the app
-npm start 
+remix-serve ./build/server/index.js --host 0.0.0.0 
