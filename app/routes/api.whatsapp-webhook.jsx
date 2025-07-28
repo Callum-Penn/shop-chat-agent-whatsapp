@@ -41,30 +41,11 @@ export const action = async ({ request }) => {
       const claudeService = createClaudeService();
       const toolService = createToolService();
       
-      // Get the shop domain and shop ID from the database (from the first installed session)
-      let shopDomain = 'your-store.myshopify.com'; // fallback
-      let shopId = null;
-      try {
-        const sessions = await prisma.session.findMany({
-          orderBy: {
-            createdAt: 'desc'
-          }
-        });
-        
-        // Find the first session with a valid shop domain
-        const session = sessions.find(s => s.shop && s.shop !== null && s.shop !== '');
-        
-        if (session && session.shop) {
-          shopDomain = session.shop;
-          shopId = session.id; // Use session ID as shop ID
-          console.log('WhatsApp: Using shop domain from database:', shopDomain);
-          console.log('WhatsApp: Using shop ID from database:', shopId);
-        } else {
-          console.warn('WhatsApp: No shop domain found in database, using fallback');
-        }
-      } catch (error) {
-        console.error('WhatsApp: Error getting shop domain from database:', error);
-      }
+      // HARDCODED: Use the actual store URL for now
+      const shopDomain = 'ju3ntu-rn.myshopify.com'; // Your actual store domain
+      const shopId = 'ju3ntu-rn'; // Your store ID
+      console.log('WhatsApp: Using hardcoded shop domain:', shopDomain);
+      console.log('WhatsApp: Using hardcoded shop ID:', shopId);
       
       // Initialize MCP client for store access
       const mcpClient = new MCPClient(
