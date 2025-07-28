@@ -9,21 +9,77 @@ async function sendWhatsAppMessage(to, text) {
     to,
     text: { body: text },
   };
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
+  
+  console.log('WhatsApp API Request:', {
+    url,
+    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID,
+    to,
+    payload
   });
+  
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    
+    const responseData = await response.json();
+    console.log('WhatsApp API Response:', {
+      status: response.status,
+      statusText: response.statusText,
+      data: responseData
+    });
+    
+    if (!response.ok) {
+      throw new Error(`WhatsApp API error: ${response.status} ${response.statusText} - ${JSON.stringify(responseData)}`);
+    }
+    
+    return responseData;
+  } catch (error) {
+    console.error('WhatsApp API Error:', error);
+    throw error;
+  }
 }
 
 export const action = async ({ request }) => {
-  const { phoneNumber } = await request.json();
-  if (!phoneNumber) {
-    return json({ error: "Phone number is required." }, { 
-      status: 400,
+  try {
+    const { phoneNumber } = await request.json();
+    if (!phoneNumber) {
+      return json({ error: "Phone number is required." }, { 
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      });
+    }
+    
+    console.log('Received WhatsApp invite request for:', phoneNumber);
+    
+    // Send WhatsApp invite message
+    const result = await sendWhatsAppMessage(phoneNumber, "Hi! You can continue your chat with our AI assistant here on WhatsApp.");
+    
+    console.log('WhatsApp message sent successfully:', result);
+    
+    return json({ status: "sent", result }, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
+  } catch (error) {
+    console.error('Error in WhatsApp invite action:', error);
+    return json({ 
+      error: "Failed to send WhatsApp message", 
+      details: error.message 
+    }, { 
+      status: 500,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -31,15 +87,6 @@ export const action = async ({ request }) => {
       }
     });
   }
-  // Send WhatsApp invite message
-  await sendWhatsAppMessage(phoneNumber, "Hi! You can continue your chat with our AI assistant here on WhatsApp.");
-  return json({ status: "sent" }, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    }
-  });
 };
 
 // Handle CORS preflight requests (OPTIONS)
