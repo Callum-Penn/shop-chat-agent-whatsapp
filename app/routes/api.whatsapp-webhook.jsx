@@ -4,7 +4,6 @@ import { createToolService } from "../services/tool.server";
 import { saveMessage, getConversationHistory } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
-import prisma from "../db.server";
 
 // Helper to send a message back to WhatsApp
 async function sendWhatsAppMessage(to, text) {
