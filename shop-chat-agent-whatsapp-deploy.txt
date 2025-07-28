@@ -1,56 +1,92 @@
-2025-07-27T16:30:24.200960958Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-27T16:30:24.201486011Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-27T16:30:24.201630692Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-27T16:30:24.995836327Z 
-2025-07-27T16:30:24.995874009Z > start
-2025-07-27T16:30:24.995879267Z > remix-serve ./build/server/index.js
-2025-07-27T16:30:24.995883760Z 
-2025-07-27T16:30:28.626761804Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-27T16:30:28.663921839Z [remix-serve] http://localhost:8080 (http://10.244.21.191:8080)
-2025-07-27T16:30:28.860197689Z Error obtaining session table: PrismaClientKnownRequestError: 
-2025-07-27T16:30:28.860235162Z Invalid `prisma.session.count()` invocation:
-2025-07-27T16:30:28.860239390Z 
-2025-07-27T16:30:28.860243096Z 
-2025-07-27T16:30:28.860247912Z The table `public.Session` does not exist in the current database.
-2025-07-27T16:30:33.865202732Z Error obtaining session table: PrismaClientKnownRequestError: 
-2025-07-27T16:30:33.865238958Z Invalid `prisma.session.count()` invocation:
-2025-07-27T16:30:33.865242353Z 
-2025-07-27T16:30:33.865244872Z 
-2025-07-27T16:30:33.865248479Z The table `public.Session` does not exist in the current database.
-2025-07-27T16:30:38.877494683Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
-2025-07-27T16:30:38.877546933Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
-2025-07-27T16:30:38.909338131Z npm notice
-2025-07-27T16:30:38.909363556Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-27T16:30:38.909369221Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-27T16:30:38.909372482Z npm notice To update run: npm install -g npm@11.5.1
-2025-07-27T16:30:38.909375809Z npm notice
-2025-07-27T16:30:00.684208854Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-27T16:30:00.684743929Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-27T16:30:00.684913046Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-27T16:30:01.573160674Z 
-2025-07-27T16:30:01.573210518Z > start
-2025-07-27T16:30:01.573217385Z > remix-serve ./build/server/index.js
-2025-07-27T16:30:01.573222629Z 
-2025-07-27T16:30:05.474195447Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-27T16:30:05.485831454Z [remix-serve] http://localhost:8080 (http://10.244.4.64:8080)
-2025-07-27T16:30:05.681224869Z Error obtaining session table: PrismaClientKnownRequestError: 
-2025-07-27T16:30:05.681259764Z Invalid `prisma.session.count()` invocation:
-2025-07-27T16:30:05.681263373Z 
-2025-07-27T16:30:05.681265783Z 
-2025-07-27T16:30:05.681269062Z The table `public.Session` does not exist in the current database.
-2025-07-27T16:30:10.686544571Z Error obtaining session table: PrismaClientKnownRequestError: 
-2025-07-27T16:30:10.686594869Z Invalid `prisma.session.count()` invocation:
-2025-07-27T16:30:10.686600529Z 
-2025-07-27T16:30:10.686604046Z 
-2025-07-27T16:30:10.686608510Z The table `public.Session` does not exist in the current database.
-2025-07-27T16:30:15.697290477Z Error: Prisma session table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information
-2025-07-27T16:30:15.697336051Z     at /workspace/node_modules/@shopify/src/prisma.ts:55:15
-2025-07-27T16:30:15.726555377Z npm notice
-2025-07-27T16:30:15.726583247Z npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-27T16:30:15.726589620Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-27T16:30:15.726593185Z npm notice To update run: npm install -g npm@11.5.1
-2025-07-27T16:30:15.726596754Z npm notice
-2025-07-27T16:30:01Z ERROR failed health checks after 8 attempts with error Readiness probe failed: dial tcp 10.244.4.64:8080: connect: connection refused
-2025-07-27T16:30:51Z ERROR failed health checks after 8 attempts with error Readiness probe failed: dial tcp 10.244.21.191:8080: connect: connection refused
-2025-07-27T16:30:39Z ERROR component terminated with non-zero exit code: 1,
-2025-07-27T16:30:15Z ERROR component terminated with non-zero exit code: 1,
+2025-07-28T08:22:56.200349791Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:22:56.200739853Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:22:56.200842863Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:22:56.973438661Z 
+2025-07-28T08:22:56.974188637Z > shop-chat-agent@1.0.2 start:with-db
+2025-07-28T08:22:56.974226241Z > chmod +x start.sh && ./start.sh
+2025-07-28T08:22:56.974327952Z 
+2025-07-28T08:22:57.394152589Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:22:57.394344033Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:22:57.394433068Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:22:57.394676280Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:22:57.394991568Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:22:57.395076014Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:22:59.367152960Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T08:22:59.530992478Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T08:22:59.718784735Z 
+2025-07-28T08:22:59.718829135Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 155ms
+2025-07-28T08:22:59.718833949Z 
+2025-07-28T08:22:59.718837120Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-28T08:22:59.718840555Z 
+2025-07-28T08:22:59.718847486Z Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+2025-07-28T08:22:59.718854611Z 
+2025-07-28T08:23:00.592049706Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:00.592080749Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:00.592084338Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:00.592086557Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:00.592088660Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:00.592090692Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:02.550149962Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T08:23:02.573172657Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+2025-07-28T08:23:03.163411766Z 
+2025-07-28T08:23:03.163450136Z The database is already in sync with the Prisma schema.
+2025-07-28T08:23:03.166087215Z 
+2025-07-28T08:23:03.168299285Z Running generate... (Use --skip-generate to skip the generators)
+2025-07-28T08:23:03.245230910Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T08:23:03.259700138Z [2K[1A[2K[GRunning generate... - Prisma Client
+2025-07-28T08:23:03.428470537Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 166ms
+2025-07-28T08:23:03.428511860Z 
+2025-07-28T08:23:03.551533810Z ┌─────────────────────────────────────────────────────────┐
+2025-07-28T08:23:03.551560378Z │  Update available 6.6.0 -> 6.12.0                       │
+2025-07-28T08:23:03.551564882Z │  Run the following to update                            │
+2025-07-28T08:23:03.551567843Z │    npm i --save-dev prisma@latest                       │
+2025-07-28T08:23:03.551571201Z │    npm i @prisma/client@latest                          │
+2025-07-28T08:23:03.551574433Z └─────────────────────────────────────────────────────────┘
+2025-07-28T08:23:07.247272190Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-28T08:23:07.260331711Z [remix-serve] http://localhost:8080 (http://10.244.20.197:8080)
+2025-07-28T08:23:39.559410173Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:39.559637637Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:39.559815509Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.304370212Z 
+2025-07-28T08:23:40.304398036Z > shop-chat-agent@1.0.2 start:with-db
+2025-07-28T08:23:40.304401292Z > chmod +x start.sh && ./start.sh
+2025-07-28T08:23:40.304402961Z 
+2025-07-28T08:23:40.730966850Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.731229471Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.731290502Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.731451942Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.731523329Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:40.731841411Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:42.510994618Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T08:23:42.609587312Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T08:23:42.814490660Z 
+2025-07-28T08:23:42.814514865Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 174ms
+2025-07-28T08:23:42.814518735Z 
+2025-07-28T08:23:42.814521762Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-07-28T08:23:42.814524180Z 
+2025-07-28T08:23:42.814528143Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-07-28T08:23:42.814532105Z 
+2025-07-28T08:23:43.695348586Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:43.695880713Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:43.696078057Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:43.696346991Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+2025-07-28T08:23:43.696431314Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+2025-07-28T08:23:43.696688424Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+2025-07-28T08:23:45.499815880Z Prisma schema loaded from prisma/schema.prisma
+2025-07-28T08:23:45.516606287Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+2025-07-28T08:23:46.105682641Z 
+2025-07-28T08:23:46.105715879Z The database is already in sync with the Prisma schema.
+2025-07-28T08:23:46.106031350Z 
+2025-07-28T08:23:46.106987020Z Running generate... (Use --skip-generate to skip the generators)
+2025-07-28T08:23:46.204555603Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+2025-07-28T08:23:46.220494815Z [2K[1A[2K[GRunning generate... - Prisma Client
+2025-07-28T08:23:46.347980058Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 126ms
+2025-07-28T08:23:46.348187283Z 
+2025-07-28T08:23:46.502794073Z ┌─────────────────────────────────────────────────────────┐
+2025-07-28T08:23:46.502810755Z │  Update available 6.6.0 -> 6.12.0                       │
+2025-07-28T08:23:46.502813782Z │  Run the following to update                            │
+2025-07-28T08:23:46.502817040Z │    npm i --save-dev prisma@latest                       │
+2025-07-28T08:23:46.502827375Z │    npm i @prisma/client@latest                          │
+2025-07-28T08:23:46.502830144Z └─────────────────────────────────────────────────────────┘
+2025-07-28T08:23:49.844607235Z [shopify-api/INFO] version 11.12.0, environment Remix
+2025-07-28T08:23:49.855080363Z [remix-serve] http://localhost:8080 (http://10.244.15.4:8080)

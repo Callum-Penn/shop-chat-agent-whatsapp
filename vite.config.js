@@ -39,7 +39,7 @@ if (host === "localhost") {
 
 export default defineConfig({
   server: {
-    allowedHosts: [host, "largely-liked-killdeer.ngrok-free.app"],
+    allowedHosts: [host, "shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app"],
     cors: {
       preflightContinue: true,
     },
