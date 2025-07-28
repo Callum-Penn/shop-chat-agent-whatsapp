@@ -42,13 +42,15 @@ export const action = async ({ request }) => {
       const toolService = createToolService();
       
       // Get the shop domain and shop ID from the database (from the first installed session)
-      let shopDomain = 'your-store.myshopify.com'; // fallback
+      let shopDomain = null;
       let shopId = null;
       try {
         const session = await prisma.session.findFirst({
           where: {
             shop: {
-              not: null
+              not: {
+                equals: null
+              }
             }
           },
           orderBy: {
@@ -62,10 +64,17 @@ export const action = async ({ request }) => {
           console.log('WhatsApp: Using shop domain from database:', shopDomain);
           console.log('WhatsApp: Using shop ID from database:', shopId);
         } else {
-          console.warn('WhatsApp: No shop domain found in database, using fallback');
+          console.warn('WhatsApp: No shop domain found in database');
         }
       } catch (error) {
         console.error('WhatsApp: Error getting shop domain from database:', error);
+      }
+      
+      // If no shop domain found, we can't proceed with MCP
+      if (!shopDomain) {
+        console.error('WhatsApp: No valid shop domain found, cannot connect to MCP');
+        await sendWhatsAppMessage(from, "Sorry, I'm having trouble accessing the store information right now. Please try again later.");
+        return json({ status: "ok" });
       }
       
       // Initialize MCP client for store access
