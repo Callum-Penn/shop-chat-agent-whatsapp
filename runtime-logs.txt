@@ -1,448 +1,183 @@
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:00] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:00] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:00] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] > shop-chat-agent@1.0.20 start
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:01] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 162ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:03] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:04] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 139ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:06] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:09] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:09] [remix-serve] http://localhost:8080 (http://10.244.25.225:8080)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] OPTIONS /chat 204 - - 9.172 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] Error getting customer MCP endpoint: HttpResponseError: Received an error response (403 Forbidden) from Shopify:
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   "networkStatusCode": 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   "message": "GraphQL Client: Forbidden",
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   "response": {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     "size": 0
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] If you report this error, please include this id: 6e3d6ec3-c246-405b-b9e3-f77fdfdcdaeb-1753710124
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at throwFailedRequest (file:///workspace/node_modules/lib/clients/common.ts:135:13)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at NewStorefrontClient.request (file:///workspace/node_modules/lib/clients/storefront/client.ts:142:7)
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:16] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:16] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at Object.graphql (file:///workspace/node_modules/@shopify/src/server/clients/storefront/factory.ts:23:27)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at getCustomerMcpEndpoint (file:///workspace/build/server/index.js?t=315532801000:1454:22)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1328:31)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at file:///workspace/build/server/index.js?t=315532801000:1298:7
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     at Object.start (file:///workspace/build/server/index.js?t=315532801000:1247:9) {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   response: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     code: 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     statusText: 'Forbidden',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     body: { errors: [Object] },
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     headers: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Access-Control-Allow-Origin': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Alt-Svc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Cf-Cache-Status': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Cf-Ray': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       Connection: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Content-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Content-Security-Policy': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Content-Type': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       Date: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       Nel: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Powered-By': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:16] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:17] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:17] > shop-chat-agent@1.0.20 start
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:17] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:17] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:18] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Report-To': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       Server: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Server-Timing': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Set-Cookie': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Shopify-Complexity-Score': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Shopify-Edge-Ip': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'Transfer-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       Vary: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Content-Type-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Dc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Download-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Frame-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Permitted-Cross-Domain-Policies': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Request-Id': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Shardid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Sorting-Hat-Podid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Sorting-Hat-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Storefront-Renderer-Rendered': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]       'X-Xss-Protection': [Array]
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 191ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:20] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:21] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:23] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:23] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:04] No token in database for conversation: 1753701527378
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:05] Connected to MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:05] Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:27] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:27]   query: 'all products',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:27]   context: 'Customer asking about all available stock'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:27] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:28] Processing product search result
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:28] Found 3 products to display
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30] Error processing streaming request: RateLimitError: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed the rate limit for your organization (27b0bb35-c6e6-4cbc-ad74-16667159f3ca) of 20,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase."}}
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:87:14)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     at processTicksAndRejections (node:internal/process/task_queues:105:5) {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   status: 429,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   headers: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 149ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:24] 
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-input-tokens-remaining': '0',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-input-tokens-reset': '2025-07-28T13:44:21Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-output-tokens-limit': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-output-tokens-remaining': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-output-tokens-reset': '2025-07-28T13:42:29Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-requests-limit': '5',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-requests-remaining': '4',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-requests-reset': '2025-07-28T13:42:35Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-tokens-limit': '24000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-tokens-remaining': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'anthropic-ratelimit-tokens-reset': '2025-07-28T13:42:29Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'cf-cache-status': 'DYNAMIC',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'cf-ray': '9664ccd4bf78d188-LHR',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     connection: 'keep-alive',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'content-length': '529',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'content-type': 'application/json',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     date: 'Mon, 28 Jul 2025 13:42:30 GMT',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'request-id': 'req_011CRZWnBVaCAPvK4papHJKa',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'retry-after': '69',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     server: 'cloudflare',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:25] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:29] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-28 13:40:29] [remix-serve] http://localhost:8080 (http://10.244.22.85:8080)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:46] GET /chat?history=true&conversation_id=1753701527378 200 - - 27.704 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] Error getting customer MCP endpoint: HttpResponseError: Received an error response (403 Forbidden) from Shopify:
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] {
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   "networkStatusCode": 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   "message": "GraphQL Client: Forbidden",
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   "response": {
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     "size": 0
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] If you report this error, please include this id: f69a0854-0c84-4f63-8759-52c9f2c099e6-1753710111
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at throwFailedRequest (file:///workspace/node_modules/lib/clients/common.ts:135:13)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at NewStorefrontClient.request (file:///workspace/node_modules/lib/clients/storefront/client.ts:142:7)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at Object.graphql (file:///workspace/node_modules/@shopify/src/server/clients/storefront/factory.ts:23:27)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at getCustomerMcpEndpoint (file:///workspace/build/server/index.js?t=315532801000:1454:22)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     via: '1.1 google',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'x-robots-tag': 'none',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     'x-should-retry': 'true'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   },
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   request_id: 'req_011CRZWnBVaCAPvK4papHJKa',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   error: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     type: 'error',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     error: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]       type: 'rate_limit_error',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]       message: 'This request would exceed the rate limit for your organization (27b0bb35-c6e6-4cbc-ad74-16667159f3ca) of 20,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:30] POST /chat 200 - - 5.385 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] Error getting customer MCP endpoint: HttpResponseError: Received an error response (403 Forbidden) from Shopify:
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   "networkStatusCode": 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   "message": "GraphQL Client: Forbidden",
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   "response": {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     "size": 0
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] If you report this error, please include this id: e1612db4-fb80-4f66-8fd0-0703e7c0f746-1753710152
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at throwFailedRequest (file:///workspace/node_modules/lib/clients/common.ts:135:13)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1328:31)
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at file:///workspace/build/server/index.js?t=315532801000:1298:7
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     at Object.start (file:///workspace/build/server/index.js?t=315532801000:1247:9) {
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   response: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     code: 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     statusText: 'Forbidden',
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     body: { errors: [Object] },
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     headers: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Access-Control-Allow-Origin': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Alt-Svc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Cf-Cache-Status': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Cf-Ray': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       Connection: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Content-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Content-Security-Policy': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Content-Type': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       Date: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       Nel: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Powered-By': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Report-To': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       Server: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Server-Timing': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Set-Cookie': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at NewStorefrontClient.request (file:///workspace/node_modules/lib/clients/storefront/client.ts:142:7)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at Object.graphql (file:///workspace/node_modules/@shopify/src/server/clients/storefront/factory.ts:23:27)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at getCustomerMcpEndpoint (file:///workspace/build/server/index.js?t=315532801000:1454:22)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1328:31)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at file:///workspace/build/server/index.js?t=315532801000:1298:7
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     at Object.start (file:///workspace/build/server/index.js?t=315532801000:1247:9) {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   response: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     code: 403,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     statusText: 'Forbidden',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     body: { errors: [Object] },
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     headers: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Access-Control-Allow-Origin': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Alt-Svc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Cf-Cache-Status': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Cf-Ray': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       Connection: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Content-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Content-Security-Policy': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Content-Type': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       Date: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       Nel: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Powered-By': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Shopify-Complexity-Score': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Shopify-Edge-Ip': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'Transfer-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       Vary: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Content-Type-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Dc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Download-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Report-To': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       Server: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Server-Timing': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Set-Cookie': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Shopify-Complexity-Score': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Shopify-Edge-Ip': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'Transfer-Encoding': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       Vary: [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Content-Type-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Dc': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Download-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Frame-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Permitted-Cross-Domain-Policies': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Request-Id': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Shardid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Sorting-Hat-Podid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Sorting-Hat-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Storefront-Renderer-Rendered': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]       'X-Xss-Protection': [Array]
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] No token in database for conversation: 1753701527378
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] Connected to MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:51] Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:41:56] POST /chat 200 - - 11.571 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:42] POST /api/whatsapp-webhook 200 - - 4.483 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] WhatsApp: Using hardcoded shop domain: ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] Connecting to MCP server at ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] Failed to connect to MCP server:  TypeError: Invalid URL
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at new URL (node:internal/url:819:25)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at new Request (/workspace/node_modules/@remix-run/web-fetch/src/request.js:81:16)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at /workspace/node_modules/@remix-run/web-fetch/src/fetch.js:43:19
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at new Promise (<anonymous>)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at fetch (/workspace/node_modules/@remix-run/web-fetch/src/fetch.js:41:9)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:800:28)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at MCPClient.connectToStorefrontServer (file:///workspace/build/server/index.js?t=315532801000:666:35)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Frame-Options': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Permitted-Cross-Domain-Policies': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Request-Id': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Shardid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Sorting-Hat-Podid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Sorting-Hat-Shopid': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Storefront-Renderer-Rendered': [Array],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]       'X-Xss-Protection': [Array]
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] No token in database for conversation: 1753701527378
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] Connected to MCP with 5 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:32] Connected to customer MCP with 4 tools
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34] Error processing streaming request: RateLimitError: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed the rate limit for your organization (27b0bb35-c6e6-4cbc-ad74-16667159f3ca) of 20,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase."}}
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:87:14)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at action$3 (file:///workspace/build/server/index.js?t=315532801000:892:46)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]     at /workspace/node_modules/@remix-run/router/router.ts:4934:19 {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]   code: 'ERR_INVALID_URL',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49]   input: 'ju3ntu-rn.myshopify.com/api/mcp'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:49] WhatsApp: Failed to connect to MCP servers, continuing without tools: Invalid URL
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] POST /api/whatsapp-webhook - - - - ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] WhatsApp: Using hardcoded shop domain: ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] WhatsApp: Attempting to connect to MCP servers...
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] Connecting to MCP server at ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] Failed to connect to MCP server:  TypeError: Invalid URL
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at new URL (node:internal/url:819:25)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at new Request (/workspace/node_modules/@remix-run/web-fetch/src/request.js:81:16)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     at processTicksAndRejections (node:internal/process/task_queues:105:5) {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   status: 429,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   headers: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-input-tokens-limit': '20000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-input-tokens-remaining': '0',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-input-tokens-reset': '2025-07-28T13:44:21Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-output-tokens-limit': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-output-tokens-remaining': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-output-tokens-reset': '2025-07-28T13:42:34Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-requests-limit': '5',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-requests-remaining': '4',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-requests-reset': '2025-07-28T13:42:35Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-tokens-limit': '24000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at /workspace/node_modules/@remix-run/web-fetch/src/fetch.js:43:19
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at new Promise (<anonymous>)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at fetch (/workspace/node_modules/@remix-run/web-fetch/src/fetch.js:41:9)
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-tokens-remaining': '4000',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'anthropic-ratelimit-tokens-reset': '2025-07-28T13:42:34Z',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'cf-cache-status': 'DYNAMIC',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'cf-ray': '9664ccf27873d188-LHR',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     connection: 'keep-alive',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'content-length': '529',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'content-type': 'application/json',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     date: 'Mon, 28 Jul 2025 13:42:34 GMT',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'request-id': 'req_011CRZWnXvtq5p76Ks8oMQXK',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'retry-after': '64',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     server: 'cloudflare',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     via: '1.1 google',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'x-robots-tag': 'none',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     'x-should-retry': 'true'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   },
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   request_id: 'req_011CRZWnXvtq5p76Ks8oMQXK',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   error: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     type: 'error',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     error: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]       type: 'rate_limit_error',
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:800:28)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at MCPClient.connectToStorefrontServer (file:///workspace/build/server/index.js?t=315532801000:666:35)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at action$3 (file:///workspace/build/server/index.js?t=315532801000:892:46)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]     at /workspace/node_modules/@remix-run/router/router.ts:4934:19 {
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]   code: 'ERR_INVALID_URL',
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14]   input: 'ju3ntu-rn.myshopify.com/api/mcp'
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:14] WhatsApp: Failed to connect to MCP servers, continuing without tools: Invalid URL
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:34] POST /api/whatsapp-webhook 200 - - 19993.210 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:35] POST /api/whatsapp-webhook 200 - - 2.571 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:36] POST /api/whatsapp-webhook 200 - - 1.680 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:36] POST /api/whatsapp-webhook 200 - - 1.776 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]       message: 'This request would exceed the rate limit for your organization (27b0bb35-c6e6-4cbc-ad74-16667159f3ca) of 20,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:34] POST /chat 200 - - 2.552 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40] OPTIONS /api/send-whatsapp-invite 200 - - 1.524 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40] Received WhatsApp invite request for: +447891689332
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40] WhatsApp API Request: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]   url: 'https://graph.facebook.com/v19.0/753107757878333/messages',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]   phoneNumberId: '753107757878333',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]   to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]   payload: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]     to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]     text: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]       body: 'Hi! You can continue your chat with our AI assistant here on WhatsApp.'
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:40] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41] WhatsApp API Response: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   status: 200,
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   statusText: 'OK',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   data: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]     contacts: [ [Object] ],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]     messages: [ [Object] ]
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41] WhatsApp message sent successfully: {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   contacts: [ { input: '+447891689332', wa_id: '447891689332' } ],
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   messages: [
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]     {
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]       id: 'wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQjM5OUUzNzM0NEIyMDlEM0Y4AA=='
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]     }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41]   ]
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41] }
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:41] POST /api/send-whatsapp-invite 200 - - 887.702 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:42:42] POST /api/whatsapp-webhook 200 - - 1.713 ms
-[shop-chat-agent-whatsapp] [2025-07-28 13:43:36] POST /api/whatsapp-webhook
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] > shop-chat-agent@1.0.22 start
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:41] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:42] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 158ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:44] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:45] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 143ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:47] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:22] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] > shop-chat-agent@1.0.22 start
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:23] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:24] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │  Update available 6.6.0 -> 6.12.0                       │
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:48] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:51] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-28 14:55:51] [remix-serve] http://localhost:8080 (http://10.244.16.10:8080)
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:22] POST /api/whatsapp-webhook 200 - - 14.863 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:28] ]
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:32] POST /api/whatsapp-webhook 200 - - 4047.213 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 223ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:26] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:28] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:30] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:30] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 151ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] 
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │  Update available 6.6.0 -> 6.12.0                       │
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:31] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:35] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-28 14:56:35] [remix-serve] http://localhost:8080 (http://10.244.11.9:8080)
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:18] ]
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:21] POST /api/whatsapp-webhook 200 - - 3315.903 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:22] POST /api/whatsapp-webhook 200 - - 2.751 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:33] POST /api/whatsapp-webhook 200 - - 1.951 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:57:33] POST /api/whatsapp-webhook 200 - - 1.772 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:01] ]
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:07] POST /api/whatsapp-webhook 200 - - 5972.952 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:08] POST /api/whatsapp-webhook 200 - - 1.856 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:08] POST /api/whatsapp-webhook 200 - - 2.051 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Attempting to connect to MCP servers...
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Connected to storefront MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: Total MCP tools available: 9
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] WhatsApp: MCP tool names: [
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'search_shop_catalog',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'update_cart',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'search_shop_policies_and_faqs',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_product_details',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_most_recent_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_order_status',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'get_store_credit_balances',
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16]   'request_return'
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:16] ]
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:19] POST /api/whatsapp-webhook 200 - - 3366.953 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 2.087 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 2.516 ms
+[shop-chat-agent-whatsapp] [2025-07-28 14:58:20] POST /api/whatsapp-webhook 200 - - 1.532 ms

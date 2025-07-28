@@ -89,11 +89,44 @@ export const action = async ({ request }) => {
       }
       
       // Get AI response with store context (non-streaming for WhatsApp)
-      const aiResult = await claudeService.getConversationResponse({
+      let aiResult = await claudeService.getConversationResponse({
         messages: conversationHistory,
         promptType: AppConfig.api.defaultPromptType,
         tools: mcpClient.tools
       });
+      
+      // Check if Claude wants to use tools and execute them
+      if (aiResult?.content) {
+        for (const content of aiResult.content) {
+          if (content.type === "tool_use") {
+            console.log('WhatsApp: Executing tool:', content.name);
+            
+            // Execute the tool
+            const toolResponse = await mcpClient.callTool(content.name, content.input);
+            console.log('WhatsApp: Tool response:', toolResponse);
+            
+            // Add tool result to conversation
+            conversationHistory.push({
+              role: 'assistant',
+              content: [content]
+            });
+            
+            conversationHistory.push({
+              role: 'user',
+              content: `Tool result: ${JSON.stringify(toolResponse)}`
+            });
+            
+            // Get final response with tool results
+            aiResult = await claudeService.getConversationResponse({
+              messages: conversationHistory,
+              promptType: AppConfig.api.defaultPromptType,
+              tools: mcpClient.tools
+            });
+            
+            break; // Only handle the first tool use for now
+          }
+        }
+      }
       
       const aiResponse = aiResult?.content?.[0]?.text || "Sorry, I couldn't generate a response.";
       
