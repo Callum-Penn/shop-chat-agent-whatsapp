@@ -88,15 +88,12 @@ export const action = async ({ request }) => {
         console.warn('WhatsApp: Failed to connect to MCP servers, continuing without tools:', error.message);
       }
       
-      // Get AI response with store context
-      const aiResult = await claudeService.streamConversation(
-        {
-          messages: conversationHistory,
-          promptType: AppConfig.api.defaultPromptType,
-          tools: mcpClient.tools
-        },
-        {}
-      );
+      // Get AI response with store context (non-streaming for WhatsApp)
+      const aiResult = await claudeService.getConversationResponse({
+        messages: conversationHistory,
+        promptType: AppConfig.api.defaultPromptType,
+        tools: mcpClient.tools
+      });
       
       const aiResponse = aiResult?.content?.[0]?.text || "Sorry, I couldn't generate a response.";
       

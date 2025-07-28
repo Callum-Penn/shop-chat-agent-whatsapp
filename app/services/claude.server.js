@@ -73,6 +73,34 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
   };
 
   /**
+   * Gets a complete conversation response from Claude (non-streaming)
+   * @param {Object} params - Conversation parameters
+   * @param {Array} params.messages - Conversation history
+   * @param {string} params.promptType - The type of system prompt to use
+   * @param {Array} params.tools - Available tools for Claude
+   * @returns {Promise<Object>} The complete response
+   */
+  const getConversationResponse = async ({
+    messages,
+    promptType = AppConfig.api.defaultPromptType,
+    tools
+  }) => {
+    // Get system prompt from configuration or use default
+    const systemInstruction = getSystemPrompt(promptType);
+
+    // Create non-streaming request
+    const response = await anthropic.messages.create({
+      model: AppConfig.api.defaultModel,
+      max_tokens: AppConfig.api.maxTokens,
+      system: systemInstruction,
+      messages,
+      tools: tools && tools.length > 0 ? tools : undefined
+    });
+
+    return response;
+  };
+
+  /**
    * Gets the system prompt content for a given prompt type
    * @param {string} promptType - The prompt type to retrieve
    * @returns {string} The system prompt content
@@ -84,6 +112,7 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
 
   return {
     streamConversation,
+    getConversationResponse,
     getSystemPrompt
   };
 }
