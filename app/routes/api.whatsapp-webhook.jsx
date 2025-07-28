@@ -42,21 +42,17 @@ export const action = async ({ request }) => {
       const toolService = createToolService();
       
       // Get the shop domain and shop ID from the database (from the first installed session)
-      let shopDomain = null;
+      let shopDomain = 'your-store.myshopify.com'; // fallback
       let shopId = null;
       try {
-        const session = await prisma.session.findFirst({
-          where: {
-            shop: {
-              not: {
-                equals: null
-              }
-            }
-          },
+        const sessions = await prisma.session.findMany({
           orderBy: {
             createdAt: 'desc'
           }
         });
+        
+        // Find the first session with a valid shop domain
+        const session = sessions.find(s => s.shop && s.shop !== null && s.shop !== '');
         
         if (session && session.shop) {
           shopDomain = session.shop;
@@ -64,17 +60,10 @@ export const action = async ({ request }) => {
           console.log('WhatsApp: Using shop domain from database:', shopDomain);
           console.log('WhatsApp: Using shop ID from database:', shopId);
         } else {
-          console.warn('WhatsApp: No shop domain found in database');
+          console.warn('WhatsApp: No shop domain found in database, using fallback');
         }
       } catch (error) {
         console.error('WhatsApp: Error getting shop domain from database:', error);
-      }
-      
-      // If no shop domain found, we can't proceed with MCP
-      if (!shopDomain) {
-        console.error('WhatsApp: No valid shop domain found, cannot connect to MCP');
-        await sendWhatsAppMessage(from, "Sorry, I'm having trouble accessing the store information right now. Please try again later.");
-        return json({ status: "ok" });
       }
       
       // Initialize MCP client for store access
@@ -116,9 +105,7 @@ export const action = async ({ request }) => {
         console.log('WhatsApp: Total MCP tools available:', mcpClient.tools.length);
         console.log('WhatsApp: MCP tool names:', mcpClient.tools.map(tool => tool.name));
       } catch (error) {
-        console.error('WhatsApp: Failed to connect to MCP servers:', error);
-        console.error('WhatsApp: Error details:', error.message);
-        console.error('WhatsApp: Error stack:', error.stack);
+        console.warn('WhatsApp: Failed to connect to MCP servers, continuing without tools:', error.message);
       }
       
       // Get AI response with store context
