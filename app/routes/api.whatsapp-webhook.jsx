@@ -114,85 +114,109 @@ export const action = async ({ request }) => {
         tools: mcpClient.tools
       });
       
+      let toolExecutionCount = 0; // Track tool executions for follow-up messages
+      
       // Check if Claude wants to use tools and execute them
       if (aiResult?.content) {
-        for (const content of aiResult.content) {
-          if (content.type === "tool_use") {
-            console.log('WhatsApp: Executing tool:', content.name);
-            
-            try {
-              // Execute the tool
-              const toolResponse = await mcpClient.callTool(content.name, content.input);
-              console.log('WhatsApp: Tool response received');
+        const maxToolExecutions = 3; // Allow up to 3 tool executions per message
+        
+        while (toolExecutionCount < maxToolExecutions) {
+          let toolUsed = false;
+          
+          for (const content of aiResult.content) {
+            if (content.type === "tool_use") {
+              console.log(`WhatsApp: Executing tool ${toolExecutionCount + 1}:`, content.name);
               
-              // Validate tool response structure
-              if (!toolResponse || !toolResponse.content || !Array.isArray(toolResponse.content)) {
-                console.error('WhatsApp: Invalid tool response structure:', toolResponse);
-                throw new Error('Invalid tool response structure');
-              }
-              
-              // Extract tool result text more robustly
-              let toolResultText;
-              if (toolResponse.content[0]?.text) {
-                toolResultText = toolResponse.content[0].text;
-              } else if (toolResponse.content[0]?.type === 'text') {
-                toolResultText = toolResponse.content[0].text || '';
-              } else {
-                toolResultText = JSON.stringify(toolResponse.content[0] || toolResponse);
-              }
-              
-              console.log('WhatsApp: Tool result text length:', toolResultText.length);
-              console.log('WhatsApp: Tool result preview:', toolResultText.substring(0, 200) + '...');
-              
-              // Truncate tool result if it's too long (to avoid token limits)
-              const maxToolResultLength = 2000;
-              if (toolResultText.length > maxToolResultLength) {
-                toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
-                console.log('WhatsApp: Tool result truncated to', toolResultText.length, 'characters');
-              }
-              
-              // Create a minimal conversation for the second API call (don't add to database)
-              const toolConversation = [
-                ...conversationHistory,
-                {
-                  role: 'assistant',
-                  content: [content]
-                },
-                {
-                  role: 'user',
-                  content: [{
-                    type: 'tool_result',
-                    tool_use_id: content.id,
-                    content: toolResultText
-                  }]
-                },
-                {
-                  role: 'user',
-                  content: content.name === 'update_cart' 
-                    ? 'The cart has been updated. Now please provide a complete response including a checkout link using the get_cart_checkout_url tool. Make sure to give the customer the full information they requested.'
-                    : 'Please provide a complete response based on the tool results. Make sure to finish your response properly and provide all necessary information to the customer.'
+              try {
+                // Execute the tool
+                const toolResponse = await mcpClient.callTool(content.name, content.input);
+                console.log('WhatsApp: Tool response received');
+                
+                // Validate tool response structure
+                if (!toolResponse || !toolResponse.content || !Array.isArray(toolResponse.content)) {
+                  console.error('WhatsApp: Invalid tool response structure:', toolResponse);
+                  throw new Error('Invalid tool response structure');
                 }
-              ];
-              
-              console.log('WhatsApp: Making second API call with tool results');
-              
-              // Get final response with tool results
-              aiResult = await claudeService.getConversationResponse({
-                messages: toolConversation,
-                promptType: AppConfig.api.defaultPromptType,
-                tools: mcpClient.tools
-              });
-              
-              console.log('WhatsApp: Second API call completed successfully');
-              
-            } catch (toolError) {
-              console.error('WhatsApp: Tool execution error:', toolError);
-              // Continue with the original response if tool execution fails
+                
+                // Extract tool result text more robustly
+                let toolResultText;
+                if (toolResponse.content[0]?.text) {
+                  toolResultText = toolResponse.content[0].text;
+                } else if (toolResponse.content[0]?.type === 'text') {
+                  toolResultText = toolResponse.content[0].text || '';
+                } else {
+                  toolResultText = JSON.stringify(toolResponse.content[0] || toolResponse);
+                }
+                
+                console.log('WhatsApp: Tool result text length:', toolResultText.length);
+                console.log('WhatsApp: Tool result preview:', toolResultText.substring(0, 200) + '...');
+                
+                // Truncate tool result if it's too long (to avoid token limits)
+                const maxToolResultLength = 2000;
+                if (toolResultText.length > maxToolResultLength) {
+                  toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
+                  console.log('WhatsApp: Tool result truncated to', toolResultText.length, 'characters');
+                }
+                
+                // Create conversation for the next API call
+                const toolConversation = [
+                  ...conversationHistory,
+                  {
+                    role: 'assistant',
+                    content: [content]
+                  },
+                  {
+                    role: 'user',
+                    content: [{
+                      type: 'tool_result',
+                      tool_use_id: content.id,
+                      content: toolResultText
+                    }]
+                  }
+                ];
+                
+                console.log(`WhatsApp: Making API call ${toolExecutionCount + 2} with tool results`);
+                
+                // Get next response with tool results
+                aiResult = await claudeService.getConversationResponse({
+                  messages: toolConversation,
+                  promptType: AppConfig.api.defaultPromptType,
+                  tools: mcpClient.tools
+                });
+                
+                console.log(`WhatsApp: API call ${toolExecutionCount + 2} completed successfully`);
+                toolUsed = true;
+                toolExecutionCount++;
+                
+                // If this was a cart update, encourage the AI to get checkout URL
+                if (content.name === 'update_cart') {
+                  console.log('WhatsApp: Cart updated, encouraging checkout URL generation');
+                  // Add a gentle nudge to get checkout URL
+                  const checkoutPrompt = {
+                    role: 'user',
+                    content: 'Great! The cart has been updated. Now please provide a complete response with a checkout link for the customer.'
+                  };
+                  toolConversation.push(checkoutPrompt);
+                }
+                
+                break; // Process one tool at a time
+                
+              } catch (toolError) {
+                console.error('WhatsApp: Tool execution error:', toolError);
+                // Continue with the original response if tool execution fails
+                break;
+              }
             }
-            
-            break; // Only handle the first tool use for now
+          }
+          
+          // If no more tools to execute, break out of the loop
+          if (!toolUsed) {
+            console.log('WhatsApp: No more tools to execute, finalizing response');
+            break;
           }
         }
+        
+        console.log(`WhatsApp: Completed ${toolExecutionCount} tool executions`);
       }
       
       const aiResponse = aiResult?.content?.[0]?.text || "Sorry, I couldn't generate a response.";
@@ -223,6 +247,45 @@ export const action = async ({ request }) => {
       
       // Send response back to WhatsApp
       await sendWhatsAppMessage(from, finalResponse);
+      
+      // Check if we need to send additional follow-up messages
+      // This handles cases where the AI might want to send multiple messages
+      if (toolExecutionCount > 0) {
+        console.log('WhatsApp: Tool executions completed, checking for additional responses needed');
+        
+        // Give the AI one more chance to provide additional information
+        const followUpConversation = [
+          ...conversationHistory,
+          {
+            role: 'assistant',
+            content: finalResponse
+          },
+          {
+            role: 'user',
+            content: 'Please provide any additional information the customer might need, such as checkout links, order confirmation, or next steps.'
+          }
+        ];
+        
+        try {
+          const followUpResult = await claudeService.getConversationResponse({
+            messages: followUpConversation,
+            promptType: AppConfig.api.defaultPromptType,
+            tools: mcpClient.tools
+          });
+          
+          const followUpResponse = followUpResult?.content?.[0]?.text;
+          if (followUpResponse && followUpResponse.trim() !== finalResponse.trim()) {
+            console.log('WhatsApp: Sending follow-up message');
+            console.log('WhatsApp: Follow-up response:', followUpResponse);
+            
+            // Save and send follow-up message
+            await saveMessage(conversationId, 'assistant', JSON.stringify(followUpResponse));
+            await sendWhatsAppMessage(from, followUpResponse);
+          }
+        } catch (followUpError) {
+          console.error('WhatsApp: Follow-up message error:', followUpError);
+        }
+      }
       
     } catch (error) {
       console.error('WhatsApp chat error:', error);
