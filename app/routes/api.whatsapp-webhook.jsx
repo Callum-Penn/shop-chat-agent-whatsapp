@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
 import { createClaudeService } from "../services/claude.server";
-import { createToolService } from "../services/tool.server";
 import { saveMessage, getConversationHistory, cleanupOldMessages } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
