@@ -152,6 +152,7 @@ export const action = async ({ request }) => {
         // Check if Claude wants to use tools
         if (aiResult?.content) {
           let toolUsed = false;
+          let currentConversation = conversationHistory;
           
           for (const content of aiResult.content) {
             if (content.type === "tool_use") {
@@ -173,7 +174,7 @@ export const action = async ({ request }) => {
                   console.log('WhatsApp: Tool returned error:', toolResponse.error);
                   // Create a conversation with the error for the AI to handle
                   const errorConversation = [
-                    ...conversationHistory,
+                    ...currentConversation,
                     {
                       role: 'assistant',
                       content: [content]
@@ -223,9 +224,9 @@ export const action = async ({ request }) => {
                   toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
                 }
                 
-                // Create conversation with tool result for final response
-                const toolConversation = [
-                  ...conversationHistory,
+                // Update conversation with tool result for potential next tool
+                currentConversation = [
+                  ...currentConversation,
                   {
                     role: 'assistant',
                     content: [content]
@@ -240,9 +241,16 @@ export const action = async ({ request }) => {
                   }
                 ];
                 
-                // Get final response with tool results
+                // Check if there are more tools to execute
+                const remainingTools = aiResult.content.filter(c => c.type === 'tool_use' && c.id !== content.id);
+                if (remainingTools.length > 0) {
+                  console.log('WhatsApp: More tools to execute, continuing...');
+                  continue; // Continue to next tool instead of breaking
+                }
+                
+                // Get final response with all tool results
                 const finalResult = await claudeService.getConversationResponse({
-                  messages: toolConversation,
+                  messages: currentConversation,
                   promptType: AppConfig.api.defaultPromptType,
                   tools: mcpClient.tools
                 });
@@ -255,14 +263,12 @@ export const action = async ({ request }) => {
                   }
                 }
                 
-                break; // Only handle first tool use
-                
               } catch (toolError) {
                 console.error('WhatsApp: Tool execution error:', toolError);
                 
                 // Create a conversation with the error for the AI to handle
                 const errorConversation = [
-                  ...conversationHistory,
+                  ...currentConversation,
                   {
                     role: 'assistant',
                     content: [content]
