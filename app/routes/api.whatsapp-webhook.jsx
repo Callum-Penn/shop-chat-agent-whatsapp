@@ -131,8 +131,25 @@ export const action = async ({ request }) => {
                 throw new Error('Invalid tool response structure');
               }
               
-              const toolResultText = toolResponse.content[0]?.text || JSON.stringify(toolResponse);
+              // Extract tool result text more robustly
+              let toolResultText;
+              if (toolResponse.content[0]?.text) {
+                toolResultText = toolResponse.content[0].text;
+              } else if (toolResponse.content[0]?.type === 'text') {
+                toolResultText = toolResponse.content[0].text || '';
+              } else {
+                toolResultText = JSON.stringify(toolResponse.content[0] || toolResponse);
+              }
+              
               console.log('WhatsApp: Tool result text length:', toolResultText.length);
+              console.log('WhatsApp: Tool result preview:', toolResultText.substring(0, 200) + '...');
+              
+              // Truncate tool result if it's too long (to avoid token limits)
+              const maxToolResultLength = 2000;
+              if (toolResultText.length > maxToolResultLength) {
+                toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
+                console.log('WhatsApp: Tool result truncated to', toolResultText.length, 'characters');
+              }
               
               // Create a minimal conversation for the second API call (don't add to database)
               const toolConversation = [
@@ -176,15 +193,24 @@ export const action = async ({ request }) => {
       
       console.log('WhatsApp: Final AI response length:', aiResponse.length);
       console.log('WhatsApp: Final AI response preview:', aiResponse.substring(0, 100) + '...');
+      console.log('WhatsApp: Full AI response:', aiResponse);
+      
+      // Truncate response if it's too long for WhatsApp (4096 character limit)
+      const maxWhatsAppLength = 4000; // Leave some buffer
+      let finalResponse = aiResponse;
+      if (aiResponse.length > maxWhatsAppLength) {
+        finalResponse = aiResponse.substring(0, maxWhatsAppLength) + '...\n\n[Message truncated due to length]';
+        console.log('WhatsApp: Response truncated to', finalResponse.length, 'characters');
+      }
       
       // Save AI response to database
-      await saveMessage(conversationId, 'assistant', JSON.stringify(aiResponse));
+      await saveMessage(conversationId, 'assistant', JSON.stringify(finalResponse));
       
       // Clean up old messages to prevent database bloat
       await cleanupOldMessages(conversationId, 10);
       
       // Send response back to WhatsApp
-      await sendWhatsAppMessage(from, aiResponse);
+      await sendWhatsAppMessage(from, finalResponse);
       
     } catch (error) {
       console.error('WhatsApp chat error:', error);
