@@ -576,22 +576,21 @@
   /* Even smaller screens */
   @media (max-width: 380px) {
     .shop-ai-chat-input input {
-      padding: 8px 12px;
+      font-size: 14px;
     }
     
     .shop-ai-chat-send {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
     }
     
     .shop-ai-message {
       max-width: 95%;
       font-size: 14px;
-      padding: 10px 12px;
     }
     
     .shop-ai-chat-header {
-      padding: 10px;
+      padding: 12px 16px;
     }
   }
   
@@ -607,5 +606,91 @@
     100% {
       opacity: 0.4;
       transform: scale(1);
+    }
+  }
+
+  /* Choice buttons styling */
+  .shop-ai-choice-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .shop-ai-choice-btn {
+    background-color: #5046e4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  .shop-ai-choice-btn:hover {
+    background-color: #4338ca;
+    transform: translateY(-1px);
+  }
+
+  .shop-ai-choice-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* WhatsApp input styling */
+  .shop-ai-whatsapp-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .shop-ai-whatsapp-input p {
+    margin: 0;
+    font-size: 14px;
+    color: #374151;
+  }
+
+  .shop-ai-phone-input {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .shop-ai-phone-input:focus {
+    border-color: #5046e4;
+    box-shadow: 0 0 0 3px rgba(80, 70, 228, 0.1);
+  }
+
+  /* Choice buttons message styling */
+  .shop-ai-message.choice-buttons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .shop-ai-message.choice-buttons .shop-ai-message-content {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  @media (max-width: 480px) {
+    .shop-ai-choice-buttons {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .shop-ai-choice-btn {
+      min-width: auto;
+      width: 100%;
     }
   }

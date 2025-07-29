@@ -932,10 +932,129 @@
         // Fetch conversation history
         this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
       } else {
-        // No previous conversation, show welcome message
-        const welcomeMessage = window.shopChatConfig?.welcomeMessage || "👋 Hi there! How can I help you today?";
-        this.Message.add(welcomeMessage, 'assistant', this.UI.elements.messagesContainer);
+        // No previous conversation, show welcome message with WhatsApp choice
+        this.showWelcomeWithWhatsAppChoice();
       }
+    },
+
+    /**
+     * Show welcome message with WhatsApp choice buttons
+     */
+    showWelcomeWithWhatsAppChoice: function() {
+      const { messagesContainer } = this.UI.elements;
+
+      // Create the welcome message
+      const welcomeMessage = document.createElement('div');
+      welcomeMessage.classList.add('shop-ai-message', 'assistant');
+      welcomeMessage.innerHTML = `
+        <div class="shop-ai-message-content">
+          👋 Hi there! How can I help you today?<br><br>
+          <strong>Before we begin, would you like to move this to WhatsApp for convenience?</strong>
+        </div>
+      `;
+      messagesContainer.appendChild(welcomeMessage);
+
+      // Create user choice buttons
+      const choiceMessage = document.createElement('div');
+      choiceMessage.classList.add('shop-ai-message', 'user', 'choice-buttons');
+      choiceMessage.innerHTML = `
+        <div class="shop-ai-choice-buttons">
+          <button class="shop-ai-choice-btn" data-choice="chat-here">Chat here</button>
+          <button class="shop-ai-choice-btn" data-choice="chat-whatsapp">Chat on WhatsApp</button>
+        </div>
+      `;
+      messagesContainer.appendChild(choiceMessage);
+
+      // Add event listeners for the buttons
+      const buttons = choiceMessage.querySelectorAll('.shop-ai-choice-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', async function() {
+          const choice = this.dataset.choice;
+          
+          // Disable all buttons to prevent multiple clicks
+          buttons.forEach(btn => btn.disabled = true);
+          
+          // Change button text to show it's processing
+          this.textContent = choice === 'chat-here' ? 'Starting chat...' : 'Sending invite...';
+          
+          if (choice === 'chat-here') {
+            // Remove the choice buttons and start normal chat
+            choiceMessage.remove();
+            
+            // Send a message to start the conversation
+            const input = document.querySelector('.shop-ai-chat-input input');
+            if (input) {
+              input.value = "I'd like to chat here";
+              const sendButton = document.querySelector('.shop-ai-chat-send');
+              if (sendButton) {
+                sendButton.click();
+              }
+            }
+          } else if (choice === 'chat-whatsapp') {
+            // Show phone number input
+            choiceMessage.innerHTML = `
+              <div class="shop-ai-whatsapp-input">
+                <p>Please enter your WhatsApp number (with country code):</p>
+                <input type="text" id="whatsapp-number-input" placeholder="+1234567890" class="shop-ai-phone-input">
+                <button id="send-whatsapp-invite-btn" class="shop-ai-choice-btn">Send Invite</button>
+              </div>
+            `;
+            
+            // Focus on the phone input
+            setTimeout(() => {
+              const phoneInput = document.getElementById('whatsapp-number-input');
+              if (phoneInput) {
+                phoneInput.focus();
+              }
+            }, 100);
+            
+            // Handle WhatsApp invite
+            document.getElementById('send-whatsapp-invite-btn').addEventListener('click', async function() {
+              const phoneNumber = document.getElementById('whatsapp-number-input').value.trim();
+              if (!phoneNumber) {
+                alert('Please enter a valid phone number.');
+                return;
+              }
+              
+              // Change button text
+              this.textContent = 'Sending...';
+              this.disabled = true;
+              
+              try {
+                // Call backend to send WhatsApp invite
+                const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ phoneNumber })
+                });
+                
+                if (res.ok) {
+                  choiceMessage.innerHTML = `
+                    <div class="shop-ai-message-content">
+                      ✅ We've sent you a message on WhatsApp! Please check your phone.
+                    </div>
+                  `;
+                } else {
+                  choiceMessage.innerHTML = `
+                    <div class="shop-ai-message-content">
+                      ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
+                    </div>
+                  `;
+                }
+              } catch (error) {
+                choiceMessage.innerHTML = `
+                  <div class="shop-ai-message-content">
+                    ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
+                  </div>
+                `;
+              }
+            });
+          }
+        });
+      });
+
+      // Scroll to bottom
+      this.UI.scrollToBottom();
     }
   };
 
@@ -997,16 +1116,6 @@
       };
     };
   }
-
-  // In the UI init or chat window open logic, show the choice on first open
-  const originalToggleChatWindow = ShopAIChat.UI.toggleChatWindow;
-  ShopAIChat.UI.toggleChatWindow = function() {
-    originalToggleChatWindow.call(this);
-    if (!window._shopAIChatStarted && this.elements.chatWindow.classList.contains('active')) {
-      showInitialChannelChoice();
-      window._shopAIChatStarted = true;
-    }
-  };
 
   // Initialize the application when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
