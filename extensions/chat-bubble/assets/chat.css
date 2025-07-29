@@ -643,6 +643,36 @@
     transform: none;
   }
 
+  /* Login button specific styling */
+  .shop-ai-login-btn {
+    background-color: #059669;
+  }
+
+  .shop-ai-login-btn:hover {
+    background-color: #047857;
+  }
+
+  .shop-ai-skip-btn {
+    background-color: #6b7280;
+  }
+
+  .shop-ai-skip-btn:hover {
+    background-color: #4b5563;
+  }
+
+  /* Login buttons message styling */
+  .shop-ai-message.login-buttons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .shop-ai-message.login-buttons .shop-ai-message-content {
+    background-color: transparent;
+    padding: 0;
+  }
+
   /* WhatsApp input styling */
   .shop-ai-whatsapp-input {
     display: flex;

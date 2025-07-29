@@ -981,6 +981,9 @@
             // Remove the choice buttons and start normal chat
             choiceMessage.remove();
             
+            // Show login option after starting chat
+            ShopAIChat.showLoginOption();
+            
             // Send a message to start the conversation
             const input = document.querySelector('.shop-ai-chat-input input');
             if (input) {
@@ -994,8 +997,8 @@
             // Show phone number input
             choiceMessage.innerHTML = `
               <div class="shop-ai-whatsapp-input">
-                <p>Please enter your WhatsApp number (with country code):</p>
-                <input type="text" id="whatsapp-number-input" placeholder="+1234567890" class="shop-ai-phone-input">
+                <p>Please enter your WhatsApp number:</p>
+                <input type="text" id="whatsapp-number-input" placeholder="07890123456" class="shop-ai-phone-input">
                 <button id="send-whatsapp-invite-btn" class="shop-ai-choice-btn">Send Invite</button>
               </div>
             `;
@@ -1053,7 +1056,7 @@
                   successMessage.classList.add('shop-ai-message', 'assistant');
                   successMessage.innerHTML = `
                     <div class="shop-ai-message-content">
-                      ✅ We've sent you a message on WhatsApp! Please check your phone.
+                      We've sent you a message on WhatsApp! Please check your phone.
                     </div>
                   `;
                   messagesContainer.appendChild(successMessage);
@@ -1089,6 +1092,76 @@
               // Scroll to bottom
               ShopAIChat.UI.scrollToBottom();
             });
+          }
+        });
+      });
+
+      // Scroll to bottom
+      this.UI.scrollToBottom();
+    },
+
+    /**
+     * Show login option in the chat
+     */
+    showLoginOption: function() {
+      const { messagesContainer } = this.UI.elements;
+
+      // Create login message
+      const loginMessage = document.createElement('div');
+      loginMessage.classList.add('shop-ai-message', 'assistant');
+      loginMessage.innerHTML = `
+        <div class="shop-ai-message-content">
+          🔐 <strong>Want to access your account?</strong><br>
+          Login to view your orders, account details, and get personalized help!
+        </div>
+      `;
+      messagesContainer.appendChild(loginMessage);
+
+      // Create login button
+      const loginButtonMessage = document.createElement('div');
+      loginButtonMessage.classList.add('shop-ai-message', 'user', 'login-buttons');
+      loginButtonMessage.innerHTML = `
+        <div class="shop-ai-choice-buttons">
+          <button class="shop-ai-choice-btn shop-ai-login-btn" data-action="login">Login to My Account</button>
+          <button class="shop-ai-choice-btn shop-ai-skip-btn" data-action="skip">Skip for now</button>
+        </div>
+      `;
+      messagesContainer.appendChild(loginButtonMessage);
+
+      // Add event listeners for login buttons
+      const loginButtons = loginButtonMessage.querySelectorAll('.shop-ai-choice-btn');
+      loginButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const action = this.dataset.action;
+          
+          if (action === 'login') {
+            // Remove login options
+            loginMessage.remove();
+            loginButtonMessage.remove();
+            
+            // Send a message to trigger authentication
+            const input = document.querySelector('.shop-ai-chat-input input');
+            if (input) {
+              input.value = "I want to login to my account";
+              const sendButton = document.querySelector('.shop-ai-chat-send');
+              if (sendButton) {
+                sendButton.click();
+              }
+            }
+          } else if (action === 'skip') {
+            // Remove login options
+            loginMessage.remove();
+            loginButtonMessage.remove();
+            
+            // Add a message indicating they can login later
+            const skipMessage = document.createElement('div');
+            skipMessage.classList.add('shop-ai-message', 'assistant');
+            skipMessage.innerHTML = `
+              <div class="shop-ai-message-content">
+                No problem! You can always ask me to help you login later when you need to access your account information.
+              </div>
+            `;
+            messagesContainer.appendChild(skipMessage);
           }
         });
       });
