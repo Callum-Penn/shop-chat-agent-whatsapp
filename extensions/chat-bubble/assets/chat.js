@@ -1283,4 +1283,4 @@
   document.addEventListener('DOMContentLoaded', function() {
     ShopAIChat.init();
   });
-})(); 
+})();
