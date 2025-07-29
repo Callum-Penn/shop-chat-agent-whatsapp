@@ -166,6 +166,44 @@ export const action = async ({ request }) => {
                 // Call the tool directly
                 const toolResponse = await mcpClient.callTool(toolName, toolArgs);
                 console.log('WhatsApp: Tool response received');
+                console.log('WhatsApp: Tool response structure:', JSON.stringify(toolResponse, null, 2).substring(0, 500) + '...');
+                
+                // Check if tool execution was successful
+                if (toolResponse.error) {
+                  console.log('WhatsApp: Tool returned error:', toolResponse.error);
+                  // Create a conversation with the error for the AI to handle
+                  const errorConversation = [
+                    ...conversationHistory,
+                    {
+                      role: 'assistant',
+                      content: [content]
+                    },
+                    {
+                      role: 'user',
+                      content: [{
+                        type: 'tool_result',
+                        tool_use_id: content.id,
+                        content: `Error: ${toolResponse.error}`
+                      }]
+                    }
+                  ];
+                  
+                  // Get AI response to handle the error
+                  const errorResult = await claudeService.getConversationResponse({
+                    messages: errorConversation,
+                    promptType: AppConfig.api.defaultPromptType,
+                    tools: mcpClient.tools
+                  });
+                  
+                  // Extract error response
+                  if (errorResult?.content && Array.isArray(errorResult.content)) {
+                    const textContent = errorResult.content.find(content => content.type === 'text');
+                    if (textContent && textContent.text) {
+                      aiResponse = textContent.text;
+                    }
+                  }
+                  break;
+                }
                 
                 // Extract tool result text
                 let toolResultText;
@@ -221,7 +259,38 @@ export const action = async ({ request }) => {
                 
               } catch (toolError) {
                 console.error('WhatsApp: Tool execution error:', toolError);
-                // Continue with the original response if tool execution fails
+                
+                // Create a conversation with the error for the AI to handle
+                const errorConversation = [
+                  ...conversationHistory,
+                  {
+                    role: 'assistant',
+                    content: [content]
+                  },
+                  {
+                    role: 'user',
+                    content: [{
+                      type: 'tool_result',
+                      tool_use_id: content.id,
+                      content: `Error: ${toolError.message || 'Tool execution failed'}`
+                    }]
+                  }
+                ];
+                
+                // Get AI response to handle the error
+                const errorResult = await claudeService.getConversationResponse({
+                  messages: errorConversation,
+                  promptType: AppConfig.api.defaultPromptType,
+                  tools: mcpClient.tools
+                });
+                
+                // Extract error response
+                if (errorResult?.content && Array.isArray(errorResult.content)) {
+                  const textContent = errorResult.content.find(content => content.type === 'text');
+                  if (textContent && textContent.text) {
+                    aiResponse = textContent.text;
+                  }
+                }
                 break;
               }
             }
