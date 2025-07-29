@@ -136,45 +136,125 @@ export const action = async ({ request }) => {
         return true;
       });
       
-      // Simple tool execution approach (no complex tool service)
+      // Multi-turn conversation loop (matching web chat behavior)
       let aiResponse = "Sorry, I couldn't generate a response.";
+      let conversationComplete = false;
+      let maxTurns = 5; // Prevent infinite loops
+      let turnCount = 0;
       
       try {
-        // Get AI response with store context (non-streaming for WhatsApp)
-        const aiResult = await claudeService.getConversationResponse({
-          messages: conversationHistory,
-          promptType: AppConfig.api.defaultPromptType,
-          tools: mcpClient.tools
-        });
-        
-        console.log('WhatsApp: AI response received');
-        
-        // Check if Claude wants to use tools
-        if (aiResult?.content) {
-          let toolUsed = false;
-          let currentConversation = conversationHistory;
+        while (!conversationComplete && turnCount < maxTurns) {
+          turnCount++;
+          console.log(`WhatsApp: Conversation turn ${turnCount}`);
           
-          for (const content of aiResult.content) {
-            if (content.type === "tool_use") {
-              toolUsed = true;
-              const toolName = content.name;
-              const toolArgs = content.input;
-              
-              console.log('WhatsApp: Executing tool:', toolName);
-              console.log('WhatsApp: Tool arguments:', toolArgs);
-              
-              try {
-                // Call the tool directly
-                const toolResponse = await mcpClient.callTool(toolName, toolArgs);
-                console.log('WhatsApp: Tool response received');
-                console.log('WhatsApp: Tool response structure:', JSON.stringify(toolResponse, null, 2).substring(0, 500) + '...');
+          // Get AI response with current conversation context
+          const aiResult = await claudeService.getConversationResponse({
+            messages: conversationHistory,
+            promptType: AppConfig.api.defaultPromptType,
+            tools: mcpClient.tools
+          });
+          
+          console.log('WhatsApp: AI response received for turn', turnCount);
+          
+          // Check if Claude wants to use tools
+          if (aiResult?.content) {
+            let toolUsed = false;
+            
+            for (const content of aiResult.content) {
+              if (content.type === "tool_use") {
+                toolUsed = true;
+                const toolName = content.name;
+                const toolArgs = content.input;
                 
-                // Check if tool execution was successful
-                if (toolResponse.error) {
-                  console.log('WhatsApp: Tool returned error:', toolResponse.error);
+                console.log('WhatsApp: Executing tool:', toolName);
+                console.log('WhatsApp: Tool arguments:', toolArgs);
+                
+                try {
+                  // Call the tool directly
+                  const toolResponse = await mcpClient.callTool(toolName, toolArgs);
+                  console.log('WhatsApp: Tool response received');
+                  console.log('WhatsApp: Tool response structure:', JSON.stringify(toolResponse, null, 2).substring(0, 500) + '...');
+                  
+                  // Check if tool execution was successful
+                  if (toolResponse.error) {
+                    console.log('WhatsApp: Tool returned error:', toolResponse.error);
+                    // Create a conversation with the error for the AI to handle
+                    const errorConversation = [
+                      ...conversationHistory,
+                      {
+                        role: 'assistant',
+                        content: [content]
+                      },
+                      {
+                        role: 'user',
+                        content: [{
+                          type: 'tool_result',
+                          tool_use_id: content.id,
+                          content: `Error: ${toolResponse.error}`
+                        }]
+                      }
+                    ];
+                    
+                    // Get AI response to handle the error
+                    const errorResult = await claudeService.getConversationResponse({
+                      messages: errorConversation,
+                      promptType: AppConfig.api.defaultPromptType,
+                      tools: mcpClient.tools
+                    });
+                    
+                    // Extract error response
+                    if (errorResult?.content && Array.isArray(errorResult.content)) {
+                      const textContent = errorResult.content.find(content => content.type === 'text');
+                      if (textContent && textContent.text) {
+                        aiResponse = textContent.text;
+                      }
+                    }
+                    conversationComplete = true;
+                    break;
+                  }
+                  
+                  // Extract tool result text
+                  let toolResultText;
+                  if (toolResponse.content && Array.isArray(toolResponse.content)) {
+                    if (toolResponse.content[0]?.text) {
+                      toolResultText = toolResponse.content[0].text;
+                    } else {
+                      toolResultText = JSON.stringify(toolResponse.content[0] || toolResponse);
+                    }
+                  } else {
+                    toolResultText = JSON.stringify(toolResponse);
+                  }
+                  
+                  // Truncate tool result if too long
+                  const maxToolResultLength = 2000;
+                  if (toolResultText.length > maxToolResultLength) {
+                    toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
+                  }
+                  
+                  // Update conversation with tool result for next turn
+                  conversationHistory.push({
+                    role: 'assistant',
+                    content: [content]
+                  });
+                  conversationHistory.push({
+                    role: 'user',
+                    content: [{
+                      type: 'tool_result',
+                      tool_use_id: content.id,
+                      content: toolResultText
+                    }]
+                  });
+                  
+                  // Continue to next turn to see if AI wants to use more tools
+                  console.log('WhatsApp: Tool executed, continuing to next turn...');
+                  break; // Break out of tool loop, continue to next conversation turn
+                  
+                } catch (toolError) {
+                  console.error('WhatsApp: Tool execution error:', toolError);
+                  
                   // Create a conversation with the error for the AI to handle
                   const errorConversation = [
-                    ...currentConversation,
+                    ...conversationHistory,
                     {
                       role: 'assistant',
                       content: [content]
@@ -184,7 +264,7 @@ export const action = async ({ request }) => {
                       content: [{
                         type: 'tool_result',
                         tool_use_id: content.id,
-                        content: `Error: ${toolResponse.error}`
+                        content: `Error: ${toolError.message || 'Tool execution failed'}`
                       }]
                     }
                   ];
@@ -203,115 +283,33 @@ export const action = async ({ request }) => {
                       aiResponse = textContent.text;
                     }
                   }
+                  conversationComplete = true;
                   break;
                 }
-                
-                // Extract tool result text
-                let toolResultText;
-                if (toolResponse.content && Array.isArray(toolResponse.content)) {
-                  if (toolResponse.content[0]?.text) {
-                    toolResultText = toolResponse.content[0].text;
-                  } else {
-                    toolResultText = JSON.stringify(toolResponse.content[0] || toolResponse);
-                  }
-                } else {
-                  toolResultText = JSON.stringify(toolResponse);
-                }
-                
-                // Truncate tool result if too long
-                const maxToolResultLength = 2000;
-                if (toolResultText.length > maxToolResultLength) {
-                  toolResultText = toolResultText.substring(0, maxToolResultLength) + '...\n\n[Tool result truncated]';
-                }
-                
-                // Update conversation with tool result for potential next tool
-                currentConversation = [
-                  ...currentConversation,
-                  {
-                    role: 'assistant',
-                    content: [content]
-                  },
-                  {
-                    role: 'user',
-                    content: [{
-                      type: 'tool_result',
-                      tool_use_id: content.id,
-                      content: toolResultText
-                    }]
-                  }
-                ];
-                
-                // Check if there are more tools to execute
-                const remainingTools = aiResult.content.filter(c => c.type === 'tool_use' && c.id !== content.id);
-                if (remainingTools.length > 0) {
-                  console.log('WhatsApp: More tools to execute, continuing...');
-                  continue; // Continue to next tool instead of breaking
-                }
-                
-                // Get final response with all tool results
-                const finalResult = await claudeService.getConversationResponse({
-                  messages: currentConversation,
-                  promptType: AppConfig.api.defaultPromptType,
-                  tools: mcpClient.tools
-                });
-                
-                // Extract final text response
-                if (finalResult?.content && Array.isArray(finalResult.content)) {
-                  const textContent = finalResult.content.find(content => content.type === 'text');
-                  if (textContent && textContent.text) {
-                    aiResponse = textContent.text;
-                  }
-                }
-                
-              } catch (toolError) {
-                console.error('WhatsApp: Tool execution error:', toolError);
-                
-                // Create a conversation with the error for the AI to handle
-                const errorConversation = [
-                  ...currentConversation,
-                  {
-                    role: 'assistant',
-                    content: [content]
-                  },
-                  {
-                    role: 'user',
-                    content: [{
-                      type: 'tool_result',
-                      tool_use_id: content.id,
-                      content: `Error: ${toolError.message || 'Tool execution failed'}`
-                    }]
-                  }
-                ];
-                
-                // Get AI response to handle the error
-                const errorResult = await claudeService.getConversationResponse({
-                  messages: errorConversation,
-                  promptType: AppConfig.api.defaultPromptType,
-                  tools: mcpClient.tools
-                });
-                
-                // Extract error response
-                if (errorResult?.content && Array.isArray(errorResult.content)) {
-                  const textContent = errorResult.content.find(content => content.type === 'text');
-                  if (textContent && textContent.text) {
-                    aiResponse = textContent.text;
-                  }
-                }
-                break;
               }
             }
-          }
-          
-          // If no tools were used, extract text from original response
-          if (!toolUsed) {
-            if (aiResult.content && Array.isArray(aiResult.content)) {
-              const textContent = aiResult.content.find(content => content.type === 'text');
-              if (textContent && textContent.text) {
-                aiResponse = textContent.text;
+            
+            // If no tools were used, this is the final response
+            if (!toolUsed) {
+              console.log('WhatsApp: No tools used, extracting final response');
+              if (aiResult.content && Array.isArray(aiResult.content)) {
+                const textContent = aiResult.content.find(content => content.type === 'text');
+                if (textContent && textContent.text) {
+                  aiResponse = textContent.text;
+                }
               }
+              conversationComplete = true;
             }
+          } else {
+            // No content in response, conversation is complete
+            conversationComplete = true;
           }
         }
+        
+        if (turnCount >= maxTurns) {
+          console.log('WhatsApp: Max turns reached, using last response');
+        }
+        
       } catch (error) {
         console.error('WhatsApp: Claude API error:', error);
         aiResponse = "Sorry, I'm having trouble processing your request right now. Please try again.";
