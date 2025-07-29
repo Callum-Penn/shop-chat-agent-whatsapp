@@ -165,6 +165,10 @@ export const action = async ({ request }) => {
                     tool_use_id: content.id,
                     content: toolResultText
                   }]
+                },
+                {
+                  role: 'user',
+                  content: 'Please provide a complete response based on the tool results. Make sure to finish your response properly and provide all necessary information to the customer.'
                 }
               ];
               
@@ -195,11 +199,17 @@ export const action = async ({ request }) => {
       console.log('WhatsApp: Final AI response preview:', aiResponse.substring(0, 100) + '...');
       console.log('WhatsApp: Full AI response:', aiResponse);
       
+      // Check if response is incomplete (ends with colon or incomplete sentence)
+      let finalResponse = aiResponse;
+      if (aiResponse.trim().endsWith(':') || aiResponse.trim().endsWith('...')) {
+        console.log('WhatsApp: Detected incomplete response, adding completion prompt');
+        finalResponse = aiResponse + '\n\nI apologize, but I need to complete that response. Let me provide you with the full information you requested.';
+      }
+      
       // Truncate response if it's too long for WhatsApp (4096 character limit)
       const maxWhatsAppLength = 4000; // Leave some buffer
-      let finalResponse = aiResponse;
-      if (aiResponse.length > maxWhatsAppLength) {
-        finalResponse = aiResponse.substring(0, maxWhatsAppLength) + '...\n\n[Message truncated due to length]';
+      if (finalResponse.length > maxWhatsAppLength) {
+        finalResponse = finalResponse.substring(0, maxWhatsAppLength) + '...\n\n[Message truncated due to length]';
         console.log('WhatsApp: Response truncated to', finalResponse.length, 'characters');
       }
       
