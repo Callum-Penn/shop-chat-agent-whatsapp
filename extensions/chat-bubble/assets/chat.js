@@ -1010,11 +1010,27 @@
             
             // Handle WhatsApp invite
             document.getElementById('send-whatsapp-invite-btn').addEventListener('click', async function() {
-              const phoneNumber = document.getElementById('whatsapp-number-input').value.trim();
+              const phoneInput = document.getElementById('whatsapp-number-input');
+              let phoneNumber = phoneInput.value.trim();
+              
               if (!phoneNumber) {
                 alert('Please enter a valid phone number.');
                 return;
               }
+              
+              // Format phone number - add UK country code if missing
+              phoneNumber = ShopAIChat.formatPhoneNumber(phoneNumber);
+              
+              if (!phoneNumber) {
+                alert('Please enter a valid phone number.');
+                return;
+              }
+              
+              // Show the formatted number to the user
+              const originalValue = phoneInput.value;
+              phoneInput.value = phoneNumber;
+              phoneInput.style.backgroundColor = '#f0f9ff';
+              phoneInput.style.borderColor = '#3b82f6';
               
               // Change button text
               this.textContent = 'Sending...';
@@ -1029,25 +1045,49 @@
                 });
                 
                 if (res.ok) {
-                  choiceMessage.innerHTML = `
+                  // Remove the input form
+                  choiceMessage.remove();
+                  
+                  // Add bot message with success
+                  const successMessage = document.createElement('div');
+                  successMessage.classList.add('shop-ai-message', 'assistant');
+                  successMessage.innerHTML = `
                     <div class="shop-ai-message-content">
                       ✅ We've sent you a message on WhatsApp! Please check your phone.
                     </div>
                   `;
+                  messagesContainer.appendChild(successMessage);
                 } else {
-                  choiceMessage.innerHTML = `
+                  // Remove the input form
+                  choiceMessage.remove();
+                  
+                  // Add bot message with error
+                  const errorMessage = document.createElement('div');
+                  errorMessage.classList.add('shop-ai-message', 'assistant');
+                  errorMessage.innerHTML = `
                     <div class="shop-ai-message-content">
                       ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
                     </div>
                   `;
+                  messagesContainer.appendChild(errorMessage);
                 }
               } catch (error) {
-                choiceMessage.innerHTML = `
+                // Remove the input form
+                choiceMessage.remove();
+                
+                // Add bot message with error
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('shop-ai-message', 'assistant');
+                errorMessage.innerHTML = `
                   <div class="shop-ai-message-content">
                     ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
                   </div>
                 `;
+                messagesContainer.appendChild(errorMessage);
               }
+              
+              // Scroll to bottom
+              ShopAIChat.UI.scrollToBottom();
             });
           }
         });
@@ -1055,6 +1095,55 @@
 
       // Scroll to bottom
       this.UI.scrollToBottom();
+    },
+
+    /**
+     * Format phone number to include country code
+     * @param {string} phoneNumber - The phone number to format
+     * @returns {string} Formatted phone number or null if invalid
+     */
+    formatPhoneNumber: function(phoneNumber) {
+      // Remove all non-digit characters
+      const digits = phoneNumber.replace(/\D/g, '');
+      
+      // If it already starts with +, return as is
+      if (phoneNumber.startsWith('+')) {
+        return phoneNumber;
+      }
+      
+      // If it starts with 00, convert to +
+      if (phoneNumber.startsWith('00')) {
+        return '+' + phoneNumber.substring(2);
+      }
+      
+      // UK number patterns
+      if (digits.length === 11 && digits.startsWith('0')) {
+        // UK mobile: 07xxxxxxxxx -> +447xxxxxxxxx
+        return '+44' + digits.substring(1);
+      }
+      
+      if (digits.length === 10 && digits.startsWith('7')) {
+        // UK mobile without leading 0: 7xxxxxxxxx -> +447xxxxxxxxx
+        return '+44' + digits;
+      }
+      
+      if (digits.length === 11 && digits.startsWith('44')) {
+        // Already has country code: 44xxxxxxxxx -> +44xxxxxxxxx
+        return '+' + digits;
+      }
+      
+      // If it's 11 digits and doesn't match UK patterns, assume it's already international
+      if (digits.length === 11) {
+        return '+' + digits;
+      }
+      
+      // If it's 10 digits, assume it's a UK number without country code
+      if (digits.length === 10) {
+        return '+44' + digits;
+      }
+      
+      // Invalid format
+      return null;
     }
   };
 
