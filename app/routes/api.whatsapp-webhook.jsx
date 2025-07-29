@@ -120,33 +120,52 @@ export const action = async ({ request }) => {
           if (content.type === "tool_use") {
             console.log('WhatsApp: Executing tool:', content.name);
             
-            // Execute the tool
-            const toolResponse = await mcpClient.callTool(content.name, content.input);
-            console.log('WhatsApp: Tool response received');
-            
-            // Create a minimal conversation for the second API call (don't add to database)
-            const toolConversation = [
-              ...conversationHistory,
-              {
-                role: 'assistant',
-                content: [content]
-              },
-              {
-                role: 'user',
-                content: [{
-                  type: 'tool_result',
-                  tool_use_id: content.id,
-                  content: toolResponse.content[0].text
-                }]
+            try {
+              // Execute the tool
+              const toolResponse = await mcpClient.callTool(content.name, content.input);
+              console.log('WhatsApp: Tool response received');
+              
+              // Validate tool response structure
+              if (!toolResponse || !toolResponse.content || !Array.isArray(toolResponse.content)) {
+                console.error('WhatsApp: Invalid tool response structure:', toolResponse);
+                throw new Error('Invalid tool response structure');
               }
-            ];
-            
-            // Get final response with tool results
-            aiResult = await claudeService.getConversationResponse({
-              messages: toolConversation,
-              promptType: AppConfig.api.defaultPromptType,
-              tools: mcpClient.tools
-            });
+              
+              const toolResultText = toolResponse.content[0]?.text || JSON.stringify(toolResponse);
+              console.log('WhatsApp: Tool result text length:', toolResultText.length);
+              
+              // Create a minimal conversation for the second API call (don't add to database)
+              const toolConversation = [
+                ...conversationHistory,
+                {
+                  role: 'assistant',
+                  content: [content]
+                },
+                {
+                  role: 'user',
+                  content: [{
+                    type: 'tool_result',
+                    tool_use_id: content.id,
+                    content: toolResultText
+                  }]
+                }
+              ];
+              
+              console.log('WhatsApp: Making second API call with tool results');
+              
+              // Get final response with tool results
+              aiResult = await claudeService.getConversationResponse({
+                messages: toolConversation,
+                promptType: AppConfig.api.defaultPromptType,
+                tools: mcpClient.tools
+              });
+              
+              console.log('WhatsApp: Second API call completed successfully');
+              
+            } catch (toolError) {
+              console.error('WhatsApp: Tool execution error:', toolError);
+              // Continue with the original response if tool execution fails
+            }
             
             break; // Only handle the first tool use for now
           }
@@ -154,6 +173,9 @@ export const action = async ({ request }) => {
       }
       
       const aiResponse = aiResult?.content?.[0]?.text || "Sorry, I couldn't generate a response.";
+      
+      console.log('WhatsApp: Final AI response length:', aiResponse.length);
+      console.log('WhatsApp: Final AI response preview:', aiResponse.substring(0, 100) + '...');
       
       // Save AI response to database
       await saveMessage(conversationId, 'assistant', JSON.stringify(aiResponse));
