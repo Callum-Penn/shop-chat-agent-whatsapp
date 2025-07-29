@@ -1,292 +1,149 @@
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:13] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:13] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:13] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:14] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:14] > shop-chat-agent@1.0.29 start
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:14] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:14] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:15] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 162ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:17] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:18] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:20] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:20] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:30] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:30] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:30] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] > shop-chat-agent@1.0.29 start
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:31] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 191ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:21] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:25] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:25] [remix-serve] http://localhost:8080 (http://10.244.21.95:8080)
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:47] OPTIONS /chat?history=true&conversation_id=1753780284314 204 - - 15.043 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:02:47] GET /chat?history=true&conversation_id=1753780284314 200 - - 14.950 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 230ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:33] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:34] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:36] Prisma schema loaded from prisma/schema.prisma
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:36] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] The database is already in sync with the Prisma schema.
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] Running generate... (Use --skip-generate to skip the generators)
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
-✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 131ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:49] POST /api/whatsapp-webhook 200 - - 4.925 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:49] POST /api/whatsapp-webhook 200 - - 2.809 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:07:51] GET /chat?history=true&conversation_id=1753783128760 200 - - 53.142 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:08] POST /api/whatsapp-webhook 200 - - 2.177 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:09:57] GET /chat?history=true&conversation_id=1753783128760 200 - - 7.341 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] Received WhatsApp invite request for: +447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] WhatsApp API Request: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   url: 'https://graph.facebook.com/v19.0/753107757878333/messages',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   phoneNumberId: '753107757878333',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   payload: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     text: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]       body: 'Hi! You can continue your chat with our AI assistant here on WhatsApp.'
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] WhatsApp API Response: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   status: 200,
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   statusText: 'OK',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   data: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     contacts: [ [Object] ],
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] ┌─────────────────────────────────────────────────────────┐
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] │  Update available 6.6.0 -> 6.12.0                       │
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] │  Run the following to update                            │
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] │    npm i --save-dev prisma@latest                       │
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] │    npm i @prisma/client@latest                          │
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     messages: [ [Object] ]
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] WhatsApp message sent successfully: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   contacts: [ { input: '+447891689332', wa_id: '447891689332' } ],
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   messages: [
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]       id: 'wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSMjQ1M0FBMTNEMjQ0OEY2MUM3AA=='
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]     }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10]   ]
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] POST /api/send-whatsapp-invite 200 - - 660.654 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:12] POST /api/whatsapp-webhook 200 - - 2.012 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:36] POST /api/whatsapp-webhook 200 - - 2.445 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:03] POST /api/whatsapp-webhook 200 - - 1.848 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:37] └─────────────────────────────────────────────────────────┘
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:41] [shopify-api/INFO] version 11.12.0, environment Remix
-[shop-chat-agent-whatsapp] [2025-07-29 10:01:41] [remix-serve] http://localhost:8080 (http://10.244.21.233:8080)
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:17] WhatsApp: Connecting to MCP servers (cached)...
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:17] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:17] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:17] No token in database for conversation: whatsapp_447813353629
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:17] WhatsApp: Cached MCP client with 9 tools
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:20] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:20] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:20]   query: 'Diamond 3K Diamond 3000',
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:20]   context: 'Checking availability and best sellers for Diamond 3K products'
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:20] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:21] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:21] WhatsApp: Tool result text length: 9857
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:21] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153153048924","title":"Vapes Bars Diamond 3k Starter Kit Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with Confidenc...
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:21] WhatsApp: Tool result truncated to 2028 characters
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:21] WhatsApp: Making second API call with tool results
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] WhatsApp: Second API call completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] WhatsApp: Final AI response length: 277
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] WhatsApp: Final AI response preview: Let me check our current stock for you. I can see that the following Diamond 3K flavors are currentl...
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] WhatsApp: Full AI response: Let me check our current stock for you. I can see that the following Diamond 3K flavors are currently in stock and available to purchase:
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] - Menthol (£2.80)
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] - Blueberry (£2.80)
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] - Watermelon Ice (£2.80)
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:24] Let me search specifically for our best-selling products in this category.
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:25] POST /api/whatsapp-webhook 200 - - 8100.212 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:27] POST /api/whatsapp-webhook 200 - - 2.530 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:27] POST /api/whatsapp-webhook 200 - - 1.848 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:27] POST /api/whatsapp-webhook 200 - - 1.809 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:36] POST /api/whatsapp-webhook 200 - - 3.356 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:03:36] POST /api/whatsapp-webhook 200 - - 1.557 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:42] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:42] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:42]   query: 'best selling products',
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:42]   context: 'Looking for most popular products'
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:42] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:43] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:43] WhatsApp: Tool result text length: 9762
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:43] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153128243548","title":"Lost Mary BM600 Rechargeable Pod Kit Blackcurrant Apple","description":"These products are Post June 2025 Ban Compliant. Buy ...
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:43] WhatsApp: Tool result truncated to 2028 characters
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:43] WhatsApp: Making second API call with tool results
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] WhatsApp: Second API call completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] WhatsApp: Final AI response length: 403
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] WhatsApp: Final AI response preview: Based on our current best-sellers, the Lost Mary BM600 Rechargeable Pod Kit series is currently one ...
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] WhatsApp: Full AI response: Based on our current best-sellers, the Lost Mary BM600 Rechargeable Pod Kit series is currently one of our most popular products, particularly in these flavors:
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] 1. Blackcurrant Apple (£2.05)
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] 2. Blue Razz Cherry (£2.05)
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] 3. Cherry Peach Lemonade (£2.05)
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:47] These are all Post June 2025 Ban Compliant products and are currently in stock. Would you like more information about any of these specific products?
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:48] POST /api/whatsapp-webhook 200 - - 8922.408 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:06:49] POST /api/whatsapp-webhook 200 - - 1.660 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:07:40] OPTIONS /chat?history=true&conversation_id=1753783128760 204 - - 3.308 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:07:40] GET /chat?history=true&conversation_id=1753783128760 200 - - 7.917 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:07:51] OPTIONS /chat?history=true&conversation_id=1753783128760 204 - - 1.631 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06] OPTIONS /api/send-whatsapp-invite 200 - - 1.643 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06] Received WhatsApp invite request for: +447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06] WhatsApp API Request: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]   url: 'https://graph.facebook.com/v19.0/753107757878333/messages',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]   phoneNumberId: '753107757878333',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]   to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]   payload: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]     to: '+447891689332',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]     text: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]       body: 'Hi! You can continue your chat with our AI assistant here on WhatsApp.'
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]     }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06]   }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:06] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07] WhatsApp API Response: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   status: 200,
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   statusText: 'OK',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   data: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]     messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]     contacts: [ [Object] ],
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]     messages: [ [Object] ]
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07] WhatsApp message sent successfully: {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   messaging_product: 'whatsapp',
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   contacts: [ { input: '+447891689332', wa_id: '447891689332' } ],
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   messages: [
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]     {
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]       id: 'wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSOEYyMTIwRkYwQ0Y0QzU3MUUwAA=='
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]     }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07]   ]
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:07] POST /api/send-whatsapp-invite 200 - - 739.842 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:08:08] POST /api/whatsapp-webhook 200 - - 1.455 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:09:57] OPTIONS /chat?history=true&conversation_id=1753783128760 204 - - 1.270 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:10] OPTIONS /api/send-whatsapp-invite 200 - - 1.752 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:12] POST /api/whatsapp-webhook 200 - - 1.199 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31]   query: 'ske crystal',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31]   context: 'Customer looking for SKE crystal products'
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Tool result text length: 9493
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153133683036","title":"Crystal 600 Pro Pods Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 ...
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Tool result truncated to 2028 characters
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:31] WhatsApp: Making second API call with tool results
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] WhatsApp: Second API call completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] WhatsApp: Final AI response length: 438
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] WhatsApp: Final AI response preview: Yes, I can see we have several Crystal products in stock! Here are some of the available items:
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 1. ...
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] WhatsApp: Full AI response: Yes, I can see we have several Crystal products in stock! Here are some of the available items:
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 1. Crystal 600 Pro Pods Menthol - £1.85
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 2. Crystal 600 Pro Pods Vmtice - £1.85
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 3. Crystal 600 Pro Kit Menthol - £2.05
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] 
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] These are all Post June 2025 Ban Compliant products. Would you like more specific information about any of these items? I can provide you with more details about their features, specifications, or help you make a purchase.
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:34] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:35] POST /api/whatsapp-webhook 200 - - 6969.882 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:36] POST /api/whatsapp-webhook 200 - - 1.476 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:36] POST /api/whatsapp-webhook 200 - - 1.404 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:56] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:56] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:56]   query: 'Crystal 600 Pro Pods Menthol, Crystal 600 Pro Pods Vmtice, Crystal 600 Pro Kit Menthol',
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:56]   context: 'Looking for specific Crystal products to add to cart'
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:56] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:57] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:57] WhatsApp: Tool result text length: 9538
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:57] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153133683036","title":"Crystal 600 Pro Pods Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 ...
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:57] WhatsApp: Tool result truncated to 2028 characters
-[shop-chat-agent-whatsapp] [2025-07-29 10:10:57] WhatsApp: Making second API call with tool results
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:01] WhatsApp: Second API call completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:01] WhatsApp: Final AI response length: 90
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:01] WhatsApp: Final AI response preview: I'll help you add 10 of each Crystal product to your cart. Let me add these items for you:...
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:01] WhatsApp: Full AI response: I'll help you add 10 of each Crystal product to your cart. Let me add these items for you:
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:01] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:02] POST /api/whatsapp-webhook 200 - - 9005.399 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:11:03] POST /api/whatsapp-webhook 200 - - 1.448 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:14] WhatsApp: Connecting to MCP servers (cached)...
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:14] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:14] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:14] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:14] WhatsApp: Cached MCP client with 9 tools
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17]   query: 'Crystal 600 Pro',
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17]   context: 'Looking for Crystal 600 Pro products to add to cart'
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] }
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Tool result text length: 9876
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153132831068","title":"Crystal 600 Pro Kit Vmtice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pr...
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Tool result truncated to 2028 characters
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:17] WhatsApp: Making second API call with tool results
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:20] WhatsApp: Second API call completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:20] WhatsApp: Final AI response length: 59
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:20] WhatsApp: Final AI response preview: Let me add 10 of each Crystal 600 Pro product to your cart:...
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:20] WhatsApp: Full AI response: Let me add 10 of each Crystal 600 Pro product to your cart:
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:20] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:21] POST /api/whatsapp-webhook 200 - - 6739.105 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:22] POST /api/whatsapp-webhook 200 - - 1.483 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:12:22] POST /api/whatsapp-webhook 200 - - 2.533 ms
-[shop-chat-agent-whatsapp] [2025-07-29 10:13:16] GET /chat?history=true&conversation_id=1753780284314 200 - - 61.582 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09] Calling storefront tool update_cart {
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]   add_items: [
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]     {
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]       product_variant_id: 'gid://shopify/ProductVariant/55119438053724',
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]       quantity: 1
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]     }
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09]   ]
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:09] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:13] POST /chat 200 - - 16.304 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:58] OPTIONS /chat?history=true&conversation_id=1753783128760 204 - - 12.709 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:19:58] GET /chat?history=true&conversation_id=1753783128760 200 - - 15.165 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22] OPTIONS /api/send-whatsapp-invite 200 - - 2.816 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22] Received WhatsApp invite request for: +447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22] WhatsApp API Request: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]   url: 'https://graph.facebook.com/v19.0/753107757878333/messages',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]   phoneNumberId: '753107757878333',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]   to: '+447891689332',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]   payload: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]     messaging_product: 'whatsapp',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]     to: '+447891689332',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]     text: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]       body: 'Hi! You can continue your chat with our AI assistant here on WhatsApp.'
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]     }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22]   }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:22] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23] WhatsApp API Response: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   status: 200,
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   statusText: 'OK',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   data: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]     messaging_product: 'whatsapp',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]     contacts: [ [Object] ],
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]     messages: [ [Object] ]
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23] WhatsApp message sent successfully: {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   messaging_product: 'whatsapp',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   contacts: [ { input: '+447891689332', wa_id: '447891689332' } ],
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   messages: [
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]     {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]       id: 'wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSODk0OTBEODEzN0YzMTc2MUJCAA=='
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]     }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23]   ]
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:23] POST /api/send-whatsapp-invite 200 - - 1357.038 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:24] POST /api/whatsapp-webhook 200 - - 3.391 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:24] POST /api/whatsapp-webhook 200 - - 2.656 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:30] WhatsApp: Connecting to MCP servers (cached)...
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:30] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:30] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:30] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:30] WhatsApp: Cached MCP client with 9 tools
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] WhatsApp: Final AI response length: 289
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] WhatsApp: Final AI response preview: Hello! 👋 How can I help you today? I can assist you with:
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Finding products in our store
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Answer...
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] WhatsApp: Full AI response: Hello! 👋 How can I help you today? I can assist you with:
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Finding products in our store
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Answering questions about shipping and returns
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Checking order status
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Help with creating or updating your cart
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] - Information about our policies and services
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] What would you like to know about?
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:32] Cleaned up 2 old messages for conversation whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:33] POST /api/whatsapp-webhook 200 - - 3090.595 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:34] POST /api/whatsapp-webhook 200 - - 1.973 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:34] POST /api/whatsapp-webhook 200 - - 1.793 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:43] WhatsApp: Connecting to MCP servers (cached)...
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:43] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:43] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:43] No token in database for conversation: whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:43] WhatsApp: Cached MCP client with 9 tools
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Executing tool: search_shop_catalog
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] Calling storefront tool search_shop_catalog {
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45]   query: 'SKE Crystal',
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45]   context: 'Customer is asking about SKE Crystal products'
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Tool response received
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Tool result text length: 9493
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153133683036","title":"Crystal 600 Pro Pods Menthol","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 ...
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Tool result truncated to 2028 characters
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:45] WhatsApp: Making second API call with tool results
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] WhatsApp: Second API call completed successfully
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] WhatsApp: Final AI response length: 621
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] WhatsApp: Final AI response preview: Yes, we do sell SKE Crystal products! I can see several Crystal 600 Pro items in our catalog, includ...
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] WhatsApp: Full AI response: Yes, we do sell SKE Crystal products! I can see several Crystal 600 Pro items in our catalog, including:
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 1. Crystal 600 Pro Pods Menthol - £1.85
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 2. Crystal 600 Pro Pods Vmtice - £1.85
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 3. Crystal 600 Pro Kit Menthol - £2.05
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] These are all Post June 2025 Ban Compliant products. Each product is available and in stock. The pods are pre-filled, and the kit comes with a 400mAh battery, offers 600 puffs, and includes a 2ml liquid capacity. The device is both rechargeable and refillable.
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] 
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] Would you like to know more details about any specific Crystal product, or would you like help adding any of these items to your cart?
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:49] Cleaned up 2 old messages for conversation whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:50] POST /api/whatsapp-webhook 200 - - 7156.210 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:51] POST /api/whatsapp-webhook 200 - - 1.335 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:20:51] POST /api/whatsapp-webhook 200 - - 2.109 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] WhatsApp: Executing tool: update_cart
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] Calling storefront tool update_cart {
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]   add_items: [
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     {
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       product_variant_id: 'gid://shopify/ProductVariant/44458485645538',
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       quantity: 10
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     },
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     {
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       product_variant_id: 'gid://shopify/ProductVariant/44458485612770',
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       quantity: 10
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     },
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     {
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       product_variant_id: 'gid://shopify/ProductVariant/44458485678306',
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]       quantity: 10
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]     }
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15]   ]
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] WhatsApp: Tool response received
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] WhatsApp: Tool result text length: 1146
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] WhatsApp: Tool result preview: {"instructions":"Ask if the customer has found everything they need. If they're ready to check out:\n\n1. First help them complete their cart with any additional items they might need\n2. If the cart ...
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:15] WhatsApp: Making second API call with tool results
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] WhatsApp: Second API call completed successfully
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] WhatsApp: Final AI response length: 104
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] WhatsApp: Final AI response preview: I apologize for the error in my previous response. Let me search for the correct product variants fi...
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] WhatsApp: Full AI response: I apologize for the error in my previous response. Let me search for the correct product variants first:
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] WhatsApp: Detected incomplete response, adding completion prompt
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:17] Cleaned up 2 old messages for conversation whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:18] POST /api/whatsapp-webhook 200 - - 6632.715 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:19] POST /api/whatsapp-webhook 200 - - 1.909 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:19] POST /api/whatsapp-webhook 200 - - 2.047 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:51] WhatsApp: Executing tool: search_shop_catalog
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:51] Calling storefront tool search_shop_catalog {
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:51]   query: 'SKE Crystal 600 Pro',
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:51]   context: 'Looking for SKE Crystal products to add to cart'
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:51] }
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:52] WhatsApp: Tool response received
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:52] WhatsApp: Tool result text length: 9820
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:52] WhatsApp: Tool result preview: {"products":[{"product_id":"gid://shopify/Product/15153132831068","title":"Crystal 600 Pro Kit Vmtice","description":"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pr...
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:52] WhatsApp: Tool result truncated to 2028 characters
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:52] WhatsApp: Making second API call with tool results
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] WhatsApp: Second API call completed successfully
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] WhatsApp: Final AI response length: 84
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] WhatsApp: Final AI response preview: I'll create a cart with the SKE Crystal products. Let me add them to a cart for you:...
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] WhatsApp: Full AI response: I'll create a cart with the SKE Crystal products. Let me add them to a cart for you:
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] WhatsApp: Detected incomplete response, adding completion prompt
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:55] Cleaned up 2 old messages for conversation whatsapp_447891689332
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:56] POST /api/whatsapp-webhook 200 - - 7341.153 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:57] POST /api/whatsapp-webhook 200 - - 2.031 ms
+[shop-chat-agent-whatsapp] [2025-07-29 10:21:57] POST /api/whatsapp-webhook 200 - - 2.085 ms

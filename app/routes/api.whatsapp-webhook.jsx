@@ -168,7 +168,9 @@ export const action = async ({ request }) => {
                 },
                 {
                   role: 'user',
-                  content: 'Please provide a complete response based on the tool results. Make sure to finish your response properly and provide all necessary information to the customer.'
+                  content: content.name === 'update_cart' 
+                    ? 'The cart has been updated. Now please provide a complete response including a checkout link using the get_cart_checkout_url tool. Make sure to give the customer the full information they requested.'
+                    : 'Please provide a complete response based on the tool results. Make sure to finish your response properly and provide all necessary information to the customer.'
                 }
               ];
               
