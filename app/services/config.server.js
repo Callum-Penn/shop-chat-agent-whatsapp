@@ -7,7 +7,7 @@ export const AppConfig = {
   // API Configuration
   api: {
     defaultModel: 'claude-3-5-sonnet-latest',
-    maxTokens: 2000,
+    maxTokens: 1000, // Reduced from 2000 to save tokens
     defaultPromptType: 'standardAssistant',
   },
 
@@ -26,6 +26,12 @@ export const AppConfig = {
   tools: {
     productSearchName: "search_shop_catalog",
     maxProductsToDisplay: 3
+  },
+
+  // Conversation Management
+  conversation: {
+    maxHistoryMessages: 8, // Limit conversation history
+    maxSystemPromptLength: 500 // Limit system prompt length
   }
 };
 

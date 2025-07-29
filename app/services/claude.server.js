@@ -106,8 +106,16 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
    * @returns {string} The system prompt content
    */
   const getSystemPrompt = (promptType) => {
-    return systemPrompts.systemPrompts[promptType]?.content ||
+    const prompt = systemPrompts.systemPrompts[promptType]?.content ||
       systemPrompts.systemPrompts[AppConfig.api.defaultPromptType].content;
+    
+    // Truncate system prompt to reduce token usage
+    const maxLength = AppConfig.conversation.maxSystemPromptLength;
+    if (prompt.length > maxLength) {
+      return prompt.substring(0, maxLength) + '...';
+    }
+    
+    return prompt;
   };
 
   return {

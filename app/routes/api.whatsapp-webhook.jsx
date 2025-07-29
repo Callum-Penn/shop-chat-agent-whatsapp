@@ -5,6 +5,9 @@ import { saveMessage, getConversationHistory } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 
+// Cache for MCP connections to avoid reconnecting on every message
+const mcpCache = new Map();
+
 // Helper to send a message back to WhatsApp
 async function sendWhatsAppMessage(to, text) {
   const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
@@ -24,6 +27,44 @@ async function sendWhatsAppMessage(to, text) {
   });
 }
 
+// Helper to truncate conversation history to reduce tokens
+function truncateConversationHistory(messages, maxMessages = 10) {
+  if (messages.length <= maxMessages) {
+    return messages;
+  }
+  
+  // Keep the first message (system context) and the most recent messages
+  const firstMessage = messages[0];
+  const recentMessages = messages.slice(-maxMessages + 1);
+  
+  return [firstMessage, ...recentMessages];
+}
+
+// Helper to get or create cached MCP client
+async function getCachedMCPClient(shopDomain, conversationId, shopId) {
+  const cacheKey = `${shopDomain}_${shopId}`;
+  
+  if (mcpCache.has(cacheKey)) {
+    return mcpCache.get(cacheKey);
+  }
+  
+  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, null);
+  
+  // Connect to MCP servers once and cache
+  try {
+    console.log('WhatsApp: Connecting to MCP servers (cached)...');
+    await mcpClient.connectToStorefrontServer();
+    await mcpClient.connectToCustomerServer();
+    console.log(`WhatsApp: Cached MCP client with ${mcpClient.tools.length} tools`);
+    
+    mcpCache.set(cacheKey, mcpClient);
+    return mcpClient;
+  } catch (error) {
+    console.warn('WhatsApp: Failed to connect to MCP servers:', error.message);
+    return mcpClient; // Return client even if connection fails
+  }
+}
+
 export const action = async ({ request }) => {
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
@@ -38,28 +79,20 @@ export const action = async ({ request }) => {
     try {
       // Initialize services
       const claudeService = createClaudeService();
-      const toolService = createToolService();
       
       // HARDCODED: Use the actual store URL for now
-      const shopDomain = 'https://ju3ntu-rn.myshopify.com'; // Your actual store domain with protocol
-      const shopId = 'ju3ntu-rn'; // Your store ID
-      console.log('WhatsApp: Using hardcoded shop domain:', shopDomain);
-      console.log('WhatsApp: Using hardcoded shop ID:', shopId);
+      const shopDomain = 'https://ju3ntu-rn.myshopify.com';
+      const shopId = 'ju3ntu-rn';
       
-      // Initialize MCP client for store access
-      const mcpClient = new MCPClient(
-        shopDomain,
-        conversationId,
-        shopId, // Now we have the shop ID
-        null  // customerMcpEndpoint
-      );
+      // Get cached MCP client
+      const mcpClient = await getCachedMCPClient(shopDomain, conversationId, shopId);
       
       // Save user message to database
       await saveMessage(conversationId, 'user', userMessage);
       
-      // Get conversation history
+      // Get conversation history and truncate to reduce tokens
       const dbMessages = await getConversationHistory(conversationId);
-      const conversationHistory = dbMessages.map(dbMessage => {
+      let conversationHistory = dbMessages.map(dbMessage => {
         let content;
         try {
           content = JSON.parse(dbMessage.content);
@@ -72,21 +105,8 @@ export const action = async ({ request }) => {
         };
       });
       
-      // Try to connect to MCP servers for store data
-      let storefrontMcpTools = [], customerMcpTools = [];
-      try {
-        console.log('WhatsApp: Attempting to connect to MCP servers...');
-        storefrontMcpTools = await mcpClient.connectToStorefrontServer();
-        console.log(`WhatsApp: Connected to storefront MCP with ${storefrontMcpTools.length} tools`);
-        
-        customerMcpTools = await mcpClient.connectToCustomerServer();
-        console.log(`WhatsApp: Connected to customer MCP with ${customerMcpTools.length} tools`);
-        
-        console.log('WhatsApp: Total MCP tools available:', mcpClient.tools.length);
-        console.log('WhatsApp: MCP tool names:', mcpClient.tools.map(tool => tool.name));
-      } catch (error) {
-        console.warn('WhatsApp: Failed to connect to MCP servers, continuing without tools:', error.message);
-      }
+      // Truncate conversation history to reduce token usage
+      conversationHistory = truncateConversationHistory(conversationHistory, 8);
       
       // Get AI response with store context (non-streaming for WhatsApp)
       let aiResult = await claudeService.getConversationResponse({
@@ -103,7 +123,7 @@ export const action = async ({ request }) => {
             
             // Execute the tool
             const toolResponse = await mcpClient.callTool(content.name, content.input);
-            console.log('WhatsApp: Tool response:', toolResponse);
+            console.log('WhatsApp: Tool response received');
             
             // Add tool result to conversation in proper format
             conversationHistory.push({
