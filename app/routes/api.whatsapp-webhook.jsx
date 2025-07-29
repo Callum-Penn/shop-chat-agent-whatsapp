@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
-import { saveMessage, getConversationHistory } from "../db.server";
+import { saveMessage, getConversationHistory, cleanupOldMessages } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 
@@ -91,7 +91,7 @@ export const action = async ({ request }) => {
       await saveMessage(conversationId, 'user', userMessage);
       
       // Get conversation history and truncate to reduce tokens
-      const dbMessages = await getConversationHistory(conversationId);
+      const dbMessages = await getConversationHistory(conversationId, 6); // Limit to 6 messages
       let conversationHistory = dbMessages.map(dbMessage => {
         let content;
         try {
@@ -106,7 +106,7 @@ export const action = async ({ request }) => {
       });
       
       // Truncate conversation history to reduce token usage
-      conversationHistory = truncateConversationHistory(conversationHistory, 8);
+      conversationHistory = truncateConversationHistory(conversationHistory, 6);
       
       // Get AI response with store context (non-streaming for WhatsApp)
       let aiResult = await claudeService.getConversationResponse({
@@ -125,24 +125,26 @@ export const action = async ({ request }) => {
             const toolResponse = await mcpClient.callTool(content.name, content.input);
             console.log('WhatsApp: Tool response received');
             
-            // Add tool result to conversation in proper format
-            conversationHistory.push({
-              role: 'assistant',
-              content: [content]
-            });
-            
-            conversationHistory.push({
-              role: 'user',
-              content: [{
-                type: 'tool_result',
-                tool_use_id: content.id,
-                content: toolResponse.content[0].text
-              }]
-            });
+            // Create a minimal conversation for the second API call (don't add to database)
+            const toolConversation = [
+              ...conversationHistory,
+              {
+                role: 'assistant',
+                content: [content]
+              },
+              {
+                role: 'user',
+                content: [{
+                  type: 'tool_result',
+                  tool_use_id: content.id,
+                  content: toolResponse.content[0].text
+                }]
+              }
+            ];
             
             // Get final response with tool results
             aiResult = await claudeService.getConversationResponse({
-              messages: conversationHistory,
+              messages: toolConversation,
               promptType: AppConfig.api.defaultPromptType,
               tools: mcpClient.tools
             });
@@ -156,6 +158,9 @@ export const action = async ({ request }) => {
       
       // Save AI response to database
       await saveMessage(conversationId, 'assistant', JSON.stringify(aiResponse));
+      
+      // Clean up old messages to prevent database bloat
+      await cleanupOldMessages(conversationId, 10);
       
       // Send response back to WhatsApp
       await sendWhatsAppMessage(from, aiResponse);

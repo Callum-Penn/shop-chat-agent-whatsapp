@@ -194,16 +194,19 @@ export async function saveMessage(conversationId, role, content) {
 /**
  * Get conversation history
  * @param {string} conversationId - The conversation ID
+ * @param {number} limit - Maximum number of messages to retrieve (default: 10)
  * @returns {Promise<Array>} - Array of messages in the conversation
  */
-export async function getConversationHistory(conversationId) {
+export async function getConversationHistory(conversationId, limit = 10) {
   try {
     const messages = await prisma.message.findMany({
       where: { conversationId },
-      orderBy: { createdAt: 'asc' }
+      orderBy: { createdAt: 'desc' }, // Get most recent first
+      take: limit // Limit the number of messages
     });
 
-    return messages;
+    // Return in chronological order (oldest first)
+    return messages.reverse();
   } catch (error) {
     console.error('Error retrieving conversation history:', error);
     return [];
@@ -251,5 +254,46 @@ export async function getCustomerAccountUrl(conversationId) {
   } catch (error) {
     console.error('Error retrieving customer account URL:', error);
     return null;
+  }
+}
+
+/**
+ * Clean up old messages to prevent database bloat
+ * @param {string} conversationId - The conversation ID
+ * @param {number} keepCount - Number of recent messages to keep (default: 10)
+ * @returns {Promise<number>} - Number of messages deleted
+ */
+export async function cleanupOldMessages(conversationId, keepCount = 10) {
+  try {
+    // Get total message count for this conversation
+    const totalMessages = await prisma.message.count({
+      where: { conversationId }
+    });
+
+    // If we have more messages than we want to keep, delete the oldest ones
+    if (totalMessages > keepCount) {
+      const messagesToDelete = await prisma.message.findMany({
+        where: { conversationId },
+        orderBy: { createdAt: 'asc' },
+        take: totalMessages - keepCount,
+        select: { id: true }
+      });
+
+      if (messagesToDelete.length > 0) {
+        await prisma.message.deleteMany({
+          where: {
+            id: { in: messagesToDelete.map(m => m.id) }
+          }
+        });
+        
+        console.log(`Cleaned up ${messagesToDelete.length} old messages for conversation ${conversationId}`);
+        return messagesToDelete.length;
+      }
+    }
+
+    return 0;
+  } catch (error) {
+    console.error('Error cleaning up old messages:', error);
+    return 0;
   }
 }
