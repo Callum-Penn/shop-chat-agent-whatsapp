@@ -279,7 +279,7 @@
           messageElement.textContent = '';
           messageElement.dataset.rawText = '';
           messagesContainer.appendChild(messageElement);
-          currentMessageElement = messageElement;
+          let currentMessageElement = messageElement;
 
           // Process the stream
           while (true) {
@@ -576,7 +576,7 @@
           messageElement.textContent = '';
           messageElement.dataset.rawText = '';
           messagesContainer.appendChild(messageElement);
-          currentMessageElement = messageElement;
+          let currentMessageElement = messageElement;
 
           // Process the stream
           while (true) {
