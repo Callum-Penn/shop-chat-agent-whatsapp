@@ -269,6 +269,11 @@
     max-width: 80%;
   }
 
+  /* Hide tool use messages */
+  .shop-ai-message.tool-use {
+    display: none !important;
+  }
+
   .shop-ai-tool-header {
     cursor: pointer;
     font-weight: 500;
