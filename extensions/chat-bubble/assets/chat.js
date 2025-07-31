@@ -246,9 +246,64 @@
         ShopAIChat.UI.showTypingIndicator();
 
         try {
-          ShopAIChat.API.streamResponse(userMessage, conversationId, messagesContainer);
+          // Get persona from theme settings or use default
+          const promptType = window.shopChatConfig?.promptType || 
+                           window.shopChatConfig?.aiPersona || 
+                           "standardAssistant";
+          const requestBody = JSON.stringify({
+            message: userMessage,
+            conversation_id: conversationId,
+            prompt_type: promptType
+          });
+
+          const streamUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat';
+          const shopId = window.shopId;
+
+          const response = await fetch(streamUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'text/event-stream',
+              'X-Shopify-Shop-Id': shopId
+            },
+            body: requestBody
+          });
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = '';
+
+          // Create initial message element
+          let messageElement = document.createElement('div');
+          messageElement.classList.add('shop-ai-message', 'assistant');
+          messageElement.textContent = '';
+          messageElement.dataset.rawText = '';
+          messagesContainer.appendChild(messageElement);
+          currentMessageElement = messageElement;
+
+          // Process the stream
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n\n');
+            buffer = lines.pop() || '';
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                try {
+                  const data = JSON.parse(line.slice(6));
+                  this.handleStreamEvent(data, currentMessageElement, messagesContainer, userMessage,
+                    (newElement) => { currentMessageElement = newElement; });
+                } catch (e) {
+                  console.error('Error parsing event data:', e, line);
+                }
+              }
+            }
+          }
         } catch (error) {
-          console.error('Error communicating with Claude API:', error);
+          console.error('Error in streaming:', error);
           ShopAIChat.UI.removeTypingIndicator();
           this.add("Sorry, I couldn't process your request at the moment. Please try again later.", 'assistant', messagesContainer);
         }
@@ -488,7 +543,10 @@
         let currentMessageElement = null;
 
         try {
-          const promptType = window.shopChatConfig?.promptType || "standardAssistant";
+          // Get persona from theme settings or use default
+          const promptType = window.shopChatConfig?.promptType || 
+                           window.shopChatConfig?.aiPersona || 
+                           "standardAssistant";
           const requestBody = JSON.stringify({
             message: userMessage,
             conversation_id: conversationId,
@@ -980,9 +1038,6 @@
           if (choice === 'chat-here') {
             // Remove the choice buttons and start normal chat
             choiceMessage.remove();
-            
-            // Show login option after starting chat
-            ShopAIChat.showLoginOption();
             
             // Send a message to start the conversation
             const input = document.querySelector('.shop-ai-chat-input input');
