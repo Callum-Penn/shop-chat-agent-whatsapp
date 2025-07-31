@@ -1,179 +1,152 @@
-[shop-chat-agent-whatsapp] [2025-07-29 13:12:06] OPTIONS /chat?history=true&conversation_id=1753783128760 204 - - 14.258 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:12:06] GET /chat?history=true&conversation_id=1753783128760 200 - - 15.370 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:01] POST /api/whatsapp-webhook 200 - - 6.625 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: Processing message from 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: User message: Hello
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: Connecting to MCP servers (cached)...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:05] WhatsApp: Cached MCP client with 9 tools
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] WhatsApp: Tool arguments: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08]   query: 'SKE Crystal 600 Pro',
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08]   context: 'Customer wants to purchase SKE Crystal products'
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08]   query: 'SKE Crystal 600 Pro',
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] WhatsApp: User message: Do you sell IVG?
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] WhatsApp: Connecting to MCP servers (cached)...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] No token in database for conversation: whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:43] WhatsApp: Cached MCP client with 9 tools
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] WhatsApp: Tool arguments: { query: 'IVG', context: 'Customer asking about IVG brand products' }
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] Calling storefront tool search_shop_catalog { query: 'IVG', context: 'Customer asking about IVG brand products' }
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08]   context: 'Customer wants to purchase SKE Crystal products'
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:08] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09] WhatsApp: Tool response structure: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09]   "content": [
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09]     {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09]       "type": "text",
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:09]       "text": "{\"products\":[{\"product_id\":\"gid://shopify/Product/15153132831068\",\"title\":\"Crystal 600 Pro Kit Vmtice\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceCrystal 600 Pro Kit 400mAh 600 Puffs 2ml Liquid Rechargeable Refillable Post Ban Compliant\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0938/5777/5964/files/Crystal600prokit_0001_9398S_II_VMTIce.webp?v=1753712543\",\"price_range\":{\"...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] WhatsApp: Final AI response length: 169
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] WhatsApp: Final AI response preview: Let me create a cart with these SKE Crystal products. I'll add:
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] - 10x Crystal 600 Pro Kit Vmtice
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] - 1...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46] WhatsApp: Tool response structure: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46]   "content": [
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46]     {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46]       "type": "text",
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:46]       "text": "{\"products\":[{\"product_id\":\"gid://shopify/Product/15153121296732\",\"title\":\"IVG Smart Max Refill Grape\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceIVG Smart Max Refill Grape Enjoy the classic fruity taste of IVG Smart Max Refill Grape. Smooth, juicy and rich, this refill pod is perfect for grape flavour fans looking for a satisfying vape.\",\"image_url\":\"https://cdn.shopify.com/s/fil...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] WhatsApp: Final AI response length: 451
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] WhatsApp: Final AI response preview: Yes, we do sell IVG products! I can see several IVG items in our catalog, including:
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] 
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] 1. IVG Smart M...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] WhatsApp: Message content: Yes, we do sell IVG products! I can see several IVG items in our catalog, including:
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] 
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:50] 1. IVG Smart M...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:51] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:51] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:51] POST /api/whatsapp-webhook 200 - - 8368.719 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] WhatsApp: Message content: Let me create a cart with these SKE Crystal products. I'll add:
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] - 10x Crystal 600 Pro Kit Vmtice
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:12] - 1...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:13] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:13] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:13] POST /api/whatsapp-webhook 200 - - 8182.571 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:14] POST /api/whatsapp-webhook 200 - - 2.695 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:14] POST /api/whatsapp-webhook 200 - - 2.576 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:24] WhatsApp: Processing message from 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:24] WhatsApp: User message: Hello
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:24] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:24] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] WhatsApp: Final AI response length: 436
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] WhatsApp: Final AI response preview: Hi! I'm here to help you with anything you need regarding our store's products, orders, shipping, or...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:28] WhatsApp: Message content: Hi! I'm here to help you with anything you need regarding our store's products, orders, shipping, or...
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:29] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:29] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:29] POST /api/whatsapp-webhook 200 - - 5023.658 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:30] POST /api/whatsapp-webhook 200 - - 1.988 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:08] WhatsApp: Processing message from 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:08] WhatsApp: User message: Id like to add IVG to my cart
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:08] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:08] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:12] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:12] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:12] WhatsApp: Tool arguments: { query: 'IVG', context: 'Customer wants to purchase IVG products' }
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:12] Calling storefront tool search_shop_catalog { query: 'IVG', context: 'Customer wants to purchase IVG products' }
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13] WhatsApp: Tool response structure: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:52] POST /api/whatsapp-webhook 200 - - 1.661 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:13:52] POST /api/whatsapp-webhook 200 - - 2.186 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:18] POST /api/whatsapp-webhook 200 - - 2.547 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:48] POST /api/whatsapp-webhook 200 - - 1.843 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:48] POST /api/whatsapp-webhook 200 - - 1.426 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:44] WhatsApp: Processing message from 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:44] WhatsApp: User message: You're broken
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:44] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:44] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] WhatsApp: Tool arguments: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]   query: 'IVG Smart Max Refill Grape',
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]   context: 'Customer wants to purchase 10 units'
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]   query: 'IVG Smart Max Refill Grape',
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]   context: 'Customer wants to purchase 10 units'
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47] WhatsApp: Tool response structure: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]   "content": [
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]     {
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]       "type": "text",
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:47]       "text": "{\"products\":[{\"product_id\":\"gid://shopify/Product/15153121296732\",\"title\":\"IVG Smart Max Refill Grape\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceIVG Smart Max Refill Grape Enjoy the classic fruity taste of IVG Smart Max Refill Grape. Smooth, juicy and rich, this refill pod is perfect for grape flavour fans looking for a satisfying vape.\",\"image_url\":\"https://cdn.shopify.com/s/fil...
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] WhatsApp: Final AI response length: 63
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] WhatsApp: Final AI response preview: Let me add 10 of these IVG Smart Max Refill Grape to your cart:...
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] WhatsApp: Detected incomplete response, adding completion prompt
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] WhatsApp: Message content: Let me add 10 of these IVG Smart Max Refill Grape to your cart:
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] 
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:49] I apologize, but I need to complete...
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:50] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:50] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13]   "content": [
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13]     {
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13]       "type": "text",
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:13]       "text": "{\"products\":[{\"product_id\":\"gid://shopify/Product/15153121296732\",\"title\":\"IVG Smart Max Refill Grape\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceIVG Smart Max Refill Grape Enjoy the classic fruity taste of IVG Smart Max Refill Grape. Smooth, juicy and rich, this refill pod is perfect for grape flavour fans looking for a satisfying vape.\",\"image_url\":\"https://cdn.shopify.com/s/fil...
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Final AI response length: 396
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Final AI response preview: I can help you add IVG products to your cart. I see several IVG options available. Could you please ...
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Message content: I can help you add IVG products to your cart. I see several IVG options available. Could you please ...
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:16] POST /api/whatsapp-webhook 200 - - 8058.864 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:18] POST /api/whatsapp-webhook 200 - - 2.316 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:40] WhatsApp: Processing message from 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:40] WhatsApp: User message: I would like 10 of the IVG Smart Max Refill Grape
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:40] WhatsApp: Using hardcoded shop domain: https://ju3ntu-rn.myshopify.com
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:40] WhatsApp: Using hardcoded shop ID: ju3ntu-rn
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] WhatsApp: AI response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] WhatsApp: Executing tool: search_shop_catalog
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] WhatsApp: Tool arguments: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]   query: 'IVG Smart Max Refill Grape',
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]   context: 'Customer wants to add 10 IVG Smart Max Refill Grape to cart'
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] Calling storefront tool search_shop_catalog {
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]   query: 'IVG Smart Max Refill Grape',
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]   context: 'Customer wants to add 10 IVG Smart Max Refill Grape to cart'
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] }
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] WhatsApp: Tool response received
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43] WhatsApp: Tool response structure: {
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]   "content": [
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]     {
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]       "type": "text",
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:43]       "text": "{\"products\":[{\"product_id\":\"gid://shopify/Product/15153121296732\",\"title\":\"IVG Smart Max Refill Grape\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceIVG Smart Max Refill Grape Enjoy the classic fruity taste of IVG Smart Max Refill Grape. Smooth, juicy and rich, this refill pod is perfect for grape flavour fans looking for a satisfying vape.\",\"image_url\":\"https://cdn.shopify.com/s/fil...
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:50] POST /api/whatsapp-webhook 200 - - 6003.058 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:51] POST /api/whatsapp-webhook 200 - - 1.984 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Final AI response length: 89
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Final AI response preview: I'll help you add 10 IVG Smart Max Refill Grape to your cart. Let me do that for you now:...
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Detected incomplete response, adding completion prompt
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] Cleaned up 2 old messages for conversation whatsapp_447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Sending message to 447891689332
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Message content: I'll help you add 10 IVG Smart Max Refill Grape to your cart. Let me do that for you now:
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] 
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] I apologi...
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Message sent successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] WhatsApp: Conversation completed successfully
-[shop-chat-agent-whatsapp] [2025-07-29 13:14:46] POST /api/whatsapp-webhook 200 - - 6591.560 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:51] POST /api/whatsapp-webhook 200 - - 1.681 ms
-[shop-chat-agent-whatsapp] [2025-07-29 13:21:51] POST /api/whatsapp-webhook 200 - - 1.824 ms
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:18] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:18] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:18] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] > shop-chat-agent@1.0.42 start
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] > shop-chat-agent@1.0.42 start
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:31] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:32] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 187ms
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:34] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:19] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 178ms
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:21] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:22] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:24] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:35] npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:37] Prisma schema loaded from prisma/schema.prisma
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:37] Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] The database is already in sync with the Prisma schema.
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] Running generate... (Use --skip-generate to skip the generators)
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is d
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 132ms
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] │  Update available 6.6.0 -> 6.13.0                       │
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:38] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:42] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-31 09:30:42] [remix-serve] http://localhost:8080 (http://10.244.22.62:8080)
+✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 127ms
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] 
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] ┌─────────────────────────────────────────────────────────┐
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] │  Update available 6.6.0 -> 6.13.0                       │
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] │  Run the following to update                            │
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] │    npm i --save-dev prisma@latest                       │
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] │    npm i @prisma/client@latest                          │
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:25] └─────────────────────────────────────────────────────────┘
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:28] [shopify-api/INFO] version 11.12.0, environment Remix
+[shop-chat-agent-whatsapp] [2025-07-31 09:31:28] [remix-serve] http://localhost:8080 (http://10.244.16.61:8080)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Error getting customer MCP endpoint: HttpResponseError: Received an error response (403 Forbidden) from Shopify:
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] {
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   "networkStatusCode": 403,
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   "message": "GraphQL Client: Forbidden",
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   "response": {
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     "size": 0
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   }
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] }
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] If you report this error, please include this id: ed03deda-afd5-43d6-8597-ea9dc4b4af57-1753954354
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at throwFailedRequest (file:///workspace/node_modules/lib/clients/common.ts:135:13)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at NewStorefrontClient.request (file:///workspace/node_modules/lib/clients/storefront/client.ts:142:7)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at Object.graphql (file:///workspace/node_modules/@shopify/src/server/clients/storefront/factory.ts:23:27)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at getCustomerMcpEndpoint (file:///workspace/build/server/index.js?t=315532801000:1686:22)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1560:31)
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at file:///workspace/build/server/index.js?t=315532801000:1530:7
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     at Object.start (file:///workspace/build/server/index.js?t=315532801000:1479:9) {
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   response: {
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     code: 403,
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     statusText: 'Forbidden',
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     body: { errors: [Object] },
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     headers: {
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Access-Control-Allow-Origin': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Alt-Svc': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Cf-Cache-Status': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Cf-Ray': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       Connection: [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Content-Encoding': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Content-Security-Policy': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Content-Type': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       Date: [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       Nel: [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Powered-By': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Report-To': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       Server: [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Server-Timing': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Set-Cookie': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Shopify-Complexity-Score': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Shopify-Edge-Ip': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'Transfer-Encoding': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       Vary: [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Content-Type-Options': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Dc': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Download-Options': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Frame-Options': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Permitted-Cross-Domain-Policies': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Request-Id': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Shardid': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Shopid': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Sorting-Hat-Podid': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Sorting-Hat-Shopid': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Storefront-Renderer-Rendered': [Array],
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]       'X-Xss-Protection': [Array]
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     }
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   }
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] }
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] No token in database for conversation: 1753954354395
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connected to MCP with 5 tools
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connected to customer MCP with 4 tools
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:36] POST /chat 200 - - 14.914 ms
