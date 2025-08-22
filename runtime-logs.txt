@@ -144,8 +144,8 @@
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34]     }
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34]   }
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34] }
-[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://ju3ntu-rn.myshopify.com/api/mcp
-[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://ju3ntu-rn.account.myshopify.com/customer/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://vapelocaltradeapp.myshopify.com/api/mcp
+[shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connecting to MCP server at https://vapelocaltradeapp.account.myshopify.com/customer/api/mcp
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34] No token in database for conversation: 1753954354395
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connected to MCP with 5 tools
 [shop-chat-agent-whatsapp] [2025-07-31 09:32:34] Connected to customer MCP with 4 tools

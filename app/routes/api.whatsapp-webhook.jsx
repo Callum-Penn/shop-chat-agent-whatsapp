@@ -96,8 +96,8 @@ export const action = async ({ request }) => {
       const toolService = createToolService();
       
       // HARDCODED: Use the actual store URL for now
-      const shopDomain = 'https://ju3ntu-rn.myshopify.com';
-      const shopId = 'ju3ntu-rn';
+      const shopDomain = 'https://vapelocaltradeapp.myshopify.com';
+      const shopId = 'vapelocaltradeapp';
       console.log('WhatsApp: Using hardcoded shop domain:', shopDomain);
       console.log('WhatsApp: Using hardcoded shop ID:', shopId);
       

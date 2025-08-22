@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "2e3c83cf5137ea1144373e0b5fe9c0dd"
-organization_id = "154347161"
+client_id = "bb777035a5b42a698c53d509643126c5"
+organization_id = "129348354"
 name = "shop-chat-agent"
 application_url = "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app"
 embedded = true
