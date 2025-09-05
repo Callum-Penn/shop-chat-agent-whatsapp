@@ -151,16 +151,20 @@ async function handleChatSession({
 
     try {
       storefrontMcpTools = await mcpClient.connectToStorefrontServer();
-      customerMcpTools = await mcpClient.connectToCustomerServer();
-
-      console.log(`Connected to MCP with ${storefrontMcpTools.length} tools`);
-      console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
-      console.log(`Total tools available to Claude: ${mcpClient.tools.length}`);
-      console.log(`Tool names:`, mcpClient.tools.map(t => t.name));
+      console.log(`Connected to storefront MCP with ${storefrontMcpTools.length} tools`);
     } catch (error) {
-      console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
-      console.log(`MCP client still has ${mcpClient.tools.length} tools available`);
+      console.warn('Failed to connect to storefront MCP server:', error.message);
     }
+
+    try {
+      customerMcpTools = await mcpClient.connectToCustomerServer();
+      console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
+    } catch (error) {
+      console.warn('Failed to connect to customer MCP server:', error.message);
+    }
+
+    console.log(`Total tools available to Claude: ${mcpClient.tools.length}`);
+    console.log(`Tool names:`, mcpClient.tools.map(t => t.name));
 
     // Prepare conversation state
     let conversationHistory = [];

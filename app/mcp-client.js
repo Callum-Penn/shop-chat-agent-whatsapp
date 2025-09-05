@@ -58,27 +58,99 @@ class MCPClient {
 
       console.log("Making tools/list request to customer MCP with headers:", headers);
 
-      const response = await this._makeJsonRpcRequest(
-        this.customerMcpEndpoint,
-        "tools/list",
-        {},
-        headers
-      );
+      try {
+        const response = await this._makeJsonRpcRequest(
+          this.customerMcpEndpoint,
+          "tools/list",
+          {},
+          headers
+        );
 
-      console.log("Customer MCP tools/list response:", JSON.stringify(response, null, 2));
+        console.log("Customer MCP tools/list response:", JSON.stringify(response, null, 2));
 
-      // Extract tools from the JSON-RPC response format
-      const toolsData = response.result && response.result.tools ? response.result.tools : [];
-      console.log(`Found ${toolsData.length} customer MCP tools:`, toolsData.map(t => t.name));
-      
-      const customerTools = this._formatToolsData(toolsData);
+        // Extract tools from the JSON-RPC response format
+        const toolsData = response.result && response.result.tools ? response.result.tools : [];
+        console.log(`Found ${toolsData.length} customer MCP tools:`, toolsData.map(t => t.name));
+        
+        const customerTools = this._formatToolsData(toolsData);
 
-      this.customerTools = customerTools;
-      this.tools = [...this.tools, ...customerTools];
+        this.customerTools = customerTools;
+        this.tools = [...this.tools, ...customerTools];
 
-      console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
+        console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
 
-      return customerTools;
+        return customerTools;
+      } catch (authError) {
+        if (authError.status === 401) {
+          console.log("Customer MCP server requires authentication. Creating placeholder tools for discovery.");
+          
+          // Create placeholder tools that will trigger authentication when called
+          const placeholderTools = [
+            {
+              name: "get_order_status",
+              description: "Get the status of a specific order by order number",
+              input_schema: {
+                type: "object",
+                properties: {
+                  order_number: {
+                    type: "string",
+                    description: "The order number to check status for"
+                  }
+                },
+                required: ["order_number"]
+              }
+            },
+            {
+              name: "get_most_recent_order_status",
+              description: "Get the status of the customer's most recent order",
+              input_schema: {
+                type: "object",
+                properties: {},
+                required: []
+              }
+            },
+            {
+              name: "get_order_details",
+              description: "Get detailed information about a specific order",
+              input_schema: {
+                type: "object",
+                properties: {
+                  order_number: {
+                    type: "string",
+                    description: "The order number to get details for"
+                  }
+                },
+                required: ["order_number"]
+              }
+            },
+            {
+              name: "get_customer_orders",
+              description: "Get a list of customer's orders",
+              input_schema: {
+                type: "object",
+                properties: {
+                  limit: {
+                    type: "integer",
+                    description: "Maximum number of orders to return",
+                    default: 10
+                  }
+                },
+                required: []
+              }
+            }
+          ];
+
+          this.customerTools = placeholderTools;
+          this.tools = [...this.tools, ...placeholderTools];
+
+          console.log(`Created ${placeholderTools.length} placeholder customer MCP tools for authentication flow`);
+          console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
+
+          return placeholderTools;
+        } else {
+          throw authError;
+        }
+      }
     } catch (e) {
       console.error("Failed to connect to customer MCP server: ", e);
       console.error("Customer MCP endpoint was:", this.customerMcpEndpoint);
