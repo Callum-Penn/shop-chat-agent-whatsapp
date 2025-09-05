@@ -36,13 +36,14 @@ class MCPClient {
    */
   async connectToCustomerServer() {
     try {
-      console.log(`Connecting to MCP server at ${this.customerMcpEndpoint}`);
+      console.log(`Connecting to customer MCP server at ${this.customerMcpEndpoint}`);
 
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
 
         if (dbToken && dbToken.accessToken) {
           this.customerAccessToken = dbToken.accessToken;
+          console.log("Found customer access token for conversation:", this.conversationId);
         } else {
           console.log("No token in database for conversation:", this.conversationId);
         }
@@ -55,6 +56,8 @@ class MCPClient {
         "Authorization": this.customerAccessToken || ""
       };
 
+      console.log("Making tools/list request to customer MCP with headers:", headers);
+
       const response = await this._makeJsonRpcRequest(
         this.customerMcpEndpoint,
         "tools/list",
@@ -62,16 +65,23 @@ class MCPClient {
         headers
       );
 
+      console.log("Customer MCP tools/list response:", JSON.stringify(response, null, 2));
+
       // Extract tools from the JSON-RPC response format
       const toolsData = response.result && response.result.tools ? response.result.tools : [];
+      console.log(`Found ${toolsData.length} customer MCP tools:`, toolsData.map(t => t.name));
+      
       const customerTools = this._formatToolsData(toolsData);
 
       this.customerTools = customerTools;
       this.tools = [...this.tools, ...customerTools];
 
+      console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
+
       return customerTools;
     } catch (e) {
-      console.error("Failed to connect to MCP server: ", e);
+      console.error("Failed to connect to customer MCP server: ", e);
+      console.error("Customer MCP endpoint was:", this.customerMcpEndpoint);
       throw e;
     }
   }

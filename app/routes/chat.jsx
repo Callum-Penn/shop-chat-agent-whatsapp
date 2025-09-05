@@ -155,8 +155,11 @@ async function handleChatSession({
 
       console.log(`Connected to MCP with ${storefrontMcpTools.length} tools`);
       console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
+      console.log(`Total tools available to Claude: ${mcpClient.tools.length}`);
+      console.log(`Tool names:`, mcpClient.tools.map(t => t.name));
     } catch (error) {
       console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
+      console.log(`MCP client still has ${mcpClient.tools.length} tools available`);
     }
 
     // Prepare conversation state
@@ -296,16 +299,23 @@ async function handleChatSession({
  */
 async function getCustomerMcpEndpoint(shopDomain, conversationId) {
   try {
+    console.log(`Getting customer MCP endpoint for shop: ${shopDomain}, conversation: ${conversationId}`);
+    
     // Check if the customer account URL exists in the DB
     const existingUrl = await getCustomerAccountUrl(conversationId);
+    console.log(`Existing customer account URL from DB: ${existingUrl}`);
 
     // If URL exists, return early with the MCP endpoint
     if (existingUrl) {
-      return `${existingUrl}/customer/api/mcp`;
+      const endpoint = `${existingUrl}/customer/api/mcp`;
+      console.log(`Using cached customer MCP endpoint: ${endpoint}`);
+      return endpoint;
     }
 
     // If not, query for it from the Shopify API
     const { hostname } = new URL(shopDomain);
+    console.log(`Querying Shopify API for customer account URL for hostname: ${hostname}`);
+    
     const { storefront } = await unauthenticated.storefront(
       hostname
     );
@@ -320,12 +330,17 @@ async function getCustomerMcpEndpoint(shopDomain, conversationId) {
     );
 
     const body = await response.json();
+    console.log(`Shopify API response:`, JSON.stringify(body, null, 2));
+    
     const customerAccountUrl = body.data.shop.customerAccountUrl;
+    console.log(`Customer account URL from Shopify: ${customerAccountUrl}`);
 
     // Store the customer account URL with conversation ID in the DB
     await storeCustomerAccountUrl(conversationId, customerAccountUrl);
 
-    return `${customerAccountUrl}/customer/api/mcp`;
+    const endpoint = `${customerAccountUrl}/customer/api/mcp`;
+    console.log(`Generated customer MCP endpoint: ${endpoint}`);
+    return endpoint;
   } catch (error) {
     console.error("Error getting customer MCP endpoint:", error);
     return null;
