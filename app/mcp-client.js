@@ -25,6 +25,9 @@ class MCPClient {
     this.customerAccessToken = "";
     this.conversationId = conversationId;
     this.shopId = shopId;
+    
+    // Store whether we have a valid customer MCP endpoint
+    this.hasCustomerMcpEndpoint = !!customerMcpEndpoint;
   }
 
   /**
@@ -256,6 +259,18 @@ class MCPClient {
   async callCustomerTool(toolName, toolArgs) {
     try {
       console.log("Calling customer tool", toolName, toolArgs);
+      
+      // Check if we have a valid customer MCP endpoint
+      if (!this.hasCustomerMcpEndpoint) {
+        console.log("No customer MCP endpoint available - customer accounts may not be enabled");
+        return {
+          error: {
+            type: "customer_accounts_not_enabled",
+            data: "Customer accounts are not enabled for this store. Please contact the store administrator to enable customer accounts."
+          }
+        };
+      }
+      
       // First try to get a token from the database for this conversation
       let accessToken = this.customerAccessToken;
 

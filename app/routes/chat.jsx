@@ -336,8 +336,13 @@ async function getCustomerMcpEndpoint(shopDomain, conversationId) {
     const body = await response.json();
     console.log(`Shopify API response:`, JSON.stringify(body, null, 2));
     
-    const customerAccountUrl = body.data.shop.customerAccountUrl;
+    const customerAccountUrl = body.data?.shop?.customerAccountUrl;
     console.log(`Customer account URL from Shopify: ${customerAccountUrl}`);
+
+    if (!customerAccountUrl) {
+      console.error("Customer account URL is null - store may not have customer accounts enabled");
+      throw new Error("Customer accounts not enabled for this store");
+    }
 
     // Store the customer account URL with conversation ID in the DB
     await storeCustomerAccountUrl(conversationId, customerAccountUrl);

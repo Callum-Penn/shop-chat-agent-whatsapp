@@ -22,8 +22,13 @@ export async function storeCodeVerifier(state, verifier) {
   expiresAt.setMinutes(expiresAt.getMinutes() + 10);
 
   try {
-    return await prisma.codeVerifier.create({
-      data: {
+    return await prisma.codeVerifier.upsert({
+      where: { state },
+      update: {
+        verifier,
+        expiresAt
+      },
+      create: {
         id: `cv_${Date.now()}`,
         state,
         verifier,
