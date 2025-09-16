@@ -296,12 +296,13 @@ async function handleChatSession({
  */
 async function getCustomerMcpEndpoint(shopDomain, conversationId) {
   try {
-    // Always fetch fresh customer account URL to ensure we have the latest
-    // Remove this comment and uncomment the lines below once confirmed working:
-    // const existingUrl = await getCustomerAccountUrl(conversationId);
-    // if (existingUrl) {
-    //   return `${existingUrl}/customer/api/mcp`;
-    // }
+    // Check if the customer account URL exists in the DB
+    const existingUrl = await getCustomerAccountUrl(conversationId);
+
+    // If URL exists, return early with the MCP endpoint
+    if (existingUrl) {
+      return `${existingUrl}/customer/api/mcp`;
+    }
 
     // If not, query for it from the Shopify API
     const { hostname } = new URL(shopDomain);
