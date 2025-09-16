@@ -151,20 +151,13 @@ async function handleChatSession({
 
     try {
       storefrontMcpTools = await mcpClient.connectToStorefrontServer();
-      console.log(`Connected to storefront MCP with ${storefrontMcpTools.length} tools`);
-    } catch (error) {
-      console.warn('Failed to connect to storefront MCP server:', error.message);
-    }
-
-    try {
       customerMcpTools = await mcpClient.connectToCustomerServer();
+
+      console.log(`Connected to MCP with ${storefrontMcpTools.length} tools`);
       console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
     } catch (error) {
-      console.warn('Failed to connect to customer MCP server:', error.message);
+      console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
     }
-
-    console.log(`Total tools available to Claude: ${mcpClient.tools.length}`);
-    console.log(`Tool names:`, mcpClient.tools.map(t => t.name));
 
     // Prepare conversation state
     let conversationHistory = [];
@@ -303,23 +296,16 @@ async function handleChatSession({
  */
 async function getCustomerMcpEndpoint(shopDomain, conversationId) {
   try {
-    console.log(`Getting customer MCP endpoint for shop: ${shopDomain}, conversation: ${conversationId}`);
-    
     // Check if the customer account URL exists in the DB
     const existingUrl = await getCustomerAccountUrl(conversationId);
-    console.log(`Existing customer account URL from DB: ${existingUrl}`);
 
     // If URL exists, return early with the MCP endpoint
     if (existingUrl) {
-      const endpoint = `${existingUrl}/customer/api/mcp`;
-      console.log(`Using cached customer MCP endpoint: ${endpoint}`);
-      return endpoint;
+      return `${existingUrl}/customer/api/mcp`;
     }
 
     // If not, query for it from the Shopify API
     const { hostname } = new URL(shopDomain);
-    console.log(`Querying Shopify API for customer account URL for hostname: ${hostname}`);
-    
     const { storefront } = await unauthenticated.storefront(
       hostname
     );
@@ -328,28 +314,20 @@ async function getCustomerMcpEndpoint(shopDomain, conversationId) {
       `#graphql
       query shop {
         shop {
-          customerAccountUrl
+          customerAccountsV2 {
+            url
+          }
         }
       }`,
     );
 
     const body = await response.json();
-    console.log(`Shopify API response:`, JSON.stringify(body, null, 2));
-    
-    const customerAccountUrl = body.data?.shop?.customerAccountUrl;
-    console.log(`Customer account URL from Shopify: ${customerAccountUrl}`);
-
-    if (!customerAccountUrl) {
-      console.error("Customer account URL is null - store may not have customer accounts enabled");
-      throw new Error("Customer accounts not enabled for this store");
-    }
+    const customerAccountUrl = body.data.shop.customerAccountsV2.url;
 
     // Store the customer account URL with conversation ID in the DB
     await storeCustomerAccountUrl(conversationId, customerAccountUrl);
 
-    const endpoint = `${customerAccountUrl}/customer/api/mcp`;
-    console.log(`Generated customer MCP endpoint: ${endpoint}`);
-    return endpoint;
+    return `${customerAccountUrl}/customer/api/mcp`;
   } catch (error) {
     console.error("Error getting customer MCP endpoint:", error);
     return null;
