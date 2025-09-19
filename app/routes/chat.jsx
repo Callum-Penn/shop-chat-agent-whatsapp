@@ -314,15 +314,13 @@ async function getCustomerMcpEndpoint(shopDomain, conversationId) {
       `#graphql
       query shop {
         shop {
-          customerAccountsV2 {
-            url
-          }
+          customerAccountUrl
         }
       }`,
     );
 
     const body = await response.json();
-    const customerAccountUrl = body.data.shop.customerAccountsV2.url;
+    const customerAccountUrl = body.data.shop.customerAccountUrl;
 
     // Store the customer account URL with conversation ID in the DB
     await storeCustomerAccountUrl(conversationId, customerAccountUrl);

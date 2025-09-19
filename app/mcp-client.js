@@ -25,9 +25,7 @@ class MCPClient {
     this.customerAccessToken = "";
     this.conversationId = conversationId;
     this.shopId = shopId;
-    
-    // Store whether we have a valid customer MCP endpoint
-    this.hasCustomerMcpEndpoint = !!customerMcpEndpoint;
+    this.hostUrl = hostUrl; // Store hostUrl for potential customer account URL fetching
   }
 
   /**
@@ -39,14 +37,13 @@ class MCPClient {
    */
   async connectToCustomerServer() {
     try {
-      console.log(`Connecting to customer MCP server at ${this.customerMcpEndpoint}`);
+      console.log(`Connecting to MCP server at ${this.customerMcpEndpoint}`);
 
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
 
         if (dbToken && dbToken.accessToken) {
           this.customerAccessToken = dbToken.accessToken;
-          console.log("Found customer access token for conversation:", this.conversationId);
         } else {
           console.log("No token in database for conversation:", this.conversationId);
         }
@@ -59,104 +56,23 @@ class MCPClient {
         "Authorization": this.customerAccessToken || ""
       };
 
-      console.log("Making tools/list request to customer MCP with headers:", headers);
+      const response = await this._makeJsonRpcRequest(
+        this.customerMcpEndpoint,
+        "tools/list",
+        {},
+        headers
+      );
 
-      try {
-        const response = await this._makeJsonRpcRequest(
-          this.customerMcpEndpoint,
-          "tools/list",
-          {},
-          headers
-        );
+      // Extract tools from the JSON-RPC response format
+      const toolsData = response.result && response.result.tools ? response.result.tools : [];
+      const customerTools = this._formatToolsData(toolsData);
 
-        console.log("Customer MCP tools/list response:", JSON.stringify(response, null, 2));
+      this.customerTools = customerTools;
+      this.tools = [...this.tools, ...customerTools];
 
-        // Extract tools from the JSON-RPC response format
-        const toolsData = response.result && response.result.tools ? response.result.tools : [];
-        console.log(`Found ${toolsData.length} customer MCP tools:`, toolsData.map(t => t.name));
-        
-        const customerTools = this._formatToolsData(toolsData);
-
-        this.customerTools = customerTools;
-        this.tools = [...this.tools, ...customerTools];
-
-        console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
-
-        return customerTools;
-      } catch (authError) {
-        if (authError.status === 401) {
-          console.log("Customer MCP server requires authentication. Creating placeholder tools for discovery.");
-          
-          // Create placeholder tools that will trigger authentication when called
-          const placeholderTools = [
-            {
-              name: "get_order_status",
-              description: "Get the status of a specific order by order number",
-              input_schema: {
-                type: "object",
-                properties: {
-                  order_number: {
-                    type: "string",
-                    description: "The order number to check status for"
-                  }
-                },
-                required: ["order_number"]
-              }
-            },
-            {
-              name: "get_most_recent_order_status",
-              description: "Get the status of the customer's most recent order",
-              input_schema: {
-                type: "object",
-                properties: {},
-                required: []
-              }
-            },
-            {
-              name: "get_order_details",
-              description: "Get detailed information about a specific order",
-              input_schema: {
-                type: "object",
-                properties: {
-                  order_number: {
-                    type: "string",
-                    description: "The order number to get details for"
-                  }
-                },
-                required: ["order_number"]
-              }
-            },
-            {
-              name: "get_customer_orders",
-              description: "Get a list of customer's orders",
-              input_schema: {
-                type: "object",
-                properties: {
-                  limit: {
-                    type: "integer",
-                    description: "Maximum number of orders to return",
-                    default: 10
-                  }
-                },
-                required: []
-              }
-            }
-          ];
-
-          this.customerTools = placeholderTools;
-          this.tools = [...this.tools, ...placeholderTools];
-
-          console.log(`Created ${placeholderTools.length} placeholder customer MCP tools for authentication flow`);
-          console.log(`Total tools available: ${this.tools.length} (${this.storefrontTools.length} storefront + ${this.customerTools.length} customer)`);
-
-          return placeholderTools;
-        } else {
-          throw authError;
-        }
-      }
+      return customerTools;
     } catch (e) {
-      console.error("Failed to connect to customer MCP server: ", e);
-      console.error("Customer MCP endpoint was:", this.customerMcpEndpoint);
+      console.error("Failed to connect to MCP server: ", e);
       throw e;
     }
   }
@@ -248,6 +164,24 @@ class MCPClient {
   }
 
   /**
+   * Ensures customer account URL is available for authentication
+   * @returns {Promise<boolean>} - True if customer account URL is available, false otherwise
+   */
+  async ensureCustomerAccountUrl() {
+    const { getCustomerAccountUrl } = await import('./db.server');
+    const customerAccountUrl = await getCustomerAccountUrl(this.conversationId);
+    
+    if (customerAccountUrl) {
+      return true;
+    }
+
+    // If not available, we need to fetch it from Shopify
+    // This should be done at the MCP client initialization level, not here
+    console.error('Customer account URL not available for conversation:', this.conversationId);
+    return false;
+  }
+
+  /**
    * Calls a tool on the customer MCP server.
    * Handles authentication if needed.
    *
@@ -259,18 +193,6 @@ class MCPClient {
   async callCustomerTool(toolName, toolArgs) {
     try {
       console.log("Calling customer tool", toolName, toolArgs);
-      
-      // Check if we have a valid customer MCP endpoint
-      if (!this.hasCustomerMcpEndpoint) {
-        console.log("No customer MCP endpoint available - customer accounts may not be enabled");
-        return {
-          error: {
-            type: "customer_accounts_not_enabled",
-            data: "Customer accounts are not enabled for this store. Please contact the store administrator to enable customer accounts."
-          }
-        };
-      }
-      
       // First try to get a token from the database for this conversation
       let accessToken = this.customerAccessToken;
 
@@ -307,16 +229,38 @@ class MCPClient {
         if (error.status === 401) {
           console.log("Unauthorized, generating authorization URL for customer");
 
-          // Generate auth URL
-          const authResponse = await generateAuthUrl(this.conversationId, this.shopId);
-
-          // Instead of retrying, return the auth URL for the front-end
-          return {
-            error: {
-              type: "auth_required",
-              data: `You need to authorize the app to access your customer data. [Click here to authorize](${authResponse.url})`
+          try {
+            // Ensure customer account URL is available before generating auth URL
+            const hasCustomerAccountUrl = await this.ensureCustomerAccountUrl();
+            
+            if (!hasCustomerAccountUrl) {
+              return {
+                error: {
+                  type: "auth_error",
+                  data: "Customer account URL not available. Please ensure the shop is properly configured for customer authentication."
+                }
+              };
             }
-          };
+
+            // Generate auth URL - this will use the customer account URL from database
+            const authResponse = await generateAuthUrl(this.conversationId, this.shopId);
+
+            // Instead of retrying, return the auth URL for the front-end
+            return {
+              error: {
+                type: "auth_required",
+                data: `You need to authorize the app to access your customer data. [Click here to authorize](${authResponse.url})`
+              }
+            };
+          } catch (authError) {
+            console.error("Failed to generate auth URL:", authError);
+            return {
+              error: {
+                type: "auth_error",
+                data: `Failed to initiate authentication: ${authError.message}`
+              }
+            };
+          }
         }
 
         // Re-throw other errors

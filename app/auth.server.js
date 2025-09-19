@@ -18,8 +18,11 @@ export async function generateAuthUrl(conversationId, shopId) {
   // Use the actual app URL for redirect
   const redirectUri = process.env.REDIRECT_URL;
 
-  // Include the conversation ID and shop ID in the state parameter for tracking
-  const state = `${conversationId}-${shopId}`;
+  // Generate a 16-byte hex state for CSRF protection, but include conversation info
+  const randomBytes = new Uint8Array(16);
+  crypto.getRandomValues(randomBytes);
+  const hexState = Array.from(randomBytes, byte => byte.toString(16).padStart(2, '0')).join('');
+  const state = `${hexState}-${conversationId}-${shopId}`;
 
   // Generate code verifier and challenge
   const verifier = generateCodeVerifier();
@@ -40,9 +43,19 @@ export async function generateAuthUrl(conversationId, shopId) {
     throw new Error('Base auth URL not found');
   }
 
+  // Construct OAuth 2.0 authorization request using URLSearchParams
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: responseType,
+    scope: scope,
+    state: state,
+    code_challenge: challenge,
+    code_challenge_method: codeChallengeMethod
+  });
 
-  // Construct the authorization URL with hardcoded shop ID
-  const authUrl = `${baseAuthUrl}?client_id=${clientId}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=${responseType}&state=${state}&code_challenge=${challenge}&code_challenge_method=${codeChallengeMethod}`;
+  // Build the full authorization URL using the discovery endpoint
+  const authUrl = `${baseAuthUrl}?${params.toString()}`;
 
   return {
     url: authUrl,
@@ -70,7 +83,6 @@ async function getBaseAuthUrl(conversationId, shopId) {
 
   if (!response.ok) {
     console.error('Failed to fetch base auth URL from:', endpoint, response.status);
-
     return null;
   }
 
