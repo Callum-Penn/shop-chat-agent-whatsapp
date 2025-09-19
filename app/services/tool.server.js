@@ -23,7 +23,10 @@ export function createToolService() {
     if (toolUseResponse.error.type === "auth_required") {
       console.log("Auth required for tool:", toolName);
       await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data, conversationId);
-      sendMessage({ type: 'auth_required' });
+      sendMessage({ 
+        type: 'auth_required',
+        authUrl: toolUseResponse.error.data
+      });
     } else {
       console.log("Tool use error", toolUseResponse.error);
       await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data, conversationId);

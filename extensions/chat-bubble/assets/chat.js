@@ -597,6 +597,12 @@
           case 'auth_required':
             // Save the last user message for resuming after authentication
             sessionStorage.setItem('shopAiLastMessage', userMessage || '');
+            
+            // Display the authentication link to the user
+            if (data.authUrl) {
+              const authMessage = `To access your order information, please authorize the app: [Click here to authorize](${data.authUrl})`;
+              ShopAIChat.Message.add(authMessage, 'assistant', messagesContainer);
+            }
             break;
 
           case 'product_results':
