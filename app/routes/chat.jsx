@@ -296,6 +296,12 @@ async function handleChatSession({
  */
 async function getCustomerMcpEndpoint(shopDomain, conversationId) {
   try {
+    // Hardcode the customer MCP endpoint for vapelocal.co.uk
+    if (shopDomain.includes('vapelocal.co.uk')) {
+      console.log('Using hardcoded customer MCP endpoint for vapelocal.co.uk');
+      return 'https://account.vapelocal.co.uk/customer/api/mcp';
+    }
+
     // Check if the customer account URL exists in the DB
     const existingUrl = await getCustomerAccountUrl(conversationId);
 

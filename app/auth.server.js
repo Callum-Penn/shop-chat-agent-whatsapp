@@ -71,7 +71,13 @@ export async function generateAuthUrl(conversationId, shopId) {
  */
 async function getBaseAuthUrl(conversationId, shopId) {
   const { getCustomerAccountUrl } = await import('./db.server');
-  const customerAccountUrl = await getCustomerAccountUrl(conversationId);
+  let customerAccountUrl = await getCustomerAccountUrl(conversationId);
+
+  // Hardcode the customer account URL for vapelocal.co.uk
+  if (!customerAccountUrl) {
+    console.log('Using hardcoded customer account URL for vapelocal.co.uk');
+    customerAccountUrl = 'https://account.vapelocal.co.uk';
+  }
 
   if (!customerAccountUrl) {
     console.error('Customer account URL not found for conversation:', conversationId);

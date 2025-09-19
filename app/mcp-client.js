@@ -20,8 +20,15 @@ class MCPClient {
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
     this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
 
-    const accountHostUrl = hostUrl.replace(/(\.myshopify\.com)$/, '.account$1');
-    this.customerMcpEndpoint = customerMcpEndpoint || `${accountHostUrl}/customer/api/mcp`;
+    // Hardcode the customer MCP endpoint for vapelocal.co.uk
+    if (hostUrl.includes('vapelocal.co.uk')) {
+      this.customerMcpEndpoint = customerMcpEndpoint || 'https://account.vapelocal.co.uk/customer/api/mcp';
+    } else {
+      // Fallback to the original logic for other domains
+      const accountHostUrl = hostUrl.replace(/(\.myshopify\.com)$/, '.account$1');
+      this.customerMcpEndpoint = customerMcpEndpoint || `${accountHostUrl}/customer/api/mcp`;
+    }
+    
     this.customerAccessToken = "";
     this.conversationId = conversationId;
     this.shopId = shopId;
