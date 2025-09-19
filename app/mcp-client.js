@@ -176,10 +176,16 @@ class MCPClient {
    */
   async ensureCustomerAccountUrl() {
     const { getCustomerAccountUrl } = await import('./db.server');
-    const customerAccountUrl = await getCustomerAccountUrl(this.conversationId);
+    let customerAccountUrl = await getCustomerAccountUrl(this.conversationId);
     
     if (customerAccountUrl) {
       return true;
+    }
+
+    // Check if this is vapelocal.co.uk domain - use hardcoded URL
+    if (this.hostUrl && this.hostUrl.includes('vapelocal.co.uk')) {
+      console.log('Using hardcoded customer account URL for vapelocal.co.uk');
+      return true; // We have a hardcoded URL available
     }
 
     // If not available, we need to fetch it from Shopify
