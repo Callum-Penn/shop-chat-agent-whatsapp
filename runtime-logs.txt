@@ -1,434 +1,529 @@
-Sep 24 09:07:52  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:07:52  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:07:52  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:07:53  
-Sep 24 09:07:53  > shop-chat-agent@1.0.41 start
-Sep 24 09:07:53  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-Sep 24 09:07:53  
-Sep 24 09:07:53  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:07:53  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:07:53  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:07:53  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:07:53  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:07:53  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:07:55  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:07:55  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:07:56  
-Sep 24 09:07:56  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 176ms
-Sep 24 09:07:56  
-Sep 24 09:07:56  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Sep 24 09:07:56  
-Sep 24 09:07:56  Help us improve the Prisma ORM for everyone. Share your feedback in a short 2-min survey: https://pris.ly/orm/survey/release-5-22
-Sep 24 09:07:56  
-Sep 24 09:07:57  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:07:57  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:07:57  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:07:57  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:07:57  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:07:57  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:07:59  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:07:59  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-Sep 24 09:07:59  
-Sep 24 09:07:59  The database is already in sync with the Prisma schema.
-Sep 24 09:07:59  
-Sep 24 09:07:59  Running generate... (Use --skip-generate to skip the generators)
-Sep 24 09:07:59  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:07:59  [2K[1A[2K[GRunning generate... - Prisma Client
-Sep 24 09:08:00  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 133ms
-Sep 24 09:08:00  
-Sep 24 09:08:00  ┌─────────────────────────────────────────────────────────┐
-Sep 24 09:08:00  │  Update available 6.6.0 -> 6.16.2                       │
-Sep 24 09:08:00  │  Run the following to update                            │
-Sep 24 09:08:00  │    npm i --save-dev prisma@latest                       │
-Sep 24 09:08:00  │    npm i @prisma/client@latest                          │
-Sep 24 09:08:00  └─────────────────────────────────────────────────────────┘
-Sep 24 09:08:04  [shopify-api/INFO] version 11.12.0, environment Remix
-Sep 24 09:08:04  [remix-serve] http://localhost:8080 (http://10.244.18.115:8080)
-Sep 24 09:10:19  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 09:08:33  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:08:33  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:08:33  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:08:33  
-Sep 24 09:08:33  > shop-chat-agent@1.0.41 start
-Sep 24 09:08:33  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-Sep 24 09:08:33  
-Sep 24 09:08:34  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:08:34  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:08:34  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:08:34  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:08:34  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:08:34  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:08:36  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:08:36  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:08:36  
-Sep 24 09:08:36  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 150ms
-Sep 24 09:08:36  
-Sep 24 09:08:36  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Sep 24 09:10:19  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 09:10:19  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 09:10:19  No token in database for conversation: 1758705019192
-Sep 24 09:10:19  Customer MCP server tools response: [
-Sep 24 09:10:19    {
-Sep 24 09:10:19      "name": "get_most_recent_order_status",
-Sep 24 09:10:19      "description": "Gets the status of the customer's most recent order.",
-Sep 24 09:10:19      "inputSchema": {
-Sep 24 09:10:19        "type": "object",
-Sep 24 09:10:19        "properties": {}
-Sep 24 09:10:19      }
-Sep 24 09:10:19    },
-Sep 24 09:10:19    {
-Sep 24 09:10:19      "name": "get_order_status",
-Sep 24 09:08:36  
-Sep 24 09:08:36  Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
-Sep 24 09:08:36  
-Sep 24 09:08:37  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:08:37  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:08:37  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:08:37  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:08:37  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:08:37  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:08:39  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:08:39  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-Sep 24 09:08:40  
-Sep 24 09:10:19      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 09:10:19      "inputSchema": {
-Sep 24 09:10:19        "type": "object",
-Sep 24 09:10:19        "properties": {
-Sep 24 09:10:19          "order_number": {
-Sep 24 09:10:19            "type": "string",
-Sep 24 09:10:19            "description": "Number of the order to look up"
-Sep 24 09:10:19          }
-Sep 24 09:10:19        },
-Sep 24 09:10:19        "required": [
-Sep 24 09:10:19          "order_number"
-Sep 24 09:10:19        ]
-Sep 24 09:10:19      }
-Sep 24 09:10:19    },
-Sep 24 09:10:19    {
-Sep 24 09:10:19      "name": "get_store_credit_balances",
-Sep 24 09:10:19      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 09:10:19      "inputSchema": {
-Sep 24 09:10:19        "type": "object",
-Sep 24 09:10:19        "properties": {}
-Sep 24 09:10:19      }
-Sep 24 09:10:19    },
-Sep 24 09:10:19    {
-Sep 24 09:10:19      "name": "request_return",
-Sep 24 09:10:19      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 09:10:19      "inputSchema": {
-Sep 24 09:10:19        "type": "object",
-Sep 24 09:08:40  The database is already in sync with the Prisma schema.
-Sep 24 09:08:40  
-Sep 24 09:08:40  Running generate... (Use --skip-generate to skip the generators)
-Sep 24 09:08:40  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:08:40  [2K[1A[2K[GRunning generate... - Prisma Client
-Sep 24 09:08:40  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 189ms
-Sep 24 09:08:40  
-Sep 24 09:08:40  ┌─────────────────────────────────────────────────────────┐
-Sep 24 09:08:40  │  Update available 6.6.0 -> 6.16.2                       │
-Sep 24 09:10:19        "properties": {
-Sep 24 09:10:19          "order_id": {
-Sep 24 09:10:19            "type": "string",
-Sep 24 09:10:19            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 09:10:19          },
-Sep 24 09:10:19          "order_number": {
-Sep 24 09:10:19            "type": "string",
-Sep 24 09:10:19            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 09:10:19          },
-Sep 24 09:10:19          "line_items": {
-Sep 24 09:10:19            "type": "array",
-Sep 24 09:10:19            "description": "List of items to return",
-Sep 24 09:10:19            "items": {
-Sep 24 09:10:19              "type": "object",
-Sep 24 09:10:19              "properties": {
-Sep 24 09:10:19                "line_item_id": {
-Sep 24 09:10:19                  "type": "string",
-Sep 24 09:10:19                  "description": "ID of the line item to return"
-Sep 24 09:10:19                },
-Sep 24 09:10:19                "quantity": {
-Sep 24 09:10:19                  "type": "integer",
-Sep 24 09:10:19                  "description": "Quantity to return"
-Sep 24 09:10:19                },
-Sep 24 09:10:19                "return_reason": {
-Sep 24 09:10:19                  "type": "string",
-Sep 24 09:10:19                  "description": "Reason for return",
-Sep 24 09:10:19                  "enum": [
-Sep 24 09:10:19                    "SIZE_TOO_SMALL",
-Sep 24 09:10:19                    "SIZE_TOO_LARGE",
-Sep 24 09:10:19                    "UNWANTED",
-Sep 24 09:10:19                    "NOT_AS_DESCRIBED",
-Sep 24 09:10:19                    "WRONG_ITEM",
-Sep 24 09:10:19                    "DEFECTIVE",
-Sep 24 09:10:19                    "STYLE",
-Sep 24 09:10:19                    "COLOR",
-Sep 24 09:10:19                    "OTHER",
-Sep 24 09:10:19                    "UNKNOWN"
-Sep 24 09:10:19                  ]
-Sep 24 09:10:19                },
-Sep 24 09:10:19                "customer_note": {
-Sep 24 09:08:40  │  Run the following to update                            │
-Sep 24 09:08:40  │    npm i --save-dev prisma@latest                       │
-Sep 24 09:08:40  │    npm i @prisma/client@latest                          │
-Sep 24 09:08:40  └─────────────────────────────────────────────────────────┘
-Sep 24 09:08:44  [shopify-api/INFO] version 11.12.0, environment Remix
-Sep 24 09:08:44  [remix-serve] http://localhost:8080 (http://10.244.34.193:8080)
-Sep 24 09:10:19  OPTIONS /chat 204 - - 11.257 ms
-Sep 24 09:11:16  POST /api/whatsapp-webhook 200 - - 6.268 ms
-Sep 24 09:11:17  POST /api/whatsapp-webhook 200 - - 2.123 ms
-Sep 24 09:11:39  WhatsApp: Processing message from 447891689332
-Sep 24 09:11:39  WhatsApp: User message: Hi, what's the status of my order VL-28406
-Sep 24 09:11:39  WhatsApp: Using hardcoded shop domain: https://vapelocaltradeapp.myshopify.com
-Sep 24 09:11:39  WhatsApp: Using hardcoded shop ID: vapelocaltradeapp
-Sep 24 09:11:39  WhatsApp: Connecting to MCP servers (cached)...
-Sep 24 09:11:39  Connecting to MCP server at https://vapelocaltradeapp.myshopify.com/api/mcp
-Sep 24 09:11:40  Failed to connect to MCP server:  Error: Request failed: 401 Unauthorized
-Sep 24 09:11:40      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1017:24)
-Sep 24 09:11:40      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 09:11:40      at MCPClient.connectToStorefrontServer (file:///workspace/build/server/index.js?t=315532801000:819:24)
-Sep 24 09:11:40      at getCachedMCPClient (file:///workspace/build/server/index.js?t=315532801000:1054:5)
-Sep 24 09:11:40      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1090:25)
-Sep 24 09:11:40      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-Sep 24 09:11:40      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Sep 24 09:11:40      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Sep 24 09:11:40      at async Promise.all (index 0)
-Sep 24 09:11:40      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17) {
-Sep 24 09:11:40    status: 401
-Sep 24 09:11:40  }
-Sep 24 09:11:40  WhatsApp: Failed to connect to MCP servers: Request failed: 401 Unauthorized
-Sep 24 09:11:40  WhatsApp: Conversation turn 1
-Sep 24 09:11:46  WhatsApp: AI response received for turn 1
-Sep 24 09:11:46  WhatsApp: No tools used, extracting final response
-Sep 24 09:11:46  WhatsApp: Final AI response length: 1016
-Sep 24 09:11:46  WhatsApp: Final AI response preview: I understand you're looking for an update on order VL-28406, but as I mentioned in my previous respo...
-Sep 24 09:11:46  Cleaned up 2 old messages for conversation whatsapp_447891689332
-Sep 24 09:11:46  WhatsApp: Sending message to 447891689332
-Sep 24 09:11:46  WhatsApp: Message content: I understand you're looking for an update on order VL-28406, but as I mentioned in my previous respo...
-Sep 24 09:11:46  WhatsApp: Message sent successfully
-Sep 24 09:10:19                  "type": "string",
-Sep 24 09:10:19                  "description": "Additional notes about the return"
-Sep 24 09:10:19                }
-Sep 24 09:10:19              },
-Sep 24 09:10:19              "required": [
-Sep 24 09:10:19                "line_item_id",
-Sep 24 09:10:19                "quantity",
-Sep 24 09:10:19                "return_reason"
-Sep 24 09:10:19              ]
-Sep 24 09:10:19            }
-Sep 24 09:10:19          }
-Sep 24 09:10:19        },
-Sep 24 09:10:19        "required": [
-Sep 24 09:10:19          "line_items"
-Sep 24 09:10:19        ]
-Sep 24 09:10:19      }
-Sep 24 09:10:19    }
-Sep 24 09:10:19  ]
-Sep 24 09:10:19  Connected to MCP with 5 tools
-Sep 24 09:10:19  Connected to customer MCP with 4 tools
-Sep 24 09:10:19  Available customer tools: [
-Sep 24 09:11:46  WhatsApp: Conversation completed successfully
-Sep 24 09:11:46  POST /api/whatsapp-webhook 200 - - 6718.332 ms
-Sep 24 09:10:19    'get_most_recent_order_status',
-Sep 24 09:10:19    'get_order_status',
-Sep 24 09:10:19    'get_store_credit_balances',
-Sep 24 09:10:19    'request_return'
-Sep 24 09:10:19  ]
-Sep 24 09:10:22  Calling customer tool get_order_status { order_number: 'VL-28406' }
-Sep 24 09:10:22  No token in database for conversation: 1758705019192
-Sep 24 09:10:22  Making JSON-RPC request to customer MCP server...
-Sep 24 09:10:22  Request details: {
-Sep 24 09:10:22    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 09:10:22    toolName: 'get_order_status',
-Sep 24 09:10:22    toolArgs: { order_number: 'VL-28406' },
-Sep 24 09:10:22    hasToken: false,
-Sep 24 09:10:22    tokenLength: 0
-Sep 24 09:10:22  }
-Sep 24 09:10:22  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
-Sep 24 09:10:22      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1017:24)
-Sep 24 09:10:22      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 09:10:22      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:933:26)
-Sep 24 09:10:22      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1786:37)
-Sep 24 09:10:22      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:545:11)
-Sep 24 09:10:22      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1751:22)
-Sep 24 09:10:22      at file:///workspace/build/server/index.js?t=315532801000:1684:7
-Sep 24 09:10:22      at Object.start (file:///workspace/build/server/index.js?t=315532801000:1633:9) {
-Sep 24 09:10:22    status: 401
-Sep 24 09:10:22  }
-Sep 24 09:10:22  Error details: {
-Sep 24 09:10:22    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
-Sep 24 09:10:22    status: 401,
-Sep 24 09:10:22    code: undefined,
-Sep 24 09:10:22    data: undefined
-Sep 24 09:10:22  }
-Sep 24 09:10:22  Unauthorized, generating authorization URL for customer
-Sep 24 09:10:22  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:10:22  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:10:22  Auth required for tool: get_order_status
-Sep 24 09:10:27  POST /chat 200 - - 60.279 ms
-Sep 24 09:10:35  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:10:35  Stored customer token in database for conversation: 1758705019192
-Sep 24 09:10:35  GET /auth/callback?code=shcac_TU85Wktkb0xWSFpqb1VDSFp0c0pteVBFZnFSYmQyaGk3VGJWUWJFc2RPekZBclJQOU80VUt2cG8zaU94c0paZGVxYVhDcldaTFpza1VENVBVUTNINzJXRG1renN4cmdqTjJsQml1bE01MysxR1BhSXkzVWFGbXZ2cDUweTlheUhUbXEzTGhyUzBFZXFxRHhydE5aTkVkZk9YNGV4SitkS1ZGdUxZVEE0cjBGc29rSi8xcDQxNkUrN1phajdtOVM1d0t0WHN4ZkVBV240SmdDSERsT3FvaU5uNGVKUWpJYzE4d1htRCsxaExuYWFWN0ZOM29EN1FOVkl6RFJFaDdtV20yWmM0L2lnSzBpeUorVXlOMW1WWk1OTkQ0ZzRCZmx4ODZMYUdUemE5aUkzUTRyVWtrQzJ5TGZWMnhIaElHMXBac1hkRGh2amF4dVZFTlQrR1dYN3RYWUhnN29yV0grQzV3NStBcllMMVA5MjV5V0JuVTNNS1lHdTNxdVJ3VFo1UldFTE1jaGZQanJkUHFEd0FiM3IwbTkzWU1zblhRbXVlMlp1MlJtTXh6WHNGT2xGc1M1UzhubHBTY09Wc3A1U24yV1lES3NNOHVLUXR0anI2NW83M2lBM1F5TERQaFY2TVV2a213QmQ4a1hwaGpGa25uYmtlNWNiS2ZoMDNkT2JnS3pUR3M3NWU5TGhUT0cwRWdweHBFS2R2Wmp2ZHBsTlcyWlAvdWNjUStjWUFHR1phWlRiSkhIc2tkTDRpT3pIM2VUemliRTdNNWJFUGJFSm1vVHczSi9jVGMvOHQzbGpNSDVDSjkwNmlkMll1eXFFQ05URmRRZzJ5TGx5SGEyR0MrbGZiM0VsWW1URnEzcmRGTkZDcHptVlNwWHBaOUlzRnhTTm8yaWFpWDFIeElSRk1pZFR1cUpJSi9lblloQWxoTzhyeU9NU0dQS1pieENmbVZnUUs3VU0yT0FISlp5b2wxckRQSWdkY2wya0tNVUVOSUo0L3JiN1E3NC9sWnFIQWN1L2kwdWExczFzZitPdlREUFZvZGJsMXpJSkFiZmtkZCtMKzBBeldvUjU4SW5vMndHVGYwOGNLVEdza2Vqby9oSkNXVWZ6emVHQ242N2hYb2tRb1QvdU1qQnhJNWNPZUZ5bTZsdTktLVNEclZtSUJGcS8vdTdBQ2UtLUdOMGkxZnJ6dW9uWjVjSEQ4SlFBUkE9PQ&state=835976271711c48f9b4726b47a7da9b5-1758705019192-90473628030 200 - - 249.499 ms
-Sep 24 09:10:46  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 09:10:46  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 09:10:46  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 09:10:47  Customer MCP server tools response: [
-Sep 24 09:10:47    {
-Sep 24 09:10:47      "name": "get_most_recent_order_status",
-Sep 24 09:10:47      "description": "Gets the status of the customer's most recent order.",
-Sep 24 09:10:47      "inputSchema": {
-Sep 24 09:10:47        "type": "object",
-Sep 24 09:10:47        "properties": {}
-Sep 24 09:10:47      }
-Sep 24 09:10:47    },
-Sep 24 09:10:47    {
-Sep 24 09:10:47      "name": "get_order_status",
-Sep 24 09:10:47      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 09:10:47      "inputSchema": {
-Sep 24 09:10:47        "type": "object",
-Sep 24 09:10:47        "properties": {
-Sep 24 09:10:47          "order_number": {
-Sep 24 09:10:47            "type": "string",
-Sep 24 09:10:47            "description": "Number of the order to look up"
-Sep 24 09:10:47          }
-Sep 24 09:10:47        },
-Sep 24 09:10:47        "required": [
-Sep 24 09:10:47          "order_number"
-Sep 24 09:10:47        ]
-Sep 24 09:10:47      }
-Sep 24 09:10:47    },
-Sep 24 09:10:47    {
-Sep 24 09:10:47      "name": "get_store_credit_balances",
-Sep 24 09:10:47      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 09:10:47      "inputSchema": {
-Sep 24 09:10:47        "type": "object",
-Sep 24 09:10:47        "properties": {}
-Sep 24 09:10:47      }
-Sep 24 09:10:47    },
-Sep 24 09:10:47    {
-Sep 24 09:10:47      "name": "request_return",
-Sep 24 09:10:47      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 09:10:47      "inputSchema": {
-Sep 24 09:10:47        "type": "object",
-Sep 24 09:10:47        "properties": {
-Sep 24 09:10:47          "order_id": {
-Sep 24 09:10:47            "type": "string",
-Sep 24 09:10:47            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 09:10:47          },
-Sep 24 09:10:47          "order_number": {
-Sep 24 09:10:47            "type": "string",
-Sep 24 09:10:47            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 09:10:47          },
-Sep 24 09:10:47          "line_items": {
-Sep 24 09:10:47            "type": "array",
-Sep 24 09:10:47            "description": "List of items to return",
-Sep 24 09:10:47            "items": {
-Sep 24 09:10:47              "type": "object",
-Sep 24 09:10:47              "properties": {
-Sep 24 09:10:47                "line_item_id": {
-Sep 24 09:10:47                  "type": "string",
-Sep 24 09:10:47                  "description": "ID of the line item to return"
-Sep 24 09:10:47                },
-Sep 24 09:10:47                "quantity": {
-Sep 24 09:10:47                  "type": "integer",
-Sep 24 09:10:47                  "description": "Quantity to return"
-Sep 24 09:10:47                },
-Sep 24 09:10:47                "return_reason": {
-Sep 24 09:10:47                  "type": "string",
-Sep 24 09:10:47                  "description": "Reason for return",
-Sep 24 09:10:47                  "enum": [
-Sep 24 09:10:47                    "SIZE_TOO_SMALL",
-Sep 24 09:10:47                    "SIZE_TOO_LARGE",
-Sep 24 09:10:47                    "UNWANTED",
-Sep 24 09:10:47                    "NOT_AS_DESCRIBED",
-Sep 24 09:10:47                    "WRONG_ITEM",
-Sep 24 09:10:47                    "DEFECTIVE",
-Sep 24 09:10:47                    "STYLE",
-Sep 24 09:10:47                    "COLOR",
-Sep 24 09:10:47                    "OTHER",
-Sep 24 09:10:47                    "UNKNOWN"
-Sep 24 09:10:47                  ]
-Sep 24 09:10:47                },
-Sep 24 09:10:47                "customer_note": {
-Sep 24 09:10:47                  "type": "string",
-Sep 24 09:10:47                  "description": "Additional notes about the return"
-Sep 24 09:10:47                }
-Sep 24 09:10:47              },
-Sep 24 09:10:47              "required": [
-Sep 24 09:10:47                "line_item_id",
-Sep 24 09:10:47                "quantity",
-Sep 24 09:10:47                "return_reason"
-Sep 24 09:10:47              ]
-Sep 24 09:10:47            }
-Sep 24 09:10:47          }
-Sep 24 09:10:47        },
-Sep 24 09:10:47        "required": [
-Sep 24 09:10:47          "line_items"
-Sep 24 09:10:47        ]
-Sep 24 09:10:47      }
-Sep 24 09:10:47    }
-Sep 24 09:10:47  ]
-Sep 24 09:10:47  Connected to MCP with 5 tools
-Sep 24 09:10:47  Connected to customer MCP with 4 tools
-Sep 24 09:10:47  Available customer tools: [
-Sep 24 09:10:47    'get_most_recent_order_status',
-Sep 24 09:10:47    'get_order_status',
-Sep 24 09:10:47    'get_store_credit_balances',
-Sep 24 09:10:47    'request_return'
-Sep 24 09:10:47  ]
-Sep 24 09:10:51  Calling customer tool get_order_status { order_number: 'VL-28406' }
-Sep 24 09:10:51  Making JSON-RPC request to customer MCP server...
-Sep 24 09:10:51  Request details: {
-Sep 24 09:10:51    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 09:10:51    toolName: 'get_order_status',
-Sep 24 09:10:51    toolArgs: { order_number: 'VL-28406' },
-Sep 24 09:10:51    hasToken: true,
-Sep 24 09:10:51    tokenLength: 528
-Sep 24 09:10:51  }
-Sep 24 09:10:51  Customer MCP server response: {
-Sep 24 09:10:51    jsonrpc: '2.0',
-Sep 24 09:10:51    id: 1,
-Sep 24 09:10:51    result: { content: [ [Object] ], isError: false }
-Sep 24 09:10:51  }
-Sep 24 09:10:57  POST /chat 200 - - 6.615 ms
-Sep 24 09:11:13  OPTIONS /api/send-whatsapp-invite 200 - - 2.139 ms
-Sep 24 09:11:13  Received WhatsApp invite request for: +447891689332
-Sep 24 09:11:13  WhatsApp: Sending message to +447891689332
-Sep 24 09:11:13  WhatsApp: Message content: Hi! You can continue your chat with our AI assistant here on WhatsApp....
-Sep 24 09:11:14  WhatsApp: Message sent successfully
-Sep 24 09:11:14  WhatsApp message sent successfully: undefined
-Sep 24 09:11:14  POST /api/send-whatsapp-invite 200 - - 1074.069 ms
-Sep 24 09:11:15  POST /api/whatsapp-webhook 200 - - 2.410 ms
-Sep 24 09:11:47  POST /api/whatsapp-webhook 200 - - 1.841 ms
-Sep 24 09:11:48  POST /api/whatsapp-webhook 200 - - 1.385 ms
-Sep 24 09:12:34  WhatsApp: Processing message from 447891689332
-Sep 24 09:12:34  WhatsApp: User message: Send me the auth link
-Sep 24 09:12:34  WhatsApp: Using hardcoded shop domain: https://vapelocaltradeapp.myshopify.com
-Sep 24 09:12:34  WhatsApp: Using hardcoded shop ID: vapelocaltradeapp
-Sep 24 09:12:34  WhatsApp: Connecting to MCP servers (cached)...
-Sep 24 09:12:34  Connecting to MCP server at https://vapelocaltradeapp.myshopify.com/api/mcp
-Sep 24 09:12:34  Failed to connect to MCP server:  Error: Request failed: 401 Unauthorized
-Sep 24 09:12:34      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1017:24)
-Sep 24 09:12:34      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 09:12:34      at MCPClient.connectToStorefrontServer (file:///workspace/build/server/index.js?t=315532801000:819:24)
-Sep 24 09:12:34      at getCachedMCPClient (file:///workspace/build/server/index.js?t=315532801000:1054:5)
-Sep 24 09:12:34      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1090:25)
-Sep 24 09:12:34      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-Sep 24 09:12:34      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Sep 24 09:12:34      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Sep 24 09:12:34      at async Promise.all (index 0)
-Sep 24 09:12:34      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17) {
-Sep 24 09:12:34    status: 401
-Sep 24 09:12:34  }
-Sep 24 09:12:34  WhatsApp: Failed to connect to MCP servers: Request failed: 401 Unauthorized
-Sep 24 09:12:34  WhatsApp: Conversation turn 1
-Sep 24 09:12:43  WhatsApp: AI response received for turn 1
-Sep 24 09:12:43  WhatsApp: No tools used, extracting final response
-Sep 24 09:12:43  WhatsApp: Final AI response length: 1153
-Sep 24 09:12:43  WhatsApp: Final AI response preview: I don't have the ability to send authentication links or access our account management system. I'm a...
-Sep 24 09:12:43  Cleaned up 2 old messages for conversation whatsapp_447891689332
-Sep 24 09:12:43  WhatsApp: Sending message to 447891689332
-Sep 24 09:12:43  WhatsApp: Message content: I don't have the ability to send authentication links or access our account management system. I'm a...
-Sep 24 09:12:43  WhatsApp: Message sent successfully
-Sep 24 09:12:43  WhatsApp: Conversation completed successfully
-Sep 24 09:12:43  POST /api/whatsapp-webhook 200 - - 9394.168 ms
-Sep 24 09:12:45  POST /api/whatsapp-webhook 200 - - 1.531 ms
-Sep 24 09:12:45  POST /api/whatsapp-webhook 200 - - 1.857 ms
+Sep 24 09:34:33  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:34:33  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:33  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:34:34  
+Sep 24 09:34:34  > shop-chat-agent@1.0.41 start
+Sep 24 09:34:34  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Sep 24 09:34:34  
+Sep 24 09:34:34  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:34:34  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:34:34  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:34  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:33:52  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:34:34  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:34  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:34:37  Prisma schema loaded from prisma/schema.prisma
+Sep 24 09:34:37  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 09:34:37  
+Sep 24 09:34:37  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 179ms
+Sep 24 09:34:37  
+Sep 24 09:34:37  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Sep 24 09:34:37  
+Sep 24 09:33:52  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:33:52  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:33:53  
+Sep 24 09:33:53  > shop-chat-agent@1.0.41 start
+Sep 24 09:33:53  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Sep 24 09:33:53  
+Sep 24 09:33:53  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:33:53  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:33:53  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:33:53  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:33:53  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:33:53  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:33:55  Prisma schema loaded from prisma/schema.prisma
+Sep 24 09:33:55  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 09:33:55  
+Sep 24 09:33:55  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 141ms
+Sep 24 09:33:55  
+Sep 24 09:33:55  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Sep 24 09:33:55  
+Sep 24 09:33:55  Help us improve the Prisma ORM for everyone. Share your feedback in a short 2-min survey: https://pris.ly/orm/survey/release-5-22
+Sep 24 09:33:55  
+Sep 24 09:33:56  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:33:56  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:33:56  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:37  Help us improve the Prisma ORM for everyone. Share your feedback in a short 2-min survey: https://pris.ly/orm/survey/release-5-22
+Sep 24 09:34:37  
+Sep 24 09:34:38  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:34:38  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:34:38  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:38  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:34:38  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:34:38  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:34:40  Prisma schema loaded from prisma/schema.prisma
+Sep 24 09:34:40  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Sep 24 09:34:41  
+Sep 24 09:34:41  The database is already in sync with the Prisma schema.
+Sep 24 09:34:41  
+Sep 24 09:34:41  Running generate... (Use --skip-generate to skip the generators)
+Sep 24 09:34:41  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 09:34:41  [2K[1A[2K[GRunning generate... - Prisma Client
+Sep 24 09:34:41  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 139ms
+Sep 24 09:34:41  
+Sep 24 09:34:41  ┌─────────────────────────────────────────────────────────┐
+Sep 24 09:34:41  │  Update available 6.6.0 -> 6.16.2                       │
+Sep 24 09:34:41  │  Run the following to update                            │
+Sep 24 09:34:41  │    npm i --save-dev prisma@latest                       │
+Sep 24 09:34:41  │    npm i @prisma/client@latest                          │
+Sep 24 09:34:41  └─────────────────────────────────────────────────────────┘
+Sep 24 09:34:45  [shopify-api/INFO] version 11.12.0, environment Remix
+Sep 24 09:34:45  [remix-serve] http://localhost:8080 (http://10.244.55.250:8080)
+Sep 24 09:36:00  OPTIONS /chat 204 - - 11.325 ms
+Sep 24 09:36:20  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Sep 24 09:33:56  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 09:33:56  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 09:33:56  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 09:33:58  Prisma schema loaded from prisma/schema.prisma
+Sep 24 09:33:58  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Sep 24 09:33:59  
+Sep 24 09:33:59  The database is already in sync with the Prisma schema.
+Sep 24 09:33:59  
+Sep 24 09:33:59  Running generate... (Use --skip-generate to skip the generators)
+Sep 24 09:33:59  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 09:33:59  [2K[1A[2K[GRunning generate... - Prisma Client
+Sep 24 09:33:59  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 150ms
+Sep 24 09:33:59  
+Sep 24 09:36:20  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Sep 24 09:36:20  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Sep 24 09:36:20  Customer MCP server tools response: [
+Sep 24 09:36:20    {
+Sep 24 09:36:20      "name": "get_most_recent_order_status",
+Sep 24 09:36:20      "description": "Gets the status of the customer's most recent order.",
+Sep 24 09:36:20      "inputSchema": {
+Sep 24 09:36:20        "type": "object",
+Sep 24 09:36:20        "properties": {}
+Sep 24 09:36:20      }
+Sep 24 09:36:20    },
+Sep 24 09:36:20    {
+Sep 24 09:36:20      "name": "get_order_status",
+Sep 24 09:36:20      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Sep 24 09:36:20      "inputSchema": {
+Sep 24 09:36:20        "type": "object",
+Sep 24 09:36:20        "properties": {
+Sep 24 09:36:20          "order_number": {
+Sep 24 09:36:20            "type": "string",
+Sep 24 09:36:20            "description": "Number of the order to look up"
+Sep 24 09:36:20          }
+Sep 24 09:36:20        },
+Sep 24 09:36:20        "required": [
+Sep 24 09:36:20          "order_number"
+Sep 24 09:36:20        ]
+Sep 24 09:36:20      }
+Sep 24 09:36:20    },
+Sep 24 09:36:20    {
+Sep 24 09:36:20      "name": "get_store_credit_balances",
+Sep 24 09:36:20      "description": "Fetches the customer's store credit balances if they have any.",
+Sep 24 09:36:20      "inputSchema": {
+Sep 24 09:36:20        "type": "object",
+Sep 24 09:36:20        "properties": {}
+Sep 24 09:36:20      }
+Sep 24 09:34:00  ┌─────────────────────────────────────────────────────────┐
+Sep 24 09:34:00  │  Update available 6.6.0 -> 6.16.2                       │
+Sep 24 09:34:00  │  Run the following to update                            │
+Sep 24 09:34:00  │    npm i --save-dev prisma@latest                       │
+Sep 24 09:34:00  │    npm i @prisma/client@latest                          │
+Sep 24 09:34:00  └─────────────────────────────────────────────────────────┘
+Sep 24 09:34:03  [shopify-api/INFO] version 11.12.0, environment Remix
+Sep 24 09:34:03  [remix-serve] http://localhost:8080 (http://10.244.34.21:8080)
+Sep 24 09:36:00  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Sep 24 09:36:00  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Sep 24 09:36:01  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Sep 24 09:36:01  No token in database for conversation: 1758706560923
+Sep 24 09:36:01  Customer MCP server tools response: [
+Sep 24 09:36:01    {
+Sep 24 09:36:01      "name": "get_most_recent_order_status",
+Sep 24 09:36:01      "description": "Gets the status of the customer's most recent order.",
+Sep 24 09:36:01      "inputSchema": {
+Sep 24 09:36:01        "type": "object",
+Sep 24 09:36:01        "properties": {}
+Sep 24 09:36:01      }
+Sep 24 09:36:01    },
+Sep 24 09:36:01    {
+Sep 24 09:36:01      "name": "get_order_status",
+Sep 24 09:36:01      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Sep 24 09:36:01      "inputSchema": {
+Sep 24 09:36:01        "type": "object",
+Sep 24 09:36:01        "properties": {
+Sep 24 09:36:01          "order_number": {
+Sep 24 09:36:01            "type": "string",
+Sep 24 09:36:01            "description": "Number of the order to look up"
+Sep 24 09:36:01          }
+Sep 24 09:36:01        },
+Sep 24 09:36:01        "required": [
+Sep 24 09:36:01          "order_number"
+Sep 24 09:36:01        ]
+Sep 24 09:36:01      }
+Sep 24 09:36:01    },
+Sep 24 09:36:01    {
+Sep 24 09:36:20    },
+Sep 24 09:36:20    {
+Sep 24 09:36:20      "name": "request_return",
+Sep 24 09:36:20      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Sep 24 09:36:20      "inputSchema": {
+Sep 24 09:36:20        "type": "object",
+Sep 24 09:36:20        "properties": {
+Sep 24 09:36:20          "order_id": {
+Sep 24 09:36:20            "type": "string",
+Sep 24 09:36:01      "name": "get_store_credit_balances",
+Sep 24 09:36:01      "description": "Fetches the customer's store credit balances if they have any.",
+Sep 24 09:36:01      "inputSchema": {
+Sep 24 09:36:01        "type": "object",
+Sep 24 09:36:01        "properties": {}
+Sep 24 09:36:01      }
+Sep 24 09:36:01    },
+Sep 24 09:36:01    {
+Sep 24 09:36:01      "name": "request_return",
+Sep 24 09:36:01      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Sep 24 09:36:01      "inputSchema": {
+Sep 24 09:36:01        "type": "object",
+Sep 24 09:36:01        "properties": {
+Sep 24 09:36:01          "order_id": {
+Sep 24 09:36:01            "type": "string",
+Sep 24 09:36:01            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Sep 24 09:36:01          },
+Sep 24 09:36:01          "order_number": {
+Sep 24 09:36:01            "type": "string",
+Sep 24 09:36:01            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Sep 24 09:36:01          },
+Sep 24 09:36:01          "line_items": {
+Sep 24 09:36:20            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Sep 24 09:36:20          },
+Sep 24 09:36:20          "order_number": {
+Sep 24 09:36:20            "type": "string",
+Sep 24 09:36:20            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Sep 24 09:36:20          },
+Sep 24 09:36:20          "line_items": {
+Sep 24 09:36:20            "type": "array",
+Sep 24 09:36:20            "description": "List of items to return",
+Sep 24 09:36:20            "items": {
+Sep 24 09:36:20              "type": "object",
+Sep 24 09:36:20              "properties": {
+Sep 24 09:36:20                "line_item_id": {
+Sep 24 09:36:20                  "type": "string",
+Sep 24 09:36:20                  "description": "ID of the line item to return"
+Sep 24 09:36:20                },
+Sep 24 09:36:20                "quantity": {
+Sep 24 09:36:20                  "type": "integer",
+Sep 24 09:36:20                  "description": "Quantity to return"
+Sep 24 09:36:20                },
+Sep 24 09:36:20                "return_reason": {
+Sep 24 09:36:20                  "type": "string",
+Sep 24 09:36:20                  "description": "Reason for return",
+Sep 24 09:36:20                  "enum": [
+Sep 24 09:36:20                    "SIZE_TOO_SMALL",
+Sep 24 09:36:20                    "SIZE_TOO_LARGE",
+Sep 24 09:36:20                    "UNWANTED",
+Sep 24 09:36:20                    "NOT_AS_DESCRIBED",
+Sep 24 09:36:20                    "WRONG_ITEM",
+Sep 24 09:36:01            "type": "array",
+Sep 24 09:36:01            "description": "List of items to return",
+Sep 24 09:36:01            "items": {
+Sep 24 09:36:01              "type": "object",
+Sep 24 09:36:01              "properties": {
+Sep 24 09:36:01                "line_item_id": {
+Sep 24 09:36:01                  "type": "string",
+Sep 24 09:36:01                  "description": "ID of the line item to return"
+Sep 24 09:36:01                },
+Sep 24 09:36:01                "quantity": {
+Sep 24 09:36:01                  "type": "integer",
+Sep 24 09:36:01                  "description": "Quantity to return"
+Sep 24 09:36:01                },
+Sep 24 09:36:01                "return_reason": {
+Sep 24 09:36:01                  "type": "string",
+Sep 24 09:36:01                  "description": "Reason for return",
+Sep 24 09:36:01                  "enum": [
+Sep 24 09:36:01                    "SIZE_TOO_SMALL",
+Sep 24 09:36:01                    "SIZE_TOO_LARGE",
+Sep 24 09:36:01                    "UNWANTED",
+Sep 24 09:36:01                    "NOT_AS_DESCRIBED",
+Sep 24 09:36:01                    "WRONG_ITEM",
+Sep 24 09:36:01                    "DEFECTIVE",
+Sep 24 09:36:01                    "STYLE",
+Sep 24 09:36:01                    "COLOR",
+Sep 24 09:36:01                    "OTHER",
+Sep 24 09:36:01                    "UNKNOWN"
+Sep 24 09:36:20                    "DEFECTIVE",
+Sep 24 09:36:20                    "STYLE",
+Sep 24 09:36:20                    "COLOR",
+Sep 24 09:36:20                    "OTHER",
+Sep 24 09:36:20                    "UNKNOWN"
+Sep 24 09:36:20                  ]
+Sep 24 09:36:20                },
+Sep 24 09:36:20                "customer_note": {
+Sep 24 09:36:20                  "type": "string",
+Sep 24 09:36:20                  "description": "Additional notes about the return"
+Sep 24 09:36:20                }
+Sep 24 09:36:20              },
+Sep 24 09:36:20              "required": [
+Sep 24 09:36:20                "line_item_id",
+Sep 24 09:36:20                "quantity",
+Sep 24 09:36:20                "return_reason"
+Sep 24 09:36:20              ]
+Sep 24 09:36:20            }
+Sep 24 09:36:20          }
+Sep 24 09:36:20        },
+Sep 24 09:36:20        "required": [
+Sep 24 09:36:20          "line_items"
+Sep 24 09:36:20        ]
+Sep 24 09:36:20      }
+Sep 24 09:36:20    }
+Sep 24 09:36:20  ]
+Sep 24 09:36:20  Connected to MCP with 5 tools
+Sep 24 09:36:20  Connected to customer MCP with 4 tools
+Sep 24 09:36:20  Available customer tools: [
+Sep 24 09:36:20    'get_most_recent_order_status',
+Sep 24 09:36:20    'get_order_status',
+Sep 24 09:36:20    'get_store_credit_balances',
+Sep 24 09:36:20    'request_return'
+Sep 24 09:36:20  ]
+Sep 24 09:36:24  Calling customer tool get_order_status { order_number: 'VL-28406' }
+Sep 24 09:36:01                  ]
+Sep 24 09:36:01                },
+Sep 24 09:36:01                "customer_note": {
+Sep 24 09:36:01                  "type": "string",
+Sep 24 09:36:01                  "description": "Additional notes about the return"
+Sep 24 09:36:01                }
+Sep 24 09:36:01              },
+Sep 24 09:36:01              "required": [
+Sep 24 09:36:01                "line_item_id",
+Sep 24 09:36:01                "quantity",
+Sep 24 09:36:01                "return_reason"
+Sep 24 09:36:01              ]
+Sep 24 09:36:01            }
+Sep 24 09:36:01          }
+Sep 24 09:36:01        },
+Sep 24 09:36:01        "required": [
+Sep 24 09:36:01          "line_items"
+Sep 24 09:36:01        ]
+Sep 24 09:36:01      }
+Sep 24 09:36:01    }
+Sep 24 09:36:01  ]
+Sep 24 09:36:01  Connected to MCP with 5 tools
+Sep 24 09:36:01  Connected to customer MCP with 4 tools
+Sep 24 09:36:24  Making JSON-RPC request to customer MCP server...
+Sep 24 09:36:24  Request details: {
+Sep 24 09:36:24    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 24 09:36:24    toolName: 'get_order_status',
+Sep 24 09:36:24    toolArgs: { order_number: 'VL-28406' },
+Sep 24 09:36:24    hasToken: true,
+Sep 24 09:36:24    tokenLength: 528
+Sep 24 09:36:24  }
+Sep 24 09:36:24  Customer MCP server response: {
+Sep 24 09:36:24    jsonrpc: '2.0',
+Sep 24 09:36:24    id: 1,
+Sep 24 09:36:24    result: { content: [ [Object] ], isError: false }
+Sep 24 09:36:24  }
+Sep 24 09:36:30  POST /chat 200 - - 54.554 ms
+Sep 24 09:36:35  OPTIONS /api/send-whatsapp-invite 200 - - 2.026 ms
+Sep 24 09:36:55  WhatsApp: Processing message from 447891689332
+Sep 24 09:36:55  WhatsApp: User message: Hi what's the status of my order VL-28406
+Sep 24 09:36:55  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
+Sep 24 09:36:55  WhatsApp: Using hardcoded shop ID: vapelocal
+Sep 24 09:36:55  WhatsApp: Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Sep 24 09:36:55  WhatsApp: Connecting to MCP servers (cached)...
+Sep 24 09:36:55  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Sep 24 09:36:55  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Sep 24 09:36:55  No token in database for conversation: whatsapp_447891689332
+Sep 24 09:36:55  Customer MCP server tools response: [
+Sep 24 09:36:55    {
+Sep 24 09:36:55      "name": "get_most_recent_order_status",
+Sep 24 09:36:55      "description": "Gets the status of the customer's most recent order.",
+Sep 24 09:36:55      "inputSchema": {
+Sep 24 09:36:55        "type": "object",
+Sep 24 09:36:55        "properties": {}
+Sep 24 09:36:55      }
+Sep 24 09:36:55    },
+Sep 24 09:36:01  Available customer tools: [
+Sep 24 09:36:01    'get_most_recent_order_status',
+Sep 24 09:36:01    'get_order_status',
+Sep 24 09:36:01    'get_store_credit_balances',
+Sep 24 09:36:01    'request_return'
+Sep 24 09:36:01  ]
+Sep 24 09:36:03  Calling customer tool get_order_status { order_number: 'VL-28406' }
+Sep 24 09:36:03  No token in database for conversation: 1758706560923
+Sep 24 09:36:03  Making JSON-RPC request to customer MCP server...
+Sep 24 09:36:03  Request details: {
+Sep 24 09:36:03    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 24 09:36:03    toolName: 'get_order_status',
+Sep 24 09:36:03    toolArgs: { order_number: 'VL-28406' },
+Sep 24 09:36:03    hasToken: false,
+Sep 24 09:36:03    tokenLength: 0
+Sep 24 09:36:03  }
+Sep 24 09:36:03  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 24 09:36:03      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1017:24)
+Sep 24 09:36:03      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 24 09:36:03      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:933:26)
+Sep 24 09:36:03      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1786:37)
+Sep 24 09:36:03      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:545:11)
+Sep 24 09:36:03      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1751:22)
+Sep 24 09:36:03      at file:///workspace/build/server/index.js?t=315532801000:1684:7
+Sep 24 09:36:55    {
+Sep 24 09:36:55      "name": "get_order_status",
+Sep 24 09:36:55      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Sep 24 09:36:55      "inputSchema": {
+Sep 24 09:36:55        "type": "object",
+Sep 24 09:36:55        "properties": {
+Sep 24 09:36:55          "order_number": {
+Sep 24 09:36:55            "type": "string",
+Sep 24 09:36:55            "description": "Number of the order to look up"
+Sep 24 09:36:55          }
+Sep 24 09:36:55        },
+Sep 24 09:36:55        "required": [
+Sep 24 09:36:55          "order_number"
+Sep 24 09:36:55        ]
+Sep 24 09:36:55      }
+Sep 24 09:36:55    },
+Sep 24 09:36:55    {
+Sep 24 09:36:55      "name": "get_store_credit_balances",
+Sep 24 09:36:55      "description": "Fetches the customer's store credit balances if they have any.",
+Sep 24 09:36:55      "inputSchema": {
+Sep 24 09:36:55        "type": "object",
+Sep 24 09:36:55        "properties": {}
+Sep 24 09:36:55      }
+Sep 24 09:36:55    },
+Sep 24 09:36:55    {
+Sep 24 09:36:55      "name": "request_return",
+Sep 24 09:36:55      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Sep 24 09:36:55      "inputSchema": {
+Sep 24 09:36:55        "type": "object",
+Sep 24 09:36:55        "properties": {
+Sep 24 09:36:03      at Object.start (file:///workspace/build/server/index.js?t=315532801000:1633:9) {
+Sep 24 09:36:03    status: 401
+Sep 24 09:36:03  }
+Sep 24 09:36:03  Error details: {
+Sep 24 09:36:03    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 24 09:36:03    status: 401,
+Sep 24 09:36:03    code: undefined,
+Sep 24 09:36:03    data: undefined
+Sep 24 09:36:03  }
+Sep 24 09:36:03  Unauthorized, generating authorization URL for customer
+Sep 24 09:36:03  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:03  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:03  Auth required for tool: get_order_status
+Sep 24 09:36:07  POST /chat 200 - - 60.142 ms
+Sep 24 09:36:13  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:13  Stored customer token in database for conversation: 1758706560923
+Sep 24 09:36:13  GET /auth/callback?code=shcac_UFhkRXdZd1AwZlNkWTk1T1dDL21rbTBxcDB3WTVobktRaVgyMHoyWDhuOHZtc0xCQWZUdkE2OWFBOUU1TElMOXYzd1M3WlZvcHpZNXArTHlXVCtoVzQwYTNPME1hV0ZVWTVjQ2k4WTViclJlRURnS2dRdllQUkhrZkZQTVRXbnBiTkdGQ1R5YmNPWmNnMTA0dEhUOFNNQ0pabEhwS0NmZ1lWK0pZcEJKam1Dak9RNWFJOHRiSG11QzVlVnZ5SG5PL3AxSXNlVUR1cDNuRGM0c3Fwc0RaelA2K2VLK3AwRjdSMEZBMVRvQlhPOG1jdWxXQ3hHN2JxNHlLcGpLYTZYa2lFVlllZWRmYStlcWZjVGZqMGZjWmw1YktEdExNQ2ZMR0YvSVJ2akhtWW5Da2l4ZzlscTl5WkhOc3BjSng2V1U5T2lZTmZpYUFXRVVOTGt0WFVrMUVEL2pZU2RTWWVBR0Z4UGdNNGF5WFFzYTFsa2pHY081T1VRdTBheXdOU0NZUDgwR2piMWw0eTk0NU0zTDU0MXF5Qit5ZTlReXhUbjNKajZhQS9NNThtblFqTUpURENndGFyK2Nkci9uQ0o1QzMrY0NxRHh4WkJLSXcrckV5K2s5bGM1Sk5TRWo1dzVtbnlNVlk1ekdqZWw5alpMSThOQWMrcUFIYU51WXJDM0x4djVpTWpkdFhqcUtoaWYvbjNnMU1zTmtIQjF4amZEMjkyZ3g4c1ppeUk2dWs4YnZZbmhBbU9SWmFZbDZlZkNqWUU1U3daWEtNSXNwdjEzQWdrWVh1MTZqaGdlblpRVjh4WjJOY2FxbjU2d2pKV3dxZkZLQWJyRVlTWjEvNUpsUTdkcm5SeSs2WXVQL0VuWDNoRkhibU5CWjA4RXJOZjZOSkxkd0hCY1NJR2xEdndCU0hoRS92ZFJQNkswMTRSaDdNOXR3TFdodFVVNHBkZmFpVGQxR3hYbDB2enFGNE9lUW1yQXBURjh5eXJETy9hQ3FSbnpudXhHSXBNaXZrUHRnVmtXemhSUjlJVy92RmQ0clBpTFY2ZFBOTTdvOE44UGxXUkdvUWs1Q1J4eWVrS0cvcEhaMFhMV0dmY2ZucXVqR1h5ZS9iN1E2QTAvR0tGaWxmTWJsYU9FZUZoNnRDNVdOV3JtaDhOdFMtLVZqWG9TRVlEUkFyRXpwWW8tLXlXSWJYNCt5bXduMko2WGpudW5LTnc9PQ&state=b841ba7a527b1fb61cf938cdbb96d96a-1758706560923-90473628030 200 - - 251.348 ms
+Sep 24 09:36:35  Received WhatsApp invite request for: +447891689332
+Sep 24 09:36:35  WhatsApp: Sending message to +447891689332
+Sep 24 09:36:35  WhatsApp: Message content: Hi! You can continue your chat with our AI assistant here on WhatsApp....
+Sep 24 09:36:37  WhatsApp: Message sent successfully
+Sep 24 09:36:37  WhatsApp message sent successfully: undefined
+Sep 24 09:36:55          "order_id": {
+Sep 24 09:36:37  POST /api/send-whatsapp-invite 200 - - 2060.766 ms
+Sep 24 09:36:39  POST /api/whatsapp-webhook 200 - - 2.634 ms
+Sep 24 09:36:39  POST /api/whatsapp-webhook 200 - - 1.950 ms
+Sep 24 09:37:01  POST /api/whatsapp-webhook 200 - - 1.413 ms
+Sep 24 09:36:55            "type": "string",
+Sep 24 09:36:55            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Sep 24 09:36:55          },
+Sep 24 09:36:55          "order_number": {
+Sep 24 09:36:55            "type": "string",
+Sep 24 09:36:55            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Sep 24 09:36:55          },
+Sep 24 09:36:55          "line_items": {
+Sep 24 09:36:55            "type": "array",
+Sep 24 09:36:55            "description": "List of items to return",
+Sep 24 09:36:55            "items": {
+Sep 24 09:36:55              "type": "object",
+Sep 24 09:36:55              "properties": {
+Sep 24 09:36:55                "line_item_id": {
+Sep 24 09:36:55                  "type": "string",
+Sep 24 09:36:55                  "description": "ID of the line item to return"
+Sep 24 09:36:55                },
+Sep 24 09:36:55                "quantity": {
+Sep 24 09:36:55                  "type": "integer",
+Sep 24 09:36:55                  "description": "Quantity to return"
+Sep 24 09:36:55                },
+Sep 24 09:36:55                "return_reason": {
+Sep 24 09:36:55                  "type": "string",
+Sep 24 09:36:55                  "description": "Reason for return",
+Sep 24 09:36:55                  "enum": [
+Sep 24 09:36:55                    "SIZE_TOO_SMALL",
+Sep 24 09:36:55                    "SIZE_TOO_LARGE",
+Sep 24 09:36:55                    "UNWANTED",
+Sep 24 09:36:55                    "NOT_AS_DESCRIBED",
+Sep 24 09:36:55                    "WRONG_ITEM",
+Sep 24 09:36:55                    "DEFECTIVE",
+Sep 24 09:36:55                    "STYLE",
+Sep 24 09:36:55                    "COLOR",
+Sep 24 09:36:55                    "OTHER",
+Sep 24 09:36:55                    "UNKNOWN"
+Sep 24 09:36:55                  ]
+Sep 24 09:36:55                },
+Sep 24 09:36:55                "customer_note": {
+Sep 24 09:36:55                  "type": "string",
+Sep 24 09:36:55                  "description": "Additional notes about the return"
+Sep 24 09:36:55                }
+Sep 24 09:36:55              },
+Sep 24 09:36:55              "required": [
+Sep 24 09:36:55                "line_item_id",
+Sep 24 09:36:55                "quantity",
+Sep 24 09:36:55                "return_reason"
+Sep 24 09:36:55              ]
+Sep 24 09:36:55            }
+Sep 24 09:36:55          }
+Sep 24 09:36:55        },
+Sep 24 09:36:55        "required": [
+Sep 24 09:36:55          "line_items"
+Sep 24 09:36:55        ]
+Sep 24 09:36:55      }
+Sep 24 09:36:55    }
+Sep 24 09:36:55  ]
+Sep 24 09:36:55  WhatsApp: Cached MCP client with 9 tools
+Sep 24 09:36:55  WhatsApp: Conversation turn 1
+Sep 24 09:36:58  WhatsApp: AI response received for turn 1
+Sep 24 09:36:58  WhatsApp: Executing tool: get_order_status
+Sep 24 09:36:58  WhatsApp: Tool arguments: { order_number: 'VL-28406' }
+Sep 24 09:36:58  Calling customer tool get_order_status { order_number: 'VL-28406' }
+Sep 24 09:36:58  No token in database for conversation: whatsapp_447891689332
+Sep 24 09:36:58  Making JSON-RPC request to customer MCP server...
+Sep 24 09:36:58  Request details: {
+Sep 24 09:36:58    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 24 09:36:58    toolName: 'get_order_status',
+Sep 24 09:36:58    toolArgs: { order_number: 'VL-28406' },
+Sep 24 09:36:58    hasToken: false,
+Sep 24 09:36:58    tokenLength: 0
+Sep 24 09:36:58  }
+Sep 24 09:36:59  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 24 09:36:59      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1017:24)
+Sep 24 09:36:59      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 24 09:36:59      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:933:26)
+Sep 24 09:36:59      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1138:40)
+Sep 24 09:36:59      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Sep 24 09:36:59      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Sep 24 09:36:59      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Sep 24 09:36:59      at async Promise.all (index 0)
+Sep 24 09:36:59      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Sep 24 09:36:59      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
+Sep 24 09:36:59    status: 401
+Sep 24 09:36:59  }
+Sep 24 09:36:59  Error details: {
+Sep 24 09:36:59    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 24 09:36:59    status: 401,
+Sep 24 09:36:59    code: undefined,
+Sep 24 09:36:59    data: undefined
+Sep 24 09:36:59  }
+Sep 24 09:36:59  Unauthorized, generating authorization URL for customer
+Sep 24 09:36:59  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:59  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:59  WhatsApp: Tool response received
+Sep 24 09:36:59  WhatsApp: Tool response structure: {
+Sep 24 09:36:59    "error": {
+Sep 24 09:36:59      "type": "auth_required",
+Sep 24 09:36:59      "data": "You need to authorize the app to access your customer data. Please click this link to authorize: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=ab512a827e7481296db374d39e96efb6-whatsapp_447891689332-vapelocal&code_challenge=OM...
+Sep 24 09:36:59  WhatsApp: Tool returned error: {
+Sep 24 09:36:59    type: 'auth_required',
+Sep 24 09:36:59    data: 'You need to authorize the app to access your customer data. Please click this link to authorize: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=ab512a827e7481296db374d39e96efb6-whatsapp_447891689332-vapelocal&code_challenge=OMhBkUrCgm1putZvtLJw8TQJEUDlwMUG5CvB9vcD7wg&code_challenge_method=S256'
+Sep 24 09:36:59  }
+Sep 24 09:36:59  WhatsApp: Authentication required for customer tool
+Sep 24 09:36:59  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 09:36:59  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fapi%2Fwhatsapp-auth-callback&response_type=code&scope=customer-account-mcp-api%3Afull&state=1019355d4d2fb1bbbb38ac26bde180de-whatsapp_447891689332-vapelocal&code_challenge=kEBoMd6X7U6Od65uwiYMlpTDWEYmDa1Sm3PzddnPW5Q&code_challenge_method=S256
+Sep 24 09:36:59  WhatsApp: Sending message to 447891689332
+Sep 24 09:36:59  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Sep 24 09:37:00  WhatsApp: Message sent successfully
+Sep 24 09:37:00  WhatsApp: Authentication message sent to user
+Sep 24 09:37:00  POST /api/whatsapp-webhook 200 - - 4829.076 ms
+Sep 24 09:37:01  POST /api/whatsapp-webhook 200 - - 2.295 ms
+Sep 24 09:37:01  POST /api/whatsapp-webhook 200 - - 1.332 ms
