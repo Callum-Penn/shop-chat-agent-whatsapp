@@ -226,6 +226,15 @@ class MCPClient {
       };
 
       try {
+        console.log('Making JSON-RPC request to customer MCP server...');
+        console.log('Request details:', {
+          endpoint: this.customerMcpEndpoint,
+          toolName: toolName,
+          toolArgs: toolArgs,
+          hasToken: !!accessToken,
+          tokenLength: accessToken ? accessToken.length : 0
+        });
+        
         const response = await this._makeJsonRpcRequest(
           this.customerMcpEndpoint,
           "tools/call",
@@ -236,8 +245,17 @@ class MCPClient {
           headers
         );
 
+        console.log('Customer MCP server response:', response);
         return response.result || response;
       } catch (error) {
+        console.error('Customer MCP tool call error:', error);
+        console.error('Error details:', {
+          message: error.message,
+          status: error.status,
+          code: error.code,
+          data: error.data
+        });
+        
         // Handle 401 specifically to trigger authentication
         if (error.status === 401) {
           console.log("Unauthorized, generating authorization URL for customer");
@@ -262,7 +280,7 @@ class MCPClient {
             return {
               error: {
                 type: "auth_required",
-                data: `You need to authorize the app to access your customer data. [Click here to authorize](${authResponse.url})`
+                data: `You need to authorize the app to access your customer data. Please click this link to authorize: ${authResponse.url}`
               }
             };
           } catch (authError) {
