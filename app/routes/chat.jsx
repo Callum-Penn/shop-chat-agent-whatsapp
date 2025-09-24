@@ -155,6 +155,7 @@ async function handleChatSession({
 
       console.log(`Connected to MCP with ${storefrontMcpTools.length} tools`);
       console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
+      console.log('Available customer tools:', customerMcpTools.map(tool => tool.name));
     } catch (error) {
       console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
     }

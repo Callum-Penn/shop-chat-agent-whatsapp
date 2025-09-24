@@ -72,6 +72,7 @@ class MCPClient {
 
       // Extract tools from the JSON-RPC response format
       const toolsData = response.result && response.result.tools ? response.result.tools : [];
+      console.log('Customer MCP server tools response:', JSON.stringify(toolsData, null, 2));
       const customerTools = this._formatToolsData(toolsData);
 
       this.customerTools = customerTools;
