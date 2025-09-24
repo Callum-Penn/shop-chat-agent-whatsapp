@@ -18,7 +18,12 @@ class MCPClient {
     this.customerTools = [];
     this.storefrontTools = [];
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
-    this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
+    // Hardcode the storefront MCP endpoint for vapelocal.co.uk
+    if (hostUrl.includes('vapelocal.co.uk')) {
+      this.storefrontMcpEndpoint = 'https://vapelocal.co.uk/api/mcp';
+    } else {
+      this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
+    }
 
     // Hardcode the customer MCP endpoint for vapelocal.co.uk
     if (hostUrl.includes('vapelocal.co.uk')) {
