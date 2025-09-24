@@ -1,7 +1,6 @@
 import { json } from "@remix-run/node";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
-import { saveMessage, getConversationHistory, cleanupOldMessages, getCustomerToken } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
@@ -56,6 +55,9 @@ function truncateConversationHistory(messages, maxMessages = 10) {
 }
 
 export const action = async ({ request }) => {
+  // Import database functions inside the action to avoid client/server separation issues
+  const { saveMessage, getConversationHistory, cleanupOldMessages, getCustomerToken } = await import("../db.server");
+  
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
   
