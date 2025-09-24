@@ -27,9 +27,12 @@ export function createToolService() {
         type: 'auth_required',
         authUrl: toolUseResponse.error.data
       });
+      // Return a special signal to stop the conversation
+      return { stopConversation: true };
     } else {
       console.log("Tool use error", toolUseResponse.error);
       await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data, conversationId);
+      return { stopConversation: false };
     }
   };
 

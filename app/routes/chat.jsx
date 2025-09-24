@@ -237,7 +237,7 @@ async function handleChatSession({
 
             // Handle tool response based on success/error
             if (toolUseResponse.error) {
-              await toolService.handleToolError(
+              const errorResult = await toolService.handleToolError(
                 toolUseResponse,
                 toolName,
                 toolUseId,
@@ -245,6 +245,14 @@ async function handleChatSession({
                 stream.sendMessage,
                 conversationId
               );
+              
+              // If authentication is required, stop the conversation
+              if (errorResult && errorResult.stopConversation) {
+                console.log("Authentication required, stopping conversation");
+                // Signal end of turn immediately
+                stream.sendMessage({ type: 'end_turn' });
+                return;
+              }
             } else {
               await toolService.handleToolSuccess(
                 toolUseResponse,
