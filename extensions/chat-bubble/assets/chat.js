@@ -600,7 +600,7 @@
             
             // Display the authentication link to the user
             if (data.authUrl) {
-              const authMessage = `To access your order information, please authorize the app: <a href="${data.authUrl}" target="_blank" style="color: #007bff; text-decoration: underline;">Click here to authorize</a>`;
+              const authMessage = `I need you to authorize access to your customer account to check your order status. Please click this link to authorize the app:\n\n<a href="${data.authUrl}" target="_blank" style="color: #007bff; text-decoration: underline;">${data.authUrl}</a>\n\nOnce you've authorized the access, I'll be able to check your order status and provide you with all the details you need!`;
               ShopAIChat.Message.add(authMessage, 'assistant', messagesContainer);
             }
             break;

@@ -283,7 +283,7 @@ class MCPClient {
             return {
               error: {
                 type: "auth_required",
-                data: `You need to authorize the app to access your customer data. Please click this link to authorize: ${authResponse.url}`
+                data: authResponse.url
               }
             };
           } catch (authError) {
