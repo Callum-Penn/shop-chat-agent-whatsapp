@@ -46,7 +46,7 @@ export const action = async ({ request }) => {
         grant_type: 'authorization_code',
         client_id: process.env.SHOPIFY_API_KEY,
         code: code,
-        redirect_uri: `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/whatsapp-auth-callback`,
+        redirect_uri: `${process.env.SHOPIFY_APP_URL}api/whatsapp-auth-callback`,
         code_verifier: await getCodeVerifier(conversationId)
       })
     });

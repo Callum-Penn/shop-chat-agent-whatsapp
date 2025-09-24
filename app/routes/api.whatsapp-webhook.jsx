@@ -166,7 +166,7 @@ export const action = async ({ request }) => {
                       
                       // Generate authentication URL with WhatsApp-specific callback
                       try {
-                        const authResponse = await generateAuthUrl(conversationId, shopId, `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/whatsapp-auth-callback`);
+                        const authResponse = await generateAuthUrl(conversationId, shopId, `${process.env.SHOPIFY_APP_URL}api/whatsapp-auth-callback`);
                         console.log('WhatsApp: Generated auth URL:', authResponse.url);
                         
                         // Send authentication message to WhatsApp
