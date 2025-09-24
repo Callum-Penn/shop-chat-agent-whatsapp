@@ -21,6 +21,5 @@ redirect_urls = [ "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api
 
 [mcp.customer_authentication]
 redirect_uris = [
-  "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/auth/callback",
-  "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/whatsapp-auth-callback"
+  "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/auth/callback"
 ]

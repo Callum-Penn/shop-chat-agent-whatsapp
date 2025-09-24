@@ -164,11 +164,9 @@ export const action = async ({ request }) => {
                     if (toolResponse.error.type === 'auth_required') {
                       console.log('WhatsApp: Authentication required for customer tool');
                       
-                      // Generate authentication URL with WhatsApp-specific callback
+                      // Generate authentication URL using the same callback for both web and WhatsApp
                       try {
-                        // Ensure no double slash by removing trailing slash from base URL
-                        const baseUrl = process.env.SHOPIFY_APP_URL.replace(/\/$/, '');
-                        const authResponse = await generateAuthUrl(conversationId, shopId, `${baseUrl}/api/whatsapp-auth-callback`);
+                        const authResponse = await generateAuthUrl(conversationId, shopId);
                         console.log('WhatsApp: Generated auth URL:', authResponse.url);
                         
                         // Send authentication message to WhatsApp

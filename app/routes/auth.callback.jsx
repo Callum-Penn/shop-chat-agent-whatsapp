@@ -1,5 +1,6 @@
 import { json } from "@remix-run/node";
 import { getCodeVerifier, storeCustomerToken } from "../db.server";
+import { sendWhatsAppMessage } from "../utils/whatsapp.server";
 
 /**
  * Handle OAuth callback from Shopify Customer API
@@ -40,7 +41,47 @@ export async function loader({ request }) {
       // Continue anyway to not disrupt user flow
     }
 
-    // Instead of redirecting, return HTML that auto-closes the tab
+    // Check if this is a WhatsApp conversation
+    if (conversationId && conversationId.startsWith('whatsapp_')) {
+      // Extract phone number from conversation ID (format: whatsapp_447891689332)
+      const phoneNumber = conversationId.replace('whatsapp_', '');
+      
+      // Send success message via WhatsApp
+      try {
+        await sendWhatsAppMessage(phoneNumber, 
+          "✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of my recent order?'"
+        );
+        console.log(`WhatsApp: Sent success message to ${phoneNumber}`);
+      } catch (error) {
+        console.error('WhatsApp: Failed to send success message:', error);
+      }
+      
+      // Return a simple success page for WhatsApp users
+      return new Response(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Authentication Successful</title>
+          <style>
+            body { font-family: system-ui, sans-serif; text-align: center; padding-top: 100px; }
+            .success { color: green; font-size: 18px; }
+          </style>
+        </head>
+        <body>
+          <h2>✅ Authentication Successful!</h2>
+          <p class="success">You've been authenticated successfully</p>
+          <p>You can now return to WhatsApp and ask me about your orders!</p>
+          <p>This window can be closed.</p>
+        </body>
+        </html>
+      `, {
+        headers: {
+          "Content-Type": "text/html"
+        }
+      });
+    }
+
+    // For web conversations, return the original success page
     return new Response(`
       <!DOCTYPE html>
       <html>

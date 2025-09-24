@@ -275,14 +275,9 @@ class MCPClient {
             }
 
             // Generate auth URL - this will use the customer account URL from database
-            // Check if this is a WhatsApp conversation and use the correct redirect URI
-            let customRedirectUri = null;
-            if (this.conversationId && this.conversationId.startsWith('whatsapp_')) {
-              // Ensure no double slash by removing trailing slash from base URL
-              const baseUrl = process.env.SHOPIFY_APP_URL.replace(/\/$/, '');
-              customRedirectUri = `${baseUrl}/api/whatsapp-auth-callback`;
-            }
-            const authResponse = await generateAuthUrl(this.conversationId, this.shopId, customRedirectUri);
+            // Use the same redirect URI for both web and WhatsApp
+            // The auth callback will detect WhatsApp conversations and handle them appropriately
+            const authResponse = await generateAuthUrl(this.conversationId, this.shopId);
 
             // Instead of retrying, return the auth URL for the front-end
             return {
