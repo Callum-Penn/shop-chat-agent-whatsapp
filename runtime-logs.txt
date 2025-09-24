@@ -1,58 +1,277 @@
-Sep 08 15:15:05
- Unique constraint failed on the fields: (`state`)
-Sep 08 15:15:05
-     at zn.handleRequestError (/workspace/node_modules/@prisma/client/runtime/library.js:121:7459)
-Sep 08 15:15:05
-     at zn.handleAndLogRequestError (/workspace/node_modules/@prisma/client/runtime/library.js:121:6784)
-Sep 08 15:15:05
-     at zn.request (/workspace/node_modules/@prisma/client/runtime/library.js:121:6491)
-Sep 08 15:15:05
-     at l (/workspace/node_modules/@prisma/client/runtime/library.js:130:9778)
-Sep 08 15:15:05
-     at storeCodeVerifier (file:///workspace/build/server/index.js?t=315532801000:26:12)
-Sep 08 15:15:05
-     at generateAuthUrl (file:///workspace/build/server/index.js?t=315532801000:604:5)
-Sep 08 15:15:05
-     at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:902:32)
-Sep 08 15:15:05
-     at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1710:37)
-Sep 08 15:15:05
-     at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:478:11)
-Sep 08 15:15:05
-     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1675:22) {
-Sep 08 15:15:05
-   code: 'P2002',
-Sep 08 15:15:05
-   meta: { modelName: 'CodeVerifier', target: [ 'state' ] },
-Sep 08 15:15:05
-   clientVersion: '6.6.0'
-Sep 08 15:15:05
- }
-Sep 08 15:15:05
- Customer account URL not found for conversation: 1757323115100
-Sep 08 15:15:05
- Error calling tool get_order_status: Error: Base auth URL not found
-Sep 08 15:15:05
-     at generateAuthUrl (file:///workspace/build/server/index.js?t=315532801000:611:11)
-Sep 08 15:15:05
-     at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:902:32)
-Sep 08 15:15:05
-     at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1710:37)
-Sep 08 15:15:05
-     at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:478:11)
-Sep 08 15:15:05
-     at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1675:22)
-Sep 08 15:15:05
-     at file:///workspace/build/server/index.js?t=315532801000:1603:7
-Sep 08 15:15:05
-     at Object.start (file:///workspace/build/server/index.js?t=315532801000:1552:9)
-Sep 08 15:15:05
- Tool use error {
-Sep 08 15:15:05
-   type: 'internal_error',
-Sep 08 15:15:05
-   data: 'Error calling tool get_order_status: Base auth URL not found'
-Sep 08 15:15:05
- }
-Sep 08 15:15:10
- POST /chat 200 - - 23.257 ms
+Sep 24 08:39:20  [shopify-api/INFO] version 11.12.0, environment Remix
+Sep 24 08:39:20  [remix-serve] http://localhost:8080 (http://10.244.21.86:8080)
+Sep 24 08:40:53  OPTIONS /chat 204 - - 12.268 ms
+Sep 24 08:40:53  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Sep 24 08:40:53  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Sep 24 08:40:53  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Sep 24 08:40:53  No token in database for conversation: 1758703253719
+Sep 24 08:40:53  Customer MCP server tools response: [
+Sep 24 08:40:53    {
+Sep 24 08:40:53      "name": "get_most_recent_order_status",
+Sep 24 08:40:53      "description": "Gets the status of the customer's most recent order.",
+Sep 24 08:40:53      "inputSchema": {
+Sep 24 08:40:53        "type": "object",
+Sep 24 08:40:53        "properties": {}
+Sep 24 08:40:53      }
+Sep 24 08:40:53    },
+Sep 24 08:40:53    {
+Sep 24 08:40:53      "name": "get_order_status",
+Sep 24 08:40:53      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Sep 24 08:40:53      "inputSchema": {
+Sep 24 08:40:53        "type": "object",
+Sep 24 08:40:53        "properties": {
+Sep 24 08:40:53          "order_number": {
+Sep 24 08:40:53            "type": "string",
+Sep 24 08:40:53            "description": "Number of the order to look up"
+Sep 24 08:40:53          }
+Sep 24 08:40:53        },
+Sep 24 08:40:53        "required": [
+Sep 24 08:40:53          "order_number"
+Sep 24 08:40:53        ]
+Sep 24 08:40:53      }
+Sep 24 08:40:53    },
+Sep 24 08:40:53    {
+Sep 24 08:40:53      "name": "get_store_credit_balances",
+Sep 24 08:40:53      "description": "Fetches the customer's store credit balances if they have any.",
+Sep 24 08:40:53      "inputSchema": {
+Sep 24 08:40:53        "type": "object",
+Sep 24 08:40:53        "properties": {}
+Sep 24 08:40:53      }
+Sep 24 08:40:53    },
+Sep 24 08:40:53    {
+Sep 24 08:40:53      "name": "request_return",
+Sep 24 08:40:53      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Sep 24 08:40:53      "inputSchema": {
+Sep 24 08:40:53        "type": "object",
+Sep 24 08:40:53        "properties": {
+Sep 24 08:40:53          "order_id": {
+Sep 24 08:40:53            "type": "string",
+Sep 24 08:40:53            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Sep 24 08:40:53          },
+Sep 24 08:40:53          "order_number": {
+Sep 24 08:40:53            "type": "string",
+Sep 24 08:40:53            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Sep 24 08:40:53          },
+Sep 24 08:40:53          "line_items": {
+Sep 24 08:40:53            "type": "array",
+Sep 24 08:40:53            "description": "List of items to return",
+Sep 24 08:40:53            "items": {
+Sep 24 08:40:53              "type": "object",
+Sep 24 08:40:53              "properties": {
+Sep 24 08:40:53                "line_item_id": {
+Sep 24 08:40:53                  "type": "string",
+Sep 24 08:40:53                  "description": "ID of the line item to return"
+Sep 24 08:40:53                },
+Sep 24 08:40:53                "quantity": {
+Sep 24 08:40:53                  "type": "integer",
+Sep 24 08:40:53                  "description": "Quantity to return"
+Sep 24 08:40:53                },
+Sep 24 08:40:53                "return_reason": {
+Sep 24 08:40:53                  "type": "string",
+Sep 24 08:40:53                  "description": "Reason for return",
+Sep 24 08:40:53                  "enum": [
+Sep 24 08:40:53                    "SIZE_TOO_SMALL",
+Sep 24 08:40:53                    "SIZE_TOO_LARGE",
+Sep 24 08:40:53                    "UNWANTED",
+Sep 24 08:40:53                    "NOT_AS_DESCRIBED",
+Sep 24 08:40:53                    "WRONG_ITEM",
+Sep 24 08:40:53                    "DEFECTIVE",
+Sep 24 08:40:53                    "STYLE",
+Sep 24 08:40:53                    "COLOR",
+Sep 24 08:40:53                    "OTHER",
+Sep 24 08:40:53                    "UNKNOWN"
+Sep 24 08:40:53                  ]
+Sep 24 08:40:53                },
+Sep 24 08:40:53                "customer_note": {
+Sep 24 08:40:53                  "type": "string",
+Sep 24 08:40:53                  "description": "Additional notes about the return"
+Sep 24 08:40:53                }
+Sep 24 08:40:53              },
+Sep 24 08:40:53              "required": [
+Sep 24 08:40:53                "line_item_id",
+Sep 24 08:40:53                "quantity",
+Sep 24 08:40:53                "return_reason"
+Sep 24 08:40:53              ]
+Sep 24 08:40:53            }
+Sep 24 08:40:53          }
+Sep 24 08:40:53        },
+Sep 24 08:40:53        "required": [
+Sep 24 08:40:53          "line_items"
+Sep 24 08:40:53        ]
+Sep 24 08:40:53      }
+Sep 24 08:40:53    }
+Sep 24 08:40:53  ]
+Sep 24 08:40:53  Connected to MCP with 5 tools
+Sep 24 08:40:53  Connected to customer MCP with 4 tools
+Sep 24 08:40:53  Available customer tools: [
+Sep 24 08:40:53    'get_most_recent_order_status',
+Sep 24 08:40:53    'get_order_status',
+Sep 24 08:40:53    'get_store_credit_balances',
+Sep 24 08:40:53    'request_return'
+Sep 24 08:40:53  ]
+Sep 24 08:40:56  Calling customer tool get_most_recent_order_status {}
+Sep 24 08:40:56  No token in database for conversation: 1758703253719
+Sep 24 08:40:56  Making JSON-RPC request to customer MCP server...
+Sep 24 08:40:56  Request details: {
+Sep 24 08:40:56    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 24 08:40:56    toolName: 'get_most_recent_order_status',
+Sep 24 08:40:56    toolArgs: {},
+Sep 24 08:40:56    hasToken: false,
+Sep 24 08:40:56    tokenLength: 0
+Sep 24 08:40:56  }
+Sep 24 08:40:56  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 24 08:40:56      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:950:24)
+Sep 24 08:40:56      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 24 08:40:56      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:866:26)
+Sep 24 08:40:56      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1717:37)
+Sep 24 08:40:56      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:478:11)
+Sep 24 08:40:56      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1682:22)
+Sep 24 08:40:56      at file:///workspace/build/server/index.js?t=315532801000:1615:7
+Sep 24 08:40:56      at Object.start (file:///workspace/build/server/index.js?t=315532801000:1564:9) {
+Sep 24 08:40:56    status: 401
+Sep 24 08:40:56  }
+Sep 24 08:40:56  Error details: {
+Sep 24 08:40:56    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 24 08:40:56    status: 401,
+Sep 24 08:40:56    code: undefined,
+Sep 24 08:40:56    data: undefined
+Sep 24 08:40:56  }
+Sep 24 08:40:56  Unauthorized, generating authorization URL for customer
+Sep 24 08:40:56  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 08:40:56  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 08:40:56  Auth required for tool: get_most_recent_order_status
+Sep 24 08:41:00  POST /chat 200 - - 58.966 ms
+Sep 24 08:41:07  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 24 08:41:07  Stored customer token in database for conversation: 1758703253719
+Sep 24 08:41:07  GET /auth/callback?code=shcac_ZGhieHAvVFZwd3daeGkxdVRINFlYN1BncVR1Y2dJKzZ5UzJyTStOR3E0MWR4by9JMkpicEo1SzdDcjFULzd1NTRDTjdJajdTNnpTY1drZWlicjRNNWNlcDFNUzE4ZS8vZlZDMnl5cEZxa3FydVpzU0Y2ZEI1RmN6c2NIUTBFVkluQmpKbWNxbFlwZ3VXOWJWa1BoZ3N0dldMSlFmcFprTVBVRnRMYmFuTklBOUk1TDRlWlRrZjhBVDFva0d1ZFZjdHQzRjlhWktLL0xiSUxWdGt3aFhGb2YwSzl3V1gzZllmN2lwZlkxd2M3bHR4elFVaHNQQjhBdnVYamxDdXdOMk0yb00xaGJRZ3BjbDgzTWNVR3hOMmVUU3B5UFNoUDQ3WGdCOEJ1VW5SYnpUeSsxWlJ3cFFrNUdNVitOMGRWNWtSaEdpSDJqYlNBNW9RUXRZc1FYNEhxVVducklkQmhtMkswczF5SDBDK0hvNGhydjZxOStPMUd4Ri9uN2lHQWlwVS9NL3NBUFo0VU0wbmsxVmFKRVhCN2ZhMndZL0RZTmFMYllCREd0RStLS2lkSDlOVXFnN21nTGtyaVZvYlZhbGNVS2x5YlRZZUxkYXVKcCtsNWJwbUJwbkZOVUxCcDd6dHNaRm9zSW9odDF1aU94aGNpdlNFZmk0Vzc3MmVzUjlmNVlKY05HSUdSbTVySDNXSDZjS040NXRyaHM0emhZLzFvTjlqRkRqTFJ0QlBjelZ1MDRVZlEwSFhXUFF2R1BRZUpoTnN0cnZtNUZYKy9TWERzWHQwNlB3WElnZCsxQlZORUdyVTRqdmZ4YWdjM01HK3FDSVFhQzBGNHNjTEhEeWVadDBlcmxHQVpob2YzSlhnVERoemFPdkNjeERnNE0yQVM3ekk2Y0hhOFdkeDNRNHVIYU84QjV4RjN5cTFZbzZuZzYwMTlFaU9UMFozNjBYd3hpdFVjc2lrL092Sk16QlhFaWU5NGIyQjVJeEtnTXNLaUMxVDlhS2xFazJNeFkvZ3d1ODUzcFVKNkVtVnlZZnFVU1F3WjJLVTVrcUoraTU5UjJSN3BiR05ZZ21BWlpTUDhMenFkZzYwejZTdEM0MlJ3UDR5d1RHanp0UUpxRCs4K2tyalU4RWtwblIzOVg1K3pqQWRwZEgtLXNldmV2SnFWeUttcGtaZ1ctLWlTSGhUYnMvQmtyZ28wd3JPRkwwMVE9PQ&state=1c16f359a2ba97571dd14a9154dad172-1758703253719-90473628030 200 - - 212.826 ms
+Sep 24 08:41:17  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Sep 24 08:41:17  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Sep 24 08:41:17  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Sep 24 08:41:18  Customer MCP server tools response: [
+Sep 24 08:41:18    {
+Sep 24 08:41:18      "name": "get_most_recent_order_status",
+Sep 24 08:41:18      "description": "Gets the status of the customer's most recent order.",
+Sep 24 08:41:18      "inputSchema": {
+Sep 24 08:41:18        "type": "object",
+Sep 24 08:41:18        "properties": {}
+Sep 24 08:41:18      }
+Sep 24 08:41:18    },
+Sep 24 08:41:18    {
+Sep 24 08:41:18      "name": "get_order_status",
+Sep 24 08:41:18      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Sep 24 08:41:18      "inputSchema": {
+Sep 24 08:41:18        "type": "object",
+Sep 24 08:41:18        "properties": {
+Sep 24 08:41:18          "order_number": {
+Sep 24 08:41:18            "type": "string",
+Sep 24 08:41:18            "description": "Number of the order to look up"
+Sep 24 08:41:18          }
+Sep 24 08:41:18        },
+Sep 24 08:41:18        "required": [
+Sep 24 08:41:18          "order_number"
+Sep 24 08:41:18        ]
+Sep 24 08:41:18      }
+Sep 24 08:41:18    },
+Sep 24 08:41:18    {
+Sep 24 08:41:18      "name": "get_store_credit_balances",
+Sep 24 08:41:18      "description": "Fetches the customer's store credit balances if they have any.",
+Sep 24 08:41:18      "inputSchema": {
+Sep 24 08:41:18        "type": "object",
+Sep 24 08:41:18        "properties": {}
+Sep 24 08:41:18      }
+Sep 24 08:41:18    },
+Sep 24 08:41:18    {
+Sep 24 08:41:18      "name": "request_return",
+Sep 24 08:41:18      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Sep 24 08:41:18      "inputSchema": {
+Sep 24 08:41:18        "type": "object",
+Sep 24 08:41:18        "properties": {
+Sep 24 08:41:18          "order_id": {
+Sep 24 08:41:18            "type": "string",
+Sep 24 08:41:18            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Sep 24 08:41:18          },
+Sep 24 08:41:18          "order_number": {
+Sep 24 08:41:18            "type": "string",
+Sep 24 08:41:18            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Sep 24 08:41:18          },
+Sep 24 08:41:18          "line_items": {
+Sep 24 08:41:18            "type": "array",
+Sep 24 08:41:18            "description": "List of items to return",
+Sep 24 08:41:18            "items": {
+Sep 24 08:41:18              "type": "object",
+Sep 24 08:41:18              "properties": {
+Sep 24 08:41:18                "line_item_id": {
+Sep 24 08:41:18                  "type": "string",
+Sep 24 08:41:18                  "description": "ID of the line item to return"
+Sep 24 08:41:18                },
+Sep 24 08:41:18                "quantity": {
+Sep 24 08:41:18                  "type": "integer",
+Sep 24 08:41:18                  "description": "Quantity to return"
+Sep 24 08:41:18                },
+Sep 24 08:41:18                "return_reason": {
+Sep 24 08:41:18                  "type": "string",
+Sep 24 08:41:18                  "description": "Reason for return",
+Sep 24 08:41:18                  "enum": [
+Sep 24 08:41:18                    "SIZE_TOO_SMALL",
+Sep 24 08:41:18                    "SIZE_TOO_LARGE",
+Sep 24 08:41:18                    "UNWANTED",
+Sep 24 08:41:18                    "NOT_AS_DESCRIBED",
+Sep 24 08:41:18                    "WRONG_ITEM",
+Sep 24 08:41:18                    "DEFECTIVE",
+Sep 24 08:41:18                    "STYLE",
+Sep 24 08:41:18                    "COLOR",
+Sep 24 08:41:18                    "OTHER",
+Sep 24 08:41:18                    "UNKNOWN"
+Sep 24 08:41:18                  ]
+Sep 24 08:41:18                },
+Sep 24 08:41:18                "customer_note": {
+Sep 24 08:41:18                  "type": "string",
+Sep 24 08:41:18                  "description": "Additional notes about the return"
+Sep 24 08:41:18                }
+Sep 24 08:41:18              },
+Sep 24 08:41:18              "required": [
+Sep 24 08:41:18                "line_item_id",
+Sep 24 08:41:18                "quantity",
+Sep 24 08:41:18                "return_reason"
+Sep 24 08:41:18              ]
+Sep 24 08:41:18            }
+Sep 24 08:41:18          }
+Sep 24 08:41:18        },
+Sep 24 08:41:18        "required": [
+Sep 24 08:41:18          "line_items"
+Sep 24 08:41:18        ]
+Sep 24 08:41:18      }
+Sep 24 08:41:18    }
+Sep 24 08:41:18  ]
+Sep 24 08:41:18  Connected to MCP with 5 tools
+Sep 24 08:41:18  Connected to customer MCP with 4 tools
+Sep 24 08:41:18  Available customer tools: [
+Sep 24 08:41:18    'get_most_recent_order_status',
+Sep 24 08:41:18    'get_order_status',
+Sep 24 08:41:18    'get_store_credit_balances',
+Sep 24 08:41:18    'request_return'
+Sep 24 08:41:18  ]
+Sep 24 08:41:20  Calling customer tool get_most_recent_order_status {}
+Sep 24 08:41:20  Making JSON-RPC request to customer MCP server...
+Sep 24 08:41:20  Request details: {
+Sep 24 08:41:20    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 24 08:41:20    toolName: 'get_most_recent_order_status',
+Sep 24 08:41:20    toolArgs: {},
+Sep 24 08:41:20    hasToken: true,
+Sep 24 08:41:20    tokenLength: 528
+Sep 24 08:41:20  }
+Sep 24 08:41:20  Customer MCP server response: {
+Sep 24 08:41:20    jsonrpc: '2.0',
+Sep 24 08:41:20    id: 1,
+Sep 24 08:41:20    error: {
+Sep 24 08:41:20      code: -32603,
+Sep 24 08:41:20      message: 'Internal error',
+Sep 24 08:41:20      data: 'Internal error calling tool get_most_recent_order_status'
+Sep 24 08:41:20    }
+Sep 24 08:41:20  }
+Sep 24 08:41:20  Tool use error {
+Sep 24 08:41:20    code: -32603,
+Sep 24 08:41:20    message: 'Internal error',
+Sep 24 08:41:20    data: 'Internal error calling tool get_most_recent_order_status'
+Sep 24 08:41:20  }
+Sep 24 08:41:25  POST /chat 200 - - 4.605 ms

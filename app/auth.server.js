@@ -5,9 +5,11 @@
 /**
  * Generate authorization URL for the customer
  * @param {string} conversationId - The conversation ID to track the auth flow
+ * @param {string} shopId - The shop ID
+ * @param {string} customRedirectUri - Optional custom redirect URI (for WhatsApp)
  * @returns {Promise<Object>} - Object containing the auth URL and conversation ID
  */
-export async function generateAuthUrl(conversationId, shopId) {
+export async function generateAuthUrl(conversationId, shopId, customRedirectUri = null) {
   const { storeCodeVerifier } = await import('./db.server');
 
   // Generate authorization URL for the customer
@@ -15,8 +17,8 @@ export async function generateAuthUrl(conversationId, shopId) {
   const scope = "customer-account-mcp-api:full";
   const responseType = "code";
 
-  // Use the actual app URL for redirect
-  const redirectUri = process.env.REDIRECT_URL;
+  // Use custom redirect URI if provided, otherwise use the default
+  const redirectUri = customRedirectUri || process.env.REDIRECT_URL;
 
   // Generate a 16-byte hex state for CSRF protection, but include conversation info
   const randomBytes = new Uint8Array(16);

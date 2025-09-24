@@ -1,9 +1,10 @@
 import { json } from "@remix-run/node";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
-import { saveMessage, getConversationHistory, cleanupOldMessages } from "../db.server";
+import { saveMessage, getConversationHistory, cleanupOldMessages, getCustomerToken } from "../db.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
+import { generateAuthUrl } from "../auth.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -46,7 +47,14 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId) {
     return mcpCache.get(cacheKey);
   }
   
-  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, null);
+  // Hardcode customer MCP endpoint for vapelocal.co.uk
+  let customerMcpEndpoint = null;
+  if (shopDomain.includes('vapelocal.co.uk')) {
+    customerMcpEndpoint = 'https://account.vapelocal.co.uk/customer/api/mcp';
+    console.log('WhatsApp: Using hardcoded customer MCP endpoint for vapelocal.co.uk');
+  }
+  
+  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint);
   
   // Connect to MCP servers once and cache
   try {
@@ -178,39 +186,66 @@ export const action = async ({ request }) => {
                   // Check if tool execution was successful
                   if (toolResponse.error) {
                     console.log('WhatsApp: Tool returned error:', toolResponse.error);
-                    // Create a conversation with the error for the AI to handle
-                    const errorConversation = [
-                      ...conversationHistory,
-                      {
-                        role: 'assistant',
-                        content: [content]
-                      },
-                      {
-                        role: 'user',
-                        content: [{
-                          type: 'tool_result',
-                          tool_use_id: content.id,
-                          content: `Error: ${toolResponse.error}`
-                        }]
-                      }
-                    ];
                     
-                    // Get AI response to handle the error
-                    const errorResult = await claudeService.getConversationResponse({
-                      messages: errorConversation,
-                      promptType: AppConfig.api.defaultPromptType,
-                      tools: mcpClient.tools
-                    });
-                    
-                    // Extract error response
-                    if (errorResult?.content && Array.isArray(errorResult.content)) {
-                      const textContent = errorResult.content.find(content => content.type === 'text');
-                      if (textContent && textContent.text) {
-                        aiResponse = textContent.text;
+                    // Handle authentication errors specifically
+                    if (toolResponse.error.type === 'auth_required') {
+                      console.log('WhatsApp: Authentication required for customer tool');
+                      
+                      // Generate authentication URL with WhatsApp-specific callback
+                      try {
+                        const authResponse = await generateAuthUrl(conversationId, shopId, `${process.env.APP_URL}/api/whatsapp-auth-callback`);
+                        console.log('WhatsApp: Generated auth URL:', authResponse.url);
+                        
+                        // Send authentication message to WhatsApp
+                        const authMessage = `To access your order information, please authorize the app by clicking this link: ${authResponse.url}\n\nAfter authorizing, please send me a message and I'll be able to help you with your orders.`;
+                        await sendWhatsAppMessage(from, authMessage);
+                        
+                        // Save the authentication request
+                        await saveMessage(conversationId, 'assistant', JSON.stringify(authMessage));
+                        
+                        console.log('WhatsApp: Authentication message sent to user');
+                        return json({ success: true });
+                      } catch (authError) {
+                        console.error('WhatsApp: Failed to generate auth URL:', authError);
+                        aiResponse = "I need to access your account information, but I'm having trouble setting up the authorization. Please try again later or contact support.";
+                        conversationComplete = true;
+                        break;
                       }
+                    } else {
+                      // Handle other tool errors
+                      const errorConversation = [
+                        ...conversationHistory,
+                        {
+                          role: 'assistant',
+                          content: [content]
+                        },
+                        {
+                          role: 'user',
+                          content: [{
+                            type: 'tool_result',
+                            tool_use_id: content.id,
+                            content: `Error: ${toolResponse.error}`
+                          }]
+                        }
+                      ];
+                      
+                      // Get AI response to handle the error
+                      const errorResult = await claudeService.getConversationResponse({
+                        messages: errorConversation,
+                        promptType: AppConfig.api.defaultPromptType,
+                        tools: mcpClient.tools
+                      });
+                      
+                      // Extract error response
+                      if (errorResult?.content && Array.isArray(errorResult.content)) {
+                        const textContent = errorResult.content.find(content => content.type === 'text');
+                        if (textContent && textContent.text) {
+                          aiResponse = textContent.text;
+                        }
+                      }
+                      conversationComplete = true;
+                      break;
                     }
-                    conversationComplete = true;
-                    break;
                   }
                   
                   // Extract tool result text
