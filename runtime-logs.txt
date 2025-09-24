@@ -1,175 +1,167 @@
-Sep 24 08:55:20  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Sep 24 08:55:20  [34m│[0m [34m › fetching app source code[0m
-Sep 24 08:55:20  [34m│[0m => Selecting branch "main"
-Sep 24 08:55:20  [34m│[0m => Checking out commit "eb3a248b4d05d3e77405b3c5b1de21d973b443e6"
-Sep 24 08:55:20  [34m│[0m 
-Sep 24 08:55:20  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Sep 24 08:55:20  [34m╰────────────────────────────────────────╼[0m
-Sep 24 08:55:20  
-Sep 24 08:55:20  [34m › configuring build-time app environment variables:[0m
-Sep 24 08:55:20       CLAUDE_API_KEY WHATSAPP_TOKEN WHATSAPP_PHONE_NUMBER_ID SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL SHOPIFY_API_KEY SHOPIFY_APP_URL DIRECT_URL WHATSAPP_VERIFY_TOKEN SHOPIFY_API_SECRET
-Sep 24 08:55:20  
-Sep 24 08:55:20  [34m › configuring custom build command to be run at the end of the build:[0m
-Sep 24 08:55:20     [34m│[0m npm run build
-Sep 24 08:55:20  
-Sep 24 08:55:20  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Sep 24 08:55:20  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Sep 24 08:55:21  [34m│[0m Detected the following buildpacks suitable to build your app:
-Sep 24 08:55:21  [34m│[0m 
-Sep 24 08:55:21  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Sep 24 08:55:21  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Sep 24 08:55:21  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Sep 24 08:55:21  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Sep 24 08:55:21  [34m╰─────────────────────────────────────────────╼[0m
-Sep 24 08:55:21  
-Sep 24 08:55:21  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Sep 24 08:55:21  [34m│[0m [34m › checking for cache from a previous build[0m
-Sep 24 08:55:21  [34m│[0m Timer: Analyzer started at 2025-09-24T08:55:21Z
-Sep 24 08:55:22  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Sep 24 08:55:22  [34m│[0m Timer: Analyzer ran for 672.502195ms and ended at 2025-09-24T08:55:22Z
-Sep 24 08:55:22  [34m│[0m Timer: Restorer started at 2025-09-24T08:55:22Z
-Sep 24 08:55:23  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Sep 24 08:55:25  [34m│[0m Timer: Restorer ran for 2.391290558s and ended at 2025-09-24T08:55:25Z
-Sep 24 08:55:25  [34m╰───────────────────────────────────────╼[0m
-Sep 24 08:55:25  
-Sep 24 08:55:25  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Sep 24 08:55:25  [34m│[0m Timer: Builder started at 2025-09-24T08:55:25Z
-Sep 24 08:55:25  [34m│[0m        
-Sep 24 08:55:25  [34m│[0m -----> Creating runtime environment
-Sep 24 08:55:25  [34m│[0m        
-Sep 24 08:55:25  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Sep 24 08:55:25  [34m│[0m        NODE_VERBOSE=false
-Sep 24 08:55:25  [34m│[0m        NODE_ENV=
-Sep 24 08:55:25  [34m│[0m        NODE_MODULES_CACHE=true
-Sep 24 08:55:25  [34m│[0m        
-Sep 24 08:55:25  [34m│[0m -----> Installing binaries
-Sep 24 08:55:25  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Sep 24 08:55:25  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Sep 24 08:55:25  [34m│[0m        
-Sep 24 08:55:26  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Sep 24 08:55:26  [34m│[0m        Downloading and installing node 24.2.0...
-Sep 24 08:55:31  [34m│[0m        Using default npm version: 11.3.0
-Sep 24 08:55:31  [34m│[0m        
-Sep 24 08:55:31  [34m│[0m -----> Restoring cache
-Sep 24 08:55:31  [34m│[0m        - npm cache
-Sep 24 08:55:31  [34m│[0m        
-Sep 24 08:55:31  [34m│[0m -----> Installing dependencies
-Sep 24 08:55:32  [34m│[0m        Installing node modules
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        added 1217 packages, and audited 1218 packages in 18s
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        302 packages are looking for funding
-Sep 24 08:55:50  [34m│[0m          run `npm fund` for details
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        17 vulnerabilities (7 low, 8 moderate, 1 high, 1 critical)
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        To address issues that do not require attention, run:
-Sep 24 08:55:50  [34m│[0m          npm audit fix
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        Some issues need review, and may require choosing
-Sep 24 08:55:50  [34m│[0m        a different dependency.
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m        Run `npm audit` for details.
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m -----> Build
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m -----> Caching build
-Sep 24 08:55:50  [34m│[0m        - npm cache
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m -----> Pruning devDependencies
-Sep 24 08:55:50  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Sep 24 08:55:50  [34m│[0m        
-Sep 24 08:55:50  [34m│[0m -----> Build succeeded!
-Sep 24 08:55:51  [34m│[0m Running custom build command: npm run build
-Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 08:55:51  [34m│[0m 
-Sep 24 08:55:51  [34m│[0m > shop-chat-agent@1.0.41 build
-Sep 24 08:55:51  [34m│[0m > prisma generate && remix vite:build
-Sep 24 08:55:51  [34m│[0m 
-Sep 24 08:55:52  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Sep 24 08:55:52  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 08:55:52  [34m│[0m 
-Sep 24 08:55:52  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 54ms
-Sep 24 08:55:52  [34m│[0m 
-Sep 24 08:55:52  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Sep 24 08:55:52  [34m│[0m 
-Sep 24 08:55:52  [34m│[0m Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
-Sep 24 08:55:52  [34m│[0m 
-Sep 24 08:55:53  [34m│[0m vite v6.3.3 building for production...
-Sep 24 08:55:53  [34m│[0m transforming...
-Sep 24 08:55:53  [34m│[0m ✓ 1 modules transformed.
-Sep 24 08:55:53  [34m│[0m ✗ Build failed in 27ms
-Sep 24 08:55:53  [34m│[0m [vite:esbuild] Transform failed with 1 error:
-Sep 24 08:55:53  [34m│[0m /workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route:6:15: ERROR: The symbol "sendWhatsAppMessage" has already been declared
-Sep 24 08:55:53  [34m│[0m file: /workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route:6:15
-Sep 24 08:55:53  [34m│[0m 
-Sep 24 08:55:53  [34m│[0m The symbol "sendWhatsAppMessage" has already been declared
-Sep 24 08:55:53  [34m│[0m 4  |  
-Sep 24 08:55:53  [34m│[0m 5  |  // Helper to send a message back to WhatsApp (reuse from whatsapp-webhook)
-Sep 24 08:55:53  [34m│[0m 6  |  async function sendWhatsAppMessage(to, text) {
-Sep 24 08:55:53  [34m│[0m    |                 ^
-Sep 24 08:55:53  [34m│[0m 7  |    const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
-Sep 24 08:55:53  [34m│[0m 8  |    const token = process.env.WHATSAPP_TOKEN;
-Sep 24 08:55:53  [34m│[0m 
-Sep 24 08:55:53  [34m│[0m     at failureErrorWithLog (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:1477:15)
-Sep 24 08:55:53  [34m│[0m     at /workspace/node_modules/vite/node_modules/esbuild/lib/main.js:756:50
-Sep 24 08:55:53  [34m│[0m     at responseCallbacks.<computed> (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:623:9)
-Sep 24 08:55:53  [34m│[0m     at handleIncomingPacket (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:678:12)
-Sep 24 08:55:53  [34m│[0m     at Socket.readFromStdout (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:601:7)
-Sep 24 08:55:53  [34m│[0m     at Socket.emit (node:events:507:28)
-Sep 24 08:55:53  [34m│[0m     at addChunk (node:internal/streams/readable:559:12)
-Sep 24 08:55:53  [34m│[0m     at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
-Sep 24 08:55:53  [34m│[0m     at Socket.Readable.push (node:internal/streams/readable:390:5)
-Sep 24 08:55:53  [34m│[0m     at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
-Sep 24 08:55:53  [34m│[0m   errors: [Getter/Setter],
-Sep 24 08:55:53  [34m│[0m   warnings: [Getter/Setter],
-Sep 24 08:55:53  [34m│[0m   frame: '\n' +
-Sep 24 08:55:53  [34m│[0m     'The symbol "sendWhatsAppMessage" has already been declared\n' +
-Sep 24 08:55:53  [34m│[0m     '4  |  \n' +
-Sep 24 08:55:53  [34m│[0m     '5  |  // Helper to send a message back to WhatsApp (reuse from whatsapp-webhook)\n' +
-Sep 24 08:55:53  [34m│[0m     '6  |  async function sendWhatsAppMessage(to, text) {\n' +
-Sep 24 08:55:53  [34m│[0m     '   |                 ^\n' +
-Sep 24 08:55:53  [34m│[0m     '7  |    const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;\n' +
-Sep 24 08:55:53  [34m│[0m     '8  |    const token = process.env.WHATSAPP_TOKEN;\n',
-Sep 24 08:55:53  [34m│[0m   loc: {
-Sep 24 08:55:53  [34m│[0m     column: 15,
-Sep 24 08:55:53  [34m│[0m     file: '/workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route',
-Sep 24 08:55:53  [34m│[0m     length: 19,
-Sep 24 08:55:53  [34m│[0m     line: 6,
-Sep 24 08:55:53  [34m│[0m     lineText: 'async function sendWhatsAppMessage(to, text) {',
-Sep 24 08:55:53  [34m│[0m     namespace: '',
-Sep 24 08:55:53  [34m│[0m     suggestion: ''
-Sep 24 08:55:53  [34m│[0m   },
-Sep 24 08:55:53  [34m│[0m   code: 'PLUGIN_ERROR',
-Sep 24 08:55:53  [34m│[0m   plugin: 'vite:esbuild',
-Sep 24 08:55:53  [34m│[0m   hook: 'transform',
-Sep 24 08:55:53  [34m│[0m   id: '/workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route',
-Sep 24 08:55:53  [34m│[0m   watchFiles: [
-Sep 24 08:55:53  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/root.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.whatsapp-auth-callback.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/app.jsx'
-Sep 24 08:55:53  [34m│[0m   ]
-Sep 24 08:55:53  [34m│[0m }
-Sep 24 08:55:53  [34m│[0m npm notice
-Sep 24 08:55:53  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.0
-Sep 24 08:55:53  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
-Sep 24 08:55:53  [34m│[0m npm notice To update run: npm install -g npm@11.6.0
-Sep 24 08:55:53  [34m│[0m npm notice
-Sep 24 08:55:53  [34m│[0m building: exit status 1
-Sep 24 08:55:53  [34m│[0m Timer: Builder ran for 28.180761345s and ended at 2025-09-24T08:55:53Z
-Sep 24 08:55:53  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Sep 24 08:55:53  [34m│[0m 
-Sep 24 08:55:53  [34m│[0m 
-Sep 24 08:55:53  [34m│[0m [31m ✘ build failed[0m
+Sep 24 08:59:26  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Sep 24 08:59:26  [34m│[0m [34m › fetching app source code[0m
+Sep 24 08:59:26  [34m│[0m => Selecting branch "main"
+Sep 24 08:59:27  [34m│[0m => Checking out commit "d901706059e16741a7771b36acf2b30061c2fc50"
+Sep 24 08:59:27  [34m│[0m 
+Sep 24 08:59:27  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Sep 24 08:59:27  [34m╰────────────────────────────────────────╼[0m
+Sep 24 08:59:27  
+Sep 24 08:59:27  [34m › configuring build-time app environment variables:[0m
+Sep 24 08:59:27       SHOPIFY_CHAT_BUBBLE_ID WHATSAPP_TOKEN CLAUDE_API_KEY REDIRECT_URL SHOPIFY_API_KEY WHATSAPP_VERIFY_TOKEN SHOPIFY_APP_URL SHOPIFY_API_SECRET DIRECT_URL WHATSAPP_PHONE_NUMBER_ID
+Sep 24 08:59:27  
+Sep 24 08:59:27  [34m › configuring custom build command to be run at the end of the build:[0m
+Sep 24 08:59:27     [34m│[0m npm run build
+Sep 24 08:59:27  
+Sep 24 08:59:27  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Sep 24 08:59:27  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Sep 24 08:59:28  [34m│[0m Detected the following buildpacks suitable to build your app:
+Sep 24 08:59:28  [34m│[0m 
+Sep 24 08:59:28  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Sep 24 08:59:28  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Sep 24 08:59:28  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Sep 24 08:59:28  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Sep 24 08:59:28  [34m╰─────────────────────────────────────────────╼[0m
+Sep 24 08:59:28  
+Sep 24 08:59:28  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Sep 24 08:59:28  [34m│[0m [34m › checking for cache from a previous build[0m
+Sep 24 08:59:28  [34m│[0m Timer: Analyzer started at 2025-09-24T08:59:28Z
+Sep 24 08:59:29  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Sep 24 08:59:29  [34m│[0m Timer: Analyzer ran for 614.131165ms and ended at 2025-09-24T08:59:29Z
+Sep 24 08:59:29  [34m│[0m Timer: Restorer started at 2025-09-24T08:59:29Z
+Sep 24 08:59:29  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Sep 24 08:59:31  [34m│[0m Timer: Restorer ran for 2.313333973s and ended at 2025-09-24T08:59:31Z
+Sep 24 08:59:31  [34m╰───────────────────────────────────────╼[0m
+Sep 24 08:59:31  
+Sep 24 08:59:31  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Sep 24 08:59:31  [34m│[0m Timer: Builder started at 2025-09-24T08:59:31Z
+Sep 24 08:59:32  [34m│[0m        
+Sep 24 08:59:32  [34m│[0m -----> Creating runtime environment
+Sep 24 08:59:32  [34m│[0m        
+Sep 24 08:59:32  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Sep 24 08:59:32  [34m│[0m        NODE_VERBOSE=false
+Sep 24 08:59:32  [34m│[0m        NODE_ENV=
+Sep 24 08:59:32  [34m│[0m        NODE_MODULES_CACHE=true
+Sep 24 08:59:32  [34m│[0m        
+Sep 24 08:59:32  [34m│[0m -----> Installing binaries
+Sep 24 08:59:32  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Sep 24 08:59:32  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Sep 24 08:59:32  [34m│[0m        
+Sep 24 08:59:32  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Sep 24 08:59:32  [34m│[0m        Downloading and installing node 24.2.0...
+Sep 24 08:59:37  [34m│[0m        Using default npm version: 11.3.0
+Sep 24 08:59:37  [34m│[0m        
+Sep 24 08:59:37  [34m│[0m -----> Restoring cache
+Sep 24 08:59:37  [34m│[0m        - npm cache
+Sep 24 08:59:38  [34m│[0m        
+Sep 24 08:59:38  [34m│[0m -----> Installing dependencies
+Sep 24 08:59:38  [34m│[0m        Installing node modules
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        added 1217 packages, and audited 1218 packages in 17s
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        302 packages are looking for funding
+Sep 24 08:59:54  [34m│[0m          run `npm fund` for details
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        17 vulnerabilities (7 low, 8 moderate, 1 high, 1 critical)
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        To address issues that do not require attention, run:
+Sep 24 08:59:54  [34m│[0m          npm audit fix
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        Some issues need review, and may require choosing
+Sep 24 08:59:54  [34m│[0m        a different dependency.
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m        Run `npm audit` for details.
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m -----> Build
+Sep 24 08:59:54  [34m│[0m        
+Sep 24 08:59:54  [34m│[0m -----> Caching build
+Sep 24 08:59:54  [34m│[0m        - npm cache
+Sep 24 08:59:55  [34m│[0m        
+Sep 24 08:59:55  [34m│[0m -----> Pruning devDependencies
+Sep 24 08:59:55  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Sep 24 08:59:55  [34m│[0m        
+Sep 24 08:59:55  [34m│[0m -----> Build succeeded!
+Sep 24 08:59:55  [34m│[0m Running custom build command: npm run build
+Sep 24 08:59:56  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 08:59:56  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 08:59:56  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 08:59:56  [34m│[0m 
+Sep 24 08:59:56  [34m│[0m > shop-chat-agent@1.0.41 build
+Sep 24 08:59:56  [34m│[0m > prisma generate && remix vite:build
+Sep 24 08:59:56  [34m│[0m 
+Sep 24 08:59:56  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Sep 24 08:59:56  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 08:59:57  [34m│[0m 
+Sep 24 08:59:57  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 47ms
+Sep 24 08:59:57  [34m│[0m 
+Sep 24 08:59:57  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Sep 24 08:59:57  [34m│[0m 
+Sep 24 08:59:57  [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+Sep 24 08:59:57  [34m│[0m 
+Sep 24 08:59:57  [34m│[0m vite v6.3.3 building for production...
+Sep 24 08:59:57  [34m│[0m transforming...
+Sep 24 08:59:58  [34m│[0m ✓ 27 modules transformed.
+Sep 24 08:59:58  [34m│[0m ✗ Build failed in 167ms
+Sep 24 08:59:58  [34m│[0m [commonjs--resolver] Server-only module referenced by client
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m     '../db.server' imported by route 'app/routes/api.whatsapp-auth-callback.jsx'
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m   Remix automatically removes server-code from these exports:
+Sep 24 08:59:58  [34m│[0m     `loader`, `action`, `headers`
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m   But other route exports in 'app/routes/api.whatsapp-auth-callback.jsx' depend on '../db.server'.
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
+Sep 24 08:59:58  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Sep 24 08:59:58  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Sep 24 08:59:58  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Sep 24 08:59:58  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
+Sep 24 08:59:58  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Sep 24 08:59:58  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Sep 24 08:59:58  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Sep 24 08:59:58  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
+Sep 24 08:59:58  [34m│[0m   code: 'PLUGIN_ERROR',
+Sep 24 08:59:58  [34m│[0m   plugin: 'commonjs--resolver',
+Sep 24 08:59:58  [34m│[0m   hook: 'resolveId',
+Sep 24 08:59:58  [34m│[0m   watchFiles: [
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/root.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/api.whatsapp-auth-callback.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/app.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react/index.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/package.json',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
+Sep 24 08:59:58  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js'
+Sep 24 08:59:58  [34m│[0m   ]
+Sep 24 08:59:58  [34m│[0m }
+Sep 24 08:59:58  [34m│[0m npm notice
+Sep 24 08:59:58  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.0
+Sep 24 08:59:58  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+Sep 24 08:59:58  [34m│[0m npm notice To update run: npm install -g npm@11.6.0
+Sep 24 08:59:58  [34m│[0m npm notice
+Sep 24 08:59:58  [34m│[0m building: exit status 1
+Sep 24 08:59:58  [34m│[0m Timer: Builder ran for 26.147920743s and ended at 2025-09-24T08:59:58Z
+Sep 24 08:59:58  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m 
+Sep 24 08:59:58  [34m│[0m [31m ✘ build failed[0m

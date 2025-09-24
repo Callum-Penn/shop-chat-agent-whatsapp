@@ -1,8 +1,10 @@
 import { json } from "@remix-run/node";
-import { getCustomerToken, storeCustomerToken } from "../db.server";
 import { sendWhatsAppMessage } from "../utils/whatsapp.server";
 
 export const action = async ({ request }) => {
+  // Import database functions inside the action to avoid client/server separation issues
+  const { getCustomerToken, storeCustomerToken } = await import("../db.server");
+  
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
