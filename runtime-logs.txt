@@ -1,277 +1,175 @@
-Sep 24 08:39:20  [shopify-api/INFO] version 11.12.0, environment Remix
-Sep 24 08:39:20  [remix-serve] http://localhost:8080 (http://10.244.21.86:8080)
-Sep 24 08:40:53  OPTIONS /chat 204 - - 12.268 ms
-Sep 24 08:40:53  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 08:40:53  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 08:40:53  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 08:40:53  No token in database for conversation: 1758703253719
-Sep 24 08:40:53  Customer MCP server tools response: [
-Sep 24 08:40:53    {
-Sep 24 08:40:53      "name": "get_most_recent_order_status",
-Sep 24 08:40:53      "description": "Gets the status of the customer's most recent order.",
-Sep 24 08:40:53      "inputSchema": {
-Sep 24 08:40:53        "type": "object",
-Sep 24 08:40:53        "properties": {}
-Sep 24 08:40:53      }
-Sep 24 08:40:53    },
-Sep 24 08:40:53    {
-Sep 24 08:40:53      "name": "get_order_status",
-Sep 24 08:40:53      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 08:40:53      "inputSchema": {
-Sep 24 08:40:53        "type": "object",
-Sep 24 08:40:53        "properties": {
-Sep 24 08:40:53          "order_number": {
-Sep 24 08:40:53            "type": "string",
-Sep 24 08:40:53            "description": "Number of the order to look up"
-Sep 24 08:40:53          }
-Sep 24 08:40:53        },
-Sep 24 08:40:53        "required": [
-Sep 24 08:40:53          "order_number"
-Sep 24 08:40:53        ]
-Sep 24 08:40:53      }
-Sep 24 08:40:53    },
-Sep 24 08:40:53    {
-Sep 24 08:40:53      "name": "get_store_credit_balances",
-Sep 24 08:40:53      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 08:40:53      "inputSchema": {
-Sep 24 08:40:53        "type": "object",
-Sep 24 08:40:53        "properties": {}
-Sep 24 08:40:53      }
-Sep 24 08:40:53    },
-Sep 24 08:40:53    {
-Sep 24 08:40:53      "name": "request_return",
-Sep 24 08:40:53      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 08:40:53      "inputSchema": {
-Sep 24 08:40:53        "type": "object",
-Sep 24 08:40:53        "properties": {
-Sep 24 08:40:53          "order_id": {
-Sep 24 08:40:53            "type": "string",
-Sep 24 08:40:53            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 08:40:53          },
-Sep 24 08:40:53          "order_number": {
-Sep 24 08:40:53            "type": "string",
-Sep 24 08:40:53            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 08:40:53          },
-Sep 24 08:40:53          "line_items": {
-Sep 24 08:40:53            "type": "array",
-Sep 24 08:40:53            "description": "List of items to return",
-Sep 24 08:40:53            "items": {
-Sep 24 08:40:53              "type": "object",
-Sep 24 08:40:53              "properties": {
-Sep 24 08:40:53                "line_item_id": {
-Sep 24 08:40:53                  "type": "string",
-Sep 24 08:40:53                  "description": "ID of the line item to return"
-Sep 24 08:40:53                },
-Sep 24 08:40:53                "quantity": {
-Sep 24 08:40:53                  "type": "integer",
-Sep 24 08:40:53                  "description": "Quantity to return"
-Sep 24 08:40:53                },
-Sep 24 08:40:53                "return_reason": {
-Sep 24 08:40:53                  "type": "string",
-Sep 24 08:40:53                  "description": "Reason for return",
-Sep 24 08:40:53                  "enum": [
-Sep 24 08:40:53                    "SIZE_TOO_SMALL",
-Sep 24 08:40:53                    "SIZE_TOO_LARGE",
-Sep 24 08:40:53                    "UNWANTED",
-Sep 24 08:40:53                    "NOT_AS_DESCRIBED",
-Sep 24 08:40:53                    "WRONG_ITEM",
-Sep 24 08:40:53                    "DEFECTIVE",
-Sep 24 08:40:53                    "STYLE",
-Sep 24 08:40:53                    "COLOR",
-Sep 24 08:40:53                    "OTHER",
-Sep 24 08:40:53                    "UNKNOWN"
-Sep 24 08:40:53                  ]
-Sep 24 08:40:53                },
-Sep 24 08:40:53                "customer_note": {
-Sep 24 08:40:53                  "type": "string",
-Sep 24 08:40:53                  "description": "Additional notes about the return"
-Sep 24 08:40:53                }
-Sep 24 08:40:53              },
-Sep 24 08:40:53              "required": [
-Sep 24 08:40:53                "line_item_id",
-Sep 24 08:40:53                "quantity",
-Sep 24 08:40:53                "return_reason"
-Sep 24 08:40:53              ]
-Sep 24 08:40:53            }
-Sep 24 08:40:53          }
-Sep 24 08:40:53        },
-Sep 24 08:40:53        "required": [
-Sep 24 08:40:53          "line_items"
-Sep 24 08:40:53        ]
-Sep 24 08:40:53      }
-Sep 24 08:40:53    }
-Sep 24 08:40:53  ]
-Sep 24 08:40:53  Connected to MCP with 5 tools
-Sep 24 08:40:53  Connected to customer MCP with 4 tools
-Sep 24 08:40:53  Available customer tools: [
-Sep 24 08:40:53    'get_most_recent_order_status',
-Sep 24 08:40:53    'get_order_status',
-Sep 24 08:40:53    'get_store_credit_balances',
-Sep 24 08:40:53    'request_return'
-Sep 24 08:40:53  ]
-Sep 24 08:40:56  Calling customer tool get_most_recent_order_status {}
-Sep 24 08:40:56  No token in database for conversation: 1758703253719
-Sep 24 08:40:56  Making JSON-RPC request to customer MCP server...
-Sep 24 08:40:56  Request details: {
-Sep 24 08:40:56    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 08:40:56    toolName: 'get_most_recent_order_status',
-Sep 24 08:40:56    toolArgs: {},
-Sep 24 08:40:56    hasToken: false,
-Sep 24 08:40:56    tokenLength: 0
-Sep 24 08:40:56  }
-Sep 24 08:40:56  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
-Sep 24 08:40:56      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:950:24)
-Sep 24 08:40:56      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 08:40:56      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:866:26)
-Sep 24 08:40:56      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1717:37)
-Sep 24 08:40:56      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:478:11)
-Sep 24 08:40:56      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1682:22)
-Sep 24 08:40:56      at file:///workspace/build/server/index.js?t=315532801000:1615:7
-Sep 24 08:40:56      at Object.start (file:///workspace/build/server/index.js?t=315532801000:1564:9) {
-Sep 24 08:40:56    status: 401
-Sep 24 08:40:56  }
-Sep 24 08:40:56  Error details: {
-Sep 24 08:40:56    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
-Sep 24 08:40:56    status: 401,
-Sep 24 08:40:56    code: undefined,
-Sep 24 08:40:56    data: undefined
-Sep 24 08:40:56  }
-Sep 24 08:40:56  Unauthorized, generating authorization URL for customer
-Sep 24 08:40:56  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 08:40:56  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 08:40:56  Auth required for tool: get_most_recent_order_status
-Sep 24 08:41:00  POST /chat 200 - - 58.966 ms
-Sep 24 08:41:07  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 08:41:07  Stored customer token in database for conversation: 1758703253719
-Sep 24 08:41:07  GET /auth/callback?code=shcac_ZGhieHAvVFZwd3daeGkxdVRINFlYN1BncVR1Y2dJKzZ5UzJyTStOR3E0MWR4by9JMkpicEo1SzdDcjFULzd1NTRDTjdJajdTNnpTY1drZWlicjRNNWNlcDFNUzE4ZS8vZlZDMnl5cEZxa3FydVpzU0Y2ZEI1RmN6c2NIUTBFVkluQmpKbWNxbFlwZ3VXOWJWa1BoZ3N0dldMSlFmcFprTVBVRnRMYmFuTklBOUk1TDRlWlRrZjhBVDFva0d1ZFZjdHQzRjlhWktLL0xiSUxWdGt3aFhGb2YwSzl3V1gzZllmN2lwZlkxd2M3bHR4elFVaHNQQjhBdnVYamxDdXdOMk0yb00xaGJRZ3BjbDgzTWNVR3hOMmVUU3B5UFNoUDQ3WGdCOEJ1VW5SYnpUeSsxWlJ3cFFrNUdNVitOMGRWNWtSaEdpSDJqYlNBNW9RUXRZc1FYNEhxVVducklkQmhtMkswczF5SDBDK0hvNGhydjZxOStPMUd4Ri9uN2lHQWlwVS9NL3NBUFo0VU0wbmsxVmFKRVhCN2ZhMndZL0RZTmFMYllCREd0RStLS2lkSDlOVXFnN21nTGtyaVZvYlZhbGNVS2x5YlRZZUxkYXVKcCtsNWJwbUJwbkZOVUxCcDd6dHNaRm9zSW9odDF1aU94aGNpdlNFZmk0Vzc3MmVzUjlmNVlKY05HSUdSbTVySDNXSDZjS040NXRyaHM0emhZLzFvTjlqRkRqTFJ0QlBjelZ1MDRVZlEwSFhXUFF2R1BRZUpoTnN0cnZtNUZYKy9TWERzWHQwNlB3WElnZCsxQlZORUdyVTRqdmZ4YWdjM01HK3FDSVFhQzBGNHNjTEhEeWVadDBlcmxHQVpob2YzSlhnVERoemFPdkNjeERnNE0yQVM3ekk2Y0hhOFdkeDNRNHVIYU84QjV4RjN5cTFZbzZuZzYwMTlFaU9UMFozNjBYd3hpdFVjc2lrL092Sk16QlhFaWU5NGIyQjVJeEtnTXNLaUMxVDlhS2xFazJNeFkvZ3d1ODUzcFVKNkVtVnlZZnFVU1F3WjJLVTVrcUoraTU5UjJSN3BiR05ZZ21BWlpTUDhMenFkZzYwejZTdEM0MlJ3UDR5d1RHanp0UUpxRCs4K2tyalU4RWtwblIzOVg1K3pqQWRwZEgtLXNldmV2SnFWeUttcGtaZ1ctLWlTSGhUYnMvQmtyZ28wd3JPRkwwMVE9PQ&state=1c16f359a2ba97571dd14a9154dad172-1758703253719-90473628030 200 - - 212.826 ms
-Sep 24 08:41:17  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 08:41:17  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 08:41:17  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 08:41:18  Customer MCP server tools response: [
-Sep 24 08:41:18    {
-Sep 24 08:41:18      "name": "get_most_recent_order_status",
-Sep 24 08:41:18      "description": "Gets the status of the customer's most recent order.",
-Sep 24 08:41:18      "inputSchema": {
-Sep 24 08:41:18        "type": "object",
-Sep 24 08:41:18        "properties": {}
-Sep 24 08:41:18      }
-Sep 24 08:41:18    },
-Sep 24 08:41:18    {
-Sep 24 08:41:18      "name": "get_order_status",
-Sep 24 08:41:18      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 08:41:18      "inputSchema": {
-Sep 24 08:41:18        "type": "object",
-Sep 24 08:41:18        "properties": {
-Sep 24 08:41:18          "order_number": {
-Sep 24 08:41:18            "type": "string",
-Sep 24 08:41:18            "description": "Number of the order to look up"
-Sep 24 08:41:18          }
-Sep 24 08:41:18        },
-Sep 24 08:41:18        "required": [
-Sep 24 08:41:18          "order_number"
-Sep 24 08:41:18        ]
-Sep 24 08:41:18      }
-Sep 24 08:41:18    },
-Sep 24 08:41:18    {
-Sep 24 08:41:18      "name": "get_store_credit_balances",
-Sep 24 08:41:18      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 08:41:18      "inputSchema": {
-Sep 24 08:41:18        "type": "object",
-Sep 24 08:41:18        "properties": {}
-Sep 24 08:41:18      }
-Sep 24 08:41:18    },
-Sep 24 08:41:18    {
-Sep 24 08:41:18      "name": "request_return",
-Sep 24 08:41:18      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 08:41:18      "inputSchema": {
-Sep 24 08:41:18        "type": "object",
-Sep 24 08:41:18        "properties": {
-Sep 24 08:41:18          "order_id": {
-Sep 24 08:41:18            "type": "string",
-Sep 24 08:41:18            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 08:41:18          },
-Sep 24 08:41:18          "order_number": {
-Sep 24 08:41:18            "type": "string",
-Sep 24 08:41:18            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 08:41:18          },
-Sep 24 08:41:18          "line_items": {
-Sep 24 08:41:18            "type": "array",
-Sep 24 08:41:18            "description": "List of items to return",
-Sep 24 08:41:18            "items": {
-Sep 24 08:41:18              "type": "object",
-Sep 24 08:41:18              "properties": {
-Sep 24 08:41:18                "line_item_id": {
-Sep 24 08:41:18                  "type": "string",
-Sep 24 08:41:18                  "description": "ID of the line item to return"
-Sep 24 08:41:18                },
-Sep 24 08:41:18                "quantity": {
-Sep 24 08:41:18                  "type": "integer",
-Sep 24 08:41:18                  "description": "Quantity to return"
-Sep 24 08:41:18                },
-Sep 24 08:41:18                "return_reason": {
-Sep 24 08:41:18                  "type": "string",
-Sep 24 08:41:18                  "description": "Reason for return",
-Sep 24 08:41:18                  "enum": [
-Sep 24 08:41:18                    "SIZE_TOO_SMALL",
-Sep 24 08:41:18                    "SIZE_TOO_LARGE",
-Sep 24 08:41:18                    "UNWANTED",
-Sep 24 08:41:18                    "NOT_AS_DESCRIBED",
-Sep 24 08:41:18                    "WRONG_ITEM",
-Sep 24 08:41:18                    "DEFECTIVE",
-Sep 24 08:41:18                    "STYLE",
-Sep 24 08:41:18                    "COLOR",
-Sep 24 08:41:18                    "OTHER",
-Sep 24 08:41:18                    "UNKNOWN"
-Sep 24 08:41:18                  ]
-Sep 24 08:41:18                },
-Sep 24 08:41:18                "customer_note": {
-Sep 24 08:41:18                  "type": "string",
-Sep 24 08:41:18                  "description": "Additional notes about the return"
-Sep 24 08:41:18                }
-Sep 24 08:41:18              },
-Sep 24 08:41:18              "required": [
-Sep 24 08:41:18                "line_item_id",
-Sep 24 08:41:18                "quantity",
-Sep 24 08:41:18                "return_reason"
-Sep 24 08:41:18              ]
-Sep 24 08:41:18            }
-Sep 24 08:41:18          }
-Sep 24 08:41:18        },
-Sep 24 08:41:18        "required": [
-Sep 24 08:41:18          "line_items"
-Sep 24 08:41:18        ]
-Sep 24 08:41:18      }
-Sep 24 08:41:18    }
-Sep 24 08:41:18  ]
-Sep 24 08:41:18  Connected to MCP with 5 tools
-Sep 24 08:41:18  Connected to customer MCP with 4 tools
-Sep 24 08:41:18  Available customer tools: [
-Sep 24 08:41:18    'get_most_recent_order_status',
-Sep 24 08:41:18    'get_order_status',
-Sep 24 08:41:18    'get_store_credit_balances',
-Sep 24 08:41:18    'request_return'
-Sep 24 08:41:18  ]
-Sep 24 08:41:20  Calling customer tool get_most_recent_order_status {}
-Sep 24 08:41:20  Making JSON-RPC request to customer MCP server...
-Sep 24 08:41:20  Request details: {
-Sep 24 08:41:20    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 08:41:20    toolName: 'get_most_recent_order_status',
-Sep 24 08:41:20    toolArgs: {},
-Sep 24 08:41:20    hasToken: true,
-Sep 24 08:41:20    tokenLength: 528
-Sep 24 08:41:20  }
-Sep 24 08:41:20  Customer MCP server response: {
-Sep 24 08:41:20    jsonrpc: '2.0',
-Sep 24 08:41:20    id: 1,
-Sep 24 08:41:20    error: {
-Sep 24 08:41:20      code: -32603,
-Sep 24 08:41:20      message: 'Internal error',
-Sep 24 08:41:20      data: 'Internal error calling tool get_most_recent_order_status'
-Sep 24 08:41:20    }
-Sep 24 08:41:20  }
-Sep 24 08:41:20  Tool use error {
-Sep 24 08:41:20    code: -32603,
-Sep 24 08:41:20    message: 'Internal error',
-Sep 24 08:41:20    data: 'Internal error calling tool get_most_recent_order_status'
-Sep 24 08:41:20  }
-Sep 24 08:41:25  POST /chat 200 - - 4.605 ms
+Sep 24 08:55:20  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Sep 24 08:55:20  [34m│[0m [34m › fetching app source code[0m
+Sep 24 08:55:20  [34m│[0m => Selecting branch "main"
+Sep 24 08:55:20  [34m│[0m => Checking out commit "eb3a248b4d05d3e77405b3c5b1de21d973b443e6"
+Sep 24 08:55:20  [34m│[0m 
+Sep 24 08:55:20  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Sep 24 08:55:20  [34m╰────────────────────────────────────────╼[0m
+Sep 24 08:55:20  
+Sep 24 08:55:20  [34m › configuring build-time app environment variables:[0m
+Sep 24 08:55:20       CLAUDE_API_KEY WHATSAPP_TOKEN WHATSAPP_PHONE_NUMBER_ID SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL SHOPIFY_API_KEY SHOPIFY_APP_URL DIRECT_URL WHATSAPP_VERIFY_TOKEN SHOPIFY_API_SECRET
+Sep 24 08:55:20  
+Sep 24 08:55:20  [34m › configuring custom build command to be run at the end of the build:[0m
+Sep 24 08:55:20     [34m│[0m npm run build
+Sep 24 08:55:20  
+Sep 24 08:55:20  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Sep 24 08:55:20  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Sep 24 08:55:21  [34m│[0m Detected the following buildpacks suitable to build your app:
+Sep 24 08:55:21  [34m│[0m 
+Sep 24 08:55:21  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Sep 24 08:55:21  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Sep 24 08:55:21  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Sep 24 08:55:21  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Sep 24 08:55:21  [34m╰─────────────────────────────────────────────╼[0m
+Sep 24 08:55:21  
+Sep 24 08:55:21  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Sep 24 08:55:21  [34m│[0m [34m › checking for cache from a previous build[0m
+Sep 24 08:55:21  [34m│[0m Timer: Analyzer started at 2025-09-24T08:55:21Z
+Sep 24 08:55:22  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Sep 24 08:55:22  [34m│[0m Timer: Analyzer ran for 672.502195ms and ended at 2025-09-24T08:55:22Z
+Sep 24 08:55:22  [34m│[0m Timer: Restorer started at 2025-09-24T08:55:22Z
+Sep 24 08:55:23  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Sep 24 08:55:25  [34m│[0m Timer: Restorer ran for 2.391290558s and ended at 2025-09-24T08:55:25Z
+Sep 24 08:55:25  [34m╰───────────────────────────────────────╼[0m
+Sep 24 08:55:25  
+Sep 24 08:55:25  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Sep 24 08:55:25  [34m│[0m Timer: Builder started at 2025-09-24T08:55:25Z
+Sep 24 08:55:25  [34m│[0m        
+Sep 24 08:55:25  [34m│[0m -----> Creating runtime environment
+Sep 24 08:55:25  [34m│[0m        
+Sep 24 08:55:25  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Sep 24 08:55:25  [34m│[0m        NODE_VERBOSE=false
+Sep 24 08:55:25  [34m│[0m        NODE_ENV=
+Sep 24 08:55:25  [34m│[0m        NODE_MODULES_CACHE=true
+Sep 24 08:55:25  [34m│[0m        
+Sep 24 08:55:25  [34m│[0m -----> Installing binaries
+Sep 24 08:55:25  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Sep 24 08:55:25  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Sep 24 08:55:25  [34m│[0m        
+Sep 24 08:55:26  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Sep 24 08:55:26  [34m│[0m        Downloading and installing node 24.2.0...
+Sep 24 08:55:31  [34m│[0m        Using default npm version: 11.3.0
+Sep 24 08:55:31  [34m│[0m        
+Sep 24 08:55:31  [34m│[0m -----> Restoring cache
+Sep 24 08:55:31  [34m│[0m        - npm cache
+Sep 24 08:55:31  [34m│[0m        
+Sep 24 08:55:31  [34m│[0m -----> Installing dependencies
+Sep 24 08:55:32  [34m│[0m        Installing node modules
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        added 1217 packages, and audited 1218 packages in 18s
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        302 packages are looking for funding
+Sep 24 08:55:50  [34m│[0m          run `npm fund` for details
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        17 vulnerabilities (7 low, 8 moderate, 1 high, 1 critical)
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        To address issues that do not require attention, run:
+Sep 24 08:55:50  [34m│[0m          npm audit fix
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        Some issues need review, and may require choosing
+Sep 24 08:55:50  [34m│[0m        a different dependency.
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m        Run `npm audit` for details.
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m -----> Build
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m -----> Caching build
+Sep 24 08:55:50  [34m│[0m        - npm cache
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m -----> Pruning devDependencies
+Sep 24 08:55:50  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Sep 24 08:55:50  [34m│[0m        
+Sep 24 08:55:50  [34m│[0m -----> Build succeeded!
+Sep 24 08:55:51  [34m│[0m Running custom build command: npm run build
+Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Sep 24 08:55:51  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Sep 24 08:55:51  [34m│[0m 
+Sep 24 08:55:51  [34m│[0m > shop-chat-agent@1.0.41 build
+Sep 24 08:55:51  [34m│[0m > prisma generate && remix vite:build
+Sep 24 08:55:51  [34m│[0m 
+Sep 24 08:55:52  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Sep 24 08:55:52  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Sep 24 08:55:52  [34m│[0m 
+Sep 24 08:55:52  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 54ms
+Sep 24 08:55:52  [34m│[0m 
+Sep 24 08:55:52  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Sep 24 08:55:52  [34m│[0m 
+Sep 24 08:55:52  [34m│[0m Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+Sep 24 08:55:52  [34m│[0m 
+Sep 24 08:55:53  [34m│[0m vite v6.3.3 building for production...
+Sep 24 08:55:53  [34m│[0m transforming...
+Sep 24 08:55:53  [34m│[0m ✓ 1 modules transformed.
+Sep 24 08:55:53  [34m│[0m ✗ Build failed in 27ms
+Sep 24 08:55:53  [34m│[0m [vite:esbuild] Transform failed with 1 error:
+Sep 24 08:55:53  [34m│[0m /workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route:6:15: ERROR: The symbol "sendWhatsAppMessage" has already been declared
+Sep 24 08:55:53  [34m│[0m file: /workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route:6:15
+Sep 24 08:55:53  [34m│[0m 
+Sep 24 08:55:53  [34m│[0m The symbol "sendWhatsAppMessage" has already been declared
+Sep 24 08:55:53  [34m│[0m 4  |  
+Sep 24 08:55:53  [34m│[0m 5  |  // Helper to send a message back to WhatsApp (reuse from whatsapp-webhook)
+Sep 24 08:55:53  [34m│[0m 6  |  async function sendWhatsAppMessage(to, text) {
+Sep 24 08:55:53  [34m│[0m    |                 ^
+Sep 24 08:55:53  [34m│[0m 7  |    const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+Sep 24 08:55:53  [34m│[0m 8  |    const token = process.env.WHATSAPP_TOKEN;
+Sep 24 08:55:53  [34m│[0m 
+Sep 24 08:55:53  [34m│[0m     at failureErrorWithLog (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:1477:15)
+Sep 24 08:55:53  [34m│[0m     at /workspace/node_modules/vite/node_modules/esbuild/lib/main.js:756:50
+Sep 24 08:55:53  [34m│[0m     at responseCallbacks.<computed> (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:623:9)
+Sep 24 08:55:53  [34m│[0m     at handleIncomingPacket (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:678:12)
+Sep 24 08:55:53  [34m│[0m     at Socket.readFromStdout (/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:601:7)
+Sep 24 08:55:53  [34m│[0m     at Socket.emit (node:events:507:28)
+Sep 24 08:55:53  [34m│[0m     at addChunk (node:internal/streams/readable:559:12)
+Sep 24 08:55:53  [34m│[0m     at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+Sep 24 08:55:53  [34m│[0m     at Socket.Readable.push (node:internal/streams/readable:390:5)
+Sep 24 08:55:53  [34m│[0m     at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
+Sep 24 08:55:53  [34m│[0m   errors: [Getter/Setter],
+Sep 24 08:55:53  [34m│[0m   warnings: [Getter/Setter],
+Sep 24 08:55:53  [34m│[0m   frame: '\n' +
+Sep 24 08:55:53  [34m│[0m     'The symbol "sendWhatsAppMessage" has already been declared\n' +
+Sep 24 08:55:53  [34m│[0m     '4  |  \n' +
+Sep 24 08:55:53  [34m│[0m     '5  |  // Helper to send a message back to WhatsApp (reuse from whatsapp-webhook)\n' +
+Sep 24 08:55:53  [34m│[0m     '6  |  async function sendWhatsAppMessage(to, text) {\n' +
+Sep 24 08:55:53  [34m│[0m     '   |                 ^\n' +
+Sep 24 08:55:53  [34m│[0m     '7  |    const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;\n' +
+Sep 24 08:55:53  [34m│[0m     '8  |    const token = process.env.WHATSAPP_TOKEN;\n',
+Sep 24 08:55:53  [34m│[0m   loc: {
+Sep 24 08:55:53  [34m│[0m     column: 15,
+Sep 24 08:55:53  [34m│[0m     file: '/workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route',
+Sep 24 08:55:53  [34m│[0m     length: 19,
+Sep 24 08:55:53  [34m│[0m     line: 6,
+Sep 24 08:55:53  [34m│[0m     lineText: 'async function sendWhatsAppMessage(to, text) {',
+Sep 24 08:55:53  [34m│[0m     namespace: '',
+Sep 24 08:55:53  [34m│[0m     suggestion: ''
+Sep 24 08:55:53  [34m│[0m   },
+Sep 24 08:55:53  [34m│[0m   code: 'PLUGIN_ERROR',
+Sep 24 08:55:53  [34m│[0m   plugin: 'vite:esbuild',
+Sep 24 08:55:53  [34m│[0m   hook: 'transform',
+Sep 24 08:55:53  [34m│[0m   id: '/workspace/app/routes/api.whatsapp-auth-callback.jsx?__remix-build-client-route',
+Sep 24 08:55:53  [34m│[0m   watchFiles: [
+Sep 24 08:55:53  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/root.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.whatsapp-auth-callback.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Sep 24 08:55:53  [34m│[0m     '/workspace/app/routes/app.jsx'
+Sep 24 08:55:53  [34m│[0m   ]
+Sep 24 08:55:53  [34m│[0m }
+Sep 24 08:55:53  [34m│[0m npm notice
+Sep 24 08:55:53  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.0
+Sep 24 08:55:53  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+Sep 24 08:55:53  [34m│[0m npm notice To update run: npm install -g npm@11.6.0
+Sep 24 08:55:53  [34m│[0m npm notice
+Sep 24 08:55:53  [34m│[0m building: exit status 1
+Sep 24 08:55:53  [34m│[0m Timer: Builder ran for 28.180761345s and ended at 2025-09-24T08:55:53Z
+Sep 24 08:55:53  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Sep 24 08:55:53  [34m│[0m 
+Sep 24 08:55:53  [34m│[0m 
+Sep 24 08:55:53  [34m│[0m [31m ✘ build failed[0m

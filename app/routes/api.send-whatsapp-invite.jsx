@@ -1,49 +1,5 @@
 import { json } from "@remix-run/node";
-
-// Helper to send a message back to WhatsApp (reuse from whatsapp-webhook)
-async function sendWhatsAppMessage(to, text) {
-  const url = `https://graph.facebook.com/v19.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
-  const token = process.env.WHATSAPP_TOKEN;
-  const payload = {
-    messaging_product: "whatsapp",
-    to,
-    text: { body: text },
-  };
-  
-  console.log('WhatsApp API Request:', {
-    url,
-    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID,
-    to,
-    payload
-  });
-  
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    
-    const responseData = await response.json();
-    console.log('WhatsApp API Response:', {
-      status: response.status,
-      statusText: response.statusText,
-      data: responseData
-    });
-    
-    if (!response.ok) {
-      throw new Error(`WhatsApp API error: ${response.status} ${response.statusText} - ${JSON.stringify(responseData)}`);
-    }
-    
-    return responseData;
-  } catch (error) {
-    console.error('WhatsApp API Error:', error);
-    throw error;
-  }
-}
+import { sendWhatsAppMessage } from "../utils/whatsapp.server";
 
 export const action = async ({ request }) => {
   try {
