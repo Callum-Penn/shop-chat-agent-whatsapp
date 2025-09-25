@@ -1,529 +1,268 @@
-Sep 24 09:43:57  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:57  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:57  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:58  
-Sep 24 09:43:58  > shop-chat-agent@1.0.41 start
-Sep 24 09:43:58  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-Sep 24 09:43:58  
-Sep 24 09:43:58  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:58  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:58  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:58  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:58  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:58  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:44:00  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:43:15  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:15  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:15  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:16  
-Sep 24 09:43:16  > shop-chat-agent@1.0.41 start
-Sep 24 09:43:16  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-Sep 24 09:43:16  
-Sep 24 09:43:16  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:16  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:16  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:16  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:16  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:16  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:18  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:44:00  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:44:00  
-Sep 24 09:44:00  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 175ms
-Sep 24 09:44:00  
-Sep 24 09:44:00  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Sep 24 09:44:00  
-Sep 24 09:44:00  Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
-Sep 24 09:44:00  
-Sep 24 09:44:01  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:44:01  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:44:01  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:44:01  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:44:01  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:44:01  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:44:03  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:44:03  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-Sep 24 09:44:04  
-Sep 24 09:44:04  The database is already in sync with the Prisma schema.
-Sep 24 09:44:04  
-Sep 24 09:44:04  Running generate... (Use --skip-generate to skip the generators)
-Sep 24 09:44:04  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:44:04  [2K[1A[2K[GRunning generate... - Prisma Client
-Sep 24 09:44:04  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 173ms
-Sep 24 09:44:04  
-Sep 24 09:44:04  ┌─────────────────────────────────────────────────────────┐
-Sep 24 09:44:04  │  Update available 6.6.0 -> 6.16.2                       │
-Sep 24 09:43:18  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:43:18  
-Sep 24 09:43:18  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 152ms
-Sep 24 09:43:18  
-Sep 24 09:43:18  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Sep 24 09:43:18  
-Sep 24 09:43:18  Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
-Sep 24 09:43:18  
-Sep 24 09:43:19  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:19  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:19  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:19  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-Sep 24 09:43:19  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-Sep 24 09:43:19  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Sep 24 09:43:20  Prisma schema loaded from prisma/schema.prisma
-Sep 24 09:43:20  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-Sep 24 09:43:21  
-Sep 24 09:43:21  The database is already in sync with the Prisma schema.
-Sep 24 09:43:21  
-Sep 24 09:43:21  Running generate... (Use --skip-generate to skip the generators)
-Sep 24 09:43:21  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Sep 24 09:43:21  [2K[1A[2K[GRunning generate... - Prisma Client
-Sep 24 09:43:21  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 121ms
-Sep 24 09:43:21  
-Sep 24 09:43:21  ┌─────────────────────────────────────────────────────────┐
-Sep 24 09:43:21  │  Update available 6.6.0 -> 6.16.2                       │
-Sep 24 09:43:21  │  Run the following to update                            │
-Sep 24 09:43:21  │    npm i --save-dev prisma@latest                       │
-Sep 24 09:44:04  │  Run the following to update                            │
-Sep 24 09:44:04  │    npm i --save-dev prisma@latest                       │
-Sep 24 09:44:04  │    npm i @prisma/client@latest                          │
-Sep 24 09:44:04  └─────────────────────────────────────────────────────────┘
-Sep 24 09:44:08  [shopify-api/INFO] version 11.12.0, environment Remix
-Sep 24 09:44:08  [remix-serve] http://localhost:8080 (http://10.244.14.226:8080)
-Sep 24 09:47:34  OPTIONS /chat 204 - - 10.846 ms
-Sep 24 09:47:49  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:47:49  Stored customer token in database for conversation: 1758707254849
-Sep 24 09:47:49  GET /auth/callback?code=shcac_aTBmaVdsc1RwcFd6TnJPZXMvQTBnSWlIb2ZNYWo3aW0zYVQ5NzNDTEN0S1QwQTdzUjBLc2p3NFEwOVUraDAyUHY0NDJnMy9iT2czdk91VHlVNWhZN3BwOUxrbFVDT1F1bUo4OW1ueVRHbkdTR0R1MTM3L3gzbzFSTkxpL2RZRzNHalRrZHpYVm01OUNGY1JqM1JOajFRM0w0TXRUbFBZY0JWMVJCWlFaTEtTVVg2dm9ZVmVlTTJqSVNtRi9ndjFObHBGOWQyS0ExNTlUcW1FMjkyd0l6d0JpRmViOU8wUjZQWlBCQ1ZqelBpRzdraHNFVS85TmY5ZmpUSlpDb1pOS3pYYzRJWEM5TkJPdHUySXhSVUhpeGZjYzFKRlptRVlKR29pdEVVNzV0U2prTWpzaXpmOGU0RFpRWTZxbTN5VW1WbXdkU1BZbkxmYnAwQldoZTVnbDYyUFFmTzV0bUlGNXdLUXBSbWN0WVlYOERPYUo5MGpabUs5ZElGZzEzNzFrNmplODdGQ3duOUlRdUNmRDBUaFMyTXVzNG5XcFNCS0dtVk1paWx4Z29NZ0RTVnQ2bzQ2aTF5Smh1YmhHOWVuMWgvU3FIai9JdlUwRmFVb3dQdGo5d0VpTzdQMXJVV1VYUFJ5emVrUUVBbXNSbVo4VWRlTEo3b2l5K2loRUJESjRWZXVEclhkd2FuVXJzYkY0UC9keUFCRStLSHpJNXc3LzdqSVdCeWZLd0l2OU8zYWZuam1xMW5MRGdESDYvZFpJYTgxaXBLU3J3UFplZW1OODYwRVdBWElZU2paQXMzSWRmR0tzN1B2L1NkUU82SGM3TEJRbUlDcGlsU0JldGJtREh4MVlvL0VvMS9VK2V3SUpYd2x2bk9NZEk5eEJ4SnV6RWdRS1E4YWZBTWxzWllYcnhUQlBFRlIyOHVjdVlVaW41L2s4eVdGWVBpamY4cm1XM29mWm10d2l4ZnR3VjJURDd4b2RWc2MwY3lXa053K2ZKc2pKbXZsUzFMem5xUGZyODFvVkR6K0IvQ3laM1FSNGJhMkZTWm5LMFlLVWh5VG9JZVV4eWdINFFXK05aU2FORDdqT1lQVGVyQkEwbWFTUEZPbTNKL2FvSFdMZE1VL2ZNc2J5dnprZ3p4U1ZBSTlrSW52UlBDMFYtLTVLZFdEeGcrRnNJQUlLNzktLVVCS3ZNSTVaSWJ3YVlKRTZocWd2SlE9PQ&state=002a3d403906d5b1460f522d134d3ca4-1758707254849-90473628030 200 - - 292.714 ms
-Sep 24 09:47:56  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 09:47:56  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 09:47:56  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 09:47:57  Customer MCP server tools response: [
-Sep 24 09:47:57    {
-Sep 24 09:47:57      "name": "get_most_recent_order_status",
-Sep 24 09:47:57      "description": "Gets the status of the customer's most recent order.",
-Sep 24 09:47:57      "inputSchema": {
-Sep 24 09:47:57        "type": "object",
-Sep 24 09:43:21  │    npm i @prisma/client@latest                          │
-Sep 24 09:43:21  └─────────────────────────────────────────────────────────┘
-Sep 24 09:43:24  [shopify-api/INFO] version 11.12.0, environment Remix
-Sep 24 09:47:57        "properties": {}
-Sep 24 09:47:57      }
-Sep 24 09:47:57    },
-Sep 24 09:47:57    {
-Sep 24 09:47:57      "name": "get_order_status",
-Sep 24 09:47:57      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 09:47:57      "inputSchema": {
-Sep 24 09:47:57        "type": "object",
-Sep 24 09:47:57        "properties": {
-Sep 24 09:47:57          "order_number": {
-Sep 24 09:47:57            "type": "string",
-Sep 24 09:47:57            "description": "Number of the order to look up"
-Sep 24 09:47:57          }
-Sep 24 09:47:57        },
-Sep 24 09:47:57        "required": [
-Sep 24 09:47:57          "order_number"
-Sep 24 09:47:57        ]
-Sep 24 09:47:57      }
-Sep 24 09:47:57    },
-Sep 24 09:47:57    {
-Sep 24 09:47:57      "name": "get_store_credit_balances",
-Sep 24 09:47:57      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 09:47:57      "inputSchema": {
-Sep 24 09:47:57        "type": "object",
-Sep 24 09:47:57        "properties": {}
-Sep 24 09:47:57      }
-Sep 24 09:47:57    },
-Sep 24 09:47:57    {
-Sep 24 09:47:57      "name": "request_return",
-Sep 24 09:47:57      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 09:43:24  [remix-serve] http://localhost:8080 (http://10.244.33.195:8080)
-Sep 24 09:47:34  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 09:47:34  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 09:47:35  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 09:47:35  No token in database for conversation: 1758707254849
-Sep 24 09:47:35  Customer MCP server tools response: [
-Sep 24 09:47:35    {
-Sep 24 09:47:35      "name": "get_most_recent_order_status",
-Sep 24 09:47:35      "description": "Gets the status of the customer's most recent order.",
-Sep 24 09:47:35      "inputSchema": {
-Sep 24 09:47:35        "type": "object",
-Sep 24 09:47:35        "properties": {}
-Sep 24 09:47:35      }
-Sep 24 09:47:35    },
-Sep 24 09:47:35    {
-Sep 24 09:47:35      "name": "get_order_status",
-Sep 24 09:47:35      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 09:47:35      "inputSchema": {
-Sep 24 09:47:35        "type": "object",
-Sep 24 09:47:35        "properties": {
-Sep 24 09:47:35          "order_number": {
-Sep 24 09:47:35            "type": "string",
-Sep 24 09:47:57      "inputSchema": {
-Sep 24 09:47:57        "type": "object",
-Sep 24 09:47:57        "properties": {
-Sep 24 09:47:35            "description": "Number of the order to look up"
-Sep 24 09:47:35          }
-Sep 24 09:47:35        },
-Sep 24 09:47:35        "required": [
-Sep 24 09:47:35          "order_number"
-Sep 24 09:47:35        ]
-Sep 24 09:47:35      }
-Sep 24 09:47:35    },
-Sep 24 09:47:35    {
-Sep 24 09:47:35      "name": "get_store_credit_balances",
-Sep 24 09:47:35      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 09:47:35      "inputSchema": {
-Sep 24 09:47:35        "type": "object",
-Sep 24 09:47:35        "properties": {}
-Sep 24 09:47:35      }
-Sep 24 09:47:35    },
-Sep 24 09:47:35    {
-Sep 24 09:47:35      "name": "request_return",
-Sep 24 09:47:35      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 09:47:35      "inputSchema": {
-Sep 24 09:47:35        "type": "object",
-Sep 24 09:47:35        "properties": {
-Sep 24 09:47:35          "order_id": {
-Sep 24 09:47:35            "type": "string",
-Sep 24 09:47:35            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 09:47:35          },
-Sep 24 09:47:57          "order_id": {
-Sep 24 09:47:57            "type": "string",
-Sep 24 09:47:57            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 09:47:57          },
-Sep 24 09:47:57          "order_number": {
-Sep 24 09:47:57            "type": "string",
-Sep 24 09:47:57            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 09:47:57          },
-Sep 24 09:47:57          "line_items": {
-Sep 24 09:47:57            "type": "array",
-Sep 24 09:47:57            "description": "List of items to return",
-Sep 24 09:47:57            "items": {
-Sep 24 09:47:57              "type": "object",
-Sep 24 09:47:57              "properties": {
-Sep 24 09:47:57                "line_item_id": {
-Sep 24 09:47:57                  "type": "string",
-Sep 24 09:47:57                  "description": "ID of the line item to return"
-Sep 24 09:47:57                },
-Sep 24 09:47:57                "quantity": {
-Sep 24 09:47:57                  "type": "integer",
-Sep 24 09:47:57                  "description": "Quantity to return"
-Sep 24 09:47:57                },
-Sep 24 09:47:57                "return_reason": {
-Sep 24 09:47:57                  "type": "string",
-Sep 24 09:47:35          "order_number": {
-Sep 24 09:47:35            "type": "string",
-Sep 24 09:47:35            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 09:47:35          },
-Sep 24 09:47:35          "line_items": {
-Sep 24 09:47:35            "type": "array",
-Sep 24 09:47:35            "description": "List of items to return",
-Sep 24 09:47:35            "items": {
-Sep 24 09:47:35              "type": "object",
-Sep 24 09:47:35              "properties": {
-Sep 24 09:47:35                "line_item_id": {
-Sep 24 09:47:35                  "type": "string",
-Sep 24 09:47:35                  "description": "ID of the line item to return"
-Sep 24 09:47:57                  "description": "Reason for return",
-Sep 24 09:47:57                  "enum": [
-Sep 24 09:47:57                    "SIZE_TOO_SMALL",
-Sep 24 09:47:57                    "SIZE_TOO_LARGE",
-Sep 24 09:47:57                    "UNWANTED",
-Sep 24 09:47:57                    "NOT_AS_DESCRIBED",
-Sep 24 09:47:57                    "WRONG_ITEM",
-Sep 24 09:47:57                    "DEFECTIVE",
-Sep 24 09:47:57                    "STYLE",
-Sep 24 09:47:57                    "COLOR",
-Sep 24 09:47:57                    "OTHER",
-Sep 24 09:47:57                    "UNKNOWN"
-Sep 24 09:47:57                  ]
-Sep 24 09:47:57                },
-Sep 24 09:47:57                "customer_note": {
-Sep 24 09:47:57                  "type": "string",
-Sep 24 09:47:57                  "description": "Additional notes about the return"
-Sep 24 09:47:57                }
-Sep 24 09:47:57              },
-Sep 24 09:47:57              "required": [
-Sep 24 09:47:57                "line_item_id",
-Sep 24 09:47:57                "quantity",
-Sep 24 09:47:57                "return_reason"
-Sep 24 09:47:57              ]
-Sep 24 09:47:35                },
-Sep 24 09:47:35                "quantity": {
-Sep 24 09:47:35                  "type": "integer",
-Sep 24 09:47:35                  "description": "Quantity to return"
-Sep 24 09:47:35                },
-Sep 24 09:47:35                "return_reason": {
-Sep 24 09:47:35                  "type": "string",
-Sep 24 09:47:35                  "description": "Reason for return",
-Sep 24 09:47:35                  "enum": [
-Sep 24 09:47:35                    "SIZE_TOO_SMALL",
-Sep 24 09:47:35                    "SIZE_TOO_LARGE",
-Sep 24 09:47:35                    "UNWANTED",
-Sep 24 09:47:35                    "NOT_AS_DESCRIBED",
-Sep 24 09:47:35                    "WRONG_ITEM",
-Sep 24 09:47:35                    "DEFECTIVE",
-Sep 24 09:47:35                    "STYLE",
-Sep 24 09:47:35                    "COLOR",
-Sep 24 09:47:35                    "OTHER",
-Sep 24 09:47:35                    "UNKNOWN"
-Sep 24 09:47:35                  ]
-Sep 24 09:47:35                },
-Sep 24 09:47:35                "customer_note": {
-Sep 24 09:47:35                  "type": "string",
-Sep 24 09:47:35                  "description": "Additional notes about the return"
-Sep 24 09:47:57            }
-Sep 24 09:47:57          }
-Sep 24 09:47:57        },
-Sep 24 09:47:57        "required": [
-Sep 24 09:47:57          "line_items"
-Sep 24 09:47:57        ]
-Sep 24 09:47:57      }
-Sep 24 09:47:57    }
-Sep 24 09:47:57  ]
-Sep 24 09:47:57  Connected to MCP with 5 tools
-Sep 24 09:47:57  Connected to customer MCP with 4 tools
-Sep 24 09:47:57  Available customer tools: [
-Sep 24 09:47:57    'get_most_recent_order_status',
-Sep 24 09:47:57    'get_order_status',
-Sep 24 09:47:57    'get_store_credit_balances',
-Sep 24 09:47:57    'request_return'
-Sep 24 09:47:57  ]
-Sep 24 09:47:59  Calling customer tool get_order_status { order_number: 'VL-28406' }
-Sep 24 09:47:59  Making JSON-RPC request to customer MCP server...
-Sep 24 09:47:59  Request details: {
-Sep 24 09:47:59    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 09:47:59    toolName: 'get_order_status',
-Sep 24 09:47:59    toolArgs: { order_number: 'VL-28406' },
-Sep 24 09:47:59    hasToken: true,
-Sep 24 09:47:59    tokenLength: 528
-Sep 24 09:47:35                }
-Sep 24 09:47:35              },
-Sep 24 09:47:35              "required": [
-Sep 24 09:47:35                "line_item_id",
-Sep 24 09:47:35                "quantity",
-Sep 24 09:47:35                "return_reason"
-Sep 24 09:47:35              ]
-Sep 24 09:47:35            }
-Sep 24 09:47:35          }
-Sep 24 09:47:35        },
-Sep 24 09:47:35        "required": [
-Sep 24 09:47:35          "line_items"
-Sep 24 09:47:35        ]
-Sep 24 09:47:35      }
-Sep 24 09:47:35    }
-Sep 24 09:47:35  ]
-Sep 24 09:47:35  Connected to MCP with 5 tools
-Sep 24 09:47:35  Connected to customer MCP with 4 tools
-Sep 24 09:47:35  Available customer tools: [
-Sep 24 09:47:35    'get_most_recent_order_status',
-Sep 24 09:47:35    'get_order_status',
-Sep 24 09:47:35    'get_store_credit_balances',
-Sep 24 09:47:35    'request_return'
-Sep 24 09:47:35  ]
-Sep 24 09:47:38  Calling customer tool get_order_status { order_number: 'VL-28406' }
-Sep 24 09:47:38  No token in database for conversation: 1758707254849
-Sep 24 09:47:38  Making JSON-RPC request to customer MCP server...
-Sep 24 09:47:38  Request details: {
-Sep 24 09:47:38    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 09:47:38    toolName: 'get_order_status',
-Sep 24 09:47:38    toolArgs: { order_number: 'VL-28406' },
-Sep 24 09:47:59  }
-Sep 24 09:48:00  Customer MCP server response: {
-Sep 24 09:48:00    jsonrpc: '2.0',
-Sep 24 09:48:00    id: 1,
-Sep 24 09:48:00    result: { content: [ [Object] ], isError: false }
-Sep 24 09:48:00  }
-Sep 24 09:48:05  POST /chat 200 - - 12.561 ms
-Sep 24 09:47:38    hasToken: false,
-Sep 24 09:47:38    tokenLength: 0
-Sep 24 09:47:38  }
-Sep 24 09:47:38  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
-Sep 24 09:47:38      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1021:24)
-Sep 24 09:47:38      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 09:47:38      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:933:26)
-Sep 24 09:47:38      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:1790:37)
-Sep 24 09:47:38      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:545:11)
-Sep 24 09:47:38      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:1755:22)
-Sep 24 09:47:38      at file:///workspace/build/server/index.js?t=315532801000:1688:7
-Sep 24 09:47:38      at Object.start (file:///workspace/build/server/index.js?t=315532801000:1637:9) {
-Sep 24 09:47:38    status: 401
-Sep 24 09:47:38  }
-Sep 24 09:47:38  Error details: {
-Sep 24 09:47:38    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
-Sep 24 09:47:38    status: 401,
-Sep 24 09:47:38    code: undefined,
-Sep 24 09:47:38    data: undefined
-Sep 24 09:47:38  }
-Sep 24 09:47:38  Unauthorized, generating authorization URL for customer
-Sep 24 09:47:38  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:47:38  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:47:38  Auth required for tool: get_order_status
-Sep 24 09:47:42  POST /chat 200 - - 48.986 ms
-Sep 24 09:48:39  OPTIONS /api/send-whatsapp-invite 200 - - 2.302 ms
-Sep 24 09:48:40  Received WhatsApp invite request for: +447891689332
-Sep 24 09:48:40  WhatsApp: Sending message to +447891689332
-Sep 24 09:48:40  WhatsApp: Message content: Hi! You can continue your chat with our AI assistant here on WhatsApp....
-Sep 24 09:48:40  WhatsApp: Message sent successfully
-Sep 24 09:48:40  WhatsApp message sent successfully: undefined
-Sep 24 09:48:40  POST /api/send-whatsapp-invite 200 - - 725.809 ms
-Sep 24 09:48:41  POST /api/whatsapp-webhook 200 - - 3.266 ms
-Sep 24 09:48:42  POST /api/whatsapp-webhook 200 - - 2.243 ms
-Sep 24 09:49:01  WhatsApp: Processing message from 447891689332
-Sep 24 09:49:01  WhatsApp: User message: Hi what's the status of my order VL-28406
-Sep 24 09:49:01  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
-Sep 24 09:49:01  WhatsApp: Using hardcoded shop ID: vapelocal
-Sep 24 09:49:01  WhatsApp: Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Sep 24 09:49:01  WhatsApp: Connecting to MCP servers (cached)...
-Sep 24 09:49:01  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Sep 24 09:49:01  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Sep 24 09:49:01  No token in database for conversation: whatsapp_447891689332
-Sep 24 09:49:01  Customer MCP server tools response: [
-Sep 24 09:49:01    {
-Sep 24 09:49:01      "name": "get_most_recent_order_status",
-Sep 24 09:49:01      "description": "Gets the status of the customer's most recent order.",
-Sep 24 09:49:01      "inputSchema": {
-Sep 24 09:49:01        "type": "object",
-Sep 24 09:49:01        "properties": {}
-Sep 24 09:49:01      }
-Sep 24 09:49:01    },
-Sep 24 09:49:01    {
-Sep 24 09:49:01      "name": "get_order_status",
-Sep 24 09:49:01      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Sep 24 09:49:01      "inputSchema": {
-Sep 24 09:49:01        "type": "object",
-Sep 24 09:49:01        "properties": {
-Sep 24 09:49:01          "order_number": {
-Sep 24 09:49:01            "type": "string",
-Sep 24 09:49:01            "description": "Number of the order to look up"
-Sep 24 09:49:01          }
-Sep 24 09:49:01        },
-Sep 24 09:49:01        "required": [
-Sep 24 09:49:01          "order_number"
-Sep 24 09:49:01        ]
-Sep 24 09:49:01      }
-Sep 24 09:49:01    },
-Sep 24 09:49:01    {
-Sep 24 09:49:01      "name": "get_store_credit_balances",
-Sep 24 09:49:01      "description": "Fetches the customer's store credit balances if they have any.",
-Sep 24 09:49:01      "inputSchema": {
-Sep 24 09:49:01        "type": "object",
-Sep 24 09:49:01        "properties": {}
-Sep 24 09:49:01      }
-Sep 24 09:49:01    },
-Sep 24 09:49:01    {
-Sep 24 09:49:01      "name": "request_return",
-Sep 24 09:49:01      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Sep 24 09:49:01      "inputSchema": {
-Sep 24 09:49:01        "type": "object",
-Sep 24 09:49:01        "properties": {
-Sep 24 09:49:01          "order_id": {
-Sep 24 09:49:01            "type": "string",
-Sep 24 09:49:01            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Sep 24 09:49:01          },
-Sep 24 09:49:01          "order_number": {
-Sep 24 09:49:01            "type": "string",
-Sep 24 09:49:01            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Sep 24 09:49:01          },
-Sep 24 09:49:01          "line_items": {
-Sep 24 09:49:01            "type": "array",
-Sep 24 09:49:01            "description": "List of items to return",
-Sep 24 09:49:01            "items": {
-Sep 24 09:49:01              "type": "object",
-Sep 24 09:49:01              "properties": {
-Sep 24 09:49:01                "line_item_id": {
-Sep 24 09:49:01                  "type": "string",
-Sep 24 09:49:01                  "description": "ID of the line item to return"
-Sep 24 09:49:01                },
-Sep 24 09:49:01                "quantity": {
-Sep 24 09:49:01                  "type": "integer",
-Sep 24 09:49:01                  "description": "Quantity to return"
-Sep 24 09:49:01                },
-Sep 24 09:49:01                "return_reason": {
-Sep 24 09:49:01                  "type": "string",
-Sep 24 09:49:01                  "description": "Reason for return",
-Sep 24 09:49:01                  "enum": [
-Sep 24 09:49:01                    "SIZE_TOO_SMALL",
-Sep 24 09:49:01                    "SIZE_TOO_LARGE",
-Sep 24 09:49:01                    "UNWANTED",
-Sep 24 09:49:01                    "NOT_AS_DESCRIBED",
-Sep 24 09:49:01                    "WRONG_ITEM",
-Sep 24 09:49:01                    "DEFECTIVE",
-Sep 24 09:49:01                    "STYLE",
-Sep 24 09:49:01                    "COLOR",
-Sep 24 09:49:01                    "OTHER",
-Sep 24 09:49:01                    "UNKNOWN"
-Sep 24 09:49:01                  ]
-Sep 24 09:49:01                },
-Sep 24 09:49:01                "customer_note": {
-Sep 24 09:49:01                  "type": "string",
-Sep 24 09:49:01                  "description": "Additional notes about the return"
-Sep 24 09:49:01                }
-Sep 24 09:49:01              },
-Sep 24 09:49:01              "required": [
-Sep 24 09:49:01                "line_item_id",
-Sep 24 09:49:01                "quantity",
-Sep 24 09:49:01                "return_reason"
-Sep 24 09:49:01              ]
-Sep 24 09:49:01            }
-Sep 24 09:49:01          }
-Sep 24 09:49:01        },
-Sep 24 09:49:01        "required": [
-Sep 24 09:49:01          "line_items"
-Sep 24 09:49:01        ]
-Sep 24 09:49:01      }
-Sep 24 09:49:01    }
-Sep 24 09:49:01  ]
-Sep 24 09:49:01  WhatsApp: Cached MCP client with 9 tools
-Sep 24 09:49:01  WhatsApp: Conversation turn 1
-Sep 24 09:49:04  WhatsApp: AI response received for turn 1
-Sep 24 09:49:04  WhatsApp: Executing tool: get_order_status
-Sep 24 09:49:04  WhatsApp: Tool arguments: { order_number: 'VL-28406' }
-Sep 24 09:49:04  Calling customer tool get_order_status { order_number: 'VL-28406' }
-Sep 24 09:49:04  No token in database for conversation: whatsapp_447891689332
-Sep 24 09:49:04  Making JSON-RPC request to customer MCP server...
-Sep 24 09:49:04  Request details: {
-Sep 24 09:49:04    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
-Sep 24 09:49:04    toolName: 'get_order_status',
-Sep 24 09:49:04    toolArgs: { order_number: 'VL-28406' },
-Sep 24 09:49:04    hasToken: false,
-Sep 24 09:49:04    tokenLength: 0
-Sep 24 09:49:04  }
-Sep 24 09:49:04  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
-Sep 24 09:49:04      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:1021:24)
-Sep 24 09:49:04      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Sep 24 09:49:04      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:933:26)
-Sep 24 09:49:04      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1142:40)
-Sep 24 09:49:04      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-Sep 24 09:49:04      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Sep 24 09:49:04      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Sep 24 09:49:04      at async Promise.all (index 0)
-Sep 24 09:49:04      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
-Sep 24 09:49:04      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
-Sep 24 09:49:04    status: 401
-Sep 24 09:49:04  }
-Sep 24 09:49:04  Error details: {
-Sep 24 09:49:04    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
-Sep 24 09:49:04    status: 401,
-Sep 24 09:49:04    code: undefined,
-Sep 24 09:49:04    data: undefined
-Sep 24 09:49:04  }
-Sep 24 09:49:04  Unauthorized, generating authorization URL for customer
-Sep 24 09:49:04  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:49:04  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:49:04  WhatsApp: Tool response received
-Sep 24 09:49:04  WhatsApp: Tool response structure: {
-Sep 24 09:49:04    "error": {
-Sep 24 09:49:04      "type": "auth_required",
-Sep 24 09:49:04      "data": "You need to authorize the app to access your customer data. Please click this link to authorize: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fapi%2Fwhatsapp-auth-callback&response_type=code&scope=customer-account-mcp-api%3Afull&state=c4e88c697b87568fb797291d31c28e6e-whatsapp_447891689332-vapelocal&code...
-Sep 24 09:49:04  WhatsApp: Tool returned error: {
-Sep 24 09:49:04    type: 'auth_required',
-Sep 24 09:49:04    data: 'You need to authorize the app to access your customer data. Please click this link to authorize: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fapi%2Fwhatsapp-auth-callback&response_type=code&scope=customer-account-mcp-api%3Afull&state=c4e88c697b87568fb797291d31c28e6e-whatsapp_447891689332-vapelocal&code_challenge=VSDSi0XEB74D0sKzrK0gUtjibocBG4DnEHSdjdiGtb8&code_challenge_method=S256'
-Sep 24 09:49:04  }
-Sep 24 09:49:04  WhatsApp: Authentication required for customer tool
-Sep 24 09:49:04  Using hardcoded customer account URL for vapelocal.co.uk
-Sep 24 09:49:04  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fapi%2Fwhatsapp-auth-callback&response_type=code&scope=customer-account-mcp-api%3Afull&state=b80b13f6d2aad6435ed77a35f3242647-whatsapp_447891689332-vapelocal&code_challenge=g-KrXvbo37PoAyjwVkK_EYlMHm9pJnKZSJwwnV8dRAA&code_challenge_method=S256
-Sep 24 09:49:04  WhatsApp: Sending message to 447891689332
-Sep 24 09:49:04  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
-Sep 24 09:49:05  WhatsApp: Message sent successfully
-Sep 24 09:49:05  WhatsApp: Authentication message sent to user
-Sep 24 09:49:05  POST /api/whatsapp-webhook 200 - - 3859.595 ms
-Sep 24 09:49:06  POST /api/whatsapp-webhook 200 - - 2.668 ms
-Sep 24 09:49:06  POST /api/whatsapp-webhook 200 - - 1.935 ms
-Sep 24 09:49:06  POST /api/whatsapp-webhook 200 - - 1.788 ms
+Sep 25 08:20:13  WhatsApp: Sending message to +447891689332
+Sep 25 08:20:13  WhatsApp: Message content: Hi! You can continue your chat with our AI assistant here on WhatsApp....
+Sep 25 08:20:14  WhatsApp: Message sent successfully
+Sep 25 08:20:14  WhatsApp message sent successfully: undefined
+Sep 25 08:20:14  POST /api/send-whatsapp-invite 200 - - 1176.382 ms
+Sep 25 08:20:35  WhatsApp: Processing message from 447891689332
+Sep 25 08:20:35  WhatsApp: User message: Hi what's the status of my last order?
+Sep 25 08:20:35  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
+Sep 25 08:20:35  WhatsApp: Using hardcoded shop ID: vapelocal
+Sep 25 08:20:35  WhatsApp: Conversation turn 1
+Sep 25 08:20:36  WhatsApp: AI response received for turn 1
+Sep 25 08:20:36  WhatsApp: Executing tool: get_most_recent_order_status
+Sep 25 08:20:36  WhatsApp: Tool arguments: {}
+Sep 25 08:20:36  Calling customer tool get_most_recent_order_status {}
+Sep 25 08:20:36  Making JSON-RPC request to customer MCP server...
+Sep 25 08:20:36  Request details: {
+Sep 25 08:20:36    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 25 08:20:36    toolName: 'get_most_recent_order_status',
+Sep 25 08:20:36    toolArgs: {},
+Sep 25 08:20:36    hasToken: true,
+Sep 25 08:20:36    tokenLength: 528
+Sep 25 08:20:36  }
+Sep 25 08:20:36  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 25 08:20:36      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:938:24)
+Sep 25 08:20:36      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 25 08:20:36      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:854:26)
+Sep 25 08:20:36      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1059:40)
+Sep 25 08:20:36      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Sep 25 08:20:36      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Sep 25 08:20:36      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Sep 25 08:20:36      at async Promise.all (index 0)
+Sep 25 08:20:36      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Sep 25 08:20:36      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
+Sep 25 08:20:36    status: 401
+Sep 25 08:20:36  }
+Sep 25 08:20:36  Error details: {
+Sep 25 08:20:36    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 25 08:20:36    status: 401,
+Sep 25 08:20:36  Unauthorized, generating authorization URL for customer
+Sep 25 08:20:36    code: undefined,
+Sep 25 08:20:36    data: undefined
+Sep 25 08:20:36  }
+Sep 25 08:20:36  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:20:36  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:20:36  WhatsApp: Tool response received
+Sep 25 08:20:36  WhatsApp: Tool response structure: {
+Sep 25 08:20:36    "error": {
+Sep 25 08:20:36      "type": "auth_required",
+Sep 25 08:20:36      "data": "https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=fa24ff266099ff06ef051050c3ba51bc-whatsapp_447891689332-vapelocal&code_challenge=p-fKc1q6iv8E0L5FDJ3bMBltyx1aQincFNiUj3rxR9E&code_challenge_method=S256"
+Sep 25 08:20:36    }
+Sep 25 08:20:36  }...
+Sep 25 08:20:36  WhatsApp: Tool returned error: {
+Sep 25 08:20:36    type: 'auth_required',
+Sep 25 08:20:36    data: 'https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=fa24ff266099ff06ef051050c3ba51bc-whatsapp_447891689332-vapelocal&code_challenge=p-fKc1q6iv8E0L5FDJ3bMBltyx1aQincFNiUj3rxR9E&code_challenge_method=S256'
+Sep 25 08:20:36  }
+Sep 25 08:20:36  WhatsApp: Authentication required for customer tool
+Sep 25 08:20:36  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:20:36  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=6ceb20d5b614930d3afbc74ed4d43552-whatsapp_447891689332-vapelocal&code_challenge=Ou8mNEY7QoYVURGknvEK6MTaCuqUDh6uT1I1bKAkirg&code_challenge_method=S256
+Sep 25 08:20:36  WhatsApp: Sending message to 447891689332
+Sep 25 08:20:36  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Sep 25 08:20:37  WhatsApp: Message sent successfully
+Sep 25 08:20:37  WhatsApp: Authentication message sent to user
+Sep 25 08:20:37  POST /api/whatsapp-webhook 200 - - 2521.503 ms
+Sep 25 08:20:39  POST /api/whatsapp-webhook 200 - - 1.309 ms
+Sep 25 08:20:39  POST /api/whatsapp-webhook 200 - - 1.068 ms
+Sep 25 08:20:49  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:20:49  Stored customer token in database for conversation: whatsapp_447891689332
+Sep 25 08:20:49  WhatsApp: Sending message to 447891689332
+Sep 25 08:20:49  WhatsApp: Message content: ✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of...
+Sep 25 08:20:50  WhatsApp: Message sent successfully
+Sep 25 08:20:50  WhatsApp: Sent success message to 447891689332
+Sep 25 08:20:50  GET /auth/callback?code=shcac_QUJSS2t6RytKYythdEtLRTc2YUhHb0pxRmE3YmdpdDRDQ1pIUVVWQlE5WFVscFFmdnlmVGR0K00xU1lJcnQvYmcxRUNvbTdWZU54QlFNeFFsK3FvM2w3bHJWMi8zd3krMHZBdkZOZ3ZmY1NKaVVGWFFpYXQwMkxKNE0rUXRnTWNLb0hwZ0pPaXRteUg5c3NkSk52cE1XNnRTak9Vbk9HN3I0bW9kM3pSL0h4Q3p3Z1VMNHRoOUtvRzNMczUrYVdYRGl5T21LbTBRS2hEcXJJWGZadUdzZWJhOWRWd05RZTI0UVpFbVVqbUJJaTNsbG04czdLTU02LzhDc1RzTGVjTVM4SzIxWmZNZlNKaXB4VjZsT0NmTU93V0xydk9UcVd6ejE4cndOZmM0TkRjQzgwUUlCc0FobCt1b2tBT3VPZktpcUpIUWplQW9SQkVSUGlpMmdsOE0yUm5FVHFaVWhiRngwKzU1TjBVVUtVdlMrUkt1c1VBSlRZRWRPTmNxU0NjWE8zTDhmWU1SaFdsa2NrY2JNUkxuU2FVREY1VTN0OHY5OGoyS0p1V0pRQlBVMms5dUFvaDhjbUg4UjlNZzNNQU1Hcm5hajdqMldCcG00aytxdFRWTEhFVXdRUExvaWpVdmFvaWwvS3N6UERQaVVpenVMQkF6TDFSckF2K2JrWGFSS0RuSFBlMDg5SWUrK2VvSkhJTU5Wc1hoSCtjUWorUlgrMG9RVTFpZkt0WmNuaWc1TGxZZ2gxZGsrT0x2OWNobXFQc0VJUXVjR3M1Rit3SXJjRDlNZTY1RjFJTHNxeFkvUjFlNzA2QTV6WnRWRFh0Q1BVaGxQUTRxSzR2YUJOZnV3N2Y0RDVQVzg3L0JKeCt5U1RqakEvTWJ0a0FPSTZyQi9kbDdJZEJ0MDhGS1dlM1Bmd3RLQXhhQ0FQY0xESkxFdTBKRDU2VDNvMENVSDNVR3BGSW9GMTBHdXNJRGFuQVJqU3JYeE5MbWNzUDlNZy9xQmE3b1NXeGZSVlhNdUE0ck01ZDBkdytkc09mOFVYMUJnc1ZKM0NBdGVkblI0bjFvbDZvYWV5VlNJR2xIMlZSOUszQTBPbTh1OWFUY0gwY0QwbVQzSXJacUJvTlEreGRiU0JxellpMCtHZG1kcjRCY0l2OXI5SnQtLWNWZHVsS0dGbHlmR1BTaTctLXovTnRXSTNOWWljSGVCdzVGTjFxSGc9PQ&state=6ceb20d5b614930d3afbc74ed4d43552-whatsapp_447891689332-vapelocal 200 - - 862.275 ms
+Sep 25 08:20:51  POST /api/whatsapp-webhook 200 - - 1.434 ms
+Sep 25 08:21:50  POST /api/whatsapp-webhook 200 - - 1.277 ms
+Sep 25 08:21:54  WhatsApp: Processing message from 447891689332
+Sep 25 08:21:54  WhatsApp: User message: Done
+Sep 25 08:21:54  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
+Sep 25 08:21:54  WhatsApp: Using hardcoded shop ID: vapelocal
+Sep 25 08:21:54  WhatsApp: Conversation turn 1
+Sep 25 08:21:57  WhatsApp: AI response received for turn 1
+Sep 25 08:21:57  WhatsApp: Executing tool: get_most_recent_order_status
+Sep 25 08:21:57  WhatsApp: Tool arguments: {}
+Sep 25 08:21:57  Calling customer tool get_most_recent_order_status {}
+Sep 25 08:21:57  Making JSON-RPC request to customer MCP server...
+Sep 25 08:21:57  Request details: {
+Sep 25 08:21:57    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 25 08:21:57    toolName: 'get_most_recent_order_status',
+Sep 25 08:21:57    toolArgs: {},
+Sep 25 08:21:57    hasToken: true,
+Sep 25 08:21:57    tokenLength: 528
+Sep 25 08:21:57  }
+Sep 25 08:21:57  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 25 08:21:57      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:938:24)
+Sep 25 08:21:57      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 25 08:21:57      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:854:26)
+Sep 25 08:21:57      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1059:40)
+Sep 25 08:21:57      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Sep 25 08:21:57      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Sep 25 08:21:57      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Sep 25 08:21:57      at async Promise.all (index 0)
+Sep 25 08:21:57      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Sep 25 08:21:57      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
+Sep 25 08:21:57    status: 401
+Sep 25 08:21:57  }
+Sep 25 08:21:57  Error details: {
+Sep 25 08:21:57    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 25 08:21:57    status: 401,
+Sep 25 08:21:57    code: undefined,
+Sep 25 08:21:57    data: undefined
+Sep 25 08:21:57  }
+Sep 25 08:21:57  Unauthorized, generating authorization URL for customer
+Sep 25 08:21:57  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:21:57  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:21:57  WhatsApp: Tool response received
+Sep 25 08:21:57  WhatsApp: Tool response structure: {
+Sep 25 08:21:57    "error": {
+Sep 25 08:21:57      "type": "auth_required",
+Sep 25 08:21:57      "data": "https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=b591b6cb12ff397fa9edc9e40d76a79d-whatsapp_447891689332-vapelocal&code_challenge=g5nn7FFfU5z1Eg8_-St8IY5YvQ2x2C43HHh2m8V2VCo&code_challenge_method=S256"
+Sep 25 08:21:57    }
+Sep 25 08:21:57  }...
+Sep 25 08:21:57  WhatsApp: Tool returned error: {
+Sep 25 08:21:57    type: 'auth_required',
+Sep 25 08:21:57    data: 'https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=b591b6cb12ff397fa9edc9e40d76a79d-whatsapp_447891689332-vapelocal&code_challenge=g5nn7FFfU5z1Eg8_-St8IY5YvQ2x2C43HHh2m8V2VCo&code_challenge_method=S256'
+Sep 25 08:21:57  }
+Sep 25 08:21:57  WhatsApp: Authentication required for customer tool
+Sep 25 08:21:57  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:21:57  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=6092959ff4cd8eda80f6c2375f7a3893-whatsapp_447891689332-vapelocal&code_challenge=O8TSPjTdi6dxo1aW9uVlhO4X9Fx_7Ubb_YFNSpRF1k0&code_challenge_method=S256
+Sep 25 08:21:57  WhatsApp: Sending message to 447891689332
+Sep 25 08:21:57  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Sep 25 08:21:58  WhatsApp: Message sent successfully
+Sep 25 08:21:58  WhatsApp: Authentication message sent to user
+Sep 25 08:21:58  POST /api/whatsapp-webhook 200 - - 4062.043 ms
+Sep 25 08:22:00  POST /api/whatsapp-webhook 200 - - 1.480 ms
+Sep 25 08:22:00  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:00  Stored customer token in database for conversation: whatsapp_447891689332
+Sep 25 08:22:00  WhatsApp: Sending message to 447891689332
+Sep 25 08:22:00  WhatsApp: Message content: ✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of...
+Sep 25 08:22:01  WhatsApp: Message sent successfully
+Sep 25 08:22:01  WhatsApp: Sent success message to 447891689332
+Sep 25 08:22:01  GET /auth/callback?code=shcac_Wm9CRFlsV3lmeWVLdlNkdGM1U3M1bHBEUzNUTkt6TlpJMzFWbk4xMWpZUVo1TDQ5cmhtUFZCMm9XajFtNTl2VDRpRllPQWRuRmlFczgweXlnSzgrcHg4WXZVT09BYStoM0xnUDN3WGlTaldUR1lVeDFHQW1YSE1TYTJSUEVMVUhpMDZnSHhnOEN3WHdHMlVvKzZ4RHNKd3ZKa1ZWTnVlOXJ5TWFVT2d3K0VJc2hCOEtFUjRDZTBmNnlSeUQrM290ZWRSdzNzbm5QWHBjNXRoZno5WHA0OVRtU3EreDBjdHdSakZkRDBwQko5am5OK0RtMUNNWWVzZGZodHF3YUtTSHVWMVRQOVd2dW1FdFJ3ZC9ZRnNaWnBJRUJYc2FjeGlFTkE1aVBoNTVWR091Qi92eFdWTXBmZEJ1N00xeVdGVWxpVFQ5dWZJS2d4WHBCL1pxTkQxU2N0QlZyNmM4QnpBakQ4SkZUS0ZXOEZLL3RrZE84czlKUDZJWkJESkExMnFRMnQzT2VvcnFSN1FMcWNNaUFsYXhKRG1tWVhudDBCRkpBdFpRMlBJTGdlTlFqbGRjZnRDRStDaTZRVHRzdzNxVkFwd3ZDL2xrZThuQzJPYm0xdTdJUVNNK1VVNUd3dXNPQUtJbzF4Umc3bFk0OVYwc2RkYzZzdU1ZZ013SmZWWXd0NE5GQzBmMkcvZVdlaXA5U3Eya0V3SThvSDZSclNwRG5qZnpmbFZDbkFPY2ozZTd5Y1orWk9BRGFjZmlGclR2Tlgyb1dzYWlaYmkvYlA3a3ZCZm9qZkdvVjVVV0ZKTE5CUGJJRmZtYnlKTTM1ZWRYTWZzRU90NFpOZk5QOU9FVWs1Qm5kWlZ5UWsydjJLVlA3M1VnNXRLRnAwZjFuWnIwSCtHemFFVUw2eStzQnFWSjExRk1lRGs4dzUvcDB5RGE1VzNUY2k3L1l0aHhNMU5YbVcwYS9vUU9pMnUxbGVhSHhRaHQ1UW1iQlVFRDFkTVRSMTFkVXNJSCtvd0YxcUZzeGtZdTRMYlVZcHY4Y3JTSE84Q0JjY2pOdWhGSUdZZjFmTmxhcUY3SC9UOFJyTk1JdWEwV0NVYnd5aUNaY2taeDc3bTVYMnpKY0ZRb001MU9venNNWGQ4M0t4b3FWUHAvM3N6RWd4ZE4tLUhheVc2eUJjRUVPSmJiUDMtLUZMRDlweWxUUlRzemlOdi9jZ0d4a0E9PQ&state=6092959ff4cd8eda80f6c2375f7a3893-whatsapp_447891689332-vapelocal 200 - - 917.576 ms
+Sep 25 08:22:02  POST /api/whatsapp-webhook 200 - - 1.291 ms
+Sep 25 08:22:08  WhatsApp: Processing message from 447891689332
+Sep 25 08:22:08  WhatsApp: User message: Done
+Sep 25 08:22:08  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
+Sep 25 08:22:08  WhatsApp: Using hardcoded shop ID: vapelocal
+Sep 25 08:22:08  WhatsApp: Conversation turn 1
+Sep 25 08:22:10  WhatsApp: AI response received for turn 1
+Sep 25 08:22:10  WhatsApp: Executing tool: get_most_recent_order_status
+Sep 25 08:22:10  WhatsApp: Tool arguments: {}
+Sep 25 08:22:10  Calling customer tool get_most_recent_order_status {}
+Sep 25 08:22:10  Making JSON-RPC request to customer MCP server...
+Sep 25 08:22:10  Request details: {
+Sep 25 08:22:10    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 25 08:22:10    toolName: 'get_most_recent_order_status',
+Sep 25 08:22:10    toolArgs: {},
+Sep 25 08:22:10    hasToken: true,
+Sep 25 08:22:10    tokenLength: 528
+Sep 25 08:22:10  }
+Sep 25 08:22:10  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 25 08:22:10      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:938:24)
+Sep 25 08:22:10      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 25 08:22:10      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:854:26)
+Sep 25 08:22:10      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1059:40)
+Sep 25 08:22:10      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Sep 25 08:22:10      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Sep 25 08:22:10      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Sep 25 08:22:10      at async Promise.all (index 0)
+Sep 25 08:22:10      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Sep 25 08:22:10      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
+Sep 25 08:22:10    status: 401
+Sep 25 08:22:10  }
+Sep 25 08:22:10  Error details: {
+Sep 25 08:22:10    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 25 08:22:10    status: 401,
+Sep 25 08:22:10    code: undefined,
+Sep 25 08:22:10    data: undefined
+Sep 25 08:22:10  }
+Sep 25 08:22:10  Unauthorized, generating authorization URL for customer
+Sep 25 08:22:10  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:10  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:10  WhatsApp: Tool response received
+Sep 25 08:22:10  WhatsApp: Tool response structure: {
+Sep 25 08:22:10    "error": {
+Sep 25 08:22:10      "type": "auth_required",
+Sep 25 08:22:10      "data": "https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=4e71bffd15f4ec1bfd51c617bfb5eeeb-whatsapp_447891689332-vapelocal&code_challenge=Vb2UT6vC4qRv4Ry3imc0T75a5lbhPkQUEoDUsNv7TDg&code_challenge_method=S256"
+Sep 25 08:22:10    }
+Sep 25 08:22:10  }...
+Sep 25 08:22:10  WhatsApp: Tool returned error: {
+Sep 25 08:22:10    type: 'auth_required',
+Sep 25 08:22:10    data: 'https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=4e71bffd15f4ec1bfd51c617bfb5eeeb-whatsapp_447891689332-vapelocal&code_challenge=Vb2UT6vC4qRv4Ry3imc0T75a5lbhPkQUEoDUsNv7TDg&code_challenge_method=S256'
+Sep 25 08:22:10  }
+Sep 25 08:22:10  WhatsApp: Authentication required for customer tool
+Sep 25 08:22:10  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:10  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=ee1c77e40f2ed36c913201a76bd7891e-whatsapp_447891689332-vapelocal&code_challenge=MtsCpSi1sM_FYgvKpYMvC0uFxZqXBCyQu2rSYB287bc&code_challenge_method=S256
+Sep 25 08:22:10  WhatsApp: Sending message to 447891689332
+Sep 25 08:22:10  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Sep 25 08:22:11  WhatsApp: Message sent successfully
+Sep 25 08:22:11  WhatsApp: Authentication message sent to user
+Sep 25 08:22:11  POST /api/whatsapp-webhook 200 - - 3460.436 ms
+Sep 25 08:22:13  POST /api/whatsapp-webhook 200 - - 1.151 ms
+Sep 25 08:22:27  POST /api/whatsapp-webhook 200 - - 1.076 ms
+Sep 25 08:22:27  POST /api/whatsapp-webhook 200 - - 1.404 ms
+Sep 25 08:22:36  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:36  Stored customer token in database for conversation: whatsapp_447891689332
+Sep 25 08:22:36  WhatsApp: Sending message to 447891689332
+Sep 25 08:22:36  WhatsApp: Message content: ✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of...
+Sep 25 08:22:36  WhatsApp: Message sent successfully
+Sep 25 08:22:36  WhatsApp: Sent success message to 447891689332
+Sep 25 08:22:36  GET /auth/callback?code=shcac_bGpCSno1U0dNQW5zeU1kV0tlTDdCek56cVMrK25XYlBtdlVaT081WmJOdC92L1FkLy93TWhJVHRpZzdTTm5XN0Fzb0duYW5ISFhuQWljWlIwVnR3UjJndGRmOGJtVGdmVmhpY1FsTU5sa1ByZU5UTjE2YVdtYTJIQStPUVh2M21HbVI4Qi9EVVUyRW51ek9KeVBXa25Ta1RSN1E4L045NFhRck9BRkoxZEdCeXR1WXpyVHJCWjJRWDBNNkxmdkxtOUNqeDhnWGpZK3NVMy9qVjM5R2UzUEpjNVByK0NGcDFFbTlkbWtxOVQyQkJUS09US0ErVUY4b1VyT010ZmhhcjVkajJGcHBWeVIrL0hHaEtGNVJ3bW9GZlZCbzNsV1BsQU9lRW1VdTBHZEFmK3NucHZ6RWJHaG5ISzdsYXN1SU9DcXk5bWpsaFcvSUZ0b0NXaFJLQ0c2OVAvdFhZSllkZTF3dzBzWUZFak1uOXIybmZ1VnFQWDhaMnROSVVDZEhiR1B2RjFzYkhMeDlZRFhEbW4yUkNTU1VBdy9QNVVnQmdOdndoaEFJWkxvM2xLTFZRUWFHTnhEM0FHWU9NOWZ6eC9PWEIxYkFQcmdOOFlsbVVadTg0RVVISnBCZ2s5ekt5Z0YySXdtbk5iYU5GM0FLK3BFRE5XaThaaG9DZEVoenQ5ZzZVVGR2QmxoVkVmcU1GTTBtWFVzWXY5ZStZdXhNN3V6ekdOTzFncy9iVlVqd1d2SDFMbm5nUWF4SWhWSjdOOTUrc1FMK00vb0JWRmtnN0dhQVAwdWh0d09VSDJEeW4zSGs1VXd2c2pWSzZKd2FjOEFhWGdDYlA0ZEdNbjFkSjFPMEE1RnA4c0N0VHRVdktvZStoL214bTJmRmxXYW1ydC9scGEvbVFoSXNoY2o3VmhyaXhGaXlTVFByUys4TU55RnJJZlE3QW15R3NlL1o4NVZQR1BqUW1rakM2NHkzd2RiK1F0UTNLNHhYRHZ2U1VaRXlhUG8zNmxRbkdxdkdqQ0JvS0x2T3RPcHVuWXArQW95UGx3KzdHTHM2Q04yc2JjdHUvRWw5MDBRWndmdVl3cDhkaFkyN1RRRWdFbXFJNXNqTEdhbHBxcHJHS1pGV1YrRGRTbTliaDZramt2T2MxVnVPZ1loWXMtLTFhckdnM2FhYTJMVjFHOUstLTJreGdNOGFaZDlSbTRTeldmaHNaTFE9PQ&state=5f883d8f57eabc313cd9ad8f5827cbc4-whatsapp_447891689332-vapelocal 200 - - 926.164 ms
+Sep 25 08:22:53  WhatsApp: Processing message from 447891689332
+Sep 25 08:22:53  WhatsApp: User message: What's the status of my most recent order
+Sep 25 08:22:53  WhatsApp: Using hardcoded shop domain: https://vapelocal.co.uk
+Sep 25 08:22:53  WhatsApp: Using hardcoded shop ID: vapelocal
+Sep 25 08:22:53  WhatsApp: Conversation turn 1
+Sep 25 08:22:55  WhatsApp: AI response received for turn 1
+Sep 25 08:22:55  WhatsApp: Executing tool: get_most_recent_order_status
+Sep 25 08:22:55  WhatsApp: Tool arguments: {}
+Sep 25 08:22:55  Calling customer tool get_most_recent_order_status {}
+Sep 25 08:22:55  Making JSON-RPC request to customer MCP server...
+Sep 25 08:22:55  Request details: {
+Sep 25 08:22:55    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Sep 25 08:22:55    toolName: 'get_most_recent_order_status',
+Sep 25 08:22:55    toolArgs: {},
+Sep 25 08:22:55    hasToken: true,
+Sep 25 08:22:55    tokenLength: 528
+Sep 25 08:22:55  }
+Sep 25 08:22:55  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Sep 25 08:22:55      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:938:24)
+Sep 25 08:22:55      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Sep 25 08:22:55      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:854:26)
+Sep 25 08:22:55      at action$3 (file:///workspace/build/server/index.js?t=315532801000:1059:40)
+Sep 25 08:22:55      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Sep 25 08:22:55      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Sep 25 08:22:55      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Sep 25 08:22:55      at async Promise.all (index 0)
+Sep 25 08:22:55      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Sep 25 08:22:55      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17) {
+Sep 25 08:22:55    status: 401
+Sep 25 08:22:55  }
+Sep 25 08:22:55  Error details: {
+Sep 25 08:22:55    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Sep 25 08:22:55    status: 401,
+Sep 25 08:22:55    code: undefined,
+Sep 25 08:22:55    data: undefined
+Sep 25 08:22:55  }
+Sep 25 08:22:55  Unauthorized, generating authorization URL for customer
+Sep 25 08:22:55  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:55  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:55  WhatsApp: Tool response received
+Sep 25 08:22:55  WhatsApp: Tool response structure: {
+Sep 25 08:22:55    "error": {
+Sep 25 08:22:55      "type": "auth_required",
+Sep 25 08:22:55      "data": "https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=94310d874d3b895919270ec7a74f091d-whatsapp_447891689332-vapelocal&code_challenge=xhLffZ6MTAR6Yo6pheTLfCBDZ2y0nQq4TAKyV3Dp13Q&code_challenge_method=S256"
+Sep 25 08:22:55    }
+Sep 25 08:22:55  }...
+Sep 25 08:22:55  WhatsApp: Tool returned error: {
+Sep 25 08:22:55    type: 'auth_required',
+Sep 25 08:22:55    data: 'https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=94310d874d3b895919270ec7a74f091d-whatsapp_447891689332-vapelocal&code_challenge=xhLffZ6MTAR6Yo6pheTLfCBDZ2y0nQq4TAKyV3Dp13Q&code_challenge_method=S256'
+Sep 25 08:22:55  }
+Sep 25 08:22:55  WhatsApp: Authentication required for customer tool
+Sep 25 08:22:55  Using hardcoded customer account URL for vapelocal.co.uk
+Sep 25 08:22:55  WhatsApp: Generated auth URL: https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=19b4fcc5804d5475a7da350f7b4df549-whatsapp_447891689332-vapelocal&code_challenge=YIp-bAltGFtmm326QkDqicmCqQj7vV1XZzwK25qPB6s&code_challenge_method=S256
+Sep 25 08:22:55  WhatsApp: Sending message to 447891689332
+Sep 25 08:22:55  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Sep 25 08:22:56  WhatsApp: Message sent successfully
+Sep 25 08:22:56  WhatsApp: Authentication message sent to user
+Sep 25 08:22:56  POST /api/whatsapp-webhook 200 - - 2975.679 ms
+Sep 25 08:22:58  POST /api/whatsapp-webhook 200 - - 1.082 ms

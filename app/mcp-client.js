@@ -60,7 +60,7 @@ class MCPClient {
       // and tools that require auth will prompt for it later
       const headers = {
         "Content-Type": "application/json",
-        "Authorization": this.customerAccessToken || ""
+        "Authorization": this.customerAccessToken ? `Bearer ${this.customerAccessToken}` : ""
       };
 
       const response = await this._makeJsonRpcRequest(
@@ -223,7 +223,7 @@ class MCPClient {
 
       const headers = {
         "Content-Type": "application/json",
-        "Authorization": accessToken
+        "Authorization": accessToken ? `Bearer ${accessToken}` : ""
       };
 
       try {
