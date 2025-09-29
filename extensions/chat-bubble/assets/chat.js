@@ -385,13 +385,12 @@
         // Process Markdown links
         const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
         processedText = processedText.replace(markdownLinkRegex, (match, text, url) => {
-          // Check if it's an auth URL
-          if (url.includes('shopify.com/authentication') &&
-             (url.includes('oauth/authorize') || url.includes('authentication'))) {
+          // Check if it's an auth URL (broadened to any domain)
+          if ((url.includes('/authentication') || url.includes('oauth/authorize'))) {
             // Store the auth URL in a global variable for later use - this avoids issues with onclick handlers
             window.shopAuthUrl = url;
-            // Just return normal link that will be handled by the document click handler
-            return '<a href="#auth" class="shop-auth-trigger">' + text + '</a>';
+            // Return a short link that will be handled by the document click handler
+            return '<a href="#auth" class="shop-auth-trigger">' + (text && text.trim() ? text : 'Click here to authorize') + '</a>';
           }
           // If it's a checkout link, replace the text
           else if (url.includes('/cart') || url.includes('checkout')) {
@@ -401,6 +400,32 @@
             return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
           }
         });
+
+        // Convert bare URLs to short, friendly links while avoiding replacements inside existing HTML
+        const urlRegex = /(https?:\/\/[^\s<]+)/g;
+        const formatBareUrl = (url) => {
+          // Auth URLs → short trigger link
+          if (url.includes('/authentication') || url.includes('oauth/authorize')) {
+            window.shopAuthUrl = url;
+            return '<a href="#auth" class="shop-auth-trigger">Click here to authorize</a>';
+          }
+          // Checkout/cart URLs → friendly text
+          if (url.includes('/cart') || url.includes('checkout')) {
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">click here to proceed to checkout</a>';
+          }
+          // Otherwise show a shortened display (domain + truncated path)
+          let display = 'link';
+          try {
+            const u = new URL(url);
+            display = u.hostname + (u.pathname && u.pathname !== '/' ? u.pathname : '');
+            if (display.length > 28) display = display.slice(0, 28) + '…';
+          } catch (e) {}
+          return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + display + '</a>';
+        };
+        processedText = processedText
+          .split(/(<[^>]+>)/g)
+          .map(part => part.startsWith('<') ? part : part.replace(urlRegex, (m) => formatBareUrl(m)))
+          .join('');
 
         // Convert text to HTML with proper list handling
         processedText = this.convertMarkdownToHtml(processedText);
@@ -598,9 +623,10 @@
             // Save the last user message for resuming after authentication
             sessionStorage.setItem('shopAiLastMessage', userMessage || '');
             
-            // Display the authentication link to the user
+            // Display the authentication link to the user (short link text, no raw URL)
             if (data.authUrl) {
-              const authMessage = `I need you to authorize access to your customer account to check your order status. Please click this link to authorize the app:\n\n<a href="${data.authUrl}" target="_blank" style="color: #007bff; text-decoration: underline;">${data.authUrl}</a>\n\nOnce you've authorized the access, I'll be able to check your order status and provide you with all the details you need!`;
+              try { window.shopAuthUrl = data.authUrl; } catch (e) {}
+              const authMessage = `I need you to authorize access to your customer account to check your order status. Please click this link to authorize the app:\n\n<a href="#auth" class="shop-auth-trigger">Click here to authorize</a>\n\nOnce you've authorized the access, I'll be able to check your order status and provide you with all the details you need!`;
               ShopAIChat.Message.add(authMessage, 'assistant', messagesContainer);
             }
             break;
@@ -931,6 +957,14 @@
 
       this.UI.init(container);
 
+      // Add WhatsApp banner button handler
+      const whatsappBannerBtn = document.getElementById('whatsapp-banner-btn');
+      if (whatsappBannerBtn) {
+        whatsappBannerBtn.addEventListener('click', () => {
+          this.showWhatsAppInput();
+        });
+      }
+
       // Check for existing conversation
       const conversationId = sessionStorage.getItem('shopAiConversationId');
 
@@ -944,160 +978,63 @@
     },
 
     /**
-     * Show welcome message with WhatsApp choice buttons
+     * Show welcome message with conversation starter buttons
      */
     showWelcomeWithWhatsAppChoice: function() {
       const { messagesContainer } = this.UI.elements;
+
+      // Show WhatsApp banner
+      const whatsappBanner = document.getElementById('whatsapp-banner');
+      if (whatsappBanner) {
+        whatsappBanner.style.display = 'flex';
+      }
 
       // Create the welcome message
       const welcomeMessage = document.createElement('div');
       welcomeMessage.classList.add('shop-ai-message', 'assistant');
       welcomeMessage.innerHTML = `
         <div class="shop-ai-message-content">
-          👋 Hi there! How can I help you today?<br><br>
-          <strong>Before we begin, would you like to move this to WhatsApp for convenience?</strong>
+          👋 Welcome to our store! I'm your AI shopping assistant and I'm here to help you find exactly what you're looking for.<br><br>
+          <strong>What would you like to do today?</strong>
         </div>
       `;
       messagesContainer.appendChild(welcomeMessage);
 
-      // Create user choice buttons
+      // Create conversation starter buttons
       const choiceMessage = document.createElement('div');
-      choiceMessage.classList.add('shop-ai-message', 'user', 'choice-buttons');
+      choiceMessage.classList.add('shop-ai-message', 'assistant', 'choice-buttons');
       choiceMessage.innerHTML = `
-        <div class="shop-ai-choice-buttons">
-          <button class="shop-ai-choice-btn" data-choice="chat-here">Chat here</button>
-          <button class="shop-ai-choice-btn" data-choice="chat-whatsapp">Chat on WhatsApp</button>
+        <div class="shop-ai-conversation-starters">
+          <button class="shop-ai-starter-btn" data-message="I'm looking for products">🛍️ Browse Products</button>
+          <button class="shop-ai-starter-btn" data-message="What are your bestsellers?">⭐ Best Sellers</button>
+          <button class="shop-ai-starter-btn" data-message="What's the status of my order?">📦 Order Help</button>
         </div>
       `;
       messagesContainer.appendChild(choiceMessage);
 
-      // Add event listeners for the buttons
-      const buttons = choiceMessage.querySelectorAll('.shop-ai-choice-btn');
+      // Add event listeners for the conversation starter buttons
+      const buttons = choiceMessage.querySelectorAll('.shop-ai-starter-btn');
       buttons.forEach(button => {
         button.addEventListener('click', async function() {
-          const choice = this.dataset.choice;
+          const message = this.dataset.message;
           
           // Disable all buttons to prevent multiple clicks
           buttons.forEach(btn => btn.disabled = true);
           
           // Change button text to show it's processing
-          this.textContent = choice === 'chat-here' ? 'Starting chat...' : 'Sending invite...';
+          this.textContent = 'Processing...';
           
-          if (choice === 'chat-here') {
-            // Remove the choice buttons and start normal chat
-            choiceMessage.remove();
-            
-            // Show login option after starting chat
-            ShopAIChat.showLoginOption();
-            
-            // Send a message to start the conversation
-            const input = document.querySelector('.shop-ai-chat-input input');
-            if (input) {
-              input.value = "I'd like to chat here";
-              const sendButton = document.querySelector('.shop-ai-chat-send');
-              if (sendButton) {
-                sendButton.click();
-              }
+          // For all conversation starters, remove the buttons and send the message
+          choiceMessage.remove();
+          
+          // Send the selected message
+          const input = document.querySelector('.shop-ai-chat-input input');
+          if (input) {
+            input.value = message;
+            const sendButton = document.querySelector('.shop-ai-chat-send');
+            if (sendButton) {
+              sendButton.click();
             }
-          } else if (choice === 'chat-whatsapp') {
-            // Show phone number input
-            choiceMessage.innerHTML = `
-              <div class="shop-ai-whatsapp-input">
-                <p>Please enter your WhatsApp number:</p>
-                <input type="text" id="whatsapp-number-input" placeholder="07890123456" class="shop-ai-phone-input">
-                <button id="send-whatsapp-invite-btn" class="shop-ai-choice-btn">Send Invite</button>
-              </div>
-            `;
-            
-            // Focus on the phone input
-            setTimeout(() => {
-              const phoneInput = document.getElementById('whatsapp-number-input');
-              if (phoneInput) {
-                phoneInput.focus();
-              }
-            }, 100);
-            
-            // Handle WhatsApp invite
-            document.getElementById('send-whatsapp-invite-btn').addEventListener('click', async function() {
-              const phoneInput = document.getElementById('whatsapp-number-input');
-              let phoneNumber = phoneInput.value.trim();
-              
-              if (!phoneNumber) {
-                alert('Please enter a valid phone number.');
-                return;
-              }
-              
-              // Format phone number - add UK country code if missing
-              phoneNumber = ShopAIChat.formatPhoneNumber(phoneNumber);
-              
-              if (!phoneNumber) {
-                alert('Please enter a valid phone number.');
-                return;
-              }
-              
-              // Show the formatted number to the user
-              const originalValue = phoneInput.value;
-              phoneInput.value = phoneNumber;
-              phoneInput.style.backgroundColor = '#f0f9ff';
-              phoneInput.style.borderColor = '#3b82f6';
-              
-              // Change button text
-              this.textContent = 'Sending...';
-              this.disabled = true;
-              
-              try {
-                // Call backend to send WhatsApp invite
-                const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ phoneNumber })
-                });
-                
-                if (res.ok) {
-                  // Remove the input form
-                  choiceMessage.remove();
-                  
-                  // Add bot message with success
-                  const successMessage = document.createElement('div');
-                  successMessage.classList.add('shop-ai-message', 'assistant');
-                  successMessage.innerHTML = `
-                    <div class="shop-ai-message-content">
-                      We've sent you a message on WhatsApp! Please check your phone.
-                    </div>
-                  `;
-                  messagesContainer.appendChild(successMessage);
-                } else {
-                  // Remove the input form
-                  choiceMessage.remove();
-                  
-                  // Add bot message with error
-                  const errorMessage = document.createElement('div');
-                  errorMessage.classList.add('shop-ai-message', 'assistant');
-                  errorMessage.innerHTML = `
-                    <div class="shop-ai-message-content">
-                      ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
-                    </div>
-                  `;
-                  messagesContainer.appendChild(errorMessage);
-                }
-              } catch (error) {
-                // Remove the input form
-                choiceMessage.remove();
-                
-                // Add bot message with error
-                const errorMessage = document.createElement('div');
-                errorMessage.classList.add('shop-ai-message', 'assistant');
-                errorMessage.innerHTML = `
-                  <div class="shop-ai-message-content">
-                    ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
-                  </div>
-                `;
-                messagesContainer.appendChild(errorMessage);
-              }
-              
-              // Scroll to bottom
-              ShopAIChat.UI.scrollToBottom();
-            });
           }
         });
       });
@@ -1107,74 +1044,126 @@
     },
 
     /**
-     * Show login option in the chat
+     * Show WhatsApp input form
      */
-    showLoginOption: function() {
+    showWhatsAppInput: function() {
       const { messagesContainer } = this.UI.elements;
+      const self = this; // Store reference to ShopAIChat object
 
-      // Create login message
-      const loginMessage = document.createElement('div');
-      loginMessage.classList.add('shop-ai-message', 'assistant');
-      loginMessage.innerHTML = `
+      // Create WhatsApp input message
+      const whatsappMessage = document.createElement('div');
+      whatsappMessage.classList.add('shop-ai-message', 'assistant');
+      whatsappMessage.innerHTML = `
         <div class="shop-ai-message-content">
-          🔐 <strong>Want to access your account?</strong><br>
-          Login to view your orders, account details, and get personalized help!
+          Please enter your WhatsApp number:
         </div>
       `;
-      messagesContainer.appendChild(loginMessage);
+      messagesContainer.appendChild(whatsappMessage);
 
-      // Create login button
-      const loginButtonMessage = document.createElement('div');
-      loginButtonMessage.classList.add('shop-ai-message', 'user', 'login-buttons');
-      loginButtonMessage.innerHTML = `
-        <div class="shop-ai-choice-buttons">
-          <button class="shop-ai-choice-btn shop-ai-login-btn" data-action="login">Login to My Account</button>
-          <button class="shop-ai-choice-btn shop-ai-skip-btn" data-action="skip">Skip for now</button>
+      // Create input form
+      const inputMessage = document.createElement('div');
+      inputMessage.classList.add('shop-ai-message', 'user', 'whatsapp-input');
+      inputMessage.innerHTML = `
+        <div class="shop-ai-whatsapp-input">
+          <input type="text" id="whatsapp-number-input" placeholder="07890123456" class="shop-ai-phone-input">
+          <button id="send-whatsapp-invite-btn" class="shop-ai-choice-btn">Send Invite</button>
         </div>
       `;
-      messagesContainer.appendChild(loginButtonMessage);
+      messagesContainer.appendChild(inputMessage);
 
-      // Add event listeners for login buttons
-      const loginButtons = loginButtonMessage.querySelectorAll('.shop-ai-choice-btn');
-      loginButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const action = this.dataset.action;
+      // Focus on the phone input
+      setTimeout(() => {
+        const phoneInput = document.getElementById('whatsapp-number-input');
+        if (phoneInput) {
+          phoneInput.focus();
+        }
+      }, 100);
+
+      // Handle WhatsApp invite
+      document.getElementById('send-whatsapp-invite-btn').addEventListener('click', async function() {
+        const phoneInput = document.getElementById('whatsapp-number-input');
+        let phoneNumber = phoneInput.value.trim();
+        
+        if (!phoneNumber) {
+          alert('Please enter a valid phone number.');
+          return;
+        }
+        
+        // Format phone number - add UK country code if missing
+        phoneNumber = ShopAIChat.formatPhoneNumber(phoneNumber);
+        
+        if (!phoneNumber) {
+          alert('Please enter a valid phone number.');
+          return;
+        }
+        
+        // Show the formatted number to the user
+        phoneInput.value = phoneNumber;
+        phoneInput.style.backgroundColor = '#f0f9ff';
+        phoneInput.style.borderColor = '#3b82f6';
+        
+        // Change button text
+        this.textContent = 'Sending...';
+        this.disabled = true;
+        
+        try {
+          // Call backend to send WhatsApp invite
+          const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phoneNumber })
+          });
           
-          if (action === 'login') {
-            // Remove login options
-            loginMessage.remove();
-            loginButtonMessage.remove();
+          if (res.ok) {
+            // Remove the input form
+            whatsappMessage.remove();
+            inputMessage.remove();
             
-            // Send a message to trigger authentication
-            const input = document.querySelector('.shop-ai-chat-input input');
-            if (input) {
-              input.value = "I want to login to my account";
-              const sendButton = document.querySelector('.shop-ai-chat-send');
-              if (sendButton) {
-                sendButton.click();
-              }
-            }
-          } else if (action === 'skip') {
-            // Remove login options
-            loginMessage.remove();
-            loginButtonMessage.remove();
-            
-            // Add a message indicating they can login later
-            const skipMessage = document.createElement('div');
-            skipMessage.classList.add('shop-ai-message', 'assistant');
-            skipMessage.innerHTML = `
+            // Add bot message with success
+            const successMessage = document.createElement('div');
+            successMessage.classList.add('shop-ai-message', 'assistant');
+            successMessage.innerHTML = `
               <div class="shop-ai-message-content">
-                No problem! You can always ask me to help you login later when you need to access your account information.
+                We've sent you a message on WhatsApp! Please check your phone.
               </div>
             `;
-            messagesContainer.appendChild(skipMessage);
+            messagesContainer.appendChild(successMessage);
+          } else {
+            // Remove the input form
+            whatsappMessage.remove();
+            inputMessage.remove();
+            
+            // Add bot message with error
+            const errorMessage = document.createElement('div');
+            errorMessage.classList.add('shop-ai-message', 'assistant');
+            errorMessage.innerHTML = `
+              <div class="shop-ai-message-content">
+                ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
+              </div>
+            `;
+            messagesContainer.appendChild(errorMessage);
           }
-        });
+        } catch (error) {
+          // Remove the input form
+          whatsappMessage.remove();
+          inputMessage.remove();
+          
+          // Add bot message with error
+          const errorMessage = document.createElement('div');
+          errorMessage.classList.add('shop-ai-message', 'assistant');
+          errorMessage.innerHTML = `
+            <div class="shop-ai-message-content">
+              ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
+            </div>
+          `;
+          messagesContainer.appendChild(errorMessage);
+        }
+        
+        // Scroll to bottom
+        self.UI.scrollToBottom();
       });
-
-      // Scroll to bottom
-      this.UI.scrollToBottom();
     },
+
 
     /**
      * Format phone number to include country code

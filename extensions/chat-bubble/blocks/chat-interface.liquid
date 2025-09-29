@@ -14,6 +14,16 @@
       <button class="shop-ai-chat-close">✕</button>
     </div>
 
+    <div class="shop-ai-whatsapp-banner" id="whatsapp-banner" style="display: none; background-image: url('{{ 'whatsapp-background.png' | asset_url }}');">
+      <div class="shop-ai-whatsapp-text">
+        <img src="{{ 'WhatsApp.svg' | asset_url }}" alt="WhatsApp" class="shop-ai-whatsapp-icon" width="25" height="25">
+        <span>Chat on WhatsApp instead?</span>
+      </div>
+      <button class="shop-ai-whatsapp-btn" id="whatsapp-banner-btn">
+        <img src="{{ 'arrow-right.svg' | asset_url }}" alt="Arrow" width="16" height="16">
+      </button>
+    </div>
+
     <div class="shop-ai-chat-messages">
       <!-- Messages will be added here by JavaScript -->
     </div>
