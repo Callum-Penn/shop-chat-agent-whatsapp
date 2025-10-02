@@ -19,7 +19,7 @@ scopes = "customer_read_customers,customer_read_orders,customer_read_store_credi
 [auth]
 redirect_urls = [ "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/auth" ]
 
-[mcp.customer_authentication]
+[customer_authentication]
 redirect_uris = [
   "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/auth/callback"
 ]
