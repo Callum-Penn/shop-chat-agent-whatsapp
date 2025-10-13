@@ -19,7 +19,7 @@ export default function Index() {
       fontFamily: "Arial, sans-serif" 
     }}>
       <h1>Shopify AI Chat Agent</h1>
-      <p>This app is designed to be used within the Shopify admin.</p>
+      <p>This app is designed to be used within the Shopify adminn.</p>
       <p>Please install this app on your Shopify store to use it.</p>
       <a href="/app" style={{ 
         display: "inline-block", 
@@ -29,7 +29,7 @@ export default function Index() {
         textDecoration: "none", 
         borderRadius: "5px" 
       }}>
-        Go to App
+        Open App
       </a>
     </div>
   );
