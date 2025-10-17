@@ -11,7 +11,7 @@ import {
   getCustomerAccountUrl,
   createOrGetUser,
   linkConversationToUser,
-  createConversationWithUser
+  getUserByShopifyCustomerId
 } from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
@@ -95,36 +95,14 @@ async function handleChatRequest(request) {
     // Generate or use existing conversation ID
     const conversationId = body.conversation_id || Date.now().toString();
     const promptType = body.prompt_type || AppConfig.api.defaultPromptType;
+    const shopifyCustomerId = body.shopify_customer_id; // From frontend if customer is logged in
 
-    // Get user identification from request (Shopify customer ID if available)
-    const shopifyCustomerId = body.shopify_customer_id;
-    const customerEmail = body.customer_email;
-    const customerName = body.customer_name;
-
-    // Create or get user
-    let user = null;
+    // Create or link user if we have customer info
     try {
-      if (shopifyCustomerId) {
-        // Logged-in Shopify customer
-        user = await createOrGetUser({
-          type: 'web_customer',
-          shopifyCustomerId: shopifyCustomerId,
-          email: customerEmail,
-          name: customerName
-        });
-      } else {
-        // Anonymous web user - use conversation ID as identifier
-        user = await createOrGetUser({
-          type: 'web',
-          email: customerEmail // May be null
-        });
-      }
-
-      // Link conversation to user
-      await linkConversationToUser(conversationId, user.id, 'web');
+      await handleUserCreationAndLinking(conversationId, shopifyCustomerId, request);
     } catch (error) {
-      console.error('Error creating/linking user:', error);
-      // Continue without user link - non-critical
+      console.error('Error handling user creation/linking:', error);
+      // Continue even if user linking fails
     }
 
     // Create a stream for the response
@@ -421,4 +399,70 @@ function getSseHeaders(request) {
     "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
     "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   };
+}
+
+/**
+ * Handle user creation and conversation linking
+ * @param {string} conversationId - The conversation ID
+ * @param {string} shopifyCustomerId - The Shopify customer ID (optional)
+ * @param {Request} request - The request object
+ */
+async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, request) {
+  try {
+    let user = null;
+
+    // Determine if this is a web customer or anonymous user
+    if (shopifyCustomerId) {
+      // Try to find existing user by Shopify customer ID
+      user = await getUserByShopifyCustomerId(shopifyCustomerId);
+      
+      if (!user) {
+        // Create new user linked to Shopify customer
+        user = await createOrGetUser({
+          type: 'web',
+          shopifyCustomerId: shopifyCustomerId,
+          metadata: {
+            firstSeen: new Date().toISOString(),
+            source: 'web_chat'
+          }
+        });
+        console.log('Created new web user for Shopify customer:', shopifyCustomerId);
+      }
+    } else if (conversationId.startsWith('web_anon_')) {
+      // Anonymous web user - create or get user
+      user = await createOrGetUser({
+        type: 'web',
+        metadata: {
+          firstSeen: new Date().toISOString(),
+          source: 'web_chat',
+          anonymous: true
+        }
+      });
+      console.log('Created anonymous web user');
+    } else if (conversationId.startsWith('web_customer_')) {
+      // Extract customer ID from conversation ID
+      const extractedCustomerId = conversationId.replace('web_customer_', '');
+      user = await getUserByShopifyCustomerId(extractedCustomerId);
+      
+      if (!user) {
+        user = await createOrGetUser({
+          type: 'web',
+          shopifyCustomerId: extractedCustomerId,
+          metadata: {
+            firstSeen: new Date().toISOString(),
+            source: 'web_chat'
+          }
+        });
+      }
+    }
+
+    // Link conversation to user if we have one
+    if (user) {
+      await linkConversationToUser(conversationId, user.id, 'web');
+      console.log('Linked conversation to user:', user.id);
+    }
+  } catch (error) {
+    console.error('Error in handleUserCreationAndLinking:', error);
+    throw error;
+  }
 }

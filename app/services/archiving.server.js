@@ -1,80 +1,93 @@
 /**
  * Conversation Archiving Service
- * 
- * This service handles automatic archiving of old conversations
- * and cleanup of archived data to prevent database bloat.
- * 
- * Recommended usage:
- * - Run daily via cron job or scheduled task
- * - Call from a scheduled API endpoint
- * - Execute as part of maintenance tasks
+ * Handles automatic archiving and cleanup of old conversations
  */
 
 import { 
-  archiveInactiveConversations, 
-  deleteOldArchivedConversations 
-} from "../db.server.js";
+  archiveOldConversations, 
+  deleteOldArchivedConversations,
+  getConversationStats
+} from "../db.server";
 
 /**
- * Run all archiving tasks
- * @returns {Promise<Object>} - Summary of archiving results
+ * Run the archiving process
+ * Archives conversations inactive for 30+ days
+ * Deletes archived conversations older than 90 days
+ * @returns {Promise<Object>} - Archiving results
  */
-export async function runArchivingTasks() {
-  console.log('=== Starting Archiving Tasks ===');
-  const results = {
-    timestamp: new Date().toISOString(),
-    tasksRun: [],
-    success: true
-  };
-
+export async function runArchivingProcess() {
+  console.log('Starting conversation archiving process...');
+  
   try {
-    // Task 1: Archive conversations inactive for 30+ days
-    console.log('Task 1: Archiving inactive conversations...');
-    const archivedCount = await archiveInactiveConversations(30);
-    results.tasksRun.push({
-      task: 'archive_inactive_conversations',
-      result: `Archived ${archivedCount} conversations`,
-      count: archivedCount
-    });
-    console.log(`✓ Archived ${archivedCount} inactive conversations`);
+    // Get stats before archiving
+    const statsBefore = await getConversationStats();
+    console.log('Stats before archiving:', statsBefore);
 
-    // Task 2: Delete conversations archived for 90+ days
-    console.log('Task 2: Deleting old archived conversations...');
+    // Archive conversations inactive for 30+ days
+    const archivedCount = await archiveOldConversations(30);
+    console.log(`Archived ${archivedCount} conversations`);
+
+    // Delete archived conversations older than 90 days
     const deletedCount = await deleteOldArchivedConversations(90);
-    results.tasksRun.push({
-      task: 'delete_old_archived_conversations',
-      result: `Deleted ${deletedCount} old conversations`,
-      count: deletedCount
-    });
-    console.log(`✓ Deleted ${deletedCount} old archived conversations`);
+    console.log(`Deleted ${deletedCount} old archived conversations`);
 
-    console.log('=== Archiving Tasks Completed Successfully ===');
-    return results;
+    // Get stats after archiving
+    const statsAfter = await getConversationStats();
+    console.log('Stats after archiving:', statsAfter);
+
+    return {
+      success: true,
+      archivedCount,
+      deletedCount,
+      statsBefore,
+      statsAfter
+    };
   } catch (error) {
-    console.error('Error running archiving tasks:', error);
-    results.success = false;
-    results.error = error.message;
-    return results;
+    console.error('Error in archiving process:', error);
+    return {
+      success: false,
+      error: error.message
+    };
   }
 }
 
 /**
- * Archive specific conversation
- * @param {string} conversationId - Conversation ID to archive
- * @returns {Promise<Object>} - Archiving result
+ * Schedule archiving to run periodically
+ * Run this on application startup or via a cron job
+ * @param {number} intervalHours - How often to run (in hours, default: 24)
  */
-export async function archiveSpecificConversation(conversationId) {
-  const { archiveConversation } = await import("../db.server.js");
+export function scheduleArchiving(intervalHours = 24) {
+  console.log(`Scheduling archiving process to run every ${intervalHours} hours`);
   
+  // Run immediately on startup
+  runArchivingProcess().then(result => {
+    console.log('Initial archiving completed:', result);
+  });
+
+  // Schedule recurring runs
+  const intervalMs = intervalHours * 60 * 60 * 1000;
+  setInterval(() => {
+    console.log('Running scheduled archiving process...');
+    runArchivingProcess().then(result => {
+      console.log('Scheduled archiving completed:', result);
+    });
+  }, intervalMs);
+}
+
+/**
+ * Get current database statistics
+ * Useful for monitoring and dashboards
+ * @returns {Promise<Object>} - Database statistics
+ */
+export async function getDatabaseStats() {
   try {
-    const conversation = await archiveConversation(conversationId);
-    console.log(`Archived conversation: ${conversationId}`);
+    const stats = await getConversationStats();
     return {
       success: true,
-      conversation
+      stats
     };
   } catch (error) {
-    console.error('Error archiving conversation:', error);
+    console.error('Error getting database stats:', error);
     return {
       success: false,
       error: error.message
@@ -83,7 +96,8 @@ export async function archiveSpecificConversation(conversationId) {
 }
 
 export default {
-  runArchivingTasks,
-  archiveSpecificConversation
+  runArchivingProcess,
+  scheduleArchiving,
+  getDatabaseStats
 };
 

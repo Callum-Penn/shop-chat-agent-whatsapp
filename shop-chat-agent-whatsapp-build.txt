@@ -1,176 +1,176 @@
-2025-07-29T08:27:13.461557952Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-2025-07-29T08:27:13.461578859Z [34m│[0m [34m › fetching app source code[0m
-2025-07-29T08:27:13.461581667Z [34m│[0m => Selecting branch "main"
-2025-07-29T08:27:13.461583807Z [34m│[0m => Checking out commit "92da030976f31bb048acf3bd31c262164566f301"
-2025-07-29T08:27:13.461585579Z [34m│[0m 
-2025-07-29T08:27:13.461587248Z [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-2025-07-29T08:27:13.461589184Z [34m╰────────────────────────────────────────╼[0m
-2025-07-29T08:27:13.461590776Z 
-2025-07-29T08:27:13.859260686Z [34m › configuring build-time app environment variables:[0m
-2025-07-29T08:27:13.859273888Z      WHATSAPP_PHONE_NUMBER_ID SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL CLAUDE_API_KEY WHATSAPP_VERIFY_TOKEN SHOPIFY_API_SECRET DIRECT_URL WHATSAPP_TOKEN SHOPIFY_APP_URL SHOPIFY_API_KEY
-2025-07-29T08:27:13.859277004Z 
-2025-07-29T08:27:13.861207699Z [34m › configuring custom build command to be run at the end of the build:[0m
-2025-07-29T08:27:13.865552976Z    [34m│[0m npm run build
-2025-07-29T08:27:13.865565185Z 
-2025-07-29T08:27:13.961823277Z [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-2025-07-29T08:27:13.984554568Z [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-2025-07-29T08:27:15.028648317Z [34m│[0m Detected the following buildpacks suitable to build your app:
-2025-07-29T08:27:15.028666398Z [34m│[0m 
-2025-07-29T08:27:15.028668904Z [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-2025-07-29T08:27:15.028670704Z [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-2025-07-29T08:27:15.028672717Z [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-2025-07-29T08:27:15.028674855Z [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-2025-07-29T08:27:15.031743481Z [34m╰─────────────────────────────────────────────╼[0m
-2025-07-29T08:27:15.031758671Z 
-2025-07-29T08:27:15.034064699Z [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-2025-07-29T08:27:15.035950053Z [34m│[0m [34m › checking for cache from a previous build[0m
-2025-07-29T08:27:15.281541667Z [34m│[0m Timer: Analyzer started at 2025-07-29T08:27:15Z
-2025-07-29T08:27:15.955562996Z [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-2025-07-29T08:27:15.956050254Z [34m│[0m Timer: Analyzer ran for 674.674662ms and ended at 2025-07-29T08:27:15Z
-2025-07-29T08:27:16.121881427Z [34m│[0m Timer: Restorer started at 2025-07-29T08:27:16Z
-2025-07-29T08:27:16.279696619Z [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-2025-07-29T08:27:18.160040935Z [34m│[0m Timer: Restorer ran for 2.036981591s and ended at 2025-07-29T08:27:18Z
-2025-07-29T08:27:18.178339286Z [34m╰───────────────────────────────────────╼[0m
-2025-07-29T08:27:18.178352126Z 
-2025-07-29T08:27:18.180717352Z [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-2025-07-29T08:27:18.218398924Z [34m│[0m Timer: Builder started at 2025-07-29T08:27:18Z
-2025-07-29T08:27:18.661201755Z [34m│[0m        
-2025-07-29T08:27:18.661364042Z [34m│[0m -----> Creating runtime environment
-2025-07-29T08:27:18.707784190Z [34m│[0m        
-2025-07-29T08:27:18.709249043Z [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-2025-07-29T08:27:18.714685772Z [34m│[0m        NODE_VERBOSE=false
-2025-07-29T08:27:18.714697869Z [34m│[0m        NODE_ENV=
-2025-07-29T08:27:18.714700934Z [34m│[0m        NODE_MODULES_CACHE=true
-2025-07-29T08:27:18.720097864Z [34m│[0m        
-2025-07-29T08:27:18.720271942Z [34m│[0m -----> Installing binaries
-2025-07-29T08:27:18.818921735Z [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-2025-07-29T08:27:18.818938150Z [34m│[0m        engines.npm (package.json):    unspecified (use default)
-2025-07-29T08:27:18.818941110Z [34m│[0m        
-2025-07-29T08:27:18.939780702Z [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-2025-07-29T08:27:18.951507823Z [34m│[0m        Downloading and installing node 24.2.0...
-2025-07-29T08:27:23.844006520Z [34m│[0m        Using default npm version: 11.3.0
-2025-07-29T08:27:24.603267927Z [34m│[0m        
-2025-07-29T08:27:24.603293557Z [34m│[0m -----> Restoring cache
-2025-07-29T08:27:24.605978196Z [34m│[0m        - npm cache
-2025-07-29T08:27:24.703721934Z [34m│[0m        
-2025-07-29T08:27:24.703934125Z [34m│[0m -----> Installing dependencies
-2025-07-29T08:27:24.784554394Z [34m│[0m        Installing node modules
-2025-07-29T08:27:42.889069702Z [34m│[0m        
-2025-07-29T08:27:42.889099746Z [34m│[0m        added 1217 packages, and audited 1218 packages in 18s
-2025-07-29T08:27:42.889103054Z [34m│[0m        
-2025-07-29T08:27:42.889105634Z [34m│[0m        302 packages are looking for funding
-2025-07-29T08:27:42.889108084Z [34m│[0m          run `npm fund` for details
-2025-07-29T08:27:42.908471674Z [34m│[0m        
-2025-07-29T08:27:42.908495428Z [34m│[0m        14 vulnerabilities (4 low, 8 moderate, 1 high, 1 critical)
-2025-07-29T08:27:42.908499203Z [34m│[0m        
-2025-07-29T08:27:42.908502059Z [34m│[0m        To address issues that do not require attention, run:
-2025-07-29T08:27:42.908505071Z [34m│[0m          npm audit fix
-2025-07-29T08:27:42.908726801Z [34m│[0m        
-2025-07-29T08:27:42.908744814Z [34m│[0m        Some issues need review, and may require choosing
-2025-07-29T08:27:42.908749261Z [34m│[0m        a different dependency.
-2025-07-29T08:27:42.908752326Z [34m│[0m        
-2025-07-29T08:27:42.908755370Z [34m│[0m        Run `npm audit` for details.
-2025-07-29T08:27:42.983113833Z [34m│[0m        
-2025-07-29T08:27:42.983136124Z [34m│[0m -----> Build
-2025-07-29T08:27:43.063668313Z [34m│[0m        
-2025-07-29T08:27:43.063771185Z [34m│[0m -----> Caching build
-2025-07-29T08:27:43.064860964Z [34m│[0m        - npm cache
-2025-07-29T08:27:43.148513240Z [34m│[0m        
-2025-07-29T08:27:43.148529075Z [34m│[0m -----> Pruning devDependencies
-2025-07-29T08:27:43.222154216Z [34m│[0m        Skipping because NODE_ENV is not 'production'
-2025-07-29T08:27:43.252896308Z [34m│[0m        
-2025-07-29T08:27:43.253099462Z [34m│[0m -----> Build succeeded!
-2025-07-29T08:27:43.736974728Z [34m│[0m Running custom build command: npm run build
-2025-07-29T08:27:43.807861658Z [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-29T08:27:43.808169811Z [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-29T08:27:43.808176408Z [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-29T08:27:43.930377408Z [34m│[0m 
-2025-07-29T08:27:43.930398559Z [34m│[0m > shop-chat-agent@1.0.26 build
-2025-07-29T08:27:43.930401969Z [34m│[0m > prisma generate && remix vite:build
-2025-07-29T08:27:43.930404324Z [34m│[0m 
-2025-07-29T08:27:44.532835399Z [34m│[0m Prisma schema loaded from prisma/schema.prisma
-2025-07-29T08:27:44.666214927Z [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-29T08:27:44.829665945Z [34m│[0m 
-2025-07-29T08:27:44.829697219Z [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 48ms
-2025-07-29T08:27:44.829701791Z [34m│[0m 
-2025-07-29T08:27:44.829704159Z [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-29T08:27:44.829708932Z [34m│[0m 
-2025-07-29T08:27:44.829711029Z [34m│[0m Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-07-29T08:27:44.829713096Z [34m│[0m 
-2025-07-29T08:27:45.616748884Z [34m│[0m vite v6.3.3 building for production...
-2025-07-29T08:27:45.662761592Z [34m│[0m transforming...
-2025-07-29T08:27:45.863642740Z [34m│[0m ✓ 42 modules transformed.
-2025-07-29T08:27:45.878424089Z [34m│[0m ✗ Build failed in 243ms
-2025-07-29T08:27:45.878837772Z [34m│[0m [commonjs--resolver] Server-only module referenced by client
-2025-07-29T08:27:45.878847586Z [34m│[0m 
-2025-07-29T08:27:45.878851863Z [34m│[0m     '../services/tool.server' imported by route 'app/routes/api.whatsapp-webhook.jsx'
-2025-07-29T08:27:45.878854837Z [34m│[0m 
-2025-07-29T08:27:45.878858203Z [34m│[0m   Remix automatically removes server-code from these exports:
-2025-07-29T08:27:45.878861670Z [34m│[0m     `loader`, `action`, `headers`
-2025-07-29T08:27:45.878864863Z [34m│[0m 
-2025-07-29T08:27:45.878868281Z [34m│[0m   But other route exports in 'app/routes/api.whatsapp-webhook.jsx' depend on '../services/tool.server'.
-2025-07-29T08:27:45.878872067Z [34m│[0m 
-2025-07-29T08:27:45.878874696Z [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
-2025-07-29T08:27:45.878877746Z [34m│[0m 
-2025-07-29T08:27:45.878880626Z [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
-2025-07-29T08:27:45.878883674Z [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-2025-07-29T08:27:45.878886486Z [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-2025-07-29T08:27:45.879168623Z [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-2025-07-29T08:27:45.879182338Z [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
-2025-07-29T08:27:45.879185021Z [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-2025-07-29T08:27:45.879187726Z [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-2025-07-29T08:27:45.879189906Z [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-2025-07-29T08:27:45.879191994Z [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
-2025-07-29T08:27:45.879194159Z [34m│[0m   code: 'PLUGIN_ERROR',
-2025-07-29T08:27:45.879208620Z [34m│[0m   plugin: 'commonjs--resolver',
-2025-07-29T08:27:45.879211344Z [34m│[0m   hook: 'resolveId',
-2025-07-29T08:27:45.879213769Z [34m│[0m   watchFiles: [
-2025-07-29T08:27:45.879216377Z [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-2025-07-29T08:27:45.879218366Z [34m│[0m     '/workspace/app/root.jsx',
-2025-07-29T08:27:45.879220541Z [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-2025-07-29T08:27:45.879222713Z [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-2025-07-29T08:27:45.879224671Z [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-2025-07-29T08:27:45.879226486Z [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-2025-07-29T08:27:45.879228471Z [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-2025-07-29T08:27:45.879230314Z [34m│[0m     '/workspace/app/routes/_index.jsx',
-2025-07-29T08:27:45.879232313Z [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-2025-07-29T08:27:45.879234217Z [34m│[0m     '/workspace/app/routes/app.jsx',
-2025-07-29T08:27:45.879236080Z [34m│[0m     '/workspace/app/routes/chat.jsx',
-2025-07-29T08:27:45.879238109Z [34m│[0m     '/workspace/app/routes/app._index.jsx',
-2025-07-29T08:27:45.879240095Z [34m│[0m     '/workspace/package.json',
-2025-07-29T08:27:45.879241994Z [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
-2025-07-29T08:27:45.879244053Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
-2025-07-29T08:27:45.879245862Z [34m│[0m     '/workspace/node_modules/react-dom/client.js',
-2025-07-29T08:27:45.879247824Z [34m│[0m     '/workspace/node_modules/react/index.js',
-2025-07-29T08:27:45.879249649Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
-2025-07-29T08:27:45.879251455Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
-2025-07-29T08:27:45.879253317Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
-2025-07-29T08:27:45.879255224Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
-2025-07-29T08:27:45.879257174Z [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
-2025-07-29T08:27:45.879259041Z [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
-2025-07-29T08:27:45.879265104Z [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
-2025-07-29T08:27:45.879267230Z [34m│[0m     '/workspace/node_modules/react-dom/index.js',
-2025-07-29T08:27:45.879269086Z [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
-2025-07-29T08:27:45.879270924Z [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/index.js',
-2025-07-29T08:27:45.879272831Z [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
-2025-07-29T08:27:45.879274754Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
-2025-07-29T08:27:45.879276649Z [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
-2025-07-29T08:27:45.879278402Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
-2025-07-29T08:27:45.879280158Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
-2025-07-29T08:27:45.879282145Z [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
-2025-07-29T08:27:45.879283982Z [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
-2025-07-29T08:27:45.879285843Z [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
-2025-07-29T08:27:45.879291096Z [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js'
-2025-07-29T08:27:45.879293089Z [34m│[0m   ]
-2025-07-29T08:27:45.879294998Z [34m│[0m }
-2025-07-29T08:27:45.893005708Z [34m│[0m npm notice
-2025-07-29T08:27:45.893021660Z [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.5.1
-2025-07-29T08:27:45.893026028Z [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.1
-2025-07-29T08:27:45.893031925Z [34m│[0m npm notice To update run: npm install -g npm@11.5.1
-2025-07-29T08:27:45.893035205Z [34m│[0m npm notice
-2025-07-29T08:27:45.896861070Z [34m│[0m building: exit status 1
-2025-07-29T08:27:45.897617508Z [34m│[0m Timer: Builder ran for 27.679478716s and ended at 2025-07-29T08:27:45Z
-2025-07-29T08:27:45.897630815Z [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-2025-07-29T08:27:46.125190272Z [34m│[0m 
-2025-07-29T08:27:46.129532829Z [34m│[0m 
-2025-07-29T08:27:46.138038571Z [34m│[0m [31m ✘ build failed[0m
+Oct 17 13:41:48  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Oct 17 13:41:48  [34m│[0m [34m › fetching app source code[0m
+Oct 17 13:41:48  [34m│[0m => Selecting branch "main"
+Oct 17 13:41:48  [34m│[0m => Checking out commit "e0a0e817205af80b9500767ce4cfbfbb57c07a10"
+Oct 17 13:41:48  [34m│[0m 
+Oct 17 13:41:48  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Oct 17 13:41:48  [34m╰────────────────────────────────────────╼[0m
+Oct 17 13:41:48  
+Oct 17 13:41:48  [34m › configuring build-time app environment variables:[0m
+Oct 17 13:41:48       WHATSAPP_VERIFY_TOKEN WHATSAPP_TOKEN SHOPIFY_API_KEY WHATSAPP_PHONE_NUMBER_ID SHOPIFY_APP_URL DIRECT_URL SHOPIFY_API_SECRET ARCHIVING_API_KEY CLAUDE_API_KEY SHOPIFY_CHAT_BUBBLE_ID REDIRECT_URL
+Oct 17 13:41:48  
+Oct 17 13:41:48  [34m › configuring custom build command to be run at the end of the build:[0m
+Oct 17 13:41:48     [34m│[0m npm run build
+Oct 17 13:41:48  
+Oct 17 13:41:49  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Oct 17 13:41:49  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Oct 17 13:41:50  [34m│[0m Detected the following buildpacks suitable to build your app:
+Oct 17 13:41:50  [34m│[0m 
+Oct 17 13:41:50  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Oct 17 13:41:50  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Oct 17 13:41:50  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Oct 17 13:41:50  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Oct 17 13:41:50  [34m╰─────────────────────────────────────────────╼[0m
+Oct 17 13:41:50  
+Oct 17 13:41:50  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Oct 17 13:41:50  [34m│[0m [34m › checking for cache from a previous build[0m
+Oct 17 13:41:50  [34m│[0m Timer: Analyzer started at 2025-10-17T13:41:50Z
+Oct 17 13:41:51  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Oct 17 13:41:51  [34m│[0m Timer: Analyzer ran for 592.78581ms and ended at 2025-10-17T13:41:51Z
+Oct 17 13:41:51  [34m│[0m Timer: Restorer started at 2025-10-17T13:41:51Z
+Oct 17 13:41:51  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Oct 17 13:41:55  [34m│[0m Timer: Restorer ran for 3.764298959s and ended at 2025-10-17T13:41:55Z
+Oct 17 13:41:55  [34m╰───────────────────────────────────────╼[0m
+Oct 17 13:41:55  
+Oct 17 13:41:55  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Oct 17 13:41:55  [34m│[0m Timer: Builder started at 2025-10-17T13:41:55Z
+Oct 17 13:41:55  [34m│[0m        
+Oct 17 13:41:55  [34m│[0m -----> Creating runtime environment
+Oct 17 13:41:55  [34m│[0m        
+Oct 17 13:41:55  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Oct 17 13:41:55  [34m│[0m        NODE_VERBOSE=false
+Oct 17 13:41:55  [34m│[0m        NODE_ENV=
+Oct 17 13:41:55  [34m│[0m        NODE_MODULES_CACHE=true
+Oct 17 13:41:55  [34m│[0m        
+Oct 17 13:41:55  [34m│[0m -----> Installing binaries
+Oct 17 13:41:55  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Oct 17 13:41:55  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Oct 17 13:41:55  [34m│[0m        
+Oct 17 13:41:55  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Oct 17 13:41:55  [34m│[0m        Downloading and installing node 24.2.0...
+Oct 17 13:42:00  [34m│[0m        Using default npm version: 11.3.0
+Oct 17 13:42:01  [34m│[0m        
+Oct 17 13:42:01  [34m│[0m -----> Restoring cache
+Oct 17 13:42:01  [34m│[0m        - npm cache
+Oct 17 13:42:01  [34m│[0m        
+Oct 17 13:42:01  [34m│[0m -----> Installing dependencies
+Oct 17 13:42:01  [34m│[0m        Installing node modules
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        added 1221 packages, and audited 1222 packages in 18s
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        303 packages are looking for funding
+Oct 17 13:42:19  [34m│[0m          run `npm fund` for details
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        19 vulnerabilities (7 low, 8 moderate, 3 high, 1 critical)
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        To address issues that do not require attention, run:
+Oct 17 13:42:19  [34m│[0m          npm audit fix
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        To address all issues possible (including breaking changes), run:
+Oct 17 13:42:19  [34m│[0m          npm audit fix --force
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        Some issues need review, and may require choosing
+Oct 17 13:42:19  [34m│[0m        a different dependency.
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m        Run `npm audit` for details.
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m -----> Build
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m -----> Caching build
+Oct 17 13:42:19  [34m│[0m        - npm cache
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m -----> Pruning devDependencies
+Oct 17 13:42:19  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Oct 17 13:42:19  [34m│[0m        
+Oct 17 13:42:19  [34m│[0m -----> Build succeeded!
+Oct 17 13:42:20  [34m│[0m Running custom build command: npm run build
+Oct 17 13:42:20  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 17 13:42:20  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 17 13:42:20  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 17 13:42:20  [34m│[0m 
+Oct 17 13:42:20  [34m│[0m > shop-chat-agent@1.0.41 build
+Oct 17 13:42:20  [34m│[0m > prisma generate && remix vite:build
+Oct 17 13:42:20  [34m│[0m 
+Oct 17 13:42:20  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Oct 17 13:42:21  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 17 13:42:21  [34m│[0m 
+Oct 17 13:42:21  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 55ms
+Oct 17 13:42:21  [34m│[0m 
+Oct 17 13:42:21  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Oct 17 13:42:21  [34m│[0m 
+Oct 17 13:42:21  [34m│[0m Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+Oct 17 13:42:21  [34m│[0m 
+Oct 17 13:42:21  [34m│[0m vite v6.3.3 building for production...
+Oct 17 13:42:22  [34m│[0m transforming...
+Oct 17 13:42:22  [34m│[0m ✓ 42 modules transformed.
+Oct 17 13:42:22  [34m│[0m ✗ Build failed in 260ms
+Oct 17 13:42:22  [34m│[0m [commonjs--resolver] Server-only module referenced by client
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m     '../db.server' imported by route 'app/routes/chat.jsx'
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m   Remix automatically removes server-code from these exports:
+Oct 17 13:42:22  [34m│[0m     `loader`, `action`, `headers`
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../db.server'.
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
+Oct 17 13:42:22  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Oct 17 13:42:22  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Oct 17 13:42:22  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Oct 17 13:42:22  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
+Oct 17 13:42:22  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Oct 17 13:42:22  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Oct 17 13:42:22  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Oct 17 13:42:22  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
+Oct 17 13:42:22  [34m│[0m   code: 'PLUGIN_ERROR',
+Oct 17 13:42:22  [34m│[0m   plugin: 'commonjs--resolver',
+Oct 17 13:42:22  [34m│[0m   hook: 'resolveId',
+Oct 17 13:42:22  [34m│[0m   watchFiles: [
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/api.broadcast.log.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/root.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/app.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Oct 17 13:42:22  [34m│[0m     '/workspace/package.json',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs',
+Oct 17 13:42:22  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs'
+Oct 17 13:42:22  [34m│[0m   ]
+Oct 17 13:42:22  [34m│[0m }
+Oct 17 13:42:22  [34m│[0m npm notice
+Oct 17 13:42:22  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
+Oct 17 13:42:22  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+Oct 17 13:42:22  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
+Oct 17 13:42:22  [34m│[0m npm notice
+Oct 17 13:42:22  [34m│[0m building: exit status 1
+Oct 17 13:42:22  [34m│[0m Timer: Builder ran for 27.130695503s and ended at 2025-10-17T13:42:22Z
+Oct 17 13:42:22  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m 
+Oct 17 13:42:22  [34m│[0m [31m ✘ build failed[0m

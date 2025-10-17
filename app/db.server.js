@@ -298,81 +298,140 @@ export async function cleanupOldMessages(conversationId, keepCount = 10) {
   }
 }
 
-// ========================================
+// ===================================
 // USER MANAGEMENT FUNCTIONS
-// ========================================
+// ===================================
 
 /**
  * Create or get a user by their identifier
- * @param {Object} params - User identification parameters
- * @param {string} params.type - User type: "web", "whatsapp", "web_customer"
- * @param {string} [params.shopifyCustomerId] - Shopify customer ID
- * @param {string} [params.phoneNumber] - Phone number for WhatsApp users
- * @param {string} [params.email] - Email address
- * @param {string} [params.name] - User name
+ * @param {Object} userInfo - User information
+ * @param {string} userInfo.type - User type ("web" or "whatsapp")
+ * @param {string} [userInfo.shopifyCustomerId] - Shopify customer ID
+ * @param {string} [userInfo.phoneNumber] - Phone number (for WhatsApp)
+ * @param {string} [userInfo.email] - Email address
+ * @param {string} [userInfo.name] - User name
+ * @param {Object} [userInfo.metadata] - Additional metadata
  * @returns {Promise<Object>} - The user object
  */
-export async function createOrGetUser({ type, shopifyCustomerId, phoneNumber, email, name }) {
+export async function createOrGetUser(userInfo) {
   try {
-    // Build where clause based on available identifiers
-    const whereClause = {};
+    const { type, shopifyCustomerId, phoneNumber, email, name, metadata } = userInfo;
+
+    // Try to find existing user by unique identifiers
+    let user = null;
     
-    if (shopifyCustomerId) {
-      whereClause.shopifyCustomerId = shopifyCustomerId;
-    } else if (phoneNumber) {
-      whereClause.phoneNumber = phoneNumber;
+    if (phoneNumber) {
+      user = await prisma.user.findUnique({
+        where: { phoneNumber }
+      });
+    } else if (shopifyCustomerId) {
+      user = await prisma.user.findFirst({
+        where: { shopifyCustomerId }
+      });
     } else if (email) {
-      whereClause.email = email;
+      user = await prisma.user.findFirst({
+        where: { email }
+      });
     }
 
-    // Try to find existing user
-    if (Object.keys(whereClause).length > 0) {
-      const existingUser = await prisma.user.findFirst({
-        where: whereClause
+    // If user exists, update their information
+    if (user) {
+      return await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          name: name || user.name,
+          email: email || user.email,
+          shopifyCustomerId: shopifyCustomerId || user.shopifyCustomerId,
+          metadata: metadata || user.metadata,
+          updatedAt: new Date()
+        }
       });
-
-      if (existingUser) {
-        // Update last seen timestamp
-        await prisma.user.update({
-          where: { id: existingUser.id },
-          data: { lastSeenAt: new Date() }
-        });
-        return existingUser;
-      }
     }
 
     // Create new user
-    const userData = {
-      type,
-      lastSeenAt: new Date()
-    };
-
-    if (shopifyCustomerId) userData.shopifyCustomerId = shopifyCustomerId;
-    if (phoneNumber) userData.phoneNumber = phoneNumber;
-    if (email) userData.email = email;
-    if (name) userData.name = name;
-
     return await prisma.user.create({
-      data: userData
+      data: {
+        type,
+        shopifyCustomerId,
+        phoneNumber,
+        email,
+        name,
+        metadata
+      }
     });
   } catch (error) {
-    console.error('Error creating/getting user:', error);
+    console.error('Error creating or getting user:', error);
     throw error;
   }
 }
 
 /**
- * Update user information
- * @param {string} userId - User ID
- * @param {Object} data - Data to update
- * @returns {Promise<Object>} - Updated user object
+ * Get user by ID
+ * @param {string} userId - The user ID
+ * @returns {Promise<Object|null>} - The user object or null
  */
-export async function updateUser(userId, data) {
+export async function getUserById(userId) {
+  try {
+    return await prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        conversations: {
+          where: { archived: false },
+          orderBy: { updatedAt: 'desc' },
+          take: 10
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error retrieving user by ID:', error);
+    return null;
+  }
+}
+
+/**
+ * Get user by phone number
+ * @param {string} phoneNumber - The phone number
+ * @returns {Promise<Object|null>} - The user object or null
+ */
+export async function getUserByPhoneNumber(phoneNumber) {
+  try {
+    return await prisma.user.findUnique({
+      where: { phoneNumber }
+    });
+  } catch (error) {
+    console.error('Error retrieving user by phone number:', error);
+    return null;
+  }
+}
+
+/**
+ * Get user by Shopify customer ID
+ * @param {string} shopifyCustomerId - The Shopify customer ID
+ * @returns {Promise<Object|null>} - The user object or null
+ */
+export async function getUserByShopifyCustomerId(shopifyCustomerId) {
+  try {
+    return await prisma.user.findFirst({
+      where: { shopifyCustomerId }
+    });
+  } catch (error) {
+    console.error('Error retrieving user by Shopify customer ID:', error);
+    return null;
+  }
+}
+
+/**
+ * Update user information
+ * @param {string} userId - The user ID
+ * @param {Object} updateData - Data to update
+ * @returns {Promise<Object>} - The updated user object
+ */
+export async function updateUser(userId, updateData) {
   try {
     return await prisma.user.update({
       where: { id: userId },
       data: {
-        ...data,
+        ...updateData,
         updatedAt: new Date()
       }
     });
@@ -383,37 +442,18 @@ export async function updateUser(userId, data) {
 }
 
 /**
- * Get user by ID
- * @param {string} userId - User ID
- * @returns {Promise<Object|null>} - User object or null
- */
-export async function getUserById(userId) {
-  try {
-    return await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        conversations: {
-          where: { archived: false },
-          orderBy: { updatedAt: 'desc' },
-          take: 5
-        }
-      }
-    });
-  } catch (error) {
-    console.error('Error getting user by ID:', error);
-    return null;
-  }
-}
-
-/**
  * Link a conversation to a user
- * @param {string} conversationId - Conversation ID
- * @param {string} userId - User ID
- * @param {string} channel - Communication channel ("web" or "whatsapp")
- * @returns {Promise<Object>} - Updated conversation
+ * @param {string} conversationId - The conversation ID
+ * @param {string} userId - The user ID
+ * @param {string} channel - The channel ("web" or "whatsapp")
+ * @returns {Promise<Object>} - The updated conversation
  */
 export async function linkConversationToUser(conversationId, userId, channel = 'web') {
   try {
+    // First, ensure the conversation exists
+    await createOrUpdateConversation(conversationId);
+    
+    // Then link it to the user
     return await prisma.conversation.update({
       where: { id: conversationId },
       data: {
@@ -428,38 +468,16 @@ export async function linkConversationToUser(conversationId, userId, channel = '
   }
 }
 
-/**
- * Create a new conversation with user link
- * @param {string} conversationId - Conversation ID
- * @param {string} userId - User ID
- * @param {string} channel - Communication channel ("web" or "whatsapp")
- * @returns {Promise<Object>} - Created conversation
- */
-export async function createConversationWithUser(conversationId, userId, channel = 'web') {
-  try {
-    return await prisma.conversation.create({
-      data: {
-        id: conversationId,
-        userId,
-        channel
-      }
-    });
-  } catch (error) {
-    console.error('Error creating conversation with user:', error);
-    throw error;
-  }
-}
-
-// ========================================
+// ===================================
 // CONVERSATION ARCHIVING FUNCTIONS
-// ========================================
+// ===================================
 
 /**
- * Archive old inactive conversations
+ * Archive old conversations that haven't been updated recently
  * @param {number} daysInactive - Number of days of inactivity before archiving (default: 30)
  * @returns {Promise<number>} - Number of conversations archived
  */
-export async function archiveInactiveConversations(daysInactive = 30) {
+export async function archiveOldConversations(daysInactive = 30) {
   try {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - daysInactive);
@@ -475,65 +493,24 @@ export async function archiveInactiveConversations(daysInactive = 30) {
       }
     });
 
-    console.log(`Archived ${result.count} inactive conversations`);
+    console.log(`Archived ${result.count} old conversations (inactive for ${daysInactive}+ days)`);
     return result.count;
   } catch (error) {
-    console.error('Error archiving inactive conversations:', error);
+    console.error('Error archiving old conversations:', error);
     return 0;
   }
 }
 
 /**
- * Archive a specific conversation
- * @param {string} conversationId - Conversation ID to archive
- * @returns {Promise<Object>} - Archived conversation
- */
-export async function archiveConversation(conversationId) {
-  try {
-    return await prisma.conversation.update({
-      where: { id: conversationId },
-      data: {
-        archived: true,
-        updatedAt: new Date()
-      }
-    });
-  } catch (error) {
-    console.error('Error archiving conversation:', error);
-    throw error;
-  }
-}
-
-/**
- * Unarchive a conversation
- * @param {string} conversationId - Conversation ID to unarchive
- * @returns {Promise<Object>} - Unarchived conversation
- */
-export async function unarchiveConversation(conversationId) {
-  try {
-    return await prisma.conversation.update({
-      where: { id: conversationId },
-      data: {
-        archived: false,
-        updatedAt: new Date()
-      }
-    });
-  } catch (error) {
-    console.error('Error unarchiving conversation:', error);
-    throw error;
-  }
-}
-
-/**
- * Delete old archived conversations and their messages
- * @param {number} daysArchived - Delete conversations archived for this many days (default: 90)
+ * Delete archived conversations and their messages older than specified days
+ * @param {number} daysOld - Number of days old the archived conversation must be (default: 90)
  * @returns {Promise<number>} - Number of conversations deleted
  */
-export async function deleteOldArchivedConversations(daysArchived = 90) {
+export async function deleteOldArchivedConversations(daysOld = 90) {
   try {
     const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - daysArchived);
+    cutoffDate.setDate(cutoffDate.getDate() - daysOld);
 
-    // Get conversations to delete
     const conversationsToDelete = await prisma.conversation.findMany({
       where: {
         archived: true,
@@ -548,8 +525,15 @@ export async function deleteOldArchivedConversations(daysArchived = 90) {
 
     const conversationIds = conversationsToDelete.map(c => c.id);
 
-    // Delete associated messages first (due to foreign key)
+    // Delete messages first (due to foreign key constraint)
     await prisma.message.deleteMany({
+      where: {
+        conversationId: { in: conversationIds }
+      }
+    });
+
+    // Delete customer account URLs
+    await prisma.customerAccountUrl.deleteMany({
       where: {
         conversationId: { in: conversationIds }
       }
@@ -562,7 +546,7 @@ export async function deleteOldArchivedConversations(daysArchived = 90) {
       }
     });
 
-    console.log(`Deleted ${result.count} old archived conversations`);
+    console.log(`Deleted ${result.count} archived conversations (older than ${daysOld} days)`);
     return result.count;
   } catch (error) {
     console.error('Error deleting old archived conversations:', error);
@@ -571,24 +555,27 @@ export async function deleteOldArchivedConversations(daysArchived = 90) {
 }
 
 /**
- * Get conversation with user information
- * @param {string} conversationId - Conversation ID
- * @returns {Promise<Object|null>} - Conversation with user data
+ * Get conversation statistics for monitoring
+ * @returns {Promise<Object>} - Statistics object
  */
-export async function getConversationWithUser(conversationId) {
+export async function getConversationStats() {
   try {
-    return await prisma.conversation.findUnique({
-      where: { id: conversationId },
-      include: {
-        user: true,
-        messages: {
-          orderBy: { createdAt: 'desc' },
-          take: 10
-        }
-      }
-    });
+    const [totalConversations, archivedConversations, totalUsers, totalMessages] = await Promise.all([
+      prisma.conversation.count(),
+      prisma.conversation.count({ where: { archived: true } }),
+      prisma.user.count(),
+      prisma.message.count()
+    ]);
+
+    return {
+      totalConversations,
+      activeConversations: totalConversations - archivedConversations,
+      archivedConversations,
+      totalUsers,
+      totalMessages
+    };
   } catch (error) {
-    console.error('Error getting conversation with user:', error);
+    console.error('Error getting conversation stats:', error);
     return null;
   }
 }

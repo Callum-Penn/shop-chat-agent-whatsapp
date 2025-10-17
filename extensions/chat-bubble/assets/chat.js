@@ -10,32 +10,35 @@
   /**
    * Cookie utility functions for persistent storage
    */
-  const CookieManager = {
+  const CookieUtils = {
     /**
-     * Set a cookie with expiration
+     * Set a cookie
      * @param {string} name - Cookie name
      * @param {string} value - Cookie value
-     * @param {number} days - Days until expiration (default: 90)
+     * @param {number} days - Expiration in days (default: 90)
      */
     set: function(name, value, days = 90) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+      const expires = new Date();
+      expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
     },
 
     /**
      * Get a cookie value
      * @param {string} name - Cookie name
-     * @returns {string|null} Cookie value or null if not found
+     * @returns {string|null} - Cookie value or null
      */
     get: function(name) {
-      const nameEQ = name + "=";
-      const ca = document.cookie.split(';');
-      for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      const nameEQ = name + '=';
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(nameEQ) === 0) {
+          return cookie.substring(nameEQ.length, cookie.length);
+        }
       }
       return null;
     },
@@ -45,7 +48,7 @@
      * @param {string} name - Cookie name
      */
     delete: function(name) {
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
     }
   };
 
@@ -276,7 +279,7 @@
        */
       send: async function(chatInput, messagesContainer) {
         const userMessage = chatInput.value.trim();
-        const conversationId = CookieManager.get('shopAiConversationId');
+        const conversationId = CookieUtils.get('shopAiConversationId');
 
         // Add user message to chat
         this.add(userMessage, 'user', messagesContainer);
@@ -628,7 +631,7 @@
         switch (data.type) {
           case 'id':
             if (data.conversation_id) {
-              CookieManager.set('shopAiConversationId', data.conversation_id, 90);
+              CookieUtils.set('shopAiConversationId', data.conversation_id, 90);
             }
             break;
 
@@ -663,7 +666,7 @@
 
           case 'auth_required':
             // Save the last user message for resuming after authentication
-            CookieManager.set('shopAiLastMessage', userMessage || '', 1); // 1 day expiry
+            CookieUtils.set('shopAiLastMessage', userMessage || '', 1);
             
             // Display the authentication link to the user (short link text, no raw URL)
             if (data.authUrl) {
@@ -778,7 +781,7 @@
           ShopAIChat.Message.add(welcomeMessage, 'assistant', messagesContainer);
 
           // Clear the conversation ID since we couldn't fetch this conversation
-          CookieManager.delete('shopAiConversationId');
+          CookieUtils.delete('shopAiConversationId');
         }
       }
     },
@@ -826,7 +829,7 @@
         }
 
         // Start polling for token availability
-        const conversationId = CookieManager.get('shopAiConversationId');
+        const conversationId = CookieUtils.get('shopAiConversationId');
         if (conversationId) {
           const messagesContainer = document.querySelector('.shop-ai-chat-messages');
 
@@ -848,13 +851,13 @@
 
         console.log('Starting token polling for conversation:', conversationId);
         const pollingId = 'polling_' + Date.now();
-        CookieManager.set('shopAiTokenPollingId', pollingId, 1); // 1 day expiry
+        CookieUtils.set('shopAiTokenPollingId', pollingId, 1);
 
         let attemptCount = 0;
         const maxAttempts = 30;
 
         const poll = async () => {
-          if (CookieManager.get('shopAiTokenPollingId') !== pollingId) {
+          if (CookieUtils.get('shopAiTokenPollingId') !== pollingId) {
             console.log('Another polling session has started, stopping this one');
             return;
           }
@@ -879,10 +882,10 @@
 
             if (data.status === 'authorized') {
               console.log('Token available, resuming conversation');
-              const message = CookieManager.get('shopAiLastMessage');
+              const message = CookieUtils.get('shopAiLastMessage');
 
               if (message) {
-                CookieManager.delete('shopAiLastMessage');
+                CookieUtils.delete('shopAiLastMessage');
                 setTimeout(() => {
                   ShopAIChat.Message.add("Authorization successful! I'm now continuing with your request.",
                     'assistant', messagesContainer);
@@ -891,7 +894,7 @@
                 }, 500);
               }
 
-              CookieManager.delete('shopAiTokenPollingId');
+              CookieUtils.delete('shopAiTokenPollingId');
               return;
             }
 
@@ -1007,8 +1010,21 @@
         });
       }
 
-      // Check for existing conversation
-      const conversationId = CookieManager.get('shopAiConversationId');
+      // Check for existing conversation (try Shopify customer ID first, then cookie)
+      let conversationId = null;
+      
+      // If Shopify customer is logged in, use their ID
+      if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+        conversationId = `web_customer_${window.Shopify.customer.id}`;
+        CookieUtils.set('shopAiConversationId', conversationId, 90);
+      } else {
+        // Use existing cookie or generate new anonymous ID
+        conversationId = CookieUtils.get('shopAiConversationId');
+        if (!conversationId) {
+          conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          CookieUtils.set('shopAiConversationId', conversationId, 90);
+        }
+      }
 
       if (conversationId) {
         // Fetch conversation history

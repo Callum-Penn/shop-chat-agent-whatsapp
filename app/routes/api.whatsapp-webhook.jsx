@@ -62,7 +62,8 @@ export const action = async ({ request }) => {
     cleanupOldMessages, 
     getCustomerToken,
     createOrGetUser,
-    linkConversationToUser
+    linkConversationToUser,
+    getUserByPhoneNumber
   } = await import("../db.server");
   
   const body = await request.json();
@@ -76,23 +77,31 @@ export const action = async ({ request }) => {
     const conversationId = `whatsapp_${from}`;
     
     try {
-      // Create or get WhatsApp user
-      let user = null;
-      try {
-        user = await createOrGetUser({
-          type: 'whatsapp',
-          phoneNumber: from
-        });
-
-        // Link conversation to user
-        await linkConversationToUser(conversationId, user.id, 'whatsapp');
-        console.log('WhatsApp: User created/linked:', user.id);
-      } catch (error) {
-        console.error('WhatsApp: Error creating/linking user:', error);
-        // Continue without user link - non-critical
-      }
       console.log('WhatsApp: Processing message from', from);
       console.log('WhatsApp: User message:', userMessage);
+      
+      // Create or get WhatsApp user
+      try {
+        let user = await getUserByPhoneNumber(from);
+        if (!user) {
+          user = await createOrGetUser({
+            type: 'whatsapp',
+            phoneNumber: from,
+            metadata: {
+              firstSeen: new Date().toISOString(),
+              source: 'whatsapp'
+            }
+          });
+          console.log('WhatsApp: Created new user for phone:', from);
+        }
+        
+        // Link conversation to user
+        await linkConversationToUser(conversationId, user.id, 'whatsapp');
+        console.log('WhatsApp: Linked conversation to user:', user.id);
+      } catch (userError) {
+        console.error('WhatsApp: Error handling user:', userError);
+        // Continue even if user creation fails
+      }
       
       // Initialize services
       const claudeService = createClaudeService();
