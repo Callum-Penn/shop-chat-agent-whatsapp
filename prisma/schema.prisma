@@ -51,11 +51,37 @@ model CodeVerifier {
   @@index([state])
 }
 
+model User {
+  id                String         @id @default(cuid())
+  type              String         // "web", "whatsapp", "web_customer"
+  shopifyCustomerId String?        @unique
+  phoneNumber       String?        @unique
+  email             String?
+  name              String?
+  conversations     Conversation[]
+  lastSeenAt        DateTime       @default(now())
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@index([shopifyCustomerId])
+  @@index([phoneNumber])
+  @@index([email])
+}
+
 model Conversation {
   id        String    @id
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  channel   String    @default("web") // "web", "whatsapp"
   messages  Message[]
+  archived  Boolean   @default(false)
+  metadata  Json?     // Store custom data like device info, etc.
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([archived])
+  @@index([updatedAt])
 }
 
 model Message {
@@ -67,6 +93,7 @@ model Message {
   createdAt      DateTime     @default(now())
 
   @@index([conversationId])
+  @@index([createdAt])
 }
 
 model CustomerAccountUrl {

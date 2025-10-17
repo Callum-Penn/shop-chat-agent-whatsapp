@@ -1,0 +1,5 @@
+[33m6c860f4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Transform app into broadcast center with campaign management and messaging
+[33m633fc3c[m Add auth.login route to fix embedded auth authentication error
+[33m1af16b2[m Add Broadcast Center POC UI with in-memory log endpoint and fix deprecated customer_authentication config
+[33med4df8e[m Update chat interface: add WhatsApp banner with background image, improve link formatting, and add conversation starter buttons
+[33mf55c717[m fix: Use correct Bearer token format for Customer Account API

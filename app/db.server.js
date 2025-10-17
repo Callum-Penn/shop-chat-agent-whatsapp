@@ -297,3 +297,298 @@ export async function cleanupOldMessages(conversationId, keepCount = 10) {
     return 0;
   }
 }
+
+// ========================================
+// USER MANAGEMENT FUNCTIONS
+// ========================================
+
+/**
+ * Create or get a user by their identifier
+ * @param {Object} params - User identification parameters
+ * @param {string} params.type - User type: "web", "whatsapp", "web_customer"
+ * @param {string} [params.shopifyCustomerId] - Shopify customer ID
+ * @param {string} [params.phoneNumber] - Phone number for WhatsApp users
+ * @param {string} [params.email] - Email address
+ * @param {string} [params.name] - User name
+ * @returns {Promise<Object>} - The user object
+ */
+export async function createOrGetUser({ type, shopifyCustomerId, phoneNumber, email, name }) {
+  try {
+    // Build where clause based on available identifiers
+    const whereClause = {};
+    
+    if (shopifyCustomerId) {
+      whereClause.shopifyCustomerId = shopifyCustomerId;
+    } else if (phoneNumber) {
+      whereClause.phoneNumber = phoneNumber;
+    } else if (email) {
+      whereClause.email = email;
+    }
+
+    // Try to find existing user
+    if (Object.keys(whereClause).length > 0) {
+      const existingUser = await prisma.user.findFirst({
+        where: whereClause
+      });
+
+      if (existingUser) {
+        // Update last seen timestamp
+        await prisma.user.update({
+          where: { id: existingUser.id },
+          data: { lastSeenAt: new Date() }
+        });
+        return existingUser;
+      }
+    }
+
+    // Create new user
+    const userData = {
+      type,
+      lastSeenAt: new Date()
+    };
+
+    if (shopifyCustomerId) userData.shopifyCustomerId = shopifyCustomerId;
+    if (phoneNumber) userData.phoneNumber = phoneNumber;
+    if (email) userData.email = email;
+    if (name) userData.name = name;
+
+    return await prisma.user.create({
+      data: userData
+    });
+  } catch (error) {
+    console.error('Error creating/getting user:', error);
+    throw error;
+  }
+}
+
+/**
+ * Update user information
+ * @param {string} userId - User ID
+ * @param {Object} data - Data to update
+ * @returns {Promise<Object>} - Updated user object
+ */
+export async function updateUser(userId, data) {
+  try {
+    return await prisma.user.update({
+      where: { id: userId },
+      data: {
+        ...data,
+        updatedAt: new Date()
+      }
+    });
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get user by ID
+ * @param {string} userId - User ID
+ * @returns {Promise<Object|null>} - User object or null
+ */
+export async function getUserById(userId) {
+  try {
+    return await prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        conversations: {
+          where: { archived: false },
+          orderBy: { updatedAt: 'desc' },
+          take: 5
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error getting user by ID:', error);
+    return null;
+  }
+}
+
+/**
+ * Link a conversation to a user
+ * @param {string} conversationId - Conversation ID
+ * @param {string} userId - User ID
+ * @param {string} channel - Communication channel ("web" or "whatsapp")
+ * @returns {Promise<Object>} - Updated conversation
+ */
+export async function linkConversationToUser(conversationId, userId, channel = 'web') {
+  try {
+    return await prisma.conversation.update({
+      where: { id: conversationId },
+      data: {
+        userId,
+        channel,
+        updatedAt: new Date()
+      }
+    });
+  } catch (error) {
+    console.error('Error linking conversation to user:', error);
+    throw error;
+  }
+}
+
+/**
+ * Create a new conversation with user link
+ * @param {string} conversationId - Conversation ID
+ * @param {string} userId - User ID
+ * @param {string} channel - Communication channel ("web" or "whatsapp")
+ * @returns {Promise<Object>} - Created conversation
+ */
+export async function createConversationWithUser(conversationId, userId, channel = 'web') {
+  try {
+    return await prisma.conversation.create({
+      data: {
+        id: conversationId,
+        userId,
+        channel
+      }
+    });
+  } catch (error) {
+    console.error('Error creating conversation with user:', error);
+    throw error;
+  }
+}
+
+// ========================================
+// CONVERSATION ARCHIVING FUNCTIONS
+// ========================================
+
+/**
+ * Archive old inactive conversations
+ * @param {number} daysInactive - Number of days of inactivity before archiving (default: 30)
+ * @returns {Promise<number>} - Number of conversations archived
+ */
+export async function archiveInactiveConversations(daysInactive = 30) {
+  try {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - daysInactive);
+
+    const result = await prisma.conversation.updateMany({
+      where: {
+        updatedAt: { lt: cutoffDate },
+        archived: false
+      },
+      data: {
+        archived: true,
+        updatedAt: new Date()
+      }
+    });
+
+    console.log(`Archived ${result.count} inactive conversations`);
+    return result.count;
+  } catch (error) {
+    console.error('Error archiving inactive conversations:', error);
+    return 0;
+  }
+}
+
+/**
+ * Archive a specific conversation
+ * @param {string} conversationId - Conversation ID to archive
+ * @returns {Promise<Object>} - Archived conversation
+ */
+export async function archiveConversation(conversationId) {
+  try {
+    return await prisma.conversation.update({
+      where: { id: conversationId },
+      data: {
+        archived: true,
+        updatedAt: new Date()
+      }
+    });
+  } catch (error) {
+    console.error('Error archiving conversation:', error);
+    throw error;
+  }
+}
+
+/**
+ * Unarchive a conversation
+ * @param {string} conversationId - Conversation ID to unarchive
+ * @returns {Promise<Object>} - Unarchived conversation
+ */
+export async function unarchiveConversation(conversationId) {
+  try {
+    return await prisma.conversation.update({
+      where: { id: conversationId },
+      data: {
+        archived: false,
+        updatedAt: new Date()
+      }
+    });
+  } catch (error) {
+    console.error('Error unarchiving conversation:', error);
+    throw error;
+  }
+}
+
+/**
+ * Delete old archived conversations and their messages
+ * @param {number} daysArchived - Delete conversations archived for this many days (default: 90)
+ * @returns {Promise<number>} - Number of conversations deleted
+ */
+export async function deleteOldArchivedConversations(daysArchived = 90) {
+  try {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - daysArchived);
+
+    // Get conversations to delete
+    const conversationsToDelete = await prisma.conversation.findMany({
+      where: {
+        archived: true,
+        updatedAt: { lt: cutoffDate }
+      },
+      select: { id: true }
+    });
+
+    if (conversationsToDelete.length === 0) {
+      return 0;
+    }
+
+    const conversationIds = conversationsToDelete.map(c => c.id);
+
+    // Delete associated messages first (due to foreign key)
+    await prisma.message.deleteMany({
+      where: {
+        conversationId: { in: conversationIds }
+      }
+    });
+
+    // Delete conversations
+    const result = await prisma.conversation.deleteMany({
+      where: {
+        id: { in: conversationIds }
+      }
+    });
+
+    console.log(`Deleted ${result.count} old archived conversations`);
+    return result.count;
+  } catch (error) {
+    console.error('Error deleting old archived conversations:', error);
+    return 0;
+  }
+}
+
+/**
+ * Get conversation with user information
+ * @param {string} conversationId - Conversation ID
+ * @returns {Promise<Object|null>} - Conversation with user data
+ */
+export async function getConversationWithUser(conversationId) {
+  try {
+    return await prisma.conversation.findUnique({
+      where: { id: conversationId },
+      include: {
+        user: true,
+        messages: {
+          orderBy: { createdAt: 'desc' },
+          take: 10
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error getting conversation with user:', error);
+    return null;
+  }
+}

@@ -8,6 +8,48 @@
   'use strict';
 
   /**
+   * Cookie utility functions for persistent storage
+   */
+  const CookieManager = {
+    /**
+     * Set a cookie with expiration
+     * @param {string} name - Cookie name
+     * @param {string} value - Cookie value
+     * @param {number} days - Days until expiration (default: 90)
+     */
+    set: function(name, value, days = 90) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+    },
+
+    /**
+     * Get a cookie value
+     * @param {string} name - Cookie name
+     * @returns {string|null} Cookie value or null if not found
+     */
+    get: function(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    },
+
+    /**
+     * Delete a cookie
+     * @param {string} name - Cookie name
+     */
+    delete: function(name) {
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+    }
+  };
+
+  /**
    * Application namespace to prevent global scope pollution
    */
   const ShopAIChat = {
@@ -234,7 +276,7 @@
        */
       send: async function(chatInput, messagesContainer) {
         const userMessage = chatInput.value.trim();
-        const conversationId = sessionStorage.getItem('shopAiConversationId');
+        const conversationId = CookieManager.get('shopAiConversationId');
 
         // Add user message to chat
         this.add(userMessage, 'user', messagesContainer);
@@ -586,7 +628,7 @@
         switch (data.type) {
           case 'id':
             if (data.conversation_id) {
-              sessionStorage.setItem('shopAiConversationId', data.conversation_id);
+              CookieManager.set('shopAiConversationId', data.conversation_id, 90);
             }
             break;
 
@@ -621,7 +663,7 @@
 
           case 'auth_required':
             // Save the last user message for resuming after authentication
-            sessionStorage.setItem('shopAiLastMessage', userMessage || '');
+            CookieManager.set('shopAiLastMessage', userMessage || '', 1); // 1 day expiry
             
             // Display the authentication link to the user (short link text, no raw URL)
             if (data.authUrl) {
@@ -736,7 +778,7 @@
           ShopAIChat.Message.add(welcomeMessage, 'assistant', messagesContainer);
 
           // Clear the conversation ID since we couldn't fetch this conversation
-          sessionStorage.removeItem('shopAiConversationId');
+          CookieManager.delete('shopAiConversationId');
         }
       }
     },
@@ -784,7 +826,7 @@
         }
 
         // Start polling for token availability
-        const conversationId = sessionStorage.getItem('shopAiConversationId');
+        const conversationId = CookieManager.get('shopAiConversationId');
         if (conversationId) {
           const messagesContainer = document.querySelector('.shop-ai-chat-messages');
 
@@ -806,13 +848,13 @@
 
         console.log('Starting token polling for conversation:', conversationId);
         const pollingId = 'polling_' + Date.now();
-        sessionStorage.setItem('shopAiTokenPollingId', pollingId);
+        CookieManager.set('shopAiTokenPollingId', pollingId, 1); // 1 day expiry
 
         let attemptCount = 0;
         const maxAttempts = 30;
 
         const poll = async () => {
-          if (sessionStorage.getItem('shopAiTokenPollingId') !== pollingId) {
+          if (CookieManager.get('shopAiTokenPollingId') !== pollingId) {
             console.log('Another polling session has started, stopping this one');
             return;
           }
@@ -837,10 +879,10 @@
 
             if (data.status === 'authorized') {
               console.log('Token available, resuming conversation');
-              const message = sessionStorage.getItem('shopAiLastMessage');
+              const message = CookieManager.get('shopAiLastMessage');
 
               if (message) {
-                sessionStorage.removeItem('shopAiLastMessage');
+                CookieManager.delete('shopAiLastMessage');
                 setTimeout(() => {
                   ShopAIChat.Message.add("Authorization successful! I'm now continuing with your request.",
                     'assistant', messagesContainer);
@@ -849,7 +891,7 @@
                 }, 500);
               }
 
-              sessionStorage.removeItem('shopAiTokenPollingId');
+              CookieManager.delete('shopAiTokenPollingId');
               return;
             }
 
@@ -966,7 +1008,7 @@
       }
 
       // Check for existing conversation
-      const conversationId = sessionStorage.getItem('shopAiConversationId');
+      const conversationId = CookieManager.get('shopAiConversationId');
 
       if (conversationId) {
         // Fetch conversation history

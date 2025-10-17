@@ -4,7 +4,15 @@
  */
 import { json } from "@remix-run/node";
 import MCPClient from "../mcp-client";
-import { saveMessage, getConversationHistory, storeCustomerAccountUrl, getCustomerAccountUrl } from "../db.server";
+import { 
+  saveMessage, 
+  getConversationHistory, 
+  storeCustomerAccountUrl, 
+  getCustomerAccountUrl,
+  createOrGetUser,
+  linkConversationToUser,
+  createConversationWithUser
+} from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
 import { createClaudeService } from "../services/claude.server";
@@ -87,6 +95,37 @@ async function handleChatRequest(request) {
     // Generate or use existing conversation ID
     const conversationId = body.conversation_id || Date.now().toString();
     const promptType = body.prompt_type || AppConfig.api.defaultPromptType;
+
+    // Get user identification from request (Shopify customer ID if available)
+    const shopifyCustomerId = body.shopify_customer_id;
+    const customerEmail = body.customer_email;
+    const customerName = body.customer_name;
+
+    // Create or get user
+    let user = null;
+    try {
+      if (shopifyCustomerId) {
+        // Logged-in Shopify customer
+        user = await createOrGetUser({
+          type: 'web_customer',
+          shopifyCustomerId: shopifyCustomerId,
+          email: customerEmail,
+          name: customerName
+        });
+      } else {
+        // Anonymous web user - use conversation ID as identifier
+        user = await createOrGetUser({
+          type: 'web',
+          email: customerEmail // May be null
+        });
+      }
+
+      // Link conversation to user
+      await linkConversationToUser(conversationId, user.id, 'web');
+    } catch (error) {
+      console.error('Error creating/linking user:', error);
+      // Continue without user link - non-critical
+    }
 
     // Create a stream for the response
     const responseStream = createSseStream(async (stream) => {

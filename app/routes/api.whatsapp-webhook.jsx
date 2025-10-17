@@ -56,7 +56,14 @@ function truncateConversationHistory(messages, maxMessages = 10) {
 
 export const action = async ({ request }) => {
   // Import database functions inside the action to avoid client/server separation issues
-  const { saveMessage, getConversationHistory, cleanupOldMessages, getCustomerToken } = await import("../db.server");
+  const { 
+    saveMessage, 
+    getConversationHistory, 
+    cleanupOldMessages, 
+    getCustomerToken,
+    createOrGetUser,
+    linkConversationToUser
+  } = await import("../db.server");
   
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
@@ -69,6 +76,21 @@ export const action = async ({ request }) => {
     const conversationId = `whatsapp_${from}`;
     
     try {
+      // Create or get WhatsApp user
+      let user = null;
+      try {
+        user = await createOrGetUser({
+          type: 'whatsapp',
+          phoneNumber: from
+        });
+
+        // Link conversation to user
+        await linkConversationToUser(conversationId, user.id, 'whatsapp');
+        console.log('WhatsApp: User created/linked:', user.id);
+      } catch (error) {
+        console.error('WhatsApp: Error creating/linking user:', error);
+        // Continue without user link - non-critical
+      }
       console.log('WhatsApp: Processing message from', from);
       console.log('WhatsApp: User message:', userMessage);
       
