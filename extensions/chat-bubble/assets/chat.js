@@ -743,10 +743,9 @@
           // Remove loading message
           messagesContainer.removeChild(loadingMessage);
 
-          // No messages, show welcome message
+          // No messages, show welcome message with conversation starters
           if (!data.messages || data.messages.length === 0) {
-            const welcomeMessage = window.shopChatConfig?.welcomeMessage || "👋 Hi there! How can I help you today?";
-            ShopAIChat.Message.add(welcomeMessage, 'assistant', messagesContainer);
+            ShopAIChat.showWelcomeWithWhatsAppChoice();
             return;
           }
 
@@ -776,9 +775,8 @@
             messagesContainer.removeChild(loadingMessage);
           }
 
-          // Show error and welcome message
-          const welcomeMessage = window.shopChatConfig?.welcomeMessage || "👋 Hi there! How can I help you today?";
-          ShopAIChat.Message.add(welcomeMessage, 'assistant', messagesContainer);
+          // Show welcome message with conversation starters on error
+          ShopAIChat.showWelcomeWithWhatsAppChoice();
 
           // Clear the conversation ID since we couldn't fetch this conversation
           CookieUtils.delete('shopAiConversationId');
@@ -1002,6 +1000,12 @@
 
       this.UI.init(container);
 
+      // Show WhatsApp banner at all times
+      const whatsappBanner = document.getElementById('whatsapp-banner');
+      if (whatsappBanner) {
+        whatsappBanner.style.display = 'flex';
+      }
+
       // Add WhatsApp banner button handler
       const whatsappBannerBtn = document.getElementById('whatsapp-banner-btn');
       if (whatsappBannerBtn) {
@@ -1040,12 +1044,6 @@
      */
     showWelcomeWithWhatsAppChoice: function() {
       const { messagesContainer } = this.UI.elements;
-
-      // Show WhatsApp banner
-      const whatsappBanner = document.getElementById('whatsapp-banner');
-      if (whatsappBanner) {
-        whatsappBanner.style.display = 'flex';
-      }
 
       // Create the welcome message
       const welcomeMessage = document.createElement('div');
