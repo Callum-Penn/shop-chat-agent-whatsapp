@@ -69,7 +69,23 @@ export const action = async ({ request }) => {
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
   
-  // Handle document messages (spreadsheets, PDFs, etc.)
+  // Handle images, videos, audio - reject with explanation
+  if (message && (message.image || message.video || message.audio)) {
+    const from = message.from;
+    const mediaType = message.image ? 'image' : message.video ? 'video' : 'audio';
+    
+    console.log(`WhatsApp: ${mediaType} received from ${from} - rejecting (only spreadsheets allowed)`);
+    
+    await sendWhatsAppMessage(
+      from,
+      "📄 Sorry, I can only accept spreadsheet files (.xlsx, .xls, .csv).\n\n" +
+      "Please send your data as an Excel or CSV file. Images, videos, and audio files are not supported."
+    );
+    
+    return json({ success: true, message: 'Unsupported media type rejected' });
+  }
+  
+  // Handle document messages - only accept spreadsheets
   if (message && message.document) {
     const document = message.document;
     const from = message.from;
@@ -82,6 +98,36 @@ export const action = async ({ request }) => {
       fileId: document.id,
       caption: caption
     });
+    
+    // Define allowed spreadsheet MIME types
+    const allowedSpreadsheetTypes = [
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+      'application/vnd.ms-excel', // .xls
+      'text/csv', // .csv
+      'application/csv', // .csv (alternative)
+      'text/comma-separated-values' // .csv (alternative)
+    ];
+    
+    // Check if the file is a spreadsheet
+    const isSpreadsheet = allowedSpreadsheetTypes.includes(document.mime_type) ||
+                         document.filename?.toLowerCase().endsWith('.xlsx') ||
+                         document.filename?.toLowerCase().endsWith('.xls') ||
+                         document.filename?.toLowerCase().endsWith('.csv');
+    
+    if (!isSpreadsheet) {
+      console.log('WhatsApp: Non-spreadsheet document rejected:', document.mime_type);
+      await sendWhatsAppMessage(
+        from,
+        "📄 Sorry, I can only accept spreadsheet files.\n\n" +
+        "✅ Supported formats:\n" +
+        "• Excel files (.xlsx, .xls)\n" +
+        "• CSV files (.csv)\n\n" +
+        "❌ Your file type is not supported.\n\n" +
+        "Please convert your file to one of the supported formats and send it again."
+      );
+      
+      return json({ success: true, message: 'Non-spreadsheet document rejected' });
+    }
     
     try {
       // Download the file from WhatsApp
@@ -452,6 +498,23 @@ export const action = async ({ request }) => {
       console.error('WhatsApp chat error:', error);
       await sendWhatsAppMessage(from, "Sorry, I'm having trouble accessing the store information right now. Please try again later.");
     }
+  }
+  
+  // Handle stickers, contacts, locations, and other unsupported message types
+  if (message && !message.text && !message.document && !message.image && !message.video && !message.audio) {
+    const from = message.from;
+    const messageType = message.type || 'unknown';
+    
+    console.log(`WhatsApp: Unsupported message type '${messageType}' received from ${from}`);
+    
+    await sendWhatsAppMessage(
+      from,
+      "I can help you via text messages or spreadsheet files.\n\n" +
+      "📄 To send a spreadsheet: Attach an Excel (.xlsx, .xls) or CSV file\n" +
+      "💬 To chat: Send me a text message"
+    );
+    
+    return json({ success: true, message: 'Unsupported message type' });
   }
   
   return json({ success: true });
