@@ -1172,6 +1172,8 @@
             body: JSON.stringify({ phoneNumber })
           });
           
+          const data = await res.json();
+          
           if (res.ok) {
             // Remove the input form
             whatsappMessage.remove();
@@ -1182,7 +1184,7 @@
             successMessage.classList.add('shop-ai-message', 'assistant');
             successMessage.innerHTML = `
               <div class="shop-ai-message-content">
-                We've sent you a message on WhatsApp! Please check your phone.
+                ✅ We've sent you a message on WhatsApp! Please check your phone and reply to continue chatting.
               </div>
             `;
             messagesContainer.appendChild(successMessage);
@@ -1196,7 +1198,7 @@
             errorMessage.classList.add('shop-ai-message', 'assistant');
             errorMessage.innerHTML = `
               <div class="shop-ai-message-content">
-                ❌ Sorry, there was a problem sending the WhatsApp invite. Please try again.
+                ❌ Sorry, there was a problem sending the WhatsApp invite. ${data.details || 'Please try again.'}
               </div>
             `;
             messagesContainer.appendChild(errorMessage);
@@ -1317,16 +1319,22 @@
           alert('Please enter a valid phone number.');
           return;
         }
-        // Call backend to send WhatsApp invite
-        const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phoneNumber })
-        });
-        if (res.ok) {
-          msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">We’ve sent you a message on WhatsApp! Please check your phone.</div>`;
-        } else {
-          msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">Sorry, there was a problem sending the WhatsApp invite.</div>`;
+        try {
+          // Call backend to send WhatsApp invite
+          const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phoneNumber })
+          });
+          const data = await res.json();
+          
+          if (res.ok) {
+            msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">✅ We've sent you a message on WhatsApp! Please check your phone and reply to continue chatting.</div>`;
+          } else {
+            msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">❌ Sorry, there was a problem sending the WhatsApp invite. ${data.details || 'Please try again.'}</div>`;
+          }
+        } catch (error) {
+          msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">❌ Network error. Please check your connection and try again.</div>`;
         }
       };
     };
