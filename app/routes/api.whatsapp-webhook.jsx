@@ -4,7 +4,7 @@ import { createToolService } from "../services/tool.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
-import { sendWhatsAppMessage } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocument } from "../utils/whatsapp.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -69,6 +69,72 @@ export const action = async ({ request }) => {
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
   
+  // Handle document messages (spreadsheets, PDFs, etc.)
+  if (message && message.document) {
+    const document = message.document;
+    const from = message.from;
+    const caption = message.caption || '';
+    
+    console.log('WhatsApp: Document received from', from);
+    console.log('WhatsApp: Document details:', {
+      filename: document.filename,
+      mimeType: document.mime_type,
+      fileId: document.id,
+      caption: caption
+    });
+    
+    try {
+      // Download the file from WhatsApp
+      const fileData = await downloadWhatsAppMedia(document.id);
+      
+      console.log('WhatsApp: File downloaded successfully');
+      
+      // Get staff WhatsApp number from environment
+      const staffWhatsAppNumber = process.env.STAFF_WHATSAPP_NUMBER;
+      
+      if (!staffWhatsAppNumber) {
+        console.error('WhatsApp: STAFF_WHATSAPP_NUMBER not configured');
+        await sendWhatsAppMessage(from, "❌ Sorry, there was an error processing your file. Please try again later.");
+        return json({ success: false, error: 'Staff number not configured' });
+      }
+      
+      // Forward the document to staff member with context
+      const forwardCaption = `📎 File from customer: ${from}\n` +
+                           `Original filename: ${document.filename}\n` +
+                           `File type: ${fileData.mimeType}\n` +
+                           `Size: ${Math.round(fileData.fileSize / 1024)}KB` +
+                           (caption ? `\n\nCustomer note: ${caption}` : '');
+      
+      await sendWhatsAppDocument(
+        staffWhatsAppNumber,
+        fileData.buffer,
+        document.filename,
+        forwardCaption
+      );
+      
+      console.log('WhatsApp: Document forwarded to staff:', staffWhatsAppNumber);
+      
+      // Send confirmation to customer
+      await sendWhatsAppMessage(
+        from, 
+        "✅ Thank you! Your file has been received and forwarded to our team. Someone will review it shortly."
+      );
+      
+      // Save the interaction to database
+      const conversationId = `whatsapp_${from}`;
+      await saveMessage(conversationId, 'user', `[Document: ${document.filename}]`);
+      await saveMessage(conversationId, 'assistant', 'File received and forwarded to team.');
+      
+      return json({ success: true, message: 'Document forwarded successfully' });
+      
+    } catch (error) {
+      console.error('WhatsApp: Error processing document:', error);
+      await sendWhatsAppMessage(from, "❌ Sorry, there was an error processing your file. Please try again later.");
+      return json({ success: false, error: error.message });
+    }
+  }
+  
+  // Handle text messages
   if (message && message.text) {
     const userMessage = message.text.body;
     const from = message.from;

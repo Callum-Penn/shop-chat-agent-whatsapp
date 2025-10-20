@@ -37,6 +37,7 @@
     "@shopify/shopify-app-session-storage-prisma": "^6.0.0",
     "bitly": "^7.1.2",
     "dotenv": "^16.3.1",
+    "form-data": "^4.0.0",
     "isbot": "^5.1.0",
     "prisma": "^6.2.1",
     "react": "^18.2.0",
