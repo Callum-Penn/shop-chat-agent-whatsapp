@@ -17,6 +17,29 @@ class MCPClient {
     this.tools = [];
     this.customerTools = [];
     this.storefrontTools = [];
+    
+    // Add custom tools that aren't from MCP servers
+    this.customTools = [
+      {
+        name: "send_order_template",
+        description: "Send a spreadsheet order template to the customer via WhatsApp. Use this when customers ask about bestsellers, want to place bulk orders, or need an order form. The template includes business details fields and a product list where they can enter quantities.",
+        input_schema: {
+          type: "object",
+          properties: {
+            template_type: {
+              type: "string",
+              enum: ["bestsellers", "general"],
+              description: "Type of template to send: 'bestsellers' for pre-filled bestseller products, 'general' for blank order form"
+            },
+            message: {
+              type: "string",
+              description: "Optional custom message to include with the template"
+            }
+          },
+          required: ["template_type"]
+        }
+      }
+    ];
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
     this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
 
@@ -76,7 +99,7 @@ class MCPClient {
       const customerTools = this._formatToolsData(toolsData);
 
       this.customerTools = customerTools;
-      this.tools = [...this.tools, ...customerTools];
+      this.tools = [...this.tools, ...customerTools, ...this.customTools];
 
       return customerTools;
     } catch (e) {
@@ -111,7 +134,9 @@ class MCPClient {
       const storefrontTools = this._formatToolsData(toolsData);
 
       this.storefrontTools = storefrontTools;
-      this.tools = [...this.tools, ...storefrontTools];
+      // Add custom tools only once (in case storefront connects first)
+      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template') ? [] : this.customTools;
+      this.tools = [...this.tools, ...storefrontTools, ...customToolsToAdd];
 
       return storefrontTools;
     } catch (e) {
@@ -133,9 +158,37 @@ class MCPClient {
       return this.callCustomerTool(toolName, toolArgs);
     } else if (this.storefrontTools.some(tool => tool.name === toolName)) {
       return this.callStorefrontTool(toolName, toolArgs);
+    } else if (this.customTools.some(tool => tool.name === toolName)) {
+      return this.callCustomTool(toolName, toolArgs);
     } else {
       throw new Error(`Tool ${toolName} not found`);
     }
+  }
+
+  /**
+   * Handles custom tool calls that aren't from MCP servers.
+   * Returns a special response that the webhook handler can process.
+   *
+   * @param {string} toolName - Name of the custom tool to call
+   * @param {Object} toolArgs - Arguments passed to the tool
+   * @returns {Promise<Object>} Result indicating custom tool was called
+   */
+  async callCustomTool(toolName, toolArgs) {
+    console.log(`Custom tool called: ${toolName}`, toolArgs);
+    
+    // Return a special response that the webhook can detect and handle
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          custom_tool: toolName,
+          arguments: toolArgs
+        })
+      }],
+      isCustomTool: true,
+      toolName: toolName,
+      toolArgs: toolArgs
+    };
   }
 
   /**

@@ -226,3 +226,34 @@ export async function sendWhatsAppDocument(to, fileBuffer, filename, caption = '
   console.log('WhatsApp: Document sent successfully');
   return responseData;
 }
+
+/**
+ * Send a document from a URL to WhatsApp
+ * @param {string} to - Phone number to send to
+ * @param {string} fileUrl - URL of the file to download and send
+ * @param {string} filename - Filename to use when sending
+ * @param {string} caption - Optional caption
+ * @returns {Promise<Object>} Response from WhatsApp API
+ */
+export async function sendWhatsAppDocumentFromUrl(to, fileUrl, filename, caption = '') {
+  console.log('WhatsApp: Downloading file from URL:', fileUrl);
+  
+  try {
+    // Download the file from the URL
+    const fileResponse = await fetch(fileUrl);
+    
+    if (!fileResponse.ok) {
+      throw new Error(`Failed to download file from URL: ${fileResponse.status}`);
+    }
+    
+    const fileBuffer = Buffer.from(await fileResponse.arrayBuffer());
+    console.log('WhatsApp: File downloaded from URL, size:', fileBuffer.length, 'bytes');
+    
+    // Send the document using the existing function
+    return await sendWhatsAppDocument(to, fileBuffer, filename, caption);
+    
+  } catch (error) {
+    console.error('WhatsApp: Error downloading/sending file from URL:', error);
+    throw error;
+  }
+}

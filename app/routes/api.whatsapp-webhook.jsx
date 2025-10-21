@@ -4,7 +4,7 @@ import { createToolService } from "../services/tool.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
-import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocument } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocument, sendWhatsAppDocumentFromUrl } from "../utils/whatsapp.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -298,6 +298,65 @@ export const action = async ({ request }) => {
                   const toolResponse = await mcpClient.callTool(toolName, toolArgs);
                   console.log('WhatsApp: Tool response received');
                   console.log('WhatsApp: Tool response structure:', JSON.stringify(toolResponse, null, 2).substring(0, 500) + '...');
+                  
+                  // Handle custom tools (like send_order_template)
+                  if (toolResponse.isCustomTool && toolName === 'send_order_template') {
+                    console.log('WhatsApp: Handling custom tool send_order_template');
+                    
+                    const templateType = toolArgs.template_type || 'general';
+                    const customMessage = toolArgs.message || '';
+                    
+                    // Get template URL from environment based on type
+                    const templateUrl = templateType === 'bestsellers' 
+                      ? process.env.ORDER_TEMPLATE_BESTSELLERS_URL 
+                      : process.env.ORDER_TEMPLATE_GENERAL_URL;
+                    
+                    if (!templateUrl) {
+                      console.error('WhatsApp: Template URL not configured for type:', templateType);
+                      aiResponse = "I apologize, but the order template is not currently available. Please contact our team directly.";
+                      conversationComplete = true;
+                      break;
+                    }
+                    
+                    try {
+                      // Send the template document
+                      const filename = templateType === 'bestsellers' 
+                        ? 'bestsellers-order-form.xlsx' 
+                        : 'order-form.xlsx';
+                      
+                      const caption = customMessage || 
+                        "📄 Here's your order form!\n\n" +
+                        "1. Fill in your business details\n" +
+                        "2. Enter quantities for products you want\n" +
+                        "3. Send the completed form back to me";
+                      
+                      await sendWhatsAppDocumentFromUrl(from, templateUrl, filename, caption);
+                      console.log('WhatsApp: Order template sent successfully');
+                      
+                      // Update conversation with success
+                      conversationHistory.push({
+                        role: 'assistant',
+                        content: [content]
+                      });
+                      conversationHistory.push({
+                        role: 'user',
+                        content: [{
+                          type: 'tool_result',
+                          tool_use_id: content.id,
+                          content: `Order template sent successfully to customer via WhatsApp.`
+                        }]
+                      });
+                      
+                      // Continue to next turn for Claude to respond
+                      break;
+                      
+                    } catch (templateError) {
+                      console.error('WhatsApp: Failed to send template:', templateError);
+                      aiResponse = "I apologize, but I couldn't send the order template. Please try again later.";
+                      conversationComplete = true;
+                      break;
+                    }
+                  }
                   
                   // Check if tool execution was successful
                   if (toolResponse.error) {
