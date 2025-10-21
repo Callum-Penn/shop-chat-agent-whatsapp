@@ -99,7 +99,9 @@ class MCPClient {
       const customerTools = this._formatToolsData(toolsData);
 
       this.customerTools = customerTools;
-      this.tools = [...this.tools, ...customerTools, ...this.customTools];
+      // Only add custom tools if they haven't been added yet
+      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template') ? [] : this.customTools;
+      this.tools = [...this.tools, ...customerTools, ...customToolsToAdd];
 
       return customerTools;
     } catch (e) {
