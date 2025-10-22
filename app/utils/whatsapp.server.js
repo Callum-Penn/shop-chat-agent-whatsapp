@@ -95,6 +95,60 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
 }
 
 /**
+ * Send an image message to WhatsApp
+ * @param {string} to - Phone number to send message to
+ * @param {string} imageData - Base64 encoded image data
+ * @param {string} caption - Optional caption for the image
+ * @returns {Promise<Object>} Response from WhatsApp API
+ */
+export async function sendWhatsAppImage(to, imageData, caption = '') {
+  const url = `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+  const token = process.env.WHATSAPP_TOKEN;
+  
+  // Convert base64 to buffer
+  const imageBuffer = Buffer.from(imageData.split(',')[1], 'base64');
+  
+  // Create form data for multipart upload
+  const FormData = require('form-data');
+  const form = new FormData();
+  
+  form.append('messaging_product', 'whatsapp');
+  form.append('to', to);
+  form.append('type', 'image');
+  form.append('image', imageBuffer, {
+    filename: 'image.jpg',
+    contentType: 'image/jpeg'
+  });
+  
+  if (caption) {
+    form.append('caption', caption);
+  }
+  
+  console.log('WhatsApp: Sending image to', to);
+  console.log('WhatsApp: Image size:', imageBuffer.length, 'bytes');
+  
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      ...form.getHeaders()
+    },
+    body: form
+  });
+  
+  const responseData = await response.json();
+  
+  if (!response.ok) {
+    console.error('WhatsApp: Failed to send image:', response.status, response.statusText);
+    console.error('WhatsApp: Error response:', JSON.stringify(responseData, null, 2));
+    throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
+  }
+  
+  console.log('WhatsApp: Image sent successfully:', JSON.stringify(responseData));
+  return responseData;
+}
+
+/**
  * Download media from WhatsApp
  * @param {string} mediaId - Media ID from WhatsApp
  * @returns {Promise<{buffer: Buffer, mimeType: string, fileSize: number}>} File data and metadata

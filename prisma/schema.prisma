@@ -107,6 +107,10 @@ model CustomerAccountUrl {
 model BroadcastLog {
   id             String    @id @default(cuid())
   message        String
+  heading        String?   // Optional heading for the broadcast
+  image          String?   // Base64 encoded image data
+  imageName      String?   // Original image filename
+  imageType      String?   // MIME type of the image
   channels       Json      // { website: boolean, whatsapp: boolean }
   status         String    // 'processing', 'completed', 'failed', 'partial'
   whatsappCount  Int       @default(0)

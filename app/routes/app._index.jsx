@@ -19,8 +19,10 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "@remix-run/react";
 
 export default function BroadcastCenter() {
+  const navigate = useNavigate();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [campaignName, setCampaignName] = useState("");
   const [message, setMessage] = useState("");
@@ -80,8 +82,8 @@ export default function BroadcastCenter() {
   ];
 
   const handleCreateCampaign = useCallback(() => {
-    setShowCreateModal(true);
-  }, []);
+    navigate('/app/broadcast');
+  }, [navigate]);
 
   const handleCloseModal = useCallback(() => {
     setShowCreateModal(false);
@@ -135,7 +137,7 @@ export default function BroadcastCenter() {
     <Page>
       <TitleBar title="Broadcast Center">
         <Button primary onClick={handleCreateCampaign}>
-          Create Campaign
+          Create Broadcast
         </Button>
       </TitleBar>
       

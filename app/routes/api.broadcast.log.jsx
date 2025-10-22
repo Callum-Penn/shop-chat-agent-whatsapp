@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { sendWhatsAppMessage } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, sendWhatsAppImage } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
@@ -23,7 +23,7 @@ export const action = async ({ request }) => {
 
   try {
     const body = await request.json();
-    const { message, channels, phones } = body || {};
+    const { message, heading, image, imageName, imageType, channels, phones } = body || {};
 
     if (!message || typeof message !== "string" || message.trim().length === 0) {
       return json({ error: "Message is required" }, { status: 400 });
@@ -40,6 +40,10 @@ export const action = async ({ request }) => {
     const entry = await prisma.broadcastLog.create({
       data: {
         message: message.trim(),
+        heading: heading?.trim() || null,
+        image: image || null,
+        imageName: imageName || null,
+        imageType: imageType || null,
         channels: { website, whatsapp },
         whatsappCount: 0, // Will be updated after processing
         status: 'processing',
@@ -89,7 +93,19 @@ async function processWhatsAppBroadcast(entry, message) {
     
     for (const user of whatsappUsers) {
       try {
-        await sendWhatsAppMessage(user.phoneNumber, message);
+        // Format message with bold heading if provided
+        let formattedMessage = message;
+        if (entry.heading) {
+          formattedMessage = `*${entry.heading}*\n\n${message}`;
+        }
+        
+        // Send image if provided, otherwise send text message
+        if (entry.image) {
+          await sendWhatsAppImage(user.phoneNumber, entry.image, formattedMessage);
+        } else {
+          await sendWhatsAppMessage(user.phoneNumber, formattedMessage);
+        }
+        
         entry.results.whatsapp.sent++;
         console.log(`Broadcast: WhatsApp message sent to ${user.phoneNumber} (${user.name || 'Unknown'})`);
         
@@ -97,7 +113,10 @@ async function processWhatsAppBroadcast(entry, message) {
         // so Claude AI knows about it when they respond
         try {
           const conversationId = `whatsapp_${user.phoneNumber}`;
-          await saveMessage(conversationId, 'assistant', `[Broadcast Message] ${message}`);
+          const conversationMessage = entry.heading 
+            ? `[Broadcast Message] *${entry.heading}*\n\n${message}`
+            : `[Broadcast Message] ${message}`;
+          await saveMessage(conversationId, 'assistant', conversationMessage);
           console.log(`Broadcast: Saved message to conversation history for ${user.phoneNumber}`);
         } catch (saveError) {
           console.error(`Broadcast: Failed to save message to conversation for ${user.phoneNumber}:`, saveError);

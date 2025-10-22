@@ -17,6 +17,9 @@ import {
 
 export default function BroadcastCenter() {
   const [message, setMessage] = useState("");
+  const [heading, setHeading] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [websiteChecked, setWebsiteChecked] = useState(true);
   const [whatsappChecked, setWhatsappChecked] = useState(false);
   const [whatsappUserCount, setWhatsappUserCount] = useState(0);
@@ -28,8 +31,38 @@ export default function BroadcastCenter() {
   const canSend = useMemo(() => {
     const hasChannel = websiteChecked || whatsappChecked;
     const hasWhatsAppAudience = !whatsappChecked || whatsappUserCount > 0;
-    return hasChannel && hasWhatsAppAudience && message.trim().length > 0;
-  }, [websiteChecked, whatsappChecked, whatsappUserCount, message]);
+    const hasContent = message.trim().length > 0 || heading.trim().length > 0 || imageFile;
+    return hasChannel && hasWhatsAppAudience && hasContent;
+  }, [websiteChecked, whatsappChecked, whatsappUserCount, message, heading, imageFile]);
+
+  const handleImageChange = useCallback((event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file size (5MB max for WhatsApp)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size must be less than 5MB for WhatsApp compatibility');
+        return;
+      }
+      
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file');
+        return;
+      }
+      
+      setImageFile(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => setImagePreview(e.target.result);
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const removeImage = useCallback(() => {
+    setImageFile(null);
+    setImagePreview(null);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -72,8 +105,22 @@ export default function BroadcastCenter() {
     try {
       const payload = {
         message: message.trim(),
+        heading: heading.trim(),
         channels: { website: websiteChecked, whatsapp: whatsappChecked },
       };
+      
+      // If there's an image, we'll need to handle it differently
+      if (imageFile) {
+        // For now, we'll convert to base64 and send
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(imageFile);
+        });
+        payload.image = base64;
+        payload.imageName = imageFile.name;
+        payload.imageType = imageFile.type;
+      }
       const res = await fetch("/api/broadcast/log", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,7 +133,7 @@ export default function BroadcastCenter() {
     } catch (e) {
       // ignore for POC
     }
-  }, [message, websiteChecked, whatsappChecked]);
+  }, [message, heading, websiteChecked, whatsappChecked, imageFile]);
 
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -120,6 +167,16 @@ export default function BroadcastCenter() {
             <Card>
               <BlockStack gap="400">
                 <Text as="h2" variant="headingMd">Compose message</Text>
+                
+                <TextField
+                  label="Heading (optional)"
+                  value={heading}
+                  onChange={setHeading}
+                  autoComplete="off"
+                  placeholder="Enter a bold heading for your message…"
+                  helpText="This will appear in bold for WhatsApp messages"
+                />
+                
                 <TextField
                   label="Message"
                   value={message}
@@ -128,6 +185,42 @@ export default function BroadcastCenter() {
                   autoComplete="off"
                   placeholder="Write your announcement or promotion…"
                 />
+                
+                <div>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                    Image (optional)
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    style={{ marginBottom: '8px' }}
+                  />
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    Square images work best. Max size: 5MB. Supported formats: JPG, PNG, GIF
+                  </Text>
+                  
+                  {imagePreview && (
+                    <div style={{ marginTop: '12px' }}>
+                      <img 
+                        src={imagePreview} 
+                        alt="Preview" 
+                        style={{ 
+                          maxWidth: '200px', 
+                          maxHeight: '200px', 
+                          objectFit: 'cover',
+                          borderRadius: '8px',
+                          border: '1px solid #e1e3e5'
+                        }} 
+                      />
+                      <div style={{ marginTop: '8px' }}>
+                        <Button size="slim" onClick={removeImage}>
+                          Remove Image
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <InlineStack gap="400" wrap={false} align="start">
                   <Checkbox
                     label="Website"
@@ -157,6 +250,9 @@ export default function BroadcastCenter() {
                 <InlineStack gap="300" align="end">
                   <Button variant="secondary" onClick={() => {
                     setMessage("");
+                    setHeading("");
+                    setImageFile(null);
+                    setImagePreview(null);
                     setWebsiteChecked(true);
                     setWhatsappChecked(false);
                   }}>
@@ -241,6 +337,24 @@ export default function BroadcastCenter() {
                 </InlineStack>
                 <Card>
                   <BlockStack gap="200">
+                    {imagePreview && (
+                      <img 
+                        src={imagePreview} 
+                        alt="Preview" 
+                        style={{ 
+                          maxWidth: '100%', 
+                          maxHeight: '200px', 
+                          objectFit: 'cover',
+                          borderRadius: '8px',
+                          border: '1px solid #e1e3e5'
+                        }} 
+                      />
+                    )}
+                    {heading?.trim() && (
+                      <Text as="p" variant="headingMd" fontWeight="bold">
+                        {heading}
+                      </Text>
+                    )}
                     <Text as="p" variant="bodyMd">
                       {message?.trim() ? message : "Your message preview will appear here."}
                     </Text>
