@@ -13,6 +13,9 @@ import {
   Badge,
   Frame,
   Toast,
+  DropZone,
+  Thumbnail,
+  Stack,
 } from "@shopify/polaris";
 
 export default function BroadcastCenter() {
@@ -35,8 +38,8 @@ export default function BroadcastCenter() {
     return hasChannel && hasWhatsAppAudience && hasContent;
   }, [websiteChecked, whatsappChecked, whatsappUserCount, message, heading, imageFile]);
 
-  const handleImageChange = useCallback((event) => {
-    const file = event.target.files[0];
+  const handleImageChange = useCallback((files) => {
+    const file = files[0];
     if (file) {
       // Validate file size (5MB max for WhatsApp)
       if (file.size > 5 * 1024 * 1024) {
@@ -186,41 +189,54 @@ export default function BroadcastCenter() {
                   placeholder="Write your announcement or promotion…"
                 />
                 
-                <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                <BlockStack gap="300">
+                  <Text as="h3" variant="headingMd">
                     Image (optional)
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    style={{ marginBottom: '8px' }}
-                  />
-                  <Text as="p" variant="bodySm" tone="subdued">
-                    Square images work best. Max size: 5MB. Supported formats: JPG, PNG, GIF
                   </Text>
                   
-                  {imagePreview && (
-                    <div style={{ marginTop: '12px' }}>
-                      <img 
-                        src={imagePreview} 
-                        alt="Preview" 
-                        style={{ 
-                          maxWidth: '200px', 
-                          maxHeight: '200px', 
-                          objectFit: 'cover',
-                          borderRadius: '8px',
-                          border: '1px solid #e1e3e5'
-                        }} 
-                      />
-                      <div style={{ marginTop: '8px' }}>
-                        <Button size="slim" onClick={removeImage}>
-                          Remove Image
-                        </Button>
-                      </div>
-                    </div>
+                  {!imageFile ? (
+                    <DropZone
+                      accept="image/*"
+                      type="image"
+                      onDrop={handleImageChange}
+                      allowMultiple={false}
+                    >
+                      <DropZone.FileUpload />
+                      <Text as="p" variant="bodySm" tone="subdued">
+                        Square images work best. Max size: 5MB. Supported formats: JPG, PNG, GIF
+                      </Text>
+                    </DropZone>
+                  ) : (
+                    <Card>
+                      <BlockStack gap="300">
+                        <InlineStack align="space-between">
+                          <Text as="h4" variant="headingSm">
+                            Selected Image
+                          </Text>
+                          <Button size="slim" onClick={removeImage}>
+                            Remove
+                          </Button>
+                        </InlineStack>
+                        
+                        <InlineStack gap="300" align="start">
+                          <Thumbnail
+                            source={imagePreview}
+                            alt="Image preview"
+                            size="large"
+                          />
+                          <BlockStack gap="100">
+                            <Text as="p" variant="bodyMd">
+                              {imageFile.name}
+                            </Text>
+                            <Text as="p" variant="bodySm" tone="subdued">
+                              {(imageFile.size / 1024 / 1024).toFixed(2)} MB
+                            </Text>
+                          </BlockStack>
+                        </InlineStack>
+                      </BlockStack>
+                    </Card>
                   )}
-                </div>
+                </BlockStack>
                 <InlineStack gap="400" wrap={false} align="start">
                   <Checkbox
                     label="Website"

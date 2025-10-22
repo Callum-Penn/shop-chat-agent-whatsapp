@@ -101,8 +101,13 @@ async function processWhatsAppBroadcast(entry, message) {
         
         // Send image if provided, otherwise send text message
         if (entry.image) {
-          await sendWhatsAppImage(user.phoneNumber, entry.image, formattedMessage);
+          // For images: send image with caption (heading + message)
+          const imageCaption = entry.heading 
+            ? `*${entry.heading}*\n\n${message}`
+            : message;
+          await sendWhatsAppImage(user.phoneNumber, entry.image, imageCaption);
         } else {
+          // For text only: send formatted message with bold heading
           await sendWhatsAppMessage(user.phoneNumber, formattedMessage);
         }
         
