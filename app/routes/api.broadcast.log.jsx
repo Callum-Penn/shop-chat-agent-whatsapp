@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { sendWhatsAppMessage, sendWhatsAppImage } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, sendWhatsAppImage, uploadWhatsAppMedia, sendWhatsAppImageWithMediaId } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
@@ -95,7 +95,6 @@ async function processWhatsAppBroadcast(entry, message) {
     let mediaId = null;
     if (entry.image) {
       try {
-        const { uploadWhatsAppMedia } = await import('../utils/whatsapp.server');
         mediaId = await uploadWhatsAppMedia(entry.image, 'image.jpg', 'image/jpeg');
         console.log(`Broadcast: Uploaded image once, media ID: ${mediaId}`);
       } catch (error) {
