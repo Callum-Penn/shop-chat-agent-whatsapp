@@ -373,18 +373,41 @@ export async function createOrGetUser(userInfo) {
 export async function getUserById(userId) {
   try {
     return await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        conversations: {
-          where: { archived: false },
-          orderBy: { updatedAt: 'desc' },
-          take: 10
+      where: { id: userId }
+    });
+  } catch (error) {
+    console.error('Error getting user by ID:', error);
+    return null;
+  }
+}
+
+/**
+ * Get all WhatsApp users for broadcasting
+ * @returns {Promise<Array>} - Array of WhatsApp users with phone numbers
+ */
+export async function getAllWhatsAppUsers() {
+  try {
+    return await prisma.user.findMany({
+      where: {
+        type: 'whatsapp',
+        phoneNumber: {
+          not: null
         }
+      },
+      select: {
+        id: true,
+        phoneNumber: true,
+        name: true,
+        createdAt: true,
+        metadata: true
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
     });
   } catch (error) {
-    console.error('Error retrieving user by ID:', error);
-    return null;
+    console.error('Error getting WhatsApp users:', error);
+    return [];
   }
 }
 

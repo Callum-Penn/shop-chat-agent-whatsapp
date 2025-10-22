@@ -19,23 +19,16 @@ export default function BroadcastCenter() {
   const [message, setMessage] = useState("");
   const [websiteChecked, setWebsiteChecked] = useState(true);
   const [whatsappChecked, setWhatsappChecked] = useState(false);
-  const [phones, setPhones] = useState("");
+  const [whatsappUserCount, setWhatsappUserCount] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [logs, setLogs] = useState([]);
   const [loadingLogs, setLoadingLogs] = useState(true);
 
-  const phoneList = useMemo(() => {
-    return phones
-      .split(",")
-      .map((p) => p.trim())
-      .filter(Boolean);
-  }, [phones]);
-
   const canSend = useMemo(() => {
     const hasChannel = websiteChecked || whatsappChecked;
-    const hasWhatsAppAudience = !whatsappChecked || phoneList.length > 0;
+    const hasWhatsAppAudience = !whatsappChecked || whatsappUserCount > 0;
     return hasChannel && hasWhatsAppAudience && message.trim().length > 0;
-  }, [websiteChecked, whatsappChecked, phoneList.length, message]);
+  }, [websiteChecked, whatsappChecked, whatsappUserCount, message]);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,8 +47,26 @@ export default function BroadcastCenter() {
 
     loadLogs();
     
+    // Load WhatsApp user count
+    const loadWhatsAppUserCount = async () => {
+      try {
+        const res = await fetch("/api/broadcast/whatsapp-users");
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted) setWhatsappUserCount(data.count || 0);
+        }
+      } catch (e) {
+        // ignore for POC
+      }
+    };
+    
+    loadWhatsAppUserCount();
+    
     // Auto-refresh every 3 seconds to show status updates
-    const interval = setInterval(loadLogs, 3000);
+    const interval = setInterval(() => {
+      loadLogs();
+      loadWhatsAppUserCount();
+    }, 3000);
     
     return () => { 
       isMounted = false; 
@@ -68,7 +79,6 @@ export default function BroadcastCenter() {
       const payload = {
         message: message.trim(),
         channels: { website: websiteChecked, whatsapp: whatsappChecked },
-        phones: phoneList,
       };
       const res = await fetch("/api/broadcast/log", {
         method: "POST",
@@ -82,7 +92,7 @@ export default function BroadcastCenter() {
     } catch (e) {
       // ignore for POC
     }
-  }, [message, websiteChecked, whatsappChecked, phoneList]);
+  }, [message, websiteChecked, whatsappChecked]);
 
   return (
     <Page>
@@ -115,13 +125,16 @@ export default function BroadcastCenter() {
                 </InlineStack>
 
                 {whatsappChecked && (
-                  <TextField
-                    label="WhatsApp phone numbers (comma-separated, E.164 preferred)"
-                    value={phones}
-                    onChange={setPhones}
-                    autoComplete="off"
-                    placeholder="+447700900001, +447700900002"
-                  />
+                  <Card>
+                    <BlockStack gap="200">
+                      <Text as="p" variant="bodyMd">
+                        📱 WhatsApp will be sent to <strong>{whatsappUserCount}</strong> users from your database
+                      </Text>
+                      <Text as="p" variant="bodySm" tone="subdued">
+                        This includes all customers who have previously messaged you via WhatsApp
+                      </Text>
+                    </BlockStack>
+                  </Card>
                 )}
 
                 <InlineStack gap="300" align="end">
@@ -129,7 +142,6 @@ export default function BroadcastCenter() {
                     setMessage("");
                     setWebsiteChecked(true);
                     setWhatsappChecked(false);
-                    setPhones("");
                   }}>
                     Clear
                   </Button>
@@ -209,9 +221,7 @@ export default function BroadcastCenter() {
                 </Card>
                 {whatsappChecked && (
                   <Text as="p" variant="bodySm" tone="subdued">
-                    {phoneList.length > 0
-                      ? `WhatsApp recipients: ${phoneList.length}`
-                      : "Add one or more phone numbers to send on WhatsApp."}
+                    WhatsApp recipients: {whatsappUserCount} users from database
                   </Text>
                 )}
               </BlockStack>
