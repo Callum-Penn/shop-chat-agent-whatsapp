@@ -39,7 +39,7 @@ export default function BroadcastCenter() {
 
   useEffect(() => {
     let isMounted = true;
-    (async () => {
+    const loadLogs = async () => {
       try {
         const res = await fetch("/api/broadcast/log");
         if (!res.ok) throw new Error("Failed to load logs");
@@ -50,8 +50,17 @@ export default function BroadcastCenter() {
       } finally {
         if (isMounted) setLoadingLogs(false);
       }
-    })();
-    return () => { isMounted = false; };
+    };
+
+    loadLogs();
+    
+    // Auto-refresh every 3 seconds to show status updates
+    const interval = setInterval(loadLogs, 3000);
+    
+    return () => { 
+      isMounted = false; 
+      clearInterval(interval);
+    };
   }, []);
 
   const handleSend = useCallback(async () => {
@@ -146,12 +155,33 @@ export default function BroadcastCenter() {
                             <InlineStack gap="200">
                               {entry?.channels?.website && <Badge tone="success">Website</Badge>}
                               {entry?.channels?.whatsapp && <Badge tone="attention">WhatsApp</Badge>}
+                              {entry?.status && (
+                                <Badge tone={
+                                  entry.status === 'completed' ? 'success' :
+                                  entry.status === 'failed' ? 'critical' :
+                                  entry.status === 'partial' ? 'warning' : 'info'
+                                }>
+                                  {entry.status === 'completed' ? 'Completed' :
+                                   entry.status === 'failed' ? 'Failed' :
+                                   entry.status === 'partial' ? 'Partial' : 'Processing'}
+                                </Badge>
+                              )}
                             </InlineStack>
                             <Text as="span" variant="bodySm" tone="subdued">{new Date(entry.createdAt).toLocaleString()}</Text>
                           </InlineStack>
                           <Text as="p" variant="bodyMd">{entry.message}</Text>
                           {entry?.channels?.whatsapp && (
-                            <Text as="p" variant="bodySm" tone="subdued">WhatsApp recipients: {entry.whatsappCount}</Text>
+                            <Text as="p" variant="bodySm" tone="subdued">
+                              WhatsApp: {entry.results?.whatsapp?.sent || 0} sent, {entry.results?.whatsapp?.failed || 0} failed
+                              {entry.results?.whatsapp?.errors?.length > 0 && (
+                                <span> ({entry.results.whatsapp.errors.length} errors)</span>
+                              )}
+                            </Text>
+                          )}
+                          {entry?.channels?.website && (
+                            <Text as="p" variant="bodySm" tone="subdued">
+                              Website: {entry.results?.website?.sent || 0} sent, {entry.results?.website?.failed || 0} failed
+                            </Text>
                           )}
                         </BlockStack>
                       </Card>
@@ -191,9 +221,9 @@ export default function BroadcastCenter() {
 
         {showToast && (
           <Toast
-            content="Broadcast sent (simulated)"
+            content="Broadcast sent successfully!"
             onDismiss={() => setShowToast(false)}
-            duration={2000}
+            duration={3000}
           />
         )}
       </Frame>
