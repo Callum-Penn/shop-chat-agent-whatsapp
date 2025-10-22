@@ -1,165 +1,182 @@
-Oct 22 12:18:43  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Oct 22 12:18:43  [34m│[0m [34m › fetching app source code[0m
-Oct 22 12:18:43  [34m│[0m => Selecting branch "main"
-Oct 22 12:18:43  [34m│[0m => Checking out commit "028bebca391b5b4a98bdc65962b2e60f9e628a25"
-Oct 22 12:18:43  [34m│[0m 
-Oct 22 12:18:43  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Oct 22 12:18:43  [34m╰────────────────────────────────────────╼[0m
-Oct 22 12:18:43  
-Oct 22 12:18:43  [34m › configuring build-time app environment variables:[0m
-Oct 22 12:18:43       WHATSAPP_TOKEN SHOPIFY_CHAT_BUBBLE_ID SHOPIFY_API_KEY STAFF_WHATSAPP_NUMBER SHOPIFY_API_SECRET REDIRECT_URL DIRECT_URL ORDER_TEMPLATE_BESTSELLERS_URL CLAUDE_API_KEY WHATSAPP_VERIFY_TOKEN SHOPIFY_APP_URL ARCHIVING_API_KEY WHATSAPP_PHONE_NUMBER_ID ORDER_TEMPLATE_GENERAL_URL
-Oct 22 12:18:43  
-Oct 22 12:18:43  [34m › configuring custom build command to be run at the end of the build:[0m
-Oct 22 12:18:43     [34m│[0m npm run build
-Oct 22 12:18:43  
-Oct 22 12:18:43  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Oct 22 12:18:43  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Oct 22 12:18:45  [34m│[0m Detected the following buildpacks suitable to build your app:
-Oct 22 12:18:45  [34m│[0m 
-Oct 22 12:18:45  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Oct 22 12:18:45  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Oct 22 12:18:45  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Oct 22 12:18:45  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Oct 22 12:18:45  [34m╰─────────────────────────────────────────────╼[0m
-Oct 22 12:18:45  
-Oct 22 12:18:45  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Oct 22 12:18:45  [34m│[0m [34m › checking for cache from a previous build[0m
-Oct 22 12:18:45  [34m│[0m Timer: Analyzer started at 2025-10-22T12:18:45Z
-Oct 22 12:18:46  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Oct 22 12:18:46  [34m│[0m Timer: Analyzer ran for 589.932942ms and ended at 2025-10-22T12:18:46Z
-Oct 22 12:18:46  [34m│[0m Timer: Restorer started at 2025-10-22T12:18:46Z
-Oct 22 12:18:46  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Oct 22 12:18:51  [34m│[0m Timer: Restorer ran for 5.725675024s and ended at 2025-10-22T12:18:51Z
-Oct 22 12:18:52  [34m╰───────────────────────────────────────╼[0m
-Oct 22 12:18:52  
-Oct 22 12:18:52  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Oct 22 12:18:52  [34m│[0m Timer: Builder started at 2025-10-22T12:18:52Z
-Oct 22 12:18:52  [34m│[0m        
-Oct 22 12:18:52  [34m│[0m -----> Creating runtime environment
-Oct 22 12:18:52  [34m│[0m        
-Oct 22 12:18:52  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Oct 22 12:18:52  [34m│[0m        NODE_VERBOSE=false
-Oct 22 12:18:52  [34m│[0m        NODE_ENV=
-Oct 22 12:18:52  [34m│[0m        NODE_MODULES_CACHE=true
-Oct 22 12:18:52  [34m│[0m        
-Oct 22 12:18:52  [34m│[0m -----> Installing binaries
-Oct 22 12:18:52  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Oct 22 12:18:52  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Oct 22 12:18:52  [34m│[0m        
-Oct 22 12:18:52  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Oct 22 12:18:52  [34m│[0m        Downloading and installing node 24.2.0...
-Oct 22 12:18:58  [34m│[0m        Using default npm version: 11.3.0
-Oct 22 12:18:59  [34m│[0m        
-Oct 22 12:18:59  [34m│[0m -----> Restoring cache
-Oct 22 12:18:59  [34m│[0m        - npm cache
-Oct 22 12:18:59  [34m│[0m        
-Oct 22 12:18:59  [34m│[0m -----> Installing dependencies
-Oct 22 12:18:59  [34m│[0m        Installing node modules
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        added 1221 packages, and audited 1222 packages in 32s
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        303 packages are looking for funding
-Oct 22 12:19:31  [34m│[0m          run `npm fund` for details
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        19 vulnerabilities (7 low, 8 moderate, 3 high, 1 critical)
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        To address issues that do not require attention, run:
-Oct 22 12:19:31  [34m│[0m          npm audit fix
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        To address all issues possible (including breaking changes), run:
-Oct 22 12:19:31  [34m│[0m          npm audit fix --force
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        Some issues need review, and may require choosing
-Oct 22 12:19:31  [34m│[0m        a different dependency.
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m        Run `npm audit` for details.
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m -----> Build
-Oct 22 12:19:31  [34m│[0m        
-Oct 22 12:19:31  [34m│[0m -----> Caching build
-Oct 22 12:19:31  [34m│[0m        - npm cache
-Oct 22 12:19:32  [34m│[0m        
-Oct 22 12:19:32  [34m│[0m -----> Pruning devDependencies
-Oct 22 12:19:32  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Oct 22 12:19:32  [34m│[0m        
-Oct 22 12:19:32  [34m│[0m -----> Build succeeded!
-Oct 22 12:19:33  [34m│[0m Running custom build command: npm run build
-Oct 22 12:19:33  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Oct 22 12:19:33  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Oct 22 12:19:33  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Oct 22 12:19:33  [34m│[0m 
-Oct 22 12:19:33  [34m│[0m > shop-chat-agent@1.0.41 build
-Oct 22 12:19:33  [34m│[0m > prisma generate && remix vite:build
-Oct 22 12:19:33  [34m│[0m 
-Oct 22 12:19:34  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Oct 22 12:19:34  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Oct 22 12:19:34  [34m│[0m 
-Oct 22 12:19:34  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 70ms
-Oct 22 12:19:34  [34m│[0m 
-Oct 22 12:19:34  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Oct 22 12:19:34  [34m│[0m 
-Oct 22 12:19:34  [34m│[0m Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
-Oct 22 12:19:34  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m vite v6.3.3 building for production...
-Oct 22 12:19:35  [34m│[0m transforming...
-Oct 22 12:19:35  [34m│[0m ✓ 26 modules transformed.
-Oct 22 12:19:35  [34m│[0m ✗ Build failed in 209ms
-Oct 22 12:19:35  [34m│[0m [commonjs--resolver] Server-only module referenced by client
-Oct 22 12:19:35  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m     '../utils/whatsapp.server' imported by route 'app/routes/api.broadcast.log.jsx'
-Oct 22 12:19:35  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m   Remix automatically removes server-code from these exports:
-Oct 22 12:19:35  [34m│[0m     `loader`, `action`, `headers`
-Oct 22 12:19:35  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m   But other route exports in 'app/routes/api.broadcast.log.jsx' depend on '../utils/whatsapp.server'.
-Oct 22 12:19:35  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
-Oct 22 12:19:35  [34m│[0m 
-Oct 22 12:19:35  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
-Oct 22 12:19:35  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Oct 22 12:19:35  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Oct 22 12:19:35  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Oct 22 12:19:35  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
-Oct 22 12:19:35  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Oct 22 12:19:35  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Oct 22 12:19:35  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Oct 22 12:19:35  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
-Oct 22 12:19:35  [34m│[0m   code: 'PLUGIN_ERROR',
-Oct 22 12:19:35  [34m│[0m   plugin: 'commonjs--resolver',
-Oct 22 12:19:35  [34m│[0m   hook: 'resolveId',
-Oct 22 12:19:35  [34m│[0m   watchFiles: [
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/root.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.broadcast.whatsapp-users.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.broadcast.log.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/app.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Oct 22 12:19:35  [34m│[0m     '/workspace/package.json',
-Oct 22 12:19:35  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
-Oct 22 12:19:35  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
-Oct 22 12:19:35  [34m│[0m     '/workspace/node_modules/react/index.js',
-Oct 22 12:19:35  [34m│[0m     '/workspace/node_modules/react-dom/client.js'
-Oct 22 12:19:35  [34m│[0m   ]
-Oct 22 12:19:35  [34m│[0m }
-Oct 22 12:19:35  [34m│[0m npm notice
-Oct 22 12:19:35  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
-Oct 22 12:19:35  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
-Oct 22 12:19:35  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
-Oct 22 12:19:35  [34m│[0m npm notice
-Oct 22 12:19:35  [34m│[0m building: exit status 1
-Oct 22 12:19:35  [34m│[0m Timer: Builder ran for 43.919794626s and ended at 2025-10-22T12:19:35Z
-Oct 22 12:19:35  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Oct 22 12:19:36  [34m│[0m 
-Oct 22 12:19:36  [34m│[0m 
-Oct 22 12:19:36  [34m│[0m [31m ✘ build failed[0m
+Oct 22 12:27:05  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:05  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:05  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:06  
+Oct 22 12:27:06  > shop-chat-agent@1.0.41 start
+Oct 22 12:27:06  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Oct 22 12:27:06  
+Oct 22 12:27:06  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:06  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:06  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:06  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:06  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:06  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:09  Prisma schema loaded from prisma/schema.prisma
+Oct 22 12:27:09  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 22 12:27:09  
+Oct 22 12:27:09  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 375ms
+Oct 22 12:27:09  
+Oct 22 12:27:09  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Oct 22 12:27:09  
+Oct 22 12:27:09  Help us improve the Prisma ORM for everyone. Share your feedback in a short 2-min survey: https://pris.ly/orm/survey/release-5-22
+Oct 22 12:27:09  
+Oct 22 12:27:10  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:10  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:10  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:10  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:10  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:10  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:12  Prisma schema loaded from prisma/schema.prisma
+Oct 22 12:27:12  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Oct 22 12:27:13  
+Oct 22 12:27:13  The database is already in sync with the Prisma schema.
+Oct 22 12:27:13  
+Oct 22 12:27:13  Running generate... (Use --skip-generate to skip the generators)
+Oct 22 12:27:13  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 22 12:27:13  [2K[1A[2K[GRunning generate... - Prisma Client
+Oct 22 12:27:13  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 314ms
+Oct 22 12:27:13  
+Oct 22 12:27:14  ┌─────────────────────────────────────────────────────────┐
+Oct 22 12:27:14  │  Update available 6.6.0 -> 6.18.0                       │
+Oct 22 12:27:14  │  Run the following to update                            │
+Oct 22 12:27:14  │    npm i --save-dev prisma@latest                       │
+Oct 22 12:27:14  │    npm i @prisma/client@latest                          │
+Oct 22 12:27:14  └─────────────────────────────────────────────────────────┘
+Oct 22 12:27:18  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 22 12:27:18  [remix-serve] http://localhost:8080 (http://10.244.27.188:8080)
+Oct 22 12:28:43  GET /api/broadcast/whatsapp-users 200 - - 22.700 ms
+Oct 22 12:29:02  Broadcast: Getting WhatsApp users from database...
+Oct 22 12:29:02  Broadcast: Processing website messages
+Oct 22 12:29:02  Broadcast: Website message broadcasted
+Oct 22 12:29:02  Broadcast: Found 2 WhatsApp users in database
+Oct 22 12:29:02  POST /api/broadcast/log 201 - - 36.661 ms
+Oct 22 12:29:02  WhatsApp: Uploading media to WhatsApp
+Oct 22 12:29:02  WhatsApp: File size: 53956 bytes
+Oct 22 12:29:02  WhatsApp: MIME type: image/jpeg
+Oct 22 12:29:03  WhatsApp: Media uploaded successfully, ID: 753866707681208
+Oct 22 12:29:03  Broadcast: Uploaded image once, media ID: 753866707681208
+Oct 22 12:29:03  Broadcast: Sending to phone number: 447813353629 (original: 447813353629)
+Oct 22 12:29:03  WhatsApp: Sending image message to 447813353629
+Oct 22 12:29:03  WhatsApp: Using media ID: 753866707681208
+Oct 22 12:27:53  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:53  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:53  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:54  
+Oct 22 12:27:54  > shop-chat-agent@1.0.41 start
+Oct 22 12:27:54  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Oct 22 12:27:54  
+Oct 22 12:27:55  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:29:04  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447813353629","wa_id":"447813353629"}],"messages":[{"id":"wamid.HBgMNDQ3ODEzMzUzNjI5FQIAERgSQzkyQzYwQzBDQkNCMEFEMDBBAA=="}]}
+Oct 22 12:29:04  Broadcast: WhatsApp message sent to 447813353629 (Unknown)
+Oct 22 12:29:04  Broadcast: Saved message to conversation history for 447813353629
+Oct 22 12:29:05  GET /api/broadcast/log 200 - - 18.323 ms
+Oct 22 12:29:05  Broadcast: Sending to phone number: 447891689332 (original: 447891689332)
+Oct 22 12:29:05  WhatsApp: Sending image message to 447891689332
+Oct 22 12:29:05  WhatsApp: Using media ID: 753866707681208
+Oct 22 12:29:05  POST /api/whatsapp-webhook 200 - - 5.153 ms
+Oct 22 12:29:05  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRjlCMDgzODRDREY0NEY5MDgwAA=="}]}
+Oct 22 12:29:05  Broadcast: WhatsApp message sent to 447891689332 (Unknown)
+Oct 22 12:29:05  Broadcast: Saved message to conversation history for 447891689332
+Oct 22 12:29:05  Broadcast: WhatsApp processing complete - 2 sent, 0 failed
+Oct 22 12:29:06  POST /api/whatsapp-webhook 200 - - 3.345 ms
+Oct 22 12:27:55  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:55  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:55  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:55  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:55  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:57  Prisma schema loaded from prisma/schema.prisma
+Oct 22 12:27:57  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 22 12:27:58  
+Oct 22 12:27:58  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 389ms
+Oct 22 12:27:58  
+Oct 22 12:27:58  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Oct 22 12:27:58  
+Oct 22 12:27:58  Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+Oct 22 12:27:58  
+Oct 22 12:27:59  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:59  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:27:59  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:59  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 22 12:27:59  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 22 12:27:59  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 22 12:28:01  Prisma schema loaded from prisma/schema.prisma
+Oct 22 12:28:01  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Oct 22 12:28:02  
+Oct 22 12:28:02  The database is already in sync with the Prisma schema.
+Oct 22 12:28:02  
+Oct 22 12:28:02  Running generate... (Use --skip-generate to skip the generators)
+Oct 22 12:28:02  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 22 12:28:02  [2K[1A[2K[GRunning generate... - Prisma Client
+Oct 22 12:28:02  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 314ms
+Oct 22 12:28:02  
+Oct 22 12:28:02  ┌─────────────────────────────────────────────────────────┐
+Oct 22 12:28:02  │  Update available 6.6.0 -> 6.18.0                       │
+Oct 22 12:28:02  │  Run the following to update                            │
+Oct 22 12:28:02  │    npm i --save-dev prisma@latest                       │
+Oct 22 12:28:02  │    npm i @prisma/client@latest                          │
+Oct 22 12:28:02  └─────────────────────────────────────────────────────────┘
+Oct 22 12:28:07  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 22 12:28:07  [remix-serve] http://localhost:8080 (http://10.244.19.14:8080)
+Oct 22 12:28:42  [shopify-app/INFO] Authenticating admin request | {shop: vltradeapp.myshopify.com}
+Oct 22 12:28:42  GET /app/broadcast?embedded=1&hmac=67b3a6de47b4f46c5fa4a0fd6d88f4323548936ae09761e7a80e015d3e1beff9&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvdmx0cmFkZWFwcA&id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tIiwiYXVkIjoiYmI3NzcwMzVhNWI0MmE2OThjNTNkNTA5NjQzMTI2YzUiLCJzdWIiOiIxMzA0NjEzNjg3MDIiLCJleHAiOjE3NjExMzYxODEsIm5iZiI6MTc2MTEzNjEyMSwiaWF0IjoxNzYxMTM2MTIxLCJqdGkiOiIxMWY3YmViYy0yYTkwLTQyODEtODFkNi03NzFlYjUzYjUzODMiLCJzaWQiOiIzYWQwNjMwYi1jNjVlLTQwY2UtOTJhMy1hOWRmNGFmNzgwZTIiLCJzaWciOiIzMjY4MjcxZGY3NjM3YTc1NDM2OTQwZmY2MDk1N2UxZDA5ODc3MTEwMmY3YzZkNWU5NDk1OGEzYTM3YWM5ODU0In0.C-6Xi1L-YABnQzVieGheZKioPJ1D_pWBtf1IU4GZYBg&locale=en&session=c50963fb0085cffe89bfb67b80667d4f39e82a278094fe3d3507fcb70ae55a05&shop=vltradeapp.myshopify.com&timestamp=1761136121 200 - - 76.350 ms
+Oct 22 12:28:43  GET /api/broadcast/log 200 - - 14.854 ms
+Oct 22 12:29:05  GET /api/broadcast/whatsapp-users 200 - - 10.175 ms
+Oct 22 12:29:08  GET /api/broadcast/log 200 - - 13.417 ms
+Oct 22 12:29:08  GET /api/broadcast/whatsapp-users 200 - - 5.786 ms
+Oct 22 12:29:12  GET /api/broadcast/log 200 - - 16.178 ms
+Oct 22 12:29:12  GET /api/broadcast/whatsapp-users 200 - - 4.791 ms
+Oct 22 12:29:33  Broadcast: Getting WhatsApp users from database...
+Oct 22 12:29:33  Broadcast: Processing website messages
+Oct 22 12:29:33  Broadcast: Website message broadcasted
+Oct 22 12:29:33  Broadcast: Found 2 WhatsApp users in database
+Oct 22 12:29:33  POST /api/broadcast/log 201 - - 25.887 ms
+Oct 22 12:29:33  WhatsApp: Uploading media to WhatsApp
+Oct 22 12:29:33  WhatsApp: File size: 53956 bytes
+Oct 22 12:29:33  WhatsApp: MIME type: image/jpeg
+Oct 22 12:29:34  WhatsApp: Media uploaded successfully, ID: 1597399057897752
+Oct 22 12:29:34  Broadcast: Uploaded image once, media ID: 1597399057897752
+Oct 22 12:29:34  Broadcast: Sending to phone number: 447813353629 (original: 447813353629)
+Oct 22 12:29:34  WhatsApp: Sending image message to 447813353629
+Oct 22 12:29:34  WhatsApp: Using media ID: 1597399057897752
+Oct 22 12:29:35  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447813353629","wa_id":"447813353629"}],"messages":[{"id":"wamid.HBgMNDQ3ODEzMzUzNjI5FQIAERgSMjI0MUI2NDg4QkRBMzczNzIzAA=="}]}
+Oct 22 12:29:35  Broadcast: WhatsApp message sent to 447813353629 (Unknown)
+Oct 22 12:29:35  Broadcast: Saved message to conversation history for 447813353629
+Oct 22 12:29:36  POST /api/whatsapp-webhook 200 - - 2.321 ms
+Oct 22 12:29:36  GET /api/broadcast/log 200 - - 19.424 ms
+Oct 22 12:29:36  GET /api/broadcast/whatsapp-users 200 - - 6.327 ms
+Oct 22 12:29:36  Broadcast: Sending to phone number: 447891689332 (original: 447891689332)
+Oct 22 12:29:36  WhatsApp: Sending image message to 447891689332
+Oct 22 12:29:36  WhatsApp: Using media ID: 1597399057897752
+Oct 22 12:29:37  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNTU2NDhGRkY1QTVFQzBGMzJBAA=="}]}
+Oct 22 12:29:37  Broadcast: WhatsApp message sent to 447891689332 (Unknown)
+Oct 22 12:29:37  Broadcast: Saved message to conversation history for 447891689332
+Oct 22 12:29:37  Broadcast: WhatsApp processing complete - 2 sent, 0 failed
+Oct 22 12:29:38  POST /api/whatsapp-webhook 200 - - 2.751 ms
+Oct 22 12:29:53  Broadcast: Getting WhatsApp users from database...
+Oct 22 12:29:53  Broadcast: Processing website messages
+Oct 22 12:29:53  Broadcast: Website message broadcasted
+Oct 22 12:29:53  POST /api/broadcast/log 201 - - 10.503 ms
+Oct 22 12:29:53  Broadcast: Found 2 WhatsApp users in database
+Oct 22 12:29:53  Broadcast: Sending to phone number: 447813353629 (original: 447813353629)
+Oct 22 12:29:53  WhatsApp: Sending message to 447813353629
+Oct 22 12:29:53  WhatsApp: Message content: *Just Dropped!*
+Oct 22 12:29:53  
+Oct 22 12:29:53  Check out the latest releases from IVG on our website! To know more, ask me what yo...
+Oct 22 12:29:53  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447813353629","wa_id":"447813353629"}],"messages":[{"id":"wamid.HBgMNDQ3ODEzMzUzNjI5FQIAERgSRkMwMzk2MjU5RDIxODE2NDIwAA=="}]}
+Oct 22 12:29:53  Broadcast: WhatsApp message sent to 447813353629 (Unknown)
+Oct 22 12:29:53  Broadcast: Saved message to conversation history for 447813353629
+Oct 22 12:29:54  POST /api/whatsapp-webhook 200 - - 3.532 ms
+Oct 22 12:29:54  Broadcast: Sending to phone number: 447891689332 (original: 447891689332)
+Oct 22 12:29:54  WhatsApp: Sending message to 447891689332
+Oct 22 12:29:54  WhatsApp: Message content: *Just Dropped!*
+Oct 22 12:29:54  
+Oct 22 12:29:54  Check out the latest releases from IVG on our website! To know more, ask me what yo...
+Oct 22 12:29:55  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRDJDQThBQkY5NjY3OUIzRTE4AA=="}]}
+Oct 22 12:29:55  Broadcast: WhatsApp message sent to 447891689332 (Unknown)
+Oct 22 12:29:55  Broadcast: Saved message to conversation history for 447891689332
+Oct 22 12:29:55  Broadcast: WhatsApp processing complete - 2 sent, 0 failed
+Oct 22 12:29:56  GET /api/broadcast/log 200 - - 13.405 ms
+Oct 22 12:29:56  POST /api/whatsapp-webhook 200 - - 2.058 ms
+Oct 22 12:29:56  GET /api/broadcast/whatsapp-users 200 - - 4.462 ms
+Oct 22 12:29:56  POST /api/whatsapp-webhook 200 - - 1.543 ms
+Oct 22 12:29:56  POST /api/whatsapp-webhook 200 - - 1.383 ms

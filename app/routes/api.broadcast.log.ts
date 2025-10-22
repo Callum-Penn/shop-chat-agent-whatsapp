@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { sendWhatsAppMessage, sendWhatsAppImage, uploadWhatsAppMedia, sendWhatsAppImageWithMediaId } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, sendWhatsAppImage, uploadWhatsAppMedia, sendWhatsAppImageWithMediaId, uploadImageToHosting, sendWhatsAppImageWithUrl } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
@@ -96,17 +96,17 @@ async function processWhatsAppBroadcast(entry, message) {
       data: { whatsappCount: whatsappUsers.length }
     });
     
-    // Upload image once if provided
-    let mediaId = null;
+    // Upload image to hosting service if provided
+    let imageUrl = null;
     if (entry.image) {
       try {
-        mediaId = await uploadWhatsAppMedia(entry.image, 'image.jpg', 'image/jpeg');
-        console.log(`Broadcast: Uploaded image once, media ID: ${mediaId}`);
+        imageUrl = await uploadImageToHosting(entry.image, 'image.jpg');
+        console.log(`Broadcast: Uploaded image to hosting, URL: ${imageUrl}`);
       } catch (error) {
-        console.error('Broadcast: Failed to upload image:', error);
+        console.error('Broadcast: Failed to upload image to hosting:', error);
         entry.results.whatsapp.failed = whatsappUsers.length;
         entry.results.whatsapp.errors.push({
-          error: `Failed to upload image: ${error.message}`
+          error: `Failed to upload image to hosting: ${error.message}`
         });
         return; // Stop processing if image upload fails
       }
@@ -132,12 +132,12 @@ async function processWhatsAppBroadcast(entry, message) {
         }
         
         // Send image if provided, otherwise send text message
-        if (entry.image && mediaId) {
-          // For images: send image with caption using existing media ID
+        if (entry.image && imageUrl) {
+          // For images: send image with caption using public URL
           const imageCaption = entry.heading 
             ? `*${entry.heading}*\n\n${message}`
             : message;
-          await sendWhatsAppImageWithMediaId(phoneNumber, mediaId, imageCaption);
+          await sendWhatsAppImageWithUrl(phoneNumber, imageUrl, imageCaption);
         } else {
           // For text only: send formatted message with bold heading
           await sendWhatsAppMessage(phoneNumber, formattedMessage);

@@ -202,13 +202,37 @@ export async function sendWhatsAppImage(to, imageData, caption = '') {
 }
 
 /**
- * Send an image message to WhatsApp using existing media ID
+ * Upload image to a temporary hosting service and get public URL
+ * @param {string} imageData - Base64 encoded image data
+ * @param {string} filename - Original filename
+ * @returns {Promise<string>} Public URL of the uploaded image
+ */
+export async function uploadImageToHosting(imageData, filename) {
+  // For now, we'll use a simple approach: convert to data URL
+  // In production, you'd want to use a proper file hosting service like AWS S3, Cloudinary, etc.
+  
+  // Convert base64 to data URL
+  const dataUrl = imageData; // imageData is already a data URL from the frontend
+  
+  console.log('WhatsApp: Using data URL for image (temporary solution)');
+  console.log('WhatsApp: Image filename:', filename);
+  
+  // Note: This is a temporary solution. In production, you should:
+  // 1. Upload to AWS S3, Cloudinary, or similar service
+  // 2. Get a public HTTPS URL
+  // 3. Use that URL instead of data URL
+  
+  return dataUrl;
+}
+
+/**
+ * Send an image message to WhatsApp using public URL
  * @param {string} to - Phone number to send message to
- * @param {string} mediaId - Media ID from WhatsApp
+ * @param {string} imageUrl - Public URL of the image
  * @param {string} caption - Optional caption for the image
  * @returns {Promise<Object>} Response from WhatsApp API
  */
-export async function sendWhatsAppImageWithMediaId(to, mediaId, caption = '') {
+export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
   const url = `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
   const token = process.env.WHATSAPP_TOKEN;
   
@@ -217,7 +241,7 @@ export async function sendWhatsAppImageWithMediaId(to, mediaId, caption = '') {
     to,
     type: "image",
     image: {
-      id: mediaId
+      link: imageUrl
     }
   };
   
@@ -226,7 +250,7 @@ export async function sendWhatsAppImageWithMediaId(to, mediaId, caption = '') {
   }
   
   console.log('WhatsApp: Sending image message to', to);
-  console.log('WhatsApp: Using media ID:', mediaId);
+  console.log('WhatsApp: Using image URL:', imageUrl);
   
   const response = await fetch(url, {
     method: "POST",
