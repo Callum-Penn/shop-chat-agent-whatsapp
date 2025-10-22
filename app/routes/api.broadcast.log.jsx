@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { sendWhatsAppMessage } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
-import { prisma } from "../db.server";
+import prisma from "../db.server";
 
 export const loader = async () => {
   try {
