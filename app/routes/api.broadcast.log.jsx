@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import { sendWhatsAppMessage } from "../utils/whatsapp.server";
-import { getAllWhatsAppUsers } from "../db.server";
+import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 
 // In-memory broadcast log for POC. Resets on server restart/redeploy.
 const broadcastLog = [];
@@ -88,6 +88,17 @@ async function processWhatsAppBroadcast(entry, message) {
         await sendWhatsAppMessage(user.phoneNumber, message);
         entry.results.whatsapp.sent++;
         console.log(`Broadcast: WhatsApp message sent to ${user.phoneNumber} (${user.name || 'Unknown'})`);
+        
+        // Save the broadcast message to the user's conversation history
+        // so Claude AI knows about it when they respond
+        try {
+          const conversationId = `whatsapp_${user.phoneNumber}`;
+          await saveMessage(conversationId, 'assistant', `[Broadcast Message] ${message}`);
+          console.log(`Broadcast: Saved message to conversation history for ${user.phoneNumber}`);
+        } catch (saveError) {
+          console.error(`Broadcast: Failed to save message to conversation for ${user.phoneNumber}:`, saveError);
+          // Don't fail the broadcast if we can't save to conversation
+        }
       } catch (error) {
         entry.results.whatsapp.failed++;
         entry.results.whatsapp.errors.push({

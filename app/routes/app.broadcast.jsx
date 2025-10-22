@@ -23,6 +23,7 @@ export default function BroadcastCenter() {
   const [showToast, setShowToast] = useState(false);
   const [logs, setLogs] = useState([]);
   const [loadingLogs, setLoadingLogs] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const canSend = useMemo(() => {
     const hasChannel = websiteChecked || whatsappChecked;
@@ -62,15 +63,8 @@ export default function BroadcastCenter() {
     
     loadWhatsAppUserCount();
     
-    // Auto-refresh every 3 seconds to show status updates
-    const interval = setInterval(() => {
-      loadLogs();
-      loadWhatsAppUserCount();
-    }, 3000);
-    
     return () => { 
       isMounted = false; 
-      clearInterval(interval);
     };
   }, []);
 
@@ -93,6 +87,29 @@ export default function BroadcastCenter() {
       // ignore for POC
     }
   }, [message, websiteChecked, whatsappChecked]);
+
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      // Load logs
+      const res = await fetch("/api/broadcast/log");
+      if (res.ok) {
+        const data = await res.json();
+        setLogs(Array.isArray(data) ? data : []);
+      }
+      
+      // Load WhatsApp user count
+      const userRes = await fetch("/api/broadcast/whatsapp-users");
+      if (userRes.ok) {
+        const userData = await userRes.json();
+        setWhatsappUserCount(userData.count || 0);
+      }
+    } catch (e) {
+      // ignore for POC
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
 
   return (
     <Page>
@@ -153,7 +170,17 @@ export default function BroadcastCenter() {
             </Card>
             <Card>
               <BlockStack gap="400">
-                <Text as="h2" variant="headingMd">Recent sends</Text>
+                <InlineStack align="space-between">
+                  <Text as="h2" variant="headingMd">Recent sends</Text>
+                  <Button 
+                    variant="secondary" 
+                    size="slim" 
+                    onClick={handleRefresh}
+                    loading={refreshing}
+                  >
+                    Refresh
+                  </Button>
+                </InlineStack>
                 {loadingLogs ? (
                   <Text as="p" variant="bodySm" tone="subdued">Loading…</Text>
                 ) : logs.length === 0 ? (

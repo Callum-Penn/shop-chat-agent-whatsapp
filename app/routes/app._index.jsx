@@ -18,7 +18,7 @@ import {
   Banner,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export default function BroadcastCenter() {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -28,37 +28,44 @@ export default function BroadcastCenter() {
   const [audienceType, setAudienceType] = useState("all");
   const [scheduledDate, setScheduledDate] = useState("");
   const [isScheduled, setIsScheduled] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Mock data for campaigns
-  const [campaigns] = useState([
-    {
-      id: 1,
-      name: "Black Friday Sale",
-      message: "Get 50% off everything! Use code BLACKFRIDAY",
-      channels: ["web", "whatsapp"],
-      status: "sent",
-      sentAt: "2024-01-15 10:30 AM",
-      recipients: 1250,
-    },
-    {
-      id: 2,
-      name: "New Product Launch",
-      message: "Check out our latest collection now available!",
-      channels: ["web"],
-      status: "scheduled",
-      sentAt: "2024-01-20 2:00 PM",
-      recipients: 800,
-    },
-    {
-      id: 3,
-      name: "Cart Abandonment",
-      message: "Don't forget about your items! Complete your purchase now.",
-      channels: ["whatsapp"],
-      status: "draft",
-      sentAt: null,
-      recipients: 0,
-    },
-  ]);
+  // Load real broadcast data from API
+  useEffect(() => {
+    const loadCampaigns = async () => {
+      try {
+        const res = await fetch("/api/broadcast/log");
+        if (res.ok) {
+          const data = await res.json();
+          // Transform broadcast log data to campaign format
+          const transformedCampaigns = data.map((entry, index) => ({
+            id: entry.id,
+            name: `Broadcast ${index + 1}`,
+            message: entry.message,
+            channels: [
+              ...(entry.channels?.website ? ['web'] : []),
+              ...(entry.channels?.whatsapp ? ['whatsapp'] : [])
+            ],
+            status: entry.status || 'completed',
+            sentAt: entry.createdAt ? new Date(entry.createdAt).toLocaleString() : null,
+            recipients: (entry.results?.whatsapp?.sent || 0) + (entry.results?.website?.sent || 0),
+            whatsappSent: entry.results?.whatsapp?.sent || 0,
+            whatsappFailed: entry.results?.whatsapp?.failed || 0,
+            websiteSent: entry.results?.website?.sent || 0,
+            websiteFailed: entry.results?.website?.failed || 0
+          }));
+          setCampaigns(transformedCampaigns);
+        }
+      } catch (error) {
+        console.error('Error loading campaigns:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCampaigns();
+  }, []);
 
   const channelOptions = [
     { label: "Web Chat", value: "web" },
@@ -120,7 +127,7 @@ export default function BroadcastCenter() {
     campaign.message.substring(0, 50) + (campaign.message.length > 50 ? "..." : ""),
     getChannelBadges(campaign.channels),
     getStatusBadge(campaign.status),
-    campaign.recipients.toLocaleString(),
+    `${campaign.recipients.toLocaleString()} (${campaign.whatsappSent || 0} WhatsApp, ${campaign.websiteSent || 0} Web)`,
     campaign.sentAt || "Not sent",
   ]);
 
@@ -142,7 +149,7 @@ export default function BroadcastCenter() {
                   Total Campaigns
                 </Text>
                 <Text as="p" variant="heading2xl">
-                  {campaigns.length}
+                  {loading ? "..." : campaigns.length}
                 </Text>
               </BlockStack>
             </Card>
@@ -154,7 +161,7 @@ export default function BroadcastCenter() {
                   Messages Sent
                 </Text>
                 <Text as="p" variant="heading2xl">
-                  {campaigns.reduce((sum, c) => sum + c.recipients, 0).toLocaleString()}
+                  {loading ? "..." : campaigns.reduce((sum, c) => sum + c.recipients, 0).toLocaleString()}
                 </Text>
               </BlockStack>
             </Card>
@@ -163,10 +170,15 @@ export default function BroadcastCenter() {
             <Card>
               <BlockStack gap="200">
                 <Text as="h3" variant="headingMd">
-                  Active Campaigns
+                  Success Rate
                 </Text>
                 <Text as="p" variant="heading2xl">
-                  {campaigns.filter(c => c.status === "scheduled").length}
+                  {loading ? "..." : (() => {
+                    const totalSent = campaigns.reduce((sum, c) => sum + c.recipients, 0);
+                    const totalFailed = campaigns.reduce((sum, c) => sum + (c.whatsappFailed || 0) + (c.websiteFailed || 0), 0);
+                    const total = totalSent + totalFailed;
+                    return total > 0 ? `${Math.round((totalSent / total) * 100)}%` : "0%";
+                  })()}
                 </Text>
               </BlockStack>
             </Card>
@@ -185,9 +197,11 @@ export default function BroadcastCenter() {
               </Button>
             </InlineStack>
             
-            {campaigns.length > 0 ? (
+            {loading ? (
+              <Text as="p" variant="bodySm" tone="subdued">Loading campaigns...</Text>
+            ) : campaigns.length > 0 ? (
               <DataTable
-                columnContentTypes={["text", "text", "text", "text", "numeric", "text"]}
+                columnContentTypes={["text", "text", "text", "text", "text", "text"]}
                 headings={["Name", "Message", "Channels", "Status", "Recipients", "Sent At"]}
                 rows={rows}
               />
