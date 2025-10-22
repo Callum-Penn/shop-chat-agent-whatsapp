@@ -109,7 +109,7 @@ export async function sendWhatsAppImage(to, imageData, caption = '') {
   const imageBuffer = Buffer.from(imageData.split(',')[1], 'base64');
   
   // Create form data for multipart upload
-  const FormData = require('form-data');
+  const { default: FormData } = await import('form-data');
   const form = new FormData();
   
   form.append('messaging_product', 'whatsapp');
