@@ -91,8 +91,36 @@ async function processWhatsAppBroadcast(entry, message) {
       data: { whatsappCount: whatsappUsers.length }
     });
     
+    // Upload image once if provided
+    let mediaId = null;
+    if (entry.image) {
+      try {
+        const { uploadWhatsAppMedia } = await import('../utils/whatsapp.server');
+        mediaId = await uploadWhatsAppMedia(entry.image, 'image.jpg', 'image/jpeg');
+        console.log(`Broadcast: Uploaded image once, media ID: ${mediaId}`);
+      } catch (error) {
+        console.error('Broadcast: Failed to upload image:', error);
+        entry.results.whatsapp.failed = whatsappUsers.length;
+        entry.results.whatsapp.errors.push({
+          error: `Failed to upload image: ${error.message}`
+        });
+        return; // Stop processing if image upload fails
+      }
+    }
+
     for (const user of whatsappUsers) {
       try {
+        // Ensure phone number is in correct format (remove + if present, add if missing)
+        let phoneNumber = user.phoneNumber;
+        if (phoneNumber.startsWith('+')) {
+          phoneNumber = phoneNumber.substring(1);
+        }
+        if (!phoneNumber.startsWith('44')) {
+          phoneNumber = '44' + phoneNumber;
+        }
+        
+        console.log(`Broadcast: Sending to phone number: ${phoneNumber} (original: ${user.phoneNumber})`);
+        
         // Format message with bold heading if provided
         let formattedMessage = message;
         if (entry.heading) {
@@ -100,15 +128,15 @@ async function processWhatsAppBroadcast(entry, message) {
         }
         
         // Send image if provided, otherwise send text message
-        if (entry.image) {
-          // For images: send image with caption (heading + message)
+        if (entry.image && mediaId) {
+          // For images: send image with caption using existing media ID
           const imageCaption = entry.heading 
             ? `*${entry.heading}*\n\n${message}`
             : message;
-          await sendWhatsAppImage(user.phoneNumber, entry.image, imageCaption);
+          await sendWhatsAppImageWithMediaId(phoneNumber, mediaId, imageCaption);
         } else {
           // For text only: send formatted message with bold heading
-          await sendWhatsAppMessage(user.phoneNumber, formattedMessage);
+          await sendWhatsAppMessage(phoneNumber, formattedMessage);
         }
         
         entry.results.whatsapp.sent++;
@@ -126,6 +154,11 @@ async function processWhatsAppBroadcast(entry, message) {
         } catch (saveError) {
           console.error(`Broadcast: Failed to save message to conversation for ${user.phoneNumber}:`, saveError);
           // Don't fail the broadcast if we can't save to conversation
+        }
+        
+        // Add small delay between messages to avoid rate limiting
+        if (whatsappUsers.indexOf(user) < whatsappUsers.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
         }
       } catch (error) {
         entry.results.whatsapp.failed++;

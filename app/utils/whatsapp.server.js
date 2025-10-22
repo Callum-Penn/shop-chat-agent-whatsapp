@@ -202,6 +202,54 @@ export async function sendWhatsAppImage(to, imageData, caption = '') {
 }
 
 /**
+ * Send an image message to WhatsApp using existing media ID
+ * @param {string} to - Phone number to send message to
+ * @param {string} mediaId - Media ID from WhatsApp
+ * @param {string} caption - Optional caption for the image
+ * @returns {Promise<Object>} Response from WhatsApp API
+ */
+export async function sendWhatsAppImageWithMediaId(to, mediaId, caption = '') {
+  const url = `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+  const token = process.env.WHATSAPP_TOKEN;
+  
+  const payload = {
+    messaging_product: "whatsapp",
+    to,
+    type: "image",
+    image: {
+      id: mediaId
+    }
+  };
+  
+  if (caption) {
+    payload.image.caption = caption;
+  }
+  
+  console.log('WhatsApp: Sending image message to', to);
+  console.log('WhatsApp: Using media ID:', mediaId);
+  
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  
+  const responseData = await response.json();
+  
+  if (!response.ok) {
+    console.error('WhatsApp: Failed to send image message:', response.status, response.statusText);
+    console.error('WhatsApp: Error response:', JSON.stringify(responseData, null, 2));
+    throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
+  }
+  
+  console.log('WhatsApp: Image message sent successfully:', JSON.stringify(responseData));
+  return responseData;
+}
+
+/**
  * Download media from WhatsApp
  * @param {string} mediaId - Media ID from WhatsApp
  * @returns {Promise<{buffer: Buffer, mimeType: string, fileSize: number}>} File data and metadata

@@ -1,233 +1,37 @@
-Oct 22 10:44:06  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Oct 22 10:44:06  [34m│[0m [34m › fetching app source code[0m
-Oct 22 10:44:06  [34m│[0m => Selecting branch "main"
-Oct 22 10:44:06  [34m│[0m => Checking out commit "e6d2330768bade3858446b2dfd1ebb7dbe5dbb18"
-Oct 22 10:44:06  [34m│[0m 
-Oct 22 10:44:06  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Oct 22 10:44:06  [34m╰────────────────────────────────────────╼[0m
-Oct 22 10:44:06  
-Oct 22 10:44:07  [34m › configuring build-time app environment variables:[0m
-Oct 22 10:44:07       SHOPIFY_API_SECRET STAFF_WHATSAPP_NUMBER ORDER_TEMPLATE_BESTSELLERS_URL REDIRECT_URL WHATSAPP_VERIFY_TOKEN SHOPIFY_CHAT_BUBBLE_ID ARCHIVING_API_KEY DIRECT_URL WHATSAPP_TOKEN SHOPIFY_APP_URL ORDER_TEMPLATE_GENERAL_URL SHOPIFY_API_KEY CLAUDE_API_KEY WHATSAPP_PHONE_NUMBER_ID
-Oct 22 10:44:07  
-Oct 22 10:44:07  [34m › configuring custom build command to be run at the end of the build:[0m
-Oct 22 10:44:07     [34m│[0m npm run build
-Oct 22 10:44:07  
-Oct 22 10:44:07  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Oct 22 10:44:07  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Oct 22 10:44:08  [34m│[0m Detected the following buildpacks suitable to build your app:
-Oct 22 10:44:08  [34m│[0m 
-Oct 22 10:44:08  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Oct 22 10:44:08  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Oct 22 10:44:08  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Oct 22 10:44:08  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Oct 22 10:44:08  [34m╰─────────────────────────────────────────────╼[0m
-Oct 22 10:44:08  
-Oct 22 10:44:08  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Oct 22 10:44:08  [34m│[0m [34m › checking for cache from a previous build[0m
-Oct 22 10:44:08  [34m│[0m Timer: Analyzer started at 2025-10-22T10:44:08Z
-Oct 22 10:44:09  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Oct 22 10:44:09  [34m│[0m Timer: Analyzer ran for 910.03048ms and ended at 2025-10-22T10:44:09Z
-Oct 22 10:44:09  [34m│[0m Timer: Restorer started at 2025-10-22T10:44:09Z
-Oct 22 10:44:10  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Oct 22 10:44:14  [34m│[0m Timer: Restorer ran for 4.839318449s and ended at 2025-10-22T10:44:14Z
-Oct 22 10:44:14  [34m╰───────────────────────────────────────╼[0m
-Oct 22 10:44:14  
-Oct 22 10:44:14  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Oct 22 10:44:14  [34m│[0m Timer: Builder started at 2025-10-22T10:44:14Z
-Oct 22 10:44:15  [34m│[0m        
-Oct 22 10:44:15  [34m│[0m -----> Creating runtime environment
-Oct 22 10:44:15  [34m│[0m        
-Oct 22 10:44:15  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Oct 22 10:44:15  [34m│[0m        NODE_VERBOSE=false
-Oct 22 10:44:15  [34m│[0m        NODE_ENV=
-Oct 22 10:44:15  [34m│[0m        NODE_MODULES_CACHE=true
-Oct 22 10:44:15  [34m│[0m        
-Oct 22 10:44:15  [34m│[0m -----> Installing binaries
-Oct 22 10:44:15  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Oct 22 10:44:15  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Oct 22 10:44:15  [34m│[0m        
-Oct 22 10:44:15  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Oct 22 10:44:15  [34m│[0m        Downloading and installing node 24.2.0...
-Oct 22 10:44:20  [34m│[0m        Using default npm version: 11.3.0
-Oct 22 10:44:21  [34m│[0m        
-Oct 22 10:44:21  [34m│[0m -----> Restoring cache
-Oct 22 10:44:21  [34m│[0m        - npm cache
-Oct 22 10:44:21  [34m│[0m        
-Oct 22 10:44:21  [34m│[0m -----> Installing dependencies
-Oct 22 10:44:21  [34m│[0m        Installing node modules
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        added 1221 packages, and audited 1222 packages in 17s
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        303 packages are looking for funding
-Oct 22 10:44:38  [34m│[0m          run `npm fund` for details
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        19 vulnerabilities (7 low, 8 moderate, 3 high, 1 critical)
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        To address issues that do not require attention, run:
-Oct 22 10:44:38  [34m│[0m          npm audit fix
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        To address all issues possible (including breaking changes), run:
-Oct 22 10:44:38  [34m│[0m          npm audit fix --force
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        Some issues need review, and may require choosing
-Oct 22 10:44:38  [34m│[0m        a different dependency.
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m        Run `npm audit` for details.
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m -----> Build
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m -----> Caching build
-Oct 22 10:44:38  [34m│[0m        - npm cache
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m -----> Pruning devDependencies
-Oct 22 10:44:38  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Oct 22 10:44:38  [34m│[0m        
-Oct 22 10:44:38  [34m│[0m -----> Build succeeded!
-Oct 22 10:44:39  [34m│[0m Running custom build command: npm run build
-Oct 22 10:44:39  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Oct 22 10:44:39  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Oct 22 10:44:39  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Oct 22 10:44:39  [34m│[0m 
-Oct 22 10:44:39  [34m│[0m > shop-chat-agent@1.0.41 build
-Oct 22 10:44:39  [34m│[0m > prisma generate && remix vite:build
-Oct 22 10:44:39  [34m│[0m 
-Oct 22 10:44:40  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Oct 22 10:44:40  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Oct 22 10:44:40  [34m│[0m 
-Oct 22 10:44:40  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 55ms
-Oct 22 10:44:40  [34m│[0m 
-Oct 22 10:44:40  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Oct 22 10:44:40  [34m│[0m 
-Oct 22 10:44:40  [34m│[0m Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
-Oct 22 10:44:40  [34m│[0m 
-Oct 22 10:44:41  [34m│[0m vite v6.3.3 building for production...
-Oct 22 10:44:41  [34m│[0m transforming...
-Oct 22 10:44:43  [34m│[0m ✓ 1497 modules transformed.
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.broadcast.whatsapp-users".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.send-whatsapp-invite".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.whatsapp-webhook".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.broadcast.log".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "auth.token-status".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.archiving".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "auth.callback".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "api.webhooks".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "_index".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "auth._".
-Oct 22 10:44:43  [34m│[0m Generated an empty chunk: "chat".
-Oct 22 10:44:43  [34m│[0m rendering chunks...
-Oct 22 10:44:43  [34m│[0m computing gzip size...
-Oct 22 10:44:43  [34m│[0m build/client/.vite/manifest.json                                6.18 kB │ gzip:  0.89 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/styles-BeiPL2RV.css                       444.11 kB │ gzip: 52.26 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.broadcast.whatsapp-users-l0sNRNKZ.js    0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.send-whatsapp-invite-l0sNRNKZ.js        0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.whatsapp-webhook-l0sNRNKZ.js            0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.broadcast.log-l0sNRNKZ.js               0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/auth.token-status-l0sNRNKZ.js               0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.archiving-l0sNRNKZ.js                   0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/auth.callback-l0sNRNKZ.js                   0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/api.webhooks-l0sNRNKZ.js                    0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/_index-l0sNRNKZ.js                          0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/auth._-l0sNRNKZ.js                          0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/chat-l0sNRNKZ.js                            0.00 kB │ gzip:  0.02 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/route-CrX-daKZ.js                           0.82 kB │ gzip:  0.50 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/FormLayout-P5EXOn7P.js                      0.96 kB │ gzip:  0.52 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/root-DwcJq8eV.js                            1.54 kB │ gzip:  0.88 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/entry.client-CJpEMw3A.js                    3.86 kB │ gzip:  1.46 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/styles-Erm-cQyA.js                          5.91 kB │ gzip:  2.45 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/app.broadcast-DaUKWOxi.js                  23.37 kB │ gzip:  7.58 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/TitleBar-C3qFC26S.js                       26.95 kB │ gzip:  9.18 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/app._index-D71kFhNa.js                     31.81 kB │ gzip: 10.09 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/app-BJrek_7d.js                            46.42 kB │ gzip: 15.31 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/Page-CnoT0sXy.js                           88.42 kB │ gzip: 27.11 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/components-e9WdfAI3.js                    113.10 kB │ gzip: 36.89 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/index-C2MVcWue.js                         143.28 kB │ gzip: 45.97 kB
-Oct 22 10:44:43  [34m│[0m build/client/assets/context-Di5P6Z-9.js                       151.94 kB │ gzip: 17.11 kB
-Oct 22 10:44:43  [34m│[0m ✓ built in 2.51s
-Oct 22 10:44:43  [34m│[0m vite v6.3.3 building SSR bundle for production...
-Oct 22 10:44:43  [34m│[0m transforming...
-Oct 22 10:44:44  [34m│[0m ✓ 34 modules transformed.
-Oct 22 10:44:44  [34m│[0m ✗ Build failed in 110ms
-Oct 22 10:44:44  [34m│[0m app/routes/api.broadcast.log.jsx (4:9): "prisma" is not exported by "app/db.server.js", imported by "app/routes/api.broadcast.log.jsx".
-Oct 22 10:44:44  [34m│[0m file: /workspace/app/routes/api.broadcast.log.jsx:4:9
-Oct 22 10:44:44  [34m│[0m 
-Oct 22 10:44:44  [34m│[0m 2: import { sendWhatsAppMessage } from "../utils/whatsapp.server";
-Oct 22 10:44:44  [34m│[0m 3: import { getAllWhatsAppUsers, saveMessage } from "../db.server";
-Oct 22 10:44:44  [34m│[0m 4: import { prisma } from "../db.server";
-Oct 22 10:44:44  [34m│[0m             ^
-Oct 22 10:44:44  [34m│[0m 5: 
-Oct 22 10:44:44  [34m│[0m 6: export const loader = async () => {
-Oct 22 10:44:44  [34m│[0m 
-Oct 22 10:44:44  [34m│[0m     at getRollupError (file:///workspace/node_modules/rollup/dist/es/shared/parseAst.js:397:41)
-Oct 22 10:44:44  [34m│[0m     at error (file:///workspace/node_modules/rollup/dist/es/shared/parseAst.js:393:42)
-Oct 22 10:44:44  [34m│[0m     at Module.error (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:16750:16)
-Oct 22 10:44:44  [34m│[0m     at Module.traceVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:17199:29)
-Oct 22 10:44:44  [34m│[0m     at ModuleScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:14855:39)
-Oct 22 10:44:44  [34m│[0m     at ReturnValueScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
-Oct 22 10:44:44  [34m│[0m     at FunctionBodyScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
-Oct 22 10:44:44  [34m│[0m     at BlockScope.findVariable (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:5583:38)
-Oct 22 10:44:44  [34m│[0m     at MemberExpression.bind (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:7286:49)
-Oct 22 10:44:44  [34m│[0m     at CallExpression.bind (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:2784:23) {
-Oct 22 10:44:44  [34m│[0m   binding: 'prisma',
-Oct 22 10:44:44  [34m│[0m   code: 'MISSING_EXPORT',
-Oct 22 10:44:44  [34m│[0m   exporter: '/workspace/app/db.server.js',
-Oct 22 10:44:44  [34m│[0m   id: '/workspace/app/routes/api.broadcast.log.jsx',
-Oct 22 10:44:44  [34m│[0m   url: 'https://rollupjs.org/troubleshooting/#error-name-is-not-exported-by-module',
-Oct 22 10:44:44  [34m│[0m   pos: 178,
-Oct 22 10:44:44  [34m│[0m   loc: {
-Oct 22 10:44:44  [34m│[0m     column: 9,
-Oct 22 10:44:44  [34m│[0m     file: '/workspace/app/routes/api.broadcast.log.jsx',
-Oct 22 10:44:44  [34m│[0m     line: 4
-Oct 22 10:44:44  [34m│[0m   },
-Oct 22 10:44:44  [34m│[0m   frame: '2: import { sendWhatsAppMessage } from "../utils/whatsapp.server";\n' +
-Oct 22 10:44:44  [34m│[0m     '3: import { getAllWhatsAppUsers, saveMessage } from "../db.server";\n' +
-Oct 22 10:44:44  [34m│[0m     '4: import { prisma } from "../db.server";\n' +
-Oct 22 10:44:44  [34m│[0m     '            ^\n' +
-Oct 22 10:44:44  [34m│[0m     '5: \n' +
-Oct 22 10:44:44  [34m│[0m     '6: export const loader = async () => {',
-Oct 22 10:44:44  [34m│[0m   watchFiles: [
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/entry.server.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/root.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.broadcast.whatsapp-users.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.broadcast.log.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/app.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/package.json',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/shopify.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/db.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/services/archiving.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/utils/whatsapp.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/routes/auth.login/error.server.jsx',
-Oct 22 10:44:44  [34m│[0m     '/workspace/node_modules/@shopify/polaris/locales/en.json',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/services/claude.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/services/tool.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/mcp-client.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/services/config.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/auth.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/services/streaming.server.js',
-Oct 22 10:44:44  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/styles.css',
-Oct 22 10:44:44  [34m│[0m     '/workspace/app/prompts/prompts.json'
-Oct 22 10:44:44  [34m│[0m   ],
-Oct 22 10:44:44  [34m│[0m   Symbol(augmented): true
-Oct 22 10:44:44  [34m│[0m }
-Oct 22 10:44:44  [34m│[0m npm notice
-Oct 22 10:44:44  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
-Oct 22 10:44:44  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
-Oct 22 10:44:44  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
-Oct 22 10:44:44  [34m│[0m npm notice
-Oct 22 10:44:44  [34m│[0m building: exit status 1
-Oct 22 10:44:44  [34m│[0m Timer: Builder ran for 29.344375415s and ended at 2025-10-22T10:44:44Z
-Oct 22 10:44:44  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Oct 22 10:44:44  [34m│[0m 
-Oct 22 10:44:44  [34m│[0m 
-Oct 22 10:44:44  [34m│[0m [31m ✘ build failed[0m
+Oct 22 12:07:16  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 22 12:07:16  [remix-serve] http://localhost:8080 (http://10.244.39.38:8080)
+Oct 22 12:09:29  [shopify-app/INFO] Authenticating admin request | {shop: vltradeapp.myshopify.com}
+Oct 22 12:09:29  GET /app/broadcast?embedded=1&hmac=2d10f166377172552e1e08c771479d74941424de826210b03081b511e483af31&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvdmx0cmFkZWFwcA&id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tIiwiYXVkIjoiYmI3NzcwMzVhNWI0MmE2OThjNTNkNTA5NjQzMTI2YzUiLCJzdWIiOiIxMzA0NjEzNjg3MDIiLCJleHAiOjE3NjExMzUwMjgsIm5iZiI6MTc2MTEzNDk2OCwiaWF0IjoxNzYxMTM0OTY4LCJqdGkiOiJiNTBkNWYwMS1iYzNhLTQ4YmMtOWY2My02NWExOTAwYjE2MzMiLCJzaWQiOiIzYWQwNjMwYi1jNjVlLTQwY2UtOTJhMy1hOWRmNGFmNzgwZTIiLCJzaWciOiJmNzI2NjJkNzJlZGY3MThlOTBhMDJmZDljY2Q5MzFkYTUzZWZjYTM2NjhmNjc4ZjgwZTBkMDEwMGY3MDg4ZWU0In0.1Y1IieOHT12ChuQ56Cbpbm-9NpYeDavMwUeAQEJA4lM&locale=en&session=c50963fb0085cffe89bfb67b80667d4f39e82a278094fe3d3507fcb70ae55a05&shop=vltradeapp.myshopify.com&timestamp=1761134968 200 - - 77.805 ms
+Oct 22 12:09:30  GET /api/broadcast/whatsapp-users 200 - - 18.708 ms
+Oct 22 12:09:30  GET /api/broadcast/log 200 - - 18.607 ms
+Oct 22 12:09:30  GET /__manifest?p=%2Fapp&p=%2Fapp%2Fbroadcast&version=19b5c4fa 200 - - 10.319 ms
+Oct 22 12:09:56  Broadcast: Getting WhatsApp users from database...
+Oct 22 12:09:56  Broadcast: Processing website messages
+Oct 22 12:09:56  Broadcast: Website message broadcasted
+Oct 22 12:09:56  POST /api/broadcast/log 201 - - 36.044 ms
+Oct 22 12:09:56  Broadcast: Found 2 WhatsApp users in database
+Oct 22 12:09:56  WhatsApp: Uploading media to WhatsApp
+Oct 22 12:09:56  WhatsApp: File size: 53956 bytes
+Oct 22 12:09:56  WhatsApp: MIME type: image/jpeg
+Oct 22 12:09:58  WhatsApp: Media uploaded successfully, ID: 1164006325628762
+Oct 22 12:09:58  WhatsApp: Sending image message to 447813353629
+Oct 22 12:09:58  WhatsApp: Using media ID: 1164006325628762
+Oct 22 12:09:59  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447813353629","wa_id":"447813353629"}],"messages":[{"id":"wamid.HBgMNDQ3ODEzMzUzNjI5FQIAERgSRTI0OUU1MUMwNUExNTcxRUM3AA=="}]}
+Oct 22 12:09:59  Broadcast: WhatsApp message sent to 447813353629 (Unknown)
+Oct 22 12:09:59  Broadcast: Saved message to conversation history for 447813353629
+Oct 22 12:09:59  WhatsApp: Uploading media to WhatsApp
+Oct 22 12:09:59  WhatsApp: File size: 53956 bytes
+Oct 22 12:09:59  WhatsApp: MIME type: image/jpeg
+Oct 22 12:10:00  GET /api/broadcast/log 200 - - 37.607 ms
+Oct 22 12:10:00  GET /api/broadcast/whatsapp-users 200 - - 7.053 ms
+Oct 22 12:10:00  WhatsApp: Media uploaded successfully, ID: 1333894638141468
+Oct 22 12:10:00  WhatsApp: Sending image message to 447891689332
+Oct 22 12:10:00  WhatsApp: Using media ID: 1333894638141468
+Oct 22 12:10:00  POST /api/whatsapp-webhook 200 - - 6.239 ms
+Oct 22 12:10:01  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNjc0Qzc2QUEwQjBENDlGQUUzAA=="}]}
+Oct 22 12:10:01  Broadcast: WhatsApp message sent to 447891689332 (Unknown)
+Oct 22 12:10:01  Broadcast: Saved message to conversation history for 447891689332
+Oct 22 12:10:01  Broadcast: WhatsApp processing complete - 2 sent, 0 failed
+Oct 22 12:10:02  POST /api/whatsapp-webhook 200 - - 6.091 ms
+Oct 22 12:10:13  GET /api/broadcast/log 200 - - 11.855 ms
+Oct 22 12:10:14  GET /api/broadcast/whatsapp-users 200 - - 8.536 ms
