@@ -1,13 +1,19 @@
 import { json } from "@remix-run/node";
 import { sendWhatsAppMessage } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
-
-// In-memory broadcast log for POC. Resets on server restart/redeploy.
-const broadcastLog = [];
-const MAX_ENTRIES = 50;
+import { prisma } from "../db.server";
 
 export const loader = async () => {
-  return json(broadcastLog);
+  try {
+    const broadcasts = await prisma.broadcastLog.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 50
+    });
+    return json(broadcasts);
+  } catch (error) {
+    console.error('Error loading broadcast log:', error);
+    return json([]);
+  }
 };
 
 export const action = async ({ request }) => {
@@ -30,24 +36,19 @@ export const action = async ({ request }) => {
       return json({ error: "At least one channel must be selected" }, { status: 400 });
     }
 
-    const entry = {
-      id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      message: message.trim(),
-      channels: { website, whatsapp },
-      whatsappCount: whatsapp ? (Array.isArray(phones) ? phones.length : 0) : 0,
-      status: 'processing',
-      results: {
-        whatsapp: { sent: 0, failed: 0, errors: [] },
-        website: { sent: 0, failed: 0, errors: [] }
+    // Create broadcast log entry in database
+    const entry = await prisma.broadcastLog.create({
+      data: {
+        message: message.trim(),
+        channels: { website, whatsapp },
+        whatsappCount: 0, // Will be updated after processing
+        status: 'processing',
+        results: {
+          whatsapp: { sent: 0, failed: 0, errors: [] },
+          website: { sent: 0, failed: 0, errors: [] }
+        }
       }
-    };
-
-    // Add to log immediately
-    broadcastLog.unshift(entry);
-    if (broadcastLog.length > MAX_ENTRIES) {
-      broadcastLog.length = MAX_ENTRIES;
-    }
+    });
 
     // Process WhatsApp messages asynchronously
     if (whatsapp) {
@@ -81,7 +82,10 @@ async function processWhatsAppBroadcast(entry, message) {
     }
     
     // Update the entry with actual count
-    entry.whatsappCount = whatsappUsers.length;
+    await prisma.broadcastLog.update({
+      where: { id: entry.id },
+      data: { whatsappCount: whatsappUsers.length }
+    });
     
     for (const user of whatsappUsers) {
       try {
@@ -110,14 +114,21 @@ async function processWhatsAppBroadcast(entry, message) {
       }
     }
     
-    // Update status
-    if (entry.results.whatsapp.failed === 0) {
-      entry.status = entry.channels.website ? 'partial' : 'completed';
-    } else if (entry.results.whatsapp.sent === 0) {
-      entry.status = 'failed';
-    } else {
-      entry.status = 'partial';
+    // Update status and results in database
+    let newStatus = 'completed';
+    if (entry.results.whatsapp.failed > 0) {
+      newStatus = entry.results.whatsapp.sent === 0 ? 'failed' : 'partial';
+    } else if (entry.channels.website) {
+      newStatus = 'partial';
     }
+    
+    await prisma.broadcastLog.update({
+      where: { id: entry.id },
+      data: {
+        status: newStatus,
+        results: entry.results
+      }
+    });
     
     console.log(`Broadcast: WhatsApp processing complete - ${entry.results.whatsapp.sent} sent, ${entry.results.whatsapp.failed} failed`);
   } catch (error) {
@@ -126,7 +137,15 @@ async function processWhatsAppBroadcast(entry, message) {
     entry.results.whatsapp.errors.push({
       error: `Failed to get users from database: ${error.message}`
     });
-    entry.status = 'failed';
+    
+    // Update database with error status
+    await prisma.broadcastLog.update({
+      where: { id: entry.id },
+      data: {
+        status: 'failed',
+        results: entry.results
+      }
+    });
   }
 }
 
@@ -140,18 +159,33 @@ async function processWebsiteBroadcast(entry, message) {
     entry.results.website.sent = 1; // Placeholder
     console.log(`Broadcast: Website message broadcasted`);
     
-    // Update status
-    if (entry.results.whatsapp.failed === 0 && entry.results.whatsapp.sent === 0) {
-      entry.status = 'completed';
-    } else if (entry.status === 'failed') {
-      entry.status = 'partial';
+    // Update status in database
+    let newStatus = 'completed';
+    if (entry.results.whatsapp.failed > 0) {
+      newStatus = entry.results.whatsapp.sent === 0 ? 'failed' : 'partial';
     }
+    
+    await prisma.broadcastLog.update({
+      where: { id: entry.id },
+      data: {
+        status: newStatus,
+        results: entry.results
+      }
+    });
   } catch (error) {
     entry.results.website.failed = 1;
     entry.results.website.errors.push({
       error: error.message
     });
     console.error(`Broadcast: Failed to send website message:`, error.message);
+    
+    // Update database with error
+    await prisma.broadcastLog.update({
+      where: { id: entry.id },
+      data: {
+        results: entry.results
+      }
+    });
   }
 }
 

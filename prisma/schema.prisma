@@ -103,3 +103,16 @@ model CustomerAccountUrl {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 }
+
+model BroadcastLog {
+  id             String    @id @default(cuid())
+  message        String
+  channels       Json      // { website: boolean, whatsapp: boolean }
+  status         String    // 'processing', 'completed', 'failed', 'partial'
+  whatsappCount  Int       @default(0)
+  results        Json      // { whatsapp: { sent: int, failed: int, errors: [] }, website: { sent: int, failed: int, errors: [] } }
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([createdAt])
+}
