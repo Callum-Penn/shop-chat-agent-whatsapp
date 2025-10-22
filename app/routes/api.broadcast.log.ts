@@ -3,6 +3,11 @@ import { sendWhatsAppMessage, sendWhatsAppImage, uploadWhatsAppMedia, sendWhatsA
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
+// This is a server-only API route
+export const config = {
+  runtime: 'nodejs'
+};
+
 export const loader = async () => {
   try {
     const broadcasts = await prisma.broadcastLog.findMany({
