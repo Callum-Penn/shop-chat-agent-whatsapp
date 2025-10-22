@@ -133,6 +133,13 @@ export default function BroadcastCenter() {
       const entry = await res.json();
       setLogs((prev) => [entry, ...prev]);
       setShowToast(true);
+      
+      // Refresh logs after a short delay to show updated status
+      if (whatsappChecked) {
+        setTimeout(() => {
+          handleRefresh();
+        }, 3000); // Wait 3 seconds for WhatsApp processing to complete
+      }
     } catch (e) {
       // ignore for POC
     }
