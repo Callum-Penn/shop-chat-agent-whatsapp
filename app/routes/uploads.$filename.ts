@@ -1,0 +1,41 @@
+import { json } from "@remix-run/node";
+import { readFile } from "fs/promises";
+import { join } from "path";
+
+export const loader = async ({ params }) => {
+  const { filename } = params;
+  
+  if (!filename) {
+    return new Response("File not found", { status: 404 });
+  }
+  
+  try {
+    // Security check - only allow certain file extensions
+    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    const fileExtension = filename.toLowerCase().substring(filename.lastIndexOf('.'));
+    
+    if (!allowedExtensions.includes(fileExtension)) {
+      return new Response("File type not allowed", { status: 403 });
+    }
+    
+    // Read the file
+    const filePath = join(process.cwd(), 'public', 'uploads', filename);
+    const fileBuffer = await readFile(filePath);
+    
+    // Determine content type
+    let contentType = 'image/jpeg';
+    if (fileExtension === '.png') contentType = 'image/png';
+    if (fileExtension === '.gif') contentType = 'image/gif';
+    if (fileExtension === '.webp') contentType = 'image/webp';
+    
+    return new Response(fileBuffer, {
+      headers: {
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=31536000', // Cache for 1 year
+      },
+    });
+  } catch (error) {
+    console.error('Error serving file:', error);
+    return new Response("File not found", { status: 404 });
+  }
+};

@@ -95,134 +95,40 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
 }
 
 /**
- * Upload media to WhatsApp and get media ID
- * @param {string} imageData - Base64 encoded image data
- * @param {string} filename - Original filename
- * @param {string} mimeType - MIME type of the image
- * @returns {Promise<string>} Media ID from WhatsApp
- */
-export async function uploadWhatsAppMedia(imageData, filename, mimeType) {
-  const uploadUrl = `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/media`;
-  const token = process.env.WHATSAPP_TOKEN;
-  
-  // Convert base64 to buffer
-  const imageBuffer = Buffer.from(imageData.split(',')[1], 'base64');
-  
-  // Create form data for multipart upload
-  const { default: FormData } = await import('form-data');
-  const form = new FormData();
-  
-  form.append('messaging_product', 'whatsapp');
-  form.append('type', mimeType);
-  form.append('file', imageBuffer, {
-    filename: filename,
-    contentType: mimeType
-  });
-  
-  console.log('WhatsApp: Uploading media to WhatsApp');
-  console.log('WhatsApp: File size:', imageBuffer.length, 'bytes');
-  console.log('WhatsApp: MIME type:', mimeType);
-  
-  const response = await fetch(uploadUrl, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      ...form.getHeaders()
-    },
-    body: form
-  });
-  
-  const responseData = await response.json();
-  
-  if (!response.ok) {
-    console.error('WhatsApp: Failed to upload media:', response.status, response.statusText);
-    console.error('WhatsApp: Error response:', JSON.stringify(responseData, null, 2));
-    throw new Error(`WhatsApp media upload error: ${response.status} - ${responseData.error?.message || response.statusText}`);
-  }
-  
-  console.log('WhatsApp: Media uploaded successfully, ID:', responseData.id);
-  return responseData.id;
-}
-
-/**
- * Send an image message to WhatsApp using media ID
- * @param {string} to - Phone number to send message to
- * @param {string} imageData - Base64 encoded image data
- * @param {string} caption - Optional caption for the image
- * @returns {Promise<Object>} Response from WhatsApp API
- */
-export async function sendWhatsAppImage(to, imageData, caption = '') {
-  const token = process.env.WHATSAPP_TOKEN;
-  
-  try {
-    // First upload the media to get a media ID
-    const mediaId = await uploadWhatsAppMedia(imageData, 'image.jpg', 'image/jpeg');
-    
-    // Now send the message with the media ID
-    const url = `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
-    const payload = {
-      messaging_product: "whatsapp",
-      to,
-      type: "image",
-      image: {
-        id: mediaId
-      }
-    };
-    
-    if (caption) {
-      payload.image.caption = caption;
-    }
-    
-    console.log('WhatsApp: Sending image message to', to);
-    console.log('WhatsApp: Using media ID:', mediaId);
-    
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-    
-    const responseData = await response.json();
-    
-    if (!response.ok) {
-      console.error('WhatsApp: Failed to send image message:', response.status, response.statusText);
-      console.error('WhatsApp: Error response:', JSON.stringify(responseData, null, 2));
-      throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
-    }
-    
-    console.log('WhatsApp: Image message sent successfully:', JSON.stringify(responseData));
-    return responseData;
-  } catch (error) {
-    console.error('WhatsApp: Error in sendWhatsAppImage:', error);
-    throw error;
-  }
-}
-
-/**
- * Upload image to a temporary hosting service and get public URL
+ * Upload image to a public hosting service and get URL
  * @param {string} imageData - Base64 encoded image data
  * @param {string} filename - Original filename
  * @returns {Promise<string>} Public URL of the uploaded image
  */
 export async function uploadImageToHosting(imageData, filename) {
-  // For now, we'll use a simple approach: convert to data URL
-  // In production, you'd want to use a proper file hosting service like AWS S3, Cloudinary, etc.
-  
-  // Convert base64 to data URL
-  const dataUrl = imageData; // imageData is already a data URL from the frontend
-  
-  console.log('WhatsApp: Using data URL for image (temporary solution)');
-  console.log('WhatsApp: Image filename:', filename);
-  
-  // Note: This is a temporary solution. In production, you should:
-  // 1. Upload to AWS S3, Cloudinary, or similar service
-  // 2. Get a public HTTPS URL
-  // 3. Use that URL instead of data URL
-  
-  return dataUrl;
+  try {
+    // Convert base64 to buffer
+    const imageBuffer = Buffer.from(imageData.split(',')[1], 'base64');
+    
+    // Generate a unique filename
+    const uniqueFilename = `${Date.now()}_${filename}`;
+    
+    // Create public directory if it doesn't exist
+    const fs = require('fs').promises;
+    const path = require('path');
+    
+    // Create public directory if it doesn't exist
+    const publicDir = path.join(process.cwd(), 'public', 'uploads');
+    await fs.mkdir(publicDir, { recursive: true });
+    
+    // Save file to public directory
+    const filePath = path.join(publicDir, uniqueFilename);
+    await fs.writeFile(filePath, imageBuffer);
+    
+    // Return public URL (adjust this based on your domain)
+    const publicUrl = `${process.env.APP_URL || 'https://your-domain.com'}/uploads/${uniqueFilename}`;
+    
+    console.log('Image uploaded to hosting:', publicUrl);
+    return publicUrl;
+  } catch (error) {
+    console.error('Failed to upload image to hosting:', error);
+    throw error;
+  }
 }
 
 /**
@@ -272,6 +178,7 @@ export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
   console.log('WhatsApp: Image message sent successfully:', JSON.stringify(responseData));
   return responseData;
 }
+
 
 /**
  * Download media from WhatsApp

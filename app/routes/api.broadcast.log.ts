@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { sendWhatsAppMessage, sendWhatsAppImage, uploadWhatsAppMedia, sendWhatsAppImageWithMediaId, uploadImageToHosting, sendWhatsAppImageWithUrl } from "../utils/whatsapp.server";
+import { sendWhatsAppMessage, sendWhatsAppImageWithUrl, uploadImageToHosting } from "../utils/whatsapp.server";
 import { getAllWhatsAppUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
