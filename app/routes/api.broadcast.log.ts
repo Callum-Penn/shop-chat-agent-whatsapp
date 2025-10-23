@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import { sendWhatsAppMessage, sendWhatsAppImageWithUrl, uploadImageToHosting } from "../utils/whatsapp.server";
-import { getAllWhatsAppUsers, getAllWebUsers, saveMessage } from "../db.server";
+import { getAllWhatsAppUsers, getAllWebUsers, getAllWebUsersWithConversations, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
 // This is a server-only API route
@@ -221,8 +221,8 @@ async function processWebsiteBroadcast(entry, message) {
   console.log(`Broadcast: Processing website messages`);
   
   try {
-    // Get all web chat users from database
-    const webUsers = await getAllWebUsers();
+    // Get all web chat users with their conversation IDs from database
+    const webUsers = await getAllWebUsersWithConversations();
     console.log(`Broadcast: Found ${webUsers.length} web chat users in database`);
     
     if (webUsers.length === 0) {
@@ -230,34 +230,40 @@ async function processWebsiteBroadcast(entry, message) {
       entry.results.website.sent = 0;
       entry.results.website.failed = 0;
     } else {
-      // Format message with bold heading if provided
-      let formattedMessage = message;
-      if (entry.heading) {
-        formattedMessage = `**${entry.heading}**\n\n${message}`;
-      }
-      
-      // Send broadcast message to each web chat user
+      // Send broadcast message to each web chat user's actual conversation
       for (const user of webUsers) {
         try {
-          // Create conversation ID for web users
-          let conversationId;
-          if (user.shopifyCustomerId) {
-            conversationId = `web_customer_${user.shopifyCustomerId}`;
-          } else {
-            // For anonymous users, we need to create a generic conversation ID
-            // We'll use the user ID to create a unique conversation
-            conversationId = `web_user_${user.id}`;
+          // Get the user's actual conversation IDs
+          const conversations = user.conversations || [];
+          
+          if (conversations.length === 0) {
+            console.log(`Broadcast: User ${user.id} has no conversations, skipping`);
+            continue;
           }
           
-          // Save the broadcast message to the user's conversation history
-          const broadcastMessage = entry.heading 
-            ? `[Broadcast Message] **${entry.heading}**\n\n${message}`
-            : `[Broadcast Message] ${message}`;
-          
-          await saveMessage(conversationId, 'assistant', broadcastMessage);
-          console.log(`Broadcast: Saved message to web chat user ${user.id} (${user.name || 'Unknown'})`);
-          
-          entry.results.website.sent++;
+          // Send message to each conversation for this user
+          for (const conversation of conversations) {
+            try {
+              // Save the broadcast message to the user's conversation history
+              const broadcastMessage = entry.heading 
+                ? `[Broadcast Message] **${entry.heading}**\n\n${message}`
+                : `[Broadcast Message] ${message}`;
+              
+              await saveMessage(conversation.id, 'assistant', broadcastMessage);
+              console.log(`Broadcast: Saved message to conversation ${conversation.id} for user ${user.id} (${user.name || 'Unknown'})`);
+              
+              entry.results.website.sent++;
+            } catch (conversationError) {
+              entry.results.website.failed++;
+              entry.results.website.errors.push({
+                userId: user.id,
+                conversationId: conversation.id,
+                name: user.name,
+                error: conversationError.message
+              });
+              console.error(`Broadcast: Failed to save message for conversation ${conversation.id}:`, conversationError.message);
+            }
+          }
         } catch (error) {
           entry.results.website.failed++;
           entry.results.website.errors.push({
@@ -265,7 +271,7 @@ async function processWebsiteBroadcast(entry, message) {
             name: user.name,
             error: error.message
           });
-          console.error(`Broadcast: Failed to save message for web user ${user.id}:`, error.message);
+          console.error(`Broadcast: Failed to process user ${user.id}:`, error.message);
         }
       }
     }

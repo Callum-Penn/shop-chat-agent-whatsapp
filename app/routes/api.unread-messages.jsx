@@ -19,13 +19,13 @@ export const loader = async ({ request }) => {
     
     for (const message of messages) {
       if (message.role === 'assistant' && message.content.includes('[Broadcast Message]')) {
-        // Check if message is recent (within last 24 hours) and hasn't been "read"
+        // Check if message is recent (within last 7 days) and hasn't been "read"
         // For now, we'll consider all broadcast messages as potentially unread
         // In a more sophisticated implementation, you'd track read status
         const messageTime = new Date(message.createdAt);
         const hoursDiff = (now - messageTime) / (1000 * 60 * 60);
         
-        if (hoursDiff <= 24) {
+        if (hoursDiff <= 168) { // 7 days = 168 hours
           unreadCount++;
         }
       }

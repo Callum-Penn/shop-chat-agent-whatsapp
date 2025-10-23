@@ -1,101 +1,17 @@
-Oct 23 10:36:45  [shopify-api/INFO] version 11.12.0, environment Remix
-Oct 23 10:36:45  [remix-serve] http://localhost:8080 (http://10.244.33.209:8080)
-Oct 23 10:37:17  [shopify-app/INFO] Authenticating admin request | {shop: vltradeapp.myshopify.com}
-Oct 23 10:37:17  GET /app/broadcast?embedded=1&hmac=e226c325d984e7c8abe0d924b2e402d75b1b5e2aa1c939eb255b2c06ab1652be&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvdmx0cmFkZWFwcA&id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tIiwiYXVkIjoiYmI3NzcwMzVhNWI0MmE2OThjNTNkNTA5NjQzMTI2YzUiLCJzdWIiOiIxMzA0NjEzNjg3MDIiLCJleHAiOjE3NjEyMTU4OTYsIm5iZiI6MTc2MTIxNTgzNiwiaWF0IjoxNzYxMjE1ODM2LCJqdGkiOiJiYWQ5NjNmMi1iYzZkLTQ1NGYtYTI2ZC0wZDVkMGEyZGQyMmIiLCJzaWQiOiIzYWQwNjMwYi1jNjVlLTQwY2UtOTJhMy1hOWRmNGFmNzgwZTIiLCJzaWciOiJlZGNjMDc3MzcyZTc2MzBiZjY5MzM4MGE4ZDM3NjhlYzJjZDAyZTQ1NWMwNTI5Y2ZlNDA2YjdhMWE5NDlkZjNiIn0.eT4BB1SgMqwBVhj45SQet7NFv0LYdsXgkS3s4_1aNqA&locale=en&session=c50963fb0085cffe89bfb67b80667d4f39e82a278094fe3d3507fcb70ae55a05&shop=vltradeapp.myshopify.com&timestamp=1761215836 200 - - 48.683 ms
-Oct 23 10:37:17  GET /api/broadcast/whatsapp-users 200 - - 13.782 ms
-Oct 23 10:37:17  GET /api/broadcast/log 200 - - 44.380 ms
-Oct 23 10:37:43  Broadcast: Getting WhatsApp users from database...
-Oct 23 10:37:43  Broadcast: Found 2 WhatsApp users in database
-Oct 23 10:37:43  Creating directory at: /workspace/public/uploads
-Oct 23 10:37:43  Current working directory: /workspace
-Oct 23 10:37:43  POST /api/broadcast/log 201 - - 48.838 ms
-Oct 23 10:37:43  Directory created successfully at: /workspace/public/uploads
-Oct 23 10:37:43  Writing image to path: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:43  Image file written successfully
-Oct 23 10:37:43  Image file verified on disk: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:43  Image file size: 53956 bytes
-Oct 23 10:37:43  Image file still exists after delay. File size: 53956 bytes
-Oct 23 10:37:43  Image uploaded to hosting: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:43  Broadcast: Uploaded image to hosting, URL: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:43  Broadcast: Waiting for image to be fully accessible...
-Oct 23 10:37:46  GET /api/broadcast/log 200 - - 47.512 ms
-Oct 23 10:37:46  GET /api/broadcast/whatsapp-users 200 - - 6.459 ms
-Oct 23 10:37:48  Broadcast: Image should now be accessible
-Oct 23 10:37:48  Broadcast: Sending to phone number: 447813353629 (original: 447813353629)
-Oct 23 10:37:48  Broadcast: About to send image with URL: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:48  WhatsApp: Sending image message to 447813353629
-Oct 23 10:37:48  WhatsApp: Using image URL: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:48  WhatsApp: Full payload being sent: {
-Oct 23 10:37:48    "messaging_product": "whatsapp",
-Oct 23 10:37:48    "to": "447813353629",
-Oct 23 10:37:48    "type": "image",
-Oct 23 10:37:48    "image": {
-Oct 23 10:37:48      "link": "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg",
-Oct 23 10:37:48      "caption": "*Test*\n\nCheck out the latest releases from IVG on our website! To know more, ask me what you'd like to know."
-Oct 23 10:37:48    }
-Oct 23 10:37:48  }
-Oct 23 10:37:50  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447813353629","wa_id":"447813353629"}],"messages":[{"id":"wamid.HBgMNDQ3ODEzMzUzNjI5FQIAERgSRjIwN0VFMjkxMkZDMjU5MkM2AA=="}]}
-Oct 23 10:37:50  Broadcast: WhatsApp message sent to 447813353629 (Unknown)
-Oct 23 10:37:50  Broadcast: Saved message to conversation history for 447813353629
-Oct 23 10:37:50  Attempting to serve file from path: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:50  Current working directory: /workspace
-Oct 23 10:37:50  Directory does not exist, creating: /workspace/public/uploads
-Oct 23 10:37:50  Directory created successfully
-Oct 23 10:37:50  File does not exist at path: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:50  Error details: Error: ENOENT: no such file or directory, access '/workspace/public/uploads/1761215863424_image.jpg'
-Oct 23 10:37:50      at access (node:internal/fs/promises:607:10)
-Oct 23 10:37:50      at loader$7 (file:///workspace/build/server/index.js?t=315532801000:2254:7)
-Oct 23 10:37:50      at Object.callRouteLoader (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:59:16)
-Oct 23 10:37:50      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Oct 23 10:37:50      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Oct 23 10:37:50      at async Promise.all (index 0)
-Oct 23 10:37:50      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
-Oct 23 10:37:50      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
-Oct 23 10:37:50      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
-Oct 23 10:37:50      at loadRouteData (/workspace/node_modules/@remix-run/router/router.ts:3972:19) {
-Oct 23 10:37:50    errno: -2,
-Oct 23 10:37:50    code: 'ENOENT',
-Oct 23 10:37:50    syscall: 'access',
-Oct 23 10:37:50    path: '/workspace/public/uploads/1761215863424_image.jpg'
-Oct 23 10:37:50  }
-Oct 23 10:37:50  GET /uploads/1761215863424_image.jpg 404 - - 47.319 ms
-Oct 23 10:37:51  Broadcast: Sending to phone number: 447891689332 (original: 447891689332)
-Oct 23 10:37:51  Broadcast: About to send image with URL: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:51  WhatsApp: Sending image message to 447891689332
-Oct 23 10:37:51  WhatsApp: Using image URL: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg
-Oct 23 10:37:51  WhatsApp: Full payload being sent: {
-Oct 23 10:37:51    "messaging_product": "whatsapp",
-Oct 23 10:37:51    "to": "447891689332",
-Oct 23 10:37:51    "type": "image",
-Oct 23 10:37:51    "image": {
-Oct 23 10:37:51      "link": "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/uploads/1761215863424_image.jpg",
-Oct 23 10:37:51      "caption": "*Test*\n\nCheck out the latest releases from IVG on our website! To know more, ask me what you'd like to know."
-Oct 23 10:37:51    }
-Oct 23 10:37:51  }
-Oct 23 10:37:51  POST /api/whatsapp-webhook 200 - - 5.314 ms
-Oct 23 10:37:51  WhatsApp: Image message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNUQyNjcxRTkxQUYyQUNERDA3AA=="}]}
-Oct 23 10:37:51  Broadcast: WhatsApp message sent to 447891689332 (Unknown)
-Oct 23 10:37:51  Broadcast: Saved message to conversation history for 447891689332
-Oct 23 10:37:51  Broadcast: WhatsApp processing complete - 2 sent, 0 failed
-Oct 23 10:37:51  Attempting to serve file from path: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:51  Current working directory: /workspace
-Oct 23 10:37:51  File does not exist at path: /workspace/public/uploads/1761215863424_image.jpg
-Oct 23 10:37:51  Error details: Error: ENOENT: no such file or directory, access '/workspace/public/uploads/1761215863424_image.jpg'
-Oct 23 10:37:51      at access (node:internal/fs/promises:607:10)
-Oct 23 10:37:51      at loader$7 (file:///workspace/build/server/index.js?t=315532801000:2254:7)
-Oct 23 10:37:51      at Object.callRouteLoader (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:59:16)
-Oct 23 10:37:51      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Oct 23 10:37:51      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Oct 23 10:37:51      at async Promise.all (index 0)
-Oct 23 10:37:51      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
-Oct 23 10:37:51      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
-Oct 23 10:37:51      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
-Oct 23 10:37:51      at loadRouteData (/workspace/node_modules/@remix-run/router/router.ts:3972:19) {
-Oct 23 10:37:51    errno: -2,
-Oct 23 10:37:51    code: 'ENOENT',
-Oct 23 10:37:51    syscall: 'access',
-Oct 23 10:37:51    path: '/workspace/public/uploads/1761215863424_image.jpg'
-Oct 23 10:37:51  }
-Oct 23 10:37:51  Directory exists: /workspace/public/uploads
-Oct 23 10:37:51  GET /uploads/1761215863424_image.jpg 404 - - 3.558 ms
-Oct 23 10:37:52  POST /api/whatsapp-webhook 200 - - 3.961 ms
+Oct 23 14:54:41  Broadcast: Processing website messages
+Oct 23 14:54:41  POST /api/broadcast/log 201 - - 8.249 ms
+Oct 23 14:54:41  Broadcast: Found 13 web chat users in database
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh3jlhu1000px84n3vyofk38 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0qv4ij000dt74mq48e1rwg (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0qt4t60004t74mg4zbb4e8 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0q88p10008vh4mhcryjpz3 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0pozzv0000zr4ml9zwn9d4 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0bshpk0000wi4nkjdwpkob (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz9hqk70005wk4m2l684ac9 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz9h22j0000wk4mm86r82fw (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz93x2h000dpf4nzluqlvs9 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8zyhj000eqm4mcqz1vb7k (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8zpyl0005qm4mlilqex60 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8z5gu0000pf4nenbun3c5 (Unknown)
+Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8ywq00000qm4mlgaafer4 (Unknown)
+Oct 23 14:54:41  Broadcast: Website processing complete - 13 sent, 0 failed
