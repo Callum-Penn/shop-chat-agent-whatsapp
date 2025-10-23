@@ -20,6 +20,18 @@ export const loader = async ({ params }) => {
     
     // Read the file
     const filePath = join(process.cwd(), 'public', 'uploads', filename);
+    console.log('Attempting to serve file from path:', filePath);
+    
+    // Check if file exists first
+    try {
+      const { access } = await import('fs/promises');
+      await access(filePath);
+      console.log('File exists, proceeding to read');
+    } catch (error) {
+      console.error('File does not exist at path:', filePath);
+      return new Response("File not found", { status: 404 });
+    }
+    
     const fileBuffer = await readFile(filePath);
     
     // Determine content type
