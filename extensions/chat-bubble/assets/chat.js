@@ -164,6 +164,9 @@
         chatWindow.classList.toggle('active');
 
         if (chatWindow.classList.contains('active')) {
+          // Hide unread indicator when chat is opened
+          this.hideUnreadIndicator();
+          
           // On mobile, prevent body scrolling and delay focus
           if (this.isMobile) {
             document.body.classList.add('shop-ai-chat-open');
@@ -176,6 +179,9 @@
         } else {
           // Remove body class when closing
           document.body.classList.remove('shop-ai-chat-open');
+          
+          // Check for unread messages when chat is closed
+          setTimeout(() => this.checkUnreadMessages(), 1000);
         }
       },
 
@@ -187,11 +193,17 @@
 
         chatWindow.classList.remove('active');
 
+        // Hide unread indicator when chat is closed
+        this.hideUnreadIndicator();
+
         // On mobile, blur input to hide keyboard and enable body scrolling
         if (this.isMobile) {
           chatInput.blur();
           document.body.classList.remove('shop-ai-chat-open');
         }
+        
+        // Check for unread messages when chat is closed
+        setTimeout(() => this.checkUnreadMessages(), 1000);
       },
 
       /**
@@ -265,6 +277,52 @@
         }
 
         this.scrollToBottom();
+      },
+
+      /**
+       * Show unread message indicator on chat bubble
+       * @param {number} count - Number of unread messages
+       */
+      showUnreadIndicator: function(count) {
+        const { chatBubble } = this.elements;
+        
+        // Remove existing indicator if any
+        this.hideUnreadIndicator();
+        
+        if (count > 0) {
+          const indicator = document.createElement('div');
+          indicator.classList.add('shop-ai-unread-indicator');
+          indicator.textContent = count > 99 ? '99+' : count.toString();
+          chatBubble.appendChild(indicator);
+        }
+      },
+
+      /**
+       * Hide unread message indicator
+       */
+      hideUnreadIndicator: function() {
+        const { chatBubble } = this.elements;
+        const indicator = chatBubble.querySelector('.shop-ai-unread-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+      },
+
+      /**
+       * Check for unread messages and update indicator
+       */
+      checkUnreadMessages: function() {
+        const conversationId = CookieUtils.get('shopAiConversationId');
+        if (!conversationId) return;
+
+        // Check if chat window is open
+        const { chatWindow } = this.elements;
+        const isChatOpen = chatWindow.classList.contains('active');
+        
+        if (!isChatOpen) {
+          // Only check for unread messages when chat is closed
+          ShopAIChat.API.checkUnreadMessages(conversationId, this);
+        }
       }
     },
 
@@ -708,6 +766,34 @@
       },
 
       /**
+       * Check for unread messages
+       * @param {string} conversationId - Conversation ID
+       * @param {Object} uiInstance - UI instance to update indicator
+       */
+      checkUnreadMessages: async function(conversationId, uiInstance) {
+        try {
+          const unreadUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/unread-messages?conversation_id=${encodeURIComponent(conversationId)}`;
+          
+          const response = await fetch(unreadUrl, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const unreadCount = data.unread_count || 0;
+            uiInstance.showUnreadIndicator(unreadCount);
+          }
+        } catch (error) {
+          console.error('Error checking unread messages:', error);
+        }
+      },
+
+      /**
        * Fetch chat history from the server
        * @param {string} conversationId - Conversation ID
        * @param {HTMLElement} messagesContainer - The messages container
@@ -1037,6 +1123,11 @@
         // No previous conversation, show welcome message with WhatsApp choice
         this.showWelcomeWithWhatsAppChoice();
       }
+
+      // Set up periodic unread message checking (every 30 seconds)
+      setInterval(() => {
+        this.UI.checkUnreadMessages();
+      }, 30000);
     },
 
     /**

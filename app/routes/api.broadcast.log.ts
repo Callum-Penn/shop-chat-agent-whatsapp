@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import { sendWhatsAppMessage, sendWhatsAppImageWithUrl, uploadImageToHosting } from "../utils/whatsapp.server";
-import { getAllWhatsAppUsers, saveMessage } from "../db.server";
+import { getAllWhatsAppUsers, getAllWebUsers, saveMessage } from "../db.server";
 import prisma from "../db.server";
 
 // This is a server-only API route
@@ -221,15 +221,61 @@ async function processWebsiteBroadcast(entry, message) {
   console.log(`Broadcast: Processing website messages`);
   
   try {
-    // TODO: Implement website chat broadcasting
-    // For now, we'll simulate success
-    entry.results.website.sent = 1; // Placeholder
-    console.log(`Broadcast: Website message broadcasted`);
+    // Get all web chat users from database
+    const webUsers = await getAllWebUsers();
+    console.log(`Broadcast: Found ${webUsers.length} web chat users in database`);
+    
+    if (webUsers.length === 0) {
+      console.log(`Broadcast: No web chat users found in database`);
+      entry.results.website.sent = 0;
+      entry.results.website.failed = 0;
+    } else {
+      // Format message with bold heading if provided
+      let formattedMessage = message;
+      if (entry.heading) {
+        formattedMessage = `**${entry.heading}**\n\n${message}`;
+      }
+      
+      // Send broadcast message to each web chat user
+      for (const user of webUsers) {
+        try {
+          // Create conversation ID for web users
+          let conversationId;
+          if (user.shopifyCustomerId) {
+            conversationId = `web_customer_${user.shopifyCustomerId}`;
+          } else {
+            // For anonymous users, we need to create a generic conversation ID
+            // We'll use the user ID to create a unique conversation
+            conversationId = `web_user_${user.id}`;
+          }
+          
+          // Save the broadcast message to the user's conversation history
+          const broadcastMessage = entry.heading 
+            ? `[Broadcast Message] **${entry.heading}**\n\n${message}`
+            : `[Broadcast Message] ${message}`;
+          
+          await saveMessage(conversationId, 'assistant', broadcastMessage);
+          console.log(`Broadcast: Saved message to web chat user ${user.id} (${user.name || 'Unknown'})`);
+          
+          entry.results.website.sent++;
+        } catch (error) {
+          entry.results.website.failed++;
+          entry.results.website.errors.push({
+            userId: user.id,
+            name: user.name,
+            error: error.message
+          });
+          console.error(`Broadcast: Failed to save message for web user ${user.id}:`, error.message);
+        }
+      }
+    }
+    
+    console.log(`Broadcast: Website processing complete - ${entry.results.website.sent} sent, ${entry.results.website.failed} failed`);
     
     // Update status in database
     let newStatus = 'completed';
-    if (entry.results.whatsapp.failed > 0) {
-      newStatus = entry.results.whatsapp.sent === 0 ? 'failed' : 'partial';
+    if (entry.results.whatsapp.failed > 0 || entry.results.website.failed > 0) {
+      newStatus = (entry.results.whatsapp.sent === 0 && entry.results.website.sent === 0) ? 'failed' : 'partial';
     }
     
     await prisma.broadcastLog.update({
@@ -244,7 +290,7 @@ async function processWebsiteBroadcast(entry, message) {
     entry.results.website.errors.push({
       error: error.message
     });
-    console.error(`Broadcast: Failed to send website message:`, error.message);
+    console.error(`Broadcast: Failed to process website broadcast:`, error.message);
     
     // Update database with error
     await prisma.broadcastLog.update({

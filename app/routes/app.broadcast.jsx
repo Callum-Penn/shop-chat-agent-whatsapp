@@ -26,6 +26,7 @@ export default function BroadcastCenter() {
   const [websiteChecked, setWebsiteChecked] = useState(true);
   const [whatsappChecked, setWhatsappChecked] = useState(false);
   const [whatsappUserCount, setWhatsappUserCount] = useState(0);
+  const [webUserCount, setWebUserCount] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [logs, setLogs] = useState([]);
   const [loadingLogs, setLoadingLogs] = useState(true);
@@ -34,9 +35,10 @@ export default function BroadcastCenter() {
   const canSend = useMemo(() => {
     const hasChannel = websiteChecked || whatsappChecked;
     const hasWhatsAppAudience = !whatsappChecked || whatsappUserCount > 0;
+    const hasWebAudience = !websiteChecked || webUserCount > 0;
     const hasContent = message.trim().length > 0 || heading.trim().length > 0 || imageFile;
-    return hasChannel && hasWhatsAppAudience && hasContent;
-  }, [websiteChecked, whatsappChecked, whatsappUserCount, message, heading, imageFile]);
+    return hasChannel && hasWhatsAppAudience && hasWebAudience && hasContent;
+  }, [websiteChecked, whatsappChecked, whatsappUserCount, webUserCount, message, heading, imageFile]);
 
   const handleImageChange = useCallback((files) => {
     const file = files[0];
@@ -84,7 +86,7 @@ export default function BroadcastCenter() {
 
     loadLogs();
     
-    // Load WhatsApp user count
+    // Load user counts
     const loadWhatsAppUserCount = async () => {
       try {
         const res = await fetch("/api/broadcast/whatsapp-users");
@@ -96,8 +98,21 @@ export default function BroadcastCenter() {
         // ignore for POC
       }
     };
+
+    const loadWebUserCount = async () => {
+      try {
+        const res = await fetch("/api/broadcast/web-users");
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted) setWebUserCount(data.count || 0);
+        }
+      } catch (e) {
+        // ignore for POC
+      }
+    };
     
     loadWhatsAppUserCount();
+    loadWebUserCount();
     
     return () => { 
       isMounted = false; 
@@ -155,11 +170,17 @@ export default function BroadcastCenter() {
         setLogs(Array.isArray(data) ? data : []);
       }
       
-      // Load WhatsApp user count
+      // Load user counts
       const userRes = await fetch("/api/broadcast/whatsapp-users");
       if (userRes.ok) {
         const userData = await userRes.json();
         setWhatsappUserCount(userData.count || 0);
+      }
+
+      const webUserRes = await fetch("/api/broadcast/web-users");
+      if (webUserRes.ok) {
+        const webUserData = await webUserRes.json();
+        setWebUserCount(webUserData.count || 0);
       }
     } catch (e) {
       // ignore for POC
@@ -265,6 +286,19 @@ export default function BroadcastCenter() {
                       </Text>
                       <Text as="p" variant="bodySm" tone="subdued">
                         This includes all customers who have previously messaged you via WhatsApp
+                      </Text>
+                    </BlockStack>
+                  </Card>
+                )}
+
+                {websiteChecked && (
+                  <Card>
+                    <BlockStack gap="200">
+                      <Text as="p" variant="bodyMd">
+                        💬 Website chat will be sent to <strong>{webUserCount}</strong> users from your database
+                      </Text>
+                      <Text as="p" variant="bodySm" tone="subdued">
+                        This includes all customers who have used the web chat feature
                       </Text>
                     </BlockStack>
                   </Card>
@@ -383,6 +417,11 @@ export default function BroadcastCenter() {
                     </Text>
                   </BlockStack>
                 </Card>
+                {websiteChecked && (
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    Website recipients: {webUserCount} users from database
+                  </Text>
+                )}
                 {whatsappChecked && (
                   <Text as="p" variant="bodySm" tone="subdued">
                     WhatsApp recipients: {whatsappUserCount} users from database

@@ -412,6 +412,34 @@ export async function getAllWhatsAppUsers() {
 }
 
 /**
+ * Get all web chat users for broadcasting
+ * @returns {Promise<Array>} - Array of web chat users
+ */
+export async function getAllWebUsers() {
+  try {
+    return await prisma.user.findMany({
+      where: {
+        type: 'web'
+      },
+      select: {
+        id: true,
+        shopifyCustomerId: true,
+        email: true,
+        name: true,
+        createdAt: true,
+        metadata: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+  } catch (error) {
+    console.error('Error getting web users:', error);
+    return [];
+  }
+}
+
+/**
  * Get user by phone number
  * @param {string} phoneNumber - The phone number
  * @returns {Promise<Object|null>} - The user object or null
