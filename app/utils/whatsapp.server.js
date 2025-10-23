@@ -184,6 +184,7 @@ export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
   
   console.log('WhatsApp: Sending image message to', to);
   console.log('WhatsApp: Using image URL:', imageUrl);
+  console.log('WhatsApp: Full payload being sent:', JSON.stringify(payload, null, 2));
   
   const response = await fetch(url, {
     method: "POST",

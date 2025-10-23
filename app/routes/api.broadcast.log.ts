@@ -142,6 +142,7 @@ async function processWhatsAppBroadcast(entry, message) {
           const imageCaption = entry.heading 
             ? `*${entry.heading}*\n\n${message}`
             : message;
+          console.log(`Broadcast: About to send image with URL: ${imageUrl}`);
           await sendWhatsAppImageWithUrl(phoneNumber, imageUrl, imageCaption);
         } else {
           // For text only: send formatted message with bold heading
