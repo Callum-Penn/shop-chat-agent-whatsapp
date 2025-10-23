@@ -141,7 +141,8 @@ export async function uploadImageToHosting(imageData, filename) {
     // Double-check the file still exists after delay
     try {
       await fs.access(filePath);
-      console.log('Image file still exists after delay');
+      const stats = await fs.stat(filePath);
+      console.log('Image file still exists after delay. File size:', stats.size, 'bytes');
     } catch (error) {
       console.error('Image file disappeared after delay:', error);
       throw new Error('Image file disappeared after delay');

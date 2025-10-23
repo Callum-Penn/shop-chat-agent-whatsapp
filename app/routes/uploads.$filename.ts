@@ -24,11 +24,24 @@ export const loader = async ({ params }) => {
     
     // Check if file exists first
     try {
-      const { access } = await import('fs/promises');
+      const { access, stat } = await import('fs/promises');
       await access(filePath);
-      console.log('File exists, proceeding to read');
+      const stats = await stat(filePath);
+      console.log('File exists, proceeding to read. File size:', stats.size, 'bytes');
     } catch (error) {
       console.error('File does not exist at path:', filePath);
+      console.error('Error details:', error);
+      
+      // Let's also check if the directory exists
+      try {
+        const { access } = await import('fs/promises');
+        const dirPath = join(process.cwd(), 'public', 'uploads');
+        await access(dirPath);
+        console.log('Directory exists:', dirPath);
+      } catch (dirError) {
+        console.error('Directory does not exist:', join(process.cwd(), 'public', 'uploads'));
+      }
+      
       return new Response("File not found", { status: 404 });
     }
     
