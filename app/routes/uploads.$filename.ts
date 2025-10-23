@@ -21,6 +21,23 @@ export const loader = async ({ params }) => {
     // Read the file
     const filePath = join(process.cwd(), 'public', 'uploads', filename);
     console.log('Attempting to serve file from path:', filePath);
+    console.log('Current working directory:', process.cwd());
+    
+    // Check if directory exists first, create if it doesn't
+    try {
+      const { access, mkdir } = await import('fs/promises');
+      const dirPath = join(process.cwd(), 'public', 'uploads');
+      try {
+        await access(dirPath);
+        console.log('Directory exists:', dirPath);
+      } catch (dirError) {
+        console.log('Directory does not exist, creating:', dirPath);
+        await mkdir(dirPath, { recursive: true });
+        console.log('Directory created successfully');
+      }
+    } catch (dirError) {
+      console.error('Failed to create directory:', dirError);
+    }
     
     // Check if file exists first
     try {
@@ -31,17 +48,6 @@ export const loader = async ({ params }) => {
     } catch (error) {
       console.error('File does not exist at path:', filePath);
       console.error('Error details:', error);
-      
-      // Let's also check if the directory exists
-      try {
-        const { access } = await import('fs/promises');
-        const dirPath = join(process.cwd(), 'public', 'uploads');
-        await access(dirPath);
-        console.log('Directory exists:', dirPath);
-      } catch (dirError) {
-        console.error('Directory does not exist:', join(process.cwd(), 'public', 'uploads'));
-      }
-      
       return new Response("File not found", { status: 404 });
     }
     

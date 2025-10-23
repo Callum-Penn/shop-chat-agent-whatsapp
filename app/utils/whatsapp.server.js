@@ -114,7 +114,10 @@ export async function uploadImageToHosting(imageData, filename) {
     
     // Create public directory if it doesn't exist
     const publicDir = path.join(process.cwd(), 'public', 'uploads');
+    console.log('Creating directory at:', publicDir);
+    console.log('Current working directory:', process.cwd());
     await fs.mkdir(publicDir, { recursive: true });
+    console.log('Directory created successfully at:', publicDir);
     
     // Save file to public directory
     const filePath = path.join(publicDir, uniqueFilename);
