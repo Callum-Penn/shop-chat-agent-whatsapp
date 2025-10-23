@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
-import { readFile } from "fs/promises";
-import { join } from "path";
+import { getImageFromStore } from "../utils/whatsapp.server";
 
 export const loader = async ({ params }) => {
   const { filename } = params;
@@ -18,40 +17,17 @@ export const loader = async ({ params }) => {
       return new Response("File type not allowed", { status: 403 });
     }
     
-    // Read the file
-    const filePath = join(process.cwd(), 'public', 'uploads', filename);
-    console.log('Attempting to serve file from path:', filePath);
-    console.log('Current working directory:', process.cwd());
+    console.log('Attempting to serve file from memory store:', filename);
     
-    // Check if directory exists first, create if it doesn't
-    try {
-      const { access, mkdir } = await import('fs/promises');
-      const dirPath = join(process.cwd(), 'public', 'uploads');
-      try {
-        await access(dirPath);
-        console.log('Directory exists:', dirPath);
-      } catch (dirError) {
-        console.log('Directory does not exist, creating:', dirPath);
-        await mkdir(dirPath, { recursive: true });
-        console.log('Directory created successfully');
-      }
-    } catch (dirError) {
-      console.error('Failed to create directory:', dirError);
-    }
+    // Get image from memory store
+    const imageData = getImageFromStore(filename);
     
-    // Check if file exists first
-    try {
-      const { access, stat } = await import('fs/promises');
-      await access(filePath);
-      const stats = await stat(filePath);
-      console.log('File exists, proceeding to read. File size:', stats.size, 'bytes');
-    } catch (error) {
-      console.error('File does not exist at path:', filePath);
-      console.error('Error details:', error);
+    if (!imageData) {
+      console.error('Image not found in memory store:', filename);
       return new Response("File not found", { status: 404 });
     }
     
-    const fileBuffer = await readFile(filePath);
+    console.log('Image found in memory store. Size:', imageData.size, 'bytes');
     
     // Determine content type
     let contentType = 'image/jpeg';
@@ -59,7 +35,7 @@ export const loader = async ({ params }) => {
     if (fileExtension === '.gif') contentType = 'image/gif';
     if (fileExtension === '.webp') contentType = 'image/webp';
     
-    return new Response(fileBuffer, {
+    return new Response(imageData.buffer, {
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'public, max-age=31536000', // Cache for 1 year

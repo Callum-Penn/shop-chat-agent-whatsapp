@@ -94,6 +94,9 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
   return responseData;
 }
 
+// Store images in memory for serving
+const imageStore = new Map();
+
 /**
  * Upload image to a public hosting service and get URL
  * @param {string} imageData - Base64 encoded image data
@@ -108,48 +111,15 @@ export async function uploadImageToHosting(imageData, filename) {
     // Generate a unique filename
     const uniqueFilename = `${Date.now()}_${filename}`;
     
-    // Use ES6 imports instead of require
-    const fs = await import('fs').then(m => m.promises);
-    const path = await import('path');
+    // Store the image in memory for serving
+    imageStore.set(uniqueFilename, {
+      buffer: imageBuffer,
+      mimeType: 'image/jpeg', // Default to JPEG
+      size: imageBuffer.length
+    });
     
-    // Create public directory if it doesn't exist
-    const publicDir = path.join(process.cwd(), 'public', 'uploads');
-    console.log('Creating directory at:', publicDir);
-    console.log('Current working directory:', process.cwd());
-    await fs.mkdir(publicDir, { recursive: true });
-    console.log('Directory created successfully at:', publicDir);
-    
-    // Save file to public directory
-    const filePath = path.join(publicDir, uniqueFilename);
-    console.log('Writing image to path:', filePath);
-    await fs.writeFile(filePath, imageBuffer);
-    console.log('Image file written successfully');
-    
-    // Verify the file was written successfully
-    try {
-      await fs.access(filePath);
-      console.log('Image file verified on disk:', filePath);
-      
-      // Check file size
-      const stats = await fs.stat(filePath);
-      console.log('Image file size:', stats.size, 'bytes');
-    } catch (error) {
-      console.error('Failed to verify image file:', error);
-      throw new Error('Image file was not written successfully');
-    }
-    
-    // Add a small delay to ensure the file is fully accessible
-    await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
-    
-    // Double-check the file still exists after delay
-    try {
-      await fs.access(filePath);
-      const stats = await fs.stat(filePath);
-      console.log('Image file still exists after delay. File size:', stats.size, 'bytes');
-    } catch (error) {
-      console.error('Image file disappeared after delay:', error);
-      throw new Error('Image file disappeared after delay');
-    }
+    console.log('Image stored in memory with key:', uniqueFilename);
+    console.log('Image size:', imageBuffer.length, 'bytes');
     
     // Return public URL (adjust this based on your domain)
     const publicUrl = `${process.env.APP_URL || 'https://your-domain.com'}/uploads/${uniqueFilename}`;
@@ -160,6 +130,15 @@ export async function uploadImageToHosting(imageData, filename) {
     console.error('Failed to upload image to hosting:', error);
     throw error;
   }
+}
+
+/**
+ * Get image from memory store
+ * @param {string} filename - Filename to retrieve
+ * @returns {Object|null} Image data or null if not found
+ */
+export function getImageFromStore(filename) {
+  return imageStore.get(filename) || null;
 }
 
 /**
