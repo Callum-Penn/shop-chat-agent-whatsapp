@@ -108,9 +108,9 @@ export async function uploadImageToHosting(imageData, filename) {
     // Generate a unique filename
     const uniqueFilename = `${Date.now()}_${filename}`;
     
-    // Create public directory if it doesn't exist
-    const fs = require('fs').promises;
-    const path = require('path');
+    // Use ES6 imports instead of require
+    const fs = await import('fs').then(m => m.promises);
+    const path = await import('path');
     
     // Create public directory if it doesn't exist
     const publicDir = path.join(process.cwd(), 'public', 'uploads');
