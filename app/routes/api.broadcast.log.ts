@@ -102,6 +102,11 @@ async function processWhatsAppBroadcast(entry, message) {
       try {
         imageUrl = await uploadImageToHosting(entry.image, 'image.jpg');
         console.log(`Broadcast: Uploaded image to hosting, URL: ${imageUrl}`);
+        
+        // Add additional delay to ensure image is fully accessible
+        console.log(`Broadcast: Waiting for image to be fully accessible...`);
+        await new Promise(resolve => setTimeout(resolve, 5000)); // 5 second delay
+        console.log(`Broadcast: Image should now be accessible`);
       } catch (error) {
         console.error('Broadcast: Failed to upload image to hosting:', error);
         entry.results.whatsapp.failed = whatsappUsers.length;

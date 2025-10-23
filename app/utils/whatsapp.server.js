@@ -120,6 +120,18 @@ export async function uploadImageToHosting(imageData, filename) {
     const filePath = path.join(publicDir, uniqueFilename);
     await fs.writeFile(filePath, imageBuffer);
     
+    // Verify the file was written successfully
+    try {
+      await fs.access(filePath);
+      console.log('Image file verified on disk:', filePath);
+    } catch (error) {
+      console.error('Failed to verify image file:', error);
+      throw new Error('Image file was not written successfully');
+    }
+    
+    // Add a small delay to ensure the file is fully accessible
+    await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
+    
     // Return public URL (adjust this based on your domain)
     const publicUrl = `${process.env.APP_URL || 'https://your-domain.com'}/uploads/${uniqueFilename}`;
     
