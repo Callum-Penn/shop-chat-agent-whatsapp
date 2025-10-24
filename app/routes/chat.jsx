@@ -195,6 +195,21 @@ async function handleChatSession({
       } catch (e) {
         content = dbMessage.content;
       }
+      
+      // Ensure content is in the correct format for Claude API
+      // Claude expects content to be an array of content blocks
+      if (typeof content === 'string') {
+        content = [{ type: 'text', text: content }];
+      } else if (Array.isArray(content)) {
+        // Content is already an array, ensure each item has the correct structure
+        content = content.map(item => {
+          if (typeof item === 'string') {
+            return { type: 'text', text: item };
+          }
+          return item;
+        });
+      }
+      
       return {
         role: dbMessage.role,
         content
@@ -202,7 +217,7 @@ async function handleChatSession({
     });
 
     // Execute the conversation stream
-    let finalMessage = { role: 'user', content: userMessage };
+    let finalMessage = { role: 'user', content: [{ type: 'text', text: userMessage }] };
 
     while (finalMessage.stop_reason !== "end_turn") {
       finalMessage = await claudeService.streamConversation(

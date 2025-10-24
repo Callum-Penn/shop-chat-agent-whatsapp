@@ -1105,9 +1105,72 @@
       // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
-      // If Shopify customer is logged in, always use their customer ID for cross-device sync
+      // Enhanced customer detection for cross-device sync
+      let customerId = null;
+      
+      // Try multiple methods to detect customer ID (including new Shopify customer account system)
       if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-        conversationId = `web_customer_${window.Shopify.customer.id}`;
+        customerId = window.Shopify.customer.id;
+        console.log('Customer ID detected via window.Shopify.customer:', customerId);
+      } else if (window.Shopify && window.Shopify.customerId) {
+        customerId = window.Shopify.customerId;
+        console.log('Customer ID detected via window.Shopify.customerId:', customerId);
+      } else {
+        // Check for customer ID in meta tags (new customer account system)
+        const customerMeta = document.querySelector('meta[name="customer-id"]');
+        if (customerMeta) {
+          customerId = customerMeta.getAttribute('content');
+          console.log('Customer ID detected via meta tag:', customerId);
+        } else {
+          // Check for customer ID in the page URL
+          const urlMatch = window.location.href.match(/customer_id[=\/]([0-9]+)/i);
+          if (urlMatch) {
+            customerId = urlMatch[1];
+            console.log('Customer ID detected via URL:', customerId);
+          }
+          
+          // Check for customer ID in localStorage or sessionStorage
+          if (!customerId) {
+            const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
+            if (storedCustomerId) {
+              customerId = storedCustomerId;
+              console.log('Customer ID detected via storage:', customerId);
+            }
+          }
+          
+          // Check for new customer account system data attributes
+          if (!customerId) {
+            const customerElement = document.querySelector('[data-customer-id]');
+            if (customerElement) {
+              customerId = customerElement.getAttribute('data-customer-id');
+              console.log('Customer ID detected via data attribute:', customerId);
+            }
+          }
+          
+          // Check for customer ID in window object (new customer account system)
+          if (!customerId && window.customerId) {
+            customerId = window.customerId;
+            console.log('Customer ID detected via window.customerId:', customerId);
+          }
+          
+          // Check for customer ID in Shopify object properties
+          if (!customerId && window.Shopify) {
+            // Try different possible properties
+            const possibleProps = ['customer_id', 'customerId', 'customer.id', 'customerId'];
+            for (const prop of possibleProps) {
+              const value = window.Shopify[prop];
+              if (value && typeof value === 'string' && /^\d+$/.test(value)) {
+                customerId = value;
+                console.log(`Customer ID detected via window.Shopify.${prop}:`, customerId);
+                break;
+              }
+            }
+          }
+        }
+      }
+      
+      if (customerId) {
+        conversationId = `web_customer_${customerId}`;
         CookieUtils.set('shopAiConversationId', conversationId, 90);
         console.log('Using customer-based conversation ID for cross-device sync:', conversationId);
       } else {
@@ -1118,6 +1181,16 @@
           CookieUtils.set('shopAiConversationId', conversationId, 90);
         }
         console.log('Using anonymous conversation ID:', conversationId);
+        console.log('Customer detection failed. Available Shopify objects:', {
+          hasShopify: !!window.Shopify,
+          hasCustomer: !!(window.Shopify && window.Shopify.customer),
+          hasCustomerId: !!(window.Shopify && window.Shopify.customer && window.Shopify.customer.id),
+          hasCustomerIdDirect: !!(window.Shopify && window.Shopify.customerId),
+          shopifyKeys: window.Shopify ? Object.keys(window.Shopify) : [],
+          windowCustomerId: window.customerId,
+          metaTags: Array.from(document.querySelectorAll('meta[name*="customer"]')).map(m => ({ name: m.name, content: m.content })),
+          dataAttributes: Array.from(document.querySelectorAll('[data-customer-id]')).map(el => el.getAttribute('data-customer-id'))
+        });
       }
 
       if (conversationId) {
@@ -1132,6 +1205,85 @@
       setInterval(() => {
         this.UI.checkUnreadMessages();
       }, 30000);
+
+      // Set up customer ID detection retry for cross-device sync
+      this.setupCustomerIdDetectionRetry();
+    },
+
+    /**
+     * Set up customer ID detection retry for cross-device sync
+     */
+    setupCustomerIdDetectionRetry: function() {
+      // Retry customer ID detection after a delay in case Shopify object loads later
+      setTimeout(() => {
+        const currentConversationId = CookieUtils.get('shopAiConversationId');
+        
+        // If we're using an anonymous ID, try to detect customer ID again
+        if (currentConversationId && currentConversationId.startsWith('web_anon_')) {
+          let customerId = null;
+          
+          // Try multiple methods to detect customer ID (including new Shopify customer account system)
+          if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+            customerId = window.Shopify.customer.id;
+          } else if (window.Shopify && window.Shopify.customerId) {
+            customerId = window.Shopify.customerId;
+          } else {
+            // Check for customer ID in meta tags
+            const customerMeta = document.querySelector('meta[name="customer-id"]');
+            if (customerMeta) {
+              customerId = customerMeta.getAttribute('content');
+            } else {
+              // Check for customer ID in the page URL
+              const urlMatch = window.location.href.match(/customer_id[=\/]([0-9]+)/i);
+              if (urlMatch) {
+                customerId = urlMatch[1];
+              }
+              
+              // Check for customer ID in localStorage or sessionStorage
+              if (!customerId) {
+                const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
+                if (storedCustomerId) {
+                  customerId = storedCustomerId;
+                }
+              }
+              
+              // Check for new customer account system data attributes
+              if (!customerId) {
+                const customerElement = document.querySelector('[data-customer-id]');
+                if (customerElement) {
+                  customerId = customerElement.getAttribute('data-customer-id');
+                }
+              }
+              
+              // Check for customer ID in window object (new customer account system)
+              if (!customerId && window.customerId) {
+                customerId = window.customerId;
+              }
+              
+              // Check for customer ID in Shopify object properties
+              if (!customerId && window.Shopify) {
+                const possibleProps = ['customer_id', 'customerId', 'customer.id', 'customerId'];
+                for (const prop of possibleProps) {
+                  const value = window.Shopify[prop];
+                  if (value && typeof value === 'string' && /^\d+$/.test(value)) {
+                    customerId = value;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+          
+          if (customerId) {
+            const newConversationId = `web_customer_${customerId}`;
+            CookieUtils.set('shopAiConversationId', newConversationId, 90);
+            console.log('Customer ID detected on retry, switching to customer-based conversation:', newConversationId);
+            
+            // Reload chat history with the new conversation ID
+            this.API.fetchChatHistory(newConversationId, this.UI.elements.messagesContainer);
+          }
+        }
+      }, 2000); // Wait 2 seconds for Shopify objects to load
     },
 
     /**

@@ -1,7 +1,353 @@
-Oct 24 13:22:31  [shopify-api/INFO] version 11.12.0, environment Remix
-Oct 24 13:22:31  [remix-serve] http://localhost:8080 (http://10.244.27.114:8080)
-Oct 24 13:25:33  OPTIONS /chat?history=true&conversation_id=web_anon_1761304965489_ncnidfhu2 204 - - 13.675 ms
-Oct 24 13:25:34  GET /chat?history=true&conversation_id=web_anon_1761304965489_ncnidfhu2 200 - - 15.566 ms
-Oct 24 13:25:48  GET /chat?history=true&conversation_id=web_anon_1761304965489_ncnidfhu2 200 - - 11.997 ms
-Oct 24 13:25:59  GET /chat?history=true&conversation_id=web_anon_1761304965489_ncnidfhu2 200 - - 25.409 ms
-Oct 24 13:26:32  GET /chat?history=true&conversation_id=web_anon_1761304965489_ncnidfhu2 200 - - 8.041 ms
+Oct 24 14:03:19  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 24 14:03:19  [remix-serve] http://localhost:8080 (http://10.244.15.228:8080)
+Oct 24 14:03:35  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 24.110 ms
+Oct 24 14:04:35  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 21.228 ms
+Oct 24 14:04:35  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 39.220 ms
+Oct 24 14:05:08  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.395 ms
+Oct 24 14:05:08  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.319 ms
+Oct 24 14:05:21  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.612 ms
+Oct 24 14:05:21  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.791 ms
+Oct 24 14:05:36  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 8.037 ms
+Oct 24 14:05:43  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 5.746 ms
+Oct 24 14:05:43  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 8.252 ms
+Oct 24 14:06:00  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 3.434 ms
+Oct 24 14:06:01  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 8.163 ms
+Oct 24 14:06:03  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 3.044 ms
+Oct 24 14:06:03  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 6.135 ms
+Oct 24 14:06:35  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 13.399 ms
+Oct 24 14:06:46  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 8.619 ms
+Oct 24 14:06:51  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 10.108 ms
+Oct 24 14:07:00  OPTIONS /api/unread-messages?conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 7.915 ms
+Oct 24 14:07:06  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 11.179 ms
+Oct 24 14:07:38  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 8.558 ms
+Oct 24 14:08:21  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 41.385 ms
+Oct 24 14:09:30  OPTIONS /chat?history=true&conversation_id=web_anon_1761314971410_jvcl1o5b4 204 - - 1.713 ms
+Oct 24 14:09:30  GET /chat?history=true&conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 7.404 ms
+Oct 24 14:09:34  GET /chat?history=true&conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 4.974 ms
+Oct 24 14:10:15  GET /chat?history=true&conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 49.770 ms
+Oct 24 14:10:26  OPTIONS /api/unread-messages?conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 4.955 ms
+Oct 24 14:10:45  OPTIONS /api/unread-messages?conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 7.528 ms
+Oct 24 14:11:15  OPTIONS /api/unread-messages?conversation_id=web_anon_1761314971410_jvcl1o5b4 200 - - 7.206 ms
+Oct 24 14:14:50  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 3.018 ms
+Oct 24 14:14:50  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 37.102 ms
+Oct 24 14:15:12  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 1.645 ms
+Oct 24 14:15:12  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 6.452 ms
+Oct 24 14:15:38  Error: No route matches URL "/workspace/public/uploads/1761213795744_image.jpg"
+Oct 24 14:15:38      at getInternalRouterError (/workspace/node_modules/@remix-run/router/router.ts:5550:5)
+Oct 24 14:15:38      at Object.query (/workspace/node_modules/@remix-run/router/router.ts:3562:19)
+Oct 24 14:15:38      at handleDocumentRequest (/workspace/node_modules/@remix-run/server-runtime/dist/server.js:313:35)
+Oct 24 14:15:38      at requestHandler (/workspace/node_modules/@remix-run/server-runtime/dist/server.js:170:24)
+Oct 24 14:15:38      at /workspace/node_modules/@remix-run/express/dist/server.js:41:28
+Oct 24 14:15:39  ErrorResponseImpl {
+Oct 24 14:15:39    status: 404,
+Oct 24 14:15:39    statusText: 'Not Found',
+Oct 24 14:15:39    internal: true,
+Oct 24 14:15:39    data: 'Error: No route matches URL "/workspace/public/uploads/1761213795744_image.jpg"',
+Oct 24 14:15:39    error: Error: No route matches URL "/workspace/public/uploads/1761213795744_image.jpg"
+Oct 24 14:15:39        at getInternalRouterError (/workspace/node_modules/@remix-run/router/router.ts:5550:5)
+Oct 24 14:15:39        at Object.query (/workspace/node_modules/@remix-run/router/router.ts:3562:19)
+Oct 24 14:15:39        at handleDocumentRequest (/workspace/node_modules/@remix-run/server-runtime/dist/server.js:313:35)
+Oct 24 14:15:39        at requestHandler (/workspace/node_modules/@remix-run/server-runtime/dist/server.js:170:24)
+Oct 24 14:15:39        at /workspace/node_modules/@remix-run/express/dist/server.js:41:28
+Oct 24 14:15:39  }
+Oct 24 14:15:39  GET /workspace/public/uploads/1761213795744_image.jpg 404 - - 108.524 ms
+Oct 24 14:15:42  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 38.575 ms
+Oct 24 14:16:12  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.583 ms
+Oct 24 14:16:42  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.374 ms
+Oct 24 14:17:12  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.018 ms
+Oct 24 14:17:42  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.105 ms
+Oct 24 14:18:12  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.185 ms
+Oct 24 14:18:38  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 1.653 ms
+Oct 24 14:18:38  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 7.001 ms
+Oct 24 14:18:52  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 6.078 ms
+Oct 24 14:19:26  OPTIONS /chat 204 - - 2.422 ms
+Oct 24 14:19:26  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Oct 24 14:19:26  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Oct 24 14:19:26  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Oct 24 14:19:26  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Oct 24 14:19:26  No token in database for conversation: web_customer_23312945217918
+Oct 24 14:19:26  Customer MCP server tools response: [
+Oct 24 14:19:26    {
+Oct 24 14:19:26      "name": "get_most_recent_order_status",
+Oct 24 14:19:26      "description": "Gets the status of the customer's most recent order.",
+Oct 24 14:19:26      "inputSchema": {
+Oct 24 14:19:26        "type": "object",
+Oct 24 14:19:26        "properties": {}
+Oct 24 14:19:26      }
+Oct 24 14:19:26    },
+Oct 24 14:19:26    {
+Oct 24 14:19:26      "name": "get_order_status",
+Oct 24 14:19:26      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Oct 24 14:19:26      "inputSchema": {
+Oct 24 14:19:26        "type": "object",
+Oct 24 14:19:26        "properties": {
+Oct 24 14:19:26          "order_number": {
+Oct 24 14:19:26            "type": "string",
+Oct 24 14:19:26            "description": "Number of the order to look up"
+Oct 24 14:19:26          }
+Oct 24 14:19:26        },
+Oct 24 14:19:26        "required": [
+Oct 24 14:19:26          "order_number"
+Oct 24 14:19:26        ]
+Oct 24 14:19:26      }
+Oct 24 14:19:26    },
+Oct 24 14:19:26    {
+Oct 24 14:19:26      "name": "get_store_credit_balances",
+Oct 24 14:19:26      "description": "Fetches the customer's store credit balances if they have any.",
+Oct 24 14:19:26      "inputSchema": {
+Oct 24 14:19:26        "type": "object",
+Oct 24 14:19:26        "properties": {}
+Oct 24 14:19:26      }
+Oct 24 14:19:26    },
+Oct 24 14:19:26    {
+Oct 24 14:19:26      "name": "request_return",
+Oct 24 14:19:26      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Oct 24 14:19:26      "inputSchema": {
+Oct 24 14:19:26        "type": "object",
+Oct 24 14:19:26        "properties": {
+Oct 24 14:19:26          "order_id": {
+Oct 24 14:19:26            "type": "string",
+Oct 24 14:19:26            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Oct 24 14:19:26          },
+Oct 24 14:19:26          "order_number": {
+Oct 24 14:19:26            "type": "string",
+Oct 24 14:19:26            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Oct 24 14:19:26          },
+Oct 24 14:19:26          "line_items": {
+Oct 24 14:19:26            "type": "array",
+Oct 24 14:19:26            "description": "List of items to return",
+Oct 24 14:19:26            "items": {
+Oct 24 14:19:26              "type": "object",
+Oct 24 14:19:26              "properties": {
+Oct 24 14:19:26                "line_item_id": {
+Oct 24 14:19:26                  "type": "string",
+Oct 24 14:19:26                  "description": "ID of the line item to return"
+Oct 24 14:19:26                },
+Oct 24 14:19:26                "quantity": {
+Oct 24 14:19:26                  "type": "integer",
+Oct 24 14:19:26                  "description": "Quantity to return"
+Oct 24 14:19:26                },
+Oct 24 14:19:26                "return_reason": {
+Oct 24 14:19:26                  "type": "string",
+Oct 24 14:19:26                  "description": "Reason for return",
+Oct 24 14:19:26                  "enum": [
+Oct 24 14:19:26                    "SIZE_TOO_SMALL",
+Oct 24 14:19:26                    "SIZE_TOO_LARGE",
+Oct 24 14:19:26                    "UNWANTED",
+Oct 24 14:19:26                    "NOT_AS_DESCRIBED",
+Oct 24 14:19:26                    "WRONG_ITEM",
+Oct 24 14:19:26                    "DEFECTIVE",
+Oct 24 14:19:26                    "STYLE",
+Oct 24 14:19:26                    "COLOR",
+Oct 24 14:19:26                    "OTHER",
+Oct 24 14:19:26                    "UNKNOWN"
+Oct 24 14:19:26                  ]
+Oct 24 14:19:26                },
+Oct 24 14:19:26                "customer_note": {
+Oct 24 14:19:26                  "type": "string",
+Oct 24 14:19:26                  "description": "Additional notes about the return"
+Oct 24 14:19:26                }
+Oct 24 14:19:26              },
+Oct 24 14:19:26              "required": [
+Oct 24 14:19:26                "line_item_id",
+Oct 24 14:19:26                "quantity",
+Oct 24 14:19:26                "return_reason"
+Oct 24 14:19:26              ]
+Oct 24 14:19:26            }
+Oct 24 14:19:26          }
+Oct 24 14:19:26        },
+Oct 24 14:19:26        "required": [
+Oct 24 14:19:26          "line_items"
+Oct 24 14:19:26        ]
+Oct 24 14:19:26      }
+Oct 24 14:19:26    }
+Oct 24 14:19:26  ]
+Oct 24 14:19:26  Connected to MCP with 5 tools
+Oct 24 14:19:26  Connected to customer MCP with 4 tools
+Oct 24 14:19:26  Available customer tools: [
+Oct 24 14:19:26    'get_most_recent_order_status',
+Oct 24 14:19:26    'get_order_status',
+Oct 24 14:19:26    'get_store_credit_balances',
+Oct 24 14:19:26    'request_return'
+Oct 24 14:19:26  ]
+Oct 24 14:19:26  Error processing streaming request: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.0.content: Input should be a valid list"},"request_id":"req_011CUSAnA15c1PkH9hxN9JTr"}
+Oct 24 14:19:26      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Oct 24 14:19:26      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Oct 24 14:19:26      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Oct 24 14:19:26      at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+Oct 24 14:19:26    status: 400,
+Oct 24 14:19:26    headers: {
+Oct 24 14:19:26      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Oct 24 14:19:26      'cf-cache-status': 'DYNAMIC',
+Oct 24 14:19:26      'cf-ray': '993a1bf27be7d77e-LHR',
+Oct 24 14:19:26      connection: 'keep-alive',
+Oct 24 14:19:26      'content-length': '162',
+Oct 24 14:19:26      'content-type': 'application/json',
+Oct 24 14:19:26      date: 'Fri, 24 Oct 2025 14:19:26 GMT',
+Oct 24 14:19:26      'request-id': 'req_011CUSAnA15c1PkH9hxN9JTr',
+Oct 24 14:19:26      server: 'cloudflare',
+Oct 24 14:19:26      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Oct 24 14:19:26      via: '1.1 google',
+Oct 24 14:19:26      'x-envoy-upstream-service-time': '32',
+Oct 24 14:19:26      'x-robots-tag': 'none',
+Oct 24 14:19:26      'x-should-retry': 'false'
+Oct 24 14:19:26    },
+Oct 24 14:19:26    request_id: 'req_011CUSAnA15c1PkH9hxN9JTr',
+Oct 24 14:19:26    error: {
+Oct 24 14:19:26      type: 'error',
+Oct 24 14:19:26      error: {
+Oct 24 14:19:26        type: 'invalid_request_error',
+Oct 24 14:19:26        message: 'messages.0.content: Input should be a valid list'
+Oct 24 14:19:26      },
+Oct 24 14:19:26      request_id: 'req_011CUSAnA15c1PkH9hxN9JTr'
+Oct 24 14:19:26    }
+Oct 24 14:19:26  }
+Oct 24 14:19:26  POST /chat 200 - - 112.755 ms
+Oct 24 14:19:36  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 2.105 ms
+Oct 24 14:19:36  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 10.033 ms
+Oct 24 14:19:39  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.769 ms
+Oct 24 14:19:50  OPTIONS /chat 204 - - 1.329 ms
+Oct 24 14:19:50  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Oct 24 14:19:50  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Oct 24 14:19:50  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Oct 24 14:19:50  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Oct 24 14:19:50  No token in database for conversation: web_customer_23312945217918
+Oct 24 14:19:50  Customer MCP server tools response: [
+Oct 24 14:19:50    {
+Oct 24 14:19:50      "name": "get_most_recent_order_status",
+Oct 24 14:19:50      "description": "Gets the status of the customer's most recent order.",
+Oct 24 14:19:50      "inputSchema": {
+Oct 24 14:19:50        "type": "object",
+Oct 24 14:19:50        "properties": {}
+Oct 24 14:19:50      }
+Oct 24 14:19:50    },
+Oct 24 14:19:50    {
+Oct 24 14:19:50      "name": "get_order_status",
+Oct 24 14:19:50      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Oct 24 14:19:50      "inputSchema": {
+Oct 24 14:19:50        "type": "object",
+Oct 24 14:19:50        "properties": {
+Oct 24 14:19:50          "order_number": {
+Oct 24 14:19:50            "type": "string",
+Oct 24 14:19:50            "description": "Number of the order to look up"
+Oct 24 14:19:50          }
+Oct 24 14:19:50        },
+Oct 24 14:19:50        "required": [
+Oct 24 14:19:50          "order_number"
+Oct 24 14:19:50        ]
+Oct 24 14:19:50      }
+Oct 24 14:19:50    },
+Oct 24 14:19:50    {
+Oct 24 14:19:50      "name": "get_store_credit_balances",
+Oct 24 14:19:50      "description": "Fetches the customer's store credit balances if they have any.",
+Oct 24 14:19:50      "inputSchema": {
+Oct 24 14:19:50        "type": "object",
+Oct 24 14:19:50        "properties": {}
+Oct 24 14:19:50      }
+Oct 24 14:19:50    },
+Oct 24 14:19:50    {
+Oct 24 14:19:50      "name": "request_return",
+Oct 24 14:19:50      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Oct 24 14:19:50      "inputSchema": {
+Oct 24 14:19:50        "type": "object",
+Oct 24 14:19:50        "properties": {
+Oct 24 14:19:50          "order_id": {
+Oct 24 14:19:50            "type": "string",
+Oct 24 14:19:50            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Oct 24 14:19:50          },
+Oct 24 14:19:50          "order_number": {
+Oct 24 14:19:50            "type": "string",
+Oct 24 14:19:50            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Oct 24 14:19:50          },
+Oct 24 14:19:50          "line_items": {
+Oct 24 14:19:50            "type": "array",
+Oct 24 14:19:50            "description": "List of items to return",
+Oct 24 14:19:50            "items": {
+Oct 24 14:19:50              "type": "object",
+Oct 24 14:19:50              "properties": {
+Oct 24 14:19:50                "line_item_id": {
+Oct 24 14:19:50                  "type": "string",
+Oct 24 14:19:50                  "description": "ID of the line item to return"
+Oct 24 14:19:50                },
+Oct 24 14:19:50                "quantity": {
+Oct 24 14:19:50                  "type": "integer",
+Oct 24 14:19:50                  "description": "Quantity to return"
+Oct 24 14:19:50                },
+Oct 24 14:19:50                "return_reason": {
+Oct 24 14:19:50                  "type": "string",
+Oct 24 14:19:50                  "description": "Reason for return",
+Oct 24 14:19:50                  "enum": [
+Oct 24 14:19:50                    "SIZE_TOO_SMALL",
+Oct 24 14:19:50                    "SIZE_TOO_LARGE",
+Oct 24 14:19:50                    "UNWANTED",
+Oct 24 14:19:50                    "NOT_AS_DESCRIBED",
+Oct 24 14:19:50                    "WRONG_ITEM",
+Oct 24 14:19:50                    "DEFECTIVE",
+Oct 24 14:19:50                    "STYLE",
+Oct 24 14:19:50                    "COLOR",
+Oct 24 14:19:50                    "OTHER",
+Oct 24 14:19:50                    "UNKNOWN"
+Oct 24 14:19:50                  ]
+Oct 24 14:19:50                },
+Oct 24 14:19:50                "customer_note": {
+Oct 24 14:19:50                  "type": "string",
+Oct 24 14:19:50                  "description": "Additional notes about the return"
+Oct 24 14:19:50                }
+Oct 24 14:19:50              },
+Oct 24 14:19:50              "required": [
+Oct 24 14:19:50                "line_item_id",
+Oct 24 14:19:50                "quantity",
+Oct 24 14:19:50                "return_reason"
+Oct 24 14:19:50              ]
+Oct 24 14:19:50            }
+Oct 24 14:19:50          }
+Oct 24 14:19:50        },
+Oct 24 14:19:50        "required": [
+Oct 24 14:19:50          "line_items"
+Oct 24 14:19:50        ]
+Oct 24 14:19:50      }
+Oct 24 14:19:50    }
+Oct 24 14:19:50  ]
+Oct 24 14:19:50  Connected to MCP with 5 tools
+Oct 24 14:19:50  Connected to customer MCP with 4 tools
+Oct 24 14:19:50  Available customer tools: [
+Oct 24 14:19:50    'get_most_recent_order_status',
+Oct 24 14:19:50    'get_order_status',
+Oct 24 14:19:50    'get_store_credit_balances',
+Oct 24 14:19:50    'request_return'
+Oct 24 14:19:50  ]
+Oct 24 14:19:50  Error processing streaming request: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.0.content: Input should be a valid list"},"request_id":"req_011CUSAowAieumNhvoLyeixW"}
+Oct 24 14:19:50      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Oct 24 14:19:50      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Oct 24 14:19:50      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Oct 24 14:19:50      at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+Oct 24 14:19:50    status: 400,
+Oct 24 14:19:50    headers: {
+Oct 24 14:19:50      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Oct 24 14:19:50      'cf-cache-status': 'DYNAMIC',
+Oct 24 14:19:50      'cf-ray': '993a1c894ff14133-LHR',
+Oct 24 14:19:50      connection: 'keep-alive',
+Oct 24 14:19:50      'content-length': '162',
+Oct 24 14:19:50      'content-type': 'application/json',
+Oct 24 14:19:50      date: 'Fri, 24 Oct 2025 14:19:50 GMT',
+Oct 24 14:19:50      'request-id': 'req_011CUSAowAieumNhvoLyeixW',
+Oct 24 14:19:50      server: 'cloudflare',
+Oct 24 14:19:50      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Oct 24 14:19:50      via: '1.1 google',
+Oct 24 14:19:50      'x-envoy-upstream-service-time': '34',
+Oct 24 14:19:50      'x-robots-tag': 'none',
+Oct 24 14:19:50      'x-should-retry': 'false'
+Oct 24 14:19:50    },
+Oct 24 14:19:50    request_id: 'req_011CUSAowAieumNhvoLyeixW',
+Oct 24 14:19:50    error: {
+Oct 24 14:19:50      type: 'error',
+Oct 24 14:19:50      error: {
+Oct 24 14:19:50        type: 'invalid_request_error',
+Oct 24 14:19:50        message: 'messages.0.content: Input should be a valid list'
+Oct 24 14:19:50      },
+Oct 24 14:19:50      request_id: 'req_011CUSAowAieumNhvoLyeixW'
+Oct 24 14:19:50    }
+Oct 24 14:19:50  }
+Oct 24 14:19:50  POST /chat 200 - - 18.268 ms
+Oct 24 14:19:58  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 1.494 ms
+Oct 24 14:19:58  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 3.963 ms
