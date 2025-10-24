@@ -238,7 +238,11 @@ export const action = async ({ request }) => {
         try {
           content = JSON.parse(dbMessage.content);
         } catch (e) {
-          content = dbMessage.content;
+          // If JSON parsing fails, wrap the content in a text block format
+          content = [{
+            type: "text",
+            text: dbMessage.content
+          }];
         }
         return {
           role: dbMessage.role,

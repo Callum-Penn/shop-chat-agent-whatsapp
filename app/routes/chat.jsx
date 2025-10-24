@@ -193,7 +193,11 @@ async function handleChatSession({
       try {
         content = JSON.parse(dbMessage.content);
       } catch (e) {
-        content = dbMessage.content;
+        // If JSON parsing fails, wrap the content in a text block format
+        content = [{
+          type: "text",
+          text: dbMessage.content
+        }];
       }
       return {
         role: dbMessage.role,
@@ -202,7 +206,13 @@ async function handleChatSession({
     });
 
     // Execute the conversation stream
-    let finalMessage = { role: 'user', content: userMessage };
+    let finalMessage = { 
+      role: 'user', 
+      content: [{
+        type: "text",
+        text: userMessage
+      }]
+    };
 
     while (finalMessage.stop_reason !== "end_turn") {
       finalMessage = await claudeService.streamConversation(
