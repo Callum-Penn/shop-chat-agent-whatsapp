@@ -1079,140 +1079,110 @@
       }
     },
 
+
     /**
-     * Set up authentication state monitoring to detect login/logout
+     * Get customer ID using Shopify's Customer Account API
      */
-    setupAuthenticationMonitoring: function() {
-      let lastAuthState = this.getAuthenticationState();
-      
-      // Listen for Shopify authentication events if available
-      if (window.Shopify && window.Shopify.analytics) {
-        // Listen for page view events which often indicate auth state changes
-        document.addEventListener('DOMContentLoaded', () => {
-          // Check for auth state changes after DOM is fully loaded
-          setTimeout(() => {
-            const currentAuthState = this.getAuthenticationState();
-            if (currentAuthState !== lastAuthState) {
-              this.handleAuthenticationChange(lastAuthState, currentAuthState);
-              lastAuthState = currentAuthState;
+    getCustomerIdFromShopify: async function() {
+      try {
+        // Method 1: Check if we have a customer access token in localStorage or cookies
+        const customerAccessToken = localStorage.getItem('customerAccessToken') || 
+                                   CookieUtils.get('customerAccessToken');
+        
+        if (customerAccessToken) {
+          // Use the Customer Account API to get customer information
+          const customerId = await this.fetchCustomerFromAPI(customerAccessToken);
+          if (customerId) {
+            return customerId;
+          }
+        }
+        
+        // Method 2: Check for traditional Shopify customer object (fallback)
+        if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+          return window.Shopify.customer.id;
+        }
+        
+        // Method 3: Check for customer data in meta tags or data attributes
+        const customerMeta = document.querySelector('meta[name="customer-id"]');
+        if (customerMeta && customerMeta.content) {
+          return customerMeta.content;
+        }
+        
+        const customerData = document.querySelector('[data-customer-id]');
+        if (customerData && customerData.getAttribute('data-customer-id')) {
+          return customerData.getAttribute('data-customer-id');
+        }
+        
+        return null;
+      } catch (error) {
+        console.error('Error getting customer ID:', error);
+        return null;
+      }
+    },
+
+    /**
+     * Fetch customer information from Shopify's Customer Account API
+     */
+    fetchCustomerFromAPI: async function(customerAccessToken) {
+      try {
+        // Get the shop domain from the current URL
+        const shopDomain = window.location.hostname;
+        const apiDiscoveryUrl = `https://${shopDomain}/.well-known/customer-account-api`;
+        
+        // Discover the API endpoint
+        const discoveryResponse = await fetch(apiDiscoveryUrl);
+        if (!discoveryResponse.ok) {
+          throw new Error('Failed to discover Customer Account API endpoint');
+        }
+        
+        const apiConfig = await discoveryResponse.json();
+        const graphqlEndpoint = apiConfig.graphql_api;
+        
+        // Query the Customer Account API
+        const query = `
+          query {
+            customer {
+              id
+              emailAddress {
+                emailAddress
+              }
+              company {
+                id
+                name
+              }
             }
-          }, 1000);
+          }
+        `;
+        
+        const response = await fetch(graphqlEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${customerAccessToken}`
+          },
+          body: JSON.stringify({ query })
         });
-      }
-      
-      // Fallback: Check for authentication state changes every 2 seconds
-      setInterval(() => {
-        const currentAuthState = this.getAuthenticationState();
         
-        if (currentAuthState !== lastAuthState) {
-          this.handleAuthenticationChange(lastAuthState, currentAuthState);
-          lastAuthState = currentAuthState;
+        if (!response.ok) {
+          throw new Error('Failed to fetch customer data');
         }
-      }, 2000);
-    },
-
-    /**
-     * Handle authentication state changes
-     */
-    handleAuthenticationChange: function(oldState, newState) {
-      console.log('Authentication state changed:', oldState, '->', newState);
-      
-      if (newState.isLoggedIn && !oldState.isLoggedIn) {
-        // User logged in - reinitialize chat with customer ID
-        console.log('User logged in, reinitializing chat with customer ID:', newState.customerId);
-        this.reinitializeForCustomer(newState.customerId);
-      } else if (!newState.isLoggedIn && oldState.isLoggedIn) {
-        // User logged out - switch to anonymous
-        console.log('User logged out, switching to anonymous mode');
-        this.reinitializeForAnonymous();
-      }
-    },
-
-    /**
-     * Get current authentication state
-     */
-    getAuthenticationState: function() {
-      // Method 1: Check window.Shopify.customer
-      if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-        return {
-          isLoggedIn: true,
-          customerId: window.Shopify.customer.id
-        };
-      }
-      
-      // Method 2: Check meta tags
-      const customerMeta = document.querySelector('meta[name="customer-id"]');
-      if (customerMeta && customerMeta.content) {
-        return {
-          isLoggedIn: true,
-          customerId: customerMeta.content
-        };
-      }
-      
-      // Method 3: Check data attributes
-      const customerData = document.querySelector('[data-customer-id]');
-      if (customerData && customerData.getAttribute('data-customer-id')) {
-        return {
-          isLoggedIn: true,
-          customerId: customerData.getAttribute('data-customer-id')
-        };
-      }
-      
-      // Method 4: Check for customer data in script tags
-      const scripts = document.querySelectorAll('script');
-      for (const script of scripts) {
-        if (script.textContent) {
-          // Look for patterns like "customer_id": "123456" or customerId: "123456"
-          const customerIdMatch = script.textContent.match(/(?:customer_id|customerId)["\s]*:["\s]*["']?(\d+)["']?/i);
-          if (customerIdMatch && customerIdMatch[1]) {
-            return {
-              isLoggedIn: true,
-              customerId: customerIdMatch[1]
-            };
-          }
+        
+        const data = await response.json();
+        
+        if (data.data && data.data.customer && data.data.customer.id) {
+          // Extract the customer ID from the GraphQL response
+          // The ID format is usually "gid://shopify/Customer/123456"
+          const customerId = data.data.customer.id.split('/').pop();
+          return customerId;
         }
+        
+        return null;
+      } catch (error) {
+        console.error('Error fetching customer from API:', error);
+        return null;
       }
-      
-      // Method 5: Check for customer data in global variables
-      if (window.customer && window.customer.id) {
-        return {
-          isLoggedIn: true,
-          customerId: window.customer.id
-        };
-      }
-      
-      return {
-        isLoggedIn: false,
-        customerId: null
-      };
     },
 
-    /**
-     * Wait for Shopify customer object to be available
-     */
-    waitForShopifyCustomer: function(timeout = 10000) {
-      return new Promise((resolve) => {
-        const startTime = Date.now();
-        
-        const checkCustomer = () => {
-          if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-            resolve({
-              isLoggedIn: true,
-              customerId: window.Shopify.customer.id
-            });
-          } else if (Date.now() - startTime > timeout) {
-            resolve({
-              isLoggedIn: false,
-              customerId: null
-            });
-          } else {
-            setTimeout(checkCustomer, 500);
-          }
-        };
-        
-        checkCustomer();
-      });
-    },
 
     /**
      * Reinitialize chat for logged-in customer
@@ -1278,74 +1248,12 @@
       // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
-      // Debug: Log Shopify customer information
-      console.log('=== SHOPIFY CUSTOMER DETECTION DEBUG ===');
-      console.log('- window.Shopify exists:', !!window.Shopify);
-      console.log('- window.Shopify.customer exists:', !!(window.Shopify && window.Shopify.customer));
-      
-      if (window.Shopify) {
-        console.log('- Full window.Shopify object:', window.Shopify);
-        if (window.Shopify.customer) {
-          console.log('- Customer ID:', window.Shopify.customer.id);
-          console.log('- Customer email:', window.Shopify.customer.email);
-          console.log('- Customer first name:', window.Shopify.customer.first_name);
-          console.log('- Full customer object:', window.Shopify.customer);
-        } else {
-          console.log('- window.Shopify.customer is null/undefined');
-        }
-      }
-      
-      // Check for alternative customer detection methods
-      console.log('=== ALTERNATIVE CUSTOMER DETECTION ===');
-      console.log('- window.meta exists:', !!window.meta);
-      console.log('- document.querySelector("[data-customer-id]") exists:', !!document.querySelector('[data-customer-id]'));
-      console.log('- document.querySelector("[data-customer]") exists:', !!document.querySelector('[data-customer]'));
-      
-      // Check if customer ID is in meta tags
-      const customerMeta = document.querySelector('meta[name="customer-id"]');
-      if (customerMeta) {
-        console.log('- Customer ID from meta tag:', customerMeta.getAttribute('content'));
-      }
-      
-      // Check if customer info is in data attributes
-      const customerData = document.querySelector('[data-customer-id]');
-      if (customerData) {
-        console.log('- Customer ID from data attribute:', customerData.getAttribute('data-customer-id'));
-      }
-      
-      // Check all meta tags for customer info
-      const allMetaTags = document.querySelectorAll('meta');
-      console.log('=== ALL META TAGS ===');
-      allMetaTags.forEach((meta, index) => {
-        if (meta.name && meta.name.includes('customer')) {
-          console.log(`Meta ${index}: name="${meta.name}", content="${meta.content}"`);
-        }
-      });
-      
-      // Check for Shopify theme customer data
-      console.log('=== SHOPIFY THEME CUSTOMER DATA ===');
-      if (window.Shopify && window.Shopify.theme) {
-        console.log('- Shopify theme exists:', window.Shopify.theme);
-      }
-      
-      // Check for customer data in script tags
-      const customerScripts = document.querySelectorAll('script');
-      console.log('=== CUSTOMER DATA IN SCRIPTS ===');
-      customerScripts.forEach((script, index) => {
-        if (script.textContent && script.textContent.includes('customer')) {
-          console.log(`Script ${index} contains customer data:`, script.textContent.substring(0, 200));
-        }
-      });
-      
-      // Wait for Shopify customer to be available (with timeout)
-      this.waitForShopifyCustomer(5000).then((authState) => {
-        if (authState.isLoggedIn) {
-          conversationId = `web_customer_${authState.customerId}`;
+      // Try to get customer ID using Shopify's Customer Account API
+      this.getCustomerIdFromShopify().then((customerId) => {
+        if (customerId) {
+          conversationId = `web_customer_${customerId}`;
           CookieUtils.set('shopAiConversationId', conversationId, 90);
           console.log('✅ Using customer ID for conversation sync:', conversationId);
-          
-          // Fetch conversation history with customer ID
-          this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
         } else {
           // For non-logged-in users, use anonymous ID
           conversationId = CookieUtils.get('shopAiConversationId');
@@ -1354,28 +1262,11 @@
             CookieUtils.set('shopAiConversationId', conversationId, 90);
           }
           console.log('❌ Using anonymous ID for conversation:', conversationId);
-          console.log('Reason: Shopify customer not detected');
-          
-          // Fetch conversation history or show welcome
-          this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
         }
+        
+        // Fetch conversation history
+        this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
       });
-      
-      // Fallback: If immediate detection works, use it
-      if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-        conversationId = `web_customer_${window.Shopify.customer.id}`;
-        CookieUtils.set('shopAiConversationId', conversationId, 90);
-        console.log('✅ Using customer ID for conversation sync (immediate):', conversationId);
-      } else {
-        // For non-logged-in users, use anonymous ID
-        conversationId = CookieUtils.get('shopAiConversationId');
-        if (!conversationId) {
-          conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-          CookieUtils.set('shopAiConversationId', conversationId, 90);
-        }
-        console.log('❌ Using anonymous ID for conversation (immediate):', conversationId);
-        console.log('Reason: Shopify customer not detected');
-      }
 
       if (conversationId) {
         // Fetch conversation history
@@ -1390,34 +1281,7 @@
         this.UI.checkUnreadMessages();
       }, 30000);
 
-      // Set up authentication state monitoring
-      this.setupAuthenticationMonitoring();
-      
-      // Expose debugging functions to window for manual testing
-      window.ShopAIChatDebug = {
-        getAuthState: () => this.getAuthenticationState(),
-        forceCustomerDetection: () => {
-          console.log('=== FORCE CUSTOMER DETECTION ===');
-          const authState = this.getAuthenticationState();
-          console.log('Detected auth state:', authState);
-          if (authState.isLoggedIn) {
-            console.log('Customer detected! Reinitializing chat...');
-            this.reinitializeForCustomer(authState.customerId);
-          } else {
-            console.log('No customer detected');
-          }
-          return authState;
-        },
-        checkShopifyObject: () => {
-          console.log('=== SHOPIFY OBJECT CHECK ===');
-          console.log('window.Shopify:', window.Shopify);
-          console.log('window.Shopify.customer:', window.Shopify?.customer);
-          return window.Shopify;
-        }
-      };
-      
       console.log('✅ Chat widget initialized successfully');
-      console.log('✅ ShopAIChatDebug object created - you can now use debugging functions');
     },
 
     /**
@@ -1721,13 +1585,11 @@
 
   // Initialize the application when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('=== DOM CONTENT LOADED - INITIALIZING CHAT ===');
     ShopAIChat.init();
   });
   
   // Also try immediate initialization if DOM is already ready
   if (document.readyState !== 'loading') {
-    console.log('=== DOM ALREADY READY - INITIALIZING CHAT IMMEDIATELY ===');
     ShopAIChat.init();
   }
 })();
