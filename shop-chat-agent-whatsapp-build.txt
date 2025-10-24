@@ -1,26 +1,99 @@
-Oct 24 10:13:15  [shopify-api/INFO] version 11.12.0, environment Remix
-Oct 24 10:13:15  [remix-serve] http://localhost:8080 (http://10.244.31.35:8080)
-Oct 24 10:16:07  OPTIONS /chat?history=true&conversation_id=web_anon_1761300966740_pj19w6rag 204 - - 11.505 ms
-Oct 24 10:16:07  GET /chat?history=true&conversation_id=web_anon_1761300966740_pj19w6rag 200 - - 19.252 ms
-Oct 24 10:16:40  GET /chat?history=true&conversation_id=web_anon_1761300990591_dgmabcgrg 200 - - 8.642 ms
-Oct 24 10:16:53  GET /chat?history=true&conversation_id=web_anon_1761300990591_dgmabcgrg 200 - - 9.362 ms
-Oct 24 10:17:14  Chat Request Debug Info:
-Oct 24 10:17:14  - Conversation ID from frontend: web_anon_1761300990591_dgmabcgrg
-Oct 24 10:17:14  - Shopify Customer ID from frontend: undefined
-Oct 24 10:17:14  - Request body: {
-Oct 24 10:17:14    "message": "Hi",
-Oct 24 10:17:14    "conversation_id": "web_anon_1761300990591_dgmabcgrg",
-Oct 24 10:17:14    "prompt_type": "enthusiasticAssistant"
-Oct 24 10:17:14  }
-Oct 24 10:17:14  User Creation Debug Info:
-Oct 24 10:17:14  - Conversation ID: web_anon_1761300990591_dgmabcgrg
-Oct 24 10:17:14  - Shopify Customer ID: undefined
-Oct 24 10:17:14  - Conversation ID starts with web_customer_: false
-Oct 24 10:17:14  - Conversation ID starts with web_anon_: true
-Oct 24 10:17:14  Created anonymous web user
-Oct 24 10:17:14  Linked conversation to user: cmh4p5rpi0000tt4mn2jq9mxb
-Oct 24 10:17:14  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Oct 24 10:17:14  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Oct 24 10:17:14  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Oct 24 10:17:14  No token in database for conversation: web_anon_1761300990591_dgmabcgrg
-Oct 24 10:17:14  Customer MCP server tools response: [
+Oct 24 11:00:44  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:44  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:44  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:44  
+Oct 24 11:00:44  > shop-chat-agent@1.0.41 start
+Oct 24 11:00:44  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Oct 24 11:00:44  
+Oct 24 11:00:45  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:45  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:45  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:45  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:45  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:45  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:47  Prisma schema loaded from prisma/schema.prisma
+Oct 24 11:00:47  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 24 11:00:48  
+Oct 24 11:00:48  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 368ms
+Oct 24 11:00:48  
+Oct 24 11:00:48  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Oct 24 11:00:48  
+Oct 24 11:00:48  Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
+Oct 24 11:00:48  
+Oct 24 11:00:49  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:49  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:49  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:49  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:49  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:49  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:51  Prisma schema loaded from prisma/schema.prisma
+Oct 24 11:00:51  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Oct 24 11:00:52  
+Oct 24 11:00:52  The database is already in sync with the Prisma schema.
+Oct 24 10:59:54  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 10:59:54  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 10:59:54  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 10:59:55  
+Oct 24 10:59:55  > shop-chat-agent@1.0.41 start
+Oct 24 10:59:55  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Oct 24 10:59:55  
+Oct 24 10:59:56  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:52  
+Oct 24 11:00:52  Running generate... (Use --skip-generate to skip the generators)
+Oct 24 11:00:52  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 24 11:00:52  [2K[1A[2K[GRunning generate... - Prisma Client
+Oct 24 11:00:52  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 370ms
+Oct 24 11:00:52  
+Oct 24 11:00:52  ┌─────────────────────────────────────────────────────────┐
+Oct 24 11:00:52  │  Update available 6.6.0 -> 6.18.0                       │
+Oct 24 11:00:52  │  Run the following to update                            │
+Oct 24 11:00:52  │    npm i --save-dev prisma@latest                       │
+Oct 24 11:00:52  │    npm i @prisma/client@latest                          │
+Oct 24 11:00:52  └─────────────────────────────────────────────────────────┘
+Oct 24 11:00:56  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 24 11:00:56  [remix-serve] http://localhost:8080 (http://10.244.101.73:8080)
+Oct 24 11:02:31  GET /chat?history=true&conversation_id=web_anon_1761303728272_my9g7yh92 200 - - 21.489 ms
+Oct 24 10:59:56  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 10:59:56  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 10:59:56  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 10:59:56  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 10:59:56  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 10:59:59  Prisma schema loaded from prisma/schema.prisma
+Oct 24 10:59:59  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 24 10:59:59  
+Oct 24 10:59:59  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 480ms
+Oct 24 10:59:59  
+Oct 24 10:59:59  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Oct 24 10:59:59  
+Oct 24 10:59:59  Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+Oct 24 10:59:59  
+Oct 24 11:00:02  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:02  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:02  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:02  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Oct 24 11:00:02  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Oct 24 11:00:02  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Oct 24 11:00:05  Prisma schema loaded from prisma/schema.prisma
+Oct 24 11:00:05  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Oct 24 11:00:06  
+Oct 24 11:00:06  The database is already in sync with the Prisma schema.
+Oct 24 11:00:06  
+Oct 24 11:00:06  Running generate... (Use --skip-generate to skip the generators)
+Oct 24 11:00:06  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Oct 24 11:00:06  [2K[1A[2K[GRunning generate... - Prisma Client
+Oct 24 11:00:07  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 480ms
+Oct 24 11:00:07  
+Oct 24 11:00:07  ┌─────────────────────────────────────────────────────────┐
+Oct 24 11:00:07  │  Update available 6.6.0 -> 6.18.0                       │
+Oct 24 11:00:07  │  Run the following to update                            │
+Oct 24 11:00:07  │    npm i --save-dev prisma@latest                       │
+Oct 24 11:00:07  │    npm i @prisma/client@latest                          │
+Oct 24 11:00:07  └─────────────────────────────────────────────────────────┘
+Oct 24 11:00:14  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 24 11:00:14  [remix-serve] http://localhost:8080 (http://10.244.20.33:8080)
+Oct 24 11:02:07  OPTIONS /chat?history=true&conversation_id=web_anon_1761303728272_my9g7yh92 204 - - 19.141 ms
+Oct 24 11:02:07  GET /chat?history=true&conversation_id=web_anon_1761303728272_my9g7yh92 200 - - 22.257 ms
+Oct 24 11:02:10  GET /chat?history=true&conversation_id=web_anon_1761303728272_my9g7yh92 200 - - 9.484 ms
+Oct 24 11:03:16  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 19.027 ms
+Oct 24 11:03:28  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 8.146 ms
+Oct 24 11:04:20  GET /chat?history=true&conversation_id=web_anon_1761061901573_t84zzxh0p 200 - - 12.558 ms

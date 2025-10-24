@@ -1132,12 +1132,58 @@
      * Get current authentication state
      */
     getAuthenticationState: function() {
-      const isLoggedIn = !!(window.Shopify && window.Shopify.customer && window.Shopify.customer.id);
-      const customerId = isLoggedIn ? window.Shopify.customer.id : null;
+      // Method 1: Check window.Shopify.customer
+      if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+        return {
+          isLoggedIn: true,
+          customerId: window.Shopify.customer.id
+        };
+      }
+      
+      // Method 2: Check meta tags
+      const customerMeta = document.querySelector('meta[name="customer-id"]');
+      if (customerMeta && customerMeta.content) {
+        return {
+          isLoggedIn: true,
+          customerId: customerMeta.content
+        };
+      }
+      
+      // Method 3: Check data attributes
+      const customerData = document.querySelector('[data-customer-id]');
+      if (customerData && customerData.getAttribute('data-customer-id')) {
+        return {
+          isLoggedIn: true,
+          customerId: customerData.getAttribute('data-customer-id')
+        };
+      }
+      
+      // Method 4: Check for customer data in script tags
+      const scripts = document.querySelectorAll('script');
+      for (const script of scripts) {
+        if (script.textContent) {
+          // Look for patterns like "customer_id": "123456" or customerId: "123456"
+          const customerIdMatch = script.textContent.match(/(?:customer_id|customerId)["\s]*:["\s]*["']?(\d+)["']?/i);
+          if (customerIdMatch && customerIdMatch[1]) {
+            return {
+              isLoggedIn: true,
+              customerId: customerIdMatch[1]
+            };
+          }
+        }
+      }
+      
+      // Method 5: Check for customer data in global variables
+      if (window.customer && window.customer.id) {
+        return {
+          isLoggedIn: true,
+          customerId: window.customer.id
+        };
+      }
       
       return {
-        isLoggedIn,
-        customerId
+        isLoggedIn: false,
+        customerId: null
       };
     },
 
@@ -1233,18 +1279,24 @@
       let conversationId = null;
       
       // Debug: Log Shopify customer information
-      console.log('Shopify Debug Info:');
+      console.log('=== SHOPIFY CUSTOMER DETECTION DEBUG ===');
       console.log('- window.Shopify exists:', !!window.Shopify);
       console.log('- window.Shopify.customer exists:', !!(window.Shopify && window.Shopify.customer));
-      if (window.Shopify && window.Shopify.customer) {
-        console.log('- Customer ID:', window.Shopify.customer.id);
-        console.log('- Customer email:', window.Shopify.customer.email);
-        console.log('- Customer first name:', window.Shopify.customer.first_name);
-        console.log('- Full customer object:', window.Shopify.customer);
+      
+      if (window.Shopify) {
+        console.log('- Full window.Shopify object:', window.Shopify);
+        if (window.Shopify.customer) {
+          console.log('- Customer ID:', window.Shopify.customer.id);
+          console.log('- Customer email:', window.Shopify.customer.email);
+          console.log('- Customer first name:', window.Shopify.customer.first_name);
+          console.log('- Full customer object:', window.Shopify.customer);
+        } else {
+          console.log('- window.Shopify.customer is null/undefined');
+        }
       }
       
       // Check for alternative customer detection methods
-      console.log('Alternative Customer Detection:');
+      console.log('=== ALTERNATIVE CUSTOMER DETECTION ===');
       console.log('- window.meta exists:', !!window.meta);
       console.log('- document.querySelector("[data-customer-id]") exists:', !!document.querySelector('[data-customer-id]'));
       console.log('- document.querySelector("[data-customer]") exists:', !!document.querySelector('[data-customer]'));
@@ -1260,6 +1312,30 @@
       if (customerData) {
         console.log('- Customer ID from data attribute:', customerData.getAttribute('data-customer-id'));
       }
+      
+      // Check all meta tags for customer info
+      const allMetaTags = document.querySelectorAll('meta');
+      console.log('=== ALL META TAGS ===');
+      allMetaTags.forEach((meta, index) => {
+        if (meta.name && meta.name.includes('customer')) {
+          console.log(`Meta ${index}: name="${meta.name}", content="${meta.content}"`);
+        }
+      });
+      
+      // Check for Shopify theme customer data
+      console.log('=== SHOPIFY THEME CUSTOMER DATA ===');
+      if (window.Shopify && window.Shopify.theme) {
+        console.log('- Shopify theme exists:', window.Shopify.theme);
+      }
+      
+      // Check for customer data in script tags
+      const customerScripts = document.querySelectorAll('script');
+      console.log('=== CUSTOMER DATA IN SCRIPTS ===');
+      customerScripts.forEach((script, index) => {
+        if (script.textContent && script.textContent.includes('customer')) {
+          console.log(`Script ${index} contains customer data:`, script.textContent.substring(0, 200));
+        }
+      });
       
       // Wait for Shopify customer to be available (with timeout)
       this.waitForShopifyCustomer(5000).then((authState) => {
@@ -1316,6 +1392,29 @@
 
       // Set up authentication state monitoring
       this.setupAuthenticationMonitoring();
+      
+      // Expose debugging functions to window for manual testing
+      window.ShopAIChatDebug = {
+        getAuthState: () => this.getAuthenticationState(),
+        forceCustomerDetection: () => {
+          console.log('=== FORCE CUSTOMER DETECTION ===');
+          const authState = this.getAuthenticationState();
+          console.log('Detected auth state:', authState);
+          if (authState.isLoggedIn) {
+            console.log('Customer detected! Reinitializing chat...');
+            this.reinitializeForCustomer(authState.customerId);
+          } else {
+            console.log('No customer detected');
+          }
+          return authState;
+        },
+        checkShopifyObject: () => {
+          console.log('=== SHOPIFY OBJECT CHECK ===');
+          console.log('window.Shopify:', window.Shopify);
+          console.log('window.Shopify.customer:', window.Shopify?.customer);
+          return window.Shopify;
+        }
+      };
     },
 
     /**
