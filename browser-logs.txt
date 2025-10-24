@@ -1,0 +1,21 @@
+service-worker.js?v=100566867923856140661758794523:3 Uncaught ReferenceError: caches is not defined
+    at service-worker.js?v=100566867923856140661758794523:3:5
+(anonymous) @ service-worker.js?v=100566867923856140661758794523:3
+service-worker.js?v=100566867923856140661749040826:3 Uncaught ReferenceError: caches is not defined
+    at service-worker.js?v=100566867923856140661749040826:3:5
+(anonymous) @ service-worker.js?v=100566867923856140661749040826:3
+ [HotReload] CLI hot reload disabled - No hot reload port specified.
+cart.js:1 Uncaught SyntaxError: Identifier 'CartBatchManager' has already been declared (at cart.js:1:1)
+cart-drawer.js:119 Uncaught ReferenceError: CartItems is not defined
+    at cart-drawer.js:119:31
+(anonymous) @ cart-drawer.js:119
+chat.js:725 Fetching history from: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=web_anon_1761313089592_i1cn1yz5l
+?company_location_changed=true&country=GB:6470 ServiceWorker registration successful with scope:  https://vapelocal.co.uk/cdn/shop/t/9/assets/
+service-worker.js?v=…56140661756222897:1 Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
+Promise.then
+(anonymous) @ service-worker.js?v=100566867923856140661756222897:4
+Promise.then
+(anonymous) @ service-worker.js?v=100566867923856140661756222897:3
+pushowl-shopify-main.js:1 [PushOwl Web Push Notifications] v2025-10-14 5PMIST starting up
+wishlist.js:181 No wishlist or favorites button found in click path
+wishlist.js:181 No wishlist or favorites button found in click path

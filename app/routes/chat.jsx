@@ -11,8 +11,7 @@ import {
   getCustomerAccountUrl,
   createOrGetUser,
   linkConversationToUser,
-  getUserByShopifyCustomerId,
-  migrateToCustomerConversation
+  getUserByShopifyCustomerId
 } from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
@@ -97,12 +96,6 @@ async function handleChatRequest(request) {
     const conversationId = body.conversation_id || Date.now().toString();
     const promptType = body.prompt_type || AppConfig.api.defaultPromptType;
     const shopifyCustomerId = body.shopify_customer_id; // From frontend if customer is logged in
-    
-    // Debug: Log customer information
-    console.log('Chat Request Debug Info:');
-    console.log('- Conversation ID from frontend:', conversationId);
-    console.log('- Shopify Customer ID from frontend:', shopifyCustomerId);
-    console.log('- Request body:', JSON.stringify(body, null, 2));
 
     // Create or link user if we have customer info
     try {
@@ -418,13 +411,6 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
   try {
     let user = null;
 
-    // Debug: Log user creation parameters
-    console.log('User Creation Debug Info:');
-    console.log('- Conversation ID:', conversationId);
-    console.log('- Shopify Customer ID:', shopifyCustomerId);
-    console.log('- Conversation ID starts with web_customer_:', conversationId.startsWith('web_customer_'));
-    console.log('- Conversation ID starts with web_anon_:', conversationId.startsWith('web_anon_'));
-
     // Determine if this is a web customer or anonymous user
     if (shopifyCustomerId) {
       // Try to find existing user by Shopify customer ID
@@ -441,23 +427,6 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
           }
         });
         console.log('Created new web user for Shopify customer:', shopifyCustomerId);
-      }
-      
-      // Ensure conversation ID uses customer ID format for cross-device sync
-      if (!conversationId.startsWith(`web_customer_${shopifyCustomerId}`)) {
-        // If this was an anonymous conversation, migrate it to customer-based
-        if (conversationId.startsWith('web_anon_')) {
-          try {
-            conversationId = await migrateToCustomerConversation(conversationId, shopifyCustomerId, user.id);
-            console.log('Migrated anonymous conversation to customer-based:', conversationId);
-          } catch (error) {
-            console.error('Failed to migrate conversation, using new customer ID:', error);
-            conversationId = `web_customer_${shopifyCustomerId}`;
-          }
-        } else {
-          conversationId = `web_customer_${shopifyCustomerId}`;
-          console.log('Updated conversation ID for customer sync:', conversationId);
-        }
       }
     } else if (conversationId.startsWith('web_anon_')) {
       // Anonymous web user - create or get user

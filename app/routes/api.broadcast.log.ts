@@ -225,6 +225,10 @@ async function processWebsiteBroadcast(entry, message) {
     const webUsers = await getAllWebUsersWithConversations();
     console.log(`Broadcast: Found ${webUsers.length} web chat users in database`);
     
+    // Log customer-based users for debugging
+    const customerUsers = webUsers.filter(user => user.shopifyCustomerId);
+    console.log(`Broadcast: Found ${customerUsers.length} logged-in customers for cross-device sync`);
+    
     if (webUsers.length === 0) {
       console.log(`Broadcast: No web chat users found in database`);
       entry.results.website.sent = 0;
@@ -241,33 +245,47 @@ async function processWebsiteBroadcast(entry, message) {
             continue;
           }
           
-          // Send message to each conversation for this user
-          for (const conversation of conversations) {
+          // For logged-in customers, prioritize customer-based conversations
+          let targetConversation = null;
+          
+          if (user.shopifyCustomerId) {
+            // Look for customer-based conversation first
+            targetConversation = conversations.find(conv => conv.id.startsWith('web_customer_'));
+          }
+          
+          // If no customer conversation found, use any available conversation
+          if (!targetConversation && conversations.length > 0) {
+            targetConversation = conversations[0];
+          }
+          
+          if (targetConversation) {
             try {
               // Save the broadcast message to the user's conversation history
               const broadcastMessage = entry.heading 
                 ? `[Broadcast Message] **${entry.heading}**\n\n${message}`
                 : `[Broadcast Message] ${message}`;
               
-              await saveMessage(conversation.id, 'assistant', broadcastMessage);
-              console.log(`Broadcast: Saved message to conversation ${conversation.id} for user ${user.id} (${user.name || 'Unknown'})`);
+              await saveMessage(targetConversation.id, 'assistant', broadcastMessage);
+              console.log(`Broadcast: Saved message to conversation ${targetConversation.id} for customer ${user.shopifyCustomerId || user.id} (${user.name || 'Unknown'})`);
               
               entry.results.website.sent++;
             } catch (conversationError) {
               entry.results.website.failed++;
               entry.results.website.errors.push({
                 userId: user.id,
-                conversationId: conversation.id,
+                customerId: user.shopifyCustomerId,
+                conversationId: targetConversation.id,
                 name: user.name,
                 error: conversationError.message
               });
-              console.error(`Broadcast: Failed to save message for conversation ${conversation.id}:`, conversationError.message);
+              console.error(`Broadcast: Failed to save message for conversation ${targetConversation.id}:`, conversationError.message);
             }
           }
         } catch (error) {
           entry.results.website.failed++;
           entry.results.website.errors.push({
             userId: user.id,
+            customerId: user.shopifyCustomerId,
             name: user.name,
             error: error.message
           });

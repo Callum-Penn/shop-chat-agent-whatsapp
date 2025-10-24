@@ -441,12 +441,11 @@ export async function getAllWebUsers() {
 
 /**
  * Get all web chat users with their conversation IDs for broadcasting
- * Prioritizes customer-based conversations for cross-device sync
  * @returns {Promise<Array>} - Array of web chat users with their conversation IDs
  */
 export async function getAllWebUsersWithConversations() {
   try {
-    const users = await prisma.user.findMany({
+    return await prisma.user.findMany({
       where: {
         type: 'web'
       },
@@ -463,9 +462,6 @@ export async function getAllWebUsersWithConversations() {
           },
           select: {
             id: true
-          },
-          orderBy: {
-            createdAt: 'desc'
           }
         }
       },
@@ -473,37 +469,6 @@ export async function getAllWebUsersWithConversations() {
         createdAt: 'desc'
       }
     });
-
-    // Filter and prioritize customer-based conversations
-    const processedUsers = users.map(user => {
-      // If user has a Shopify customer ID, prioritize customer-based conversations
-      if (user.shopifyCustomerId) {
-        const customerConversations = user.conversations.filter(conv => 
-          conv.id.startsWith(`web_customer_${user.shopifyCustomerId}`)
-        );
-        
-        // If we have customer-based conversations, use those
-        if (customerConversations.length > 0) {
-          return {
-            ...user,
-            conversations: customerConversations
-          };
-        }
-        
-        // If no customer conversations exist, create a virtual one for broadcasting
-        return {
-          ...user,
-          conversations: [{
-            id: `web_customer_${user.shopifyCustomerId}`
-          }]
-        };
-      }
-      
-      // For anonymous users, use their existing conversations
-      return user;
-    });
-
-    return processedUsers;
   } catch (error) {
     console.error('Error getting web users with conversations:', error);
     return [];
@@ -586,82 +551,6 @@ export async function linkConversationToUser(conversationId, userId, channel = '
     });
   } catch (error) {
     console.error('Error linking conversation to user:', error);
-    throw error;
-  }
-}
-
-/**
- * Migrate anonymous conversation to customer-based conversation for cross-device sync
- * @param {string} anonymousConversationId - The anonymous conversation ID
- * @param {string} customerId - The Shopify customer ID
- * @param {string} userId - The user ID
- * @returns {Promise<string>} - The new customer-based conversation ID
- */
-export async function migrateToCustomerConversation(anonymousConversationId, customerId, userId) {
-  try {
-    const newConversationId = `web_customer_${customerId}`;
-    
-    // Check if customer conversation already exists
-    const existingCustomerConv = await prisma.conversation.findUnique({
-      where: { id: newConversationId }
-    });
-    
-    if (existingCustomerConv) {
-      // Customer conversation exists, migrate messages from anonymous conversation
-      const anonymousMessages = await prisma.message.findMany({
-        where: { conversationId: anonymousConversationId },
-        orderBy: { createdAt: 'asc' }
-      });
-      
-      // Move messages to customer conversation
-      for (const message of anonymousMessages) {
-        await prisma.message.update({
-          where: { id: message.id },
-          data: { conversationId: newConversationId }
-        });
-      }
-      
-      // Delete the anonymous conversation
-      await prisma.conversation.delete({
-        where: { id: anonymousConversationId }
-      });
-      
-      console.log(`Migrated ${anonymousMessages.length} messages from ${anonymousConversationId} to ${newConversationId}`);
-    } else {
-      // Create new customer conversation and migrate
-      await prisma.conversation.create({
-        data: {
-          id: newConversationId,
-          userId,
-          channel: 'web',
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      });
-      
-      // Migrate messages
-      const anonymousMessages = await prisma.message.findMany({
-        where: { conversationId: anonymousConversationId }
-      });
-      
-      for (const message of anonymousMessages) {
-        await prisma.message.update({
-          where: { id: message.id },
-          data: { conversationId: newConversationId }
-        });
-      }
-      
-      // Delete the anonymous conversation
-      await prisma.conversation.delete({
-        where: { id: anonymousConversationId }
-      });
-      
-      console.log(`Created new customer conversation ${newConversationId} and migrated ${anonymousMessages.length} messages`);
-    }
-    
-    return newConversationId;
-  } catch (error) {
-    console.error('Error migrating to customer conversation:', error);
     throw error;
   }
 }

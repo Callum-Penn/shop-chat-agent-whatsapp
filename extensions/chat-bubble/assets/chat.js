@@ -617,8 +617,7 @@
 
         try {
           const promptType = window.shopChatConfig?.promptType || "standardAssistant";
-          
-          // Include Shopify customer ID if available for better user linking
+          // Prepare request body with customer ID if available
           const requestBody = JSON.stringify({
             message: userMessage,
             conversation_id: conversationId,
@@ -1079,227 +1078,6 @@
       }
     },
 
-
-    /**
-     * Get customer ID using various detection methods
-     */
-    getCustomerIdFromShopify: async function() {
-      try {
-        // Method 1: Check for customer data in script tags (Shopify theme context)
-        const scripts = document.querySelectorAll('script');
-        for (const script of scripts) {
-          if (script.textContent) {
-            // Look for patterns like "customer_id": "123456" or customerId: "123456"
-            const customerIdMatch = script.textContent.match(/(?:customer_id|customerId)["\s]*:["\s]*["']?(\d+)["']?/i);
-            if (customerIdMatch && customerIdMatch[1]) {
-              console.log('✅ Customer ID found in script tag:', customerIdMatch[1]);
-              return customerIdMatch[1];
-            }
-          }
-        }
-        
-        // Method 2: Check for customer data in meta tags
-        const customerMeta = document.querySelector('meta[name="customer-id"]');
-        if (customerMeta && customerMeta.content) {
-          console.log('✅ Customer ID found in meta tag:', customerMeta.content);
-          return customerMeta.content;
-        }
-        
-        // Method 3: Check for customer data in data attributes
-        const customerData = document.querySelector('[data-customer-id]');
-        if (customerData && customerData.getAttribute('data-customer-id')) {
-          console.log('✅ Customer ID found in data attribute:', customerData.getAttribute('data-customer-id'));
-          return customerData.getAttribute('data-customer-id');
-        }
-        
-        // Method 4: Check for traditional Shopify customer object (fallback)
-        if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-          console.log('✅ Customer ID found in window.Shopify.customer:', window.Shopify.customer.id);
-          return window.Shopify.customer.id;
-        }
-        
-        // Method 5: Check for customer data in global variables
-        if (window.customer && window.customer.id) {
-          console.log('✅ Customer ID found in window.customer:', window.customer.id);
-          return window.customer.id;
-        }
-        
-        // Method 6: Check for customer access token and use Customer Account API
-        const customerAccessToken = localStorage.getItem('customerAccessToken') || 
-                                   CookieUtils.get('customerAccessToken');
-        
-        if (customerAccessToken) {
-          console.log('✅ Customer access token found, querying Customer Account API...');
-          const customerId = await this.fetchCustomerFromAPI(customerAccessToken);
-          if (customerId) {
-            return customerId;
-          }
-        }
-        
-        console.log('❌ No customer ID detected');
-        return null;
-      } catch (error) {
-        console.error('Error getting customer ID:', error);
-        return null;
-      }
-    },
-
-    /**
-     * Debug customer detection methods
-     */
-    debugCustomerDetection: function() {
-      console.log('=== CUSTOMER DETECTION DEBUG ===');
-      
-      // Check window.Shopify
-      console.log('window.Shopify exists:', !!window.Shopify);
-      if (window.Shopify) {
-        console.log('window.Shopify.customer exists:', !!(window.Shopify.customer));
-        if (window.Shopify.customer) {
-          console.log('window.Shopify.customer.id:', window.Shopify.customer.id);
-        }
-      }
-      
-      // Check global customer object
-      console.log('window.customer exists:', !!window.customer);
-      if (window.customer) {
-        console.log('window.customer.id:', window.customer.id);
-      }
-      
-      // Check meta tags
-      const customerMeta = document.querySelector('meta[name="customer-id"]');
-      console.log('Customer meta tag exists:', !!customerMeta);
-      if (customerMeta) {
-        console.log('Customer meta tag content:', customerMeta.content);
-      }
-      
-      // Check data attributes
-      const customerData = document.querySelector('[data-customer-id]');
-      console.log('Customer data attribute exists:', !!customerData);
-      if (customerData) {
-        console.log('Customer data attribute value:', customerData.getAttribute('data-customer-id'));
-      }
-      
-      // Check for customer data in script tags
-      const scripts = document.querySelectorAll('script');
-      let foundCustomerData = false;
-      for (const script of scripts) {
-        if (script.textContent && script.textContent.includes('customer')) {
-          console.log('Script with customer data found:', script.textContent.substring(0, 200));
-          foundCustomerData = true;
-        }
-      }
-      if (!foundCustomerData) {
-        console.log('No customer data found in script tags');
-      }
-      
-      // Check localStorage and cookies for access tokens
-      const customerAccessToken = localStorage.getItem('customerAccessToken') || CookieUtils.get('customerAccessToken');
-      console.log('Customer access token exists:', !!customerAccessToken);
-      
-      console.log('=== END CUSTOMER DETECTION DEBUG ===');
-    },
-
-    /**
-     * Fetch customer information from Shopify's Customer Account API
-     */
-    fetchCustomerFromAPI: async function(customerAccessToken) {
-      try {
-        // Get the shop domain from the current URL
-        const shopDomain = window.location.hostname;
-        const apiDiscoveryUrl = `https://${shopDomain}/.well-known/customer-account-api`;
-        
-        // Discover the API endpoint
-        const discoveryResponse = await fetch(apiDiscoveryUrl);
-        if (!discoveryResponse.ok) {
-          throw new Error('Failed to discover Customer Account API endpoint');
-        }
-        
-        const apiConfig = await discoveryResponse.json();
-        const graphqlEndpoint = apiConfig.graphql_api;
-        
-        // Query the Customer Account API
-        const query = `
-          query {
-            customer {
-              id
-              emailAddress {
-                emailAddress
-              }
-              company {
-                id
-                name
-              }
-            }
-          }
-        `;
-        
-        const response = await fetch(graphqlEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${customerAccessToken}`
-          },
-          body: JSON.stringify({ query })
-        });
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch customer data');
-        }
-        
-        const data = await response.json();
-        
-        if (data.data && data.data.customer && data.data.customer.id) {
-          // Extract the customer ID from the GraphQL response
-          // The ID format is usually "gid://shopify/Customer/123456"
-          const customerId = data.data.customer.id.split('/').pop();
-          return customerId;
-        }
-        
-        return null;
-      } catch (error) {
-        console.error('Error fetching customer from API:', error);
-        return null;
-      }
-    },
-
-
-    /**
-     * Reinitialize chat for logged-in customer
-     */
-    reinitializeForCustomer: function(customerId) {
-      const newConversationId = `web_customer_${customerId}`;
-      
-      // Update the conversation ID
-      CookieUtils.set('shopAiConversationId', newConversationId, 90);
-      
-      // Clear current chat and reload history with new conversation ID
-      const { messagesContainer } = this.UI.elements;
-      messagesContainer.innerHTML = '';
-      
-      // Fetch conversation history with new customer ID
-      this.API.fetchChatHistory(newConversationId, messagesContainer);
-      
-      console.log('Chat reinitialized for customer:', newConversationId);
-    },
-
-    /**
-     * Reinitialize chat for anonymous user
-     */
-    reinitializeForAnonymous: function() {
-      const newConversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      
-      // Update the conversation ID
-      CookieUtils.set('shopAiConversationId', newConversationId, 90);
-      
-      // Clear current chat and show welcome message
-      const { messagesContainer } = this.UI.elements;
-      messagesContainer.innerHTML = '';
-      
-      this.showWelcomeWithWhatsAppChoice();
-      
-      console.log('Chat reinitialized for anonymous user:', newConversationId);
-    },
-
     /**
      * Initialize the chat application
      */
@@ -1327,25 +1105,20 @@
       // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
-      // Try to get customer ID using Shopify's Customer Account API
-      this.getCustomerIdFromShopify().then((customerId) => {
-        if (customerId) {
-          conversationId = `web_customer_${customerId}`;
+      // If Shopify customer is logged in, always use their customer ID for cross-device sync
+      if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+        conversationId = `web_customer_${window.Shopify.customer.id}`;
+        CookieUtils.set('shopAiConversationId', conversationId, 90);
+        console.log('Using customer-based conversation ID for cross-device sync:', conversationId);
+      } else {
+        // For non-logged-in users, use existing cookie or generate new anonymous ID
+        conversationId = CookieUtils.get('shopAiConversationId');
+        if (!conversationId) {
+          conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
           CookieUtils.set('shopAiConversationId', conversationId, 90);
-          console.log('✅ Using customer ID for conversation sync:', conversationId);
-        } else {
-          // For non-logged-in users, use anonymous ID
-          conversationId = CookieUtils.get('shopAiConversationId');
-          if (!conversationId) {
-            conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-            CookieUtils.set('shopAiConversationId', conversationId, 90);
-          }
-          console.log('❌ Using anonymous ID for conversation:', conversationId);
         }
-        
-        // Fetch conversation history
-        this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
-      });
+        console.log('Using anonymous conversation ID:', conversationId);
+      }
 
       if (conversationId) {
         // Fetch conversation history
@@ -1359,11 +1132,6 @@
       setInterval(() => {
         this.UI.checkUnreadMessages();
       }, 30000);
-
-      console.log('✅ Chat widget initialized successfully');
-      
-      // Debug: Check what customer data is available
-      this.debugCustomerDetection();
     },
 
     /**
@@ -1669,9 +1437,4 @@
   document.addEventListener('DOMContentLoaded', function() {
     ShopAIChat.init();
   });
-  
-  // Also try immediate initialization if DOM is already ready
-  if (document.readyState !== 'loading') {
-    ShopAIChat.init();
-  }
 })();
