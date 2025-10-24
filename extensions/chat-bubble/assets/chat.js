@@ -617,10 +617,13 @@
 
         try {
           const promptType = window.shopChatConfig?.promptType || "standardAssistant";
+          
+          // Include Shopify customer ID if available for better user linking
           const requestBody = JSON.stringify({
             message: userMessage,
             conversation_id: conversationId,
-            prompt_type: promptType
+            prompt_type: promptType,
+            shopify_customer_id: window.Shopify && window.Shopify.customer ? window.Shopify.customer.id : null
           });
 
           const streamUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat';
@@ -1100,20 +1103,22 @@
         });
       }
 
-      // Check for existing conversation (try Shopify customer ID first, then cookie)
+      // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
-      // If Shopify customer is logged in, use their ID
+      // If Shopify customer is logged in, always use their customer ID for conversation sync
       if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
         conversationId = `web_customer_${window.Shopify.customer.id}`;
         CookieUtils.set('shopAiConversationId', conversationId, 90);
+        console.log('Using customer ID for conversation sync:', conversationId);
       } else {
-        // Use existing cookie or generate new anonymous ID
+        // For non-logged-in users, use anonymous ID
         conversationId = CookieUtils.get('shopAiConversationId');
         if (!conversationId) {
           conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
           CookieUtils.set('shopAiConversationId', conversationId, 90);
         }
+        console.log('Using anonymous ID for conversation:', conversationId);
       }
 
       if (conversationId) {
