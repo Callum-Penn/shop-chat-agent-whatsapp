@@ -1105,66 +1105,69 @@
       // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
-      // Enhanced customer detection for cross-device sync
+      // Enhanced customer detection for cross-device sync (including new customer account system)
       let customerId = null;
       
-      // Try multiple methods to detect customer ID (including new Shopify customer account system)
+      // Try legacy Shopify customer detection first
       if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
         customerId = window.Shopify.customer.id;
-        console.log('Customer ID detected via window.Shopify.customer:', customerId);
+        console.log('Customer ID detected via legacy window.Shopify.customer:', customerId);
       } else if (window.Shopify && window.Shopify.customerId) {
         customerId = window.Shopify.customerId;
         console.log('Customer ID detected via window.Shopify.customerId:', customerId);
       } else {
-        // Check for customer ID in meta tags (new customer account system)
+        // Check for new customer account system methods
+        // Method 1: Check for customer ID in meta tags (new customer account system)
         const customerMeta = document.querySelector('meta[name="customer-id"]');
         if (customerMeta) {
           customerId = customerMeta.getAttribute('content');
           console.log('Customer ID detected via meta tag:', customerId);
-        } else {
-          // Check for customer ID in the page URL
+        }
+        
+        // Method 2: Check for customer ID in data attributes (new customer account system)
+        if (!customerId) {
+          const customerElement = document.querySelector('[data-customer-id]');
+          if (customerElement) {
+            customerId = customerElement.getAttribute('data-customer-id');
+            console.log('Customer ID detected via data attribute:', customerId);
+          }
+        }
+        
+        // Method 3: Check for customer ID in window object (new customer account system)
+        if (!customerId && window.customerId) {
+          customerId = window.customerId;
+          console.log('Customer ID detected via window.customerId:', customerId);
+        }
+        
+        // Method 4: Check for customer ID in Shopify object properties (new customer account system)
+        if (!customerId && window.Shopify) {
+          // Try different possible properties for new customer account system
+          const possibleProps = ['customer_id', 'customerId', 'customer.id'];
+          for (const prop of possibleProps) {
+            const value = window.Shopify[prop];
+            if (value && typeof value === 'string' && /^\d+$/.test(value)) {
+              customerId = value;
+              console.log(`Customer ID detected via window.Shopify.${prop}:`, customerId);
+              break;
+            }
+          }
+        }
+        
+        // Method 5: Check for customer ID in the page URL
+        if (!customerId) {
           const urlMatch = window.location.href.match(/customer_id[=\/]([0-9]+)/i);
           if (urlMatch) {
             customerId = urlMatch[1];
             console.log('Customer ID detected via URL:', customerId);
           }
-          
-          // Check for customer ID in localStorage or sessionStorage
-          if (!customerId) {
-            const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
-            if (storedCustomerId) {
-              customerId = storedCustomerId;
-              console.log('Customer ID detected via storage:', customerId);
-            }
-          }
-          
-          // Check for new customer account system data attributes
-          if (!customerId) {
-            const customerElement = document.querySelector('[data-customer-id]');
-            if (customerElement) {
-              customerId = customerElement.getAttribute('data-customer-id');
-              console.log('Customer ID detected via data attribute:', customerId);
-            }
-          }
-          
-          // Check for customer ID in window object (new customer account system)
-          if (!customerId && window.customerId) {
-            customerId = window.customerId;
-            console.log('Customer ID detected via window.customerId:', customerId);
-          }
-          
-          // Check for customer ID in Shopify object properties
-          if (!customerId && window.Shopify) {
-            // Try different possible properties
-            const possibleProps = ['customer_id', 'customerId', 'customer.id', 'customerId'];
-            for (const prop of possibleProps) {
-              const value = window.Shopify[prop];
-              if (value && typeof value === 'string' && /^\d+$/.test(value)) {
-                customerId = value;
-                console.log(`Customer ID detected via window.Shopify.${prop}:`, customerId);
-                break;
-              }
-            }
+        }
+        
+        // Method 6: Check for customer ID in localStorage or sessionStorage
+        if (!customerId) {
+          const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
+          if (storedCustomerId) {
+            customerId = storedCustomerId;
+            console.log('Customer ID detected via storage:', customerId);
           }
         }
       }
@@ -1222,54 +1225,57 @@
         if (currentConversationId && currentConversationId.startsWith('web_anon_')) {
           let customerId = null;
           
-          // Try multiple methods to detect customer ID (including new Shopify customer account system)
+          // Try multiple methods to detect customer ID (including new customer account system)
           if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
             customerId = window.Shopify.customer.id;
           } else if (window.Shopify && window.Shopify.customerId) {
             customerId = window.Shopify.customerId;
           } else {
-            // Check for customer ID in meta tags
+            // Check for new customer account system methods
+            // Method 1: Check for customer ID in meta tags
             const customerMeta = document.querySelector('meta[name="customer-id"]');
             if (customerMeta) {
               customerId = customerMeta.getAttribute('content');
-            } else {
-              // Check for customer ID in the page URL
+            }
+            
+            // Method 2: Check for customer ID in data attributes
+            if (!customerId) {
+              const customerElement = document.querySelector('[data-customer-id]');
+              if (customerElement) {
+                customerId = customerElement.getAttribute('data-customer-id');
+              }
+            }
+            
+            // Method 3: Check for customer ID in window object
+            if (!customerId && window.customerId) {
+              customerId = window.customerId;
+            }
+            
+            // Method 4: Check for customer ID in Shopify object properties
+            if (!customerId && window.Shopify) {
+              const possibleProps = ['customer_id', 'customerId', 'customer.id'];
+              for (const prop of possibleProps) {
+                const value = window.Shopify[prop];
+                if (value && typeof value === 'string' && /^\d+$/.test(value)) {
+                  customerId = value;
+                  break;
+                }
+              }
+            }
+            
+            // Method 5: Check for customer ID in the page URL
+            if (!customerId) {
               const urlMatch = window.location.href.match(/customer_id[=\/]([0-9]+)/i);
               if (urlMatch) {
                 customerId = urlMatch[1];
               }
-              
-              // Check for customer ID in localStorage or sessionStorage
-              if (!customerId) {
-                const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
-                if (storedCustomerId) {
-                  customerId = storedCustomerId;
-                }
-              }
-              
-              // Check for new customer account system data attributes
-              if (!customerId) {
-                const customerElement = document.querySelector('[data-customer-id]');
-                if (customerElement) {
-                  customerId = customerElement.getAttribute('data-customer-id');
-                }
-              }
-              
-              // Check for customer ID in window object (new customer account system)
-              if (!customerId && window.customerId) {
-                customerId = window.customerId;
-              }
-              
-              // Check for customer ID in Shopify object properties
-              if (!customerId && window.Shopify) {
-                const possibleProps = ['customer_id', 'customerId', 'customer.id', 'customerId'];
-                for (const prop of possibleProps) {
-                  const value = window.Shopify[prop];
-                  if (value && typeof value === 'string' && /^\d+$/.test(value)) {
-                    customerId = value;
-                    break;
-                  }
-                }
+            }
+            
+            // Method 6: Check for customer ID in localStorage or sessionStorage
+            if (!customerId) {
+              const storedCustomerId = localStorage.getItem('shopify_customer_id') || sessionStorage.getItem('shopify_customer_id');
+              if (storedCustomerId) {
+                customerId = storedCustomerId;
               }
             }
           }
