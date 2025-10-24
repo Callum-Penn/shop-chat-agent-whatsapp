@@ -1081,43 +1081,122 @@
 
 
     /**
-     * Get customer ID using Shopify's Customer Account API
+     * Get customer ID using various detection methods
      */
     getCustomerIdFromShopify: async function() {
       try {
-        // Method 1: Check if we have a customer access token in localStorage or cookies
+        // Method 1: Check for customer data in script tags (Shopify theme context)
+        const scripts = document.querySelectorAll('script');
+        for (const script of scripts) {
+          if (script.textContent) {
+            // Look for patterns like "customer_id": "123456" or customerId: "123456"
+            const customerIdMatch = script.textContent.match(/(?:customer_id|customerId)["\s]*:["\s]*["']?(\d+)["']?/i);
+            if (customerIdMatch && customerIdMatch[1]) {
+              console.log('✅ Customer ID found in script tag:', customerIdMatch[1]);
+              return customerIdMatch[1];
+            }
+          }
+        }
+        
+        // Method 2: Check for customer data in meta tags
+        const customerMeta = document.querySelector('meta[name="customer-id"]');
+        if (customerMeta && customerMeta.content) {
+          console.log('✅ Customer ID found in meta tag:', customerMeta.content);
+          return customerMeta.content;
+        }
+        
+        // Method 3: Check for customer data in data attributes
+        const customerData = document.querySelector('[data-customer-id]');
+        if (customerData && customerData.getAttribute('data-customer-id')) {
+          console.log('✅ Customer ID found in data attribute:', customerData.getAttribute('data-customer-id'));
+          return customerData.getAttribute('data-customer-id');
+        }
+        
+        // Method 4: Check for traditional Shopify customer object (fallback)
+        if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+          console.log('✅ Customer ID found in window.Shopify.customer:', window.Shopify.customer.id);
+          return window.Shopify.customer.id;
+        }
+        
+        // Method 5: Check for customer data in global variables
+        if (window.customer && window.customer.id) {
+          console.log('✅ Customer ID found in window.customer:', window.customer.id);
+          return window.customer.id;
+        }
+        
+        // Method 6: Check for customer access token and use Customer Account API
         const customerAccessToken = localStorage.getItem('customerAccessToken') || 
                                    CookieUtils.get('customerAccessToken');
         
         if (customerAccessToken) {
-          // Use the Customer Account API to get customer information
+          console.log('✅ Customer access token found, querying Customer Account API...');
           const customerId = await this.fetchCustomerFromAPI(customerAccessToken);
           if (customerId) {
             return customerId;
           }
         }
         
-        // Method 2: Check for traditional Shopify customer object (fallback)
-        if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
-          return window.Shopify.customer.id;
-        }
-        
-        // Method 3: Check for customer data in meta tags or data attributes
-        const customerMeta = document.querySelector('meta[name="customer-id"]');
-        if (customerMeta && customerMeta.content) {
-          return customerMeta.content;
-        }
-        
-        const customerData = document.querySelector('[data-customer-id]');
-        if (customerData && customerData.getAttribute('data-customer-id')) {
-          return customerData.getAttribute('data-customer-id');
-        }
-        
+        console.log('❌ No customer ID detected');
         return null;
       } catch (error) {
         console.error('Error getting customer ID:', error);
         return null;
       }
+    },
+
+    /**
+     * Debug customer detection methods
+     */
+    debugCustomerDetection: function() {
+      console.log('=== CUSTOMER DETECTION DEBUG ===');
+      
+      // Check window.Shopify
+      console.log('window.Shopify exists:', !!window.Shopify);
+      if (window.Shopify) {
+        console.log('window.Shopify.customer exists:', !!(window.Shopify.customer));
+        if (window.Shopify.customer) {
+          console.log('window.Shopify.customer.id:', window.Shopify.customer.id);
+        }
+      }
+      
+      // Check global customer object
+      console.log('window.customer exists:', !!window.customer);
+      if (window.customer) {
+        console.log('window.customer.id:', window.customer.id);
+      }
+      
+      // Check meta tags
+      const customerMeta = document.querySelector('meta[name="customer-id"]');
+      console.log('Customer meta tag exists:', !!customerMeta);
+      if (customerMeta) {
+        console.log('Customer meta tag content:', customerMeta.content);
+      }
+      
+      // Check data attributes
+      const customerData = document.querySelector('[data-customer-id]');
+      console.log('Customer data attribute exists:', !!customerData);
+      if (customerData) {
+        console.log('Customer data attribute value:', customerData.getAttribute('data-customer-id'));
+      }
+      
+      // Check for customer data in script tags
+      const scripts = document.querySelectorAll('script');
+      let foundCustomerData = false;
+      for (const script of scripts) {
+        if (script.textContent && script.textContent.includes('customer')) {
+          console.log('Script with customer data found:', script.textContent.substring(0, 200));
+          foundCustomerData = true;
+        }
+      }
+      if (!foundCustomerData) {
+        console.log('No customer data found in script tags');
+      }
+      
+      // Check localStorage and cookies for access tokens
+      const customerAccessToken = localStorage.getItem('customerAccessToken') || CookieUtils.get('customerAccessToken');
+      console.log('Customer access token exists:', !!customerAccessToken);
+      
+      console.log('=== END CUSTOMER DETECTION DEBUG ===');
     },
 
     /**
@@ -1282,6 +1361,9 @@
       }, 30000);
 
       console.log('✅ Chat widget initialized successfully');
+      
+      // Debug: Check what customer data is available
+      this.debugCustomerDetection();
     },
 
     /**
