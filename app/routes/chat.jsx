@@ -192,8 +192,10 @@ async function handleChatSession({
       let content;
       try {
         content = JSON.parse(dbMessage.content);
+        console.log('Successfully parsed message content as JSON:', typeof content, Array.isArray(content));
       } catch (e) {
         // If JSON parsing fails, wrap the content in a text block format
+        console.log('Failed to parse message content as JSON, wrapping in text block. Content:', dbMessage.content);
         content = [{
           type: "text",
           text: dbMessage.content
@@ -204,6 +206,9 @@ async function handleChatSession({
         content
       };
     });
+
+    // Debug: Log the conversation history format
+    console.log('Conversation history before sending to Claude:', JSON.stringify(conversationHistory, null, 2));
 
     // Execute the conversation stream
     let finalMessage = { 
