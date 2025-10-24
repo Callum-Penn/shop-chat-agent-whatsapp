@@ -1415,6 +1415,9 @@
           return window.Shopify;
         }
       };
+      
+      console.log('✅ Chat widget initialized successfully');
+      console.log('✅ ShopAIChatDebug object created - you can now use debugging functions');
     },
 
     /**
@@ -1718,6 +1721,13 @@
 
   // Initialize the application when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('=== DOM CONTENT LOADED - INITIALIZING CHAT ===');
     ShopAIChat.init();
   });
+  
+  // Also try immediate initialization if DOM is already ready
+  if (document.readyState !== 'loading') {
+    console.log('=== DOM ALREADY READY - INITIALIZING CHAT IMMEDIATELY ===');
+    ShopAIChat.init();
+  }
 })();
