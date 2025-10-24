@@ -193,6 +193,15 @@ async function handleChatSession({
       try {
         content = JSON.parse(dbMessage.content);
         console.log('Successfully parsed message content as JSON:', typeof content, Array.isArray(content));
+        
+        // If the parsed content is not an array, wrap it in a text block
+        if (!Array.isArray(content)) {
+          console.log('Parsed content is not an array, wrapping in text block. Content:', content);
+          content = [{
+            type: "text",
+            text: String(content)
+          }];
+        }
       } catch (e) {
         // If JSON parsing fails, wrap the content in a text block format
         console.log('Failed to parse message content as JSON, wrapping in text block. Content:', dbMessage.content);
