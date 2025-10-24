@@ -1106,11 +1106,40 @@
       // Check for existing conversation (prioritize Shopify customer ID for cross-device sync)
       let conversationId = null;
       
+      // Debug: Log Shopify customer information
+      console.log('Shopify Debug Info:');
+      console.log('- window.Shopify exists:', !!window.Shopify);
+      console.log('- window.Shopify.customer exists:', !!(window.Shopify && window.Shopify.customer));
+      if (window.Shopify && window.Shopify.customer) {
+        console.log('- Customer ID:', window.Shopify.customer.id);
+        console.log('- Customer email:', window.Shopify.customer.email);
+        console.log('- Customer first name:', window.Shopify.customer.first_name);
+        console.log('- Full customer object:', window.Shopify.customer);
+      }
+      
+      // Check for alternative customer detection methods
+      console.log('Alternative Customer Detection:');
+      console.log('- window.meta exists:', !!window.meta);
+      console.log('- document.querySelector("[data-customer-id]") exists:', !!document.querySelector('[data-customer-id]'));
+      console.log('- document.querySelector("[data-customer]") exists:', !!document.querySelector('[data-customer]'));
+      
+      // Check if customer ID is in meta tags
+      const customerMeta = document.querySelector('meta[name="customer-id"]');
+      if (customerMeta) {
+        console.log('- Customer ID from meta tag:', customerMeta.getAttribute('content'));
+      }
+      
+      // Check if customer info is in data attributes
+      const customerData = document.querySelector('[data-customer-id]');
+      if (customerData) {
+        console.log('- Customer ID from data attribute:', customerData.getAttribute('data-customer-id'));
+      }
+      
       // If Shopify customer is logged in, always use their customer ID for conversation sync
       if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
         conversationId = `web_customer_${window.Shopify.customer.id}`;
         CookieUtils.set('shopAiConversationId', conversationId, 90);
-        console.log('Using customer ID for conversation sync:', conversationId);
+        console.log('✅ Using customer ID for conversation sync:', conversationId);
       } else {
         // For non-logged-in users, use anonymous ID
         conversationId = CookieUtils.get('shopAiConversationId');
@@ -1118,7 +1147,8 @@
           conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
           CookieUtils.set('shopAiConversationId', conversationId, 90);
         }
-        console.log('Using anonymous ID for conversation:', conversationId);
+        console.log('❌ Using anonymous ID for conversation:', conversationId);
+        console.log('Reason: Shopify customer not detected');
       }
 
       if (conversationId) {

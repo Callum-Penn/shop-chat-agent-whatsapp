@@ -97,6 +97,12 @@ async function handleChatRequest(request) {
     const conversationId = body.conversation_id || Date.now().toString();
     const promptType = body.prompt_type || AppConfig.api.defaultPromptType;
     const shopifyCustomerId = body.shopify_customer_id; // From frontend if customer is logged in
+    
+    // Debug: Log customer information
+    console.log('Chat Request Debug Info:');
+    console.log('- Conversation ID from frontend:', conversationId);
+    console.log('- Shopify Customer ID from frontend:', shopifyCustomerId);
+    console.log('- Request body:', JSON.stringify(body, null, 2));
 
     // Create or link user if we have customer info
     try {
@@ -411,6 +417,13 @@ function getSseHeaders(request) {
 async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, request) {
   try {
     let user = null;
+
+    // Debug: Log user creation parameters
+    console.log('User Creation Debug Info:');
+    console.log('- Conversation ID:', conversationId);
+    console.log('- Shopify Customer ID:', shopifyCustomerId);
+    console.log('- Conversation ID starts with web_customer_:', conversationId.startsWith('web_customer_'));
+    console.log('- Conversation ID starts with web_anon_:', conversationId.startsWith('web_anon_'));
 
     // Determine if this is a web customer or anonymous user
     if (shopifyCustomerId) {
