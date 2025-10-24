@@ -1080,6 +1080,132 @@
     },
 
     /**
+     * Set up authentication state monitoring to detect login/logout
+     */
+    setupAuthenticationMonitoring: function() {
+      let lastAuthState = this.getAuthenticationState();
+      
+      // Listen for Shopify authentication events if available
+      if (window.Shopify && window.Shopify.analytics) {
+        // Listen for page view events which often indicate auth state changes
+        document.addEventListener('DOMContentLoaded', () => {
+          // Check for auth state changes after DOM is fully loaded
+          setTimeout(() => {
+            const currentAuthState = this.getAuthenticationState();
+            if (currentAuthState !== lastAuthState) {
+              this.handleAuthenticationChange(lastAuthState, currentAuthState);
+              lastAuthState = currentAuthState;
+            }
+          }, 1000);
+        });
+      }
+      
+      // Fallback: Check for authentication state changes every 2 seconds
+      setInterval(() => {
+        const currentAuthState = this.getAuthenticationState();
+        
+        if (currentAuthState !== lastAuthState) {
+          this.handleAuthenticationChange(lastAuthState, currentAuthState);
+          lastAuthState = currentAuthState;
+        }
+      }, 2000);
+    },
+
+    /**
+     * Handle authentication state changes
+     */
+    handleAuthenticationChange: function(oldState, newState) {
+      console.log('Authentication state changed:', oldState, '->', newState);
+      
+      if (newState.isLoggedIn && !oldState.isLoggedIn) {
+        // User logged in - reinitialize chat with customer ID
+        console.log('User logged in, reinitializing chat with customer ID:', newState.customerId);
+        this.reinitializeForCustomer(newState.customerId);
+      } else if (!newState.isLoggedIn && oldState.isLoggedIn) {
+        // User logged out - switch to anonymous
+        console.log('User logged out, switching to anonymous mode');
+        this.reinitializeForAnonymous();
+      }
+    },
+
+    /**
+     * Get current authentication state
+     */
+    getAuthenticationState: function() {
+      const isLoggedIn = !!(window.Shopify && window.Shopify.customer && window.Shopify.customer.id);
+      const customerId = isLoggedIn ? window.Shopify.customer.id : null;
+      
+      return {
+        isLoggedIn,
+        customerId
+      };
+    },
+
+    /**
+     * Wait for Shopify customer object to be available
+     */
+    waitForShopifyCustomer: function(timeout = 10000) {
+      return new Promise((resolve) => {
+        const startTime = Date.now();
+        
+        const checkCustomer = () => {
+          if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
+            resolve({
+              isLoggedIn: true,
+              customerId: window.Shopify.customer.id
+            });
+          } else if (Date.now() - startTime > timeout) {
+            resolve({
+              isLoggedIn: false,
+              customerId: null
+            });
+          } else {
+            setTimeout(checkCustomer, 500);
+          }
+        };
+        
+        checkCustomer();
+      });
+    },
+
+    /**
+     * Reinitialize chat for logged-in customer
+     */
+    reinitializeForCustomer: function(customerId) {
+      const newConversationId = `web_customer_${customerId}`;
+      
+      // Update the conversation ID
+      CookieUtils.set('shopAiConversationId', newConversationId, 90);
+      
+      // Clear current chat and reload history with new conversation ID
+      const { messagesContainer } = this.UI.elements;
+      messagesContainer.innerHTML = '';
+      
+      // Fetch conversation history with new customer ID
+      this.API.fetchChatHistory(newConversationId, messagesContainer);
+      
+      console.log('Chat reinitialized for customer:', newConversationId);
+    },
+
+    /**
+     * Reinitialize chat for anonymous user
+     */
+    reinitializeForAnonymous: function() {
+      const newConversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Update the conversation ID
+      CookieUtils.set('shopAiConversationId', newConversationId, 90);
+      
+      // Clear current chat and show welcome message
+      const { messagesContainer } = this.UI.elements;
+      messagesContainer.innerHTML = '';
+      
+      this.showWelcomeWithWhatsAppChoice();
+      
+      console.log('Chat reinitialized for anonymous user:', newConversationId);
+    },
+
+    /**
      * Initialize the chat application
      */
     init: function() {
@@ -1135,11 +1261,35 @@
         console.log('- Customer ID from data attribute:', customerData.getAttribute('data-customer-id'));
       }
       
-      // If Shopify customer is logged in, always use their customer ID for conversation sync
+      // Wait for Shopify customer to be available (with timeout)
+      this.waitForShopifyCustomer(5000).then((authState) => {
+        if (authState.isLoggedIn) {
+          conversationId = `web_customer_${authState.customerId}`;
+          CookieUtils.set('shopAiConversationId', conversationId, 90);
+          console.log('✅ Using customer ID for conversation sync:', conversationId);
+          
+          // Fetch conversation history with customer ID
+          this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
+        } else {
+          // For non-logged-in users, use anonymous ID
+          conversationId = CookieUtils.get('shopAiConversationId');
+          if (!conversationId) {
+            conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            CookieUtils.set('shopAiConversationId', conversationId, 90);
+          }
+          console.log('❌ Using anonymous ID for conversation:', conversationId);
+          console.log('Reason: Shopify customer not detected');
+          
+          // Fetch conversation history or show welcome
+          this.API.fetchChatHistory(conversationId, this.UI.elements.messagesContainer);
+        }
+      });
+      
+      // Fallback: If immediate detection works, use it
       if (window.Shopify && window.Shopify.customer && window.Shopify.customer.id) {
         conversationId = `web_customer_${window.Shopify.customer.id}`;
         CookieUtils.set('shopAiConversationId', conversationId, 90);
-        console.log('✅ Using customer ID for conversation sync:', conversationId);
+        console.log('✅ Using customer ID for conversation sync (immediate):', conversationId);
       } else {
         // For non-logged-in users, use anonymous ID
         conversationId = CookieUtils.get('shopAiConversationId');
@@ -1147,7 +1297,7 @@
           conversationId = `web_anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
           CookieUtils.set('shopAiConversationId', conversationId, 90);
         }
-        console.log('❌ Using anonymous ID for conversation:', conversationId);
+        console.log('❌ Using anonymous ID for conversation (immediate):', conversationId);
         console.log('Reason: Shopify customer not detected');
       }
 
@@ -1163,6 +1313,9 @@
       setInterval(() => {
         this.UI.checkUnreadMessages();
       }, 30000);
+
+      // Set up authentication state monitoring
+      this.setupAuthenticationMonitoring();
     },
 
     /**

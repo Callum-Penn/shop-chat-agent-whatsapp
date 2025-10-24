@@ -1,17 +1,26 @@
-Oct 23 14:54:41  Broadcast: Processing website messages
-Oct 23 14:54:41  POST /api/broadcast/log 201 - - 8.249 ms
-Oct 23 14:54:41  Broadcast: Found 13 web chat users in database
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh3jlhu1000px84n3vyofk38 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0qv4ij000dt74mq48e1rwg (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0qt4t60004t74mg4zbb4e8 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0q88p10008vh4mhcryjpz3 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0pozzv0000zr4ml9zwn9d4 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmh0bshpk0000wi4nkjdwpkob (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz9hqk70005wk4m2l684ac9 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz9h22j0000wk4mm86r82fw (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz93x2h000dpf4nzluqlvs9 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8zyhj000eqm4mcqz1vb7k (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8zpyl0005qm4mlilqex60 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8z5gu0000pf4nenbun3c5 (Unknown)
-Oct 23 14:54:41  Broadcast: Saved message to web chat user cmgz8ywq00000qm4mlgaafer4 (Unknown)
-Oct 23 14:54:41  Broadcast: Website processing complete - 13 sent, 0 failed
+Oct 24 10:13:15  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 24 10:13:15  [remix-serve] http://localhost:8080 (http://10.244.31.35:8080)
+Oct 24 10:16:07  OPTIONS /chat?history=true&conversation_id=web_anon_1761300966740_pj19w6rag 204 - - 11.505 ms
+Oct 24 10:16:07  GET /chat?history=true&conversation_id=web_anon_1761300966740_pj19w6rag 200 - - 19.252 ms
+Oct 24 10:16:40  GET /chat?history=true&conversation_id=web_anon_1761300990591_dgmabcgrg 200 - - 8.642 ms
+Oct 24 10:16:53  GET /chat?history=true&conversation_id=web_anon_1761300990591_dgmabcgrg 200 - - 9.362 ms
+Oct 24 10:17:14  Chat Request Debug Info:
+Oct 24 10:17:14  - Conversation ID from frontend: web_anon_1761300990591_dgmabcgrg
+Oct 24 10:17:14  - Shopify Customer ID from frontend: undefined
+Oct 24 10:17:14  - Request body: {
+Oct 24 10:17:14    "message": "Hi",
+Oct 24 10:17:14    "conversation_id": "web_anon_1761300990591_dgmabcgrg",
+Oct 24 10:17:14    "prompt_type": "enthusiasticAssistant"
+Oct 24 10:17:14  }
+Oct 24 10:17:14  User Creation Debug Info:
+Oct 24 10:17:14  - Conversation ID: web_anon_1761300990591_dgmabcgrg
+Oct 24 10:17:14  - Shopify Customer ID: undefined
+Oct 24 10:17:14  - Conversation ID starts with web_customer_: false
+Oct 24 10:17:14  - Conversation ID starts with web_anon_: true
+Oct 24 10:17:14  Created anonymous web user
+Oct 24 10:17:14  Linked conversation to user: cmh4p5rpi0000tt4mn2jq9mxb
+Oct 24 10:17:14  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Oct 24 10:17:14  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Oct 24 10:17:14  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Oct 24 10:17:14  No token in database for conversation: web_anon_1761300990591_dgmabcgrg
+Oct 24 10:17:14  Customer MCP server tools response: [
