@@ -78,6 +78,7 @@
           closeButton: container.querySelector('.shop-ai-chat-close'),
           chatInput: container.querySelector('.shop-ai-chat-input input'),
           sendButton: container.querySelector('.shop-ai-chat-send'),
+          resetButton: container.querySelector('.shop-ai-chat-reset'),
           messagesContainer: container.querySelector('.shop-ai-chat-messages')
         };
 
@@ -97,7 +98,7 @@
        * Set up all event listeners for UI interactions
        */
       setupEventListeners: function() {
-        const { chatBubble, closeButton, chatInput, sendButton, messagesContainer } = this.elements;
+        const { chatBubble, closeButton, chatInput, sendButton, resetButton, messagesContainer } = this.elements;
 
         // Toggle chat window visibility
         chatBubble.addEventListener('click', () => this.toggleChatWindow());
@@ -128,6 +129,11 @@
               setTimeout(() => chatInput.focus(), 300);
             }
           }
+        });
+
+        // Reset chat when clicking reset button
+        resetButton.addEventListener('click', () => {
+          ShopAIChat.Message.resetChat(messagesContainer);
         });
 
         // Handle window resize to adjust scrolling
@@ -354,6 +360,55 @@
           console.error('Error communicating with Claude API:', error);
           ShopAIChat.UI.removeTypingIndicator();
           this.add("Sorry, I couldn't process your request at the moment. Please try again later.", 'assistant', messagesContainer);
+        }
+      },
+
+      /**
+       * Reset chat by clearing conversation history and showing welcome message
+       * @param {HTMLElement} messagesContainer - The messages container
+       */
+      resetChat: async function(messagesContainer) {
+        const conversationId = CookieUtils.get('shopAiConversationId');
+        
+        if (!conversationId) {
+          console.log('No conversation ID found, nothing to reset');
+          return;
+        }
+
+        // Show confirmation dialog
+        if (!confirm('Are you sure you want to reset the chat? This will clear all conversation history.')) {
+          return;
+        }
+
+        try {
+          // Call the reset API
+          const response = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/reset-chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              conversation_id: conversationId
+            }),
+            mode: 'cors'
+          });
+
+          if (response.ok) {
+            // Clear the messages container
+            messagesContainer.innerHTML = '';
+            
+            // Show the welcome message and conversation starters
+            ShopAIChat.UI.showWelcomeWithWhatsAppChoice();
+            
+            console.log('Chat reset successfully');
+          } else {
+            console.error('Failed to reset chat:', response.statusText);
+            alert('Failed to reset chat. Please try again.');
+          }
+        } catch (error) {
+          console.error('Error resetting chat:', error);
+          alert('Failed to reset chat. Please try again.');
         }
       },
 

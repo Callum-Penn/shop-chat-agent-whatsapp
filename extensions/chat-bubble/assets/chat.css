@@ -429,6 +429,30 @@
     border-color: #2196f3;
   }
 
+  .shop-ai-chat-reset {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .shop-ai-chat-reset:hover {
+    background-color: #f57c00;
+  }
+
+  .shop-ai-chat-reset:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
   .shop-ai-chat-send {
     background-color: #2196f3;
     color: white;
@@ -663,6 +687,11 @@
   @media (max-width: 380px) {
     .shop-ai-chat-input input {
       font-size: 14px;
+    }
+    
+    .shop-ai-chat-reset {
+      width: 40px;
+      height: 40px;
     }
     
     .shop-ai-chat-send {

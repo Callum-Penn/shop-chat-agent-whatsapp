@@ -166,6 +166,28 @@ export async function createOrUpdateConversation(conversationId) {
 }
 
 /**
+ * Delete all messages for a conversation
+ * @param {string} conversationId - The conversation ID
+ * @returns {Promise<Object>} - The deletion result
+ */
+export async function deleteConversationHistory(conversationId) {
+  try {
+    // Delete all messages for this conversation
+    const result = await prisma.message.deleteMany({
+      where: {
+        conversationId: conversationId
+      }
+    });
+
+    console.log(`Deleted ${result.count} messages for conversation ${conversationId}`);
+    return result;
+  } catch (error) {
+    console.error('Error deleting conversation history:', error);
+    throw error;
+  }
+}
+
+/**
  * Save a message to the database
  * @param {string} conversationId - The conversation ID
  * @param {string} role - The message role (user or assistant)
