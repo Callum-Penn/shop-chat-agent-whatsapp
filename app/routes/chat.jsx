@@ -434,46 +434,47 @@ function getSseHeaders(request) {
  * @returns {Array} Cleaned conversation history
  */
 function cleanConversationHistory(conversationHistory) {
-  // First pass: collect all tool_use and tool_result IDs
-  const toolUseIds = new Set();
-  const toolResultIds = new Set();
-  
-  for (const message of conversationHistory) {
-    if (Array.isArray(message.content)) {
-      message.content.forEach(block => {
-        if (block.type === 'tool_use' && block.id) {
-          toolUseIds.add(block.id);
-        } else if (block.type === 'tool_result' && block.tool_use_id) {
-          toolResultIds.add(block.tool_use_id);
-        }
-      });
-    }
+  if (!Array.isArray(conversationHistory) || conversationHistory.length === 0) {
+    return conversationHistory;
   }
   
-  // Second pass: clean the conversation
   const cleaned = [];
   
-  for (const message of conversationHistory) {
-    if (Array.isArray(message.content)) {
+  for (let i = 0; i < conversationHistory.length; i++) {
+    const message = conversationHistory[i];
+    
+    if (!Array.isArray(message.content)) {
+      cleaned.push(message);
+      continue;
+    }
+    
+    // If this is a user message with tool_result blocks, remove them
+    // because they're meant to be paired with tool_use from previous assistant messages
+    if (message.role === 'user') {
+      const filteredContent = message.content.filter(block => {
+        if (block.type === 'tool_result') {
+          console.log('Removing tool_result from user message:', block.tool_use_id);
+          return false;
+        }
+        return true;
+      });
+      
+      if (filteredContent.length > 0) {
+        cleaned.push({
+          ...message,
+          content: filteredContent
+        });
+      }
+    } 
+    // If this is an assistant message with tool_use blocks, remove them
+    // because we don't have their corresponding tool_result yet
+    else if (message.role === 'assistant') {
       const filteredContent = message.content.filter(block => {
         if (block.type === 'tool_use') {
-          // Keep tool_use only if it has a corresponding tool_result
-          if (toolResultIds.has(block.id)) {
-            return true;
-          } else {
-            console.log('Removing tool_use without corresponding tool_result:', block.id);
-            return false;
-          }
-        } else if (block.type === 'tool_result') {
-          // Keep tool_result only if it has a corresponding tool_use
-          if (toolUseIds.has(block.tool_use_id)) {
-            return true;
-          } else {
-            console.log('Removing tool_result without corresponding tool_use:', block.tool_use_id);
-            return false;
-          }
+          console.log('Removing orphaned tool_use from assistant message:', block.id);
+          return false;
         }
-        return true; // Keep all other content blocks
+        return true;
       });
       
       if (filteredContent.length > 0) {
@@ -486,6 +487,8 @@ function cleanConversationHistory(conversationHistory) {
       cleaned.push(message);
     }
   }
+  
+  console.log(`Cleaned conversation history: ${conversationHistory.length} messages -> ${cleaned.length} messages`);
   
   return cleaned;
 }
