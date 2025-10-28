@@ -394,7 +394,13 @@
             mode: 'cors'
           });
 
+          console.log('Reset API response status:', response.status);
+          console.log('Reset API response headers:', response.headers);
+
           if (response.ok) {
+            const result = await response.json();
+            console.log('Reset API response:', result);
+            
             // Clear the messages container
             messagesContainer.innerHTML = '';
             
@@ -403,12 +409,13 @@
             
             console.log('Chat reset successfully');
           } else {
-            console.error('Failed to reset chat:', response.statusText);
-            alert('Failed to reset chat. Please try again.');
+            const errorText = await response.text();
+            console.error('Failed to reset chat:', response.status, response.statusText, errorText);
+            alert(`Failed to reset chat (${response.status}): ${response.statusText}`);
           }
         } catch (error) {
           console.error('Error resetting chat:', error);
-          alert('Failed to reset chat. Please try again.');
+          alert(`Failed to reset chat: ${error.message}`);
         }
       },
 
