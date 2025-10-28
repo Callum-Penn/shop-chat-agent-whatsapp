@@ -216,6 +216,9 @@ async function handleChatSession({
       };
     });
 
+    // Clean conversation history to remove corrupted tool_use/tool_result pairs
+    conversationHistory = cleanConversationHistory(conversationHistory);
+
     // Debug: Log the conversation history format
     console.log('Conversation history before sending to Claude:', JSON.stringify(conversationHistory, null, 2));
 
@@ -423,6 +426,59 @@ function getSseHeaders(request) {
     "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
     "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   };
+}
+
+/**
+ * Clean conversation history to remove corrupted tool_use/tool_result pairs
+ * @param {Array} conversationHistory - The conversation history
+ * @returns {Array} Cleaned conversation history
+ */
+function cleanConversationHistory(conversationHistory) {
+  const cleaned = [];
+  const toolUseIds = new Set();
+  
+  for (const message of conversationHistory) {
+    if (message.role === 'user' && Array.isArray(message.content)) {
+      // Check if this message contains tool_result blocks
+      const hasToolResults = message.content.some(block => block.type === 'tool_result');
+      
+      if (hasToolResults) {
+        // Filter out tool_result blocks that don't have corresponding tool_use blocks
+        const filteredContent = message.content.filter(block => {
+          if (block.type === 'tool_result') {
+            if (toolUseIds.has(block.tool_use_id)) {
+              return true; // Keep this tool_result as it has a corresponding tool_use
+            } else {
+              console.log('Removing orphaned tool_result block:', block.tool_use_id);
+              return false; // Remove this tool_result as it has no corresponding tool_use
+            }
+          }
+          return true; // Keep all other content blocks
+        });
+        
+        if (filteredContent.length > 0) {
+          cleaned.push({
+            ...message,
+            content: filteredContent
+          });
+        }
+      } else {
+        cleaned.push(message);
+      }
+    } else if (message.role === 'assistant' && Array.isArray(message.content)) {
+      // Track tool_use IDs from assistant messages
+      message.content.forEach(block => {
+        if (block.type === 'tool_use' && block.id) {
+          toolUseIds.add(block.id);
+        }
+      });
+      cleaned.push(message);
+    } else {
+      cleaned.push(message);
+    }
+  }
+  
+  return cleaned;
 }
 
 /**
