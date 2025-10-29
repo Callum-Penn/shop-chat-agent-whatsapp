@@ -106,7 +106,20 @@ export function createToolService() {
         ? `${product.variants[0].currency} ${product.variants[0].price}`
         : 'Price not available');
 
-    return {
+    // Extract quantity increment from custom metafield
+    let quantity_increment = null;
+
+    // Check custom metafield for quantity increment
+    if (product.metafield?.custom?.quantity_increment) {
+      quantity_increment = product.metafield.custom.quantity_increment;
+    }
+
+    // Check if metafield is at root level (alternate format)
+    if (!quantity_increment && product.metafield?.quantity_increment) {
+      quantity_increment = product.metafield.quantity_increment;
+    }
+
+    const formattedProduct = {
       id: product.product_id || `product-${Math.random().toString(36).substring(7)}`,
       title: product.title || 'Product',
       price: price,
@@ -114,6 +127,15 @@ export function createToolService() {
       description: product.description || '',
       url: product.url || ''
     };
+
+    // Only add quantity increment if it has a value
+    if (quantity_increment !== null) {
+      formattedProduct.quantity_increment = quantity_increment;
+    }
+
+    console.log(`Formatted product: ${product.title}, increment: ${quantity_increment}`);
+
+    return formattedProduct;
   };
 
   /**

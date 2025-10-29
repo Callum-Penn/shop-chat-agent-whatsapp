@@ -405,7 +405,7 @@
             messagesContainer.innerHTML = '';
             
             // Show the welcome message and conversation starters
-            ShopAIChat.UI.showWelcomeWithWhatsAppChoice();
+            ShopAIChat.showWelcomeWithWhatsAppChoice();
             
             console.log('Chat reset successfully');
           } else {
