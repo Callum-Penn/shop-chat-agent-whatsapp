@@ -77,7 +77,7 @@ export async function loader({ request }) {
       try {
         const message = "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here.";
         
-        // Save the message to conversation history
+        // Save the message to conversation history WITHOUT updating lastMessageAt
         await prisma.message.create({
           data: {
             conversationId: conversation.id,
@@ -116,7 +116,7 @@ export async function loader({ request }) {
       try {
         const message = "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news.";
         
-        // Save the message to conversation history
+        // Save the message to conversation history WITHOUT updating lastMessageAt
         await prisma.message.create({
           data: {
             conversationId: conversation.id,
