@@ -69,19 +69,21 @@ model User {
 }
 
 model Conversation {
-  id        String    @id
-  userId    String?
-  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
-  channel   String    @default("web") // "web" or "whatsapp"
-  messages  Message[]
-  metadata  Json?     // Store custom conversation data
-  archived  Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id            String    @id
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  channel       String    @default("web") // "web" or "whatsapp"
+  messages      Message[]
+  metadata      Json?     // Store custom conversation data
+  archived      Boolean   @default(false)
+  lastMessageAt DateTime? // Track when the last message was sent
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   @@index([userId])
   @@index([archived])
   @@index([createdAt])
+  @@index([lastMessageAt])
 }
 
 model Message {

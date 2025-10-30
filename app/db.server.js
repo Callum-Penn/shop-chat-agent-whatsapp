@@ -200,13 +200,21 @@ export async function saveMessage(conversationId, role, content) {
     await createOrUpdateConversation(conversationId);
 
     // Create the message
-    return await prisma.message.create({
+    const message = await prisma.message.create({
       data: {
         conversationId,
         role,
         content
       }
     });
+
+    // Update conversation's lastMessageAt timestamp for follow-up tracking
+    await prisma.conversation.update({
+      where: { id: conversationId },
+      data: { lastMessageAt: new Date() }
+    });
+
+    return message;
   } catch (error) {
     console.error('Error saving message:', error);
     throw error;
