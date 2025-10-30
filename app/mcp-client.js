@@ -48,6 +48,14 @@ class MCPClient {
             product_id: {
               type: "string",
               description: "The product ID to check (can be GID or product title)"
+            },
+            product_title: {
+              type: "string",
+              description: "Optional product title to check if ID not found"
+            },
+            variant_id: {
+              type: "string",
+              description: "Optional variant ID to check variant-level increment"
             }
           },
           required: ["product_id"]
@@ -218,21 +226,33 @@ class MCPClient {
    * @returns {Promise<Object>} Result with quantity requirements
    */
   async handleValidateProductQuantity(toolArgs) {
-    const { product_id } = toolArgs;
+    const { product_id, product_title, variant_id } = toolArgs;
     
     // Import quantity increments config
     const quantityIncrements = await import('./config/quantity-increments.json');
     
     let quantity_increment = null;
+    let matchedKey = null;
     
     // Check if product ID or title matches in config
-    if (quantityIncrements.default[product_id]) {
+    if (product_id && quantityIncrements.default[product_id] != null) {
       quantity_increment = quantityIncrements.default[product_id];
-      console.log(`Found quantity_increment in config for ${product_id}: ${quantity_increment}`);
+      matchedKey = product_id;
+      console.log(`Found quantity_increment in config by product_id ${product_id}: ${quantity_increment}`);
+    } else if (variant_id && quantityIncrements.default[variant_id] != null) {
+      quantity_increment = quantityIncrements.default[variant_id];
+      matchedKey = variant_id;
+      console.log(`Found quantity_increment in config by variant_id ${variant_id}: ${quantity_increment}`);
+    } else if (product_title && quantityIncrements.default[product_title] != null) {
+      quantity_increment = quantityIncrements.default[product_title];
+      matchedKey = product_title;
+      console.log(`Found quantity_increment in config by product_title "${product_title}": ${quantity_increment}`);
     }
     
     const result = {
       product_id: product_id,
+      variant_id,
+      product_title,
       quantity_increment: quantity_increment,
       message: quantity_increment 
         ? `Product requires quantity in increments of ${quantity_increment}. Use ${quantity_increment} or multiples (${quantity_increment * 2}, ${quantity_increment * 3}, etc.) when adding to cart.`
