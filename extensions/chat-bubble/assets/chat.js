@@ -326,8 +326,11 @@
         const isChatOpen = chatWindow.classList.contains('active');
         
         if (!isChatOpen) {
-          // Only check for unread messages when chat is closed
+          // Only check for unread indicator when chat is closed
           ShopAIChat.API.checkUnreadMessages(conversationId, this);
+        } else {
+          // When chat is open, check for new messages and display them
+          ShopAIChat.API.checkForNewMessages(conversationId, this.elements.messagesContainer);
         }
       }
     },
@@ -424,11 +427,17 @@
        * @param {string} text - Message content
        * @param {string} sender - Message sender ('user' or 'assistant')
        * @param {HTMLElement} messagesContainer - The messages container
+       * @param {string} messageId - Optional message ID for tracking
        * @returns {HTMLElement} The created message element
        */
-      add: function(text, sender, messagesContainer) {
+      add: function(text, sender, messagesContainer, messageId = null) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('shop-ai-message', sender);
+        
+        // Store message ID if provided
+        if (messageId) {
+          messageElement.dataset.messageId = messageId;
+        }
 
         if (sender === 'assistant') {
           messageElement.dataset.rawText = text;
@@ -854,6 +863,67 @@
           }
         } catch (error) {
           console.error('Error checking unread messages:', error);
+        }
+      },
+
+      /**
+       * Check for new messages when chat is open and display them
+       * @param {string} conversationId - Conversation ID
+       * @param {HTMLElement} messagesContainer - The messages container
+       */
+      checkForNewMessages: async function(conversationId, messagesContainer) {
+        try {
+          // Get list of currently displayed message IDs
+          const existingMessages = messagesContainer.querySelectorAll('.shop-ai-message');
+          const existingIds = new Set();
+          existingMessages.forEach(msg => {
+            const msgId = msg.dataset.messageId;
+            if (msgId) existingIds.add(msgId);
+          });
+
+          // Fetch recent messages from API
+          const recentUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/recent-messages?conversation_id=${encodeURIComponent(conversationId)}`;
+          const response = await fetch(recentUrl, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const messages = data.messages || [];
+            
+            // Filter to only show messages we haven't displayed yet
+            const newMessages = messages.filter(msg => !existingIds.has(msg.id));
+            
+            // Display new messages
+            if (newMessages.length > 0) {
+              console.log(`Displaying ${newMessages.length} new message(s)`);
+              newMessages.forEach(msg => {
+                const content = msg.content;
+                let text = '';
+                
+                // Extract text from content (handle array format)
+                if (Array.isArray(content)) {
+                  text = content
+                    .filter(c => c.type === 'text')
+                    .map(c => c.text)
+                    .join(' ');
+                } else if (typeof content === 'string') {
+                  text = content;
+                }
+                
+                if (text) {
+                  ShopAIChat.Message.add(text, msg.role, messagesContainer, msg.id);
+                }
+              });
+            }
+          }
+        } catch (error) {
+          console.error('Error checking for new messages:', error);
         }
       },
 
