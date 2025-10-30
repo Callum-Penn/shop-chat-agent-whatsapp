@@ -248,6 +248,52 @@ class MCPClient {
       matchedKey = product_title;
       console.log(`Found quantity_increment in config by product_title "${product_title}": ${quantity_increment}`);
     }
+
+    // If still not found, try resolving IDs via storefront search
+    if (quantity_increment == null) {
+      try {
+        const query = product_title || product_id;
+        if (query && typeof query === 'string') {
+          console.log('Resolving product via search_shop_catalog for query:', query);
+          const searchResponse = await this.callStorefrontTool('search_shop_catalog', {
+            query,
+            context: 'Resolve product for quantity increment validation'
+          });
+
+          // Expected to be an object with content[0].text containing JSON with products
+          let products = [];
+          if (searchResponse?.content && Array.isArray(searchResponse.content) && searchResponse.content[0]) {
+            const text = searchResponse.content[0].text;
+            try {
+              const parsed = typeof text === 'string' ? JSON.parse(text) : text;
+              if (parsed?.products && Array.isArray(parsed.products)) {
+                products = parsed.products;
+              }
+            } catch (e) {
+              console.error('Failed parsing search_shop_catalog response:', e);
+            }
+          }
+
+          if (products.length > 0) {
+            const best = products[0];
+            const resolvedProductId = best.product_id || best.id;
+            const resolvedVariantId = (best.variants && best.variants[0] && (best.variants[0].variant_id || best.variants[0].id)) || null;
+
+            if (resolvedVariantId && quantityIncrements.default[resolvedVariantId] != null) {
+              quantity_increment = quantityIncrements.default[resolvedVariantId];
+              matchedKey = resolvedVariantId;
+              console.log(`Resolved increment by variant_id ${resolvedVariantId}: ${quantity_increment}`);
+            } else if (resolvedProductId && quantityIncrements.default[resolvedProductId] != null) {
+              quantity_increment = quantityIncrements.default[resolvedProductId];
+              matchedKey = resolvedProductId;
+              console.log(`Resolved increment by product_id ${resolvedProductId}: ${quantity_increment}`);
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error resolving product for quantity validation:', e);
+      }
+    }
     
     const result = {
       product_id: product_id,
