@@ -32,6 +32,8 @@ export default function BroadcastCenter() {
   const [isScheduled, setIsScheduled] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
+  const [syncResult, setSyncResult] = useState(null);
 
   // Load real broadcast data from API
   useEffect(() => {
@@ -84,6 +86,20 @@ export default function BroadcastCenter() {
   const handleCreateCampaign = useCallback(() => {
     navigate('/app/broadcast');
   }, [navigate]);
+
+  const handleSyncQuantityIncrements = useCallback(async () => {
+    setSyncing(true);
+    setSyncResult(null);
+    try {
+      const res = await fetch('/api/admin/sync-quantity-increments');
+      const data = await res.json();
+      setSyncResult(data);
+    } catch (error) {
+      setSyncResult({ success: false, error: error.message });
+    } finally {
+      setSyncing(false);
+    }
+  }, []);
 
   const handleCloseModal = useCallback(() => {
     setShowCreateModal(false);
@@ -142,6 +158,28 @@ export default function BroadcastCenter() {
       </TitleBar>
       
       <BlockStack gap="500">
+        {/* Sync Quantity Increments Banner */}
+        <Banner
+          tone={syncResult?.success ? "success" : syncResult?.success === false ? "critical" : "info"}
+          onDismiss={() => setSyncResult(null)}
+        >
+          {syncResult?.success ? (
+            `Successfully synced ${syncResult.count} product quantity increments`
+          ) : syncResult?.success === false ? (
+            `Sync failed: ${syncResult.error}`
+          ) : (
+            "Keep product quantity increments up to date by syncing with your Shopify store"
+          )}
+          {!syncResult && (
+            <Button
+              onClick={handleSyncQuantityIncrements}
+              loading={syncing}
+              size="slim"
+            >
+              Sync Quantity Increments
+            </Button>
+          )}
+        </Banner>
         {/* Stats Overview */}
         <Layout>
           <Layout.Section variant="oneThird">
