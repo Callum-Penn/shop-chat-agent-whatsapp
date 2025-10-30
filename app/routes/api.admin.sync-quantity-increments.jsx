@@ -3,7 +3,7 @@
  * Fetches all products with quantity_increment metafields and updates the config
  */
 import { json } from "@remix-run/node";
-import { authenticate } from "../../shopify.server";
+import { authenticate } from "../shopify.server";
 import fs from 'fs/promises';
 import path from 'path';
 
