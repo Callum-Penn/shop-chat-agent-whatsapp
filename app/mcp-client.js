@@ -281,6 +281,41 @@ class MCPClient {
     try {
       console.log("Calling storefront tool", toolName, toolArgs);
 
+      // Enforce quantity increments on cart updates server-side for safety
+      if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
+        try {
+          const incrementsModule = await import('./config/quantity-increments.json');
+          const incrementsMap = incrementsModule.default || {};
+
+          toolArgs.add_items = toolArgs.add_items.map((item) => {
+            const variantId = item.product_variant_id || item.variant_id;
+            const productId = item.product_id;
+            let increment = null;
+
+            if (variantId && incrementsMap[variantId] != null) {
+              increment = parseInt(incrementsMap[variantId], 10);
+            } else if (productId && incrementsMap[productId] != null) {
+              increment = parseInt(incrementsMap[productId], 10);
+            }
+
+            if (increment && !Number.isNaN(increment)) {
+              const requested = Number(item.quantity) || 0;
+              // If requested is less than 1 or not a multiple, round up to next valid multiple
+              const multiples = Math.ceil(Math.max(requested, increment) / increment);
+              const adjusted = multiples * increment;
+              if (adjusted !== requested) {
+                console.log(`Adjusted quantity for ${variantId || productId} from ${requested} to ${adjusted} based on increment ${increment}`);
+              }
+              return { ...item, quantity: adjusted };
+            }
+
+            return item;
+          });
+        } catch (e) {
+          console.error('Failed to enforce quantity increments on update_cart:', e);
+        }
+      }
+
       const headers = {
         "Content-Type": "application/json"
       };
