@@ -109,8 +109,11 @@ export function createToolService() {
     // Extract quantity increment from custom metafield
     let quantity_increment = null;
 
-    // Log the full product structure for debugging
-    console.log('Full product structure for debugging:', JSON.stringify(product, null, 2));
+    // Log the full product structure for debugging (only if no metafield found)
+    if (!product.metafield && !product.metafields) {
+      console.log('WARNING: Product has no metafield data. Structure:', JSON.stringify(product, null, 2));
+      console.log('Product:', product.title, '- Please ensure MCP server returns metafields');
+    }
 
     // Check custom metafield for quantity increment
     if (product.metafield?.custom?.quantity_increment) {

@@ -1,37 +1,110 @@
-Oct 29 18:36:35    {
-Oct 29 18:36:35      "role": "user",
-Oct 29 18:36:35      "content": [
-Oct 29 18:36:35        {
-Oct 29 18:36:35          "type": "text",
-Oct 29 18:36:35          "text": "Add Hayati Pro Ultra+ Kit Blue Sour Raspberry to my cart"
-Oct 29 18:36:35        }
-Oct 29 18:36:35      ]
-Oct 29 18:36:35    }
-Oct 29 18:36:35  ]
-Oct 29 18:36:38  Calling storefront tool update_cart {
-Oct 29 18:36:38    add_items: [
-Oct 29 18:36:38      {
-Oct 29 18:36:38        product_variant_id: 'gid://shopify/ProductVariant/48667274313007',
-Oct 29 18:36:38        quantity: 1
-Oct 29 18:36:38      }
-Oct 29 18:36:38    ]
-Oct 29 18:36:38  }
-Oct 29 18:36:42  Calling storefront tool get_product_details { product_id: 'gid://shopify/Product/9511502684463' }
-Oct 29 18:36:45  Calling storefront tool search_shop_catalog {
-Oct 29 18:36:45    query: 'Hayati Pro Ultra+ Kit Blue Sour Raspberry',
-Oct 29 18:36:45    context: 'Customer wants to add this specific product to cart'
-Oct 29 18:36:45  }
-Oct 29 18:36:46  Processing product search result
-Oct 29 18:36:46  Formatted product: Hayati Pro Ultra+ Kit Blue Sour Raspberry, increment: null
-Oct 29 18:36:46  Formatted product: FUMi Minty Blueberry Strong, increment: null
-Oct 29 18:36:46  Formatted product: XQS Nicotine Pouch Blueberry Mint 8mg, increment: null
-Oct 29 18:36:46  Found 3 products to display
-Oct 29 18:36:50  Calling storefront tool update_cart {
-Oct 29 18:36:50    add_items: [
-Oct 29 18:36:50      {
-Oct 29 18:36:50        product_variant_id: 'gid://shopify/ProductVariant/55638251503998',
-Oct 29 18:36:50        quantity: 1
-Oct 29 18:36:50      }
-Oct 29 18:36:50    ]
-Oct 29 18:36:50  }
-Oct 29 18:36:55  POST /chat 200 - - 13.815 ms
+Oct 30 10:56:25    {
+Oct 30 10:56:25      "role": "user",
+Oct 30 10:56:25      "content": [
+Oct 30 10:56:25        {
+Oct 30 10:56:25          "type": "text",
+Oct 30 10:56:25          "text": "Add SKE Bar Kit Watermelon Strawberry to my cart"
+Oct 30 10:56:25        }
+Oct 30 10:56:25      ]
+Oct 30 10:56:25    }
+Oct 30 10:56:25  ]
+Oct 30 10:56:29  Calling storefront tool search_shop_catalog {
+Oct 30 10:56:29    query: 'SKE Bar Kit Watermelon Strawberry',
+Oct 30 10:56:29    context: 'Customer wants to add SKE Bar Kit in Watermelon Strawberry flavor to their cart'
+Oct 30 10:56:29  }
+Oct 30 10:56:30  Processing product search result
+Oct 30 10:56:30  Full product structure for debugging: {
+Oct 30 10:56:30    "product_id": "gid://shopify/Product/15389468819838",
+Oct 30 10:56:30    "title": "SKE Bar Kit Watermelon Strawberry",
+Oct 30 10:56:30    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceJuicy watermelon and sun-ripened strawberries swirl in a fruity fusion.",
+Oct 30 10:56:30    "url": "https://vapelocal.co.uk/products/ske-bar-kit-watermelon-strawberry",
+Oct 30 10:56:30    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
+Oct 30 10:56:30    "price_range": {
+Oct 30 10:56:30      "min": "1.88",
+Oct 30 10:56:30      "max": "1.88",
+Oct 30 10:56:30      "currency": "GBP"
+Oct 30 10:56:30    },
+Oct 30 10:56:30    "product_type": "Compliant 600 Puffs",
+Oct 30 10:56:30    "tags": [
+Oct 30 10:56:30      "600"
+Oct 30 10:56:30    ],
+Oct 30 10:56:30    "variants": [
+Oct 30 10:56:30      {
+Oct 30 10:56:30        "variant_id": "gid://shopify/ProductVariant/55639317807486",
+Oct 30 10:56:30        "title": "Default Title",
+Oct 30 10:56:30        "price": "1.88",
+Oct 30 10:56:30        "currency": "GBP",
+Oct 30 10:56:30        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
+Oct 30 10:56:30        "available": true
+Oct 30 10:56:30      }
+Oct 30 10:56:30    ]
+Oct 30 10:56:30  }
+Oct 30 10:56:30  Formatted product: SKE Bar Kit Watermelon Strawberry, increment: null
+Oct 30 10:56:30  Full product structure for debugging: {
+Oct 30 10:56:30    "product_id": "gid://shopify/Product/15056700375422",
+Oct 30 10:56:30    "title": "on!®PLUS Watermelon Mint Regular 6mg",
+Oct 30 10:56:30    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a regular nicotine strength and includes 20 pouches per can.",
+Oct 30 10:56:30    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-regular-6mg",
+Oct 30 10:56:30    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
+Oct 30 10:56:30    "price_range": {
+Oct 30 10:56:30      "min": "2.95",
+Oct 30 10:56:30      "max": "2.95",
+Oct 30 10:56:30      "currency": "GBP"
+Oct 30 10:56:30    },
+Oct 30 10:56:30    "product_type": "Nic Pouches",
+Oct 30 10:56:30    "tags": [
+Oct 30 10:56:30      "fruit",
+Oct 30 10:56:30      "mint",
+Oct 30 10:56:30      "watermelon"
+Oct 30 10:56:30    ],
+Oct 30 10:56:30    "variants": [
+Oct 30 10:56:30      {
+Oct 30 10:56:30        "variant_id": "gid://shopify/ProductVariant/55400791933310",
+Oct 30 10:56:30        "title": "Default Title",
+Oct 30 10:56:30        "price": "2.95",
+Oct 30 10:56:30        "currency": "GBP",
+Oct 30 10:56:30        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
+Oct 30 10:56:30        "available": true
+Oct 30 10:56:30      }
+Oct 30 10:56:30    ]
+Oct 30 10:56:30  }
+Oct 30 10:56:30  Formatted product: on!®PLUS Watermelon Mint Regular 6mg, increment: null
+Oct 30 10:56:30  Full product structure for debugging: {
+Oct 30 10:56:30    "product_id": "gid://shopify/Product/15056700440958",
+Oct 30 10:56:30    "title": "on!®PLUS Watermelon Mint Strong 9mg",
+Oct 30 10:56:30    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a strong nicotine strength and includes 20 pouches per can.",
+Oct 30 10:56:30    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-strong-9mg",
+Oct 30 10:56:30    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
+Oct 30 10:56:30    "price_range": {
+Oct 30 10:56:30      "min": "2.95",
+Oct 30 10:56:30      "max": "2.95",
+Oct 30 10:56:30      "currency": "GBP"
+Oct 30 10:56:30    },
+Oct 30 10:56:30    "product_type": "Nic Pouches",
+Oct 30 10:56:30    "tags": [
+Oct 30 10:56:30      "fruit",
+Oct 30 10:56:30      "mint",
+Oct 30 10:56:30      "watermelon"
+Oct 30 10:56:30    ],
+Oct 30 10:56:30    "variants": [
+Oct 30 10:56:30      {
+Oct 30 10:56:30        "variant_id": "gid://shopify/ProductVariant/55400792195454",
+Oct 30 10:56:30        "title": "Default Title",
+Oct 30 10:56:30        "price": "2.95",
+Oct 30 10:56:30        "currency": "GBP",
+Oct 30 10:56:30        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
+Oct 30 10:56:30        "available": true
+Oct 30 10:56:30      }
+Oct 30 10:56:30    ]
+Oct 30 10:56:30  }
+Oct 30 10:56:30  Formatted product: on!®PLUS Watermelon Mint Strong 9mg, increment: null
+Oct 30 10:56:30  Found 3 products to display
+Oct 30 10:56:33  Calling storefront tool update_cart {
+Oct 30 10:56:33    add_items: [
+Oct 30 10:56:33      {
+Oct 30 10:56:33        product_variant_id: 'gid://shopify/ProductVariant/55639317807486',
+Oct 30 10:56:33        quantity: 1
+Oct 30 10:56:33      }
+Oct 30 10:56:33    ]
+Oct 30 10:56:33  }
+Oct 30 10:56:38  POST /chat 200 - - 18.494 ms
