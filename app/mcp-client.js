@@ -1,5 +1,6 @@
 import { generateAuthUrl } from "./auth.server";
 import { getCustomerToken } from "./db.server";
+import prisma from "./db.server";
 
 /**
  * Client for interacting with Model Context Protocol (MCP) API endpoints.
@@ -228,25 +229,43 @@ class MCPClient {
   async handleValidateProductQuantity(toolArgs) {
     const { product_id, product_title, variant_id } = toolArgs;
     
-    // Import quantity increments config
-    const quantityIncrements = await import('./config/quantity-increments.json');
-    
     let quantity_increment = null;
     let matchedKey = null;
     
-    // Check if product ID or title matches in config
-    if (product_id && quantityIncrements.default[product_id] != null) {
-      quantity_increment = quantityIncrements.default[product_id];
-      matchedKey = product_id;
-      console.log(`Found quantity_increment in config by product_id ${product_id}: ${quantity_increment}`);
-    } else if (variant_id && quantityIncrements.default[variant_id] != null) {
-      quantity_increment = quantityIncrements.default[variant_id];
-      matchedKey = variant_id;
-      console.log(`Found quantity_increment in config by variant_id ${variant_id}: ${quantity_increment}`);
-    } else if (product_title && quantityIncrements.default[product_title] != null) {
-      quantity_increment = quantityIncrements.default[product_title];
-      matchedKey = product_title;
-      console.log(`Found quantity_increment in config by product_title "${product_title}": ${quantity_increment}`);
+    // Check database for quantity increments by product_id, variant_id, or product_title
+    let incrementRecord = null;
+    
+    if (product_id) {
+      incrementRecord = await prisma.productQuantityIncrement.findUnique({
+        where: { entityId: product_id }
+      });
+      if (incrementRecord) {
+        quantity_increment = incrementRecord.increment;
+        matchedKey = product_id;
+        console.log(`Found quantity_increment by product_id ${product_id}: ${quantity_increment}`);
+      }
+    }
+    
+    if (!incrementRecord && variant_id) {
+      incrementRecord = await prisma.productQuantityIncrement.findUnique({
+        where: { entityId: variant_id }
+      });
+      if (incrementRecord) {
+        quantity_increment = incrementRecord.increment;
+        matchedKey = variant_id;
+        console.log(`Found quantity_increment by variant_id ${variant_id}: ${quantity_increment}`);
+      }
+    }
+    
+    if (!incrementRecord && product_title) {
+      incrementRecord = await prisma.productQuantityIncrement.findFirst({
+        where: { productTitle: product_title }
+      });
+      if (incrementRecord) {
+        quantity_increment = incrementRecord.increment;
+        matchedKey = incrementRecord.entityId;
+        console.log(`Found quantity_increment by product_title "${product_title}": ${quantity_increment}`);
+      }
     }
 
     // If still not found, try resolving IDs via storefront search
@@ -279,14 +298,27 @@ class MCPClient {
             const resolvedProductId = best.product_id || best.id;
             const resolvedVariantId = (best.variants && best.variants[0] && (best.variants[0].variant_id || best.variants[0].id)) || null;
 
-            if (resolvedVariantId && quantityIncrements.default[resolvedVariantId] != null) {
-              quantity_increment = quantityIncrements.default[resolvedVariantId];
-              matchedKey = resolvedVariantId;
-              console.log(`Resolved increment by variant_id ${resolvedVariantId}: ${quantity_increment}`);
-            } else if (resolvedProductId && quantityIncrements.default[resolvedProductId] != null) {
-              quantity_increment = quantityIncrements.default[resolvedProductId];
-              matchedKey = resolvedProductId;
-              console.log(`Resolved increment by product_id ${resolvedProductId}: ${quantity_increment}`);
+            // Check database for resolved IDs
+            if (resolvedVariantId) {
+              const resolvedIncrement = await prisma.productQuantityIncrement.findUnique({
+                where: { entityId: resolvedVariantId }
+              });
+              if (resolvedIncrement) {
+                quantity_increment = resolvedIncrement.increment;
+                matchedKey = resolvedVariantId;
+                console.log(`Resolved increment by variant_id ${resolvedVariantId}: ${quantity_increment}`);
+              }
+            }
+            
+            if (!quantity_increment && resolvedProductId) {
+              const resolvedIncrement = await prisma.productQuantityIncrement.findUnique({
+                where: { entityId: resolvedProductId }
+              });
+              if (resolvedIncrement) {
+                quantity_increment = resolvedIncrement.increment;
+                matchedKey = resolvedProductId;
+                console.log(`Resolved increment by product_id ${resolvedProductId}: ${quantity_increment}`);
+              }
             }
           }
         }
@@ -330,18 +362,28 @@ class MCPClient {
       // Enforce quantity increments on cart updates server-side for safety
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
         try {
-          const incrementsModule = await import('./config/quantity-increments.json');
-          const incrementsMap = incrementsModule.default || {};
-
-          toolArgs.add_items = toolArgs.add_items.map((item) => {
+          for (const item of toolArgs.add_items) {
             const variantId = item.product_variant_id || item.variant_id;
             const productId = item.product_id;
             let increment = null;
 
-            if (variantId && incrementsMap[variantId] != null) {
-              increment = parseInt(incrementsMap[variantId], 10);
-            } else if (productId && incrementsMap[productId] != null) {
-              increment = parseInt(incrementsMap[productId], 10);
+            // Check database for increment
+            if (variantId) {
+              const incrementRecord = await prisma.productQuantityIncrement.findUnique({
+                where: { entityId: variantId }
+              });
+              if (incrementRecord) {
+                increment = incrementRecord.increment;
+              }
+            }
+            
+            if (!increment && productId) {
+              const incrementRecord = await prisma.productQuantityIncrement.findUnique({
+                where: { entityId: productId }
+              });
+              if (incrementRecord) {
+                increment = incrementRecord.increment;
+              }
             }
 
             if (increment && !Number.isNaN(increment)) {
@@ -352,11 +394,9 @@ class MCPClient {
               if (adjusted !== requested) {
                 console.log(`Adjusted quantity for ${variantId || productId} from ${requested} to ${adjusted} based on increment ${increment}`);
               }
-              return { ...item, quantity: adjusted };
+              item.quantity = adjusted;
             }
-
-            return item;
-          });
+          }
         } catch (e) {
           console.error('Failed to enforce quantity increments on update_cart:', e);
         }

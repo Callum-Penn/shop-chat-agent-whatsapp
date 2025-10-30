@@ -120,3 +120,15 @@ model BroadcastLog {
 
   @@index([createdAt])
 }
+
+model ProductQuantityIncrement {
+  id            String   @id @default(cuid())
+  entityId      String   @unique // Product GID or variant GID
+  increment     Int      // The quantity increment value
+  entityType    String   // "product" or "variant"
+  productTitle  String?  // Store product title for easier lookup
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([entityType])
+}

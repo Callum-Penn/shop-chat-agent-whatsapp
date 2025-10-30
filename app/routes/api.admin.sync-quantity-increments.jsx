@@ -1,18 +1,17 @@
 /**
  * Admin API Route: Sync Product Quantity Increments
- * Fetches all products with quantity_increment metafields and updates the config
+ * Fetches all products with quantity_increment metafields and updates the database
  */
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
-import fs from 'fs/promises';
-import path from 'path';
+import prisma from "../db.server";
 
 export async function loader({ request }) {
   const { admin } = await authenticate.admin(request);
 
   try {
-    // Build quantity increments map (across all pages)
-    const quantityIncrements = {};
+    // Build quantity increments data for database
+    const incrementsToSave = [];
 
     // Paginate through all products (250 per page)
     let hasNextPage = true;
@@ -61,7 +60,12 @@ export async function loader({ request }) {
         if (product.metafield && product.metafield.value != null) {
           const increment = parseInt(product.metafield.value, 10);
           if (!isNaN(increment)) {
-            quantityIncrements[product.id] = increment;
+            incrementsToSave.push({
+              entityId: product.id,
+              increment,
+              entityType: 'product',
+              productTitle: product.title
+            });
           }
         }
 
@@ -71,7 +75,12 @@ export async function loader({ request }) {
             if (variant.metafield && variant.metafield.value != null) {
               const increment = parseInt(variant.metafield.value, 10);
               if (!isNaN(increment)) {
-                quantityIncrements[variant.id] = increment;
+                incrementsToSave.push({
+                  entityId: variant.id,
+                  increment,
+                  entityType: 'variant',
+                  productTitle: product.title
+                });
               }
             }
           }
@@ -82,30 +91,20 @@ export async function loader({ request }) {
       cursor = edges.length > 0 ? edges[edges.length - 1].cursor : null;
     }
 
-    // Read existing config file
-    const configPath = path.join(process.cwd(), 'app', 'config', 'quantity-increments.json');
+    // Clear existing increments and save new ones to database
+    await prisma.productQuantityIncrement.deleteMany({});
     
-    let configData;
-    try {
-      const existingContent = await fs.readFile(configPath, 'utf-8');
-      const existingData = JSON.parse(existingContent);
-      
-      // Merge with existing data, prioritizing new data
-      const mergedData = { ...existingData.default, ...quantityIncrements };
-      configData = { default: mergedData };
-    } catch (error) {
-      // If file doesn't exist or is invalid, create new structure
-      configData = { default: quantityIncrements };
+    if (incrementsToSave.length > 0) {
+      await prisma.productQuantityIncrement.createMany({
+        data: incrementsToSave
+      });
     }
 
-    // Write updated config
-    await fs.writeFile(configPath, JSON.stringify(configData, null, 2), 'utf-8');
-
-    console.log(`Synced ${Object.keys(configData.default || {}).length} product quantity increments`);
+    console.log(`Synced ${incrementsToSave.length} product quantity increments to database`);
 
     return json({
       success: true,
-      count: Object.keys(configData.default || {}).length,
+      count: incrementsToSave.length,
       message: 'Quantity increments synced successfully'
     });
   } catch (error) {
