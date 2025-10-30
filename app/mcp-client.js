@@ -38,6 +38,20 @@ class MCPClient {
           },
           required: ["template_type"]
         }
+      },
+      {
+        name: "validate_product_quantity",
+        description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
+        input_schema: {
+          type: "object",
+          properties: {
+            product_id: {
+              type: "string",
+              description: "The product ID to check (can be GID or product title)"
+            }
+          },
+          required: ["product_id"]
+        }
       }
     ];
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
@@ -100,7 +114,7 @@ class MCPClient {
 
       this.customerTools = customerTools;
       // Only add custom tools if they haven't been added yet
-      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template') ? [] : this.customTools;
+      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template' || t.name === 'validate_product_quantity') ? [] : this.customTools;
       this.tools = [...this.tools, ...customerTools, ...customToolsToAdd];
 
       return customerTools;
@@ -137,7 +151,7 @@ class MCPClient {
 
       this.storefrontTools = storefrontTools;
       // Add custom tools only once (in case storefront connects first)
-      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template') ? [] : this.customTools;
+      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template' || t.name === 'validate_product_quantity') ? [] : this.customTools;
       this.tools = [...this.tools, ...storefrontTools, ...customToolsToAdd];
 
       return storefrontTools;
@@ -178,6 +192,11 @@ class MCPClient {
   async callCustomTool(toolName, toolArgs) {
     console.log(`Custom tool called: ${toolName}`, toolArgs);
     
+    // Handle validate_product_quantity custom tool
+    if (toolName === 'validate_product_quantity') {
+      return this.handleValidateProductQuantity(toolArgs);
+    }
+    
     // Return a special response that the webhook can detect and handle
     return {
       content: [{
@@ -190,6 +209,43 @@ class MCPClient {
       isCustomTool: true,
       toolName: toolName,
       toolArgs: toolArgs
+    };
+  }
+
+  /**
+   * Handles the validate_product_quantity custom tool
+   * @param {Object} toolArgs - Arguments passed to the tool
+   * @returns {Promise<Object>} Result with quantity requirements
+   */
+  async handleValidateProductQuantity(toolArgs) {
+    const { product_id } = toolArgs;
+    
+    // Import quantity increments config
+    const quantityIncrements = await import('./config/quantity-increments.json');
+    
+    let quantity_increment = null;
+    
+    // Check if product ID or title matches in config
+    if (quantityIncrements.default[product_id]) {
+      quantity_increment = quantityIncrements.default[product_id];
+      console.log(`Found quantity_increment in config for ${product_id}: ${quantity_increment}`);
+    }
+    
+    const result = {
+      product_id: product_id,
+      quantity_increment: quantity_increment,
+      message: quantity_increment 
+        ? `Product requires quantity in increments of ${quantity_increment}. Use ${quantity_increment} or multiples (${quantity_increment * 2}, ${quantity_increment * 3}, etc.) when adding to cart.`
+        : `Product has no quantity requirements. Default quantity of 1 can be used.`
+    };
+    
+    console.log('validate_product_quantity result:', result);
+    
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify(result)
+      }]
     };
   }
 
