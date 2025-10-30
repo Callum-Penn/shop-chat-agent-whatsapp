@@ -75,6 +75,9 @@ export function createToolService() {
             
             // Update the tool response content with the modified data
             toolUseResponse.content[0].text = typeof content === 'object' ? responseData : JSON.stringify(responseData);
+            
+            // Log the modified response to verify quantity_increment is present
+            console.log('Modified tool response with quantity_increment:', JSON.stringify(toolUseResponse.content[0].text, null, 2).substring(0, 500));
           }
         } catch (e) {
           console.error('Error adding quantity_increment to tool response:', e);
