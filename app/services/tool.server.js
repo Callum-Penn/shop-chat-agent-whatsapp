@@ -49,7 +49,37 @@ export function createToolService() {
   const handleToolSuccess = async (toolUseResponse, toolName, toolUseId, conversationHistory, productsToDisplay, conversationId) => {
     // Check if this is a product search result
     if (toolName === AppConfig.tools.productSearchName) {
-      productsToDisplay.push(...processProductSearchResult(toolUseResponse));
+      const formattedProducts = processProductSearchResult(toolUseResponse);
+      productsToDisplay.push(...formattedProducts);
+      
+      // Modify the tool response to include quantity_increment information for Claude
+      if (toolUseResponse.content && Array.isArray(toolUseResponse.content) && toolUseResponse.content[0]) {
+        try {
+          const content = toolUseResponse.content[0].text;
+          let responseData;
+          
+          if (typeof content === 'object') {
+            responseData = content;
+          } else if (typeof content === 'string') {
+            responseData = JSON.parse(content);
+          }
+          
+          // Add quantity_increment to each product in the response data
+          if (responseData?.products && Array.isArray(responseData.products)) {
+            formattedProducts.forEach((formattedProduct, index) => {
+              if (responseData.products[index] && formattedProduct.quantity_increment) {
+                responseData.products[index].quantity_increment = formattedProduct.quantity_increment;
+                console.log(`Added quantity_increment=${formattedProduct.quantity_increment} to product in tool response`);
+              }
+            });
+            
+            // Update the tool response content with the modified data
+            toolUseResponse.content[0].text = typeof content === 'object' ? responseData : JSON.stringify(responseData);
+          }
+        } catch (e) {
+          console.error('Error adding quantity_increment to tool response:', e);
+        }
+      }
     }
 
     addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.content, conversationId);
