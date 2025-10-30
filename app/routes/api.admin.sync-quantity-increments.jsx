@@ -20,29 +20,17 @@ export async function loader({ request }) {
             node {
               id
               title
-              metafields(first: 10, namespace: "custom", key: "quantity_increment") {
-                edges {
-                  node {
-                    id
-                    key
-                    value
-                    type
-                  }
-                }
+              metafield(namespace: "custom", key: "quantity_increment") {
+                value
+                type
               }
-              variants(first: 10) {
+              variants(first: 100) {
                 edges {
                   node {
                     id
-                    metafields(first: 10, namespace: "custom", key: "quantity_increment") {
-                      edges {
-                        node {
-                          id
-                          key
-                          value
-                          type
-                        }
-                      }
+                    metafield(namespace: "custom", key: "quantity_increment") {
+                      value
+                      type
                     }
                   }
                 }
@@ -60,28 +48,22 @@ export async function loader({ request }) {
     const quantityIncrements = {};
     
     for (const { node: product } of products) {
-      // Check product-level metafield
-      const productMetafield = product.metafields.edges.find(
-        e => e.node.key === 'quantity_increment'
-      );
-      
-      if (productMetafield) {
-        const increment = parseInt(productMetafield.node.value, 10);
+      // Product-level metafield
+      if (product.metafield && product.metafield.value != null) {
+        const increment = parseInt(product.metafield.value, 10);
         if (!isNaN(increment)) {
           quantityIncrements[product.id] = increment;
         }
       }
-      
-      // Check variant-level metafields
-      for (const { node: variant } of product.variants.edges) {
-        const variantMetafield = variant.metafields.edges.find(
-          e => e.node.key === 'quantity_increment'
-        );
-        
-        if (variantMetafield) {
-          const increment = parseInt(variantMetafield.node.value, 10);
-          if (!isNaN(increment)) {
-            quantityIncrements[variant.id] = increment;
+
+      // Variant-level metafield
+      if (product.variants && product.variants.edges) {
+        for (const { node: variant } of product.variants.edges) {
+          if (variant.metafield && variant.metafield.value != null) {
+            const increment = parseInt(variant.metafield.value, 10);
+            if (!isNaN(increment)) {
+              quantityIncrements[variant.id] = increment;
+            }
           }
         }
       }

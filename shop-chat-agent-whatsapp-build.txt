@@ -1,327 +1,125 @@
-Oct 30 12:53:31    {
-Oct 30 12:53:31      "role": "user",
-Oct 30 12:53:31      "content": [
-Oct 30 12:53:31        {
-Oct 30 12:53:31          "type": "text",
-Oct 30 12:53:31          "text": "Add SKE Bar Kit Watermelon Strawberry to my cart"
-Oct 30 12:53:31        }
-Oct 30 12:53:31      ]
-Oct 30 12:53:31    }
-Oct 30 12:53:31  ]
-Oct 30 12:53:34  Calling storefront tool search_shop_catalog {
-Oct 30 12:53:34    query: 'SKE Bar Kit Watermelon Strawberry',
-Oct 30 12:53:34    context: 'Customer wants to add SKE Bar Kit Watermelon Strawberry to cart'
-Oct 30 12:53:34  }
-Oct 30 12:53:35  Processing product search result
-Oct 30 12:53:35  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:53:35    "product_id": "gid://shopify/Product/15389468819838",
-Oct 30 12:53:35    "title": "SKE Bar Kit Watermelon Strawberry",
-Oct 30 12:53:35    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceJuicy watermelon and sun-ripened strawberries swirl in a fruity fusion.",
-Oct 30 12:53:35    "url": "https://vapelocal.co.uk/products/ske-bar-kit-watermelon-strawberry",
-Oct 30 12:56:29        "variant_id": "gid://shopify/ProductVariant/55400791933310",
-Oct 30 12:56:29        "title": "Default Title",
-Oct 30 12:56:29        "price": "2.95",
-Oct 30 12:56:29        "currency": "GBP",
-Oct 30 12:56:29        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
-Oct 30 12:56:29        "available": true
-Oct 30 12:56:29      }
-Oct 30 12:56:29    ]
-Oct 30 12:56:29  }
-Oct 30 12:56:29  Product: on!®PLUS Watermelon Mint Regular 6mg - Please ensure MCP server returns metafields
-Oct 30 12:56:29  Formatted product: on!®PLUS Watermelon Mint Regular 6mg, increment: null
-Oct 30 12:56:29  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:56:29    "product_id": "gid://shopify/Product/15056700440958",
-Oct 30 12:56:29    "title": "on!®PLUS Watermelon Mint Strong 9mg",
-Oct 30 12:56:29    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a strong nicotine strength and includes 20 pouches per can.",
-Oct 30 12:56:29    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-strong-9mg",
-Oct 30 12:56:29    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:56:29    "price_range": {
-Oct 30 12:56:29      "min": "2.95",
-Oct 30 12:56:29      "max": "2.95",
-Oct 30 12:56:29      "currency": "GBP"
-Oct 30 12:56:29    },
-Oct 30 12:56:29    "product_type": "Nic Pouches",
-Oct 30 12:56:29    "tags": [
-Oct 30 12:56:29      "fruit",
-Oct 30 12:56:29      "mint",
-Oct 30 12:56:29      "watermelon"
-Oct 30 12:56:29    ],
-Oct 30 12:56:29    "variants": [
-Oct 30 12:56:29      {
-Oct 30 12:56:29        "variant_id": "gid://shopify/ProductVariant/55400792195454",
-Oct 30 12:56:29        "title": "Default Title",
-Oct 30 12:56:29        "price": "2.95",
-Oct 30 12:56:29        "currency": "GBP",
-Oct 30 12:56:29        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:56:29        "available": true
-Oct 30 12:56:29      }
-Oct 30 12:56:29    ]
-Oct 30 12:56:29  }
-Oct 30 12:56:29  Product: on!®PLUS Watermelon Mint Strong 9mg - Please ensure MCP server returns metafields
-Oct 30 12:56:29  Formatted product: on!®PLUS Watermelon Mint Strong 9mg, increment: null
-Oct 30 12:56:29  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:56:29    "product_id": "gid://shopify/Product/15056700211582",
-Oct 30 12:56:29    "title": "on!®PLUS Raspberry Lemon Strong 9mg",
-Oct 30 12:56:29    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Raspberry Lemon Slim Normal, which incorporates a Raspberry and Lemon flavour with a slim format. This product has a strong nicotine strength and includes 20 pouches per can.",
-Oct 30 12:56:29    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-raspberry-lemon-strong-9mg",
-Oct 30 12:53:35    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
-Oct 30 12:53:35    "price_range": {
-Oct 30 12:53:35      "min": "1.88",
-Oct 30 12:53:35      "max": "1.88",
-Oct 30 12:53:35      "currency": "GBP"
-Oct 30 12:53:35    },
-Oct 30 12:53:35    "product_type": "Compliant 600 Puffs",
-Oct 30 12:53:35    "tags": [
-Oct 30 12:53:35      "600"
-Oct 30 12:53:35    ],
-Oct 30 12:53:35    "variants": [
-Oct 30 12:53:35      {
-Oct 30 12:53:35        "variant_id": "gid://shopify/ProductVariant/55639317807486",
-Oct 30 12:53:35        "title": "Default Title",
-Oct 30 12:53:35        "price": "1.88",
-Oct 30 12:53:35        "currency": "GBP",
-Oct 30 12:53:35        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
-Oct 30 12:53:35        "available": true
-Oct 30 12:53:35      }
-Oct 30 12:53:35    ]
-Oct 30 12:53:35  }
-Oct 30 12:53:35  Product: SKE Bar Kit Watermelon Strawberry - Please ensure MCP server returns metafields
-Oct 30 12:53:35  Found increment in config by product_id: 5
-Oct 30 12:53:35  Formatted product: SKE Bar Kit Watermelon Strawberry, increment: 5
-Oct 30 12:53:35  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:53:35    "product_id": "gid://shopify/Product/15056700375422",
-Oct 30 12:53:35    "title": "on!®PLUS Watermelon Mint Regular 6mg",
-Oct 30 12:53:35    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a regular nicotine strength and includes 20 pouches per can.",
-Oct 30 12:53:35    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-regular-6mg",
-Oct 30 12:53:35    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
-Oct 30 12:53:35    "price_range": {
-Oct 30 12:53:35      "min": "2.95",
-Oct 30 12:53:35      "max": "2.95",
-Oct 30 12:53:35      "currency": "GBP"
-Oct 30 12:56:29    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0004_ON_Plus_Vinkel3_RaspberryLemon_Strong.webp?v=1750196614",
-Oct 30 12:56:29    "price_range": {
-Oct 30 12:56:29      "min": "2.95",
-Oct 30 12:56:29      "max": "2.95",
-Oct 30 12:56:29      "currency": "GBP"
-Oct 30 12:56:29    },
-Oct 30 12:56:29    "product_type": "Nic Pouches",
-Oct 30 12:56:29    "tags": [
-Oct 30 12:56:29      "fruit",
-Oct 30 12:56:29      "lemon",
-Oct 30 12:56:29      "raspberry"
-Oct 30 12:56:29    ],
-Oct 30 12:56:29    "variants": [
-Oct 30 12:56:29      {
-Oct 30 12:56:29        "variant_id": "gid://shopify/ProductVariant/55400790753662",
-Oct 30 12:56:29        "title": "Default Title",
-Oct 30 12:56:29        "price": "2.95",
-Oct 30 12:56:29        "currency": "GBP",
-Oct 30 12:56:29        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0004_ON_Plus_Vinkel3_RaspberryLemon_Strong.webp?v=1750196614",
-Oct 30 12:56:29        "available": true
-Oct 30 12:56:29      }
-Oct 30 12:56:29    ]
-Oct 30 12:56:29  }
-Oct 30 12:56:29  Product: on!®PLUS Raspberry Lemon Strong 9mg - Please ensure MCP server returns metafields
-Oct 30 12:56:29  Formatted product: on!®PLUS Raspberry Lemon Strong 9mg, increment: null
-Oct 30 12:56:29  Found 3 products to display
-Oct 30 12:56:29  Modified tool response with quantity_increment: "{\"products\":[{\"product_id\":\"gid://shopify/Product/15056700375422\",\"title\":\"on!®PLUS Watermelon Mint Regular 6mg\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a regular nicotine strength and includes 20 pouches per can.\",\"url\":\"https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-regul
-Oct 30 12:56:33  Custom tool called: validate_product_quantity { product_id: 'gid://shopify/Product/15056700375422' }
-Oct 30 12:56:33  validate_product_quantity result: {
-Oct 30 12:56:33    product_id: 'gid://shopify/Product/15056700375422',
-Oct 30 12:56:33    quantity_increment: null,
-Oct 30 12:56:33    message: 'Product has no quantity requirements. Default quantity of 1 can be used.'
-Oct 30 12:56:33  }
-Oct 30 12:56:38  Calling storefront tool get_cart {
-Oct 30 12:56:38    cart_id: 'gid://shopify/Cart/c1-66330c6d752c2b242bb8487474949791?key=fa8913e951098d30d68033cf6b7b50f3'
-Oct 30 12:56:38  }
-Oct 30 12:53:35    },
-Oct 30 12:53:35    "product_type": "Nic Pouches",
-Oct 30 12:53:35    "tags": [
-Oct 30 12:53:35      "fruit",
-Oct 30 12:53:35      "mint",
-Oct 30 12:53:35      "watermelon"
-Oct 30 12:53:35    ],
-Oct 30 12:53:35    "variants": [
-Oct 30 12:53:35      {
-Oct 30 12:53:35        "variant_id": "gid://shopify/ProductVariant/55400791933310",
-Oct 30 12:53:35        "title": "Default Title",
-Oct 30 12:53:35        "price": "2.95",
-Oct 30 12:53:35        "currency": "GBP",
-Oct 30 12:53:35        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
-Oct 30 12:53:35        "available": true
-Oct 30 12:53:35      }
-Oct 30 12:53:35    ]
-Oct 30 12:53:35  }
-Oct 30 12:53:35  Product: on!®PLUS Watermelon Mint Regular 6mg - Please ensure MCP server returns metafields
-Oct 30 12:53:35  Formatted product: on!®PLUS Watermelon Mint Regular 6mg, increment: null
-Oct 30 12:53:35  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:53:35    "product_id": "gid://shopify/Product/15056700440958",
-Oct 30 12:53:35    "title": "on!®PLUS Watermelon Mint Strong 9mg",
-Oct 30 12:53:35    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a strong nicotine strength and includes 20 pouches per can.",
-Oct 30 12:53:35    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-strong-9mg",
-Oct 30 12:53:35    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:53:35    "price_range": {
-Oct 30 12:53:35      "min": "2.95",
-Oct 30 12:56:44  Calling storefront tool update_cart {
-Oct 30 12:56:44    add_items: [
-Oct 30 12:56:44      {
-Oct 30 12:56:44        product_variant_id: 'gid://shopify/ProductVariant/55400736261374',
-Oct 30 12:56:44        quantity: 5
-Oct 30 12:56:44      },
-Oct 30 12:56:44      {
-Oct 30 12:56:44        product_variant_id: 'gid://shopify/ProductVariant/55400791933310',
-Oct 30 12:56:44        quantity: 1
-Oct 30 12:56:44      }
-Oct 30 12:56:44    ]
-Oct 30 12:56:44  }
-Oct 30 12:56:48  Calling storefront tool search_shop_catalog {
-Oct 30 12:56:48    query: 'SKE Bar Kit Watermelon Strawberry',
-Oct 30 12:56:48    context: 'Need to find the correct variant ID for SKE Bar Kit Watermelon Strawberry to add to cart'
-Oct 30 12:56:48  }
-Oct 30 12:56:49  Processing product search result
-Oct 30 12:56:49  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:56:49    "product_id": "gid://shopify/Product/15389468819838",
-Oct 30 12:56:49    "title": "SKE Bar Kit Watermelon Strawberry",
-Oct 30 12:56:49    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceJuicy watermelon and sun-ripened strawberries swirl in a fruity fusion.",
-Oct 30 12:56:49    "url": "https://vapelocal.co.uk/products/ske-bar-kit-watermelon-strawberry",
-Oct 30 12:56:49    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
-Oct 30 12:56:49    "price_range": {
-Oct 30 12:56:49      "min": "1.88",
-Oct 30 12:56:49      "max": "1.88",
-Oct 30 12:56:49      "currency": "GBP"
-Oct 30 12:56:49    },
-Oct 30 12:56:49    "product_type": "Compliant 600 Puffs",
-Oct 30 12:56:49    "tags": [
-Oct 30 12:56:49      "600"
-Oct 30 12:56:49    ],
-Oct 30 12:53:35      "max": "2.95",
-Oct 30 12:53:35      "currency": "GBP"
-Oct 30 12:56:49    "variants": [
-Oct 30 12:56:49      {
-Oct 30 12:56:49        "variant_id": "gid://shopify/ProductVariant/55639317807486",
-Oct 30 12:53:35    },
-Oct 30 12:53:35    "product_type": "Nic Pouches",
-Oct 30 12:53:35    "tags": [
-Oct 30 12:53:35      "fruit",
-Oct 30 12:53:35      "mint",
-Oct 30 12:53:35      "watermelon"
-Oct 30 12:53:35    ],
-Oct 30 12:53:35    "variants": [
-Oct 30 12:53:35      {
-Oct 30 12:53:35        "variant_id": "gid://shopify/ProductVariant/55400792195454",
-Oct 30 12:53:35        "title": "Default Title",
-Oct 30 12:53:35        "price": "2.95",
-Oct 30 12:53:35        "currency": "GBP",
-Oct 30 12:53:35        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:53:35        "available": true
-Oct 30 12:53:35      }
-Oct 30 12:53:35    ]
-Oct 30 12:53:35  }
-Oct 30 12:53:35  Product: on!®PLUS Watermelon Mint Strong 9mg - Please ensure MCP server returns metafields
-Oct 30 12:53:35  Formatted product: on!®PLUS Watermelon Mint Strong 9mg, increment: null
-Oct 30 12:53:35  Found 3 products to display
-Oct 30 12:53:35  Added quantity_increment=5 to product in tool response
-Oct 30 12:53:35  Modified tool response with quantity_increment: "{\"products\":[{\"product_id\":\"gid://shopify/Product/15389468819838\",\"title\":\"SKE Bar Kit Watermelon Strawberry\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceJuicy watermelon and sun-ripened strawberries swirl in a fruity fusion.\",\"url\":\"https://vapelocal.co.uk/products/ske-bar-kit-watermelon-strawberry\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513\",\"
-Oct 30 12:53:38  Custom tool called: validate_product_quantity { product_id: 'gid://shopify/Product/15389468819838' }
-Oct 30 12:53:38  Found quantity_increment in config for gid://shopify/Product/15389468819838: 5
-Oct 30 12:53:38  validate_product_quantity result: {
-Oct 30 12:56:49        "title": "Default Title",
-Oct 30 12:56:49        "price": "1.88",
-Oct 30 12:56:49        "currency": "GBP",
-Oct 30 12:56:49        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513",
-Oct 30 12:56:49        "available": true
-Oct 30 12:56:49      }
-Oct 30 12:56:49    ]
-Oct 30 12:56:49  }
-Oct 30 12:56:49  Product: SKE Bar Kit Watermelon Strawberry - Please ensure MCP server returns metafields
-Oct 30 12:56:49  Found increment in config by product_id: 5
-Oct 30 12:56:49  Formatted product: SKE Bar Kit Watermelon Strawberry, increment: 5
-Oct 30 12:56:49  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:56:49    "product_id": "gid://shopify/Product/15056700375422",
-Oct 30 12:56:49    "title": "on!®PLUS Watermelon Mint Regular 6mg",
-Oct 30 12:56:49    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a regular nicotine strength and includes 20 pouches per can.",
-Oct 30 12:56:49    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-regular-6mg",
-Oct 30 12:56:49    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
-Oct 30 12:56:49    "price_range": {
-Oct 30 12:56:49      "min": "2.95",
-Oct 30 12:56:49      "max": "2.95",
-Oct 30 12:53:38    product_id: 'gid://shopify/Product/15389468819838',
-Oct 30 12:53:38    quantity_increment: 5,
-Oct 30 12:53:38    message: 'Product requires quantity in increments of 5. Use 5 or multiples (10, 15, etc.) when adding to cart.'
-Oct 30 12:53:38  }
-Oct 30 12:53:43  Calling storefront tool update_cart {
-Oct 30 12:53:43    add_items: [
-Oct 30 12:53:43      {
-Oct 30 12:53:43        product_variant_id: 'gid://shopify/ProductVariant/55639317807486',
-Oct 30 12:53:43        quantity: 5
-Oct 30 12:53:43      }
-Oct 30 12:53:43    ]
-Oct 30 12:53:43  }
-Oct 30 12:53:47  POST /chat 200 - - 88.346 ms
-Oct 30 12:56:49      "currency": "GBP"
-Oct 30 12:56:49    },
-Oct 30 12:56:49    "product_type": "Nic Pouches",
-Oct 30 12:56:49    "tags": [
-Oct 30 12:56:49      "fruit",
-Oct 30 12:56:49      "mint",
-Oct 30 12:56:49      "watermelon"
-Oct 30 12:56:49    ],
-Oct 30 12:56:49    "variants": [
-Oct 30 12:56:49      {
-Oct 30 12:56:49        "variant_id": "gid://shopify/ProductVariant/55400791933310",
-Oct 30 12:56:49        "title": "Default Title",
-Oct 30 12:56:49        "price": "2.95",
-Oct 30 12:56:49        "currency": "GBP",
-Oct 30 12:56:49        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0001_ON_Plus_Vinkel3_WaterlemonMint_Regular.webp?v=1750196613",
-Oct 30 12:56:49        "available": true
-Oct 30 12:56:49      }
-Oct 30 12:56:49    ]
-Oct 30 12:56:49  }
-Oct 30 12:56:49  Product: on!®PLUS Watermelon Mint Regular 6mg - Please ensure MCP server returns metafields
-Oct 30 12:56:49  Formatted product: on!®PLUS Watermelon Mint Regular 6mg, increment: null
-Oct 30 12:56:49  WARNING: Product has no metafield data. Structure: {
-Oct 30 12:56:49    "product_id": "gid://shopify/Product/15056700440958",
-Oct 30 12:56:49    "title": "on!®PLUS Watermelon Mint Strong 9mg",
-Oct 30 12:56:49    "description": "These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe On! brand offers the On! Plus Watermelon Mint Slim Normal, which incorporates a Watermelon and Mint flavour with a slim format. This product has a strong nicotine strength and includes 20 pouches per can.",
-Oct 30 12:56:49    "url": "https://vapelocal.co.uk/products/on-%C2%AEplus-watermelon-mint-strong-9mg",
-Oct 30 12:56:49    "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:56:49    "price_range": {
-Oct 30 12:56:49      "min": "2.95",
-Oct 30 12:56:49      "max": "2.95",
-Oct 30 12:56:49      "currency": "GBP"
-Oct 30 12:56:49    },
-Oct 30 12:56:49    "product_type": "Nic Pouches",
-Oct 30 12:56:49    "tags": [
-Oct 30 12:56:49      "fruit",
-Oct 30 12:56:49      "mint",
-Oct 30 12:56:49      "watermelon"
-Oct 30 12:56:49    ],
-Oct 30 12:56:49    "variants": [
-Oct 30 12:56:49      {
-Oct 30 12:56:49        "variant_id": "gid://shopify/ProductVariant/55400792195454",
-Oct 30 12:56:49        "title": "Default Title",
-Oct 30 12:56:49        "price": "2.95",
-Oct 30 12:56:49        "currency": "GBP",
-Oct 30 12:56:49        "image_url": "https://cdn.shopify.com/s/files/1/0904/7362/8030/files/onPLUSProductsTemplate_0000_ON_Plus_Vinkel3_WaterlemonMint_Strong.webp?v=1750196612",
-Oct 30 12:56:49        "available": true
-Oct 30 12:56:49      }
-Oct 30 12:56:49    ]
-Oct 30 12:56:49  }
-Oct 30 12:56:49  Product: on!®PLUS Watermelon Mint Strong 9mg - Please ensure MCP server returns metafields
-Oct 30 12:56:49  Formatted product: on!®PLUS Watermelon Mint Strong 9mg, increment: null
-Oct 30 12:56:49  Found 3 products to display
-Oct 30 12:56:49  Added quantity_increment=5 to product in tool response
-Oct 30 12:56:49  Modified tool response with quantity_increment: "{\"products\":[{\"product_id\":\"gid://shopify/Product/15389468819838\",\"title\":\"SKE Bar Kit Watermelon Strawberry\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceJuicy watermelon and sun-ripened strawberries swirl in a fruity fusion.\",\"url\":\"https://vapelocal.co.uk/products/ske-bar-kit-watermelon-strawberry\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0904/7362/8030/files/WATERMELON-STRAWBERRY__78046.1746651972.386.513.jpg?v=1750195513\",\"
-Oct 30 12:56:53  Calling storefront tool update_cart {
-Oct 30 12:56:53    add_items: [
-Oct 30 12:56:53      {
-Oct 30 12:56:53        product_variant_id: 'gid://shopify/ProductVariant/55639317807486',
-Oct 30 12:56:53        quantity: 5
-Oct 30 12:56:53      },
-Oct 30 12:56:53      {
-Oct 30 12:56:53        product_variant_id: 'gid://shopify/ProductVariant/55400791933310',
-Oct 30 12:56:53        quantity: 1
-Oct 30 12:56:53      }
-Oct 30 12:56:53    ]
-Oct 30 12:56:53  }
-Oct 30 12:57:25  POST /chat 200 - - 87.074 ms
+Oct 30 13:24:18  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 30 13:24:18  [remix-serve] http://localhost:8080 (http://10.244.55.22:8080)
+Oct 30 13:26:56  [shopify-app/INFO] Authenticating admin request | {shop: vltradeapp.myshopify.com}
+Oct 30 13:26:57  GET /app?embedded=1&hmac=5c993dcf953fde238c7fd093e26d350ebff1fa41abb560f6269842b80942e4d2&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvdmx0cmFkZWFwcA&id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tIiwiYXVkIjoiYmI3NzcwMzVhNWI0MmE2OThjNTNkNTA5NjQzMTI2YzUiLCJzdWIiOiIxMzA0NjEzNjg3MDIiLCJleHAiOjE3NjE4MzA4NzYsIm5iZiI6MTc2MTgzMDgxNiwiaWF0IjoxNzYxODMwODE2LCJqdGkiOiIxMGYzYjMzYi02ODRiLTRiZGItYTBlZS0xMDRkMjc4YzM2ZGUiLCJzaWQiOiJjYjJiNzBiNC05NGMzLTQzMzItYjJjZC05N2JlYjBkMmM2OGUiLCJzaWciOiI2Yzc3MzVhZTMxMzBhMDRjOWIwYzE0MjQ2MDVjNjg3MDA2NGI4ZjUzYzJmMThiNDY3MjQxMzY4MGFiY2NjYjhiIn0.BTaIRn4A3G9s0j_XA9jyr6AM9U0d-9Su4E1btu5x8F4&locale=en&session=3660ed59db61d18b058a03ceb291283ae137358af02c2c14a67f5bcde9913a6b&shop=vltradeapp.myshopify.com&timestamp=1761830816 200 - - 70.881 ms
+Oct 30 13:26:57  GET /api/broadcast/log 200 - - 72.690 ms
+Oct 30 13:27:00  [shopify-app/INFO] Authenticating admin request | {shop: null}
+Oct 30 13:27:00  Error syncing quantity increments: GraphqlQueryError: Field 'metafields' doesn't accept argument 'key'
+Oct 30 13:27:00      at throwFailedRequest (file:///workspace/node_modules/lib/clients/common.ts:76:11)
+Oct 30 13:27:00      at NewGraphqlClient.request (file:///workspace/node_modules/lib/clients/admin/graphql/client.ts:133:7)
+Oct 30 13:27:00      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Oct 30 13:27:00      at Object.query [as graphql] (file:///workspace/node_modules/@shopify/src/server/clients/admin/graphql.ts:24:27)
+Oct 30 13:27:00      at loader$g (file:///workspace/build/server/index.js?t=315532801000:589:22)
+Oct 30 13:27:00      at Object.callRouteLoader (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:59:16)
+Oct 30 13:27:00      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Oct 30 13:27:00      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Oct 30 13:27:00      at async Promise.all (index 0)
+Oct 30 13:27:00      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17) {
+Oct 30 13:27:00    response: Response {
+Oct 30 13:27:00      size: 0,
+Oct 30 13:27:00      Symbol(Body internals): {
+Oct 30 13:27:00        body: [ReadableStream],
+Oct 30 13:27:00        type: null,
+Oct 30 13:27:00        size: null,
+Oct 30 13:27:00        boundary: null,
+Oct 30 13:27:00        disturbed: true,
+Oct 30 13:27:00        error: null
+Oct 30 13:27:00      },
+Oct 30 13:27:00      Symbol(Response internals): {
+Oct 30 13:27:00        url: 'https://vltradeapp.myshopify.com/admin/api/unstable/graphql.json',
+Oct 30 13:27:00        status: 200,
+Oct 30 13:27:00        statusText: 'OK',
+Oct 30 13:27:00        headers: [Object],
+Oct 30 13:27:00        counter: 0,
+Oct 30 13:27:00        highWaterMark: 16384
+Oct 30 13:27:00      }
+Oct 30 13:27:00    },
+Oct 30 13:27:00    headers: {
+Oct 30 13:27:00      'Alt-Svc': [ 'h3=":443"; ma=86400' ],
+Oct 30 13:27:00      'Cf-Cache-Status': [ 'DYNAMIC' ],
+Oct 30 13:27:00      'Cf-Ray': [ '996b3f657c6eb54c-LHR' ],
+Oct 30 13:27:00      Connection: [ 'close' ],
+Oct 30 13:27:00      'Content-Encoding': [ 'gzip' ],
+Oct 30 13:27:00      'Content-Language': [ 'en' ],
+Oct 30 13:27:00      'Content-Security-Policy': [
+Oct 30 13:27:00        "default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' https://* shopify-pos://*; block-all-mixed-content; child-src 'self' https://* shopify-pos://*; connect-src 'self' wss://* https://*; frame-ancestors 'none'; img-src 'self' data: blob: https:; script-src https://cdn.shopify.com https://cdn.shopifycdn.net https://checkout.pci.shopifyinc.com https://checkout.pci.shopifyinc.com/build/75a428d/card_fields.js https://api.stripe.com https://mpsnare.iesnare.com https://appcenter.intuit.com https://www.paypal.com https://js.braintreegateway.com https://c.paypal.com https://maps.googleapis.com https://www.google-analytics.com https://v.shopify.com 'self' 'unsafe-inline' 'unsafe-eval'; upgrade-insecure-requests; report-uri /csp-report?source%5Baction%5D=query&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=admin%2Fgraphql&source%5Bsection%5D=admin_api&source%5Buuid%5D=82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820; report-to shopify-csp"
+Oct 30 13:27:00      ],
+Oct 30 13:27:00      'Content-Type': [ 'application/json; charset=utf-8' ],
+Oct 30 13:27:00      Date: [ 'Thu, 30 Oct 2025 13:27:00 GMT' ],
+Oct 30 13:27:00      Nel: [
+Oct 30 13:27:00        '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+Oct 30 13:27:00      ],
+Oct 30 13:27:00      'Referrer-Policy': [ 'origin-when-cross-origin' ],
+Oct 30 13:27:00      'Report-To': [
+Oct 30 13:27:00        '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=xNzR2lbPtuoeRful3Mn4uKhP%2BLzyEdW8vu%2FGxJYcYFc7Y6P9bZ3E5gh4VYWGS3GFOLdfXWsc%2F4ym%2Frdtc9JqZ3Zb5ADW0aFgINPX3Fc10NVc%2BDZntGXCZhyYDBGfZsms98D4yiStPUVV5w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+Oct 30 13:27:00      ],
+Oct 30 13:27:00      'Reporting-Endpoints': [
+Oct 30 13:27:00        'shopify-csp="/csp-report?source%5Baction%5D=query&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=admin%2Fgraphql&source%5Bsection%5D=admin_api&source%5Buuid%5D=82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820"'
+Oct 30 13:27:00      ],
+Oct 30 13:27:00      Server: [ 'cloudflare' ],
+Oct 30 13:27:00      'Server-Timing': [
+Oct 30 13:27:00        'processing;dur=72, verdict_flag_enabled;desc="count=97";dur=4.837, graphql;desc="admin/query/other", _y;desc="41ef65d3-56c0-4964-8500-98b33d7a61da", _s;desc="31f00a33-1c24-4e94-b66d-00e7367402bc", cfRequestDuration;dur=125.000000'
+Oct 30 13:27:00      ],
+Oct 30 13:27:00      'Strict-Transport-Security': [ 'max-age=7889238' ],
+Oct 30 13:27:00      'Transfer-Encoding': [ 'chunked' ],
+Oct 30 13:27:00      Vary: [ 'Accept-Encoding' ],
+Oct 30 13:27:00      'X-Content-Type-Options': [ 'nosniff' ],
+Oct 30 13:27:00      'X-Dc': [ 'gcp-europe-west4,gcp-europe-west4,gcp-europe-west4' ],
+Oct 30 13:27:00      'X-Download-Options': [ 'noopen' ],
+Oct 30 13:27:00      'X-Frame-Options': [ 'DENY' ],
+Oct 30 13:27:00      'X-Permitted-Cross-Domain-Policies': [ 'none' ],
+Oct 30 13:27:00      'X-Request-Id': [ '82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820' ],
+Oct 30 13:27:00      'X-Shardid': [ '381' ],
+Oct 30 13:27:00      'X-Shopid': [ '90473628030' ],
+Oct 30 13:27:00      'X-Shopify-Api-Version': [ 'unstable' ],
+Oct 30 13:27:00      'X-Sorting-Hat-Podid': [ '381' ],
+Oct 30 13:27:00      'X-Sorting-Hat-Shopid': [ '90473628030' ],
+Oct 30 13:27:00      'X-Stats-Apiclientid': [ '275403014145' ],
+Oct 30 13:27:00      'X-Stats-Apipermissionid': [ '911903490430' ],
+Oct 30 13:27:00      'X-Stats-Userid': [ '' ],
+Oct 30 13:27:00      'X-Xss-Protection': [ '1; mode=block' ]
+Oct 30 13:27:00    },
+Oct 30 13:27:00    body: {
+Oct 30 13:27:00      headers: {
+Oct 30 13:27:00        'alt-svc': 'h3=":443"; ma=86400',
+Oct 30 13:27:00        'cf-cache-status': 'DYNAMIC',
+Oct 30 13:27:00        'cf-ray': '996b3f657c6eb54c-LHR',
+Oct 30 13:27:00        connection: 'close',
+Oct 30 13:27:00        'content-encoding': 'gzip',
+Oct 30 13:27:00        'content-language': 'en',
+Oct 30 13:27:00        'content-security-policy': "default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' https://* shopify-pos://*; block-all-mixed-content; child-src 'self' https://* shopify-pos://*; connect-src 'self' wss://* https://*; frame-ancestors 'none'; img-src 'self' data: blob: https:; script-src https://cdn.shopify.com https://cdn.shopifycdn.net https://checkout.pci.shopifyinc.com https://checkout.pci.shopifyinc.com/build/75a428d/card_fields.js https://api.stripe.com https://mpsnare.iesnare.com https://appcenter.intuit.com https://www.paypal.com https://js.braintreegateway.com https://c.paypal.com https://maps.googleapis.com https://www.google-analytics.com https://v.shopify.com 'self' 'unsafe-inline' 'unsafe-eval'; upgrade-insecure-requests; report-uri /csp-report?source%5Baction%5D=query&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=admin%2Fgraphql&source%5Bsection%5D=admin_api&source%5Buuid%5D=82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820; report-to shopify-csp",
+Oct 30 13:27:00        'content-type': 'application/json; charset=utf-8',
+Oct 30 13:27:00        date: 'Thu, 30 Oct 2025 13:27:00 GMT',
+Oct 30 13:27:00        nel: '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}',
+Oct 30 13:27:00        'referrer-policy': 'origin-when-cross-origin',
+Oct 30 13:27:00        'report-to': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=xNzR2lbPtuoeRful3Mn4uKhP%2BLzyEdW8vu%2FGxJYcYFc7Y6P9bZ3E5gh4VYWGS3GFOLdfXWsc%2F4ym%2Frdtc9JqZ3Zb5ADW0aFgINPX3Fc10NVc%2BDZntGXCZhyYDBGfZsms98D4yiStPUVV5w%3D%3D"}],"group":"cf-nel","max_age":604800}',
+Oct 30 13:27:00        'reporting-endpoints': 'shopify-csp="/csp-report?source%5Baction%5D=query&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=admin%2Fgraphql&source%5Bsection%5D=admin_api&source%5Buuid%5D=82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820"',
+Oct 30 13:27:00        server: 'cloudflare',
+Oct 30 13:27:00        'server-timing': [Array],
+Oct 30 13:27:00        'strict-transport-security': 'max-age=7889238',
+Oct 30 13:27:00        'transfer-encoding': 'chunked',
+Oct 30 13:27:00        vary: 'Accept-Encoding',
+Oct 30 13:27:00        'x-content-type-options': 'nosniff',
+Oct 30 13:27:00        'x-dc': 'gcp-europe-west4,gcp-europe-west4,gcp-europe-west4',
+Oct 30 13:27:00        'x-download-options': 'noopen',
+Oct 30 13:27:00        'x-frame-options': 'DENY',
+Oct 30 13:27:00        'x-permitted-cross-domain-policies': 'none',
+Oct 30 13:27:00        'x-request-id': '82d8c45e-73c1-449f-aa56-f27c3f809325-1761830820',
+Oct 30 13:27:00        'x-shardid': '381',
+Oct 30 13:27:00        'x-shopid': '90473628030',
+Oct 30 13:27:00        'x-shopify-api-version': 'unstable',
+Oct 30 13:27:00        'x-sorting-hat-podid': '381',
+Oct 30 13:27:00        'x-sorting-hat-shopid': '90473628030',
+Oct 30 13:27:00        'x-stats-apiclientid': '275403014145',
+Oct 30 13:27:00        'x-stats-apipermissionid': '911903490430',
+Oct 30 13:27:00        'x-stats-userid': '',
+Oct 30 13:27:00        'x-xss-protection': '1; mode=block'
+Oct 30 13:27:00      },
+Oct 30 13:27:00      errors: {
+Oct 30 13:27:00        networkStatusCode: 200,
+Oct 30 13:27:00        message: "GraphQL Client: An error occurred while fetching from the API. Review 'graphQLErrors' for details.",
+Oct 30 13:27:00        graphQLErrors: [Array],
+Oct 30 13:27:00        response: [Response]
+Oct 30 13:27:00      }
+Oct 30 13:27:00    }
+Oct 30 13:27:00  }
