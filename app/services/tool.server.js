@@ -4,6 +4,7 @@
  */
 import { saveMessage } from "../db.server";
 import AppConfig from "./config.server";
+import quantityIncrements from "../config/quantity-increments.json";
 
 /**
  * Creates a tool service instance
@@ -106,13 +107,27 @@ export function createToolService() {
         ? `${product.variants[0].currency} ${product.variants[0].price}`
         : 'Price not available');
 
-    // Extract quantity increment from custom metafield
+    // Extract quantity increment from custom metafield or config
     let quantity_increment = null;
 
     // Log the full product structure for debugging (only if no metafield found)
     if (!product.metafield && !product.metafields) {
       console.log('WARNING: Product has no metafield data. Structure:', JSON.stringify(product, null, 2));
       console.log('Product:', product.title, '- Please ensure MCP server returns metafields');
+    }
+    
+    // Fallback: Check local configuration file for product ID or title
+    if (!quantity_increment) {
+      const productId = product.product_id || product.id;
+      const productTitle = product.title;
+      
+      if (quantityIncrements[productId]) {
+        quantity_increment = quantityIncrements[productId];
+        console.log(`Found increment in config by product_id: ${quantity_increment}`);
+      } else if (quantityIncrements[productTitle]) {
+        quantity_increment = quantityIncrements[productTitle];
+        console.log(`Found increment in config by product title: ${quantity_increment}`);
+      }
     }
 
     // Check custom metafield for quantity increment
