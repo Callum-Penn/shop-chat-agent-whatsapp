@@ -11,12 +11,19 @@ export async function loader({ request }) {
   const { admin } = await authenticate.admin(request);
 
   try {
-    // Fetch all products with quantity_increment metafield
-    const response = await admin.graphql(`
-      #graphql
-      query getProductsWithQuantityIncrement {
-        products(first: 250) {
+    // Build quantity increments map (across all pages)
+    const quantityIncrements = {};
+
+    // Paginate through all products (250 per page)
+    let hasNextPage = true;
+    let cursor = null;
+
+    const query = `#graphql
+      query getProductsWithQuantityIncrement($cursor: String) {
+        products(first: 250, after: $cursor) {
+          pageInfo { hasNextPage }
           edges {
+            cursor
             node {
               id
               title
@@ -39,34 +46,40 @@ export async function loader({ request }) {
           }
         }
       }
-    `);
+    `;
 
-    const data = await response.json();
-    const products = data.data.products.edges;
+    while (hasNextPage) {
+      const response = await admin.graphql(query, { variables: { cursor } });
+      const data = await response.json();
+      const productConnection = data?.data?.products;
+      const edges = productConnection?.edges || [];
 
-    // Build quantity increments map
-    const quantityIncrements = {};
-    
-    for (const { node: product } of products) {
-      // Product-level metafield
-      if (product.metafield && product.metafield.value != null) {
-        const increment = parseInt(product.metafield.value, 10);
-        if (!isNaN(increment)) {
-          quantityIncrements[product.id] = increment;
+      for (const edge of edges) {
+        const product = edge.node;
+
+        // Product-level metafield
+        if (product.metafield && product.metafield.value != null) {
+          const increment = parseInt(product.metafield.value, 10);
+          if (!isNaN(increment)) {
+            quantityIncrements[product.id] = increment;
+          }
         }
-      }
 
-      // Variant-level metafield
-      if (product.variants && product.variants.edges) {
-        for (const { node: variant } of product.variants.edges) {
-          if (variant.metafield && variant.metafield.value != null) {
-            const increment = parseInt(variant.metafield.value, 10);
-            if (!isNaN(increment)) {
-              quantityIncrements[variant.id] = increment;
+        // Variant-level metafield
+        if (product.variants && product.variants.edges) {
+          for (const { node: variant } of product.variants.edges) {
+            if (variant.metafield && variant.metafield.value != null) {
+              const increment = parseInt(variant.metafield.value, 10);
+              if (!isNaN(increment)) {
+                quantityIncrements[variant.id] = increment;
+              }
             }
           }
         }
       }
+
+      hasNextPage = Boolean(productConnection?.pageInfo?.hasNextPage);
+      cursor = edges.length > 0 ? edges[edges.length - 1].cursor : null;
     }
 
     // Read existing config file
