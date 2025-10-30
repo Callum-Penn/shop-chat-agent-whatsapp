@@ -109,14 +109,41 @@ export function createToolService() {
     // Extract quantity increment from custom metafield
     let quantity_increment = null;
 
+    // Log the full product structure for debugging
+    console.log('Full product structure for debugging:', JSON.stringify(product, null, 2));
+
     // Check custom metafield for quantity increment
     if (product.metafield?.custom?.quantity_increment) {
       quantity_increment = product.metafield.custom.quantity_increment;
+      console.log('Found increment in product.metafield.custom.quantity_increment:', quantity_increment);
     }
 
     // Check if metafield is at root level (alternate format)
     if (!quantity_increment && product.metafield?.quantity_increment) {
       quantity_increment = product.metafield.quantity_increment;
+      console.log('Found increment in product.metafield.quantity_increment:', quantity_increment);
+    }
+
+    // Check metafields array format
+    if (!quantity_increment && product.metafields && Array.isArray(product.metafields)) {
+      const metafield = product.metafields.find(m => m.key === 'quantity_increment' || m.key === 'custom.quantity_increment');
+      if (metafield) {
+        quantity_increment = metafield.value;
+        console.log('Found increment in metafields array:', quantity_increment);
+      }
+    }
+
+    // Check variant metafields
+    if (!quantity_increment && product.variants && product.variants.length > 0) {
+      const variant = product.variants[0];
+      if (variant.metafield?.custom?.quantity_increment) {
+        quantity_increment = variant.metafield.custom.quantity_increment;
+        console.log('Found increment in variant.metafield.custom.quantity_increment:', quantity_increment);
+      }
+      if (variant.metafield?.quantity_increment) {
+        quantity_increment = variant.metafield.quantity_increment;
+        console.log('Found increment in variant.metafield.quantity_increment:', quantity_increment);
+      }
     }
 
     const formattedProduct = {
