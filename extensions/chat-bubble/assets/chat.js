@@ -1445,11 +1445,6 @@
         this.UI.checkUnreadMessages();
       }, 30000);
 
-      // Set up periodic recent message checking (every 10 seconds) when chat is open
-      setInterval(() => {
-        this.UI.checkRecentMessages();
-      }, 10000);
-
       // Set up customer ID detection retry for cross-device sync
       this.setupCustomerIdDetectionRetry();
     },

@@ -249,31 +249,26 @@ async function handleChatSession({
           },
 
           // Handle complete messages
-          onMessage: async (message) => {
+          onMessage: (message) => {
             conversationHistory.push({
               role: message.role,
               content: message.content
             });
 
-            // Save message to database and wait for the ID to track it
-            try {
-              const savedMessage = await saveMessage(conversationId, message.role, JSON.stringify(message.content));
-              console.log('[SERVER DEBUG] Message saved with id:', savedMessage.id, 'createdAt:', savedMessage.createdAt);
-              
-              // Send completion message with ID and timestamp from database
-              stream.sendMessage({ 
-                type: 'message_complete',
-                messageId: savedMessage.id,
-                timestamp: savedMessage.createdAt
+            // Save message in background and send completion immediately
+            saveMessage(conversationId, message.role, JSON.stringify(message.content))
+              .then(savedMessage => {
+                console.log('[SERVER DEBUG] Message saved with id:', savedMessage.id, 'createdAt:', savedMessage.createdAt);
+              })
+              .catch(error => {
+                console.error("Error saving message to database:", error);
               });
-            } catch (error) {
-              console.error("Error saving message to database:", error);
-              // Send completion without ID as fallback
-              stream.sendMessage({ 
-                type: 'message_complete',
-                timestamp: new Date().toISOString()
-              });
-            }
+
+            // Send completion message immediately - don't wait for save
+            stream.sendMessage({ 
+              type: 'message_complete',
+              timestamp: new Date().toISOString()
+            });
           },
 
           // Handle tool use requests
