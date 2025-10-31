@@ -90,6 +90,7 @@
     UI: {
       elements: {},
       isMobile: false,
+      isStreaming: false, // Track if a response is currently streaming
 
       /**
        * Initialize UI elements and event listeners
@@ -365,6 +366,9 @@
       checkRecentMessages: function() {
         const conversationId = CookieUtils.get('shopAiConversationId');
         if (!conversationId) return;
+
+        // Don't check if actively streaming a response
+        if (this.isStreaming) return;
 
         // Check if chat window is open
         const { chatWindow } = this.elements;
@@ -734,6 +738,9 @@
       streamResponse: async function(userMessage, conversationId, messagesContainer) {
         let currentMessageElement = null;
 
+        // Set streaming flag to prevent poll from adding duplicate messages
+        ShopAIChat.UI.isStreaming = true;
+
         try {
           const promptType = window.shopChatConfig?.promptType || "standardAssistant";
           // Prepare request body with customer ID if available
@@ -795,6 +802,9 @@
           ShopAIChat.UI.removeTypingIndicator();
           ShopAIChat.Message.add("Sorry, I couldn't process your request. Please try again later.",
             'assistant', messagesContainer);
+        } finally {
+          // Clear streaming flag when done
+          ShopAIChat.UI.isStreaming = false;
         }
       },
 

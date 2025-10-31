@@ -156,7 +156,8 @@ async function handleChatSession({
     shopDomain,
     conversationId,
     shopId,
-    customerMcpEndpoint
+    customerMcpEndpoint,
+    'web' // Web chat channel - don't include send_order_template tool
   );
 
   try {

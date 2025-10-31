@@ -24,7 +24,7 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId) {
     console.log('WhatsApp: Using hardcoded customer MCP endpoint for vapelocal.co.uk');
   }
   
-  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint);
+  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint, 'whatsapp');
   
   // Connect to MCP servers once and cache
   try {

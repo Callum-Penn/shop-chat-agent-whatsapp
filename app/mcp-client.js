@@ -13,15 +13,20 @@ class MCPClient {
    * @param {string} hostUrl - The base URL for the shop
    * @param {string} conversationId - ID for the current conversation
    * @param {string} shopId - ID of the Shopify shop
+   * @param {string} customerMcpEndpoint - Customer MCP endpoint
+   * @param {string} channel - Channel type: 'web' or 'whatsapp'
    */
-  constructor(hostUrl, conversationId, shopId, customerMcpEndpoint) {
+  constructor(hostUrl, conversationId, shopId, customerMcpEndpoint, channel = 'web') {
     this.tools = [];
     this.customerTools = [];
     this.storefrontTools = [];
     
     // Add custom tools that aren't from MCP servers
-    this.customTools = [
-      {
+    // Only add send_order_template for WhatsApp channel
+    this.customTools = [];
+    
+    if (channel === 'whatsapp') {
+      this.customTools.push({
         name: "send_order_template",
         description: "Send a spreadsheet order template to the customer via WhatsApp. Use this when customers ask about bestsellers, want to place bulk orders, or need an order form. The template includes business details fields and a product list where they can enter quantities.",
         input_schema: {
@@ -39,30 +44,32 @@ class MCPClient {
           },
           required: ["template_type"]
         }
-      },
-      {
-        name: "validate_product_quantity",
-        description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
-        input_schema: {
-          type: "object",
-          properties: {
-            product_id: {
-              type: "string",
-              description: "The product ID to check (can be GID or product title)"
-            },
-            product_title: {
-              type: "string",
-              description: "Optional product title to check if ID not found"
-            },
-            variant_id: {
-              type: "string",
-              description: "Optional variant ID to check variant-level increment"
-            }
+      });
+    }
+    
+    this.customTools.push({
+      name: "validate_product_quantity",
+      description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
+      input_schema: {
+        type: "object",
+        properties: {
+          product_id: {
+            type: "string",
+            description: "The product ID to check (can be GID or product title)"
           },
-          required: ["product_id"]
-        }
+          product_title: {
+            type: "string",
+            description: "Optional product title to check if ID not found"
+          },
+          variant_id: {
+            type: "string",
+            description: "Optional variant ID to check variant-level increment"
+          }
+        },
+        required: ["product_id"]
       }
-    ];
+    });
+    
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
     this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
 
