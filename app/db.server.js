@@ -209,9 +209,24 @@ export async function saveMessage(conversationId, role, content) {
     });
 
     // Update conversation's lastMessageAt timestamp for follow-up tracking
+    // Reset follow-up flags if this is a user message (to allow re-triggering)
+    const existingConv = await prisma.conversation.findUnique({
+      where: { id: conversationId },
+      select: { metadata: true }
+    });
+    
+    const updateData = { lastMessageAt: new Date() };
+    if (role === 'user') {
+      // Reset follow-up flags when user sends a message, preserving other metadata
+      updateData.metadata = {
+        ...(existingConv?.metadata || {}),
+        followup1_sent: false,
+        followup2_sent: false
+      };
+    }
     await prisma.conversation.update({
       where: { id: conversationId },
-      data: { lastMessageAt: new Date() }
+      data: updateData
     });
 
     return message;
