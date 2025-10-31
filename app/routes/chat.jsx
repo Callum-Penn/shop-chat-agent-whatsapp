@@ -249,32 +249,31 @@ async function handleChatSession({
           },
 
           // Handle complete messages
-          onMessage: (message) => {
+          onMessage: async (message) => {
             conversationHistory.push({
               role: message.role,
               content: message.content
             });
 
-            // Start saving message in background and send completion immediately with timestamp from current time
-            const savePromise = saveMessage(conversationId, message.role, JSON.stringify(message.content))
-              .then(savedMessage => {
-                console.log('[SERVER DEBUG] Message saved with createdAt:', savedMessage.createdAt);
-                // Update the timestamp if save completed
-                return savedMessage.createdAt;
-              })
-              .catch((error) => {
-                console.error("Error saving message to database:", error);
-                return null;
+            // Save message to database and wait for the ID to track it
+            try {
+              const savedMessage = await saveMessage(conversationId, message.role, JSON.stringify(message.content));
+              console.log('[SERVER DEBUG] Message saved with id:', savedMessage.id, 'createdAt:', savedMessage.createdAt);
+              
+              // Send completion message with ID and timestamp from database
+              stream.sendMessage({ 
+                type: 'message_complete',
+                messageId: savedMessage.id,
+                timestamp: savedMessage.createdAt
               });
-
-            const currentTime = new Date().toISOString();
-            console.log('[SERVER DEBUG] Sending message_complete with timestamp:', currentTime);
-            
-            // Send completion message immediately - don't wait for save
-            stream.sendMessage({ 
-              type: 'message_complete',
-              timestamp: currentTime // Use current time as initial timestamp
-            });
+            } catch (error) {
+              console.error("Error saving message to database:", error);
+              // Send completion without ID as fallback
+              stream.sendMessage({ 
+                type: 'message_complete',
+                timestamp: new Date().toISOString()
+              });
+            }
           },
 
           // Handle tool use requests

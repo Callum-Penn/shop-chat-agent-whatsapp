@@ -1,48 +1,391 @@
-service-worker.js?v=100566867923856140661758794523:3 Uncaught ReferenceError: caches is not defined
-    at service-worker.js?v=100566867923856140661758794523:3:5
-(anonymous) @ service-worker.js?v=100566867923856140661758794523:3
-service-worker.js?v=100566867923856140661749040826:3 Uncaught ReferenceError: caches is not defined
-    at service-worker.js?v=100566867923856140661749040826:3:5
-(anonymous) @ service-worker.js?v=100566867923856140661749040826:3
-frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at frame_ant.js:2:9916
-    at frame_ant.js:2:14751
-    at frame_ant.js:2:14755
-    at frame_ant.js:2:14759
-frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at frame_ant.js:2:9916
-    at frame_ant.js:2:14751
-    at frame_ant.js:2:14755
-    at frame_ant.js:2:14759
 theme-hot-reload.js:317 [HotReload] CLI hot reload disabled - No hot reload port specified.
 cart.js:1 Uncaught SyntaxError: Identifier 'CartBatchManager' has already been declared (at cart.js:1:1)
 cart-drawer.js:119 Uncaught ReferenceError: CartItems is not defined
     at cart-drawer.js:119:31
-chat.js:1366 Customer ID detected via window.customerId: 23312945217918
-chat.js:1405 Using customer-based conversation ID for cross-device sync: web_customer_23312945217918
-chat.js:1029 Fetching history from: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=web_customer_23312945217918
+(anonymous) @ cart-drawer.js:119
+frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
+    at frame_ant.js:2:9916
+    at frame_ant.js:2:14751
+    at frame_ant.js:2:14755
+    at frame_ant.js:2:14759
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
+    at frame_ant.js:2:9916
+    at frame_ant.js:2:14751
+    at frame_ant.js:2:14755
+    at frame_ant.js:2:14759
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+(anonymous) @ frame_ant.js:2
+chat.js:1370 Customer ID detected via window.customerId: 23312945217918
+chat.js:1409 Using customer-based conversation ID for cross-device sync: web_customer_23312945217918
+chat.js:1033 Fetching history from: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=web_customer_23312945217918
+frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
+    at h (frame.js:2:755)
+    at Generator.<anonymous> (frame.js:2:2092)
+    at Generator.next (frame.js:2:1118)
+    at e (frame.js:2:7726)
+    at o (frame.js:2:7929)
+h @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+e @ frame.js:2
+o @ frame.js:2
+Promise.then
+e @ frame.js:2
+o @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+r @ frame.js:2
+e @ frame.js:2
+e @ frame.js:2
+value @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
+    at h (frame.js:2:755)
+    at Generator.<anonymous> (frame.js:2:2092)
+    at Generator.next (frame.js:2:1118)
+    at e (frame.js:2:7726)
+    at o (frame.js:2:7929)
+h @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+e @ frame.js:2
+o @ frame.js:2
+Promise.then
+e @ frame.js:2
+o @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+r @ frame.js:2
+e @ frame.js:2
+e @ frame.js:2
+value @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+playNotificationSound @ chat.js:79
+add @ chat.js:505
+(anonymous) @ chat.js:1071
+fetchChatHistory @ chat.js:1061
+await in fetchChatHistory
+init @ chat.js:1432
+(anonymous) @ chat.js:1832
+chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+playNotificationSound @ chat.js:79
+add @ chat.js:505
+(anonymous) @ chat.js:1071
+fetchChatHistory @ chat.js:1061
+await in fetchChatHistory
+init @ chat.js:1432
+(anonymous) @ chat.js:1832
+chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+playNotificationSound @ chat.js:79
+add @ chat.js:505
+(anonymous) @ chat.js:1071
+fetchChatHistory @ chat.js:1061
+await in fetchChatHistory
+init @ chat.js:1432
+(anonymous) @ chat.js:1832
+chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+playNotificationSound @ chat.js:79
+add @ chat.js:505
+(anonymous) @ chat.js:1071
+fetchChatHistory @ chat.js:1061
+await in fetchChatHistory
+init @ chat.js:1432
+(anonymous) @ chat.js:1832
 modern/?company_location_changed=true:33 🚀 Banner tracking: GA4 gtag.js script tag created
 modern/?company_location_changed=true:69 🚀 Banner tracking: GTM script tag created
 modern/?company_location_changed=true:88 🚀 Banner Revenue Tracking Pixel: Script loaded with GTM
 modern/?company_location_changed=true:251 ✅ Banner tracking: Subscribed to checkout_completed events
-frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
+Refused to frame 'https://shop.app/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
+
+?company_location_changed=true:6482 ServiceWorker registration successful with scope:  https://vapelocal.co.uk/cdn/shop/t/9/assets/
+pushowl-shopify-main.js:1 [PushOwl Web Push Notifications] v2025-10-14 5PMIST starting up
+service-worker.js?v=…56140661756222897:1 Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
+Promise.then
+(anonymous) @ service-worker.js?v=100566867923856140661756222897:4
+Promise.then
+(anonymous) @ service-worker.js?v=100566867923856140661756222897:3
 modern/?company_location_changed=true:84 ✅ Banner tracking: Consent Mode updated
 frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
     at h (frame.js:2:755)
@@ -50,28 +393,441 @@ frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage
     at Generator.next (frame.js:2:1118)
     at e (frame.js:2:7726)
     at o (frame.js:2:7929)
+h @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+e @ frame.js:2
+o @ frame.js:2
+Promise.then
+e @ frame.js:2
+o @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+r @ frame.js:2
+e @ frame.js:2
+e @ frame.js:2
+value @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+t @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
+    at h (frame.js:2:755)
+    at Generator.<anonymous> (frame.js:2:2092)
+    at Generator.next (frame.js:2:1118)
+    at e (frame.js:2:7726)
+    at o (frame.js:2:7929)
+h @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+e @ frame.js:2
+o @ frame.js:2
+Promise.then
+e @ frame.js:2
+o @ frame.js:2
+(anonymous) @ frame.js:2
+(anonymous) @ frame.js:2
+r @ frame.js:2
+e @ frame.js:2
+e @ frame.js:2
+value @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+Promise.then
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+setTimeout
+(anonymous) @ frame_start.js:2
+p @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+t @ frame_start.js:2
+u @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+r @ frame_start.js:2
+t @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
+(anonymous) @ frame_start.js:2
 modern/?company_location_changed=true:58 ✅ Banner tracking: GTM script loaded
- In a sandboxed environment, addEventListener may not behave as expected.
-(anonymous) @ s1c73a1f4wd4cd26eap9…918bmbfac1f57m.js:1
+s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1 In a sandboxed environment, addEventListener may not behave as expected.
+(anonymous) @ s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1
+Pc @ js?id=G-FX30R797CY:215
+KH @ js?id=G-FX30R797CY:784
+LH @ js?id=G-FX30R797CY:786
+(anonymous) @ js?id=G-FX30R797CY:323
+k.apply @ js?id=G-FX30R797CY:230
+Ya @ js?id=G-FX30R797CY:193
+yd.evaluate @ js?id=G-FX30R797CY:232
+Td @ js?id=G-FX30R797CY:247
+k.apply @ js?id=G-FX30R797CY:230
+Ya @ js?id=G-FX30R797CY:193
+Xa @ js?id=G-FX30R797CY:192
+(anonymous) @ js?id=G-FX30R797CY:254
+k.apply @ js?id=G-FX30R797CY:230
+Ya @ js?id=G-FX30R797CY:193
+k.pp @ js?id=G-FX30R797CY:195
+cf @ js?id=G-FX30R797CY:265
+(anonymous) @ js?id=G-FX30R797CY:706
+dg @ js?id=G-FX30R797CY:280
+e @ js?id=G-FX30R797CY:653
+bA @ js?id=G-FX30R797CY:654
+fA @ js?id=G-FX30R797CY:659
+nB @ js?id=G-FX30R797CY:682
+b.push @ js?id=G-FX30R797CY:687
+gtag @ modern/?company_location_changed=true:16
+script.onload @ modern/?company_location_changed=true:25
+script
+(anonymous) @ modern/?company_location_changed=true:21
+oe @ s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1
+b @ s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1
+o @ s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1
 modern/?company_location_changed=true:27 ✅ Banner tracking: GA4 gtag.js loaded and configured
-?company_location_changed=true:6482 ServiceWorker registration successful with scope:  https://vapelocal.co.uk/cdn/shop/t/9/assets/
-service-worker.js?v=…56140661756222897:1 Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
-Promise.then
-(anonymous) @ service-worker.js?v=100566867923856140661756222897:4
-Promise.then
-(anonymous) @ service-worker.js?v=100566867923856140661756222897:3
-Refused to frame 'https://shop.app/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
-
-pushowl-shopify-main.js:1 [PushOwl Web Push Notifications] v2025-10-14 5PMIST starting up
 modern/?company_location_changed=true:61 ✅ Banner tracking: GTM container initialized
-?company_location_changed=true:1 Specifying 'overflow: visible' on img, video and canvas tags may cause them to produce visual content outside of the element bounds. See https://github.com/WICG/view-transitions/blob/main/debugging_overflow_on_images.md for details.
+wishlist.js:181 No wishlist or favorites button found in click path
+chat.js:464 Reset API response status: 200
+chat.js:465 Reset API response headers: Headers {}
+chat.js:469 Reset API response: {success: true, message: 'Chat history cleared successfully'}
+chat.js:477 Chat reset successfully
 chat.js:751 [STREAM DEBUG] Starting stream, setting isStreaming = true
 chat.js:373 [POLL DEBUG] Skipping poll: isStreaming = true
-chat.js:853 [STREAM DEBUG] message_complete received, setting lastMessageTimestamp to: 2025-10-31T18:04:25.010Z
+chat.js:853 [STREAM DEBUG] message_complete received, setting lastMessageTimestamp to: 2025-10-31T18:13:26.265Z
 chat.js:817 [STREAM DEBUG] Stream complete, setting isStreaming = false
-chat.js:386 [POLL DEBUG] Checking for recent messages since: 2025-10-31T18:04:25.010Z
+chat.js:386 [POLL DEBUG] Checking for recent messages since: 2025-10-31T18:13:26.265Z
 chat.js:975 [POLL DEBUG] Checking 1 messages from poll
-chat.js:992 [POLL DEBUG] Adding message: Hello! What can I help you find today? Are you loo...
-chat.js:392 [POLL DEBUG] Updated lastMessageTimestamp from 2025-10-31T18:04:25.010Z to 2025-10-31T18:04:25.017Z
-chat.js:386 [POLL DEBUG] Checking for recent messages since: 2025-10-31T18:04:25.017Z
-chat.js:395 [POLL DEBUG] No new messages, timestamp unchanged: 2025-10-31T18:04:25.017Z
+chat.js:977 [POLL DEBUG] Message has id: cmhf694sj0003tj4mi6z1xsrk
+chat.js:978 [POLL DEBUG] displayedMessageIds: (6) ['cmhf5vvgi0001z94n5k1s1cv9', 'cmhf5vxih0003z94n8pwyqypl', 'cmhf5xh9z02rwvt4nutwso6dz', 'cmhf5xj5l02ryvt4n0vv0wotz', 'cmhf629r802s0vt4nnfqy0gv6', 'cmhf64wtf02s2vt4n45gqe8to']
+chat.js:989 [POLL DEBUG] Added message id to displayedMessageIds: cmhf694sj0003tj4mi6z1xsrk
+chat.js:996 [POLL DEBUG] Adding message: Hello! I'm Zara, your sales assistant. What can I ...
+chat.js:392 [POLL DEBUG] Updated lastMessageTimestamp from 2025-10-31T18:13:26.265Z to 2025-10-31T18:13:26.276Z
+chat.js:386 [POLL DEBUG] Checking for recent messages since: 2025-10-31T18:13:26.276Z
+chat.js:395 [POLL DEBUG] No new messages, timestamp unchanged: 2025-10-31T18:13:26.276Z
