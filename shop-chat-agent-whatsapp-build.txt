@@ -1,92 +1,225 @@
-service-worker.js?v=100566867923856140661758794523:3 Uncaught ReferenceError: caches is not defined
-    at service-worker.js?v=100566867923856140661758794523:3:5
-(anonymous) @ service-worker.js?v=100566867923856140661758794523:3
-service-worker.js?v=100566867923856140661749040826:3 Uncaught ReferenceError: caches is not defined
-    at service-worker.js?v=100566867923856140661749040826:3:5
-(anonymous) @ service-worker.js?v=100566867923856140661749040826:3
-theme-hot-reload.js:317 [HotReload] CLI hot reload disabled - No hot reload port specified.
-cart.js:1 Uncaught SyntaxError: Identifier 'CartBatchManager' has already been declared (at cart.js:1:1)
-cart-drawer.js:119 Uncaught ReferenceError: CartItems is not defined
-    at cart-drawer.js:119:31
-chat.js:1349 Customer ID detected via window.customerId: 23312945217918
-chat.js:1388 Using customer-based conversation ID for cross-device sync: web_customer_23312945217918
-chat.js:1017 Fetching history from: https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=web_customer_23312945217918
-frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at frame_ant.js:2:9916
-    at frame_ant.js:2:14751
-    at frame_ant.js:2:14755
-    at frame_ant.js:2:14759
-frame_ant.js:2 Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at frame_ant.js:2:9916
-    at frame_ant.js:2:14751
-    at frame_ant.js:2:14755
-    at frame_ant.js:2:14759
-chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
-playNotificationSound @ chat.js:79
-chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
-playNotificationSound @ chat.js:79
-chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
-playNotificationSound @ chat.js:79
-chat.js:79 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
-playNotificationSound @ chat.js:79
-Refused to frame 'https://shop.app/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
-
-?company_location_changed=true:6482 ServiceWorker registration successful with scope:  https://vapelocal.co.uk/cdn/shop/t/9/assets/
-pushowl-shopify-main.js:1 [PushOwl Web Push Notifications] v2025-10-14 5PMIST starting up
-modern/?company_location_changed=true:33 🚀 Banner tracking: GA4 gtag.js script tag created
-modern/?company_location_changed=true:69 🚀 Banner tracking: GTM script tag created
-modern/?company_location_changed=true:88 🚀 Banner Revenue Tracking Pixel: Script loaded with GTM
-modern/?company_location_changed=true:251 ✅ Banner tracking: Subscribed to checkout_completed events
-service-worker.js?v=…56140661756222897:1 Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
-Promise.then
-(anonymous) @ service-worker.js?v=100566867923856140661756222897:4
-Promise.then
-(anonymous) @ service-worker.js?v=100566867923856140661756222897:3
-chrome-extension://h…mp/frame/frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-chrome-extension://h…mp/frame/frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-frame.js:2 Uncaught (in promise) SecurityError: Failed to read the 'localStorage' property from 'Window': The document is sandboxed and lacks the 'allow-same-origin' flag.
-    at h (frame.js:2:755)
-    at Generator.<anonymous> (frame.js:2:2092)
-    at Generator.next (frame.js:2:1118)
-    at e (frame.js:2:7726)
-    at o (frame.js:2:7929)
-modern/?company_location_changed=true:84 ✅ Banner tracking: Consent Mode updated
-modern/?company_location_changed=true:58 ✅ Banner tracking: GTM script loaded
-s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1 In a sandboxed environment, addEventListener may not behave as expected.
-(anonymous) @ s1c73a1f4wd4cd26eap9a0d918bmbfac1f57m.js:1
-modern/?company_location_changed=true:27 ✅ Banner tracking: GA4 gtag.js loaded and configured
-modern/?company_location_changed=true:61 ✅ Banner tracking: GTM container initialized
-chat.js:385 [POLL DEBUG] Checking for recent messages since: 2025-10-31T17:32:06.233Z
-chat.js:394 [POLL DEBUG] No new messages, timestamp unchanged: 2025-10-31T17:32:06.233Z
-wishlist.js:181 No wishlist or favorites button found in click path
-chat.js:463 Reset API response status: 200
-chat.js:464 Reset API response headers: Headers
-chat.js:468 Reset API response: Object
-chat.js:476 Chat reset successfully
-chat.js:750 [STREAM DEBUG] Starting stream, setting isStreaming = true
-chat.js:852 [STREAM DEBUG] message_complete received, setting lastMessageTimestamp to: 2025-10-31T17:38:36.121Z
-chat.js:816 [STREAM DEBUG] Stream complete, setting isStreaming = false
-chat.js:385 [POLL DEBUG] Checking for recent messages since: 2025-10-31T17:38:36.121Z
-chat.js:974 [POLL DEBUG] Adding 1 new messages from poll
-chat.js:980 [POLL DEBUG] Adding message: Hello! How can I help you today? Are you looking f...
-chat.js:391 [POLL DEBUG] Updated lastMessageTimestamp from 2025-10-31T17:38:36.121Z to 2025-10-31T17:38:36.127Z
-chat.js:385 [POLL DEBUG] Checking for recent messages since: 2025-10-31T17:38:36.127Z
-chat.js:394 [POLL DEBUG] No new messages, timestamp unchanged: 2025-10-31T17:38:36.127Z
-chat.js:385 [POLL DEBUG] Checking for recent messages since: 2025-10-31T17:38:36.127Z
-chat.js:394 [POLL DEBUG] No new messages, timestamp unchanged: 2025-10-31T17:38:36.127Z
+Oct 31 17:47:28  [shopify-api/INFO] version 11.12.0, environment Remix
+Oct 31 17:47:28  [remix-serve] http://localhost:8080 (http://10.244.34.110:8080)
+Oct 31 17:47:46  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 22.173 ms
+Oct 31 17:47:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.971 ms
+Oct 31 17:48:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.212 ms
+Oct 31 17:48:46  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:48:46  [API DEBUG] Returning 0 recent messages
+Oct 31 17:48:46  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 6.018 ms
+Oct 31 17:49:04  GET /api/conversation-followup 200 - - 24.212 ms
+Oct 31 17:49:45  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:49:45  [API DEBUG] Returning 0 recent messages
+Oct 31 17:49:45  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 10.820 ms
+Oct 31 17:49:45  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.059 ms
+Oct 31 17:49:46  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:49:46  [API DEBUG] Returning 0 recent messages
+Oct 31 17:49:46  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 8.116 ms
+Oct 31 17:49:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.438 ms
+Oct 31 17:50:08  GET /api/conversation-followup 200 - - 19.996 ms
+Oct 31 17:50:41  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:41  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:41  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 8.380 ms
+Oct 31 17:50:41  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:41  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:41  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 6.255 ms
+Oct 31 17:50:45  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.420 ms
+Oct 31 17:50:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.045 ms
+Oct 31 17:50:48  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:48  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:48  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 9.358 ms
+Oct 31 17:50:48  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:48  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:48  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 4.717 ms
+Oct 31 17:50:54  [shopify-app/INFO] Authenticating admin request | {shop: vltradeapp.myshopify.com}
+Oct 31 17:50:54  GET /app?embedded=1&hmac=7fa8b47b070ac4c6df78518a8afe0a7d557d7083cbe1853c8f932735e57c884f&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvdmx0cmFkZWFwcA&id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvdmx0cmFkZWFwcC5teXNob3BpZnkuY29tIiwiYXVkIjoiYmI3NzcwMzVhNWI0MmE2OThjNTNkNTA5NjQzMTI2YzUiLCJzdWIiOiIxMzA0NjEzNjg3MDIiLCJleHAiOjE3NjE5MzMxMTMsIm5iZiI6MTc2MTkzMzA1MywiaWF0IjoxNzYxOTMzMDUzLCJqdGkiOiJlYzdmYTUyNy03MzM0LTRmMjUtYmM1My05ZWE0MmI5YjJmODQiLCJzaWQiOiJjYjJiNzBiNC05NGMzLTQzMzItYjJjZC05N2JlYjBkMmM2OGUiLCJzaWciOiJjZmI0NmZjNGMwNTI3N2Y3YTIyMWIzZThjN2Y0YTZlZjE0MjRkZDc1MjViMWZkOTgyMjUxMTgzZTJkZTY4YmNmIn0.uxfvXzTgxBxH2769ZSllEtd6B3lluRNDYNFFHwAxvRQ&locale=en&session=3660ed59db61d18b058a03ceb291283ae137358af02c2c14a67f5bcde9913a6b&shop=vltradeapp.myshopify.com&timestamp=1761933053 200 - - 58.994 ms
+Oct 31 17:50:55  GET /api/broadcast/log 200 - - 55.800 ms
+Oct 31 17:50:58  [shopify-app/INFO] Authenticating admin request | {shop: null}
+Oct 31 17:50:58  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:58  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:58  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 6.378 ms
+Oct 31 17:50:58  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:50:58  [API DEBUG] Returning 0 recent messages
+Oct 31 17:50:58  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 7.362 ms
+Oct 31 17:51:04  GET /api/conversation-followup 200 - - 15.921 ms
+Oct 31 17:51:05  Synced 3595 product quantity increments to database
+Oct 31 17:51:05  GET /api/admin/sync-quantity-increments 200 - - 7829.667 ms
+Oct 31 17:51:08  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:51:08  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:08  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 18.751 ms
+Oct 31 17:51:09  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 4
+Oct 31 17:51:09  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:09  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 6.602 ms
+Oct 31 17:51:12  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 3.814 ms
+Oct 31 17:51:12  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 7.160 ms
+Oct 31 17:51:19  OPTIONS /api/reset-chat 204 - - 2.057 ms
+Oct 31 17:51:19  Deleted 4 messages for conversation web_customer_23312945217918
+Oct 31 17:51:19  Chat reset: Cleared conversation history for web_customer_23312945217918
+Oct 31 17:51:19  POST /api/reset-chat 200 - - 14.329 ms
+Oct 31 17:51:22  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 0
+Oct 31 17:51:22  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:22  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 5.731 ms
+Oct 31 17:51:22  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:44:05.430Z total messages: 0
+Oct 31 17:51:22  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:22  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A44%3A05.430Z 200 - - 5.176 ms
+Oct 31 17:51:24  OPTIONS /chat?history=true&conversation_id=web_customer_23312945217918 204 - - 2.701 ms
+Oct 31 17:51:24  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 6.752 ms
+Oct 31 17:51:28  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Oct 31 17:51:28  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Oct 31 17:51:28  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Oct 31 17:51:29  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Oct 31 17:51:29  No token in database for conversation: web_customer_23312945217918
+Oct 31 17:51:29  Customer MCP server tools response: [
+Oct 31 17:51:29    {
+Oct 31 17:51:29      "name": "get_most_recent_order_status",
+Oct 31 17:51:29      "description": "Gets the status of the customer's most recent order.",
+Oct 31 17:51:29      "inputSchema": {
+Oct 31 17:51:29        "type": "object",
+Oct 31 17:51:29        "properties": {}
+Oct 31 17:51:29      }
+Oct 31 17:51:29    },
+Oct 31 17:51:29    {
+Oct 31 17:51:29      "name": "get_order_status",
+Oct 31 17:51:29      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Oct 31 17:51:29      "inputSchema": {
+Oct 31 17:51:29        "type": "object",
+Oct 31 17:51:29        "properties": {
+Oct 31 17:51:29          "order_number": {
+Oct 31 17:51:29            "type": "string",
+Oct 31 17:51:29            "description": "Number of the order to look up"
+Oct 31 17:51:29          }
+Oct 31 17:51:29        },
+Oct 31 17:51:29        "required": [
+Oct 31 17:51:29          "order_number"
+Oct 31 17:51:29        ]
+Oct 31 17:51:29      }
+Oct 31 17:51:29    },
+Oct 31 17:51:29    {
+Oct 31 17:51:29      "name": "get_store_credit_balances",
+Oct 31 17:51:29      "description": "Fetches the customer's store credit balances if they have any.",
+Oct 31 17:51:29      "inputSchema": {
+Oct 31 17:51:29        "type": "object",
+Oct 31 17:51:29        "properties": {}
+Oct 31 17:51:29      }
+Oct 31 17:51:29    },
+Oct 31 17:51:29    {
+Oct 31 17:51:29      "name": "request_return",
+Oct 31 17:51:29      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Oct 31 17:51:29      "inputSchema": {
+Oct 31 17:51:29        "type": "object",
+Oct 31 17:51:29        "properties": {
+Oct 31 17:51:29          "order_id": {
+Oct 31 17:51:29            "type": "string",
+Oct 31 17:51:29            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Oct 31 17:51:29          },
+Oct 31 17:51:29          "order_number": {
+Oct 31 17:51:29            "type": "string",
+Oct 31 17:51:29            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Oct 31 17:51:29          },
+Oct 31 17:51:29          "line_items": {
+Oct 31 17:51:29            "type": "array",
+Oct 31 17:51:29            "description": "List of items to return",
+Oct 31 17:51:29            "items": {
+Oct 31 17:51:29              "type": "object",
+Oct 31 17:51:29              "properties": {
+Oct 31 17:51:29                "line_item_id": {
+Oct 31 17:51:29                  "type": "string",
+Oct 31 17:51:29                  "description": "ID of the line item to return"
+Oct 31 17:51:29                },
+Oct 31 17:51:29                "quantity": {
+Oct 31 17:51:29                  "type": "integer",
+Oct 31 17:51:29                  "description": "Quantity to return"
+Oct 31 17:51:29                },
+Oct 31 17:51:29                "return_reason": {
+Oct 31 17:51:29                  "type": "string",
+Oct 31 17:51:29                  "description": "Reason for return",
+Oct 31 17:51:29                  "enum": [
+Oct 31 17:51:29                    "SIZE_TOO_SMALL",
+Oct 31 17:51:29                    "SIZE_TOO_LARGE",
+Oct 31 17:51:29                    "UNWANTED",
+Oct 31 17:51:29                    "NOT_AS_DESCRIBED",
+Oct 31 17:51:29                    "WRONG_ITEM",
+Oct 31 17:51:29                    "DEFECTIVE",
+Oct 31 17:51:29                    "STYLE",
+Oct 31 17:51:29                    "COLOR",
+Oct 31 17:51:29                    "OTHER",
+Oct 31 17:51:29                    "UNKNOWN"
+Oct 31 17:51:29                  ]
+Oct 31 17:51:29                },
+Oct 31 17:51:29                "customer_note": {
+Oct 31 17:51:29                  "type": "string",
+Oct 31 17:51:29                  "description": "Additional notes about the return"
+Oct 31 17:51:29                }
+Oct 31 17:51:29              },
+Oct 31 17:51:29              "required": [
+Oct 31 17:51:29                "line_item_id",
+Oct 31 17:51:29                "quantity",
+Oct 31 17:51:29                "return_reason"
+Oct 31 17:51:29              ]
+Oct 31 17:51:29            }
+Oct 31 17:51:29          }
+Oct 31 17:51:29        },
+Oct 31 17:51:29        "required": [
+Oct 31 17:51:29          "line_items"
+Oct 31 17:51:29        ]
+Oct 31 17:51:29      }
+Oct 31 17:51:29    }
+Oct 31 17:51:29  ]
+Oct 31 17:51:29  Connected to MCP with 5 tools
+Oct 31 17:51:29  Connected to customer MCP with 4 tools
+Oct 31 17:51:29  Available customer tools: [
+Oct 31 17:51:29    'get_most_recent_order_status',
+Oct 31 17:51:29    'get_order_status',
+Oct 31 17:51:29    'get_store_credit_balances',
+Oct 31 17:51:29    'request_return'
+Oct 31 17:51:29  ]
+Oct 31 17:51:29  Failed to parse message content as JSON, wrapping in text block. Content: hi
+Oct 31 17:51:29  Cleaned conversation history: 1 messages -> 1 messages
+Oct 31 17:51:29  Conversation history before sending to Claude: [
+Oct 31 17:51:29    {
+Oct 31 17:51:29      "role": "user",
+Oct 31 17:51:29      "content": [
+Oct 31 17:51:29        {
+Oct 31 17:51:29          "type": "text",
+Oct 31 17:51:29          "text": "hi"
+Oct 31 17:51:29        }
+Oct 31 17:51:29      ]
+Oct 31 17:51:29    }
+Oct 31 17:51:29  ]
+Oct 31 17:51:32  [SERVER DEBUG] Sending message_complete with timestamp: 2025-10-31T17:51:32.360Z
+Oct 31 17:51:32  POST /chat 200 - - 29.197 ms
+Oct 31 17:51:32  [SERVER DEBUG] Message saved with createdAt: 2025-10-31T17:51:32.368Z
+Oct 31 17:51:34  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.360Z total messages: 2
+Oct 31 17:51:34  [API DEBUG] Found recent assistant message created at: 2025-10-31T17:51:32.368Z
+Oct 31 17:51:34  [API DEBUG] Returning 1 recent messages
+Oct 31 17:51:34  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.360Z 200 - - 6.976 ms
+Oct 31 17:51:34  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.360Z total messages: 2
+Oct 31 17:51:34  [API DEBUG] Found recent assistant message created at: 2025-10-31T17:51:32.368Z
+Oct 31 17:51:34  [API DEBUG] Returning 1 recent messages
+Oct 31 17:51:34  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.360Z 200 - - 6.194 ms
+Oct 31 17:51:44  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:51:44  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:44  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 5.195 ms
+Oct 31 17:51:44  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:51:44  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:44  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 6.328 ms
+Oct 31 17:51:46  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.456 ms
+Oct 31 17:51:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.940 ms
+Oct 31 17:51:54  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:51:54  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:54  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 7.584 ms
+Oct 31 17:51:54  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:51:54  [API DEBUG] Returning 0 recent messages
+Oct 31 17:51:54  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 4.675 ms
+Oct 31 17:52:04  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:52:04  [API DEBUG] Returning 0 recent messages
+Oct 31 17:52:04  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 5.793 ms
+Oct 31 17:52:04  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:52:04  [API DEBUG] Returning 0 recent messages
+Oct 31 17:52:04  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 7.203 ms
+Oct 31 17:52:05  GET /api/conversation-followup 200 - - 25.452 ms
+Oct 31 17:52:14  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:52:14  [API DEBUG] Returning 0 recent messages
+Oct 31 17:52:14  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 5.736 ms
+Oct 31 17:52:14  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T17:51:32.368Z total messages: 2
+Oct 31 17:52:14  [API DEBUG] Returning 0 recent messages
+Oct 31 17:52:14  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T17%3A51%3A32.368Z 200 - - 4.748 ms

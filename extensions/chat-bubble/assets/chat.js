@@ -91,6 +91,7 @@
       elements: {},
       isMobile: false,
       isStreaming: false, // Track if a response is currently streaming
+      displayedMessageIds: new Set(), // Track IDs of messages we've already displayed to prevent duplicates
 
       /**
        * Initialize UI elements and event listeners
@@ -971,8 +972,19 @@
             
             // Add new messages to the chat
             if (data.messages && data.messages.length > 0) {
-              console.log('[POLL DEBUG] Adding', data.messages.length, 'new messages from poll');
+              console.log('[POLL DEBUG] Checking', data.messages.length, 'messages from poll');
               data.messages.forEach(message => {
+                // Skip if we've already displayed this message
+                if (message.id && ShopAIChat.UI.displayedMessageIds.has(message.id)) {
+                  console.log('[POLL DEBUG] Skipping duplicate message with id:', message.id);
+                  return;
+                }
+                
+                // Mark message as displayed
+                if (message.id) {
+                  ShopAIChat.UI.displayedMessageIds.add(message.id);
+                }
+                
                 try {
                   const messageContents = JSON.parse(message.content);
                   for (const contentBlock of messageContents) {
@@ -1043,6 +1055,11 @@
 
           // Add messages to the UI - filter out tool results
           data.messages.forEach(message => {
+            // Track message IDs to prevent duplicates from polling
+            if (message.id) {
+              ShopAIChat.UI.displayedMessageIds.add(message.id);
+            }
+            
             try {
               const messageContents = JSON.parse(message.content);
               for (const contentBlock of messageContents) {

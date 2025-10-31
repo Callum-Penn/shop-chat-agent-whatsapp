@@ -41,6 +41,7 @@ export const loader = async ({ request }) => {
         if (messageDate > sinceDate) {
           console.log('[API DEBUG] Found recent assistant message created at:', message.createdAt);
           recentMessages.push({
+            id: message.id,
             content: message.content,
             createdAt: message.createdAt
           });
