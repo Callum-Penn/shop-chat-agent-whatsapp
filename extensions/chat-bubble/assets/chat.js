@@ -329,6 +329,32 @@
           // Only check for unread messages when chat is closed
           ShopAIChat.API.checkUnreadMessages(conversationId, this);
         }
+      },
+
+      /**
+       * Check for recent messages and display them live
+       */
+      checkRecentMessages: function() {
+        const conversationId = CookieUtils.get('shopAiConversationId');
+        if (!conversationId) return;
+
+        // Check if chat window is open
+        const { chatWindow } = this.elements;
+        const isChatOpen = chatWindow.classList.contains('active');
+        
+        if (isChatOpen) {
+          // Get last message timestamp
+          const lastTimestamp = this.lastMessageTimestamp || new Date(0).toISOString();
+          const { messagesContainer } = this.elements;
+          
+          // Check for recent messages and update last timestamp
+          ShopAIChat.API.checkRecentMessages(conversationId, lastTimestamp, messagesContainer)
+            .then(newTimestamp => {
+              if (newTimestamp && newTimestamp !== lastTimestamp) {
+                this.lastMessageTimestamp = newTimestamp;
+              }
+            });
+        }
       }
     },
 
@@ -858,6 +884,56 @@
       },
 
       /**
+       * Check for recent assistant messages (e.g., follow-ups)
+       * @param {string} conversationId - Conversation ID
+       * @param {string} sinceTimestamp - ISO timestamp of last check
+       * @param {HTMLElement} messagesContainer - Messages container to append to
+       * @returns {string|null} - Latest timestamp or null
+       */
+      checkRecentMessages: async function(conversationId, sinceTimestamp, messagesContainer) {
+        try {
+          const recentUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/recent-messages?conversation_id=${encodeURIComponent(conversationId)}&since=${encodeURIComponent(sinceTimestamp)}`;
+          
+          const response = await fetch(recentUrl, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            
+            // Add new messages to the chat
+            if (data.messages && data.messages.length > 0) {
+              data.messages.forEach(message => {
+                try {
+                  const messageContents = JSON.parse(message.content);
+                  for (const contentBlock of messageContents) {
+                    if (contentBlock.type === 'text') {
+                      ShopAIChat.Message.add(contentBlock.text, 'assistant', messagesContainer);
+                    }
+                  }
+                } catch (e) {
+                  ShopAIChat.Message.add(message.content, 'assistant', messagesContainer);
+                }
+              });
+              
+              ShopAIChat.UI.scrollToBottom();
+            }
+            
+            return data.latestTimestamp;
+          }
+        } catch (error) {
+          console.error('Error checking recent messages:', error);
+        }
+        
+        return sinceTimestamp;
+      },
+
+      /**
        * Fetch chat history from the server
        * @param {string} conversationId - Conversation ID
        * @param {HTMLElement} messagesContainer - The messages container
@@ -912,6 +988,12 @@
               ShopAIChat.Message.add(message.content, message.role, messagesContainer);
             }
           });
+
+          // Set the last message timestamp for polling recent messages
+          if (data.messages.length > 0) {
+            const lastMessage = data.messages[data.messages.length - 1];
+            ShopAIChat.UI.lastMessageTimestamp = lastMessage.createdAt;
+          }
 
           // Scroll to bottom
           ShopAIChat.UI.scrollToBottom();
@@ -1270,6 +1352,11 @@
       setInterval(() => {
         this.UI.checkUnreadMessages();
       }, 30000);
+
+      // Set up periodic recent message checking (every 10 seconds) when chat is open
+      setInterval(() => {
+        this.UI.checkRecentMessages();
+      }, 10000);
 
       // Set up customer ID detection retry for cross-device sync
       this.setupCustomerIdDetectionRetry();
