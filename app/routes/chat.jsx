@@ -258,6 +258,7 @@ async function handleChatSession({
             // Start saving message in background and send completion immediately with timestamp from current time
             const savePromise = saveMessage(conversationId, message.role, JSON.stringify(message.content))
               .then(savedMessage => {
+                console.log('[SERVER DEBUG] Message saved with createdAt:', savedMessage.createdAt);
                 // Update the timestamp if save completed
                 return savedMessage.createdAt;
               })
@@ -266,10 +267,13 @@ async function handleChatSession({
                 return null;
               });
 
+            const currentTime = new Date().toISOString();
+            console.log('[SERVER DEBUG] Sending message_complete with timestamp:', currentTime);
+            
             // Send completion message immediately - don't wait for save
             stream.sendMessage({ 
               type: 'message_complete',
-              timestamp: new Date().toISOString() // Use current time as initial timestamp
+              timestamp: currentTime // Use current time as initial timestamp
             });
           },
 

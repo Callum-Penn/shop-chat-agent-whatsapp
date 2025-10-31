@@ -368,7 +368,10 @@
         if (!conversationId) return;
 
         // Don't check if actively streaming a response
-        if (this.isStreaming) return;
+        if (this.isStreaming) {
+          console.log('[POLL DEBUG] Skipping poll: isStreaming = true');
+          return;
+        }
 
         // Check if chat window is open
         const { chatWindow } = this.elements;
@@ -379,11 +382,16 @@
           const lastTimestamp = this.lastMessageTimestamp || new Date(0).toISOString();
           const { messagesContainer } = this.elements;
           
+          console.log('[POLL DEBUG] Checking for recent messages since:', lastTimestamp);
+          
           // Check for recent messages and update last timestamp
           ShopAIChat.API.checkRecentMessages(conversationId, lastTimestamp, messagesContainer)
             .then(newTimestamp => {
               if (newTimestamp && newTimestamp !== lastTimestamp) {
+                console.log('[POLL DEBUG] Updated lastMessageTimestamp from', lastTimestamp, 'to', newTimestamp);
                 this.lastMessageTimestamp = newTimestamp;
+              } else {
+                console.log('[POLL DEBUG] No new messages, timestamp unchanged:', lastTimestamp);
               }
             });
         }
@@ -739,6 +747,7 @@
         let currentMessageElement = null;
 
         // Set streaming flag to prevent poll from adding duplicate messages
+        console.log('[STREAM DEBUG] Starting stream, setting isStreaming = true');
         ShopAIChat.UI.isStreaming = true;
 
         try {
@@ -804,6 +813,7 @@
             'assistant', messagesContainer);
         } finally {
           // Clear streaming flag when done
+          console.log('[STREAM DEBUG] Stream complete, setting isStreaming = false');
           ShopAIChat.UI.isStreaming = false;
         }
       },
@@ -838,7 +848,9 @@
             // Play notification sound for completed streamed message
             ShopAIChat.playNotificationSound();
             // Update last message timestamp from database if available, otherwise use current time
-            ShopAIChat.UI.lastMessageTimestamp = data.timestamp || new Date().toISOString();
+            const newTimestamp = data.timestamp || new Date().toISOString();
+            console.log('[STREAM DEBUG] message_complete received, setting lastMessageTimestamp to:', newTimestamp);
+            ShopAIChat.UI.lastMessageTimestamp = newTimestamp;
             break;
 
           case 'end_turn':
@@ -951,17 +963,26 @@
           if (response.ok) {
             const data = await response.json();
             
+            // Check if we're currently streaming - if so, don't add messages
+            if (ShopAIChat.UI.isStreaming) {
+              console.log('[POLL DEBUG] Skipping poll message addition: currently streaming');
+              return sinceTimestamp;
+            }
+            
             // Add new messages to the chat
             if (data.messages && data.messages.length > 0) {
+              console.log('[POLL DEBUG] Adding', data.messages.length, 'new messages from poll');
               data.messages.forEach(message => {
                 try {
                   const messageContents = JSON.parse(message.content);
                   for (const contentBlock of messageContents) {
                     if (contentBlock.type === 'text') {
+                      console.log('[POLL DEBUG] Adding message:', contentBlock.text.substring(0, 50) + '...');
                       ShopAIChat.Message.add(contentBlock.text, 'assistant', messagesContainer);
                     }
                   }
                 } catch (e) {
+                  console.log('[POLL DEBUG] Adding message (fallback):', message.content.substring(0, 50) + '...');
                   ShopAIChat.Message.add(message.content, 'assistant', messagesContainer);
                 }
               });
