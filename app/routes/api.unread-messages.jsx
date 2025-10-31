@@ -1,13 +1,28 @@
 import { json } from "@remix-run/node";
 import { getConversationHistory } from "../db.server";
 
+/**
+ * Get CORS headers for responses
+ */
+function getCorsHeaders(request) {
+  const origin = request.headers.get("Origin") || "*";
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Accept",
+    "Access-Control-Allow-Credentials": "true",
+  };
+}
+
 export const loader = async ({ request }) => {
   try {
     const url = new URL(request.url);
     const conversationId = url.searchParams.get('conversation_id');
     
     if (!conversationId) {
-      return json({ unread_count: 0 });
+      return json({ unread_count: 0 }, {
+        headers: getCorsHeaders(request)
+      });
     }
 
     // Get conversation history
@@ -31,9 +46,13 @@ export const loader = async ({ request }) => {
       }
     }
     
-    return json({ unread_count: unreadCount });
+    return json({ unread_count: unreadCount }, {
+      headers: getCorsHeaders(request)
+    });
   } catch (error) {
     console.error('Error checking unread messages:', error);
-    return json({ unread_count: 0 });
+    return json({ unread_count: 0 }, {
+      headers: getCorsHeaders(request)
+    });
   }
 };

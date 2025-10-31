@@ -1,6 +1,19 @@
 import { json } from "@remix-run/node";
 import { getConversationHistory } from "../db.server";
 
+/**
+ * Get CORS headers for responses
+ */
+function getCorsHeaders(request) {
+  const origin = request.headers.get("Origin") || "*";
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Accept",
+    "Access-Control-Allow-Credentials": "true",
+  };
+}
+
 export const loader = async ({ request }) => {
   try {
     const url = new URL(request.url);
@@ -8,7 +21,9 @@ export const loader = async ({ request }) => {
     const since = url.searchParams.get('since'); // ISO timestamp of last check
     
     if (!conversationId) {
-      return json({ messages: [] });
+      return json({ messages: [] }, {
+        headers: getCorsHeaders(request)
+      });
     }
 
     // Get conversation history
@@ -32,10 +47,14 @@ export const loader = async ({ request }) => {
       latestTimestamp: allMessages.length > 0 
         ? allMessages[allMessages.length - 1].createdAt 
         : null
+    }, {
+      headers: getCorsHeaders(request)
     });
   } catch (error) {
     console.error('Error fetching recent messages:', error);
-    return json({ messages: [] });
+    return json({ messages: [] }, {
+      headers: getCorsHeaders(request)
+    });
   }
 };
 
