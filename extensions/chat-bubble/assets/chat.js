@@ -57,6 +57,34 @@
    */
   const ShopAIChat = {
     /**
+     * Play a notification sound when messages are received
+     */
+    playNotificationSound: function() {
+      try {
+        // Create a simple notification sound using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        // Configure the sound (gentle notification)
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800; // Frequency in Hz (higher = higher pitch)
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime); // Volume
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15); // Fade out
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.15);
+      } catch (error) {
+        // Fallback: If Web Audio API fails, silently fail (doesn't break chat)
+        console.log('Could not play notification sound:', error);
+      }
+    },
+
+    /**
      * UI-related elements and functionality
      */
     UI: {
@@ -459,6 +487,9 @@
         if (sender === 'assistant') {
           messageElement.dataset.rawText = text;
           ShopAIChat.Formatting.formatMessageContent(messageElement);
+          
+          // Play notification sound for all assistant messages
+          ShopAIChat.playNotificationSound();
         } else {
           messageElement.textContent = text;
         }
