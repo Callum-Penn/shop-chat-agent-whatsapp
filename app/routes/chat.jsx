@@ -249,19 +249,24 @@ async function handleChatSession({
           },
 
           // Handle complete messages
-          onMessage: (message) => {
+          onMessage: async (message) => {
             conversationHistory.push({
               role: message.role,
               content: message.content
             });
 
-            saveMessage(conversationId, message.role, JSON.stringify(message.content))
-              .catch((error) => {
-                console.error("Error saving message to database:", error);
+            try {
+              const savedMessage = await saveMessage(conversationId, message.role, JSON.stringify(message.content));
+              // Send a completion message with the timestamp from the database
+              stream.sendMessage({ 
+                type: 'message_complete',
+                timestamp: savedMessage.createdAt 
               });
-
-            // Send a completion message
-            stream.sendMessage({ type: 'message_complete' });
+            } catch (error) {
+              console.error("Error saving message to database:", error);
+              // Send without timestamp as fallback
+              stream.sendMessage({ type: 'message_complete' });
+            }
           },
 
           // Handle tool use requests

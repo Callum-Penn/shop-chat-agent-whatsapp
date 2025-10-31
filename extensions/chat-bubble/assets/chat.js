@@ -835,6 +835,10 @@
             ShopAIChat.UI.removeTypingIndicator();
             ShopAIChat.Formatting.formatMessageContent(currentMessageElement);
             ShopAIChat.UI.scrollToBottom();
+            // Play notification sound for completed streamed message
+            ShopAIChat.playNotificationSound();
+            // Update last message timestamp from database if available, otherwise use current time
+            ShopAIChat.UI.lastMessageTimestamp = data.timestamp || new Date().toISOString();
             break;
 
           case 'end_turn':
