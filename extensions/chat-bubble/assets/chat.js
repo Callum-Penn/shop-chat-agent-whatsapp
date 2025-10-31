@@ -974,6 +974,9 @@
             if (data.messages && data.messages.length > 0) {
               console.log('[POLL DEBUG] Checking', data.messages.length, 'messages from poll');
               data.messages.forEach(message => {
+                console.log('[POLL DEBUG] Message has id:', message.id);
+                console.log('[POLL DEBUG] displayedMessageIds:', Array.from(ShopAIChat.UI.displayedMessageIds));
+                
                 // Skip if we've already displayed this message
                 if (message.id && ShopAIChat.UI.displayedMessageIds.has(message.id)) {
                   console.log('[POLL DEBUG] Skipping duplicate message with id:', message.id);
@@ -983,6 +986,7 @@
                 // Mark message as displayed
                 if (message.id) {
                   ShopAIChat.UI.displayedMessageIds.add(message.id);
+                  console.log('[POLL DEBUG] Added message id to displayedMessageIds:', message.id);
                 }
                 
                 try {
