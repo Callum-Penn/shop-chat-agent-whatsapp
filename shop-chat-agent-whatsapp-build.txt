@@ -1,123 +1,129 @@
-Oct 31 12:41:54  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
-Oct 31 12:41:54  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Oct 31 12:41:54  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Oct 31 12:41:55  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Oct 31 12:41:55  No token in database for conversation: web_customer_23312945217918
-Oct 31 12:41:55  Customer MCP server tools response: [
-Oct 31 12:41:55    {
-Oct 31 12:41:55      "name": "get_most_recent_order_status",
-Oct 31 12:41:55      "description": "Gets the status of the customer's most recent order.",
-Oct 31 12:41:55      "inputSchema": {
-Oct 31 12:41:55        "type": "object",
-Oct 31 12:41:55        "properties": {}
-Oct 31 12:41:55      }
-Oct 31 12:41:55    },
-Oct 31 12:41:55    {
-Oct 31 12:41:55      "name": "get_order_status",
-Oct 31 12:41:55      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Oct 31 12:41:55      "inputSchema": {
-Oct 31 12:41:55        "type": "object",
-Oct 31 12:41:55        "properties": {
-Oct 31 12:41:55          "order_number": {
-Oct 31 12:41:55            "type": "string",
-Oct 31 12:41:55            "description": "Number of the order to look up"
-Oct 31 12:41:55          }
-Oct 31 12:41:55        },
-Oct 31 12:41:55        "required": [
-Oct 31 12:41:55          "order_number"
-Oct 31 12:41:55        ]
-Oct 31 12:41:55      }
-Oct 31 12:41:55    },
-Oct 31 12:41:55    {
-Oct 31 12:41:55      "name": "get_store_credit_balances",
-Oct 31 12:41:55      "description": "Fetches the customer's store credit balances if they have any.",
-Oct 31 12:41:55      "inputSchema": {
-Oct 31 12:41:55        "type": "object",
-Oct 31 12:41:55        "properties": {}
-Oct 31 12:41:55      }
-Oct 31 12:41:55    },
-Oct 31 12:41:55    {
-Oct 31 12:41:55      "name": "request_return",
-Oct 31 12:41:55      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Oct 31 12:41:55      "inputSchema": {
-Oct 31 12:41:55        "type": "object",
-Oct 31 12:41:55        "properties": {
-Oct 31 12:41:55          "order_id": {
-Oct 31 12:41:55            "type": "string",
-Oct 31 12:41:55            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Oct 31 12:41:55          },
-Oct 31 12:41:55          "order_number": {
-Oct 31 12:41:55            "type": "string",
-Oct 31 12:41:55            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Oct 31 12:41:55          },
-Oct 31 12:41:55          "line_items": {
-Oct 31 12:41:55            "type": "array",
-Oct 31 12:41:55            "description": "List of items to return",
-Oct 31 12:41:55            "items": {
-Oct 31 12:41:55              "type": "object",
-Oct 31 12:41:55              "properties": {
-Oct 31 12:41:55                "line_item_id": {
-Oct 31 12:41:55                  "type": "string",
-Oct 31 12:41:55                  "description": "ID of the line item to return"
-Oct 31 12:41:55                },
-Oct 31 12:41:55                "quantity": {
-Oct 31 12:41:55                  "type": "integer",
-Oct 31 12:41:55                  "description": "Quantity to return"
-Oct 31 12:41:55                },
-Oct 31 12:41:55                "return_reason": {
-Oct 31 12:41:55                  "type": "string",
-Oct 31 12:41:55                  "description": "Reason for return",
-Oct 31 12:41:55                  "enum": [
-Oct 31 12:41:55                    "SIZE_TOO_SMALL",
-Oct 31 12:41:55                    "SIZE_TOO_LARGE",
-Oct 31 12:41:55                    "UNWANTED",
-Oct 31 12:41:55                    "NOT_AS_DESCRIBED",
-Oct 31 12:41:55                    "WRONG_ITEM",
-Oct 31 12:41:55                    "DEFECTIVE",
-Oct 31 12:41:55                    "STYLE",
-Oct 31 12:41:55                    "COLOR",
-Oct 31 12:41:55                    "OTHER",
-Oct 31 12:41:55                    "UNKNOWN"
-Oct 31 12:41:55                  ]
-Oct 31 12:41:55                },
-Oct 31 12:41:55                "customer_note": {
-Oct 31 12:41:55                  "type": "string",
-Oct 31 12:41:55                  "description": "Additional notes about the return"
-Oct 31 12:41:55                }
-Oct 31 12:41:55              },
-Oct 31 12:41:55              "required": [
-Oct 31 12:41:55                "line_item_id",
-Oct 31 12:41:55                "quantity",
-Oct 31 12:41:55                "return_reason"
-Oct 31 12:41:55              ]
-Oct 31 12:41:55            }
-Oct 31 12:41:55          }
-Oct 31 12:41:55        },
-Oct 31 12:41:55        "required": [
-Oct 31 12:41:55          "line_items"
-Oct 31 12:41:55        ]
-Oct 31 12:41:55      }
-Oct 31 12:41:55    }
-Oct 31 12:41:55  ]
-Oct 31 12:41:55  Connected to MCP with 5 tools
-Oct 31 12:41:55  Connected to customer MCP with 4 tools
-Oct 31 12:41:55  Available customer tools: [
-Oct 31 12:41:55    'get_most_recent_order_status',
-Oct 31 12:41:55    'get_order_status',
-Oct 31 12:41:55    'get_store_credit_balances',
-Oct 31 12:41:55    'request_return'
-Oct 31 12:41:55  ]
-Oct 31 12:41:55  Failed to parse message content as JSON, wrapping in text block. Content: Hi
-Oct 31 12:41:55  Cleaned conversation history: 1 messages -> 1 messages
-Oct 31 12:41:55  Conversation history before sending to Claude: [
-Oct 31 12:41:55    {
-Oct 31 12:41:55      "role": "user",
-Oct 31 12:41:55      "content": [
-Oct 31 12:41:55        {
-Oct 31 12:41:55          "type": "text",
-Oct 31 12:41:55          "text": "Hi"
-Oct 31 12:41:55        }
-Oct 31 12:41:55      ]
-Oct 31 12:41:55    }
-Oct 31 12:41:55  ]
-Oct 31 12:41:58  POST /chat 200 - - 17.661 ms
+Oct 31 16:58:51  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Oct 31 16:58:51  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Oct 31 16:58:51  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Oct 31 16:58:51  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Oct 31 16:58:51  No token in database for conversation: web_customer_23312945217918
+Oct 31 16:58:51  Customer MCP server tools response: [
+Oct 31 16:58:51    {
+Oct 31 16:58:51      "name": "get_most_recent_order_status",
+Oct 31 16:58:51      "description": "Gets the status of the customer's most recent order.",
+Oct 31 16:58:51      "inputSchema": {
+Oct 31 16:58:51        "type": "object",
+Oct 31 16:58:51        "properties": {}
+Oct 31 16:58:51      }
+Oct 31 16:58:51    },
+Oct 31 16:58:51    {
+Oct 31 16:58:51      "name": "get_order_status",
+Oct 31 16:58:51      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Oct 31 16:58:51      "inputSchema": {
+Oct 31 16:58:51        "type": "object",
+Oct 31 16:58:51        "properties": {
+Oct 31 16:58:51          "order_number": {
+Oct 31 16:58:51            "type": "string",
+Oct 31 16:58:51            "description": "Number of the order to look up"
+Oct 31 16:58:51          }
+Oct 31 16:58:51        },
+Oct 31 16:58:51        "required": [
+Oct 31 16:58:51          "order_number"
+Oct 31 16:58:51        ]
+Oct 31 16:58:51      }
+Oct 31 16:58:51    },
+Oct 31 16:58:51    {
+Oct 31 16:58:51      "name": "get_store_credit_balances",
+Oct 31 16:58:51      "description": "Fetches the customer's store credit balances if they have any.",
+Oct 31 16:58:51      "inputSchema": {
+Oct 31 16:58:51        "type": "object",
+Oct 31 16:58:51        "properties": {}
+Oct 31 16:58:51      }
+Oct 31 16:58:51    },
+Oct 31 16:58:51    {
+Oct 31 16:58:51      "name": "request_return",
+Oct 31 16:58:51      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Oct 31 16:58:51      "inputSchema": {
+Oct 31 16:58:51        "type": "object",
+Oct 31 16:58:51        "properties": {
+Oct 31 16:58:51          "order_id": {
+Oct 31 16:58:51            "type": "string",
+Oct 31 16:58:51            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Oct 31 16:58:51          },
+Oct 31 16:58:51          "order_number": {
+Oct 31 16:58:51            "type": "string",
+Oct 31 16:58:51            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Oct 31 16:58:51          },
+Oct 31 16:58:51          "line_items": {
+Oct 31 16:58:51            "type": "array",
+Oct 31 16:58:51            "description": "List of items to return",
+Oct 31 16:58:51            "items": {
+Oct 31 16:58:51              "type": "object",
+Oct 31 16:58:51              "properties": {
+Oct 31 16:58:51                "line_item_id": {
+Oct 31 16:58:51                  "type": "string",
+Oct 31 16:58:51                  "description": "ID of the line item to return"
+Oct 31 16:58:51                },
+Oct 31 16:58:51                "quantity": {
+Oct 31 16:58:51                  "type": "integer",
+Oct 31 16:58:51                  "description": "Quantity to return"
+Oct 31 16:58:51                },
+Oct 31 16:58:51                "return_reason": {
+Oct 31 16:58:51                  "type": "string",
+Oct 31 16:58:51                  "description": "Reason for return",
+Oct 31 16:58:51                  "enum": [
+Oct 31 16:58:51                    "SIZE_TOO_SMALL",
+Oct 31 16:58:51                    "SIZE_TOO_LARGE",
+Oct 31 16:58:51                    "UNWANTED",
+Oct 31 16:58:51                    "NOT_AS_DESCRIBED",
+Oct 31 16:58:51                    "WRONG_ITEM",
+Oct 31 16:58:51                    "DEFECTIVE",
+Oct 31 16:58:51                    "STYLE",
+Oct 31 16:58:51                    "COLOR",
+Oct 31 16:58:51                    "OTHER",
+Oct 31 16:58:51                    "UNKNOWN"
+Oct 31 16:58:51                  ]
+Oct 31 16:58:51                },
+Oct 31 16:58:51                "customer_note": {
+Oct 31 16:58:51                  "type": "string",
+Oct 31 16:58:51                  "description": "Additional notes about the return"
+Oct 31 16:58:51                }
+Oct 31 16:58:51              },
+Oct 31 16:58:51              "required": [
+Oct 31 16:58:51                "line_item_id",
+Oct 31 16:58:51                "quantity",
+Oct 31 16:58:51                "return_reason"
+Oct 31 16:58:51              ]
+Oct 31 16:58:51            }
+Oct 31 16:58:51          }
+Oct 31 16:58:51        },
+Oct 31 16:58:51        "required": [
+Oct 31 16:58:51          "line_items"
+Oct 31 16:58:51        ]
+Oct 31 16:58:51      }
+Oct 31 16:58:51    }
+Oct 31 16:58:51  ]
+Oct 31 16:58:51  Connected to MCP with 5 tools
+Oct 31 16:58:51  Connected to customer MCP with 4 tools
+Oct 31 16:58:51  Available customer tools: [
+Oct 31 16:58:51    'get_most_recent_order_status',
+Oct 31 16:58:51    'get_order_status',
+Oct 31 16:58:51    'get_store_credit_balances',
+Oct 31 16:58:51    'request_return'
+Oct 31 16:58:51  ]
+Oct 31 16:58:51  Failed to parse message content as JSON, wrapping in text block. Content: Hi
+Oct 31 16:58:51  Cleaned conversation history: 1 messages -> 1 messages
+Oct 31 16:58:51  Conversation history before sending to Claude: [
+Oct 31 16:58:51    {
+Oct 31 16:58:51      "role": "user",
+Oct 31 16:58:51      "content": [
+Oct 31 16:58:51        {
+Oct 31 16:58:51          "type": "text",
+Oct 31 16:58:51          "text": "Hi"
+Oct 31 16:58:51        }
+Oct 31 16:58:51      ]
+Oct 31 16:58:51    }
+Oct 31 16:58:51  ]
+Oct 31 16:58:54  POST /chat 200 - - 72.429 ms
+Oct 31 16:58:54  Error sending stream message: TypeError: Invalid state: Controller is already closed
+Oct 31 16:58:54      at ReadableStreamDefaultController.enqueue (node:internal/webstreams/readablestream:1077:13)
+Oct 31 16:58:54      at Object.sendMessage (file:///workspace/build/server/index.js?t=315532801000:3385:18)
+Oct 31 16:58:54      at onMessage (file:///workspace/build/server/index.js?t=315532801000:3603:22) {
+Oct 31 16:58:54    code: 'ERR_INVALID_STATE'
+Oct 31 16:58:54  }
