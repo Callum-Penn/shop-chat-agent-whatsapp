@@ -605,6 +605,23 @@ export async function linkConversationToUser(conversationId, userId, channel = '
 // ===================================
 
 /**
+ * Get conversation with user ID
+ * @param {string} conversationId - The conversation ID
+ * @returns {Promise<Object|null>} - The conversation with userId or null
+ */
+export async function getConversation(conversationId) {
+  try {
+    return await prisma.conversation.findUnique({
+      where: { id: conversationId },
+      select: { userId: true, channel: true, metadata: true }
+    });
+  } catch (error) {
+    console.error('Error getting conversation:', error);
+    return null;
+  }
+}
+
+/**
  * Update conversation metadata
  * @param {string} conversationId - The conversation ID
  * @param {Object} metadataUpdate - Metadata fields to update

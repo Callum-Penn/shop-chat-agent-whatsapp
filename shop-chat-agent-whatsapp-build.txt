@@ -1,201 +1,201 @@
-Oct 31 18:22:23  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
-Oct 31 18:22:23  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Oct 31 18:22:23  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Oct 31 18:22:23  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Oct 31 18:22:23  No token in database for conversation: web_customer_23312945217918
-Oct 31 18:22:23  Customer MCP server tools response: [
-Oct 31 18:22:23    {
-Oct 31 18:22:23      "name": "get_most_recent_order_status",
-Oct 31 18:22:23      "description": "Gets the status of the customer's most recent order.",
-Oct 31 18:22:23      "inputSchema": {
-Oct 31 18:22:23        "type": "object",
-Oct 31 18:22:23        "properties": {}
-Oct 31 18:22:23      }
-Oct 31 18:22:23    },
-Oct 31 18:22:23    {
-Oct 31 18:22:23      "name": "get_order_status",
-Oct 31 18:22:23      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Oct 31 18:22:23      "inputSchema": {
-Oct 31 18:22:23        "type": "object",
-Oct 31 18:22:23        "properties": {
-Oct 31 18:22:23          "order_number": {
-Oct 31 18:22:23            "type": "string",
-Oct 31 18:22:23            "description": "Number of the order to look up"
-Oct 31 18:22:23          }
-Oct 31 18:22:23        },
-Oct 31 18:22:23        "required": [
-Oct 31 18:22:23          "order_number"
-Oct 31 18:22:23        ]
-Oct 31 18:22:23      }
-Oct 31 18:22:23    },
-Oct 31 18:22:23    {
-Oct 31 18:22:23      "name": "get_store_credit_balances",
-Oct 31 18:22:23      "description": "Fetches the customer's store credit balances if they have any.",
-Oct 31 18:22:23      "inputSchema": {
-Oct 31 18:22:23        "type": "object",
-Oct 31 18:22:23        "properties": {}
-Oct 31 18:22:23      }
-Oct 31 18:22:23    },
-Oct 31 18:22:23    {
-Oct 31 18:22:23      "name": "request_return",
-Oct 31 18:22:23      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Oct 31 18:22:23      "inputSchema": {
-Oct 31 18:22:23        "type": "object",
-Oct 31 18:22:23        "properties": {
-Oct 31 18:22:23          "order_id": {
-Oct 31 18:22:23            "type": "string",
-Oct 31 18:22:23            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Oct 31 18:22:23          },
-Oct 31 18:22:23          "order_number": {
-Oct 31 18:22:23            "type": "string",
-Oct 31 18:22:23            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Oct 31 18:22:23          },
-Oct 31 18:22:23          "line_items": {
-Oct 31 18:22:23            "type": "array",
-Oct 31 18:22:23            "description": "List of items to return",
-Oct 31 18:22:23            "items": {
-Oct 31 18:22:23              "type": "object",
-Oct 31 18:22:23              "properties": {
-Oct 31 18:22:23                "line_item_id": {
-Oct 31 18:22:23                  "type": "string",
-Oct 31 18:22:23                  "description": "ID of the line item to return"
-Oct 31 18:22:23                },
-Oct 31 18:22:23                "quantity": {
-Oct 31 18:22:23                  "type": "integer",
-Oct 31 18:22:23                  "description": "Quantity to return"
-Oct 31 18:22:23                },
-Oct 31 18:22:23                "return_reason": {
-Oct 31 18:22:23                  "type": "string",
-Oct 31 18:22:23                  "description": "Reason for return",
-Oct 31 18:22:23                  "enum": [
-Oct 31 18:22:23                    "SIZE_TOO_SMALL",
-Oct 31 18:22:23                    "SIZE_TOO_LARGE",
-Oct 31 18:22:23                    "UNWANTED",
-Oct 31 18:22:23                    "NOT_AS_DESCRIBED",
-Oct 31 18:22:23                    "WRONG_ITEM",
-Oct 31 18:22:23                    "DEFECTIVE",
-Oct 31 18:22:23                    "STYLE",
-Oct 31 18:22:23                    "COLOR",
-Oct 31 18:22:23                    "OTHER",
-Oct 31 18:22:23                    "UNKNOWN"
-Oct 31 18:22:23                  ]
-Oct 31 18:22:23                },
-Oct 31 18:22:23                "customer_note": {
-Oct 31 18:22:23                  "type": "string",
-Oct 31 18:22:23                  "description": "Additional notes about the return"
-Oct 31 18:22:23                }
-Oct 31 18:22:23              },
-Oct 31 18:22:23              "required": [
-Oct 31 18:22:23                "line_item_id",
-Oct 31 18:22:23                "quantity",
-Oct 31 18:22:23                "return_reason"
-Oct 31 18:22:23              ]
-Oct 31 18:22:23            }
-Oct 31 18:22:23          }
-Oct 31 18:22:23        },
-Oct 31 18:22:23        "required": [
-Oct 31 18:22:23          "line_items"
-Oct 31 18:22:23        ]
-Oct 31 18:22:23      }
-Oct 31 18:22:23    }
-Oct 31 18:22:23  ]
-Oct 31 18:22:23  Connected to MCP with 5 tools
-Oct 31 18:22:23  Connected to customer MCP with 4 tools
-Oct 31 18:22:23  Available customer tools: [
-Oct 31 18:22:23    'get_most_recent_order_status',
-Oct 31 18:22:23    'get_order_status',
-Oct 31 18:22:23    'get_store_credit_balances',
-Oct 31 18:22:23    'request_return'
-Oct 31 18:22:23  ]
-Oct 31 18:22:24  Failed to parse message content as JSON, wrapping in text block. Content: Helloo
-Oct 31 18:22:24  Cleaned conversation history: 1 messages -> 1 messages
-Oct 31 18:22:24  Conversation history before sending to Claude: [
-Oct 31 18:22:24    {
-Oct 31 18:22:24      "role": "user",
-Oct 31 18:22:24      "content": [
-Oct 31 18:22:24        {
-Oct 31 18:22:24          "type": "text",
-Oct 31 18:22:24          "text": "Helloo"
-Oct 31 18:22:24        }
-Oct 31 18:22:24      ]
-Oct 31 18:22:24    }
-Oct 31 18:22:24  ]
-Oct 31 18:22:26  [SERVER DEBUG] Message saved with id: cmhf6kpy20003x44m0v0g0oac createdAt: 2025-10-31T18:22:26.906Z
-Oct 31 18:22:26  Error sending stream message: TypeError: Invalid state: Controller is already closed
-Oct 31 18:22:26      at ReadableStreamDefaultController.enqueue (node:internal/webstreams/readablestream:1077:13)
-Oct 31 18:22:26      at Object.sendMessage (file:///workspace/build/server/index.js?t=315532801000:3392:18)
-Oct 31 18:22:26      at onMessage (file:///workspace/build/server/index.js?t=315532801000:3611:22) {
-Oct 31 18:22:26    code: 'ERR_INVALID_STATE'
-Oct 31 18:22:26  }
-Oct 31 18:22:26  POST /chat 200 - - 86.960 ms
-Oct 31 18:22:35  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:19:04.379Z total messages: 2
-Oct 31 18:22:35  [API DEBUG] Found recent assistant message created at: 2025-10-31T18:22:26.906Z
-Oct 31 18:22:35  [API DEBUG] Returning 1 recent messages
-Oct 31 18:22:35  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A19%3A04.379Z 200 - - 8.740 ms
-Oct 31 18:22:35  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:19:04.379Z total messages: 2
-Oct 31 18:22:35  [API DEBUG] Found recent assistant message created at: 2025-10-31T18:22:26.906Z
-Oct 31 18:22:35  [API DEBUG] Returning 1 recent messages
-Oct 31 18:22:35  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A19%3A04.379Z 200 - - 16.901 ms
-Oct 31 18:22:45  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:22:45  [API DEBUG] Returning 0 recent messages
-Oct 31 18:22:45  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 5.602 ms
-Oct 31 18:22:45  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:22:45  [API DEBUG] Returning 0 recent messages
-Oct 31 18:22:45  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 7.131 ms
-Oct 31 18:22:45  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.423 ms
-Oct 31 18:22:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.999 ms
-Oct 31 18:22:55  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:22:55  [API DEBUG] Returning 0 recent messages
-Oct 31 18:22:55  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 8.238 ms
-Oct 31 18:22:55  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:22:55  [API DEBUG] Returning 0 recent messages
-Oct 31 18:22:55  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 7.366 ms
-Oct 31 18:23:04  GET /api/conversation-followup 200 - - 21.206 ms
-Oct 31 18:23:05  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:05  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:05  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 8.272 ms
-Oct 31 18:23:05  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:05  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:05  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 5.858 ms
-Oct 31 18:23:15  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:15  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:15  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 8.191 ms
-Oct 31 18:23:16  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:16  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:16  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 6.450 ms
-Oct 31 18:23:25  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:25  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:25  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 6.358 ms
-Oct 31 18:23:26  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:26  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:26  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 5.127 ms
-Oct 31 18:23:35  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:35  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:35  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 6.107 ms
-Oct 31 18:23:36  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:36  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:36  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 4.382 ms
-Oct 31 18:23:45  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:45  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:45  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 8.380 ms
-Oct 31 18:23:46  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.908 ms
-Oct 31 18:23:46  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:23:46  [API DEBUG] Returning 0 recent messages
-Oct 31 18:23:46  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 4.707 ms
-Oct 31 18:23:46  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.095 ms
-Oct 31 18:24:06  GET /api/conversation-followup 200 - - 18.297 ms
-Oct 31 18:24:12  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:24:12  [API DEBUG] Returning 0 recent messages
-Oct 31 18:24:12  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 7.713 ms
-Oct 31 18:24:12  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:24:12  [API DEBUG] Returning 0 recent messages
-Oct 31 18:24:12  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 5.805 ms
-Oct 31 18:24:15  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:24:15  [API DEBUG] Returning 0 recent messages
-Oct 31 18:24:15  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 8.514 ms
-Oct 31 18:24:25  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:24:25  [API DEBUG] Returning 0 recent messages
-Oct 31 18:24:25  OPTIONS /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 7.209 ms
-Oct 31 18:24:26  [API DEBUG] Fetching recent messages for conv: web_customer_23312945217918 since: 2025-10-31T18:22:26.906Z total messages: 2
-Oct 31 18:24:26  [API DEBUG] Returning 0 recent messages
-Oct 31 18:24:26  GET /api/recent-messages?conversation_id=web_customer_23312945217918&since=2025-10-31T18%3A22%3A26.906Z 200 - - 4.979 ms
+Nov 02 17:31:16  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Nov 02 17:31:16  [34m│[0m [34m › fetching app source code[0m
+Nov 02 17:31:16  [34m│[0m => Selecting branch "main"
+Nov 02 17:31:16  [34m│[0m => Checking out commit "116e8df0e79bbeee735f981cc1017b1310791d64"
+Nov 02 17:31:16  [34m│[0m 
+Nov 02 17:31:16  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Nov 02 17:31:16  [34m╰────────────────────────────────────────╼[0m
+Nov 02 17:31:16  
+Nov 02 17:31:16  [34m › configuring build-time app environment variables:[0m
+Nov 02 17:31:16       WHATSAPP_PHONE_NUMBER_ID SHOPIFY_CHAT_BUBBLE_ID ORDER_TEMPLATE_BESTSELLERS_URL APP_URL DIRECT_URL SUPPORT_EMAIL SHOPIFY_APP_URL MAIL_SERVICE_API WHATSAPP_TOKEN ORDER_TEMPLATE_GENERAL_URL FOLLOWUP_SECRET RESEND_API_KEY SHOPIFY_API_SECRET ARCHIVING_API_KEY STAFF_WHATSAPP_NUMBER SHOPIFY_API_KEY CLAUDE_API_KEY REDIRECT_URL WHATSAPP_VERIFY_TOKEN
+Nov 02 17:31:16  
+Nov 02 17:31:16  [34m › configuring custom build command to be run at the end of the build:[0m
+Nov 02 17:31:16     [34m│[0m npm run build
+Nov 02 17:31:16  
+Nov 02 17:31:16  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Nov 02 17:31:16  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Nov 02 17:31:17  [34m│[0m Detected the following buildpacks suitable to build your app:
+Nov 02 17:31:17  [34m│[0m 
+Nov 02 17:31:17  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Nov 02 17:31:17  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Nov 02 17:31:17  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Nov 02 17:31:17  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Nov 02 17:31:17  [34m╰─────────────────────────────────────────────╼[0m
+Nov 02 17:31:17  
+Nov 02 17:31:17  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Nov 02 17:31:17  [34m│[0m [34m › checking for cache from a previous build[0m
+Nov 02 17:31:17  [34m│[0m Timer: Analyzer started at 2025-11-02T17:31:17Z
+Nov 02 17:31:18  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Nov 02 17:31:18  [34m│[0m Timer: Analyzer ran for 677.603106ms and ended at 2025-11-02T17:31:18Z
+Nov 02 17:31:18  [34m│[0m Timer: Restorer started at 2025-11-02T17:31:18Z
+Nov 02 17:31:18  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Nov 02 17:31:25  [34m│[0m Timer: Restorer ran for 6.579952073s and ended at 2025-11-02T17:31:25Z
+Nov 02 17:31:25  [34m╰───────────────────────────────────────╼[0m
+Nov 02 17:31:25  
+Nov 02 17:31:25  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Nov 02 17:31:25  [34m│[0m Timer: Builder started at 2025-11-02T17:31:25Z
+Nov 02 17:31:25  [34m│[0m        
+Nov 02 17:31:25  [34m│[0m -----> Creating runtime environment
+Nov 02 17:31:25  [34m│[0m        
+Nov 02 17:31:25  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Nov 02 17:31:26  [34m│[0m        NODE_VERBOSE=false
+Nov 02 17:31:26  [34m│[0m        NODE_ENV=
+Nov 02 17:31:26  [34m│[0m        NODE_MODULES_CACHE=true
+Nov 02 17:31:26  [34m│[0m        
+Nov 02 17:31:26  [34m│[0m -----> Installing binaries
+Nov 02 17:31:26  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Nov 02 17:31:26  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Nov 02 17:31:26  [34m│[0m        
+Nov 02 17:31:26  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Nov 02 17:31:26  [34m│[0m        Downloading and installing node 24.2.0...
+Nov 02 17:31:31  [34m│[0m        Using default npm version: 11.3.0
+Nov 02 17:31:32  [34m│[0m        
+Nov 02 17:31:32  [34m│[0m -----> Restoring cache
+Nov 02 17:31:32  [34m│[0m        - npm cache
+Nov 02 17:31:32  [34m│[0m        
+Nov 02 17:31:32  [34m│[0m -----> Installing dependencies
+Nov 02 17:31:32  [34m│[0m        Installing node modules
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        added 1230 packages, and audited 1231 packages in 17s
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        304 packages are looking for funding
+Nov 02 17:31:49  [34m│[0m          run `npm fund` for details
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        19 vulnerabilities (7 low, 8 moderate, 3 high, 1 critical)
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        To address issues that do not require attention, run:
+Nov 02 17:31:49  [34m│[0m          npm audit fix
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        To address all issues possible (including breaking changes), run:
+Nov 02 17:31:49  [34m│[0m          npm audit fix --force
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        Some issues need review, and may require choosing
+Nov 02 17:31:49  [34m│[0m        a different dependency.
+Nov 02 17:31:49  [34m│[0m        
+Nov 02 17:31:49  [34m│[0m        Run `npm audit` for details.
+Nov 02 17:31:50  [34m│[0m        
+Nov 02 17:31:50  [34m│[0m -----> Build
+Nov 02 17:31:50  [34m│[0m        
+Nov 02 17:31:50  [34m│[0m -----> Caching build
+Nov 02 17:31:50  [34m│[0m        - npm cache
+Nov 02 17:31:50  [34m│[0m        
+Nov 02 17:31:50  [34m│[0m -----> Pruning devDependencies
+Nov 02 17:31:50  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Nov 02 17:31:50  [34m│[0m        
+Nov 02 17:31:50  [34m│[0m -----> Build succeeded!
+Nov 02 17:31:50  [34m│[0m Running custom build command: npm run build
+Nov 02 17:31:50  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 02 17:31:50  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 02 17:31:50  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:51  [34m│[0m > shop-chat-agent@1.0.41 build
+Nov 02 17:31:51  [34m│[0m > prisma generate && remix vite:build
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:51  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Nov 02 17:31:51  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:51  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 61ms
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:51  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:51  [34m│[0m Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+Nov 02 17:31:51  [34m│[0m 
+Nov 02 17:31:52  [34m│[0m vite v6.3.3 building for production...
+Nov 02 17:31:52  [34m│[0m transforming...
+Nov 02 17:31:53  [34m│[0m ✓ 80 modules transformed.
+Nov 02 17:31:53  [34m│[0m ✗ Build failed in 394ms
+Nov 02 17:31:53  [34m│[0m [commonjs--resolver] Server-only module referenced by client
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m     '../db.server' imported by route 'app/routes/chat.jsx'
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m   Remix automatically removes server-code from these exports:
+Nov 02 17:31:53  [34m│[0m     `loader`, `action`, `headers`
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../db.server'.
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
+Nov 02 17:31:53  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 02 17:31:53  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 02 17:31:53  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 02 17:31:53  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
+Nov 02 17:31:53  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 02 17:31:53  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 02 17:31:53  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 02 17:31:53  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
+Nov 02 17:31:53  [34m│[0m   code: 'PLUGIN_ERROR',
+Nov 02 17:31:53  [34m│[0m   plugin: 'commonjs--resolver',
+Nov 02 17:31:53  [34m│[0m   hook: 'resolveId',
+Nov 02 17:31:53  [34m│[0m   watchFiles: [
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/root.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.broadcast.whatsapp-users.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/uploads.$filename.ts',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/app.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
+Nov 02 17:31:53  [34m│[0m     '/workspace/package.json',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react/index.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/dev.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/react-dom/cjs/react-dom.production.min.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/invariant.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errors.js',
+Nov 02 17:31:53  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fog-of-war.js'
+Nov 02 17:31:53  [34m│[0m   ]
+Nov 02 17:31:53  [34m│[0m }
+Nov 02 17:31:53  [34m│[0m npm notice
+Nov 02 17:31:53  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
+Nov 02 17:31:53  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+Nov 02 17:31:53  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
+Nov 02 17:31:53  [34m│[0m npm notice
+Nov 02 17:31:53  [34m│[0m building: exit status 1
+Nov 02 17:31:53  [34m│[0m Timer: Builder ran for 27.762804031s and ended at 2025-11-02T17:31:53Z
+Nov 02 17:31:53  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m 
+Nov 02 17:31:53  [34m│[0m [31m ✘ build failed[0m

@@ -14,7 +14,8 @@ import {
   getUserByShopifyCustomerId,
   updateConversationMetadata,
   getUserById,
-  updateUser
+  updateUser,
+  getConversation
 } from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
@@ -22,7 +23,6 @@ import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
 import { unauthenticated } from "../shopify.server";
 import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText } from "../utils/email.server";
-import prisma from "../db.server";
 
 
 /**
@@ -367,10 +367,7 @@ async function handleChatSession({
                 console.log('Web: Handoff email sent successfully');
                 
                 // Get conversation to find user
-                const conversation = await prisma.conversation.findUnique({
-                  where: { id: conversationId },
-                  select: { userId: true }
-                });
+                const conversation = await getConversation(conversationId);
                 
                 // Update user info in database if user exists
                 if (conversation?.userId) {
