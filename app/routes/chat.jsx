@@ -4,19 +4,6 @@
  */
 import { json } from "@remix-run/node";
 import MCPClient from "../mcp-client";
-import { 
-  saveMessage, 
-  getConversationHistory, 
-  storeCustomerAccountUrl, 
-  getCustomerAccountUrl,
-  createOrGetUser,
-  linkConversationToUser,
-  getUserByShopifyCustomerId,
-  updateConversationMetadata,
-  getUserById,
-  updateUser,
-  getConversation
-} from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
 import { createClaudeService } from "../services/claude.server";
@@ -100,6 +87,7 @@ export async function action({ request }) {
  * @returns {Response} JSON response with chat history
  */
 async function handleHistoryRequest(request, conversationId) {
+  const { getConversationHistory } = await import("../db.server");
   const messages = await getConversationHistory(conversationId);
 
   return json(
@@ -179,6 +167,21 @@ async function handleChatSession({
   promptType,
   stream
 }) {
+  // Import database functions inside to avoid client/server separation issues
+  const { 
+    saveMessage, 
+    getConversationHistory, 
+    storeCustomerAccountUrl, 
+    getCustomerAccountUrl,
+    createOrGetUser,
+    linkConversationToUser,
+    getUserByShopifyCustomerId,
+    updateConversationMetadata,
+    getUserById,
+    updateUser,
+    getConversation
+  } = await import("../db.server");
+  
   // Initialize services
   const claudeService = createClaudeService();
   const toolService = createToolService();
