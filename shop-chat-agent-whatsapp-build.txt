@@ -1,198 +1,227 @@
-Nov 02 17:44:50  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Nov 02 17:44:50  [34m│[0m [34m › fetching app source code[0m
-Nov 02 17:44:50  [34m│[0m => Selecting branch "main"
-Nov 02 17:44:50  [34m│[0m => Checking out commit "30f7f2d91313a327d67cc58dcd739158931857dc"
-Nov 02 17:44:50  [34m│[0m 
-Nov 02 17:44:50  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Nov 02 17:44:50  [34m╰────────────────────────────────────────╼[0m
-Nov 02 17:44:50  
-Nov 02 17:44:50  [34m › configuring build-time app environment variables:[0m
-Nov 02 17:44:50       CLAUDE_API_KEY REDIRECT_URL SHOPIFY_CHAT_BUBBLE_ID ARCHIVING_API_KEY ORDER_TEMPLATE_GENERAL_URL WHATSAPP_TOKEN ORDER_TEMPLATE_BESTSELLERS_URL MAIL_SERVICE_API WHATSAPP_VERIFY_TOKEN RESEND_API_KEY SHOPIFY_API_KEY APP_URL FOLLOWUP_SECRET DIRECT_URL SHOPIFY_API_SECRET WHATSAPP_PHONE_NUMBER_ID SHOPIFY_APP_URL STAFF_WHATSAPP_NUMBER SUPPORT_EMAIL
-Nov 02 17:44:50  
-Nov 02 17:44:50  [34m › configuring custom build command to be run at the end of the build:[0m
-Nov 02 17:44:50     [34m│[0m npm run build
-Nov 02 17:44:50  
-Nov 02 17:44:50  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Nov 02 17:44:50  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Nov 02 17:44:51  [34m│[0m Detected the following buildpacks suitable to build your app:
-Nov 02 17:44:51  [34m│[0m 
-Nov 02 17:44:51  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Nov 02 17:44:51  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Nov 02 17:44:51  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Nov 02 17:44:51  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Nov 02 17:44:51  [34m╰─────────────────────────────────────────────╼[0m
-Nov 02 17:44:51  
-Nov 02 17:44:51  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Nov 02 17:44:51  [34m│[0m [34m › checking for cache from a previous build[0m
-Nov 02 17:44:51  [34m│[0m Timer: Analyzer started at 2025-11-02T17:44:51Z
-Nov 02 17:44:52  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Nov 02 17:44:52  [34m│[0m Timer: Analyzer ran for 641.25248ms and ended at 2025-11-02T17:44:52Z
-Nov 02 17:44:52  [34m│[0m Timer: Restorer started at 2025-11-02T17:44:52Z
-Nov 02 17:44:52  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Nov 02 17:44:58  [34m│[0m Timer: Restorer ran for 6.246913343s and ended at 2025-11-02T17:44:58Z
-Nov 02 17:44:58  [34m╰───────────────────────────────────────╼[0m
-Nov 02 17:44:58  
-Nov 02 17:44:58  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Nov 02 17:44:59  [34m│[0m Timer: Builder started at 2025-11-02T17:44:59Z
-Nov 02 17:44:59  [34m│[0m        
-Nov 02 17:44:59  [34m│[0m -----> Creating runtime environment
-Nov 02 17:44:59  [34m│[0m        
-Nov 02 17:44:59  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Nov 02 17:44:59  [34m│[0m        NODE_VERBOSE=false
-Nov 02 17:44:59  [34m│[0m        NODE_ENV=
-Nov 02 17:44:59  [34m│[0m        NODE_MODULES_CACHE=true
-Nov 02 17:44:59  [34m│[0m        
-Nov 02 17:44:59  [34m│[0m -----> Installing binaries
-Nov 02 17:44:59  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Nov 02 17:44:59  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Nov 02 17:44:59  [34m│[0m        
-Nov 02 17:44:59  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Nov 02 17:44:59  [34m│[0m        Downloading and installing node 24.2.0...
-Nov 02 17:45:04  [34m│[0m        Using default npm version: 11.3.0
-Nov 02 17:45:05  [34m│[0m        
-Nov 02 17:45:05  [34m│[0m -----> Restoring cache
-Nov 02 17:45:05  [34m│[0m        - npm cache
-Nov 02 17:45:05  [34m│[0m        
-Nov 02 17:45:05  [34m│[0m -----> Installing dependencies
-Nov 02 17:45:05  [34m│[0m        Installing node modules
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        added 1230 packages, and audited 1231 packages in 20s
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        304 packages are looking for funding
-Nov 02 17:45:25  [34m│[0m          run `npm fund` for details
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        19 vulnerabilities (7 low, 8 moderate, 3 high, 1 critical)
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        To address issues that do not require attention, run:
-Nov 02 17:45:25  [34m│[0m          npm audit fix
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        To address all issues possible (including breaking changes), run:
-Nov 02 17:45:25  [34m│[0m          npm audit fix --force
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        Some issues need review, and may require choosing
-Nov 02 17:45:25  [34m│[0m        a different dependency.
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m        Run `npm audit` for details.
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m -----> Build
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m -----> Caching build
-Nov 02 17:45:25  [34m│[0m        - npm cache
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m -----> Pruning devDependencies
-Nov 02 17:45:25  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Nov 02 17:45:25  [34m│[0m        
-Nov 02 17:45:25  [34m│[0m -----> Build succeeded!
-Nov 02 17:45:26  [34m│[0m Running custom build command: npm run build
-Nov 02 17:45:26  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Nov 02 17:45:26  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Nov 02 17:45:26  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Nov 02 17:45:26  [34m│[0m 
-Nov 02 17:45:26  [34m│[0m > shop-chat-agent@1.0.41 build
-Nov 02 17:45:26  [34m│[0m > prisma generate && remix vite:build
-Nov 02 17:45:26  [34m│[0m 
-Nov 02 17:45:26  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Nov 02 17:45:27  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Nov 02 17:45:27  [34m│[0m 
-Nov 02 17:45:27  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 62ms
-Nov 02 17:45:27  [34m│[0m 
-Nov 02 17:45:27  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Nov 02 17:45:27  [34m│[0m 
-Nov 02 17:45:27  [34m│[0m Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-Nov 02 17:45:27  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m vite v6.3.3 building for production...
-Nov 02 17:45:28  [34m│[0m transforming...
-Nov 02 17:45:28  [34m│[0m ✓ 72 modules transformed.
-Nov 02 17:45:28  [34m│[0m ✗ Build failed in 358ms
-Nov 02 17:45:28  [34m│[0m [commonjs--resolver] Server-only module referenced by client
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m     '../db.server' imported by route 'app/routes/chat.jsx'
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m   Remix automatically removes server-code from these exports:
-Nov 02 17:45:28  [34m│[0m     `loader`, `action`, `headers`
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../db.server'.
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
-Nov 02 17:45:28  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 02 17:45:28  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 02 17:45:28  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 02 17:45:28  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
-Nov 02 17:45:28  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 02 17:45:28  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 02 17:45:28  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 02 17:45:28  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
-Nov 02 17:45:28  [34m│[0m   code: 'PLUGIN_ERROR',
-Nov 02 17:45:28  [34m│[0m   plugin: 'commonjs--resolver',
-Nov 02 17:45:28  [34m│[0m   hook: 'resolveId',
-Nov 02 17:45:28  [34m│[0m   watchFiles: [
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/root.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.broadcast.whatsapp-users.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/uploads.$filename.ts',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/app.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Nov 02 17:45:28  [34m│[0m     '/workspace/package.json',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/styles.css',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
-Nov 02 17:45:28  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js'
-Nov 02 17:45:28  [34m│[0m   ]
-Nov 02 17:45:28  [34m│[0m }
-Nov 02 17:45:28  [34m│[0m npm notice
-Nov 02 17:45:28  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
-Nov 02 17:45:28  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
-Nov 02 17:45:28  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
-Nov 02 17:45:28  [34m│[0m npm notice
-Nov 02 17:45:28  [34m│[0m building: exit status 1
-Nov 02 17:45:28  [34m│[0m Timer: Builder ran for 29.414013014s and ended at 2025-11-02T17:45:28Z
-Nov 02 17:45:28  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m 
-Nov 02 17:45:28  [34m│[0m [31m ✘ build failed[0m
+Nov 02 17:53:07  [shopify-api/INFO] version 11.12.0, environment Remix
+Nov 02 17:53:07  [remix-serve] http://localhost:8080 (http://10.244.22.32:8080)
+Nov 02 17:53:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 26.375 ms
+Nov 02 17:53:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 41.738 ms
+Nov 02 17:53:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.430 ms
+Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.872 ms
+Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.735 ms
+Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 37.691 ms
+Nov 02 17:54:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.998 ms
+Nov 02 17:55:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.617 ms
+Nov 02 18:00:20  GET /api/conversation-followup 200 - - 24.519 ms
+Nov 02 18:00:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.808 ms
+Nov 02 18:00:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.997 ms
+Nov 02 18:00:33  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.215 ms
+Nov 02 17:55:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.200 ms
+Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.876 ms
+Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.638 ms
+Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.865 ms
+Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.486 ms
+Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.721 ms
+Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.190 ms
+Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.043 ms
+Nov 02 17:56:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.204 ms
+Nov 02 17:57:04  GET /api/conversation-followup 200 - - 31.110 ms
+Nov 02 17:57:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.803 ms
+Nov 02 17:57:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.935 ms
+Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.617 ms
+Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.733 ms
+Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.467 ms
+Nov 02 17:58:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.692 ms
+Nov 02 17:58:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 39.358 ms
+Nov 02 17:58:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.070 ms
+Nov 02 17:58:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.844 ms
+Nov 02 17:59:04  GET /api/conversation-followup 200 - - 31.783 ms
+Nov 02 17:59:23  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 7.998 ms
+Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.842 ms
+Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.118 ms
+Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.203 ms
+Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.555 ms
+Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.361 ms
+Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.036 ms
+Nov 02 17:59:52  OPTIONS /chat 204 - - 1.874 ms
+Nov 02 17:59:52  Error in handleUserCreationAndLinking: ReferenceError: getUserByShopifyCustomerId is not defined
+Nov 02 17:59:52      at handleUserCreationAndLinking (file:///workspace/build/server/index.js?t=315532801000:4270:7)
+Nov 02 17:59:52      at handleChatRequest (file:///workspace/build/server/index.js?t=315532801000:3870:13)
+Nov 02 17:59:52      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 02 17:59:52      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Nov 02 17:59:52      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Nov 02 17:59:52      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Nov 02 17:59:52      at async Promise.all (index 0)
+Nov 02 17:59:52      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Nov 02 17:59:52      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
+Nov 02 17:59:52      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
+Nov 02 17:59:52  Error handling user creation/linking: ReferenceError: getUserByShopifyCustomerId is not defined
+Nov 02 17:59:52      at handleUserCreationAndLinking (file:///workspace/build/server/index.js?t=315532801000:4270:7)
+Nov 02 17:59:52      at handleChatRequest (file:///workspace/build/server/index.js?t=315532801000:3870:13)
+Nov 02 17:59:52      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 02 17:59:52      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Nov 02 17:59:52      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Nov 02 17:59:52      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Nov 02 17:59:52      at async Promise.all (index 0)
+Nov 02 17:59:52      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
+Nov 02 17:59:52      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
+Nov 02 17:59:52      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
+Nov 02 17:59:52  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 02 17:59:52  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 02 17:59:52  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 02 17:59:52  No token in database for conversation: web_customer_23312945217918
+Nov 02 17:59:52  Customer MCP server tools response: [
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "name": "get_most_recent_order_status",
+Nov 02 17:59:52      "description": "Gets the status of the customer's most recent order.",
+Nov 02 17:59:52      "inputSchema": {
+Nov 02 17:59:52        "type": "object",
+Nov 02 17:59:52        "properties": {}
+Nov 02 17:59:52      }
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "name": "get_order_status",
+Nov 02 17:59:52      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 02 17:59:52      "inputSchema": {
+Nov 02 17:59:52        "type": "object",
+Nov 02 17:59:52        "properties": {
+Nov 02 17:59:52          "order_number": {
+Nov 02 17:59:52            "type": "string",
+Nov 02 17:59:52            "description": "Number of the order to look up"
+Nov 02 17:59:52          }
+Nov 02 17:59:52        },
+Nov 02 17:59:52        "required": [
+Nov 02 17:59:52          "order_number"
+Nov 02 17:59:52        ]
+Nov 02 17:59:52      }
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "name": "get_store_credit_balances",
+Nov 02 17:59:52      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 02 17:59:52      "inputSchema": {
+Nov 02 17:59:52        "type": "object",
+Nov 02 17:59:52        "properties": {}
+Nov 02 17:59:52      }
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "name": "request_return",
+Nov 02 17:59:52      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 02 17:59:52      "inputSchema": {
+Nov 02 17:59:52        "type": "object",
+Nov 02 17:59:52        "properties": {
+Nov 02 17:59:52          "order_id": {
+Nov 02 17:59:52            "type": "string",
+Nov 02 17:59:52            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 02 17:59:52          },
+Nov 02 17:59:52          "order_number": {
+Nov 02 17:59:52            "type": "string",
+Nov 02 17:59:52            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 02 17:59:52          },
+Nov 02 17:59:52          "line_items": {
+Nov 02 17:59:52            "type": "array",
+Nov 02 17:59:52            "description": "List of items to return",
+Nov 02 17:59:52            "items": {
+Nov 02 17:59:52              "type": "object",
+Nov 02 17:59:52              "properties": {
+Nov 02 17:59:52                "line_item_id": {
+Nov 02 17:59:52                  "type": "string",
+Nov 02 17:59:52                  "description": "ID of the line item to return"
+Nov 02 17:59:52                },
+Nov 02 17:59:52                "quantity": {
+Nov 02 17:59:52                  "type": "integer",
+Nov 02 17:59:52                  "description": "Quantity to return"
+Nov 02 17:59:52                },
+Nov 02 17:59:52                "return_reason": {
+Nov 02 17:59:52                  "type": "string",
+Nov 02 17:59:52                  "description": "Reason for return",
+Nov 02 17:59:52                  "enum": [
+Nov 02 17:59:52                    "SIZE_TOO_SMALL",
+Nov 02 17:59:52                    "SIZE_TOO_LARGE",
+Nov 02 17:59:52                    "UNWANTED",
+Nov 02 17:59:52                    "NOT_AS_DESCRIBED",
+Nov 02 17:59:52                    "WRONG_ITEM",
+Nov 02 17:59:52                    "DEFECTIVE",
+Nov 02 17:59:52                    "STYLE",
+Nov 02 17:59:52                    "COLOR",
+Nov 02 17:59:52                    "OTHER",
+Nov 02 17:59:52                    "UNKNOWN"
+Nov 02 17:59:52                  ]
+Nov 02 17:59:52                },
+Nov 02 17:59:52                "customer_note": {
+Nov 02 17:59:52                  "type": "string",
+Nov 02 17:59:52                  "description": "Additional notes about the return"
+Nov 02 17:59:52                }
+Nov 02 17:59:52              },
+Nov 02 17:59:52              "required": [
+Nov 02 17:59:52                "line_item_id",
+Nov 02 17:59:52                "quantity",
+Nov 02 17:59:52                "return_reason"
+Nov 02 17:59:52              ]
+Nov 02 17:59:52            }
+Nov 02 17:59:52          }
+Nov 02 17:59:52        },
+Nov 02 17:59:52        "required": [
+Nov 02 17:59:52          "line_items"
+Nov 02 17:59:52        ]
+Nov 02 17:59:52      }
+Nov 02 17:59:52    }
+Nov 02 17:59:52  ]
+Nov 02 17:59:52  Connected to MCP with 5 tools
+Nov 02 17:59:52  Connected to customer MCP with 4 tools
+Nov 02 17:59:52  Available customer tools: [
+Nov 02 17:59:52    'get_most_recent_order_status',
+Nov 02 17:59:52    'get_order_status',
+Nov 02 17:59:52    'get_store_credit_balances',
+Nov 02 17:59:52    'request_return'
+Nov 02 17:59:52  ]
+Nov 02 17:59:52  Failed to parse message content as JSON, wrapping in text block. Content: hi
+Nov 02 17:59:52  Successfully parsed message content as JSON: object true
+Nov 02 17:59:52  Successfully parsed message content as JSON: object true
+Nov 02 17:59:52  Successfully parsed message content as JSON: object true
+Nov 02 17:59:52  Failed to parse message content as JSON, wrapping in text block. Content: Hi, I can't login to my account
+Nov 02 17:59:52  Cleaned conversation history: 5 messages -> 5 messages
+Nov 02 17:59:52  Conversation history before sending to Claude: [
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "role": "user",
+Nov 02 17:59:52      "content": [
+Nov 02 17:59:52        {
+Nov 02 17:59:52          "type": "text",
+Nov 02 17:59:52          "text": "hi"
+Nov 02 17:59:52        }
+Nov 02 17:59:52      ]
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "role": "assistant",
+Nov 02 17:59:52      "content": [
+Nov 02 17:59:52        {
+Nov 02 17:59:52          "type": "text",
+Nov 02 17:59:52          "text": "Hello! I'm Zara, your sales assistant. What can I help you find today?"
+Nov 02 17:59:52        }
+Nov 02 17:59:52      ]
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "role": "assistant",
+Nov 02 17:59:52      "content": [
+Nov 02 17:59:52        {
+Nov 02 17:59:52          "type": "text",
+Nov 02 17:59:52          "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
+Nov 02 17:59:52        }
+Nov 02 17:59:52      ]
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "role": "assistant",
+Nov 02 17:59:52      "content": [
+Nov 02 17:59:52        {
+Nov 02 17:59:52          "type": "text",
+Nov 02 17:59:52          "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
+Nov 02 17:59:52        }
+Nov 02 17:59:52      ]
+Nov 02 17:59:52    },
+Nov 02 17:59:52    {
+Nov 02 17:59:52      "role": "user",
+Nov 02 17:59:52      "content": [
+Nov 02 17:59:52        {
+Nov 02 17:59:52          "type": "text",
+Nov 02 17:59:52          "text": "Hi, I can't login to my account"
+Nov 02 17:59:52        }
+Nov 02 17:59:52      ]
+Nov 02 17:59:52    }
+Nov 02 17:59:52  ]
+Nov 02 18:00:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.371 ms
+Nov 02 18:01:05  GET /api/conversation-followup 200 - - 16.576 ms

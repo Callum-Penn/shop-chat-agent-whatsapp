@@ -103,6 +103,13 @@ async function handleHistoryRequest(request, conversationId) {
  */
 async function handleChatRequest(request) {
   try {
+    // Import database functions needed for user linking
+    const { 
+      getUserByShopifyCustomerId,
+      createOrGetUser,
+      linkConversationToUser
+    } = await import("../db.server");
+    
     // Get message data from request body
     const body = await request.json();
     const userMessage = body.message;
@@ -122,7 +129,11 @@ async function handleChatRequest(request) {
 
     // Create or link user if we have customer info
     try {
-      await handleUserCreationAndLinking(conversationId, shopifyCustomerId, request);
+      await handleUserCreationAndLinking(conversationId, shopifyCustomerId, request, {
+        getUserByShopifyCustomerId,
+        createOrGetUser,
+        linkConversationToUser
+      });
     } catch (error) {
       console.error('Error handling user creation/linking:', error);
       // Continue even if user linking fails
@@ -641,8 +652,11 @@ function cleanConversationHistory(conversationHistory) {
  * @param {string} conversationId - The conversation ID
  * @param {string} shopifyCustomerId - The Shopify customer ID (optional)
  * @param {Request} request - The request object
+ * @param {Object} dbFunctions - Database functions
  */
-async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, request) {
+async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, request, dbFunctions) {
+  const { getUserByShopifyCustomerId, createOrGetUser, linkConversationToUser } = dbFunctions;
+  
   try {
     let user = null;
 
