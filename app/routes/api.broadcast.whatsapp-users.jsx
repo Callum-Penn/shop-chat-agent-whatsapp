@@ -10,3 +10,4 @@ export const loader = async () => {
     return json({ count: 0 });
   }
 };
+

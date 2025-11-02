@@ -5,6 +5,7 @@ import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
 import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocument, sendWhatsAppDocumentFromUrl } from "../utils/whatsapp.server";
+import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText } from "../utils/email.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -52,6 +53,34 @@ function truncateConversationHistory(messages, maxMessages = 10) {
   const recentMessages = messages.slice(-maxMessages + 1);
   
   return [firstMessage, ...recentMessages];
+}
+
+// Helper to generate conversation summary for handoff emails
+function generateConversationSummary(messages, reason) {
+  let summary = '';
+  
+  if (reason) {
+    summary += `Reason: ${reason}\n\n`;
+  }
+  
+  summary += 'Conversation Summary:\n';
+  
+  // Extract last few user messages to understand the issue
+  const userMessages = messages.filter(msg => msg.role === 'user').slice(-3);
+  if (userMessages.length > 0) {
+    summary += '\nCustomer\'s concerns:\n';
+    userMessages.forEach((msg, idx) => {
+      let content = '';
+      if (Array.isArray(msg.content)) {
+        content = msg.content.map(c => c.text || c.type).join(' ');
+      } else {
+        content = msg.content;
+      }
+      summary += `${idx + 1}. ${content.substring(0, 200)}${content.length > 200 ? '...' : ''}\n`;
+    });
+  }
+  
+  return summary;
 }
 
 export const action = async ({ request }) => {
@@ -357,6 +386,93 @@ export const action = async ({ request }) => {
                     } catch (templateError) {
                       console.error('WhatsApp: Failed to send template:', templateError);
                       aiResponse = "I apologize, but I couldn't send the order template. Please try again later.";
+                      conversationComplete = true;
+                      break;
+                    }
+                  }
+                  
+                  // Handle escalate_to_customer_service custom tool
+                  if (toolResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
+                    console.log('WhatsApp: Handling custom tool escalate_to_customer_service');
+                    
+                    const { customer_name, customer_email, customer_phone, reason } = toolArgs;
+                    
+                    try {
+                      // Get conversation history for summary
+                      const dbMessages = await getConversationHistory(conversationId, 20);
+                      const lastMessages = dbMessages.slice(-10).map(msg => ({
+                        role: msg.role,
+                        content: msg.content
+                      }));
+                      
+                      // Generate conversation summary from recent messages
+                      const conversationSummary = generateConversationSummary(lastMessages, reason);
+                      
+                      // Send email to customer service
+                      const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
+                      await sendEmail({
+                        to: supportEmail,
+                        subject: `New Customer Service Handoff - WhatsApp Chat`,
+                        html: generateHandoffEmailHTML({
+                          customerName: customer_name,
+                          customerEmail: customer_email,
+                          customerPhone: customer_phone,
+                          channel: 'whatsapp',
+                          conversationId,
+                          conversationSummary,
+                          lastMessages
+                        }),
+                        text: generateHandoffEmailText({
+                          customerName: customer_name,
+                          customerEmail: customer_email,
+                          customerPhone: customer_phone,
+                          channel: 'whatsapp',
+                          conversationId,
+                          conversationSummary,
+                          lastMessages
+                        })
+                      });
+                      
+                      console.log('WhatsApp: Handoff email sent successfully');
+                      
+                      // Update user info in database
+                      const { getUserByPhoneNumber, updateUser } = await import("../db.server");
+                      const user = await getUserByPhoneNumber(from);
+                      if (user) {
+                        await updateUser(user.id, {
+                          name: customer_name,
+                          email: customer_email
+                        });
+                      }
+                      
+                      // Mark conversation metadata
+                      const { updateConversationMetadata } = await import("../db.server");
+                      await updateConversationMetadata(conversationId, {
+                        handoff_requested: true,
+                        handoff_at: new Date().toISOString()
+                      });
+                      
+                      // Update conversation history
+                      conversationHistory.push({
+                        role: 'assistant',
+                        content: [content]
+                      });
+                      conversationHistory.push({
+                        role: 'user',
+                        content: [{
+                          type: 'tool_result',
+                          tool_use_id: content.id,
+                          content: `Customer service handoff completed. Email sent to ${supportEmail}.`
+                        }]
+                      });
+                      
+                      aiResponse = "Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is: " + conversationId;
+                      conversationComplete = true;
+                      break;
+                      
+                    } catch (handoffError) {
+                      console.error('WhatsApp: Failed to process handoff:', handoffError);
+                      aiResponse = "I apologize, but I couldn't process your request to speak with our team. Please contact support directly or try again later.";
                       conversationComplete = true;
                       break;
                     }

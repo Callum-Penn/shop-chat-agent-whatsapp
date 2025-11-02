@@ -605,6 +605,39 @@ export async function linkConversationToUser(conversationId, userId, channel = '
 // ===================================
 
 /**
+ * Update conversation metadata
+ * @param {string} conversationId - The conversation ID
+ * @param {Object} metadataUpdate - Metadata fields to update
+ * @returns {Promise<Object>} - The updated conversation
+ */
+export async function updateConversationMetadata(conversationId, metadataUpdate) {
+  try {
+    // Get existing metadata
+    const existingConv = await prisma.conversation.findUnique({
+      where: { id: conversationId },
+      select: { metadata: true }
+    });
+    
+    // Merge with new metadata
+    const updatedMetadata = {
+      ...(existingConv?.metadata || {}),
+      ...metadataUpdate
+    };
+    
+    return await prisma.conversation.update({
+      where: { id: conversationId },
+      data: {
+        metadata: updatedMetadata,
+        updatedAt: new Date()
+      }
+    });
+  } catch (error) {
+    console.error('Error updating conversation metadata:', error);
+    throw error;
+  }
+}
+
+/**
  * Archive old conversations that haven't been updated recently
  * @param {number} daysInactive - Number of days of inactivity before archiving (default: 30)
  * @returns {Promise<number>} - Number of conversations archived

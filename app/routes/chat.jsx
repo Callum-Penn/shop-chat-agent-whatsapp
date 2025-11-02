@@ -11,14 +11,49 @@ import {
   getCustomerAccountUrl,
   createOrGetUser,
   linkConversationToUser,
-  getUserByShopifyCustomerId
+  getUserByShopifyCustomerId,
+  updateConversationMetadata,
+  getUserById,
+  updateUser
 } from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
 import { unauthenticated } from "../shopify.server";
+import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText } from "../utils/email.server";
+import prisma from "../db.server";
 
+
+/**
+ * Helper to generate conversation summary for handoff emails
+ */
+function generateConversationSummary(messages, reason) {
+  let summary = '';
+  
+  if (reason) {
+    summary += `Reason: ${reason}\n\n`;
+  }
+  
+  summary += 'Conversation Summary:\n';
+  
+  // Extract last few user messages to understand the issue
+  const userMessages = messages.filter(msg => msg.role === 'user').slice(-3);
+  if (userMessages.length > 0) {
+    summary += '\nCustomer\'s concerns:\n';
+    userMessages.forEach((msg, idx) => {
+      let content = '';
+      if (Array.isArray(msg.content)) {
+        content = msg.content.map(c => c.text || c.type).join(' ');
+      } else {
+        content = msg.content;
+      }
+      summary += `${idx + 1}. ${content.substring(0, 200)}${content.length > 200 ? '...' : ''}\n`;
+    });
+  }
+  
+  return summary;
+}
 
 /**
  * Remix loader function for handling GET requests
@@ -286,6 +321,106 @@ async function handleChatSession({
 
             // Call the tool
             const toolUseResponse = await mcpClient.callTool(toolName, toolArgs);
+            
+            // Handle escalate_to_customer_service custom tool
+            if (toolUseResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
+              console.log('Web: Handling custom tool escalate_to_customer_service');
+              
+              const { customer_name, customer_email, customer_phone, reason } = toolArgs;
+              
+              try {
+                // Get conversation history for summary
+                const dbMessages = await getConversationHistory(conversationId, 20);
+                const lastMessages = dbMessages.slice(-10).map(msg => ({
+                  role: msg.role,
+                  content: msg.content
+                }));
+                
+                // Generate conversation summary from recent messages
+                const conversationSummary = generateConversationSummary(lastMessages, reason);
+                
+                // Send email to customer service
+                const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
+                await sendEmail({
+                  to: supportEmail,
+                  subject: `New Customer Service Handoff - Web Chat`,
+                  html: generateHandoffEmailHTML({
+                    customerName: customer_name,
+                    customerEmail: customer_email,
+                    customerPhone: customer_phone,
+                    channel: 'web',
+                    conversationId,
+                    conversationSummary,
+                    lastMessages
+                  }),
+                  text: generateHandoffEmailText({
+                    customerName: customer_name,
+                    customerEmail: customer_email,
+                    customerPhone: customer_phone,
+                    channel: 'web',
+                    conversationId,
+                    conversationSummary,
+                    lastMessages
+                  })
+                });
+                
+                console.log('Web: Handoff email sent successfully');
+                
+                // Get conversation to find user
+                const conversation = await prisma.conversation.findUnique({
+                  where: { id: conversationId },
+                  select: { userId: true }
+                });
+                
+                // Update user info in database if user exists
+                if (conversation?.userId) {
+                  await updateUser(conversation.userId, {
+                    name: customer_name,
+                    email: customer_email,
+                    phoneNumber: customer_phone
+                  });
+                }
+                
+                // Mark conversation metadata
+                await updateConversationMetadata(conversationId, {
+                  handoff_requested: true,
+                  handoff_at: new Date().toISOString()
+                });
+                
+                // Update conversation history
+                conversationHistory.push({
+                  role: 'assistant',
+                  content: [content]
+                });
+                conversationHistory.push({
+                  role: 'user',
+                  content: [{
+                    type: 'tool_result',
+                    tool_use_id: toolUseId,
+                    content: `Customer service handoff completed. Email sent to ${supportEmail}.`
+                  }]
+                });
+                
+                // Stream response to user
+                stream.sendMessage({
+                  type: 'chunk',
+                  chunk: "Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is: " + conversationId
+                });
+                
+                // End the conversation
+                stream.sendMessage({ type: 'end_turn' });
+                return;
+                
+              } catch (handoffError) {
+                console.error('Web: Failed to process handoff:', handoffError);
+                stream.sendMessage({
+                  type: 'chunk',
+                  chunk: "I apologize, but I couldn't process your request to speak with our team. Please contact support directly or try again later."
+                });
+                stream.sendMessage({ type: 'end_turn' });
+                return;
+              }
+            }
 
             // Handle tool response based on success/error
             if (toolUseResponse.error) {

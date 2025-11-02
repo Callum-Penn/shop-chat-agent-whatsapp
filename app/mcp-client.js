@@ -70,6 +70,34 @@ class MCPClient {
       }
     });
     
+    // Add escalate_to_customer_service tool for both channels
+    this.customTools.push({
+      name: "escalate_to_customer_service",
+      description: "Escalate the conversation to a human customer service representative. Use this when the customer explicitly requests to speak with a person, needs help beyond the bot's capabilities, or is frustrated. The customer must provide their name, email, and phone number before this tool can be used.",
+      input_schema: {
+        type: "object",
+        properties: {
+          customer_name: {
+            type: "string",
+            description: "The customer's full name"
+          },
+          customer_email: {
+            type: "string",
+            description: "The customer's email address"
+          },
+          customer_phone: {
+            type: "string",
+            description: "The customer's phone number"
+          },
+          reason: {
+            type: "string",
+            description: "Brief reason for the handoff (optional)"
+          }
+        },
+        required: ["customer_name", "customer_email", "customer_phone"]
+      }
+    });
+    
     // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
     this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
 
