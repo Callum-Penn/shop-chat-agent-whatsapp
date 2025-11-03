@@ -2,6 +2,8 @@
  * WhatsApp utility functions
  */
 
+import prisma from "../db.server";
+
 /**
  * Send a message to WhatsApp
  * @param {string} to - Phone number to send message to
@@ -94,11 +96,8 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
   return responseData;
 }
 
-// Store images in memory for serving
-const imageStore = new Map();
-
 /**
- * Upload image to a public hosting service and get URL
+ * Upload image to database and get URL
  * @param {string} imageData - Base64 encoded image data
  * @param {string} filename - Original filename
  * @returns {Promise<string>} Public URL of the uploaded image
@@ -111,17 +110,35 @@ export async function uploadImageToHosting(imageData, filename) {
     // Generate a unique filename
     const uniqueFilename = `${Date.now()}_${filename}`;
     
-    // Store the image in memory for serving
-    imageStore.set(uniqueFilename, {
-      buffer: imageBuffer,
-      mimeType: 'image/jpeg', // Default to JPEG
-      size: imageBuffer.length
+    // Detect MIME type from filename extension
+    const getMimeType = (filename) => {
+      const ext = filename.toLowerCase().substring(filename.lastIndexOf('.'));
+      const mimeTypes = {
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif',
+        '.webp': 'image/webp'
+      };
+      return mimeTypes[ext] || 'image/jpeg';
+    };
+    
+    const mimeType = getMimeType(uniqueFilename);
+    
+    // Store the image in the database
+    await prisma.uploadedImage.create({
+      data: {
+        filename: uniqueFilename,
+        data: imageBuffer,
+        mimeType: mimeType,
+        size: imageBuffer.length
+      }
     });
     
-    console.log('Image stored in memory with key:', uniqueFilename);
+    console.log('Image stored in database with key:', uniqueFilename);
     console.log('Image size:', imageBuffer.length, 'bytes');
     
-    // Return public URL (adjust this based on your domain)
+    // Return public URL
     const publicUrl = `${process.env.APP_URL || 'https://your-domain.com'}/uploads/${uniqueFilename}`;
     
     console.log('Image uploaded to hosting:', publicUrl);
@@ -133,12 +150,29 @@ export async function uploadImageToHosting(imageData, filename) {
 }
 
 /**
- * Get image from memory store
+ * Get image from database
  * @param {string} filename - Filename to retrieve
  * @returns {Object|null} Image data or null if not found
  */
-export function getImageFromStore(filename) {
-  return imageStore.get(filename) || null;
+export async function getImageFromStore(filename) {
+  try {
+    const image = await prisma.uploadedImage.findUnique({
+      where: { filename: filename }
+    });
+    
+    if (!image) {
+      return null;
+    }
+    
+    return {
+      buffer: image.data,
+      mimeType: image.mimeType,
+      size: image.size
+    };
+  } catch (error) {
+    console.error('Failed to get image from store:', error);
+    return null;
+  }
 }
 
 /**

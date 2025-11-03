@@ -134,3 +134,15 @@ model ProductQuantityIncrement {
 
   @@index([entityType])
 }
+
+model UploadedImage {
+  id         String   @id @default(cuid())
+  filename   String   @unique // Unique filename for URL access
+  data       Bytes    // Binary image data
+  mimeType   String   // MIME type (e.g., 'image/jpeg', 'image/png')
+  size       Int      // File size in bytes
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([createdAt])
+}

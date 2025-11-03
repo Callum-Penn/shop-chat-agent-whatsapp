@@ -1,2 +1,1 @@
-Nov 03 09:28:08  [SERVER DEBUG] Message saved with id: cmhixt5u30007sb4nr0r7yjsh createdAt: 2025-11-03T09:28:08.907Z
-Nov 03 09:28:09  Resend: Email sent successfully: {"data":{"id":"72d1801c-3fb1-4050-9fe5-8ac74750bc27"},"error":null,"headers":{"cf-cache-status":"DYNAMIC","cf-ray":"998ad6ffb8aa46d0-LHR","connection":"close","content-encoding":"br","content-type":"application/json","date":"Mon, 03 Nov 2025 09:28:09 GMT","ratelimit-limit":"2","ratelimit-policy":"2;w=1","ratelimit-remaining":"1","ratelimit-reset":"1","server":"cloudflare","transfer-encoding":"chunked","x-resend-daily-quota":"1","x-resend-monthly-quota":"5"}}
+1762167260228_image.jpg:1  Failed to load resource: the server responded with a status of 404 ()
