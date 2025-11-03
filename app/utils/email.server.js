@@ -59,11 +59,41 @@ async function sendEmailViaResend({ to, subject, html, text }) {
       text: text
     });
     
-    console.log('Resend: Email sent successfully:', JSON.stringify(response));
+    console.log('Resend: Email sent successfully. Email ID:', response.data?.id);
     return response;
   } catch (error) {
     console.error('Resend: Failed to send email:', error);
     throw new Error(`Resend API error: ${error.message}`);
+  }
+}
+
+/**
+ * Extract plain text from message content (handles both JSON string and parsed content)
+ * @param {string|Array} content - Message content
+ * @returns {string} Plain text representation
+ */
+function extractMessageText(content) {
+  try {
+    let parsed = content;
+    
+    // If it's a string, try to parse it as JSON
+    if (typeof content === 'string') {
+      parsed = JSON.parse(content);
+    }
+    
+    // If it's an array (standard message format)
+    if (Array.isArray(parsed)) {
+      return parsed
+        .filter(block => block.type === 'text')
+        .map(block => block.text)
+        .join('\n');
+    }
+    
+    // Fallback to string representation
+    return String(content);
+  } catch (e) {
+    // If parsing fails, just return as string
+    return String(content);
   }
 }
 
@@ -146,12 +176,15 @@ export function generateHandoffEmailHTML(handoffData) {
             ${lastMessages && lastMessages.length > 0 ? `
               <div class="messages">
                 <h3>Recent Messages:</h3>
-                ${lastMessages.map(msg => `
+                ${lastMessages.map(msg => {
+                  const text = extractMessageText(msg.content);
+                  return `
                   <div class="message message-${msg.role}">
                     <strong>${msg.role === 'user' ? 'Customer' : 'Assistant'}:</strong><br>
-                    ${msg.content.replace(/\n/g, '<br>')}
+                    ${text.replace(/\n/g, '<br>')}
                   </div>
-                `).join('')}
+                `;
+                }).join('')}
               </div>
             ` : ''}
           </div>
@@ -193,11 +226,14 @@ ${conversationSummary}
 
 ${lastMessages && lastMessages.length > 0 ? `
 Recent Messages:
-${lastMessages.map(msg => `
+${lastMessages.map(msg => {
+  const text = extractMessageText(msg.content);
+  return `
 ${msg.role === 'user' ? 'Customer' : 'Assistant'}:
-${msg.content}
+${text}
 
-`).join('')}
+`;
+}).join('')}
 ` : ''}
   `.trim();
 }
