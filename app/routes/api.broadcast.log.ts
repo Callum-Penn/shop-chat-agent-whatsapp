@@ -234,6 +234,22 @@ async function processWebsiteBroadcast(entry, message) {
       entry.results.website.sent = 0;
       entry.results.website.failed = 0;
     } else {
+      // Upload image to hosting service if provided
+      let imageUrl = null;
+      if (entry.image) {
+        try {
+          imageUrl = await uploadImageToHosting(entry.image, 'image.jpg');
+          console.log(`Broadcast: Uploaded image to hosting, URL: ${imageUrl}`);
+        } catch (error) {
+          console.error('Broadcast: Failed to upload image to hosting:', error);
+          entry.results.website.failed = webUsers.length;
+          entry.results.website.errors.push({
+            error: `Failed to upload image to hosting: ${error.message}`
+          });
+          return; // Stop processing if image upload fails
+        }
+      }
+      
       // Send broadcast message to each web chat user's actual conversation
       for (const user of webUsers) {
         try {
@@ -261,9 +277,14 @@ async function processWebsiteBroadcast(entry, message) {
           if (targetConversation) {
             try {
               // Save the broadcast message to the user's conversation history
-              const broadcastMessage = entry.heading 
+              let broadcastMessage = entry.heading 
                 ? ` **${entry.heading}**\n\n${message}`
                 : ` ${message}`;
+              
+              // Include image markdown if image was provided
+              if (entry.image && imageUrl) {
+                broadcastMessage = `![Broadcast Image](${imageUrl})\n\n${broadcastMessage}`;
+              }
               
               await saveMessage(targetConversation.id, 'assistant', broadcastMessage);
               console.log(`Broadcast: Saved message to conversation ${targetConversation.id} for customer ${user.shopifyCustomerId || user.id} (${user.name || 'Unknown'})`);

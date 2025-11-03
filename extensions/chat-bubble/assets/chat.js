@@ -617,6 +617,12 @@
         // Process the text with various Markdown features
         let processedText = rawText;
 
+        // Process Markdown images FIRST (before links to avoid conflicts)
+        const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+        processedText = processedText.replace(markdownImageRegex, (match, alt, url) => {
+          return '<img src="' + url + '" alt="' + (alt || 'Image') + '" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />';
+        });
+
         // Process Markdown links
         const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
         processedText = processedText.replace(markdownLinkRegex, (match, text, url) => {
@@ -1807,17 +1813,17 @@
           return;
         }
         try {
-          // Call backend to send WhatsApp invite
-          const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phoneNumber })
-          });
+        // Call backend to send WhatsApp invite
+        const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phoneNumber })
+        });
           const data = await res.json();
           
-          if (res.ok) {
+        if (res.ok) {
             msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">✅ We've sent you a message on WhatsApp! Please check your phone and reply to continue chatting.</div>`;
-          } else {
+        } else {
             msgDiv.innerHTML = `<div class=\"shop-ai-message-content\">❌ Sorry, there was a problem sending the WhatsApp invite. ${data.details || 'Please try again.'}</div>`;
           }
         } catch (error) {
