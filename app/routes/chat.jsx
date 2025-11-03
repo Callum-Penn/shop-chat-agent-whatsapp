@@ -281,7 +281,9 @@ async function handleChatSession({
       }]
     };
 
-    while (finalMessage.stop_reason !== "end_turn") {
+    let handoffCompleted = false;
+
+    while (finalMessage.stop_reason !== "end_turn" && !handoffCompleted) {
       finalMessage = await claudeService.streamConversation(
         {
           messages: conversationHistory,
@@ -418,9 +420,8 @@ async function handleChatSession({
                   chunk: "Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is: " + conversationId
                 });
                 
-                // End the conversation
-                stream.sendMessage({ type: 'end_turn' });
-                return;
+                // Mark handoff as completed to stop the loop
+                handoffCompleted = true;
                 
               } catch (handoffError) {
                 console.error('Web: Failed to process handoff:', handoffError);
@@ -428,9 +429,14 @@ async function handleChatSession({
                   type: 'chunk',
                   chunk: "I apologize, but I couldn't process your request to speak with our team. Please contact support directly or try again later."
                 });
-                stream.sendMessage({ type: 'end_turn' });
-                return;
+                // Mark handoff as completed even on error to stop the loop
+                handoffCompleted = true;
               }
+            }
+            
+            // Skip normal tool handling if handoff was completed
+            if (handoffCompleted) {
+              return;
             }
 
             // Handle tool response based on success/error
@@ -451,7 +457,8 @@ async function handleChatSession({
                 stream.sendMessage({ type: 'end_turn' });
                 return;
               }
-            } else {
+            } else if (!toolUseResponse.isCustomTool) {
+              // Only handle non-custom tools with handleToolSuccess
               await toolService.handleToolSuccess(
                 toolUseResponse,
                 toolName,

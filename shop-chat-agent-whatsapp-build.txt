@@ -1,227 +1,93 @@
-Nov 02 17:53:07  [shopify-api/INFO] version 11.12.0, environment Remix
-Nov 02 17:53:07  [remix-serve] http://localhost:8080 (http://10.244.22.32:8080)
-Nov 02 17:53:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 26.375 ms
-Nov 02 17:53:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 41.738 ms
-Nov 02 17:53:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.430 ms
-Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.872 ms
-Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.735 ms
-Nov 02 17:54:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 37.691 ms
-Nov 02 17:54:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.998 ms
-Nov 02 17:55:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.617 ms
-Nov 02 18:00:20  GET /api/conversation-followup 200 - - 24.519 ms
-Nov 02 18:00:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.808 ms
-Nov 02 18:00:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.997 ms
-Nov 02 18:00:33  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.215 ms
-Nov 02 17:55:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.200 ms
-Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.876 ms
-Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.638 ms
-Nov 02 17:55:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.865 ms
-Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.486 ms
-Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.721 ms
-Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.190 ms
-Nov 02 17:56:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.043 ms
-Nov 02 17:56:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.204 ms
-Nov 02 17:57:04  GET /api/conversation-followup 200 - - 31.110 ms
-Nov 02 17:57:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.803 ms
-Nov 02 17:57:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.935 ms
-Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.617 ms
-Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.733 ms
-Nov 02 17:57:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.467 ms
-Nov 02 17:58:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.692 ms
-Nov 02 17:58:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 39.358 ms
-Nov 02 17:58:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.070 ms
-Nov 02 17:58:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.844 ms
-Nov 02 17:59:04  GET /api/conversation-followup 200 - - 31.783 ms
-Nov 02 17:59:23  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 7.998 ms
-Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.842 ms
-Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.118 ms
-Nov 02 17:59:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.203 ms
-Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.555 ms
-Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.361 ms
-Nov 02 17:59:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.036 ms
-Nov 02 17:59:52  OPTIONS /chat 204 - - 1.874 ms
-Nov 02 17:59:52  Error in handleUserCreationAndLinking: ReferenceError: getUserByShopifyCustomerId is not defined
-Nov 02 17:59:52      at handleUserCreationAndLinking (file:///workspace/build/server/index.js?t=315532801000:4270:7)
-Nov 02 17:59:52      at handleChatRequest (file:///workspace/build/server/index.js?t=315532801000:3870:13)
-Nov 02 17:59:52      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Nov 02 17:59:52      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-Nov 02 17:59:52      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Nov 02 17:59:52      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Nov 02 17:59:52      at async Promise.all (index 0)
-Nov 02 17:59:52      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
-Nov 02 17:59:52      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
-Nov 02 17:59:52      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
-Nov 02 17:59:52  Error handling user creation/linking: ReferenceError: getUserByShopifyCustomerId is not defined
-Nov 02 17:59:52      at handleUserCreationAndLinking (file:///workspace/build/server/index.js?t=315532801000:4270:7)
-Nov 02 17:59:52      at handleChatRequest (file:///workspace/build/server/index.js?t=315532801000:3870:13)
-Nov 02 17:59:52      at processTicksAndRejections (node:internal/process/task_queues:105:5)
-Nov 02 17:59:52      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
-Nov 02 17:59:52      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
-Nov 02 17:59:52      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
-Nov 02 17:59:52      at async Promise.all (index 0)
-Nov 02 17:59:52      at defaultDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4807:17)
-Nov 02 17:59:52      at callDataStrategyImpl (/workspace/node_modules/@remix-run/router/router.ts:4870:17)
-Nov 02 17:59:52      at callDataStrategy (/workspace/node_modules/@remix-run/router/router.ts:4027:19)
-Nov 02 17:59:52  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Nov 02 17:59:52  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Nov 02 17:59:52  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Nov 02 17:59:52  No token in database for conversation: web_customer_23312945217918
-Nov 02 17:59:52  Customer MCP server tools response: [
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "name": "get_most_recent_order_status",
-Nov 02 17:59:52      "description": "Gets the status of the customer's most recent order.",
-Nov 02 17:59:52      "inputSchema": {
-Nov 02 17:59:52        "type": "object",
-Nov 02 17:59:52        "properties": {}
-Nov 02 17:59:52      }
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "name": "get_order_status",
-Nov 02 17:59:52      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Nov 02 17:59:52      "inputSchema": {
-Nov 02 17:59:52        "type": "object",
-Nov 02 17:59:52        "properties": {
-Nov 02 17:59:52          "order_number": {
-Nov 02 17:59:52            "type": "string",
-Nov 02 17:59:52            "description": "Number of the order to look up"
-Nov 02 17:59:52          }
-Nov 02 17:59:52        },
-Nov 02 17:59:52        "required": [
-Nov 02 17:59:52          "order_number"
-Nov 02 17:59:52        ]
-Nov 02 17:59:52      }
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "name": "get_store_credit_balances",
-Nov 02 17:59:52      "description": "Fetches the customer's store credit balances if they have any.",
-Nov 02 17:59:52      "inputSchema": {
-Nov 02 17:59:52        "type": "object",
-Nov 02 17:59:52        "properties": {}
-Nov 02 17:59:52      }
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "name": "request_return",
-Nov 02 17:59:52      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Nov 02 17:59:52      "inputSchema": {
-Nov 02 17:59:52        "type": "object",
-Nov 02 17:59:52        "properties": {
-Nov 02 17:59:52          "order_id": {
-Nov 02 17:59:52            "type": "string",
-Nov 02 17:59:52            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Nov 02 17:59:52          },
-Nov 02 17:59:52          "order_number": {
-Nov 02 17:59:52            "type": "string",
-Nov 02 17:59:52            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Nov 02 17:59:52          },
-Nov 02 17:59:52          "line_items": {
-Nov 02 17:59:52            "type": "array",
-Nov 02 17:59:52            "description": "List of items to return",
-Nov 02 17:59:52            "items": {
-Nov 02 17:59:52              "type": "object",
-Nov 02 17:59:52              "properties": {
-Nov 02 17:59:52                "line_item_id": {
-Nov 02 17:59:52                  "type": "string",
-Nov 02 17:59:52                  "description": "ID of the line item to return"
-Nov 02 17:59:52                },
-Nov 02 17:59:52                "quantity": {
-Nov 02 17:59:52                  "type": "integer",
-Nov 02 17:59:52                  "description": "Quantity to return"
-Nov 02 17:59:52                },
-Nov 02 17:59:52                "return_reason": {
-Nov 02 17:59:52                  "type": "string",
-Nov 02 17:59:52                  "description": "Reason for return",
-Nov 02 17:59:52                  "enum": [
-Nov 02 17:59:52                    "SIZE_TOO_SMALL",
-Nov 02 17:59:52                    "SIZE_TOO_LARGE",
-Nov 02 17:59:52                    "UNWANTED",
-Nov 02 17:59:52                    "NOT_AS_DESCRIBED",
-Nov 02 17:59:52                    "WRONG_ITEM",
-Nov 02 17:59:52                    "DEFECTIVE",
-Nov 02 17:59:52                    "STYLE",
-Nov 02 17:59:52                    "COLOR",
-Nov 02 17:59:52                    "OTHER",
-Nov 02 17:59:52                    "UNKNOWN"
-Nov 02 17:59:52                  ]
-Nov 02 17:59:52                },
-Nov 02 17:59:52                "customer_note": {
-Nov 02 17:59:52                  "type": "string",
-Nov 02 17:59:52                  "description": "Additional notes about the return"
-Nov 02 17:59:52                }
-Nov 02 17:59:52              },
-Nov 02 17:59:52              "required": [
-Nov 02 17:59:52                "line_item_id",
-Nov 02 17:59:52                "quantity",
-Nov 02 17:59:52                "return_reason"
-Nov 02 17:59:52              ]
-Nov 02 17:59:52            }
-Nov 02 17:59:52          }
-Nov 02 17:59:52        },
-Nov 02 17:59:52        "required": [
-Nov 02 17:59:52          "line_items"
-Nov 02 17:59:52        ]
-Nov 02 17:59:52      }
-Nov 02 17:59:52    }
-Nov 02 17:59:52  ]
-Nov 02 17:59:52  Connected to MCP with 5 tools
-Nov 02 17:59:52  Connected to customer MCP with 4 tools
-Nov 02 17:59:52  Available customer tools: [
-Nov 02 17:59:52    'get_most_recent_order_status',
-Nov 02 17:59:52    'get_order_status',
-Nov 02 17:59:52    'get_store_credit_balances',
-Nov 02 17:59:52    'request_return'
-Nov 02 17:59:52  ]
-Nov 02 17:59:52  Failed to parse message content as JSON, wrapping in text block. Content: hi
-Nov 02 17:59:52  Successfully parsed message content as JSON: object true
-Nov 02 17:59:52  Successfully parsed message content as JSON: object true
-Nov 02 17:59:52  Successfully parsed message content as JSON: object true
-Nov 02 17:59:52  Failed to parse message content as JSON, wrapping in text block. Content: Hi, I can't login to my account
-Nov 02 17:59:52  Cleaned conversation history: 5 messages -> 5 messages
-Nov 02 17:59:52  Conversation history before sending to Claude: [
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "role": "user",
-Nov 02 17:59:52      "content": [
-Nov 02 17:59:52        {
-Nov 02 17:59:52          "type": "text",
-Nov 02 17:59:52          "text": "hi"
-Nov 02 17:59:52        }
-Nov 02 17:59:52      ]
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "role": "assistant",
-Nov 02 17:59:52      "content": [
-Nov 02 17:59:52        {
-Nov 02 17:59:52          "type": "text",
-Nov 02 17:59:52          "text": "Hello! I'm Zara, your sales assistant. What can I help you find today?"
-Nov 02 17:59:52        }
-Nov 02 17:59:52      ]
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "role": "assistant",
-Nov 02 17:59:52      "content": [
-Nov 02 17:59:52        {
-Nov 02 17:59:52          "type": "text",
-Nov 02 17:59:52          "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
-Nov 02 17:59:52        }
-Nov 02 17:59:52      ]
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "role": "assistant",
-Nov 02 17:59:52      "content": [
-Nov 02 17:59:52        {
-Nov 02 17:59:52          "type": "text",
-Nov 02 17:59:52          "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
-Nov 02 17:59:52        }
-Nov 02 17:59:52      ]
-Nov 02 17:59:52    },
-Nov 02 17:59:52    {
-Nov 02 17:59:52      "role": "user",
-Nov 02 17:59:52      "content": [
-Nov 02 17:59:52        {
-Nov 02 17:59:52          "type": "text",
-Nov 02 17:59:52          "text": "Hi, I can't login to my account"
-Nov 02 17:59:52        }
-Nov 02 17:59:52      ]
-Nov 02 17:59:52    }
-Nov 02 17:59:52  ]
-Nov 02 18:00:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.371 ms
-Nov 02 18:01:05  GET /api/conversation-followup 200 - - 16.576 ms
+Nov 02 18:33:24    {
+Nov 02 18:33:24      "role": "user",
+Nov 02 18:33:24      "content": [
+Nov 02 18:33:24        {
+Nov 02 18:33:24          "type": "text",
+Nov 02 18:33:24          "text": "Callum callum@penn.co.uk 07891689332"
+Nov 02 18:33:24        }
+Nov 02 18:33:24      ]
+Nov 02 18:33:24    }
+Nov 02 18:33:24  ]
+Nov 02 18:33:27  [SERVER DEBUG] Message saved with id: cmhi1ul8m000lrm4nlppocef4 createdAt: 2025-11-02T18:33:27.815Z
+Nov 02 18:33:27  Custom tool called: escalate_to_customer_service {
+Nov 02 18:33:27    customer_name: 'Callum',
+Nov 02 18:33:27    customer_email: 'callum@penn.co.uk',
+Nov 02 18:33:27    customer_phone: '07891689332',
+Nov 02 22:07:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.360 ms
+Nov 02 22:07:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.626 ms
+Nov 02 22:08:05  GET /api/conversation-followup 200 - - 20.826 ms
+Nov 02 22:08:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.306 ms
+Nov 02 22:08:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.440 ms
+Nov 02 22:09:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.775 ms
+Nov 02 22:09:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.745 ms
+Nov 02 22:09:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.544 ms
+Nov 02 22:10:09  GET /api/conversation-followup 200 - - 15.719 ms
+Nov 02 22:10:36  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.394 ms
+Nov 02 22:10:36  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.000 ms
+Nov 02 22:10:36  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 95.996 ms
+Nov 02 22:10:36  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 96.802 ms
+Nov 02 22:11:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.266 ms
+Nov 02 22:11:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.785 ms
+Nov 02 22:12:05  GET /api/conversation-followup 200 - - 18.274 ms
+Nov 02 22:12:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.469 ms
+Nov 02 22:12:33  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.330 ms
+Nov 02 22:12:33  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.442 ms
+Nov 02 22:13:04  GET /api/conversation-followup 200 - - 14.213 ms
+Nov 02 22:13:32  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.228 ms
+Nov 02 18:33:27    reason: 'Customer needs help with order status and login issues'
+Nov 02 18:33:27  }
+Nov 02 18:33:27  Web: Handling custom tool escalate_to_customer_service
+Nov 02 18:33:28  Resend: Email sent successfully: {"data":{"id":"c08b006d-c497-4d10-aa54-10edb1f0d39d"},"error":null,"headers":{"cf-cache-status":"DYNAMIC","cf-ray":"9985b86d8c94ef33-LHR","connection":"close","content-encoding":"br","content-type":"application/json","date":"Sun, 02 Nov 2025 18:33:28 GMT","ratelimit-limit":"2","ratelimit-policy":"2;w=1","ratelimit-remaining":"1","ratelimit-reset":"1","server":"cloudflare","transfer-encoding":"chunked","x-resend-daily-quota":"3","x-resend-monthly-quota":"3"}}
+Nov 02 18:33:28  Web: Handoff email sent successfully
+Nov 02 18:33:28  Error processing streaming request: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.7.content.1: `tool_use` ids must be unique"},"request_id":"req_011CUjYRvypdshSLL6ecQTaK"}
+Nov 02 18:33:28      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Nov 02 18:33:28      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Nov 02 18:33:28      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Nov 02 18:33:28      at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+Nov 02 18:33:28    status: 400,
+Nov 02 18:33:28    headers: {
+Nov 02 18:33:28      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Nov 02 18:33:28      'cf-cache-status': 'DYNAMIC',
+Nov 02 18:33:28      'cf-ray': '9985b86f6ba211ce-LHR',
+Nov 02 18:33:28      connection: 'keep-alive',
+Nov 02 18:33:28      'content-length': '165',
+Nov 02 18:33:28      'content-type': 'application/json',
+Nov 02 18:33:28      date: 'Sun, 02 Nov 2025 18:33:28 GMT',
+Nov 02 22:13:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.227 ms
+Nov 02 22:13:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.151 ms
+Nov 02 22:13:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.233 ms
+Nov 02 22:14:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.227 ms
+Nov 02 22:14:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.800 ms
+Nov 02 22:15:08  GET /api/conversation-followup 200 - - 14.415 ms
+Nov 02 22:15:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.048 ms
+Nov 02 22:15:32  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.847 ms
+Nov 02 22:16:06  GET /api/conversation-followup 200 - - 62.427 ms
+Nov 02 22:16:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.964 ms
+Nov 02 22:16:31  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.558 ms
+Nov 02 22:17:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.778 ms
+Nov 02 22:18:36  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.293 ms
+Nov 02 22:18:36  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 48.332 ms
+Nov 02 22:18:36  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.279 ms
+Nov 02 22:18:36  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.876 ms
+Nov 02 22:19:04  GET /api/conversation-followup 200 - - 19.353 ms
+Nov 02 22:19:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.020 ms
+Nov 02 22:19:33  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.756 ms
+Nov 02 22:20:31  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.850 ms
+Nov 02 18:33:28      'request-id': 'req_011CUjYRvypdshSLL6ecQTaK',
+Nov 02 18:33:28      server: 'cloudflare',
+Nov 02 18:33:28      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Nov 02 18:33:28      'x-envoy-upstream-service-time': '26',
+Nov 02 18:33:28      'x-robots-tag': 'none',
+Nov 02 18:33:28      'x-should-retry': 'false'
+Nov 02 18:33:28    },
+Nov 02 18:33:28    request_id: 'req_011CUjYRvypdshSLL6ecQTaK',
+Nov 02 18:33:28    error: {
+Nov 02 18:33:28      type: 'error',
+Nov 02 18:33:28      error: {
+Nov 02 18:33:28        type: 'invalid_request_error',
+Nov 02 18:33:28        message: 'messages.7.content.1: `tool_use` ids must be unique'
+Nov 02 18:33:28      },
+Nov 02 18:33:28      request_id: 'req_011CUjYRvypdshSLL6ecQTaK'
+Nov 02 18:33:28    }
+Nov 02 18:33:28  }
+Nov 02 18:33:28  POST /chat 200 - - 17.072 ms
