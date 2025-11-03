@@ -157,8 +157,8 @@ async function processWhatsAppBroadcast(entry, message) {
         try {
           const conversationId = `whatsapp_${user.phoneNumber}`;
           const conversationMessage = entry.heading 
-            ? `[Broadcast Message] *${entry.heading}*\n\n${message}`
-            : `[Broadcast Message] ${message}`;
+            ? ` *${entry.heading}*\n\n${message}`
+            : ` ${message}`;
           await saveMessage(conversationId, 'assistant', conversationMessage);
           console.log(`Broadcast: Saved message to conversation history for ${user.phoneNumber}`);
         } catch (saveError) {
@@ -262,8 +262,8 @@ async function processWebsiteBroadcast(entry, message) {
             try {
               // Save the broadcast message to the user's conversation history
               const broadcastMessage = entry.heading 
-                ? `[Broadcast Message] **${entry.heading}**\n\n${message}`
-                : `[Broadcast Message] ${message}`;
+                ? ` **${entry.heading}**\n\n${message}`
+                : ` ${message}`;
               
               await saveMessage(targetConversation.id, 'assistant', broadcastMessage);
               console.log(`Broadcast: Saved message to conversation ${targetConversation.id} for customer ${user.shopifyCustomerId || user.id} (${user.name || 'Unknown'})`);
