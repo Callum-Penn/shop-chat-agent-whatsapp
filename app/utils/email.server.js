@@ -137,9 +137,9 @@ export function generateHandoffEmailHTML(handoffData) {
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #4CAF50; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+          .header { background-color: #1766ff; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
           .content { background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
-          .info-row { margin: 10px 0; padding: 10px; background-color: white; border-left: 3px solid #4CAF50; }
+          .info-row { margin: 10px 0; padding: 10px; background-color: white; border-left: 3px solid #ffd203; }
           .label { font-weight: bold; color: #555; }
           .summary { background-color: white; padding: 15px; margin: 15px 0; border-radius: 3px; }
           .messages { background-color: white; padding: 15px; margin: 15px 0; border-radius: 3px; }
@@ -147,14 +147,14 @@ export function generateHandoffEmailHTML(handoffData) {
           .message-user { background-color: #e3f2fd; }
           .message-assistant { background-color: #f5f5f5; }
           .badge { display: inline-block; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: bold; }
-          .badge-web { background-color: #2196F3; color: white; }
+          .badge-web { background-color: #1766ff; color: white; }
           .badge-whatsapp { background-color: #25D366; color: white; }
         </style>
       </head>
       <body>
         <div class="container">
           <div class="header">
-            <h2>🔔 New Customer Service Handoff Request</h2>
+            <h2>New Customer Service Handoff Request</h2>
           </div>
           <div class="content">
             <div class="info-row">
