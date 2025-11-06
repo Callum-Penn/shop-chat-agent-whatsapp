@@ -3,7 +3,7 @@
  * Clears conversation history for a specific conversation ID
  */
 import { json } from "@remix-run/node";
-import { deleteConversationHistory } from "../db.server";
+import { deleteConversationHistory, updateConversationMetadata } from "../db.server";
 
 /**
  * Handle POST requests to reset chat
@@ -23,7 +23,13 @@ export const action = async ({ request }) => {
     // Delete all messages for this conversation
     await deleteConversationHistory(conversation_id);
 
-    console.log(`Chat reset: Cleared conversation history for ${conversation_id}`);
+    // Reset handoff flag to allow new tickets after reset
+    await updateConversationMetadata(conversation_id, {
+      handoff_requested: false,
+      handoff_at: null
+    });
+
+    console.log(`Chat reset: Cleared conversation history and reset handoff flag for ${conversation_id}`);
 
     return json({ 
       success: true, 

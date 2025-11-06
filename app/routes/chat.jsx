@@ -342,6 +342,66 @@ async function handleChatSession({
             if (toolUseResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
               console.log('Web: Handling custom tool escalate_to_customer_service');
               
+              // Check if a handoff has already been requested
+              const conversation = await getConversation(conversationId);
+              const handoffRequested = conversation?.metadata?.handoff_requested === true;
+              const handoffAt = conversation?.metadata?.handoff_at;
+              
+              // Allow new ticket if 24 hours have passed since last handoff
+              const HANDOFF_COOLDOWN_HOURS = 24;
+              let allowNewTicket = false;
+              
+              if (handoffRequested && handoffAt) {
+                const handoffTime = new Date(handoffAt);
+                const hoursSinceHandoff = (Date.now() - handoffTime.getTime()) / (1000 * 60 * 60);
+                
+                if (hoursSinceHandoff >= HANDOFF_COOLDOWN_HOURS) {
+                  allowNewTicket = true;
+                  console.log(`Web: Handoff was ${hoursSinceHandoff.toFixed(1)} hours ago, allowing new ticket`);
+                  // Clear the old handoff flag
+                  await updateConversationMetadata(conversationId, {
+                    handoff_requested: false,
+                    handoff_at: null
+                  });
+                }
+              }
+              
+              if (handoffRequested && !allowNewTicket) {
+                const handoffTime = handoffAt ? new Date(handoffAt) : null;
+                const hoursSinceHandoff = handoffTime ? (Date.now() - handoffTime.getTime()) / (1000 * 60 * 60) : 0;
+                const hoursRemaining = Math.ceil(HANDOFF_COOLDOWN_HOURS - hoursSinceHandoff);
+                
+                console.log('Web: Handoff already requested for this conversation');
+                
+                // Add tool result to conversation history
+                conversationHistory.push({
+                  role: 'assistant',
+                  content: [content]
+                });
+                conversationHistory.push({
+                  role: 'user',
+                  content: [{
+                    type: 'tool_result',
+                    tool_use_id: toolUseId,
+                    content: `A support ticket has already been created for this conversation. Our team will be in touch soon. Please wait for their response.`
+                  }]
+                });
+                
+                // Stream response to user
+                const cooldownMessage = hoursRemaining > 0 
+                  ? `I've already created a support ticket for you. Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`
+                  : "I've already created a support ticket for you. Our customer service team will be in touch soon. Please wait for their response - there's no need to submit another ticket.";
+                
+                stream.sendMessage({
+                  type: 'chunk',
+                  chunk: cooldownMessage
+                });
+                
+                // Mark handoff as completed to stop the loop
+                handoffCompleted = true;
+                return;
+              }
+              
               const { customer_name, customer_email, customer_phone, reason } = toolArgs;
               
               try {
@@ -382,12 +442,12 @@ async function handleChatSession({
                 
                 console.log('Web: Handoff email sent successfully');
                 
-                // Get conversation to find user
-                const conversation = await getConversation(conversationId);
+                // Get conversation to find user (already fetched above, but need it again for user update)
+                const conversationForUser = await getConversation(conversationId);
                 
                 // Update user info in database if user exists
-                if (conversation?.userId) {
-                  await updateUser(conversation.userId, {
+                if (conversationForUser?.userId) {
+                  await updateUser(conversationForUser.userId, {
                     name: customer_name,
                     email: customer_email,
                     phoneNumber: customer_phone

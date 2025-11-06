@@ -407,6 +407,40 @@ export const action = async ({ request }) => {
                   if (toolResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
                     console.log('WhatsApp: Handling custom tool escalate_to_customer_service');
                     
+                    // Check if a handoff has already been requested
+                    const { getConversation, updateConversationMetadata } = await import("../db.server");
+                    const conversation = await getConversation(conversationId);
+                    const handoffRequested = conversation?.metadata?.handoff_requested === true;
+                    const handoffAt = conversation?.metadata?.handoff_at;
+                    
+                    // Allow new ticket if 24 hours have passed since last handoff
+                    const HANDOFF_COOLDOWN_HOURS = 24;
+                    let allowNewTicket = false;
+                    
+                    if (handoffRequested && handoffAt) {
+                      const handoffTime = new Date(handoffAt);
+                      const hoursSinceHandoff = (Date.now() - handoffTime.getTime()) / (1000 * 60 * 60);
+                      
+                      if (hoursSinceHandoff >= HANDOFF_COOLDOWN_HOURS) {
+                        allowNewTicket = true;
+                        console.log(`WhatsApp: Handoff was ${hoursSinceHandoff.toFixed(1)} hours ago, allowing new ticket`);
+                        // Clear the old handoff flag
+                        await updateConversationMetadata(conversationId, {
+                          handoff_requested: false,
+                          handoff_at: null
+                        });
+                      }
+                    }
+                    
+                    if (handoffRequested && !allowNewTicket) {
+                      console.log('WhatsApp: Handoff already requested for this conversation');
+                      
+                      // Return message to user via WhatsApp
+                      aiResponse = "I've already created a support ticket for you. Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.";
+                      conversationComplete = true;
+                      break;
+                    }
+                    
                     const { customer_name, customer_email, customer_phone, reason } = toolArgs;
                     
                     try {
