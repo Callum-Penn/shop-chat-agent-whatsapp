@@ -10,15 +10,16 @@ import { Resend } from 'resend';
  * @param {string} emailData.subject - Email subject
  * @param {string} emailData.html - HTML body content
  * @param {string} [emailData.text] - Plain text body content (optional)
+ * @param {Array} [emailData.attachments] - Array of attachment objects with { filename, content, type }
  * @returns {Promise<Object>} Response from email service
  */
-export async function sendEmail({ to, subject, html, text }) {
+export async function sendEmail({ to, subject, html, text, attachments }) {
   // Check if we have the Resend API key configured
   const resendApiKey = process.env.RESEND_API_KEY;
   const mailServiceApi = process.env.MAIL_SERVICE_API;
   
   if (mailServiceApi === 'resend' && resendApiKey) {
-    return await sendEmailViaResend({ to, subject, html, text });
+    return await sendEmailViaResend({ to, subject, html, text, attachments });
   }
   
   // Fallback to console logging for development
@@ -26,6 +27,9 @@ export async function sendEmail({ to, subject, html, text }) {
   console.log('To:', to);
   console.log('Subject:', subject);
   console.log('Body:', text || html);
+  if (attachments && attachments.length > 0) {
+    console.log('Attachments:', attachments.map(a => a.filename).join(', '));
+  }
   
   // In production, you might want to throw an error if email is not configured
   if (process.env.NODE_ENV === 'production' && !resendApiKey) {
@@ -38,9 +42,10 @@ export async function sendEmail({ to, subject, html, text }) {
 /**
  * Send email via Resend using the SDK
  * @param {Object} emailData - Email data
+ * @param {Array} [emailData.attachments] - Array of attachment objects
  * @returns {Promise<Object>} Response from Resend API
  */
-async function sendEmailViaResend({ to, subject, html, text }) {
+async function sendEmailViaResend({ to, subject, html, text, attachments }) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const mailFrom = process.env.MAIL_FROM || 'noreply@vapelocal.co.uk';
   
@@ -51,13 +56,24 @@ async function sendEmailViaResend({ to, subject, html, text }) {
   const resend = new Resend(resendApiKey);
   
   try {
-    const response = await resend.emails.send({
+    const emailPayload = {
       from: mailFrom,
       to: to,
       subject: subject,
       html: html,
       text: text
-    });
+    };
+    
+    // Add attachments if provided
+    if (attachments && attachments.length > 0) {
+      emailPayload.attachments = attachments.map(att => ({
+        filename: att.filename,
+        content: att.content, // Base64 encoded content
+        type: att.type || 'application/octet-stream'
+      }));
+    }
+    
+    const response = await resend.emails.send(emailPayload);
     
     console.log('Resend: Email sent successfully. Email ID:', response.data?.id);
     return response;
@@ -235,6 +251,110 @@ ${text}
 `;
 }).join('')}
 ` : ''}
+  `.trim();
+}
+
+/**
+ * Generate HTML email template for spreadsheet submission
+ * @param {Object} submissionData - Submission data
+ * @returns {string} HTML email content
+ */
+export function generateSpreadsheetEmailHTML(submissionData) {
+  const { 
+    customerPhone, 
+    filename, 
+    fileType, 
+    fileSize,
+    caption 
+  } = submissionData;
+  
+  return `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background-color: #25D366; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+          .content { background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
+          .info-row { margin: 10px 0; padding: 10px; background-color: white; border-left: 3px solid #25D366; }
+          .label { font-weight: bold; color: #555; }
+          .badge { display: inline-block; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: bold; background-color: #25D366; color: white; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h2>📎 New Spreadsheet Order Submission</h2>
+          </div>
+          <div class="content">
+            <div class="info-row">
+              <div class="label">Customer Phone:</div>
+              <div>${customerPhone || 'Not provided'}</div>
+            </div>
+            <div class="info-row">
+              <div class="label">Filename:</div>
+              <div>${filename || 'Unknown'}</div>
+            </div>
+            <div class="info-row">
+              <div class="label">File Type:</div>
+              <div>${fileType || 'Unknown'}</div>
+            </div>
+            <div class="info-row">
+              <div class="label">File Size:</div>
+              <div>${fileSize || 'Unknown'}</div>
+            </div>
+            <div class="info-row">
+              <div class="label">Channel:</div>
+              <div>
+                <span class="badge">WhatsApp</span>
+              </div>
+            </div>
+            ${caption ? `
+              <div class="info-row">
+                <div class="label">Customer Note:</div>
+                <div>${caption}</div>
+              </div>
+            ` : ''}
+            <div class="info-row" style="margin-top: 20px; padding: 15px; background-color: #e8f5e9;">
+              <p><strong>📎 The spreadsheet file is attached to this email.</strong></p>
+              <p>Please review the order and process it accordingly.</p>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+}
+
+/**
+ * Generate plain text email template for spreadsheet submission
+ * @param {Object} submissionData - Submission data
+ * @returns {string} Plain text email content
+ */
+export function generateSpreadsheetEmailText(submissionData) {
+  const { 
+    customerPhone, 
+    filename, 
+    fileType, 
+    fileSize,
+    caption 
+  } = submissionData;
+  
+  return `
+New Spreadsheet Order Submission
+
+Customer Phone: ${customerPhone || 'Not provided'}
+Filename: ${filename || 'Unknown'}
+File Type: ${fileType || 'Unknown'}
+File Size: ${fileSize || 'Unknown'}
+Channel: WhatsApp
+
+${caption ? `Customer Note:\n${caption}\n` : ''}
+
+The spreadsheet file is attached to this email.
+Please review the order and process it accordingly.
   `.trim();
 }
 

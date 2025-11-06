@@ -4,8 +4,8 @@ import { createToolService } from "../services/tool.server";
 import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
-import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocument, sendWhatsAppDocumentFromUrl } from "../utils/whatsapp.server";
-import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText } from "../utils/email.server";
+import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocumentFromUrl } from "../utils/whatsapp.server";
+import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText, generateSpreadsheetEmailHTML, generateSpreadsheetEmailText } from "../utils/email.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -164,43 +164,55 @@ export const action = async ({ request }) => {
       
       console.log('WhatsApp: File downloaded successfully');
       
-      // Get staff WhatsApp number from environment
-      const staffWhatsAppNumber = process.env.STAFF_WHATSAPP_NUMBER;
+      // Get support email from environment
+      const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
       
-      if (!staffWhatsAppNumber) {
-        console.error('WhatsApp: STAFF_WHATSAPP_NUMBER not configured');
-        await sendWhatsAppMessage(from, "❌ Sorry, there was an error processing your file. Please try again later.");
-        return json({ success: false, error: 'Staff number not configured' });
-      }
+      // Prepare email data
+      const fileSizeKB = Math.round(fileData.fileSize / 1024);
+      const emailSubject = `New Spreadsheet Order Submission - ${document.filename}`;
       
-      // Forward the document to staff member with context
-      const forwardCaption = `📎 File from customer: ${from}\n` +
-                           `Original filename: ${document.filename}\n` +
-                           `File type: ${fileData.mimeType}\n` +
-                           `Size: ${Math.round(fileData.fileSize / 1024)}KB` +
-                           (caption ? `\n\nCustomer note: ${caption}` : '');
+      // Convert buffer to base64 for email attachment (Resend accepts base64 strings)
+      const fileBase64 = fileData.buffer.toString('base64');
       
-      await sendWhatsAppDocument(
-        staffWhatsAppNumber,
-        fileData.buffer,
-        document.filename,
-        forwardCaption
-      );
+      // Send email with attachment
+      await sendEmail({
+        to: supportEmail,
+        subject: emailSubject,
+        html: generateSpreadsheetEmailHTML({
+          customerPhone: from,
+          filename: document.filename,
+          fileType: fileData.mimeType,
+          fileSize: `${fileSizeKB}KB`,
+          caption: caption || null
+        }),
+        text: generateSpreadsheetEmailText({
+          customerPhone: from,
+          filename: document.filename,
+          fileType: fileData.mimeType,
+          fileSize: `${fileSizeKB}KB`,
+          caption: caption || null
+        }),
+        attachments: [{
+          filename: document.filename,
+          content: fileBase64,
+          type: fileData.mimeType
+        }]
+      });
       
-      console.log('WhatsApp: Document forwarded to staff:', staffWhatsAppNumber);
+      console.log('WhatsApp: Spreadsheet sent to support email:', supportEmail);
       
       // Send confirmation to customer
       await sendWhatsAppMessage(
         from, 
-        "✅ Thank you! Your file has been received and forwarded to our team. Someone will review it shortly."
+        "✅ Thank you! Your file has been received and sent to our team. Someone will review it shortly."
       );
       
       // Save the interaction to database
       const conversationId = `whatsapp_${from}`;
       await saveMessage(conversationId, 'user', `[Document: ${document.filename}]`);
-      await saveMessage(conversationId, 'assistant', 'File received and forwarded to team.');
+      await saveMessage(conversationId, 'assistant', 'File received and sent to team via email.');
       
-      return json({ success: true, message: 'Document forwarded successfully' });
+      return json({ success: true, message: 'Document sent via email successfully' });
       
     } catch (error) {
       console.error('WhatsApp: Error processing document:', error);

@@ -135,8 +135,14 @@
     }
     
     .shop-ai-chat-bubble {
-      z-index: 1000000;
+      z-index: 999999;
       position: relative;
+    }
+  }
+
+  @media (max-width:990px) {
+    .shop-ai-chat-container {
+        bottom: 80px
     }
   }
 
