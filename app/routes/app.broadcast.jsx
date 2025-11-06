@@ -43,23 +43,39 @@ export default function BroadcastCenter() {
   const handleImageChange = useCallback((files) => {
     const file = files[0];
     if (file) {
+      // Validate file type (JPG or PNG only)
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (!validTypes.includes(file.type)) {
+        alert('Images must be JPG or PNG format');
+        return;
+      }
+      
       // Validate file size (5MB max for WhatsApp)
       if (file.size > 5 * 1024 * 1024) {
         alert('Image size must be less than 5MB for WhatsApp compatibility');
         return;
       }
       
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        alert('Please select a valid image file');
-        return;
-      }
-      
-      setImageFile(file);
-      
-      // Create preview
+      // Validate image dimensions
       const reader = new FileReader();
-      reader.onload = (e) => setImagePreview(e.target.result);
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          if (img.width > 640 || img.height > 640) {
+            alert(`Image dimensions must not exceed 640px in width or height. Current size: ${img.width}x${img.height}px`);
+            return;
+          }
+          setImageFile(file);
+          setImagePreview(e.target.result);
+        };
+        img.onerror = () => {
+          alert('Failed to load image. Please try a different file.');
+        };
+        img.src = e.target.result;
+      };
+      reader.onerror = () => {
+        alert('Failed to read image file. Please try again.');
+      };
       reader.readAsDataURL(file);
     }
   }, []);
@@ -221,17 +237,20 @@ export default function BroadcastCenter() {
                   <Text as="h3" variant="headingMd">
                     Image (optional)
                   </Text>
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    Images must be JPG or PNG format and must not exceed 640px in width or height.
+                  </Text>
                   
                   {!imageFile ? (
                     <DropZone
-                      accept="image/*"
+                      accept="image/jpeg,image/png"
                       type="image"
                       onDrop={handleImageChange}
                       allowMultiple={false}
                     >
                       <DropZone.FileUpload />
                       <Text as="p" variant="bodySm" tone="subdued">
-                        Square images work best. Max size: 5MB. Supported formats: JPG, PNG, GIF
+                        Square images work best. Max size: 5MB.
                       </Text>
                     </DropZone>
                   ) : (
