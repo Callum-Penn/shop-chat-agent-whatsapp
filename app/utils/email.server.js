@@ -276,9 +276,9 @@ export function generateSpreadsheetEmailHTML(submissionData) {
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #25D366; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+          .header { background-color: #1766ff; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
           .content { background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
-          .info-row { margin: 10px 0; padding: 10px; background-color: white; border-left: 3px solid #25D366; }
+          .info-row { margin: 10px 0; padding: 10px; background-color: white; border-left: 3px solid #ffd203; }
           .label { font-weight: bold; color: #555; }
           .badge { display: inline-block; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: bold; background-color: #25D366; color: white; }
         </style>
@@ -286,7 +286,7 @@ export function generateSpreadsheetEmailHTML(submissionData) {
       <body>
         <div class="container">
           <div class="header">
-            <h2>📎 New Spreadsheet Order Submission</h2>
+            <h2>New Spreadsheet Order Submission</h2>
           </div>
           <div class="content">
             <div class="info-row">
@@ -296,10 +296,6 @@ export function generateSpreadsheetEmailHTML(submissionData) {
             <div class="info-row">
               <div class="label">Filename:</div>
               <div>${filename || 'Unknown'}</div>
-            </div>
-            <div class="info-row">
-              <div class="label">File Type:</div>
-              <div>${fileType || 'Unknown'}</div>
             </div>
             <div class="info-row">
               <div class="label">File Size:</div>
