@@ -234,19 +234,18 @@ async function handleChatSession({
     // Save user message to the database
     await saveMessage(conversationId, 'user', userMessage);
 
-    // Fetch all messages from the database for this conversation
-    const dbMessages = await getConversationHistory(conversationId);
+    // Fetch recent messages from the database (limit to reduce token usage)
+    const MAX_HISTORY_MESSAGES = 20;
+    const dbMessages = await getConversationHistory(conversationId, MAX_HISTORY_MESSAGES);
 
     // Format messages for Claude API
     conversationHistory = dbMessages.map(dbMessage => {
       let content;
       try {
         content = JSON.parse(dbMessage.content);
-        console.log('Successfully parsed message content as JSON:', typeof content, Array.isArray(content));
         
         // If the parsed content is not an array, wrap it in a text block
         if (!Array.isArray(content)) {
-          console.log('Parsed content is not an array, wrapping in text block. Content:', content);
           content = [{
             type: "text",
             text: String(content)
@@ -254,7 +253,6 @@ async function handleChatSession({
         }
       } catch (e) {
         // If JSON parsing fails, wrap the content in a text block format
-        console.log('Failed to parse message content as JSON, wrapping in text block. Content:', dbMessage.content);
         content = [{
           type: "text",
           text: dbMessage.content
@@ -269,9 +267,6 @@ async function handleChatSession({
     // Clean conversation history to remove corrupted tool_use/tool_result pairs
     conversationHistory = cleanConversationHistory(conversationHistory);
 
-    // Debug: Log the conversation history format
-    console.log('Conversation history before sending to Claude:', JSON.stringify(conversationHistory, null, 2));
-
     // Execute the conversation stream
     let finalMessage = { 
       role: 'user', 
@@ -282,11 +277,15 @@ async function handleChatSession({
     };
 
     let handoffCompleted = false;
+    const MAX_CONVERSATION_MESSAGES = 20; // Limit conversation history to prevent unbounded growth
 
     while (finalMessage.stop_reason !== "end_turn" && !handoffCompleted) {
+      // Truncate conversation history before each API call to prevent unbounded growth
+      const truncatedHistory = truncateConversationHistory(conversationHistory, MAX_CONVERSATION_MESSAGES);
+      
       finalMessage = await claudeService.streamConversation(
         {
-          messages: conversationHistory,
+          messages: truncatedHistory,
           promptType,
           tools: mcpClient.tools
         },
@@ -308,9 +307,6 @@ async function handleChatSession({
 
             // Save message in background and send completion immediately
             saveMessage(conversationId, message.role, JSON.stringify(message.content))
-              .then(savedMessage => {
-                console.log('[SERVER DEBUG] Message saved with id:', savedMessage.id, 'createdAt:', savedMessage.createdAt);
-              })
               .catch(error => {
                 console.error("Error saving message to database:", error);
               });
@@ -650,6 +646,24 @@ function getSseHeaders(request) {
 }
 
 /**
+ * Truncate conversation history to reduce token usage
+ * @param {Array} messages - The conversation history
+ * @param {number} maxMessages - Maximum number of messages to keep (default: 20)
+ * @returns {Array} Truncated conversation history
+ */
+function truncateConversationHistory(messages, maxMessages = 20) {
+  if (messages.length <= maxMessages) {
+    return messages;
+  }
+  
+  // Keep the first message and the most recent messages
+  const firstMessage = messages[0];
+  const recentMessages = messages.slice(-maxMessages + 1);
+  
+  return [firstMessage, ...recentMessages];
+}
+
+/**
  * Clean conversation history to remove corrupted tool_use/tool_result pairs
  * @param {Array} conversationHistory - The conversation history
  * @returns {Array} Cleaned conversation history
@@ -674,7 +688,6 @@ function cleanConversationHistory(conversationHistory) {
     if (message.role === 'user') {
       const filteredContent = message.content.filter(block => {
         if (block.type === 'tool_result') {
-          console.log('Removing tool_result from user message:', block.tool_use_id);
           return false;
         }
         return true;
@@ -692,7 +705,6 @@ function cleanConversationHistory(conversationHistory) {
     else if (message.role === 'assistant') {
       const filteredContent = message.content.filter(block => {
         if (block.type === 'tool_use') {
-          console.log('Removing orphaned tool_use from assistant message:', block.id);
           return false;
         }
         return true;
@@ -708,8 +720,6 @@ function cleanConversationHistory(conversationHistory) {
       cleaned.push(message);
     }
   }
-  
-  console.log(`Cleaned conversation history: ${conversationHistory.length} messages -> ${cleaned.length} messages`);
   
   return cleaned;
 }

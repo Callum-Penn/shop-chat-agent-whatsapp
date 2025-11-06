@@ -1,92 +1,1756 @@
-2025-07-28T10:02:28.940315265Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:02:28.940792914Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:02:28.940862151Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:02:29.981644499Z 
-2025-07-28T10:02:29.981681910Z > shop-chat-agent@1.0.8 start
-2025-07-28T10:02:29.981689146Z > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-2025-07-28T10:02:29.981694200Z 
-2025-07-28T10:02:30.577159057Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:02:30.577626944Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:02:30.577829822Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:02:30.578110654Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:02:30.578364662Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:02:30.578472142Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:02:33.178196370Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T10:02:33.364188744Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T10:02:33.633015695Z 
-2025-07-28T10:02:33.633045354Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 217ms
-2025-07-28T10:02:33.633048834Z 
-2025-07-28T10:02:33.633051986Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-28T10:02:33.633054812Z 
-2025-07-28T10:02:33.633059475Z Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
-2025-07-28T10:02:33.633062875Z 
-2025-07-28T10:02:34.886000453Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:02:34.886520811Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:02:34.886548938Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:02:34.886800071Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:02:34.886934798Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:02:34.887117080Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:02:37.622870807Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T10:02:37.683363698Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-2025-07-28T10:02:38.501609952Z 
-2025-07-28T10:02:38.501647109Z The database is already in sync with the Prisma schema.
-2025-07-28T10:02:38.501926649Z 
-2025-07-28T10:02:38.504296337Z Running generate... (Use --skip-generate to skip the generators)
-2025-07-28T10:02:38.668965577Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T10:02:38.692069906Z [2K[1A[2K[GRunning generate... - Prisma Client
-2025-07-28T10:02:38.986172261Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 290ms
-2025-07-28T10:02:38.986196315Z 
-2025-07-28T10:02:39.179727300Z ┌─────────────────────────────────────────────────────────┐
-2025-07-28T10:02:39.179750119Z │  Update available 6.6.0 -> 6.12.0                       │
-2025-07-28T10:02:39.179754859Z │  Run the following to update                            │
-2025-07-28T10:02:39.179759174Z │    npm i --save-dev prisma@latest                       │
-2025-07-28T10:02:39.179763787Z │    npm i @prisma/client@latest                          │
-2025-07-28T10:02:39.179768014Z └─────────────────────────────────────────────────────────┘
-2025-07-28T10:02:44.524869780Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-28T10:02:44.540846941Z [remix-serve] http://localhost:8080 (http://10.244.42.3:8080)
-2025-07-28T10:01:42.926284088Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:01:42.926743457Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:01:42.926790653Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:01:43.694731322Z 
-2025-07-28T10:01:43.694770550Z > shop-chat-agent@1.0.8 start
-2025-07-28T10:01:43.694777816Z > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
-2025-07-28T10:01:43.694782090Z 
-2025-07-28T10:01:44.110916049Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:01:44.111380478Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:01:44.111473771Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:01:44.111733924Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:01:44.111935465Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:01:44.112104662Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:01:46.120918295Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T10:01:46.274396586Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T10:01:46.479434382Z 
-2025-07-28T10:01:46.479462983Z ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 171ms
-2025-07-28T10:01:46.479466304Z 
-2025-07-28T10:01:46.479469049Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-07-28T10:01:46.479471380Z 
-2025-07-28T10:01:46.479479071Z Tip: Want real-time updates to your database without manual polling? Discover how with Pulse: https://pris.ly/tip-0-pulse
-2025-07-28T10:01:46.479481655Z 
-2025-07-28T10:01:47.413168175Z npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:01:47.413573264Z npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:01:47.413708379Z npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:01:47.413867083Z npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
-2025-07-28T10:01:47.413994041Z npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
-2025-07-28T10:01:47.414116478Z npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-2025-07-28T10:01:49.400091073Z Prisma schema loaded from prisma/schema.prisma
-2025-07-28T10:01:49.466763092Z Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
-2025-07-28T10:01:50.057171365Z 
-2025-07-28T10:01:50.057231840Z The database is already in sync with the Prisma schema.
-2025-07-28T10:01:50.058746869Z 
-2025-07-28T10:01:50.060803257Z Running generate... (Use --skip-generate to skip the generators)
-2025-07-28T10:01:50.183393651Z Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-2025-07-28T10:01:50.198491572Z [2K[1A[2K[GRunning generate... - Prisma Client
-2025-07-28T10:01:50.368942538Z [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 168ms
-2025-07-28T10:01:50.369029162Z 
-2025-07-28T10:01:50.492820528Z ┌─────────────────────────────────────────────────────────┐
-2025-07-28T10:01:50.492839839Z │  Update available 6.6.0 -> 6.12.0                       │
-2025-07-28T10:01:50.492842709Z │  Run the following to update                            │
-2025-07-28T10:01:50.492845065Z │    npm i --save-dev prisma@latest                       │
-2025-07-28T10:01:50.492847705Z │    npm i @prisma/client@latest                          │
-2025-07-28T10:01:50.492851018Z └─────────────────────────────────────────────────────────┘
-2025-07-28T10:01:54.439286317Z [shopify-api/INFO] version 11.12.0, environment Remix
-2025-07-28T10:01:54.472102525Z [remix-serve] http://localhost:8080 (http://10.244.21.28:8080)
+Nov 06 10:32:29  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:32:29  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:32:29  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:32:30  
+Nov 06 10:31:37  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:31:37  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:31:37  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:37  
+Nov 06 10:31:37  > shop-chat-agent@1.0.41 start
+Nov 06 10:31:37  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Nov 06 10:32:30  > shop-chat-agent@1.0.41 start
+Nov 06 10:32:30  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Nov 06 10:32:30  
+Nov 06 10:32:31  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:32:31  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:32:31  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:32:31  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:32:31  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:32:31  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:32:33  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:32:33  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:32:33  
+Nov 06 10:32:33  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 391ms
+Nov 06 10:32:33  
+Nov 06 10:32:33  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 06 10:32:33  
+Nov 06 10:32:33  Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+Nov 06 10:32:33  
+Nov 06 10:32:35  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:32:35  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:32:35  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:32:35  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:32:35  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:32:35  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:37  
+Nov 06 10:31:38  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:31:38  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:38  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:31:38  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:31:38  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:31:38  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:40  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:31:40  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:31:40  
+Nov 06 10:31:40  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 370ms
+Nov 06 10:31:40  
+Nov 06 10:31:40  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 06 10:31:40  
+Nov 06 10:31:40  Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+Nov 06 10:31:40  
+Nov 06 10:31:42  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:31:42  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:42  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:31:42  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:31:42  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:31:42  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:31:44  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:31:44  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Nov 06 10:31:44  
+Nov 06 10:31:44  The database is already in sync with the Prisma schema.
+Nov 06 10:31:44  
+Nov 06 10:31:44  Running generate... (Use --skip-generate to skip the generators)
+Nov 06 10:31:44  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:31:44  [2K[1A[2K[GRunning generate... - Prisma Client
+Nov 06 10:31:45  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 382ms
+Nov 06 10:32:37  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:31:45  
+Nov 06 10:31:45  ┌─────────────────────────────────────────────────────────┐
+Nov 06 10:31:45  │  Update available 6.6.0 -> 6.19.0                       │
+Nov 06 10:31:45  │  Run the following to update                            │
+Nov 06 10:31:45  │    npm i --save-dev prisma@latest                       │
+Nov 06 10:31:45  │    npm i @prisma/client@latest                          │
+Nov 06 10:31:45  └─────────────────────────────────────────────────────────┘
+Nov 06 10:31:49  [shopify-api/INFO] version 11.12.0, environment Remix
+Nov 06 10:31:49  [remix-serve] http://localhost:8080 (http://10.244.44.123:8080)
+Nov 06 10:32:37  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Nov 06 10:32:38  
+Nov 06 10:32:38  The database is already in sync with the Prisma schema.
+Nov 06 10:32:38  
+Nov 06 10:32:38  Running generate... (Use --skip-generate to skip the generators)
+Nov 06 10:32:38  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:32:38  [2K[1A[2K[GRunning generate... - Prisma Client
+Nov 06 10:32:38  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 337ms
+Nov 06 10:32:38  
+Nov 06 10:32:39  ┌─────────────────────────────────────────────────────────┐
+Nov 06 10:32:39  │  Update available 6.6.0 -> 6.19.0                       │
+Nov 06 10:32:39  │  Run the following to update                            │
+Nov 06 10:32:39  │    npm i --save-dev prisma@latest                       │
+Nov 06 10:32:39  │    npm i @prisma/client@latest                          │
+Nov 06 10:32:39  └─────────────────────────────────────────────────────────┘
+Nov 06 10:32:43  [shopify-api/INFO] version 11.12.0, environment Remix
+Nov 06 10:32:43  [remix-serve] http://localhost:8080 (http://10.244.41.59:8080)
+Nov 06 10:33:04  GET /api/conversation-followup 200 - - 51.506 ms
+Nov 06 10:33:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 11.489 ms
+Nov 06 10:33:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 20.359 ms
+Nov 06 10:33:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.605 ms
+Nov 06 10:33:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.301 ms
+Nov 06 10:33:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 8.148 ms
+Nov 06 10:33:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.910 ms
+Nov 06 10:34:05  GET /api/conversation-followup 200 - - 34.236 ms
+Nov 06 10:34:20  OPTIONS /api/reset-chat 204 - - 2.317 ms
+Nov 06 10:34:20  Deleted 0 messages for conversation web_customer_23312945217918
+Nov 06 10:34:20  Chat reset: Cleared conversation history and reset handoff flag for web_customer_23312945217918
+Nov 06 10:34:20  POST /api/reset-chat 200 - - 27.752 ms
+Nov 06 10:34:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.814 ms
+Nov 06 10:34:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.801 ms
+Nov 06 10:34:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.255 ms
+Nov 06 10:34:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.856 ms
+Nov 06 10:34:24  OPTIONS /chat 204 - - 2.501 ms
+Nov 06 10:34:24  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:34:24  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:34:24  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:34:24  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:34:24  No token in database for conversation: web_customer_23312945217918
+Nov 06 10:34:24  Customer MCP server tools response: [
+Nov 06 10:34:24    {
+Nov 06 10:34:24      "name": "get_most_recent_order_status",
+Nov 06 10:34:24      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:34:24      "inputSchema": {
+Nov 06 10:34:24        "type": "object",
+Nov 06 10:34:24        "properties": {}
+Nov 06 10:34:24      }
+Nov 06 10:34:24    },
+Nov 06 10:34:24    {
+Nov 06 10:34:24      "name": "get_order_status",
+Nov 06 10:34:24      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:34:24      "inputSchema": {
+Nov 06 10:34:24        "type": "object",
+Nov 06 10:34:24        "properties": {
+Nov 06 10:34:24          "order_number": {
+Nov 06 10:34:24            "type": "string",
+Nov 06 10:34:24            "description": "Number of the order to look up"
+Nov 06 10:34:24          }
+Nov 06 10:34:24        },
+Nov 06 10:34:24        "required": [
+Nov 06 10:34:24          "order_number"
+Nov 06 10:34:24        ]
+Nov 06 10:34:24      }
+Nov 06 10:34:24    },
+Nov 06 10:34:24    {
+Nov 06 10:34:24      "name": "get_store_credit_balances",
+Nov 06 10:34:24      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:34:24      "inputSchema": {
+Nov 06 10:34:24        "type": "object",
+Nov 06 10:34:24        "properties": {}
+Nov 06 10:34:24      }
+Nov 06 10:34:24    },
+Nov 06 10:34:24    {
+Nov 06 10:34:24      "name": "request_return",
+Nov 06 10:34:24      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:34:24      "inputSchema": {
+Nov 06 10:34:24        "type": "object",
+Nov 06 10:34:24        "properties": {
+Nov 06 10:34:24          "order_id": {
+Nov 06 10:34:24            "type": "string",
+Nov 06 10:34:24            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:34:24          },
+Nov 06 10:34:24          "order_number": {
+Nov 06 10:34:24            "type": "string",
+Nov 06 10:34:24            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:34:24          },
+Nov 06 10:34:24          "line_items": {
+Nov 06 10:34:24            "type": "array",
+Nov 06 10:34:24            "description": "List of items to return",
+Nov 06 10:34:24            "items": {
+Nov 06 10:34:24              "type": "object",
+Nov 06 10:34:24              "properties": {
+Nov 06 10:34:24                "line_item_id": {
+Nov 06 10:34:24                  "type": "string",
+Nov 06 10:34:24                  "description": "ID of the line item to return"
+Nov 06 10:34:24                },
+Nov 06 10:34:24                "quantity": {
+Nov 06 10:34:24                  "type": "integer",
+Nov 06 10:34:24                  "description": "Quantity to return"
+Nov 06 10:34:24                },
+Nov 06 10:34:24                "return_reason": {
+Nov 06 10:34:24                  "type": "string",
+Nov 06 10:34:24                  "description": "Reason for return",
+Nov 06 10:34:24                  "enum": [
+Nov 06 10:34:24                    "SIZE_TOO_SMALL",
+Nov 06 10:34:24                    "SIZE_TOO_LARGE",
+Nov 06 10:34:24                    "UNWANTED",
+Nov 06 10:34:24                    "NOT_AS_DESCRIBED",
+Nov 06 10:34:24                    "WRONG_ITEM",
+Nov 06 10:34:24                    "DEFECTIVE",
+Nov 06 10:34:24                    "STYLE",
+Nov 06 10:34:24                    "COLOR",
+Nov 06 10:34:24                    "OTHER",
+Nov 06 10:34:24                    "UNKNOWN"
+Nov 06 10:34:24                  ]
+Nov 06 10:34:24                },
+Nov 06 10:34:24                "customer_note": {
+Nov 06 10:34:24                  "type": "string",
+Nov 06 10:34:24                  "description": "Additional notes about the return"
+Nov 06 10:34:24                }
+Nov 06 10:34:24              },
+Nov 06 10:34:24              "required": [
+Nov 06 10:34:24                "line_item_id",
+Nov 06 10:34:24                "quantity",
+Nov 06 10:34:24                "return_reason"
+Nov 06 10:34:24              ]
+Nov 06 10:34:24            }
+Nov 06 10:34:24          }
+Nov 06 10:34:24        },
+Nov 06 10:34:24        "required": [
+Nov 06 10:34:24          "line_items"
+Nov 06 10:34:24        ]
+Nov 06 10:34:24      }
+Nov 06 10:34:24    }
+Nov 06 10:34:24  ]
+Nov 06 10:34:24  Connected to MCP with 5 tools
+Nov 06 10:34:24  Connected to customer MCP with 4 tools
+Nov 06 10:34:24  Available customer tools: [
+Nov 06 10:34:24    'get_most_recent_order_status',
+Nov 06 10:34:24    'get_order_status',
+Nov 06 10:34:24    'get_store_credit_balances',
+Nov 06 10:34:24    'request_return'
+Nov 06 10:34:24  ]
+Nov 06 10:34:24  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:34:24  Cleaned conversation history: 1 messages -> 1 messages
+Nov 06 10:34:24  Conversation history before sending to Claude: [
+Nov 06 10:34:24    {
+Nov 06 10:34:24      "role": "user",
+Nov 06 10:34:24      "content": [
+Nov 06 10:34:24        {
+Nov 06 10:34:24          "type": "text",
+Nov 06 10:34:24          "text": "What's the status of my order?"
+Nov 06 10:34:24        }
+Nov 06 10:34:24      ]
+Nov 06 10:34:24    }
+Nov 06 10:34:24  ]
+Nov 06 10:34:29  Calling customer tool get_most_recent_order_status {}
+Nov 06 10:34:29  No token in database for conversation: web_customer_23312945217918
+Nov 06 10:34:29  Making JSON-RPC request to customer MCP server...
+Nov 06 10:34:29  Request details: {
+Nov 06 10:34:29    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Nov 06 10:34:29    toolName: 'get_most_recent_order_status',
+Nov 06 10:34:29    toolArgs: {},
+Nov 06 10:34:29    hasToken: false,
+Nov 06 10:34:29    tokenLength: 0
+Nov 06 10:34:29  }
+Nov 06 10:34:29  [SERVER DEBUG] Message saved with id: cmhnai12k0003u54mlro0lw33 createdAt: 2025-11-06T10:34:29.228Z
+Nov 06 10:34:29  Customer MCP tool call error: Error: Request failed: 401 {"errors":[{"message":"Unauthorized"}]}
+Nov 06 10:34:29      at MCPClient._makeJsonRpcRequest (file:///workspace/build/server/index.js?t=315532801000:2091:24)
+Nov 06 10:34:29      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 06 10:34:29      at MCPClient.callCustomerTool (file:///workspace/build/server/index.js?t=315532801000:2007:26)
+Nov 06 10:34:29      at Object.onToolUse (file:///workspace/build/server/index.js?t=315532801000:4114:37)
+Nov 06 10:34:29      at Object.streamConversation (file:///workspace/build/server/index.js?t=315532801000:1298:11)
+Nov 06 10:34:29      at handleChatSession (file:///workspace/build/server/index.js?t=315532801000:4073:22)
+Nov 06 10:34:29      at file:///workspace/build/server/index.js?t=315532801000:3970:7
+Nov 06 10:34:29      at Object.start (file:///workspace/build/server/index.js?t=315532801000:3879:9) {
+Nov 06 10:34:29    status: 401
+Nov 06 10:34:29  }
+Nov 06 10:34:29  Error details: {
+Nov 06 10:34:29    message: 'Request failed: 401 {"errors":[{"message":"Unauthorized"}]}',
+Nov 06 10:34:29    status: 401,
+Nov 06 10:34:29    code: undefined,
+Nov 06 10:34:29    data: undefined
+Nov 06 10:34:29  }
+Nov 06 10:34:29  Unauthorized, generating authorization URL for customer
+Nov 06 10:34:29  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 06 10:34:29  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 06 10:34:29  Auth required for tool: get_most_recent_order_status
+Nov 06 10:34:29  Authentication required, stopping conversation
+Nov 06 10:34:32  POST /chat 200 - - 67.640 ms
+Nov 06 10:34:32  [SERVER DEBUG] Message saved with id: cmhnai3vp0007u54mumi4la4x createdAt: 2025-11-06T10:34:32.869Z
+Nov 06 10:34:36  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 06 10:34:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 9.617 ms
+Nov 06 10:34:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.441 ms
+Nov 06 10:34:37  Stored customer token in database for conversation: web_customer_23312945217918
+Nov 06 10:34:37  GET /auth/callback?code=shcac_QzYycldHU09pNEFNUUJHWlNOM2p0U1h3enMybFBrcUM5QVRkL3g2ZlRqQVZQeGUvRlNxbm1pMW5DVlJ1UE50SC94ck1vK3czSXQrVHlBWnhSMGdadXFMTXc3MFZZZVU1OFlhWk5BN3cvcmxkY043WTNRKzgva2twLy8zNjBXcGJ1Z2tENDRPb1B3V0xybitiQzlZVTZQL1MxT1g4MWFYK1UwOGxSa3drZ2crcFhkUHlrU2lza2UrNEs0a3pRYVJTdzh3U0V2ZExEZkZYWnlUS090T2w0NWRqbGEvWmRNM2RzSFh3YmlDSjJaQkNibzNiRW1HaHlZOHhPdUY2K0I2cUhveDJTdmVjMUtSQlJ0YStNYUNCd0tra1psMEw1VS9zQ3VIRFlnUlB3SExXR3pvQVN5Zko0NnFQQjFnZjJHRWttSDRlL0wvdllVVVRRTEZKV1R5TUNza2NBTDZMRlVvdkM2Qkt1TEhDN1dHd0I1d2ZvTHhwSlRKVHZ5Vy8wbmlYOVp0b2F6NTBGZTFMT0dnS3NnbG9uaGtnakI0b1VkT0dZZmxFQ2VSUVJQRkc5VS9qb1RuOW1Ta1dveXpoVS91MFRZY0tSSHdBcHU3VCtUU2tQWFR1NXpWWDVaWmh2QS9naVgwWGtUSE9rL0NCc0tXU3Rrd21xZDBidHpKcUhqaThoQUNVd3RBUkJjOStWd2lnRGVycmM2OEcvd0N1YTM5ZWpsbi9INk1UVG1IMlIxaEtnV0pOSFRxblhyK2R6aEpGYkRoWFZMZDQwbmtZSFIyaFFhRDMyMmg0a3BTYW04blRCejIxSXBZamQ5b1ZEdTNVVW8wZ1RDcERvdlZFejBGS1l4WGFkeGRnaHpNMDcwU244cmFCVXpHaURDQjAzYzcyK0EvRXZGV1VaQlRESHp2U1E2TWZGckNaaFhJWlhTODhHdXR6Zi94NU5nbnQydlRISm1SWU5uSjhkT2lxQUZhazRqa1hxK3dITllnQ0tvb01BbG02UDlEcDJiMEU3bzMvUm5wZDhCRlhQWnJ0Zll5SUNhYStiaTExeTF4N01NRjdNMmpPTEU1TUpGTXhGOHdkWHNpNXpXZ0J4T1UwblRqR2loTzI0Y2hTMFRsaTZrWVhaM2UzcWZQaGFyZVdYSi9DNWRYZE5hRGItLVBOYlFndlhYT3VnOTFFMDAtLTFuMGpsd29EeEorNFE0RkFvTVlicWc9PQ&state=5011afc22eaf1c8f474a7c3100b4e7d1-web_customer_23312945217918-90473628030 200 - - 616.998 ms
+Nov 06 10:34:38  GET /auth/token-status?conversation_id=web_customer_23312945217918 200 - - 15.802 ms
+Nov 06 10:34:38  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:34:38  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:34:38  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:34:38  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:34:38  Customer MCP server tools response: [
+Nov 06 10:34:38    {
+Nov 06 10:34:38      "name": "get_most_recent_order_status",
+Nov 06 10:34:38      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:34:38      "inputSchema": {
+Nov 06 10:34:38        "type": "object",
+Nov 06 10:34:38        "properties": {}
+Nov 06 10:34:38      }
+Nov 06 10:34:38    },
+Nov 06 10:34:38    {
+Nov 06 10:34:38      "name": "get_order_status",
+Nov 06 10:34:38      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:34:38      "inputSchema": {
+Nov 06 10:34:38        "type": "object",
+Nov 06 10:34:38        "properties": {
+Nov 06 10:34:38          "order_number": {
+Nov 06 10:34:38            "type": "string",
+Nov 06 10:34:38            "description": "Number of the order to look up"
+Nov 06 10:34:38          }
+Nov 06 10:34:38        },
+Nov 06 10:34:38        "required": [
+Nov 06 10:34:38          "order_number"
+Nov 06 10:34:38        ]
+Nov 06 10:34:38      }
+Nov 06 10:34:38    },
+Nov 06 10:34:38    {
+Nov 06 10:34:38      "name": "get_store_credit_balances",
+Nov 06 10:34:38      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:34:38      "inputSchema": {
+Nov 06 10:34:38        "type": "object",
+Nov 06 10:34:38        "properties": {}
+Nov 06 10:34:38      }
+Nov 06 10:34:38    },
+Nov 06 10:34:38    {
+Nov 06 10:34:38      "name": "request_return",
+Nov 06 10:34:38      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:34:38      "inputSchema": {
+Nov 06 10:34:38        "type": "object",
+Nov 06 10:34:38        "properties": {
+Nov 06 10:34:38          "order_id": {
+Nov 06 10:34:38            "type": "string",
+Nov 06 10:34:38            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:34:38          },
+Nov 06 10:34:38          "order_number": {
+Nov 06 10:34:38            "type": "string",
+Nov 06 10:34:38            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:34:38          },
+Nov 06 10:34:38          "line_items": {
+Nov 06 10:34:38            "type": "array",
+Nov 06 10:34:38            "description": "List of items to return",
+Nov 06 10:34:38            "items": {
+Nov 06 10:34:38              "type": "object",
+Nov 06 10:34:38              "properties": {
+Nov 06 10:34:38                "line_item_id": {
+Nov 06 10:34:38                  "type": "string",
+Nov 06 10:34:38                  "description": "ID of the line item to return"
+Nov 06 10:34:38                },
+Nov 06 10:34:38                "quantity": {
+Nov 06 10:34:38                  "type": "integer",
+Nov 06 10:34:38                  "description": "Quantity to return"
+Nov 06 10:34:38                },
+Nov 06 10:34:38                "return_reason": {
+Nov 06 10:34:38                  "type": "string",
+Nov 06 10:34:38                  "description": "Reason for return",
+Nov 06 10:34:38                  "enum": [
+Nov 06 10:34:38                    "SIZE_TOO_SMALL",
+Nov 06 10:34:38                    "SIZE_TOO_LARGE",
+Nov 06 10:34:38                    "UNWANTED",
+Nov 06 10:34:38                    "NOT_AS_DESCRIBED",
+Nov 06 10:34:38                    "WRONG_ITEM",
+Nov 06 10:34:38                    "DEFECTIVE",
+Nov 06 10:34:38                    "STYLE",
+Nov 06 10:34:38                    "COLOR",
+Nov 06 10:34:38                    "OTHER",
+Nov 06 10:34:38                    "UNKNOWN"
+Nov 06 10:34:38                  ]
+Nov 06 10:34:38                },
+Nov 06 10:34:38                "customer_note": {
+Nov 06 10:34:38                  "type": "string",
+Nov 06 10:34:38                  "description": "Additional notes about the return"
+Nov 06 10:34:38                }
+Nov 06 10:34:38              },
+Nov 06 10:34:38              "required": [
+Nov 06 10:34:38                "line_item_id",
+Nov 06 10:34:38                "quantity",
+Nov 06 10:34:38                "return_reason"
+Nov 06 10:34:38              ]
+Nov 06 10:34:38            }
+Nov 06 10:34:38          }
+Nov 06 10:34:38        },
+Nov 06 10:34:38        "required": [
+Nov 06 10:34:38          "line_items"
+Nov 06 10:34:38        ]
+Nov 06 10:34:38      }
+Nov 06 10:34:38    }
+Nov 06 10:34:38  ]
+Nov 06 10:34:38  Connected to MCP with 5 tools
+Nov 06 10:34:38  Connected to customer MCP with 4 tools
+Nov 06 10:34:38  Available customer tools: [
+Nov 06 10:34:38    'get_most_recent_order_status',
+Nov 06 10:34:38    'get_order_status',
+Nov 06 10:34:38    'get_store_credit_balances',
+Nov 06 10:34:38    'request_return'
+Nov 06 10:34:38  ]
+Nov 06 10:34:38  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:34:39  Successfully parsed message content as JSON: object true
+Nov 06 10:34:39  Successfully parsed message content as JSON: object true
+Nov 06 10:34:39  Successfully parsed message content as JSON: object true
+Nov 06 10:34:39  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:34:39  Removing orphaned tool_use from assistant message: toolu_01RdxckYSdQJz25M5GeCDNLs
+Nov 06 10:34:39  Removing tool_result from user message: toolu_01RdxckYSdQJz25M5GeCDNLs
+Nov 06 10:34:39  Cleaned conversation history: 5 messages -> 4 messages
+Nov 06 10:34:39  Conversation history before sending to Claude: [
+Nov 06 10:34:39    {
+Nov 06 10:34:39      "role": "user",
+Nov 06 10:34:39      "content": [
+Nov 06 10:34:39        {
+Nov 06 10:34:39          "type": "text",
+Nov 06 10:34:39          "text": "What's the status of my order?"
+Nov 06 10:34:39        }
+Nov 06 10:34:39      ]
+Nov 06 10:34:39    },
+Nov 06 10:34:39    {
+Nov 06 10:34:39      "role": "assistant",
+Nov 06 10:34:39      "content": [
+Nov 06 10:34:39        {
+Nov 06 10:34:39          "type": "text",
+Nov 06 10:34:39          "text": "I'll check your most recent order status for you."
+Nov 06 10:34:39        }
+Nov 06 10:34:39      ]
+Nov 06 10:34:39    },
+Nov 06 10:34:39    {
+Nov 06 10:34:39      "role": "assistant",
+Nov 06 10:34:39      "content": [
+Nov 06 10:34:39        {
+Nov 06 10:34:39          "type": "text",
+Nov 06 10:34:39          "text": "You'll need to log into your account first to check your order status. Once you're logged in, I can pull up your order details immediately.\n\nIf you have a specific order number, I can also look that up for you - just provide the order number and I'll get you the status right away."
+Nov 06 10:34:39        }
+Nov 06 10:34:39      ]
+Nov 06 10:34:39    },
+Nov 06 10:34:39    {
+Nov 06 10:34:39      "role": "user",
+Nov 06 10:34:39      "content": [
+Nov 06 10:34:39        {
+Nov 06 10:34:39          "type": "text",
+Nov 06 10:34:39          "text": "What's the status of my order?"
+Nov 06 10:34:39        }
+Nov 06 10:34:39      ]
+Nov 06 10:34:39    }
+Nov 06 10:34:39  ]
+Nov 06 10:34:42  Calling customer tool get_most_recent_order_status {}
+Nov 06 10:34:42  Making JSON-RPC request to customer MCP server...
+Nov 06 10:34:42  Request details: {
+Nov 06 10:34:42    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Nov 06 10:34:42    toolName: 'get_most_recent_order_status',
+Nov 06 10:34:42    toolArgs: {},
+Nov 06 10:34:42    hasToken: true,
+Nov 06 10:34:42    tokenLength: 528
+Nov 06 10:34:42  }
+Nov 06 10:34:42  [SERVER DEBUG] Message saved with id: cmhnaib9g000bu54mxdzm3jem createdAt: 2025-11-06T10:34:42.436Z
+Nov 06 10:34:42  Customer MCP server response: {
+Nov 06 10:34:42    jsonrpc: '2.0',
+Nov 06 10:34:42    id: 1,
+Nov 06 10:34:42    error: {
+Nov 06 10:34:42      code: -32603,
+Nov 06 10:34:42      message: 'Internal error',
+Nov 06 10:34:42      data: 'Internal error calling tool get_most_recent_order_status'
+Nov 06 10:34:42    }
+Nov 06 10:34:42  }
+Nov 06 10:34:42  Tool use error {
+Nov 06 10:34:42    code: -32603,
+Nov 06 10:34:42    message: 'Internal error',
+Nov 06 10:34:42    data: 'Internal error calling tool get_most_recent_order_status'
+Nov 06 10:34:42  }
+Nov 06 10:34:46  [SERVER DEBUG] Message saved with id: cmhnaieoy000fu54momapfpfi createdAt: 2025-11-06T10:34:46.883Z
+Nov 06 10:34:46  POST /chat 200 - - 22.766 ms
+Nov 06 10:34:54  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 7.582 ms
+Nov 06 10:35:02  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:35:02  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:35:02  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:35:02  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:35:03  Customer MCP server tools response: [
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "name": "get_most_recent_order_status",
+Nov 06 10:35:03      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:35:03      "inputSchema": {
+Nov 06 10:35:03        "type": "object",
+Nov 06 10:35:03        "properties": {}
+Nov 06 10:35:03      }
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "name": "get_order_status",
+Nov 06 10:35:03      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:35:03      "inputSchema": {
+Nov 06 10:35:03        "type": "object",
+Nov 06 10:35:03        "properties": {
+Nov 06 10:35:03          "order_number": {
+Nov 06 10:35:03            "type": "string",
+Nov 06 10:35:03            "description": "Number of the order to look up"
+Nov 06 10:35:03          }
+Nov 06 10:35:03        },
+Nov 06 10:35:03        "required": [
+Nov 06 10:35:03          "order_number"
+Nov 06 10:35:03        ]
+Nov 06 10:35:03      }
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "name": "get_store_credit_balances",
+Nov 06 10:35:03      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:35:03      "inputSchema": {
+Nov 06 10:35:03        "type": "object",
+Nov 06 10:35:03        "properties": {}
+Nov 06 10:35:03      }
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "name": "request_return",
+Nov 06 10:35:03      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:35:03      "inputSchema": {
+Nov 06 10:35:03        "type": "object",
+Nov 06 10:35:03        "properties": {
+Nov 06 10:35:03          "order_id": {
+Nov 06 10:35:03            "type": "string",
+Nov 06 10:35:03            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:35:03          },
+Nov 06 10:35:03          "order_number": {
+Nov 06 10:35:03            "type": "string",
+Nov 06 10:35:03            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:35:03          },
+Nov 06 10:35:03          "line_items": {
+Nov 06 10:35:03            "type": "array",
+Nov 06 10:35:03            "description": "List of items to return",
+Nov 06 10:35:03            "items": {
+Nov 06 10:35:03              "type": "object",
+Nov 06 10:35:03              "properties": {
+Nov 06 10:35:03                "line_item_id": {
+Nov 06 10:35:03                  "type": "string",
+Nov 06 10:35:03                  "description": "ID of the line item to return"
+Nov 06 10:35:03                },
+Nov 06 10:35:03                "quantity": {
+Nov 06 10:35:03                  "type": "integer",
+Nov 06 10:35:03                  "description": "Quantity to return"
+Nov 06 10:35:03                },
+Nov 06 10:35:03                "return_reason": {
+Nov 06 10:35:03                  "type": "string",
+Nov 06 10:35:03                  "description": "Reason for return",
+Nov 06 10:35:03                  "enum": [
+Nov 06 10:35:03                    "SIZE_TOO_SMALL",
+Nov 06 10:35:03                    "SIZE_TOO_LARGE",
+Nov 06 10:35:03                    "UNWANTED",
+Nov 06 10:35:03                    "NOT_AS_DESCRIBED",
+Nov 06 10:35:03                    "WRONG_ITEM",
+Nov 06 10:35:03                    "DEFECTIVE",
+Nov 06 10:35:03                    "STYLE",
+Nov 06 10:35:03                    "COLOR",
+Nov 06 10:35:03                    "OTHER",
+Nov 06 10:35:03                    "UNKNOWN"
+Nov 06 10:35:03                  ]
+Nov 06 10:35:03                },
+Nov 06 10:35:03                "customer_note": {
+Nov 06 10:35:03                  "type": "string",
+Nov 06 10:35:03                  "description": "Additional notes about the return"
+Nov 06 10:35:03                }
+Nov 06 10:35:03              },
+Nov 06 10:35:03              "required": [
+Nov 06 10:35:03                "line_item_id",
+Nov 06 10:35:03                "quantity",
+Nov 06 10:35:03                "return_reason"
+Nov 06 10:35:03              ]
+Nov 06 10:35:03            }
+Nov 06 10:35:03          }
+Nov 06 10:35:03        },
+Nov 06 10:35:03        "required": [
+Nov 06 10:35:03          "line_items"
+Nov 06 10:35:03        ]
+Nov 06 10:35:03      }
+Nov 06 10:35:03    }
+Nov 06 10:35:03  ]
+Nov 06 10:35:03  Connected to MCP with 5 tools
+Nov 06 10:35:03  Connected to customer MCP with 4 tools
+Nov 06 10:35:03  Available customer tools: [
+Nov 06 10:35:03    'get_most_recent_order_status',
+Nov 06 10:35:03    'get_order_status',
+Nov 06 10:35:03    'get_store_credit_balances',
+Nov 06 10:35:03    'request_return'
+Nov 06 10:35:03  ]
+Nov 06 10:35:03  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Successfully parsed message content as JSON: object true
+Nov 06 10:35:03  Failed to parse message content as JSON, wrapping in text block. Content: i'm logged in
+Nov 06 10:35:03  Removing orphaned tool_use from assistant message: toolu_01RdxckYSdQJz25M5GeCDNLs
+Nov 06 10:35:03  Removing tool_result from user message: toolu_01RdxckYSdQJz25M5GeCDNLs
+Nov 06 10:35:03  Removing orphaned tool_use from assistant message: toolu_01RXu6aKJcYTVNqATkXj9UNf
+Nov 06 10:35:03  Removing tool_result from user message: toolu_01RXu6aKJcYTVNqATkXj9UNf
+Nov 06 10:35:03  Cleaned conversation history: 9 messages -> 6 messages
+Nov 06 10:35:03  Conversation history before sending to Claude: [
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "user",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "What's the status of my order?"
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "assistant",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "I'll check your most recent order status for you."
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "assistant",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "You'll need to log into your account first to check your order status. Once you're logged in, I can pull up your order details immediately.\n\nIf you have a specific order number, I can also look that up for you - just provide the order number and I'll get you the status right away."
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "user",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "What's the status of my order?"
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "assistant",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "I need you to log into your account first to check your order status. Without being logged in, I can't access your order information.\n\nIf you have your order number handy, I can look that up for you instead. Just give me the order number and I'll get your status immediately."
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    },
+Nov 06 10:35:03    {
+Nov 06 10:35:03      "role": "user",
+Nov 06 10:35:03      "content": [
+Nov 06 10:35:03        {
+Nov 06 10:35:03          "type": "text",
+Nov 06 10:35:03          "text": "i'm logged in"
+Nov 06 10:35:03        }
+Nov 06 10:35:03      ]
+Nov 06 10:35:03    }
+Nov 06 10:35:03  ]
+Nov 06 10:35:04  Error processing streaming request: APIConnectionError: {"type":"error","error":{"details":null,"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CUrVBcoU9yzQChTaLXWKD"  }
+Nov 06 10:35:04      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:57:14)
+Nov 06 10:35:04      at Stream.iterator (file:///workspace/node_modules/@anthropic-ai/sdk/src/streaming.ts:70:28)
+Nov 06 10:35:04      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 06 10:35:04      at MessageStream._createMessage (file:///workspace/node_modules/@anthropic-ai/sdk/src/lib/MessageStream.ts:184:22) {
+Nov 06 10:35:04    status: undefined,
+Nov 06 10:35:04    headers: undefined,
+Nov 06 10:35:04    request_id: undefined,
+Nov 06 10:35:04    error: undefined,
+Nov 06 10:35:04    cause: Error: SSE Error: {"type":"error","error":{"details":null,"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CUrVBcoU9yzQChTaLXWKD"  }
+Nov 06 10:35:04        at castToError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:1102:10)
+Nov 06 10:35:04        at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:57:55)
+Nov 06 10:35:04        at Stream.iterator (file:///workspace/node_modules/@anthropic-ai/sdk/src/streaming.ts:70:28)
+Nov 06 10:35:04        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 06 10:35:04        at MessageStream._createMessage (file:///workspace/node_modules/@anthropic-ai/sdk/src/lib/MessageStream.ts:184:22)
+Nov 06 10:35:04  }
+Nov 06 10:35:04  POST /chat 200 - - 23.905 ms
+Nov 06 10:35:06  GET /api/conversation-followup 200 - - 23.275 ms
+Nov 06 10:35:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.886 ms
+Nov 06 10:35:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.070 ms
+Nov 06 10:35:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.940 ms
+Nov 06 10:35:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.768 ms
+Nov 06 10:35:35  OPTIONS /api/reset-chat 204 - - 1.483 ms
+Nov 06 10:35:35  Deleted 9 messages for conversation web_customer_23312945217918
+Nov 06 10:35:35  Chat reset: Cleared conversation history and reset handoff flag for web_customer_23312945217918
+Nov 06 10:35:35  POST /api/reset-chat 200 - - 15.187 ms
+Nov 06 10:35:36  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:35:36  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:35:36  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:35:36  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:35:37  Customer MCP server tools response: [
+Nov 06 10:35:37    {
+Nov 06 10:35:37      "name": "get_most_recent_order_status",
+Nov 06 10:35:37      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:35:37      "inputSchema": {
+Nov 06 10:35:37        "type": "object",
+Nov 06 10:35:37        "properties": {}
+Nov 06 10:35:37      }
+Nov 06 10:35:37    },
+Nov 06 10:35:37    {
+Nov 06 10:35:37      "name": "get_order_status",
+Nov 06 10:35:37      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:35:37      "inputSchema": {
+Nov 06 10:35:37        "type": "object",
+Nov 06 10:35:37        "properties": {
+Nov 06 10:35:37          "order_number": {
+Nov 06 10:35:37            "type": "string",
+Nov 06 10:35:37            "description": "Number of the order to look up"
+Nov 06 10:35:37          }
+Nov 06 10:35:37        },
+Nov 06 10:35:37        "required": [
+Nov 06 10:35:37          "order_number"
+Nov 06 10:35:37        ]
+Nov 06 10:35:37      }
+Nov 06 10:35:37    },
+Nov 06 10:35:37    {
+Nov 06 10:35:37      "name": "get_store_credit_balances",
+Nov 06 10:35:37      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:35:37      "inputSchema": {
+Nov 06 10:35:37        "type": "object",
+Nov 06 10:35:37        "properties": {}
+Nov 06 10:35:37      }
+Nov 06 10:35:37    },
+Nov 06 10:35:37    {
+Nov 06 10:35:37      "name": "request_return",
+Nov 06 10:35:37      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:35:37      "inputSchema": {
+Nov 06 10:35:37        "type": "object",
+Nov 06 10:35:37        "properties": {
+Nov 06 10:35:37          "order_id": {
+Nov 06 10:35:37            "type": "string",
+Nov 06 10:35:37            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:35:37          },
+Nov 06 10:35:37          "order_number": {
+Nov 06 10:35:37            "type": "string",
+Nov 06 10:35:37            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:35:37          },
+Nov 06 10:35:37          "line_items": {
+Nov 06 10:35:37            "type": "array",
+Nov 06 10:35:37            "description": "List of items to return",
+Nov 06 10:35:37            "items": {
+Nov 06 10:35:37              "type": "object",
+Nov 06 10:35:37              "properties": {
+Nov 06 10:35:37                "line_item_id": {
+Nov 06 10:35:37                  "type": "string",
+Nov 06 10:35:37                  "description": "ID of the line item to return"
+Nov 06 10:35:37                },
+Nov 06 10:35:37                "quantity": {
+Nov 06 10:35:37                  "type": "integer",
+Nov 06 10:35:37                  "description": "Quantity to return"
+Nov 06 10:35:37                },
+Nov 06 10:35:37                "return_reason": {
+Nov 06 10:35:37                  "type": "string",
+Nov 06 10:35:37                  "description": "Reason for return",
+Nov 06 10:35:37                  "enum": [
+Nov 06 10:35:37                    "SIZE_TOO_SMALL",
+Nov 06 10:35:37                    "SIZE_TOO_LARGE",
+Nov 06 10:35:37                    "UNWANTED",
+Nov 06 10:35:37                    "NOT_AS_DESCRIBED",
+Nov 06 10:35:37                    "WRONG_ITEM",
+Nov 06 10:35:37                    "DEFECTIVE",
+Nov 06 10:35:37                    "STYLE",
+Nov 06 10:35:37                    "COLOR",
+Nov 06 10:35:37                    "OTHER",
+Nov 06 10:35:37                    "UNKNOWN"
+Nov 06 10:35:37                  ]
+Nov 06 10:35:37                },
+Nov 06 10:35:37                "customer_note": {
+Nov 06 10:35:37                  "type": "string",
+Nov 06 10:35:37                  "description": "Additional notes about the return"
+Nov 06 10:35:37                }
+Nov 06 10:35:37              },
+Nov 06 10:35:37              "required": [
+Nov 06 10:35:37                "line_item_id",
+Nov 06 10:35:37                "quantity",
+Nov 06 10:35:37                "return_reason"
+Nov 06 10:35:37              ]
+Nov 06 10:35:37            }
+Nov 06 10:35:37          }
+Nov 06 10:35:37        },
+Nov 06 10:35:37        "required": [
+Nov 06 10:35:37          "line_items"
+Nov 06 10:35:37        ]
+Nov 06 10:35:37      }
+Nov 06 10:35:37    }
+Nov 06 10:35:37  ]
+Nov 06 10:35:37  Connected to MCP with 5 tools
+Nov 06 10:35:37  Connected to customer MCP with 4 tools
+Nov 06 10:35:37  Available customer tools: [
+Nov 06 10:35:37    'get_most_recent_order_status',
+Nov 06 10:35:37    'get_order_status',
+Nov 06 10:35:37    'get_store_credit_balances',
+Nov 06 10:35:37    'request_return'
+Nov 06 10:35:37  ]
+Nov 06 10:35:37  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:35:37  Cleaned conversation history: 1 messages -> 1 messages
+Nov 06 10:35:37  Conversation history before sending to Claude: [
+Nov 06 10:35:37    {
+Nov 06 10:35:37      "role": "user",
+Nov 06 10:35:37      "content": [
+Nov 06 10:35:37        {
+Nov 06 10:35:37          "type": "text",
+Nov 06 10:35:37          "text": "What's the status of my order?"
+Nov 06 10:35:37        }
+Nov 06 10:35:37      ]
+Nov 06 10:35:37    }
+Nov 06 10:35:37  ]
+Nov 06 10:35:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.267 ms
+Nov 06 10:35:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.294 ms
+Nov 06 10:35:39  Calling customer tool get_most_recent_order_status {}
+Nov 06 10:35:39  Making JSON-RPC request to customer MCP server...
+Nov 06 10:35:39  Request details: {
+Nov 06 10:35:39    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Nov 06 10:35:39    toolName: 'get_most_recent_order_status',
+Nov 06 10:35:39    toolArgs: {},
+Nov 06 10:35:39    hasToken: true,
+Nov 06 10:35:39    tokenLength: 528
+Nov 06 10:35:39  }
+Nov 06 10:35:39  [SERVER DEBUG] Message saved with id: cmhnajjda000lu54m5yf8yy7k createdAt: 2025-11-06T10:35:39.599Z
+Nov 06 10:35:39  Customer MCP server response: {
+Nov 06 10:35:39    jsonrpc: '2.0',
+Nov 06 10:35:39    id: 1,
+Nov 06 10:35:39    error: {
+Nov 06 10:35:39      code: -32603,
+Nov 06 10:35:39      message: 'Internal error',
+Nov 06 10:35:39      data: 'Internal error calling tool get_most_recent_order_status'
+Nov 06 10:35:39    }
+Nov 06 10:35:39  }
+Nov 06 10:35:39  Tool use error {
+Nov 06 10:35:39    code: -32603,
+Nov 06 10:35:39    message: 'Internal error',
+Nov 06 10:35:39    data: 'Internal error calling tool get_most_recent_order_status'
+Nov 06 10:35:39  }
+Nov 06 10:35:43  POST /chat 200 - - 17.027 ms
+Nov 06 10:35:43  [SERVER DEBUG] Message saved with id: cmhnajmp7000pu54mcdmq52xz createdAt: 2025-11-06T10:35:43.916Z
+Nov 06 10:36:02  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:36:02  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:36:02  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:36:02  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:36:02  Customer MCP server tools response: [
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "name": "get_most_recent_order_status",
+Nov 06 10:36:02      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:36:02      "inputSchema": {
+Nov 06 10:36:02        "type": "object",
+Nov 06 10:36:02        "properties": {}
+Nov 06 10:36:02      }
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "name": "get_order_status",
+Nov 06 10:36:02      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:36:02      "inputSchema": {
+Nov 06 10:36:02        "type": "object",
+Nov 06 10:36:02        "properties": {
+Nov 06 10:36:02          "order_number": {
+Nov 06 10:36:02            "type": "string",
+Nov 06 10:36:02            "description": "Number of the order to look up"
+Nov 06 10:36:02          }
+Nov 06 10:36:02        },
+Nov 06 10:36:02        "required": [
+Nov 06 10:36:02          "order_number"
+Nov 06 10:36:02        ]
+Nov 06 10:36:02      }
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "name": "get_store_credit_balances",
+Nov 06 10:36:02      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:36:02      "inputSchema": {
+Nov 06 10:36:02        "type": "object",
+Nov 06 10:36:02        "properties": {}
+Nov 06 10:36:02      }
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "name": "request_return",
+Nov 06 10:36:02      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:36:02      "inputSchema": {
+Nov 06 10:36:02        "type": "object",
+Nov 06 10:36:02        "properties": {
+Nov 06 10:36:02          "order_id": {
+Nov 06 10:36:02            "type": "string",
+Nov 06 10:36:02            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:36:02          },
+Nov 06 10:36:02          "order_number": {
+Nov 06 10:36:02            "type": "string",
+Nov 06 10:36:02            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:36:02          },
+Nov 06 10:36:02          "line_items": {
+Nov 06 10:36:02            "type": "array",
+Nov 06 10:36:02            "description": "List of items to return",
+Nov 06 10:36:02            "items": {
+Nov 06 10:36:02              "type": "object",
+Nov 06 10:36:02              "properties": {
+Nov 06 10:36:02                "line_item_id": {
+Nov 06 10:36:02                  "type": "string",
+Nov 06 10:36:02                  "description": "ID of the line item to return"
+Nov 06 10:36:02                },
+Nov 06 10:36:02                "quantity": {
+Nov 06 10:36:02                  "type": "integer",
+Nov 06 10:36:02                  "description": "Quantity to return"
+Nov 06 10:36:02                },
+Nov 06 10:36:02                "return_reason": {
+Nov 06 10:36:02                  "type": "string",
+Nov 06 10:36:02                  "description": "Reason for return",
+Nov 06 10:36:02                  "enum": [
+Nov 06 10:36:02                    "SIZE_TOO_SMALL",
+Nov 06 10:36:02                    "SIZE_TOO_LARGE",
+Nov 06 10:36:02                    "UNWANTED",
+Nov 06 10:36:02                    "NOT_AS_DESCRIBED",
+Nov 06 10:36:02                    "WRONG_ITEM",
+Nov 06 10:36:02                    "DEFECTIVE",
+Nov 06 10:36:02                    "STYLE",
+Nov 06 10:36:02                    "COLOR",
+Nov 06 10:36:02                    "OTHER",
+Nov 06 10:36:02                    "UNKNOWN"
+Nov 06 10:36:02                  ]
+Nov 06 10:36:02                },
+Nov 06 10:36:02                "customer_note": {
+Nov 06 10:36:02                  "type": "string",
+Nov 06 10:36:02                  "description": "Additional notes about the return"
+Nov 06 10:36:02                }
+Nov 06 10:36:02              },
+Nov 06 10:36:02              "required": [
+Nov 06 10:36:02                "line_item_id",
+Nov 06 10:36:02                "quantity",
+Nov 06 10:36:02                "return_reason"
+Nov 06 10:36:02              ]
+Nov 06 10:36:02            }
+Nov 06 10:36:02          }
+Nov 06 10:36:02        },
+Nov 06 10:36:02        "required": [
+Nov 06 10:36:02          "line_items"
+Nov 06 10:36:02        ]
+Nov 06 10:36:02      }
+Nov 06 10:36:02    }
+Nov 06 10:36:02  ]
+Nov 06 10:36:02  Connected to MCP with 5 tools
+Nov 06 10:36:02  Connected to customer MCP with 4 tools
+Nov 06 10:36:02  Available customer tools: [
+Nov 06 10:36:02    'get_most_recent_order_status',
+Nov 06 10:36:02    'get_order_status',
+Nov 06 10:36:02    'get_store_credit_balances',
+Nov 06 10:36:02    'request_return'
+Nov 06 10:36:02  ]
+Nov 06 10:36:02  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:36:02  Successfully parsed message content as JSON: object true
+Nov 06 10:36:02  Successfully parsed message content as JSON: object true
+Nov 06 10:36:02  Successfully parsed message content as JSON: object true
+Nov 06 10:36:02  Failed to parse message content as JSON, wrapping in text block. Content: VL-33643
+Nov 06 10:36:02  Removing orphaned tool_use from assistant message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:36:02  Removing tool_result from user message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:36:02  Cleaned conversation history: 5 messages -> 4 messages
+Nov 06 10:36:02  Conversation history before sending to Claude: [
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "role": "user",
+Nov 06 10:36:02      "content": [
+Nov 06 10:36:02        {
+Nov 06 10:36:02          "type": "text",
+Nov 06 10:36:02          "text": "What's the status of my order?"
+Nov 06 10:36:02        }
+Nov 06 10:36:02      ]
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "role": "assistant",
+Nov 06 10:36:02      "content": [
+Nov 06 10:36:02        {
+Nov 06 10:36:02          "type": "text",
+Nov 06 10:36:02          "text": "I'll check your order status for you."
+Nov 06 10:36:02        }
+Nov 06 10:36:02      ]
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "role": "assistant",
+Nov 06 10:36:02      "content": [
+Nov 06 10:36:02        {
+Nov 06 10:36:02          "type": "text",
+Nov 06 10:36:02          "text": "I need your order number to look up your order status. Please provide your order number and I'll get that information for you right away."
+Nov 06 10:36:02        }
+Nov 06 10:36:02      ]
+Nov 06 10:36:02    },
+Nov 06 10:36:02    {
+Nov 06 10:36:02      "role": "user",
+Nov 06 10:36:02      "content": [
+Nov 06 10:36:02        {
+Nov 06 10:36:02          "type": "text",
+Nov 06 10:36:02          "text": "VL-33643"
+Nov 06 10:36:02        }
+Nov 06 10:36:02      ]
+Nov 06 10:36:02    }
+Nov 06 10:36:02  ]
+Nov 06 10:36:05  GET /api/conversation-followup 200 - - 41.795 ms
+Nov 06 10:36:06  Calling customer tool get_order_status { order_number: 'VL-33643' }
+Nov 06 10:36:06  Making JSON-RPC request to customer MCP server...
+Nov 06 10:36:06  Request details: {
+Nov 06 10:36:06    endpoint: 'https://account.vapelocal.co.uk/customer/api/mcp',
+Nov 06 10:36:06    toolName: 'get_order_status',
+Nov 06 10:36:06    toolArgs: { order_number: 'VL-33643' },
+Nov 06 10:36:06    hasToken: true,
+Nov 06 10:36:06    tokenLength: 528
+Nov 06 10:36:06  }
+Nov 06 10:36:06  [SERVER DEBUG] Message saved with id: cmhnak4au000tu54maya9hu95 createdAt: 2025-11-06T10:36:06.727Z
+Nov 06 10:36:07  Customer MCP server response: {
+Nov 06 10:36:07    jsonrpc: '2.0',
+Nov 06 10:36:07    id: 1,
+Nov 06 10:36:07    result: { content: [ [Object] ], isError: false }
+Nov 06 10:36:07  }
+Nov 06 10:36:13  POST /chat 200 - - 19.702 ms
+Nov 06 10:36:13  [SERVER DEBUG] Message saved with id: cmhnak9kk000xu54mkxtj3t8z createdAt: 2025-11-06T10:36:13.556Z
+Nov 06 10:36:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.043 ms
+Nov 06 10:36:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 36.525 ms
+Nov 06 10:36:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.361 ms
+Nov 06 10:36:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.035 ms
+Nov 06 10:36:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 22.857 ms
+Nov 06 10:36:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.885 ms
+Nov 06 10:36:45  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:36:45  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:36:45  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:36:45  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:36:45  Customer MCP server tools response: [
+Nov 06 10:36:45    {
+Nov 06 10:36:45      "name": "get_most_recent_order_status",
+Nov 06 10:36:45      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:36:45      "inputSchema": {
+Nov 06 10:36:45        "type": "object",
+Nov 06 10:36:45        "properties": {}
+Nov 06 10:36:45      }
+Nov 06 10:36:45    },
+Nov 06 10:36:45    {
+Nov 06 10:36:45      "name": "get_order_status",
+Nov 06 10:36:45      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:36:45      "inputSchema": {
+Nov 06 10:36:45        "type": "object",
+Nov 06 10:36:45        "properties": {
+Nov 06 10:36:45          "order_number": {
+Nov 06 10:36:45            "type": "string",
+Nov 06 10:36:45            "description": "Number of the order to look up"
+Nov 06 10:36:45          }
+Nov 06 10:36:45        },
+Nov 06 10:36:45        "required": [
+Nov 06 10:36:45          "order_number"
+Nov 06 10:36:45        ]
+Nov 06 10:36:45      }
+Nov 06 10:36:45    },
+Nov 06 10:36:45    {
+Nov 06 10:36:45      "name": "get_store_credit_balances",
+Nov 06 10:36:45      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:36:45      "inputSchema": {
+Nov 06 10:36:45        "type": "object",
+Nov 06 10:36:45        "properties": {}
+Nov 06 10:36:45      }
+Nov 06 10:36:45    },
+Nov 06 10:36:45    {
+Nov 06 10:36:45      "name": "request_return",
+Nov 06 10:36:45      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:36:45      "inputSchema": {
+Nov 06 10:36:45        "type": "object",
+Nov 06 10:36:45        "properties": {
+Nov 06 10:36:45          "order_id": {
+Nov 06 10:36:45            "type": "string",
+Nov 06 10:36:45            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:36:45          },
+Nov 06 10:36:45          "order_number": {
+Nov 06 10:36:45            "type": "string",
+Nov 06 10:36:45            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:36:45          },
+Nov 06 10:36:45          "line_items": {
+Nov 06 10:36:45            "type": "array",
+Nov 06 10:36:45            "description": "List of items to return",
+Nov 06 10:36:45            "items": {
+Nov 06 10:36:45              "type": "object",
+Nov 06 10:36:45              "properties": {
+Nov 06 10:36:45                "line_item_id": {
+Nov 06 10:36:45                  "type": "string",
+Nov 06 10:36:45                  "description": "ID of the line item to return"
+Nov 06 10:36:45                },
+Nov 06 10:36:45                "quantity": {
+Nov 06 10:36:45                  "type": "integer",
+Nov 06 10:36:45                  "description": "Quantity to return"
+Nov 06 10:36:45                },
+Nov 06 10:36:45                "return_reason": {
+Nov 06 10:36:45                  "type": "string",
+Nov 06 10:36:45                  "description": "Reason for return",
+Nov 06 10:36:45                  "enum": [
+Nov 06 10:36:45                    "SIZE_TOO_SMALL",
+Nov 06 10:36:45                    "SIZE_TOO_LARGE",
+Nov 06 10:36:45                    "UNWANTED",
+Nov 06 10:36:45                    "NOT_AS_DESCRIBED",
+Nov 06 10:36:45                    "WRONG_ITEM",
+Nov 06 10:36:45                    "DEFECTIVE",
+Nov 06 10:36:45                    "STYLE",
+Nov 06 10:36:45                    "COLOR",
+Nov 06 10:36:45                    "OTHER",
+Nov 06 10:36:45                    "UNKNOWN"
+Nov 06 10:36:45                  ]
+Nov 06 10:36:45                },
+Nov 06 10:36:45                "customer_note": {
+Nov 06 10:36:45                  "type": "string",
+Nov 06 10:36:45                  "description": "Additional notes about the return"
+Nov 06 10:36:45                }
+Nov 06 10:36:45              },
+Nov 06 10:36:45              "required": [
+Nov 06 10:36:45                "line_item_id",
+Nov 06 10:36:45                "quantity",
+Nov 06 10:36:45                "return_reason"
+Nov 06 10:36:45              ]
+Nov 06 10:36:45            }
+Nov 06 10:36:45          }
+Nov 06 10:36:45        },
+Nov 06 10:36:45        "required": [
+Nov 06 10:36:45          "line_items"
+Nov 06 10:36:45        ]
+Nov 06 10:36:45      }
+Nov 06 10:36:45    }
+Nov 06 10:36:45  ]
+Nov 06 10:36:45  Connected to MCP with 5 tools
+Nov 06 10:36:45  Connected to customer MCP with 4 tools
+Nov 06 10:36:45  Available customer tools: [
+Nov 06 10:36:45    'get_most_recent_order_status',
+Nov 06 10:36:45    'get_order_status',
+Nov 06 10:36:45    'get_store_credit_balances',
+Nov 06 10:36:45    'request_return'
+Nov 06 10:36:45  ]
+Nov 06 10:36:46  Failed to parse message content as JSON, wrapping in text block. Content: What's the status of my order?
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Failed to parse message content as JSON, wrapping in text block. Content: VL-33643
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Successfully parsed message content as JSON: object true
+Nov 06 10:36:46  Failed to parse message content as JSON, wrapping in text block. Content: I haven't recieved it
+Nov 06 10:36:46  Removing orphaned tool_use from assistant message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:36:46  Removing tool_result from user message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:36:46  Removing orphaned tool_use from assistant message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:36:46  Removing tool_result from user message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:36:46  Cleaned conversation history: 9 messages -> 6 messages
+Nov 06 10:36:46  Conversation history before sending to Claude: [
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "user",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "What's the status of my order?"
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    },
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "assistant",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "I'll check your order status for you."
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    },
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "assistant",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "I need your order number to look up your order status. Please provide your order number and I'll get that information for you right away."
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    },
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "user",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "VL-33643"
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    },
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "assistant",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "Your order VL-33643 is **PAID** and **FULFILLED**. Here are the details:\n\n- **Order Total:** £19.19\n- **Status:** Paid and shipped\n- **Items:** Bar Juice Blue Razz Lemonade 20mg (quantity: 10)\n- **Tracking Number:** 6951659294\n\nYour order has been successfully shipped and confirmed for delivery. You can track your package using the tracking number provided."
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    },
+Nov 06 10:36:46    {
+Nov 06 10:36:46      "role": "user",
+Nov 06 10:36:46      "content": [
+Nov 06 10:36:46        {
+Nov 06 10:36:46          "type": "text",
+Nov 06 10:36:46          "text": "I haven't recieved it"
+Nov 06 10:36:46        }
+Nov 06 10:36:46      ]
+Nov 06 10:36:46    }
+Nov 06 10:36:46  ]
+Nov 06 10:36:50  POST /chat 200 - - 27.764 ms
+Nov 06 10:36:50  [SERVER DEBUG] Message saved with id: cmhnal2720003wn4m5rxt81ko createdAt: 2025-11-06T10:36:50.654Z
+Nov 06 10:37:03  GET /api/conversation-followup 200 - - 29.094 ms
+Nov 06 10:37:04  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:37:04  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:37:04  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:37:04  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:37:04  Customer MCP server tools response: [
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "name": "get_most_recent_order_status",
+Nov 06 10:37:04      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:37:04      "inputSchema": {
+Nov 06 10:37:04        "type": "object",
+Nov 06 10:37:04        "properties": {}
+Nov 06 10:37:04      }
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "name": "get_order_status",
+Nov 06 10:37:04      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:37:04      "inputSchema": {
+Nov 06 10:37:04        "type": "object",
+Nov 06 10:37:04        "properties": {
+Nov 06 10:37:04          "order_number": {
+Nov 06 10:37:04            "type": "string",
+Nov 06 10:37:04            "description": "Number of the order to look up"
+Nov 06 10:37:04          }
+Nov 06 10:37:04        },
+Nov 06 10:37:04        "required": [
+Nov 06 10:37:04          "order_number"
+Nov 06 10:37:04        ]
+Nov 06 10:37:04      }
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "name": "get_store_credit_balances",
+Nov 06 10:37:04      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:37:04      "inputSchema": {
+Nov 06 10:37:04        "type": "object",
+Nov 06 10:37:04        "properties": {}
+Nov 06 10:37:04      }
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "name": "request_return",
+Nov 06 10:37:04      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:37:04      "inputSchema": {
+Nov 06 10:37:04        "type": "object",
+Nov 06 10:37:04        "properties": {
+Nov 06 10:37:04          "order_id": {
+Nov 06 10:37:04            "type": "string",
+Nov 06 10:37:04            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:37:04          },
+Nov 06 10:37:04          "order_number": {
+Nov 06 10:37:04            "type": "string",
+Nov 06 10:37:04            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:37:04          },
+Nov 06 10:37:04          "line_items": {
+Nov 06 10:37:04            "type": "array",
+Nov 06 10:37:04            "description": "List of items to return",
+Nov 06 10:37:04            "items": {
+Nov 06 10:37:04              "type": "object",
+Nov 06 10:37:04              "properties": {
+Nov 06 10:37:04                "line_item_id": {
+Nov 06 10:37:04                  "type": "string",
+Nov 06 10:37:04                  "description": "ID of the line item to return"
+Nov 06 10:37:04                },
+Nov 06 10:37:04                "quantity": {
+Nov 06 10:37:04                  "type": "integer",
+Nov 06 10:37:04                  "description": "Quantity to return"
+Nov 06 10:37:04                },
+Nov 06 10:37:04                "return_reason": {
+Nov 06 10:37:04                  "type": "string",
+Nov 06 10:37:04                  "description": "Reason for return",
+Nov 06 10:37:04                  "enum": [
+Nov 06 10:37:04                    "SIZE_TOO_SMALL",
+Nov 06 10:37:04                    "SIZE_TOO_LARGE",
+Nov 06 10:37:04                    "UNWANTED",
+Nov 06 10:37:04                    "NOT_AS_DESCRIBED",
+Nov 06 10:37:04                    "WRONG_ITEM",
+Nov 06 10:37:04                    "DEFECTIVE",
+Nov 06 10:37:04                    "STYLE",
+Nov 06 10:37:04                    "COLOR",
+Nov 06 10:37:04                    "OTHER",
+Nov 06 10:37:04                    "UNKNOWN"
+Nov 06 10:37:04                  ]
+Nov 06 10:37:04                },
+Nov 06 10:37:04                "customer_note": {
+Nov 06 10:37:04                  "type": "string",
+Nov 06 10:37:04                  "description": "Additional notes about the return"
+Nov 06 10:37:04                }
+Nov 06 10:37:04              },
+Nov 06 10:37:04              "required": [
+Nov 06 10:37:04                "line_item_id",
+Nov 06 10:37:04                "quantity",
+Nov 06 10:37:04                "return_reason"
+Nov 06 10:37:04              ]
+Nov 06 10:37:04            }
+Nov 06 10:37:04          }
+Nov 06 10:37:04        },
+Nov 06 10:37:04        "required": [
+Nov 06 10:37:04          "line_items"
+Nov 06 10:37:04        ]
+Nov 06 10:37:04      }
+Nov 06 10:37:04    }
+Nov 06 10:37:04  ]
+Nov 06 10:37:04  Connected to MCP with 5 tools
+Nov 06 10:37:04  Connected to customer MCP with 4 tools
+Nov 06 10:37:04  Available customer tools: [
+Nov 06 10:37:04    'get_most_recent_order_status',
+Nov 06 10:37:04    'get_order_status',
+Nov 06 10:37:04    'get_store_credit_balances',
+Nov 06 10:37:04    'request_return'
+Nov 06 10:37:04  ]
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Failed to parse message content as JSON, wrapping in text block. Content: VL-33643
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Failed to parse message content as JSON, wrapping in text block. Content: I haven't recieved it
+Nov 06 10:37:04  Successfully parsed message content as JSON: object true
+Nov 06 10:37:04  Failed to parse message content as JSON, wrapping in text block. Content: callum callumcolleyedu@gmail.com 07891689332
+Nov 06 10:37:04  Removing orphaned tool_use from assistant message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:37:04  Removing tool_result from user message: toolu_0143pWAd2uXDtTj8rhoEDHyy
+Nov 06 10:37:04  Removing orphaned tool_use from assistant message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:37:04  Removing tool_result from user message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:37:04  Cleaned conversation history: 10 messages -> 7 messages
+Nov 06 10:37:04  Conversation history before sending to Claude: [
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "assistant",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "I'll check your order status for you."
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "assistant",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "I need your order number to look up your order status. Please provide your order number and I'll get that information for you right away."
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "user",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "VL-33643"
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "assistant",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "Your order VL-33643 is **PAID** and **FULFILLED**. Here are the details:\n\n- **Order Total:** £19.19\n- **Status:** Paid and shipped\n- **Items:** Bar Juice Blue Razz Lemonade 20mg (quantity: 10)\n- **Tracking Number:** 6951659294\n\nYour order has been successfully shipped and confirmed for delivery. You can track your package using the tracking number provided."
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "user",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "I haven't recieved it"
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "assistant",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "I understand your concern about not receiving your order VL-33643. Since it shows as fulfilled with tracking number 6951659294, let me connect you with our customer service team who can investigate this delivery issue and provide a resolution.\n\nI'll need your contact information to escalate this to our support team:\n\n1. Your full name\n2. Your email address  \n3. Your phone number\n\nOnce you provide these details, I'll immediately create a support ticket to get this delivery issue resolved for you."
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    },
+Nov 06 10:37:04    {
+Nov 06 10:37:04      "role": "user",
+Nov 06 10:37:04      "content": [
+Nov 06 10:37:04        {
+Nov 06 10:37:04          "type": "text",
+Nov 06 10:37:04          "text": "callum callumcolleyedu@gmail.com 07891689332"
+Nov 06 10:37:04        }
+Nov 06 10:37:04      ]
+Nov 06 10:37:04    }
+Nov 06 10:37:04  ]
+Nov 06 10:37:08  Error processing streaming request: APIConnectionError: {"type":"error","error":{"details":null,"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CUrVLbgFZWTPKep1TLaDH"          }
+Nov 06 10:37:08      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:57:14)
+Nov 06 10:37:08      at Stream.iterator (file:///workspace/node_modules/@anthropic-ai/sdk/src/streaming.ts:70:28)
+Nov 06 10:37:08      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 06 10:37:08      at MessageStream._createMessage (file:///workspace/node_modules/@anthropic-ai/sdk/src/lib/MessageStream.ts:184:22) {
+Nov 06 10:37:08    status: undefined,
+Nov 06 10:37:08    headers: undefined,
+Nov 06 10:37:08    request_id: undefined,
+Nov 06 10:37:08    error: undefined,
+Nov 06 10:37:08    cause: Error: SSE Error: {"type":"error","error":{"details":null,"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CUrVLbgFZWTPKep1TLaDH"          }
+Nov 06 10:37:08        at castToError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:1102:10)
+Nov 06 10:37:08        at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:57:55)
+Nov 06 10:37:08        at Stream.iterator (file:///workspace/node_modules/@anthropic-ai/sdk/src/streaming.ts:70:28)
+Nov 06 10:37:08        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 06 10:37:08        at MessageStream._createMessage (file:///workspace/node_modules/@anthropic-ai/sdk/src/lib/MessageStream.ts:184:22)
+Nov 06 10:37:08  }
+Nov 06 10:37:08  POST /chat 200 - - 15.984 ms
+Nov 06 10:37:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.659 ms
+Nov 06 10:37:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.250 ms
+Nov 06 10:37:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.273 ms
+Nov 06 10:37:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 12.402 ms
+Nov 06 10:37:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 3.836 ms
+Nov 06 10:37:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.285 ms
+Nov 06 10:38:05  GET /api/conversation-followup 200 - - 21.730 ms
+Nov 06 10:38:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.007 ms
+Nov 06 10:38:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.201 ms
+Nov 06 10:38:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.642 ms
+Nov 06 10:38:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.185 ms
+Nov 06 10:38:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.795 ms
+Nov 06 10:38:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.214 ms
+Nov 06 10:39:04  GET /api/conversation-followup 200 - - 32.617 ms
+Nov 06 10:39:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.516 ms
+Nov 06 10:39:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.386 ms
+Nov 06 10:39:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.440 ms
+Nov 06 10:39:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 33.955 ms
+Nov 06 10:39:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 3.992 ms
+Nov 06 10:40:09  Sent first follow-up to conversation web_customer_23312945217918
+Nov 06 10:40:09  GET /api/conversation-followup 200 - - 39.528 ms
+Nov 06 10:40:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.110 ms
+Nov 06 10:40:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.846 ms
+Nov 06 10:40:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.478 ms
+Nov 06 10:40:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.529 ms
+Nov 06 10:40:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.218 ms
+Nov 06 10:40:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.053 ms
+Nov 06 10:41:04  GET /api/conversation-followup 200 - - 26.398 ms
+Nov 06 10:41:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.552 ms
+Nov 06 10:41:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.379 ms
+Nov 06 10:41:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.986 ms
+Nov 06 10:41:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 34.907 ms
+Nov 06 10:41:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.517 ms
+Nov 06 10:41:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.096 ms
+Nov 06 10:42:05  Sent second follow-up to conversation web_customer_23312945217918
+Nov 06 10:42:05  GET /api/conversation-followup 200 - - 25.981 ms
+Nov 06 10:42:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.083 ms
+Nov 06 10:42:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.332 ms
+Nov 06 10:42:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.655 ms
+Nov 06 10:42:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.865 ms
+Nov 06 10:42:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.484 ms
+Nov 06 10:42:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.692 ms
+Nov 06 10:43:04  GET /api/conversation-followup 200 - - 36.965 ms
+Nov 06 10:43:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.354 ms
+Nov 06 10:43:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.755 ms
+Nov 06 10:43:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.426 ms
+Nov 06 10:43:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.838 ms
+Nov 06 10:43:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.268 ms
+Nov 06 10:43:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.718 ms
+Nov 06 10:44:05  GET /api/conversation-followup 200 - - 19.702 ms
+Nov 06 10:44:14  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
+Nov 06 10:44:14  Using hardcoded customer MCP endpoint for vapelocal.co.uk
+Nov 06 10:44:14  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
+Nov 06 10:44:14  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
+Nov 06 10:44:14  Customer MCP server tools response: [
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "name": "get_most_recent_order_status",
+Nov 06 10:44:14      "description": "Gets the status of the customer's most recent order.",
+Nov 06 10:44:14      "inputSchema": {
+Nov 06 10:44:14        "type": "object",
+Nov 06 10:44:14        "properties": {}
+Nov 06 10:44:14      }
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "name": "get_order_status",
+Nov 06 10:44:14      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 06 10:44:14      "inputSchema": {
+Nov 06 10:44:14        "type": "object",
+Nov 06 10:44:14        "properties": {
+Nov 06 10:44:14          "order_number": {
+Nov 06 10:44:14            "type": "string",
+Nov 06 10:44:14            "description": "Number of the order to look up"
+Nov 06 10:44:14          }
+Nov 06 10:44:14        },
+Nov 06 10:44:14        "required": [
+Nov 06 10:44:14          "order_number"
+Nov 06 10:44:14        ]
+Nov 06 10:44:14      }
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "name": "get_store_credit_balances",
+Nov 06 10:44:14      "description": "Fetches the customer's store credit balances if they have any.",
+Nov 06 10:44:14      "inputSchema": {
+Nov 06 10:44:14        "type": "object",
+Nov 06 10:44:14        "properties": {}
+Nov 06 10:44:14      }
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "name": "request_return",
+Nov 06 10:44:14      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
+Nov 06 10:44:14      "inputSchema": {
+Nov 06 10:44:14        "type": "object",
+Nov 06 10:44:14        "properties": {
+Nov 06 10:44:14          "order_id": {
+Nov 06 10:44:14            "type": "string",
+Nov 06 10:44:14            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
+Nov 06 10:44:14          },
+Nov 06 10:44:14          "order_number": {
+Nov 06 10:44:14            "type": "string",
+Nov 06 10:44:14            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
+Nov 06 10:44:14          },
+Nov 06 10:44:14          "line_items": {
+Nov 06 10:44:14            "type": "array",
+Nov 06 10:44:14            "description": "List of items to return",
+Nov 06 10:44:14            "items": {
+Nov 06 10:44:14              "type": "object",
+Nov 06 10:44:14              "properties": {
+Nov 06 10:44:14                "line_item_id": {
+Nov 06 10:44:14                  "type": "string",
+Nov 06 10:44:14                  "description": "ID of the line item to return"
+Nov 06 10:44:14                },
+Nov 06 10:44:14                "quantity": {
+Nov 06 10:44:14                  "type": "integer",
+Nov 06 10:44:14                  "description": "Quantity to return"
+Nov 06 10:44:14                },
+Nov 06 10:44:14                "return_reason": {
+Nov 06 10:44:14                  "type": "string",
+Nov 06 10:44:14                  "description": "Reason for return",
+Nov 06 10:44:14                  "enum": [
+Nov 06 10:44:14                    "SIZE_TOO_SMALL",
+Nov 06 10:44:14                    "SIZE_TOO_LARGE",
+Nov 06 10:44:14                    "UNWANTED",
+Nov 06 10:44:14                    "NOT_AS_DESCRIBED",
+Nov 06 10:44:14                    "WRONG_ITEM",
+Nov 06 10:44:14                    "DEFECTIVE",
+Nov 06 10:44:14                    "STYLE",
+Nov 06 10:44:14                    "COLOR",
+Nov 06 10:44:14                    "OTHER",
+Nov 06 10:44:14                    "UNKNOWN"
+Nov 06 10:44:14                  ]
+Nov 06 10:44:14                },
+Nov 06 10:44:14                "customer_note": {
+Nov 06 10:44:14                  "type": "string",
+Nov 06 10:44:14                  "description": "Additional notes about the return"
+Nov 06 10:44:14                }
+Nov 06 10:44:14              },
+Nov 06 10:44:14              "required": [
+Nov 06 10:44:14                "line_item_id",
+Nov 06 10:44:14                "quantity",
+Nov 06 10:44:14                "return_reason"
+Nov 06 10:44:14              ]
+Nov 06 10:44:14            }
+Nov 06 10:44:14          }
+Nov 06 10:44:14        },
+Nov 06 10:44:14        "required": [
+Nov 06 10:44:14          "line_items"
+Nov 06 10:44:14        ]
+Nov 06 10:44:14      }
+Nov 06 10:44:14    }
+Nov 06 10:44:14  ]
+Nov 06 10:44:14  Connected to MCP with 5 tools
+Nov 06 10:44:14  Connected to customer MCP with 4 tools
+Nov 06 10:44:14  Available customer tools: [
+Nov 06 10:44:14    'get_most_recent_order_status',
+Nov 06 10:44:14    'get_order_status',
+Nov 06 10:44:14    'get_store_credit_balances',
+Nov 06 10:44:14    'request_return'
+Nov 06 10:44:14  ]
+Nov 06 10:44:14  Failed to parse message content as JSON, wrapping in text block. Content: VL-33643
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Failed to parse message content as JSON, wrapping in text block. Content: I haven't recieved it
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Failed to parse message content as JSON, wrapping in text block. Content: callum callumcolleyedu@gmail.com 07891689332
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Successfully parsed message content as JSON: object true
+Nov 06 10:44:14  Failed to parse message content as JSON, wrapping in text block. Content: callum callumcolleyedu@gmail.com 07891689332
+Nov 06 10:44:14  Removing orphaned tool_use from assistant message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:44:14  Removing tool_result from user message: toolu_01RWHwXrkAHFh3F6FxSYxMcE
+Nov 06 10:44:14  Cleaned conversation history: 10 messages -> 8 messages
+Nov 06 10:44:14  Conversation history before sending to Claude: [
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "user",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "VL-33643"
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "assistant",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "Your order VL-33643 is **PAID** and **FULFILLED**. Here are the details:\n\n- **Order Total:** £19.19\n- **Status:** Paid and shipped\n- **Items:** Bar Juice Blue Razz Lemonade 20mg (quantity: 10)\n- **Tracking Number:** 6951659294\n\nYour order has been successfully shipped and confirmed for delivery. You can track your package using the tracking number provided."
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "user",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "I haven't recieved it"
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "assistant",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "I understand your concern about not receiving your order VL-33643. Since it shows as fulfilled with tracking number 6951659294, let me connect you with our customer service team who can investigate this delivery issue and provide a resolution.\n\nI'll need your contact information to escalate this to our support team:\n\n1. Your full name\n2. Your email address  \n3. Your phone number\n\nOnce you provide these details, I'll immediately create a support ticket to get this delivery issue resolved for you."
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "user",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "callum callumcolleyedu@gmail.com 07891689332"
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "assistant",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "assistant",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    },
+Nov 06 10:44:14    {
+Nov 06 10:44:14      "role": "user",
+Nov 06 10:44:14      "content": [
+Nov 06 10:44:14        {
+Nov 06 10:44:14          "type": "text",
+Nov 06 10:44:14          "text": "callum callumcolleyedu@gmail.com 07891689332"
+Nov 06 10:44:14        }
+Nov 06 10:44:14      ]
+Nov 06 10:44:14    }
+Nov 06 10:44:14  ]
+Nov 06 10:44:20  Custom tool called: escalate_to_customer_service {
+Nov 06 10:44:20    customer_name: 'callum',
+Nov 06 10:44:20    customer_email: 'callumcolleyedu@gmail.com',
+Nov 06 10:44:20    customer_phone: '07891689332',
+Nov 06 10:44:20    reason: 'Order VL-33643 shows as fulfilled but customer has not received delivery'
+Nov 06 10:44:20  }
+Nov 06 10:44:20  Web: Handling custom tool escalate_to_customer_service
+Nov 06 10:44:20  [SERVER DEBUG] Message saved with id: cmhnaupci0015u54mztcm0zfy createdAt: 2025-11-06T10:44:20.562Z
+Nov 06 10:44:20  Resend: Email sent successfully. Email ID: c41fd47a-805b-431e-bab1-8e7ed0a992a3
+Nov 06 10:44:20  Web: Handoff email sent successfully
+Nov 06 10:44:20  POST /chat 200 - - 22.929 ms
+Nov 06 10:44:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.328 ms
+Nov 06 10:44:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.909 ms
+Nov 06 10:44:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.904 ms
+Nov 06 10:44:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.124 ms
+Nov 06 10:44:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.362 ms
+Nov 06 10:44:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 3.840 ms
+Nov 06 10:45:08  GET /api/conversation-followup 200 - - 28.375 ms
+Nov 06 10:45:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.567 ms
+Nov 06 10:45:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.266 ms
+Nov 06 10:45:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.367 ms
+Nov 06 10:45:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.395 ms
+Nov 06 10:45:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.230 ms
+Nov 06 10:45:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.390 ms
+Nov 06 10:46:06  GET /api/conversation-followup 200 - - 21.714 ms
+Nov 06 10:46:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.526 ms
+Nov 06 10:46:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 35.263 ms
+Nov 06 10:46:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.496 ms
+Nov 06 10:46:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.197 ms
+Nov 06 10:46:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.234 ms
+Nov 06 10:46:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.355 ms
+Nov 06 10:47:04  GET /api/conversation-followup 200 - - 70.717 ms
+Nov 06 10:47:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.348 ms
+Nov 06 10:47:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.634 ms
+Nov 06 10:47:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.645 ms
+Nov 06 10:47:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.457 ms
+Nov 06 10:47:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.123 ms
+Nov 06 10:47:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.219 ms
+Nov 06 10:48:06  Sent first follow-up to conversation web_customer_23312945217918
+Nov 06 10:48:06  GET /api/conversation-followup 200 - - 27.127 ms
+Nov 06 10:48:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.335 ms
+Nov 06 10:48:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 32.772 ms
+Nov 06 10:48:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.380 ms
+Nov 06 10:48:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.999 ms
+Nov 06 10:48:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.548 ms
+Nov 06 10:48:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.210 ms
+Nov 06 10:49:04  GET /api/conversation-followup 200 - - 25.424 ms
+Nov 06 10:49:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.700 ms
+Nov 06 10:49:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.580 ms
+Nov 06 10:49:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.007 ms
+Nov 06 10:49:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.407 ms
+Nov 06 10:49:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.157 ms
+Nov 06 10:49:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.884 ms
+Nov 06 10:50:09  Sent second follow-up to conversation web_customer_23312945217918
+Nov 06 10:50:09  GET /api/conversation-followup 200 - - 23.184 ms
+Nov 06 10:50:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.572 ms
+Nov 06 10:50:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.554 ms
+Nov 06 10:50:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.345 ms
+Nov 06 10:50:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.385 ms
+Nov 06 10:50:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.965 ms
+Nov 06 10:50:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 3.904 ms
+Nov 06 10:51:04  GET /api/conversation-followup 200 - - 18.972 ms
+Nov 06 10:51:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.357 ms
+Nov 06 10:51:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 33.981 ms
+Nov 06 10:51:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.420 ms
+Nov 06 10:51:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.927 ms
+Nov 06 10:51:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.280 ms
+Nov 06 10:52:05  GET /api/conversation-followup 200 - - 101.223 ms
+Nov 06 10:52:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.196 ms
+Nov 06 10:52:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.328 ms
+Nov 06 10:52:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.434 ms
+Nov 06 10:52:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.461 ms
+Nov 06 10:52:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.288 ms
+Nov 06 10:52:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.361 ms
+Nov 06 10:53:03  GET /api/conversation-followup 200 - - 19.113 ms
+Nov 06 10:53:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.246 ms
+Nov 06 10:53:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.247 ms
+Nov 06 10:53:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.438 ms
+Nov 06 10:53:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.332 ms
+Nov 06 10:53:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.365 ms
+Nov 06 10:53:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 3.773 ms
+Nov 06 10:54:05  GET /api/conversation-followup 200 - - 28.965 ms
+Nov 06 10:54:06  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:54:06  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:54:06  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:54:06  
+Nov 06 10:54:06  > shop-chat-agent@1.0.41 start
+Nov 06 10:54:06  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Nov 06 10:54:06  
+Nov 06 10:54:07  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:54:07  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:54:07  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:54:07  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:54:07  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:54:07  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:54:09  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:54:09  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:54:09  
+Nov 06 10:54:09  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 361ms
+Nov 06 10:54:09  
+Nov 06 10:54:09  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 06 10:54:09  
+Nov 06 10:54:09  Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+Nov 06 10:54:09  
+Nov 06 10:54:10  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:54:10  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:54:10  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:54:10  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 06 10:54:10  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 06 10:54:10  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 06 10:54:12  Prisma schema loaded from prisma/schema.prisma
+Nov 06 10:54:12  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Nov 06 10:54:13  
+Nov 06 10:54:13  The database is already in sync with the Prisma schema.
+Nov 06 10:54:13  
+Nov 06 10:54:13  Running generate... (Use --skip-generate to skip the generators)
+Nov 06 10:54:13  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 06 10:54:13  [2K[1A[2K[GRunning generate... - Prisma Client
+Nov 06 10:54:14  [2K[1A[2K[G✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 358ms
+Nov 06 10:54:14  
+Nov 06 10:54:14  ┌─────────────────────────────────────────────────────────┐
+Nov 06 10:54:14  │  Update available 6.6.0 -> 6.19.0                       │
+Nov 06 10:54:14  │  Run the following to update                            │
+Nov 06 10:54:14  │    npm i --save-dev prisma@latest                       │
+Nov 06 10:54:14  │    npm i @prisma/client@latest                          │
+Nov 06 10:54:14  └─────────────────────────────────────────────────────────┘
+Nov 06 10:54:18  [shopify-api/INFO] version 11.12.0, environment Remix
+Nov 06 10:54:18  [remix-serve] http://localhost:8080 (http://10.244.37.42:8080)
+Nov 06 10:54:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.236 ms
+Nov 06 10:54:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 35.339 ms
+Nov 06 10:54:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.023 ms
+Nov 06 10:54:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 3.740 ms
+Nov 06 10:54:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.450 ms
+Nov 06 10:54:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 24.894 ms
+Nov 06 10:55:06  GET /api/conversation-followup 200 - - 31.474 ms
+Nov 06 10:55:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.617 ms
+Nov 06 10:55:24  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.206 ms
+Nov 06 10:55:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.803 ms
+Nov 06 10:55:24  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.081 ms
+Nov 06 10:55:37  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.439 ms
+Nov 06 10:55:37  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.027 ms

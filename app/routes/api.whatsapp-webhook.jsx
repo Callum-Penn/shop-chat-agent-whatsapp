@@ -310,20 +310,21 @@ export const action = async ({ request }) => {
       let conversationComplete = false;
       let maxTurns = 5; // Prevent infinite loops
       let turnCount = 0;
+      const MAX_CONVERSATION_MESSAGES = 20; // Limit conversation history to prevent unbounded growth
       
       try {
         while (!conversationComplete && turnCount < maxTurns) {
           turnCount++;
-          console.log(`WhatsApp: Conversation turn ${turnCount}`);
+          
+          // Truncate conversation history before each API call to prevent unbounded growth
+          const truncatedHistory = truncateConversationHistory(conversationHistory, MAX_CONVERSATION_MESSAGES);
           
           // Get AI response with current conversation context
           const aiResult = await claudeService.getConversationResponse({
-            messages: conversationHistory,
+            messages: truncatedHistory,
             promptType: AppConfig.api.defaultPromptType,
             tools: mcpClient.tools
           });
-          
-          console.log('WhatsApp: AI response received for turn', turnCount);
           
           // Check if Claude wants to use tools
           if (aiResult?.content) {
@@ -335,19 +336,12 @@ export const action = async ({ request }) => {
                 const toolName = content.name;
                 const toolArgs = content.input;
                 
-                console.log('WhatsApp: Executing tool:', toolName);
-                console.log('WhatsApp: Tool arguments:', toolArgs);
-                
                 try {
                   // Call the tool directly
                   const toolResponse = await mcpClient.callTool(toolName, toolArgs);
-                  console.log('WhatsApp: Tool response received');
-                  console.log('WhatsApp: Tool response structure:', JSON.stringify(toolResponse, null, 2).substring(0, 500) + '...');
                   
                   // Handle custom tools (like send_order_template)
                   if (toolResponse.isCustomTool && toolName === 'send_order_template') {
-                    console.log('WhatsApp: Handling custom tool send_order_template');
-                    
                     const templateType = toolArgs.template_type || 'general';
                     const customMessage = toolArgs.message || '';
                     
@@ -405,8 +399,6 @@ export const action = async ({ request }) => {
                   
                   // Handle escalate_to_customer_service custom tool
                   if (toolResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
-                    console.log('WhatsApp: Handling custom tool escalate_to_customer_service');
-                    
                     // Check if a handoff has already been requested
                     const { getConversation, updateConversationMetadata } = await import("../db.server");
                     const conversation = await getConversation(conversationId);
