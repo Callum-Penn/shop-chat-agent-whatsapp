@@ -231,6 +231,7 @@ export default function BroadcastCenter() {
                   multiline={6}
                   autoComplete="off"
                   placeholder="Write your announcement or promotion…"
+                  helpText="You can include links by typing a URL (e.g., https://example.com) or using Markdown format: [Link text](https://example.com). Links work on both web chat and WhatsApp."
                 />
                 
                 <BlockStack gap="300">

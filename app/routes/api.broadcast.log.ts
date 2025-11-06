@@ -75,6 +75,12 @@ export const action = async ({ request }) => {
   }
 };
 
+// Helper function to convert Markdown links to plain URLs for WhatsApp
+// WhatsApp auto-links URLs, so we convert [text](url) format to just the URL
+function convertMarkdownLinksToUrls(text: string): string {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$2');
+}
+
 // Process WhatsApp broadcast messages
 async function processWhatsAppBroadcast(entry, message) {
   console.log(`Broadcast: Getting WhatsApp users from database...`);
@@ -131,17 +137,18 @@ async function processWhatsAppBroadcast(entry, message) {
         console.log(`Broadcast: Sending to phone number: ${phoneNumber} (original: ${user.phoneNumber})`);
         
         // Format message with bold heading if provided
-        let formattedMessage = message;
+        // Convert Markdown links to plain URLs for WhatsApp (WhatsApp auto-links URLs)
+        let formattedMessage = convertMarkdownLinksToUrls(message);
         if (entry.heading) {
-          formattedMessage = `*${entry.heading}*\n\n${message}`;
+          formattedMessage = `*${entry.heading}*\n\n${formattedMessage}`;
         }
         
         // Send image if provided, otherwise send text message
         if (entry.image && imageUrl) {
           // For images: send image with caption using public URL
           const imageCaption = entry.heading 
-            ? `*${entry.heading}*\n\n${message}`
-            : message;
+            ? `*${entry.heading}*\n\n${convertMarkdownLinksToUrls(message)}`
+            : convertMarkdownLinksToUrls(message);
           console.log(`Broadcast: About to send image with URL: ${imageUrl}`);
           await sendWhatsAppImageWithUrl(phoneNumber, imageUrl, imageCaption);
         } else {
@@ -154,11 +161,12 @@ async function processWhatsAppBroadcast(entry, message) {
         
         // Save the broadcast message to the user's conversation history
         // so Claude AI knows about it when they respond
+        // Use plain URLs for WhatsApp conversation history (Markdown links converted)
         try {
           const conversationId = `whatsapp_${user.phoneNumber}`;
           const conversationMessage = entry.heading 
-            ? ` *${entry.heading}*\n\n${message}`
-            : ` ${message}`;
+            ? ` *${entry.heading}*\n\n${convertMarkdownLinksToUrls(message)}`
+            : ` ${convertMarkdownLinksToUrls(message)}`;
           await saveMessage(conversationId, 'assistant', conversationMessage);
           console.log(`Broadcast: Saved message to conversation history for ${user.phoneNumber}`);
         } catch (saveError) {
