@@ -7,6 +7,71 @@ import AppConfig from "./config.server";
 import systemPrompts from "../prompts/prompts.json";
 
 /**
+ * Log the payload being sent to Claude for debugging token usage
+ * @param {string} operation - The operation being performed (streamConversation | getConversationResponse)
+ * @param {Object} payload - The payload being sent to Claude
+ */
+function logClaudeRequest(operation, payload) {
+  try {
+    const messages = payload?.messages || [];
+    const totalContentChars = messages.reduce((sum, message) => {
+      if (!message?.content) {
+        return sum;
+      }
+
+      if (Array.isArray(message.content)) {
+        return (
+          sum +
+          message.content.reduce((blockSum, block) => {
+            if (typeof block === "string") {
+              return blockSum + block.length;
+            }
+            if (block?.text) {
+              return blockSum + block.text.length;
+            }
+            return blockSum + JSON.stringify(block).length;
+          }, 0)
+        );
+      }
+
+      if (typeof message.content === "string") {
+        return sum + message.content.length;
+      }
+
+      return sum + JSON.stringify(message.content).length;
+    }, 0);
+
+    const summary = {
+      operation,
+      promptType: payload?.promptType,
+      model: payload?.model,
+      maxTokens: payload?.max_tokens,
+      messageCount: messages.length,
+      totalContentChars,
+      toolCount: payload?.tools ? payload.tools.length : 0,
+      toolNames:
+        payload?.tools?.map((tool) => tool?.name || tool?.type || "unknown") || [],
+    };
+
+    console.log("[Claude Payload Summary]", summary);
+
+    // Log the full payload for detailed inspection (capped to avoid enormous logs)
+    const payloadString = JSON.stringify(payload, null, 2);
+    const MAX_LOG_LENGTH = 50000; // ~50KB
+    if (payloadString.length > MAX_LOG_LENGTH) {
+      console.log(
+        `[Claude Payload] (truncated ${payloadString.length - MAX_LOG_LENGTH} chars)\n` +
+          payloadString.substring(0, MAX_LOG_LENGTH)
+      );
+    } else {
+      console.log("[Claude Payload]", payloadString);
+    }
+  } catch (error) {
+    console.error("Failed to log Claude request payload:", error);
+  }
+}
+
+/**
  * Creates a Claude service instance
  * @param {string} apiKey - Claude API key
  * @returns {Object} Claude service with methods for interacting with Claude API
@@ -35,14 +100,19 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
     // Get system prompt from configuration or use default
     const systemInstruction = getSystemPrompt(promptType);
 
-    // Create stream
-    const stream = await anthropic.messages.stream({
+    const requestPayload = {
       model: AppConfig.api.defaultModel,
       max_tokens: AppConfig.api.maxTokens,
       system: systemInstruction,
       messages,
-      tools: tools && tools.length > 0 ? tools : undefined
-    });
+      tools: tools && tools.length > 0 ? tools : undefined,
+      promptType,
+    };
+
+    logClaudeRequest("streamConversation", requestPayload);
+
+    // Create stream
+    const stream = await anthropic.messages.stream(requestPayload);
 
     // Set up event handlers
     if (streamHandlers.onText) {
@@ -88,14 +158,19 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
     // Get system prompt from configuration or use default
     const systemInstruction = getSystemPrompt(promptType);
 
-    // Create non-streaming request
-    const response = await anthropic.messages.create({
+    const requestPayload = {
       model: AppConfig.api.defaultModel,
       max_tokens: AppConfig.api.maxTokens,
       system: systemInstruction,
       messages,
-      tools: tools && tools.length > 0 ? tools : undefined
-    });
+      tools: tools && tools.length > 0 ? tools : undefined,
+      promptType,
+    };
+
+    logClaudeRequest("getConversationResponse", requestPayload);
+
+    // Create non-streaming request
+    const response = await anthropic.messages.create(requestPayload);
 
     return response;
   };
