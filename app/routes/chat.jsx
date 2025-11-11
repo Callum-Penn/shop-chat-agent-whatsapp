@@ -88,7 +88,8 @@ export async function action({ request }) {
  */
 async function handleHistoryRequest(request, conversationId) {
   const { getConversationHistory } = await import("../db.server");
-  const messages = await getConversationHistory(conversationId);
+  const HISTORY_FETCH_LIMIT = 200;
+  const messages = await getConversationHistory(conversationId, HISTORY_FETCH_LIMIT);
 
   return json(
     { messages },
