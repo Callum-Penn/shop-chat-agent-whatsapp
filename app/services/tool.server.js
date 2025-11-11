@@ -22,7 +22,7 @@ export function createToolService() {
    */
   const handleToolError = async (toolUseResponse, toolName, toolUseId, conversationHistory, sendMessage, conversationId) => {
     if (toolUseResponse.error.type === "auth_required") {
-      console.warn("Auth required for tool:", toolName);
+      console.log("Auth required for tool:", toolName);
       await addToolResultToHistory(conversationHistory, toolUseId, "Authentication required", conversationId);
       sendMessage({ 
         type: 'auth_required',
@@ -31,7 +31,7 @@ export function createToolService() {
       // Return a special signal to stop the conversation
       return { stopConversation: true };
     } else {
-      console.error("Tool use error", toolUseResponse.error);
+      console.log("Tool use error", toolUseResponse.error);
       await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data, conversationId);
       return { stopConversation: false };
     }
@@ -69,11 +69,15 @@ export function createToolService() {
             formattedProducts.forEach((formattedProduct, index) => {
               if (responseData.products[index] && formattedProduct.quantity_increment) {
                 responseData.products[index].quantity_increment = formattedProduct.quantity_increment;
+                console.log(`Added quantity_increment=${formattedProduct.quantity_increment} to product in tool response`);
               }
             });
             
             // Update the tool response content with the modified data
             toolUseResponse.content[0].text = typeof content === 'object' ? responseData : JSON.stringify(responseData);
+            
+            // Log the modified response to verify quantity_increment is present
+            console.log('Modified tool response with quantity_increment:', JSON.stringify(toolUseResponse.content[0].text, null, 2).substring(0, 500));
           }
         } catch (e) {
           console.error('Error adding quantity_increment to tool response:', e);
@@ -91,6 +95,7 @@ export function createToolService() {
    */
   const processProductSearchResult = (toolUseResponse) => {
     try {
+      console.log("Processing product search result");
       let products = [];
 
       if (toolUseResponse.content && toolUseResponse.content.length > 0) {
@@ -108,6 +113,8 @@ export function createToolService() {
             products = responseData.products
               .slice(0, AppConfig.tools.maxProductsToDisplay)
               .map(formatProductData);
+
+            console.log(`Found ${products.length} products to display`);
           }
         } catch (e) {
           console.error("Error parsing product data:", e);
@@ -135,6 +142,12 @@ export function createToolService() {
 
     // Extract quantity increment from custom metafield or config
     let quantity_increment = null;
+
+    // Log the full product structure for debugging (only if no metafield found)
+    if (!product.metafield && !product.metafields) {
+      console.log('WARNING: Product has no metafield data. Structure:', JSON.stringify(product, null, 2));
+      console.log('Product:', product.title, '- Please ensure MCP server returns metafields');
+    }
     
     // Fallback: Check local configuration file for product ID or title
     if (!quantity_increment) {
@@ -143,19 +156,23 @@ export function createToolService() {
       
       if (quantityIncrements[productId]) {
         quantity_increment = quantityIncrements[productId];
+        console.log(`Found increment in config by product_id: ${quantity_increment}`);
       } else if (quantityIncrements[productTitle]) {
         quantity_increment = quantityIncrements[productTitle];
+        console.log(`Found increment in config by product title: ${quantity_increment}`);
       }
     }
 
     // Check custom metafield for quantity increment
     if (product.metafield?.custom?.quantity_increment) {
       quantity_increment = product.metafield.custom.quantity_increment;
+      console.log('Found increment in product.metafield.custom.quantity_increment:', quantity_increment);
     }
 
     // Check if metafield is at root level (alternate format)
     if (!quantity_increment && product.metafield?.quantity_increment) {
       quantity_increment = product.metafield.quantity_increment;
+      console.log('Found increment in product.metafield.quantity_increment:', quantity_increment);
     }
 
     // Check metafields array format
@@ -163,6 +180,7 @@ export function createToolService() {
       const metafield = product.metafields.find(m => m.key === 'quantity_increment' || m.key === 'custom.quantity_increment');
       if (metafield) {
         quantity_increment = metafield.value;
+        console.log('Found increment in metafields array:', quantity_increment);
       }
     }
 
@@ -171,9 +189,11 @@ export function createToolService() {
       const variant = product.variants[0];
       if (variant.metafield?.custom?.quantity_increment) {
         quantity_increment = variant.metafield.custom.quantity_increment;
+        console.log('Found increment in variant.metafield.custom.quantity_increment:', quantity_increment);
       }
       if (variant.metafield?.quantity_increment) {
         quantity_increment = variant.metafield.quantity_increment;
+        console.log('Found increment in variant.metafield.quantity_increment:', quantity_increment);
       }
     }
 
@@ -190,7 +210,9 @@ export function createToolService() {
     if (quantity_increment !== null) {
       formattedProduct.quantity_increment = quantity_increment;
     }
-    
+
+    console.log(`Formatted product: ${product.title}, increment: ${quantity_increment}`);
+
     return formattedProduct;
   };
 

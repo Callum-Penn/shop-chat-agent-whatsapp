@@ -83,11 +83,15 @@ function convertMarkdownLinksToUrls(text: string): string {
 
 // Process WhatsApp broadcast messages
 async function processWhatsAppBroadcast(entry, message) {
+  console.log(`Broadcast: Getting WhatsApp users from database...`);
+  
   try {
     // Get all WhatsApp users from database
     const whatsappUsers = await getAllWhatsAppUsers();
+    console.log(`Broadcast: Found ${whatsappUsers.length} WhatsApp users in database`);
     
     if (whatsappUsers.length === 0) {
+      console.log(`Broadcast: No WhatsApp users found in database`);
       entry.status = 'completed';
       return;
     }
@@ -103,8 +107,12 @@ async function processWhatsAppBroadcast(entry, message) {
     if (entry.image) {
       try {
         imageUrl = await uploadImageToHosting(entry.image, 'image.jpg');
+        console.log(`Broadcast: Uploaded image to hosting, URL: ${imageUrl}`);
+        
         // Add additional delay to ensure image is fully accessible
+        console.log(`Broadcast: Waiting for image to be fully accessible...`);
         await new Promise(resolve => setTimeout(resolve, 5000)); // 5 second delay
+        console.log(`Broadcast: Image should now be accessible`);
       } catch (error) {
         console.error('Broadcast: Failed to upload image to hosting:', error);
         entry.results.whatsapp.failed = whatsappUsers.length;
@@ -126,6 +134,8 @@ async function processWhatsAppBroadcast(entry, message) {
           phoneNumber = '44' + phoneNumber;
         }
         
+        console.log(`Broadcast: Sending to phone number: ${phoneNumber} (original: ${user.phoneNumber})`);
+        
         // Format message with bold heading if provided
         // Convert Markdown links to plain URLs for WhatsApp (WhatsApp auto-links URLs)
         let formattedMessage = convertMarkdownLinksToUrls(message);
@@ -139,6 +149,7 @@ async function processWhatsAppBroadcast(entry, message) {
           const imageCaption = entry.heading 
             ? `*${entry.heading}*\n\n${convertMarkdownLinksToUrls(message)}`
             : convertMarkdownLinksToUrls(message);
+          console.log(`Broadcast: About to send image with URL: ${imageUrl}`);
           await sendWhatsAppImageWithUrl(phoneNumber, imageUrl, imageCaption);
         } else {
           // For text only: send formatted message with bold heading
@@ -146,6 +157,7 @@ async function processWhatsAppBroadcast(entry, message) {
         }
         
         entry.results.whatsapp.sent++;
+        console.log(`Broadcast: WhatsApp message sent to ${user.phoneNumber} (${user.name || 'Unknown'})`);
         
         // Save the broadcast message to the user's conversation history
         // so Claude AI knows about it when they respond
@@ -156,6 +168,7 @@ async function processWhatsAppBroadcast(entry, message) {
             ? ` *${entry.heading}*\n\n${convertMarkdownLinksToUrls(message)}`
             : ` ${convertMarkdownLinksToUrls(message)}`;
           await saveMessage(conversationId, 'assistant', conversationMessage);
+          console.log(`Broadcast: Saved message to conversation history for ${user.phoneNumber}`);
         } catch (saveError) {
           console.error(`Broadcast: Failed to save message to conversation for ${user.phoneNumber}:`, saveError);
           // Don't fail the broadcast if we can't save to conversation
@@ -192,6 +205,7 @@ async function processWhatsAppBroadcast(entry, message) {
       }
     });
     
+    console.log(`Broadcast: WhatsApp processing complete - ${entry.results.whatsapp.sent} sent, ${entry.results.whatsapp.failed} failed`);
   } catch (error) {
     console.error(`Broadcast: Error getting WhatsApp users:`, error);
     entry.results.whatsapp.failed = 1;
@@ -212,12 +226,19 @@ async function processWhatsAppBroadcast(entry, message) {
 
 // Process website broadcast messages
 async function processWebsiteBroadcast(entry, message) {
+  console.log(`Broadcast: Processing website messages`);
   
   try {
     // Get all web chat users with their conversation IDs from database
     const webUsers = await getAllWebUsersWithConversations();
+    console.log(`Broadcast: Found ${webUsers.length} web chat users in database`);
+    
+    // Log customer-based users for debugging
+    const customerUsers = webUsers.filter(user => user.shopifyCustomerId);
+    console.log(`Broadcast: Found ${customerUsers.length} logged-in customers for cross-device sync`);
     
     if (webUsers.length === 0) {
+      console.log(`Broadcast: No web chat users found in database`);
       entry.results.website.sent = 0;
       entry.results.website.failed = 0;
     } else {
@@ -226,6 +247,7 @@ async function processWebsiteBroadcast(entry, message) {
       if (entry.image) {
         try {
           imageUrl = await uploadImageToHosting(entry.image, 'image.jpg');
+          console.log(`Broadcast: Uploaded image to hosting, URL: ${imageUrl}`);
         } catch (error) {
           console.error('Broadcast: Failed to upload image to hosting:', error);
           entry.results.website.failed = webUsers.length;
@@ -243,6 +265,7 @@ async function processWebsiteBroadcast(entry, message) {
           const conversations = user.conversations || [];
           
           if (conversations.length === 0) {
+            console.log(`Broadcast: User ${user.id} has no conversations, skipping`);
             continue;
           }
           
@@ -272,6 +295,7 @@ async function processWebsiteBroadcast(entry, message) {
               }
               
               await saveMessage(targetConversation.id, 'assistant', broadcastMessage);
+              console.log(`Broadcast: Saved message to conversation ${targetConversation.id} for customer ${user.shopifyCustomerId || user.id} (${user.name || 'Unknown'})`);
               
               entry.results.website.sent++;
             } catch (conversationError) {
@@ -298,6 +322,8 @@ async function processWebsiteBroadcast(entry, message) {
         }
       }
     }
+    
+    console.log(`Broadcast: Website processing complete - ${entry.results.website.sent} sent, ${entry.results.website.failed} failed`);
     
     // Update status in database
     let newStatus = 'completed';

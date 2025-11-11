@@ -130,8 +130,6 @@ class MCPClient {
    */
   async connectToCustomerServer() {
     try {
-      // Removed verbose logging of MCP connection details
-      
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
 
@@ -234,6 +232,7 @@ class MCPClient {
    * @returns {Promise<Object>} Result indicating custom tool was called
    */
   async callCustomTool(toolName, toolArgs) {
+    
     // Handle validate_product_quantity custom tool
     if (toolName === 'validate_product_quantity') {
       return this.handleValidateProductQuantity(toolArgs);
@@ -415,8 +414,8 @@ class MCPClient {
               const multiples = Math.ceil(Math.max(requested, increment) / increment);
               const adjusted = multiples * increment;
               if (adjusted !== requested) {
+                item.quantity = adjusted;
               }
-              item.quantity = adjusted;
             }
           }
         } catch (e) {
@@ -488,7 +487,44 @@ class MCPClient {
         if (dbToken && dbToken.accessToken) {
           accessToken = dbToken.accessToken;
           this.customerAccessToken = accessToken; // Store it for later use
-        } else {
+        }
+      }
+
+      // If we still don't have a token, try fetching it directly via auth flow
+      if (!accessToken || accessToken === "") {
+        try {
+          // Ensure customer account URL is available before generating auth URL
+          const hasCustomerAccountUrl = await this.ensureCustomerAccountUrl();
+          
+          if (!hasCustomerAccountUrl) {
+            return {
+              error: {
+                type: "auth_error",
+                data: "Customer account URL not available. Please ensure the shop is properly configured for customer authentication."
+              }
+            };
+          }
+
+          // Generate auth URL - this will use the customer account URL from database
+          // Use the same redirect URI for both web and WhatsApp
+          // The auth callback will detect WhatsApp conversations and handle them appropriately
+          const authResponse = await generateAuthUrl(this.conversationId, this.shopId);
+
+          // Instead of retrying, return the auth URL for the front-end
+          return {
+            error: {
+              type: "auth_required",
+              data: authResponse.url
+            }
+          };
+        } catch (authError) {
+          console.error("Failed to generate auth URL:", authError);
+          return {
+            error: {
+              type: "auth_error",
+              data: `Failed to initiate authentication: ${authError.message}`
+            }
+          };
         }
       }
 
@@ -498,6 +534,7 @@ class MCPClient {
       };
 
       try {
+        
         const response = await this._makeJsonRpcRequest(
           this.customerMcpEndpoint,
           "tools/call",

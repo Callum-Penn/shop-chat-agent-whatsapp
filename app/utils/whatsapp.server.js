@@ -19,6 +19,9 @@ export async function sendWhatsAppMessage(to, text) {
     text: { body: text },
   };
   
+  console.log('WhatsApp: Sending message to', to);
+  console.log('WhatsApp: Message content:', text.substring(0, 100) + '...');
+  
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -43,6 +46,7 @@ export async function sendWhatsAppMessage(to, text) {
     throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
   }
   
+  console.log('WhatsApp: Message sent successfully:', JSON.stringify(responseData));
   return responseData;
 }
 
@@ -68,6 +72,9 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
     }
   };
   
+  console.log('WhatsApp: Sending template message to', to);
+  console.log('WhatsApp: Template name:', templateName);
+  
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -80,11 +87,12 @@ export async function sendWhatsAppTemplate(to, templateName = 'hello_world', lan
   const responseData = await response.json();
   
   if (!response.ok) {
-    console.error('WhatsApp: Failed to send template message:', response.status, response.statusText);
+    console.error('WhatsApp: Failed to send template:', response.status, response.statusText);
     console.error('WhatsApp: Error response:', JSON.stringify(responseData, null, 2));
     throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
   }
   
+  console.log('WhatsApp: Template sent successfully:', JSON.stringify(responseData));
   return responseData;
 }
 
@@ -127,10 +135,16 @@ export async function uploadImageToHosting(imageData, filename) {
       }
     });
     
-    const publicUrl = `${process.env.APP_URL || 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app'}/uploads/${uniqueFilename}`;
+    console.log('Image stored in database with key:', uniqueFilename);
+    console.log('Image size:', imageBuffer.length, 'bytes');
+    
+    // Return public URL
+    const publicUrl = `${process.env.APP_URL || 'https://your-domain.com'}/uploads/${uniqueFilename}`;
+    
+    console.log('Image uploaded to hosting:', publicUrl);
     return publicUrl;
   } catch (error) {
-    console.error('WhatsApp: Error storing image:', error);
+    console.error('Failed to upload image to hosting:', error);
     throw error;
   }
 }
@@ -185,6 +199,10 @@ export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
     payload.image.caption = caption;
   }
   
+  console.log('WhatsApp: Sending image message to', to);
+  console.log('WhatsApp: Using image URL:', imageUrl);
+  console.log('WhatsApp: Full payload being sent:', JSON.stringify(payload, null, 2));
+  
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -202,6 +220,7 @@ export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
     throw new Error(`WhatsApp API error: ${response.status} - ${responseData.error?.message || response.statusText}`);
   }
   
+  console.log('WhatsApp: Image message sent successfully:', JSON.stringify(responseData));
   return responseData;
 }
 
@@ -213,6 +232,8 @@ export async function sendWhatsAppImageWithUrl(to, imageUrl, caption = '') {
  */
 export async function downloadWhatsAppMedia(mediaId) {
   const token = process.env.WHATSAPP_TOKEN;
+  
+  console.log('WhatsApp: Getting media URL for ID:', mediaId);
   
   // Step 1: Get the media URL
   const mediaUrlResponse = await fetch(
@@ -233,6 +254,9 @@ export async function downloadWhatsAppMedia(mediaId) {
   const mimeType = mediaData.mime_type;
   const fileSize = mediaData.file_size;
   
+  console.log('WhatsApp: Downloading media from:', mediaUrl);
+  console.log('WhatsApp: File type:', mimeType, 'Size:', fileSize);
+  
   // Step 2: Download the actual file
   const fileResponse = await fetch(mediaUrl, {
     headers: {
@@ -245,6 +269,8 @@ export async function downloadWhatsAppMedia(mediaId) {
   }
   
   const fileBuffer = Buffer.from(await fileResponse.arrayBuffer());
+  
+  console.log('WhatsApp: Media downloaded successfully, size:', fileBuffer.length, 'bytes');
   
   return {
     buffer: fileBuffer,
@@ -265,6 +291,8 @@ export async function sendWhatsAppDocument(to, fileBuffer, filename, caption = '
   const token = process.env.WHATSAPP_TOKEN;
   const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
   
+  console.log('WhatsApp: Uploading document:', filename, 'Size:', fileBuffer.length, 'bytes');
+  
   // Step 1: Upload the file to WhatsApp
   const FormData = (await import('form-data')).default;
   const formData = new FormData();
@@ -272,27 +300,30 @@ export async function sendWhatsAppDocument(to, fileBuffer, filename, caption = '
   formData.append('messaging_product', 'whatsapp');
   formData.append('type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'); // Default to Excel
   
-  const uploadUrl = `https://graph.facebook.com/v22.0/${phoneNumberId}/media`;
-  const uploadResponse = await fetch(uploadUrl, {
-    method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      ...formData.getHeaders()
-    },
-    body: formData
-  });
+  const uploadResponse = await fetch(
+    `https://graph.facebook.com/v22.0/${phoneNumberId}/media`,
+    {
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        ...formData.getHeaders()
+      },
+      body: formData
+    }
+  );
   
   if (!uploadResponse.ok) {
-    const errorResponse = await uploadResponse.json();
-    console.error('WhatsApp: Failed to upload document:', JSON.stringify(errorResponse, null, 2));
-    throw new Error('Failed to upload document to WhatsApp');
+    const errorData = await uploadResponse.json();
+    console.error('WhatsApp: File upload failed:', JSON.stringify(errorData));
+    throw new Error(`Failed to upload media: ${uploadResponse.status}`);
   }
   
   const uploadData = await uploadResponse.json();
   const mediaId = uploadData.id;
   
+  console.log('WhatsApp: File uploaded, media ID:', mediaId);
+  
   // Step 2: Send the document message
-  const messageUrl = `https://graph.facebook.com/v22.0/${phoneNumberId}/messages`;
   const payload = {
     messaging_product: "whatsapp",
     to,
@@ -304,22 +335,27 @@ export async function sendWhatsAppDocument(to, fileBuffer, filename, caption = '
     }
   };
   
-  const messageResponse = await fetch(messageUrl, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
+  const response = await fetch(
+    `https://graph.facebook.com/v22.0/${phoneNumberId}/messages`,
+    {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }
+  );
   
-  if (!messageResponse.ok) {
-    const errorResponse = await messageResponse.json();
-    console.error('WhatsApp: Failed to send document:', JSON.stringify(errorResponse, null, 2));
-    throw new Error('Failed to send document to WhatsApp');
+  const responseData = await response.json();
+  
+  if (!response.ok) {
+    console.error('WhatsApp: Failed to send document:', JSON.stringify(responseData));
+    throw new Error(`Failed to send document: ${response.status}`);
   }
   
-  return await messageResponse.json();
+  console.log('WhatsApp: Document sent successfully');
+  return responseData;
 }
 
 /**
@@ -331,15 +367,18 @@ export async function sendWhatsAppDocument(to, fileBuffer, filename, caption = '
  * @returns {Promise<Object>} Response from WhatsApp API
  */
 export async function sendWhatsAppDocumentFromUrl(to, fileUrl, filename, caption = '') {
+  console.log('WhatsApp: Downloading file from URL:', fileUrl);
+  
   try {
     // Download the file from the URL
-    const response = await fetch(fileUrl);
+    const fileResponse = await fetch(fileUrl);
     
-    if (!response.ok) {
-      throw new Error('Failed to download file from URL');
+    if (!fileResponse.ok) {
+      throw new Error(`Failed to download file from URL: ${fileResponse.status}`);
     }
     
-    const fileBuffer = Buffer.from(await response.arrayBuffer());
+    const fileBuffer = Buffer.from(await fileResponse.arrayBuffer());
+    console.log('WhatsApp: File downloaded from URL, size:', fileBuffer.length, 'bytes');
     
     // Send the document using the existing function
     return await sendWhatsAppDocument(to, fileBuffer, filename, caption);

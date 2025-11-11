@@ -221,8 +221,6 @@ async function handleChatSession({
     try {
       storefrontMcpTools = await mcpClient.connectToStorefrontServer();
       customerMcpTools = await mcpClient.connectToCustomerServer();
-
-      // Removed verbose tool connection logs to reduce noise
     } catch (error) {
       console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
     }

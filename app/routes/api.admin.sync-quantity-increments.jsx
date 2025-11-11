@@ -100,7 +100,13 @@ export async function loader({ request }) {
       });
     }
 
-    return json({ success: true, synced: incrementsToSave.length });
+    console.log(`Synced ${incrementsToSave.length} product quantity increments to database`);
+
+    return json({
+      success: true,
+      count: incrementsToSave.length,
+      message: 'Quantity increments synced successfully'
+    });
   } catch (error) {
     console.error('Error syncing quantity increments:', error);
     return json({

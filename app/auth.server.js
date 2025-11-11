@@ -71,21 +71,31 @@ export async function generateAuthUrl(conversationId, shopId, customRedirectUri 
  * @param {string} shopId - The shop ID to track the auth flow
  * @returns {Promise<string|null>} - The base auth URL or null if not found
  */
-async function getBaseAuthUrl(conversationId) {
+async function getBaseAuthUrl(conversationId, shopId) {
   const { getCustomerAccountUrl } = await import('./db.server');
   let customerAccountUrl = await getCustomerAccountUrl(conversationId);
 
-  if (customerAccountUrl) {
-    return customerAccountUrl;
+  // Hardcode the customer account URL for vapelocal.co.uk
+  if (!customerAccountUrl) {
+    console.log('Using hardcoded customer account URL for vapelocal.co.uk');
+    customerAccountUrl = 'https://account.vapelocal.co.uk';
   }
 
-  const hostUrl = new URL(process.env.REDIRECT_URL).host;
-  if (hostUrl.includes('vapelocal.co.uk')) {
-     return 'https://account.vapelocal.co.uk/customer';
-   }
+  if (!customerAccountUrl) {
+    console.error('Customer account URL not found for conversation:', conversationId);
+    return null;
+  }
 
-  console.error('Customer account URL not found for conversation:', conversationId);
-  return null;
+  const endpoint = `${customerAccountUrl}/.well-known/oauth-authorization-server`;
+  const response = await fetch(endpoint);
+
+  if (!response.ok) {
+    console.error('Failed to fetch base auth URL from:', endpoint, response.status);
+    return null;
+  }
+
+  const data = await response.json();
+  return data.authorization_endpoint;
 }
 
 /**
