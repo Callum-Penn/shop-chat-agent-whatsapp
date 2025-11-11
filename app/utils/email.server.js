@@ -23,12 +23,14 @@ export async function sendEmail({ to, subject, html, text, attachments }) {
   }
   
   // Fallback to console logging for development
-  console.log('📧 Email would be sent:');
-  console.log('To:', to);
-  console.log('Subject:', subject);
-  console.log('Body:', text || html);
-  if (attachments && attachments.length > 0) {
-    console.log('Attachments:', attachments.map(a => a.filename).join(', '));
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('📧 Email would be sent:');
+    console.log('To:', to);
+    console.log('Subject:', subject);
+    console.log('Body:', text || html);
+    if (attachments && attachments.length > 0) {
+      console.log('Attachments:', attachments.map(a => a.filename).join(', '));
+    }
   }
   
   // In production, you might want to throw an error if email is not configured
@@ -75,7 +77,6 @@ async function sendEmailViaResend({ to, subject, html, text, attachments }) {
     
     const response = await resend.emails.send(emailPayload);
     
-    console.log('Resend: Email sent successfully. Email ID:', response.data?.id);
     return response;
   } catch (error) {
     console.error('Resend: Failed to send email:', error);

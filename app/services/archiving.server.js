@@ -15,40 +15,15 @@ import {
  * Deletes archived conversations older than 90 days
  * @returns {Promise<Object>} - Archiving results
  */
-export async function runArchivingProcess() {
-  console.log('Starting conversation archiving process...');
-  
-  try {
-    // Get stats before archiving
-    const statsBefore = await getConversationStats();
-    console.log('Stats before archiving:', statsBefore);
+export async function runArchivingProcess(daysInactive = 30, daysOld = 90) {
+  const cutoffDate = subDays(new Date(), daysInactive);
+  const archivedCount = await archiveOldConversations(cutoffDate);
+  const deletedCount = await deleteOldArchivedConversations(subDays(new Date(), daysOld));
 
-    // Archive conversations inactive for 30+ days
-    const archivedCount = await archiveOldConversations(30);
-    console.log(`Archived ${archivedCount} conversations`);
-
-    // Delete archived conversations older than 90 days
-    const deletedCount = await deleteOldArchivedConversations(90);
-    console.log(`Deleted ${deletedCount} old archived conversations`);
-
-    // Get stats after archiving
-    const statsAfter = await getConversationStats();
-    console.log('Stats after archiving:', statsAfter);
-
-    return {
-      success: true,
-      archivedCount,
-      deletedCount,
-      statsBefore,
-      statsAfter
-    };
-  } catch (error) {
-    console.error('Error in archiving process:', error);
-    return {
-      success: false,
-      error: error.message
-    };
-  }
+  return {
+    archivedCount,
+    deletedCount
+  };
 }
 
 /**
@@ -57,20 +32,23 @@ export async function runArchivingProcess() {
  * @param {number} intervalHours - How often to run (in hours, default: 24)
  */
 export function scheduleArchiving(intervalHours = 24) {
-  console.log(`Scheduling archiving process to run every ${intervalHours} hours`);
-  
-  // Run immediately on startup
-  runArchivingProcess().then(result => {
-    console.log('Initial archiving completed:', result);
-  });
+  runArchivingProcess()
+    .then((result) => {
+      archivingEmitter.emit('archiving:completed', result);
+    })
+    .catch((error) => {
+      console.error('Scheduled archiving failed:', error);
+    });
 
   // Schedule recurring runs
   const intervalMs = intervalHours * 60 * 60 * 1000;
-  setInterval(() => {
-    console.log('Running scheduled archiving process...');
-    runArchivingProcess().then(result => {
-      console.log('Scheduled archiving completed:', result);
-    });
+  archivingInterval = setInterval(async () => {
+    try {
+      const result = await runArchivingProcess(daysInactive, daysOld);
+      archivingEmitter.emit('archiving:completed', result);
+    } catch (error) {
+      console.error('Scheduled archiving failed:', error);
+    }
   }, intervalMs);
 }
 

@@ -33,13 +33,10 @@ export const loader = async ({ request }) => {
     const recentMessages = [];
     const sinceDate = since ? new Date(since) : new Date(0); // If no 'since', get all
     
-    console.log('[API DEBUG] Fetching recent messages for conv:', conversationId, 'since:', since, 'total messages:', allMessages.length);
-    
     for (const message of allMessages) {
       if (message.role === 'assistant') {
         const messageDate = new Date(message.createdAt);
         if (messageDate > sinceDate) {
-          console.log('[API DEBUG] Found recent assistant message created at:', message.createdAt);
           recentMessages.push({
             id: message.id,
             content: message.content,
@@ -48,8 +45,6 @@ export const loader = async ({ request }) => {
         }
       }
     }
-    
-    console.log('[API DEBUG] Returning', recentMessages.length, 'recent messages');
     
     return json({ 
       messages: recentMessages,

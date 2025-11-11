@@ -35,7 +35,6 @@ export async function loader({ request }) {
         expiresAt
       );
 
-      console.log('Stored customer token in database for conversation:', conversationId);
     } catch (error) {
       console.error('Failed to store token in database:', error);
       // Continue anyway to not disrupt user flow
@@ -51,7 +50,6 @@ export async function loader({ request }) {
         await sendWhatsAppMessage(phoneNumber, 
           "✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of my recent order?'"
         );
-        console.log(`WhatsApp: Sent success message to ${phoneNumber}`);
       } catch (error) {
         console.error('WhatsApp: Failed to send success message:', error);
       }
@@ -124,7 +122,6 @@ export async function loader({ request }) {
     });
   } catch (error) {
     console.error("Error exchanging code for token:", error);
-    console.log("shopId", shopId);
     return json({ error: "Failed to obtain access token" }, { status: 500 });
   }
 }
@@ -195,8 +192,6 @@ async function exchangeCodeForToken(code, state) {
   });
 
   if (!response.ok) {
-    console.log("Request id", response.headers.get("x-request-id"));
-    console.log("conversation_id", conversationId);
     const errorText = await response.text();
     throw new Error(`Token exchange failed: ${response.status} ${errorText}`);
   }
@@ -216,7 +211,6 @@ async function getTokenUrl(shopId, conversationId) {
   
   // Hardcode the customer account URL for vapelocal.co.uk
   if (!customerAccountUrl) {
-    console.log('Using hardcoded customer account URL for vapelocal.co.uk');
     customerAccountUrl = 'https://account.vapelocal.co.uk';
   }
   

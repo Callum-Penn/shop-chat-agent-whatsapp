@@ -22,22 +22,19 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId) {
   let customerMcpEndpoint = null;
   if (shopDomain.includes('vapelocal.co.uk')) {
     customerMcpEndpoint = 'https://account.vapelocal.co.uk/customer/api/mcp';
-    console.log('WhatsApp: Using hardcoded customer MCP endpoint for vapelocal.co.uk');
   }
   
   const mcpClient = new MCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint, 'whatsapp');
   
   // Connect to MCP servers once and cache
   try {
-    console.log('WhatsApp: Connecting to MCP servers (cached)...');
     await mcpClient.connectToStorefrontServer();
     await mcpClient.connectToCustomerServer();
-    console.log(`WhatsApp: Cached MCP client with ${mcpClient.tools.length} tools`);
     
     mcpCache.set(cacheKey, mcpClient);
     return mcpClient;
   } catch (error) {
-    console.warn('WhatsApp: Failed to connect to MCP servers:', error.message);
+    console.error('WhatsApp: Failed to connect to MCP servers:', error.message);
     return mcpClient; // Return client even if connection fails
   }
 }
@@ -103,15 +100,13 @@ export const action = async ({ request }) => {
     const from = message.from;
     const mediaType = message.image ? 'image' : message.video ? 'video' : 'audio';
     
-    console.log(`WhatsApp: ${mediaType} received from ${from} - rejecting (only spreadsheets allowed)`);
-    
     await sendWhatsAppMessage(
       from,
       "📄 Sorry, I can only accept spreadsheet files (.xlsx, .xls, .csv).\n\n" +
       "Please send your data as an Excel or CSV file. Images, videos, and audio files are not supported."
     );
     
-    return json({ success: true, message: 'Unsupported media type rejected' });
+    return json({ success: true, message: `Unsupported ${mediaType} rejected` });
   }
   
   // Handle document messages - only accept spreadsheets
@@ -120,13 +115,9 @@ export const action = async ({ request }) => {
     const from = message.from;
     const caption = message.caption || '';
     
-    console.log('WhatsApp: Document received from', from);
-    console.log('WhatsApp: Document details:', {
-      filename: document.filename,
-      mimeType: document.mime_type,
-      fileId: document.id,
-      caption: caption
-    });
+    if (!document) {
+      return json({ success: false, error: 'Document payload missing' }, { status: 400 });
+    }
     
     // Define allowed spreadsheet MIME types
     const allowedSpreadsheetTypes = [
@@ -144,7 +135,7 @@ export const action = async ({ request }) => {
                          document.filename?.toLowerCase().endsWith('.csv');
     
     if (!isSpreadsheet) {
-      console.log('WhatsApp: Non-spreadsheet document rejected:', document.mime_type);
+      console.error('WhatsApp: Non-spreadsheet document rejected:', document.mime_type);
       await sendWhatsAppMessage(
         from,
         "📄 Sorry, I can only accept spreadsheet files.\n\n" +
@@ -161,8 +152,6 @@ export const action = async ({ request }) => {
     try {
       // Download the file from WhatsApp
       const fileData = await downloadWhatsAppMedia(document.id);
-      
-      console.log('WhatsApp: File downloaded successfully');
       
       // Get support email from environment
       const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
@@ -199,9 +188,6 @@ export const action = async ({ request }) => {
         }]
       });
       
-      console.log('WhatsApp: Spreadsheet sent to support email:', supportEmail);
-      
-      // Send confirmation to customer
       await sendWhatsAppMessage(
         from, 
         "✅ Thank you! Your file has been received and sent to our team. Someone will review it shortly."
@@ -230,8 +216,7 @@ export const action = async ({ request }) => {
     const conversationId = `whatsapp_${from}`;
     
     try {
-      console.log('WhatsApp: Processing message from', from);
-      console.log('WhatsApp: User message:', userMessage);
+      console.log(`[WHATSAPP][IN] (${conversationId}) ${userMessage}`);
       
       // Create or get WhatsApp user
       try {
@@ -245,12 +230,10 @@ export const action = async ({ request }) => {
               source: 'whatsapp'
             }
           });
-          console.log('WhatsApp: Created new user for phone:', from);
         }
         
         // Link conversation to user
         await linkConversationToUser(conversationId, user.id, 'whatsapp');
-        console.log('WhatsApp: Linked conversation to user:', user.id);
       } catch (userError) {
         console.error('WhatsApp: Error handling user:', userError);
         // Continue even if user creation fails
@@ -263,8 +246,6 @@ export const action = async ({ request }) => {
       // HARDCODED: Use the actual store URL for now
       const shopDomain = 'https://vapelocal.co.uk';
       const shopId = 'vapelocal';
-      console.log('WhatsApp: Using hardcoded shop domain:', shopDomain);
-      console.log('WhatsApp: Using hardcoded shop ID:', shopId);
       
       // Get cached MCP client
       const mcpClient = await getCachedMCPClient(shopDomain, conversationId, shopId);
@@ -371,7 +352,6 @@ export const action = async ({ request }) => {
                         "3. Send the completed form back to me";
                       
                       await sendWhatsAppDocumentFromUrl(from, templateUrl, filename, caption);
-                      console.log('WhatsApp: Order template sent successfully');
                       
                       // Update conversation with success
                       conversationHistory.push({
@@ -416,7 +396,6 @@ export const action = async ({ request }) => {
                       
                       if (hoursSinceHandoff >= HANDOFF_COOLDOWN_HOURS) {
                         allowNewTicket = true;
-                        console.log(`WhatsApp: Handoff was ${hoursSinceHandoff.toFixed(1)} hours ago, allowing new ticket`);
                         // Clear the old handoff flag
                         await updateConversationMetadata(conversationId, {
                           handoff_requested: false,
@@ -426,8 +405,6 @@ export const action = async ({ request }) => {
                     }
                     
                     if (handoffRequested && !allowNewTicket) {
-                      console.log('WhatsApp: Handoff already requested for this conversation');
-                      
                       // Return message to user via WhatsApp
                       aiResponse = "I've already created a support ticket for you. Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.";
                       conversationComplete = true;
@@ -471,8 +448,6 @@ export const action = async ({ request }) => {
                           lastMessages
                         })
                       });
-                      
-                      console.log('WhatsApp: Handoff email sent successfully');
                       
                       // Update user info in database
                       const { getUserByPhoneNumber, updateUser } = await import("../db.server");
@@ -519,32 +494,26 @@ export const action = async ({ request }) => {
                   
                   // Check if tool execution was successful
                   if (toolResponse.error) {
-                    console.log('WhatsApp: Tool returned error:', toolResponse.error);
+                    console.error('WhatsApp: Tool returned error:', toolResponse.error);
                     
                     // Handle authentication errors specifically
                     if (toolResponse.error.type === 'auth_required') {
-                      console.log('WhatsApp: Authentication required for customer tool');
-                      
-                      // Generate authentication URL using the same callback for both web and WhatsApp
-                      try {
-                        const authResponse = await generateAuthUrl(conversationId, shopId);
-                        console.log('WhatsApp: Generated auth URL:', authResponse.url);
-                        
-                        // Send authentication message to WhatsApp
-                        const authMessage = `To access your order information, please authorize the app by clicking this link: ${authResponse.url}\n\nAfter authorizing, please send me a message and I'll be able to help you with your orders.`;
-                        await sendWhatsAppMessage(from, authMessage);
-                        
-                        // Save the authentication request
-                        await saveMessage(conversationId, 'assistant', JSON.stringify(authMessage));
-                        
-                        console.log('WhatsApp: Authentication message sent to user');
-                        return json({ success: true });
-                      } catch (authError) {
-                        console.error('WhatsApp: Failed to generate auth URL:', authError);
-                        aiResponse = "I need to access your account information, but I'm having trouble setting up the authorization. Please try again later or contact support.";
-                        conversationComplete = true;
-                        break;
-                      }
+                       // Generate authentication URL using the same callback for both web and WhatsApp
+                       try {
+                         const authResponse = await generateAuthUrl(conversationId, shopId);
+                         // Send authentication message to WhatsApp
+                         const authMessage = `To access your order information, please authorize the app by clicking this link: ${authResponse.url}\n\nAfter authorizing, please send me a message and I'll be able to help you with your orders.`;
+                         await sendWhatsAppMessage(from, authMessage);
+                         
+                         // Save the authentication request
+                         await saveMessage(conversationId, 'assistant', JSON.stringify(authMessage));
+                         return json({ success: true });
+                       } catch (authError) {
+                         console.error('WhatsApp: Failed to generate auth URL:', authError);
+                         aiResponse = "I need to access your account information, but I'm having trouble setting up the authorization. Please try again later or contact support.";
+                         conversationComplete = true;
+                         break;
+                       }
                     } else {
                       // Handle other tool errors
                       const errorConversation = [
@@ -615,7 +584,6 @@ export const action = async ({ request }) => {
                   });
                   
                   // Continue to next turn to see if AI wants to use more tools
-                  console.log('WhatsApp: Tool executed, continuing to next turn...');
                   break; // Break out of tool loop, continue to next conversation turn
                   
                 } catch (toolError) {
@@ -660,8 +628,8 @@ export const action = async ({ request }) => {
             
             // If no tools were used, this is the final response
             if (!toolUsed) {
-              console.log('WhatsApp: No tools used, extracting final response');
-              if (aiResult.content && Array.isArray(aiResult.content)) {
+              // Extract text response if no tools were used
+              if (aiResult?.content) {
                 const textContent = aiResult.content.find(content => content.type === 'text');
                 if (textContent && textContent.text) {
                   aiResponse = textContent.text;
@@ -676,7 +644,7 @@ export const action = async ({ request }) => {
         }
         
         if (turnCount >= maxTurns) {
-          console.log('WhatsApp: Max turns reached, using last response');
+          aiResponse = aiResponse || "I'm still here if you need anything else.";
         }
         
       } catch (error) {
@@ -684,13 +652,9 @@ export const action = async ({ request }) => {
         aiResponse = "Sorry, I'm having trouble processing your request right now. Please try again.";
       }
       
-      console.log('WhatsApp: Final AI response length:', aiResponse.length);
-      console.log('WhatsApp: Final AI response preview:', aiResponse.substring(0, 100) + '...');
-      
       // Check if response is incomplete (ends with colon or incomplete sentence)
       let finalResponse = aiResponse;
       if (aiResponse.trim().endsWith(':') || aiResponse.trim().endsWith('...')) {
-        console.log('WhatsApp: Detected incomplete response, adding completion prompt');
         finalResponse = aiResponse + '\n\nI apologize, but I need to complete that response. Let me provide you with the full information you requested.';
       }
       
@@ -698,8 +662,12 @@ export const action = async ({ request }) => {
       const maxWhatsAppLength = 4000; // Leave some buffer
       if (finalResponse.length > maxWhatsAppLength) {
         finalResponse = finalResponse.substring(0, maxWhatsAppLength) + '...\n\n[Message truncated due to length]';
-        console.log('WhatsApp: Response truncated to', finalResponse.length, 'characters');
       }
+      
+      const responsePreview = finalResponse.length > 500
+        ? `${finalResponse.substring(0, 500)}…`
+        : finalResponse;
+      console.log(`[WHATSAPP][OUT] (${conversationId}) ${responsePreview}`);
       
       // Save AI response to database
       await saveMessage(conversationId, 'assistant', JSON.stringify(finalResponse));
@@ -709,8 +677,6 @@ export const action = async ({ request }) => {
       
       // Send response back to WhatsApp
       await sendWhatsAppMessage(from, finalResponse);
-      
-      console.log('WhatsApp: Conversation completed successfully');
       
     } catch (error) {
       console.error('WhatsApp chat error:', error);
@@ -723,7 +689,7 @@ export const action = async ({ request }) => {
     const from = message.from;
     const messageType = message.type || 'unknown';
     
-    console.log(`WhatsApp: Unsupported message type '${messageType}' received from ${from}`);
+    console.error(`WhatsApp: Unsupported message type '${messageType}' received from ${from}`);
     
     await sendWhatsAppMessage(
       from,

@@ -179,8 +179,11 @@ export async function deleteConversationHistory(conversationId) {
       }
     });
 
-    console.log(`Deleted ${result.count} messages for conversation ${conversationId}`);
-    return result;
+    if (result.count === 0) {
+      return { success: true, deleted: 0 };
+    }
+
+    return { success: true, deleted: result.count };
   } catch (error) {
     console.error('Error deleting conversation history:', error);
     throw error;
@@ -331,15 +334,14 @@ export async function cleanupOldMessages(conversationId, keepCount = 10) {
           }
         });
         
-        console.log(`Cleaned up ${messagesToDelete.length} old messages for conversation ${conversationId}`);
-        return messagesToDelete.length;
+        return { success: true, deleted: messagesToDelete.length };
       }
     }
 
-    return 0;
+    return { success: true, deleted: 0 };
   } catch (error) {
     console.error('Error cleaning up old messages:', error);
-    return 0;
+    return { success: false, error: error.message };
   }
 }
 
@@ -675,7 +677,6 @@ export async function archiveOldConversations(daysInactive = 30) {
       }
     });
 
-    console.log(`Archived ${result.count} old conversations (inactive for ${daysInactive}+ days)`);
     return result.count;
   } catch (error) {
     console.error('Error archiving old conversations:', error);
@@ -728,7 +729,6 @@ export async function deleteOldArchivedConversations(daysOld = 90) {
       }
     });
 
-    console.log(`Deleted ${result.count} archived conversations (older than ${daysOld} days)`);
     return result.count;
   } catch (error) {
     console.error('Error deleting old archived conversations:', error);

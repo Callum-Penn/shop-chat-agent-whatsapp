@@ -17,8 +17,6 @@ export const loader = async ({ params }) => {
       return new Response("File type not allowed", { status: 403 });
     }
     
-    console.log('Attempting to serve file from database:', filename);
-    
     // Get image from database
     const imageData = await getImageFromStore(filename);
     
@@ -26,8 +24,6 @@ export const loader = async ({ params }) => {
       console.error('Image not found in database:', filename);
       return new Response("File not found", { status: 404 });
     }
-    
-    console.log('Image found in database. Size:', imageData.size, 'bytes');
     
     // Determine content type (use stored MIME type)
     const contentType = imageData.mimeType || 'image/jpeg';

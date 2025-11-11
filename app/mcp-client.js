@@ -130,15 +130,13 @@ class MCPClient {
    */
   async connectToCustomerServer() {
     try {
-      console.log(`Connecting to MCP server at ${this.customerMcpEndpoint}`);
-
+      // Removed verbose logging of MCP connection details
+      
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
 
         if (dbToken && dbToken.accessToken) {
           this.customerAccessToken = dbToken.accessToken;
-        } else {
-          console.log("No token in database for conversation:", this.conversationId);
         }
       }
 
@@ -158,7 +156,6 @@ class MCPClient {
 
       // Extract tools from the JSON-RPC response format
       const toolsData = response.result && response.result.tools ? response.result.tools : [];
-      console.log('Customer MCP server tools response:', JSON.stringify(toolsData, null, 2));
       const customerTools = this._formatToolsData(toolsData);
 
       this.customerTools = customerTools;
@@ -181,8 +178,6 @@ class MCPClient {
    */
   async connectToStorefrontServer() {
     try {
-      console.log(`Connecting to MCP server at ${this.storefrontMcpEndpoint}`);
-
       const headers = {
         "Content-Type": "application/json"
       };
@@ -239,8 +234,6 @@ class MCPClient {
    * @returns {Promise<Object>} Result indicating custom tool was called
    */
   async callCustomTool(toolName, toolArgs) {
-    console.log(`Custom tool called: ${toolName}`, toolArgs);
-    
     // Handle validate_product_quantity custom tool
     if (toolName === 'validate_product_quantity') {
       return this.handleValidateProductQuantity(toolArgs);
@@ -282,7 +275,6 @@ class MCPClient {
       if (incrementRecord) {
         quantity_increment = incrementRecord.increment;
         matchedKey = product_id;
-        console.log(`Found quantity_increment by product_id ${product_id}: ${quantity_increment}`);
       }
     }
     
@@ -293,7 +285,6 @@ class MCPClient {
       if (incrementRecord) {
         quantity_increment = incrementRecord.increment;
         matchedKey = variant_id;
-        console.log(`Found quantity_increment by variant_id ${variant_id}: ${quantity_increment}`);
       }
     }
     
@@ -304,7 +295,6 @@ class MCPClient {
       if (incrementRecord) {
         quantity_increment = incrementRecord.increment;
         matchedKey = incrementRecord.entityId;
-        console.log(`Found quantity_increment by product_title "${product_title}": ${quantity_increment}`);
       }
     }
 
@@ -313,7 +303,6 @@ class MCPClient {
       try {
         const query = product_title || product_id;
         if (query && typeof query === 'string') {
-          console.log('Resolving product via search_shop_catalog for query:', query);
           const searchResponse = await this.callStorefrontTool('search_shop_catalog', {
             query,
             context: 'Resolve product for quantity increment validation'
@@ -346,7 +335,6 @@ class MCPClient {
               if (resolvedIncrement) {
                 quantity_increment = resolvedIncrement.increment;
                 matchedKey = resolvedVariantId;
-                console.log(`Resolved increment by variant_id ${resolvedVariantId}: ${quantity_increment}`);
               }
             }
             
@@ -357,7 +345,6 @@ class MCPClient {
               if (resolvedIncrement) {
                 quantity_increment = resolvedIncrement.increment;
                 matchedKey = resolvedProductId;
-                console.log(`Resolved increment by product_id ${resolvedProductId}: ${quantity_increment}`);
               }
             }
           }
@@ -377,8 +364,6 @@ class MCPClient {
         : `Product has no quantity requirements. Default quantity of 1 can be used.`
     };
     
-    console.log('validate_product_quantity result:', result);
-    
     return {
       content: [{
         type: "text",
@@ -397,8 +382,6 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
-      console.log("Calling storefront tool", toolName, toolArgs);
-
       // Enforce quantity increments on cart updates server-side for safety
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
         try {
@@ -432,7 +415,6 @@ class MCPClient {
               const multiples = Math.ceil(Math.max(requested, increment) / increment);
               const adjusted = multiples * increment;
               if (adjusted !== requested) {
-                console.log(`Adjusted quantity for ${variantId || productId} from ${requested} to ${adjusted} based on increment ${increment}`);
               }
               item.quantity = adjusted;
             }
@@ -477,7 +459,6 @@ class MCPClient {
 
     // Check if this is vapelocal.co.uk domain - use hardcoded URL
     if (this.hostUrl && this.hostUrl.includes('vapelocal.co.uk')) {
-      console.log('Using hardcoded customer account URL for vapelocal.co.uk');
       return true; // We have a hardcoded URL available
     }
 
@@ -498,7 +479,6 @@ class MCPClient {
    */
   async callCustomerTool(toolName, toolArgs) {
     try {
-      console.log("Calling customer tool", toolName, toolArgs);
       // First try to get a token from the database for this conversation
       let accessToken = this.customerAccessToken;
 
@@ -509,7 +489,6 @@ class MCPClient {
           accessToken = dbToken.accessToken;
           this.customerAccessToken = accessToken; // Store it for later use
         } else {
-          console.log("No token in database for conversation:", this.conversationId);
         }
       }
 
@@ -519,15 +498,6 @@ class MCPClient {
       };
 
       try {
-        console.log('Making JSON-RPC request to customer MCP server...');
-        console.log('Request details:', {
-          endpoint: this.customerMcpEndpoint,
-          toolName: toolName,
-          toolArgs: toolArgs,
-          hasToken: !!accessToken,
-          tokenLength: accessToken ? accessToken.length : 0
-        });
-        
         const response = await this._makeJsonRpcRequest(
           this.customerMcpEndpoint,
           "tools/call",
@@ -538,7 +508,6 @@ class MCPClient {
           headers
         );
 
-        console.log('Customer MCP server response:', response);
         return response.result || response;
       } catch (error) {
         console.error('Customer MCP tool call error:', error);
@@ -551,8 +520,6 @@ class MCPClient {
         
         // Handle 401 specifically to trigger authentication
         if (error.status === 401) {
-          console.log("Unauthorized, generating authorization URL for customer");
-
           try {
             // Ensure customer account URL is available before generating auth URL
             const hasCustomerAccountUrl = await this.ensureCustomerAccountUrl();

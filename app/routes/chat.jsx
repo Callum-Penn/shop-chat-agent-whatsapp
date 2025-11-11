@@ -197,6 +197,8 @@ async function handleChatSession({
   const claudeService = createClaudeService();
   const toolService = createToolService();
 
+  console.log(`[CHAT][IN] (${conversationId}) ${userMessage}`);
+
   // Initialize MCP client
   const shopId = request.headers.get("X-Shopify-Shop-Id");
   const shopDomain = request.headers.get("Origin");
@@ -220,9 +222,7 @@ async function handleChatSession({
       storefrontMcpTools = await mcpClient.connectToStorefrontServer();
       customerMcpTools = await mcpClient.connectToCustomerServer();
 
-      console.log(`Connected to MCP with ${storefrontMcpTools.length} tools`);
-      console.log(`Connected to customer MCP with ${customerMcpTools.length} tools`);
-      console.log('Available customer tools:', customerMcpTools.map(tool => tool.name));
+      // Removed verbose tool connection logs to reduce noise
     } catch (error) {
       console.warn('Failed to connect to MCP servers, continuing without tools:', error.message);
     }
@@ -305,6 +305,16 @@ async function handleChatSession({
               content: message.content
             });
 
+            if (message.role === 'assistant') {
+              const textChunks = (message.content || [])
+                .filter((block) => block.type === 'text' && block.text)
+                .map((block) => block.text.trim())
+                .filter(Boolean);
+              if (textChunks.length > 0) {
+                console.log(`[CHAT][OUT] (${conversationId}) ${textChunks.join(' ')}`);
+              }
+            }
+
             // Save message in background and send completion immediately
             saveMessage(conversationId, message.role, JSON.stringify(message.content))
               .catch(error => {
@@ -336,7 +346,6 @@ async function handleChatSession({
             
             // Handle escalate_to_customer_service custom tool
             if (toolUseResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
-              console.log('Web: Handling custom tool escalate_to_customer_service');
               
               // Check if a handoff has already been requested
               const conversation = await getConversation(conversationId);
@@ -353,7 +362,6 @@ async function handleChatSession({
                 
                 if (hoursSinceHandoff >= HANDOFF_COOLDOWN_HOURS) {
                   allowNewTicket = true;
-                  console.log(`Web: Handoff was ${hoursSinceHandoff.toFixed(1)} hours ago, allowing new ticket`);
                   // Clear the old handoff flag
                   await updateConversationMetadata(conversationId, {
                     handoff_requested: false,
@@ -366,8 +374,6 @@ async function handleChatSession({
                 const handoffTime = handoffAt ? new Date(handoffAt) : null;
                 const hoursSinceHandoff = handoffTime ? (Date.now() - handoffTime.getTime()) / (1000 * 60 * 60) : 0;
                 const hoursRemaining = Math.ceil(HANDOFF_COOLDOWN_HOURS - hoursSinceHandoff);
-                
-                console.log('Web: Handoff already requested for this conversation');
                 
                 // Add tool result to conversation history
                 conversationHistory.push({
@@ -435,8 +441,6 @@ async function handleChatSession({
                     lastMessages
                   })
                 });
-                
-                console.log('Web: Handoff email sent successfully');
                 
                 // Get conversation to find user (already fetched above, but need it again for user update)
                 const conversationForUser = await getConversation(conversationId);
@@ -508,7 +512,6 @@ async function handleChatSession({
               
               // If authentication is required, stop the conversation
               if (errorResult && errorResult.stopConversation) {
-                console.log("Authentication required, stopping conversation");
                 // Signal end of turn immediately
                 stream.sendMessage({ type: 'end_turn' });
                 return;
@@ -568,7 +571,6 @@ async function getCustomerMcpEndpoint(shopDomain, conversationId) {
   try {
     // Hardcode the customer MCP endpoint for vapelocal.co.uk
     if (shopDomain.includes('vapelocal.co.uk')) {
-      console.log('Using hardcoded customer MCP endpoint for vapelocal.co.uk');
       return 'https://account.vapelocal.co.uk/customer/api/mcp';
     }
 
@@ -752,7 +754,6 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
             source: 'web_chat'
           }
         });
-        console.log('Created new web user for Shopify customer:', shopifyCustomerId);
       }
     } else if (conversationId.startsWith('web_anon_')) {
       // Anonymous web user - create or get user
@@ -764,7 +765,6 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
           anonymous: true
         }
       });
-      console.log('Created anonymous web user');
     } else if (conversationId.startsWith('web_customer_')) {
       // Extract customer ID from conversation ID
       const extractedCustomerId = conversationId.replace('web_customer_', '');
@@ -785,7 +785,6 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
     // Link conversation to user if we have one
     if (user) {
       await linkConversationToUser(conversationId, user.id, 'web');
-      console.log('Linked conversation to user:', user.id);
     }
   } catch (error) {
     console.error('Error in handleUserCreationAndLinking:', error);

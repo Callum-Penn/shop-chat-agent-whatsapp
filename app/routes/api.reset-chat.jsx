@@ -29,8 +29,6 @@ export const action = async ({ request }) => {
       handoff_at: null
     });
 
-    console.log(`Chat reset: Cleared conversation history and reset handoff flag for ${conversation_id}`);
-
     return json({ 
       success: true, 
       message: "Chat history cleared successfully" 

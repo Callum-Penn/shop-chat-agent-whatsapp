@@ -104,7 +104,6 @@ export async function loader({ request }) {
         }
 
         results.firstFollowup.sent++;
-        console.log(`Sent first follow-up to conversation ${conversation.id}`);
       } catch (error) {
         console.error(`Failed to send first follow-up to conversation ${conversation.id}:`, error);
         results.firstFollowup.failed++;
@@ -143,7 +142,6 @@ export async function loader({ request }) {
         }
 
         results.secondFollowup.sent++;
-        console.log(`Sent second follow-up to conversation ${conversation.id}`);
       } catch (error) {
         console.error(`Failed to send second follow-up to conversation ${conversation.id}:`, error);
         results.secondFollowup.failed++;

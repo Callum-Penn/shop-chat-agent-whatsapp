@@ -15,21 +15,11 @@ export const action = async ({ request }) => {
       });
     }
     
-    console.log('Received WhatsApp invite request for:', phoneNumber);
-    
     // Send WhatsApp template message (bypasses 24-hour window)
     // Using the default 'hello_world' template which is pre-approved by Meta
     const result = await sendWhatsAppTemplate(phoneNumber, 'hello_world', 'en_US');
     
-    console.log('WhatsApp template sent successfully. Message ID:', result.messages?.[0]?.id);
-    
-    return json({ status: "sent", messageId: result.messages?.[0]?.id, result }, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      }
-    });
+    return json({ success: true, messageId: result.messages?.[0]?.id || null });
   } catch (error) {
     console.error('Error in WhatsApp invite action:', error);
     

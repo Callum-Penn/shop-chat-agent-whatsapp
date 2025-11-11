@@ -113,13 +113,14 @@ export default function BroadcastCenter() {
 
   const handleSaveCampaign = useCallback(() => {
     // Here you would save the campaign to your backend
-    console.log("Saving campaign:", {
-      name: campaignName,
-      message,
-      channels: selectedChannels,
-      audience: audienceType,
-      scheduled: isScheduled ? scheduledDate : null,
-    });
+    // await prisma.campaign.create({
+    //   data: {
+    //     name: campaignName,
+    //     audience: campaignAudience,
+    //     message: campaignMessage,
+    //     createdAt: new Date()
+    //   }
+    // });
     handleCloseModal();
   }, [campaignName, message, selectedChannels, audienceType, isScheduled, scheduledDate, handleCloseModal]);
 
