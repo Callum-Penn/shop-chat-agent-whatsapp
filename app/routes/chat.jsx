@@ -235,7 +235,7 @@ async function handleChatSession({
     await saveMessage(conversationId, 'user', userMessage);
 
     // Fetch recent messages from the database (limit to reduce token usage)
-    const MAX_HISTORY_MESSAGES = 20;
+    const MAX_HISTORY_MESSAGES = 10;
     const dbMessages = await getConversationHistory(conversationId, MAX_HISTORY_MESSAGES);
 
     // Format messages for Claude API
@@ -277,7 +277,7 @@ async function handleChatSession({
     };
 
     let handoffCompleted = false;
-    const MAX_CONVERSATION_MESSAGES = 20; // Limit conversation history to prevent unbounded growth
+    const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
 
     while (finalMessage.stop_reason !== "end_turn" && !handoffCompleted) {
       // Truncate conversation history before each API call to prevent unbounded growth

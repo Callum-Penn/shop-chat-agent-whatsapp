@@ -273,7 +273,8 @@ export const action = async ({ request }) => {
       await saveMessage(conversationId, 'user', userMessage);
       
       // Get conversation history and truncate to reduce tokens
-      const dbMessages = await getConversationHistory(conversationId, 6);
+      const MAX_HISTORY_MESSAGES = 10;
+      const dbMessages = await getConversationHistory(conversationId, MAX_HISTORY_MESSAGES);
       let conversationHistory = dbMessages.map(dbMessage => {
         let content;
         try {
@@ -310,7 +311,7 @@ export const action = async ({ request }) => {
       let conversationComplete = false;
       let maxTurns = 5; // Prevent infinite loops
       let turnCount = 0;
-      const MAX_CONVERSATION_MESSAGES = 20; // Limit conversation history to prevent unbounded growth
+      const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
       
       try {
         while (!conversationComplete && turnCount < maxTurns) {

@@ -2,6 +2,11 @@ import { generateAuthUrl } from "./auth.server";
 import { getCustomerToken } from "./db.server";
 import prisma from "./db.server";
 
+const EXCLUDED_MCP_TOOLS = new Set([
+  "get_store_credit_balances",
+  "request_return"
+]);
+
 /**
  * Client for interacting with Model Context Protocol (MCP) API endpoints.
  * Manages connections to both customer and storefront MCP endpoints, and handles tool invocation.
@@ -28,7 +33,7 @@ class MCPClient {
     if (channel === 'whatsapp') {
       this.customTools.push({
         name: "send_order_template",
-        description: "Send a spreadsheet order template via WhatsApp after the customer confirms they want it.",
+        description: "Send a spreadsheet order template to the customer via WhatsApp. Use this when customers ask about bestsellers, want to place bulk orders, or need an order form. The template includes business details fields and a product list where they can enter quantities.",
         input_schema: {
           type: "object",
           properties: {
@@ -49,7 +54,7 @@ class MCPClient {
     
     this.customTools.push({
       name: "validate_product_quantity",
-      description: "Check quantity requirements before adding products to cart. Returns the correct increment to use.",
+      description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
       input_schema: {
         type: "object",
         properties: {
@@ -73,7 +78,7 @@ class MCPClient {
     // Add escalate_to_customer_service tool for both channels
     this.customTools.push({
       name: "escalate_to_customer_service",
-      description: "Create a customer service ticket after collecting the customer's name, email, and phone number (limit: one ticket every 24h).",
+      description: "Escalate the conversation to a human customer service representative. Use this when the customer explicitly requests to speak with a person, needs help beyond the bot's capabilities, or is frustrated. The customer must provide their name, email, and phone number before this tool can be used. IMPORTANT: Only one support ticket can be created per conversation within a 24-hour period. If a ticket was created less than 24 hours ago, inform the customer that their request is already being processed and the team will be in touch soon. After 24 hours, a new ticket can be created if needed.",
       input_schema: {
         type: "object",
         properties: {
@@ -639,105 +644,15 @@ class MCPClient {
    * @returns {Array} Formatted tools data
    */
   _formatToolsData(toolsData) {
-    return toolsData.map((tool) => this._sanitizeToolDefinition(tool));
-  }
-
-  /**
-   * Sanitize and minimize tool definitions to reduce token usage.
-   * Keeps only essential schema fields and short descriptions.
-   * @param {Object} tool - Raw tool definition
-   * @returns {Object} Sanitized tool definition
-   */
-  _sanitizeToolDefinition(tool) {
-    const sanitized = {
-      name: tool.name,
-    };
-
-    if (tool.description) {
-      sanitized.description = this._truncateString(tool.description, 160);
-    }
-
-    const rawSchema = tool.inputSchema || tool.input_schema;
-    if (rawSchema) {
-      sanitized.input_schema = this._minimizeSchema(rawSchema);
-    }
-
-    return sanitized;
-  }
-
-  /**
-   * Recursively remove verbose fields from a JSON schema.
-   * @param {Object} schema - JSON schema object
-   * @returns {Object} Minimized schema
-   */
-  _minimizeSchema(schema) {
-    if (!schema || typeof schema !== 'object') {
-      return schema;
-    }
-
-    if (Array.isArray(schema)) {
-      return schema.map((item) => this._minimizeSchema(item));
-    }
-
-    const allowedKeys = new Set([
-      'type',
-      'properties',
-      'required',
-      'items',
-      'enum',
-      'anyOf',
-      'oneOf',
-      'allOf',
-      'format',
-      'minimum',
-      'maximum',
-      'minLength',
-      'maxLength',
-      'pattern',
-      'additionalProperties',
-      '$ref',
-      'default',
-    ]);
-
-    const minimized = {};
-
-    for (const [key, value] of Object.entries(schema)) {
-      if (!allowedKeys.has(key)) {
-        continue;
-      }
-
-      if (key === 'properties' && value && typeof value === 'object') {
-        minimized.properties = Object.fromEntries(
-          Object.entries(value).map(([propKey, propValue]) => [
-            propKey,
-            this._minimizeSchema(propValue),
-          ])
-        );
-        continue;
-      }
-
-      if (key === 'items' || key === 'additionalProperties') {
-        minimized[key] = this._minimizeSchema(value);
-        continue;
-      }
-
-      minimized[key] = this._minimizeSchema(value);
-    }
-
-    return minimized;
-  }
-
-  /**
-   * Truncate a string to a maximum length adding ellipsis when needed.
-   * @param {string} text - Text to truncate
-   * @param {number} maxLength - Maximum allowed length
-   * @returns {string} Truncated string
-   */
-  _truncateString(text, maxLength) {
-    if (!text || text.length <= maxLength) {
-      return text;
-    }
-    return `${text.substring(0, maxLength - 1)}…`;
+    return toolsData
+      .filter((tool) => !EXCLUDED_MCP_TOOLS.has(tool.name))
+      .map((tool) => {
+        return {
+          name: tool.name,
+          description: tool.description,
+          input_schema: tool.inputSchema || tool.input_schema,
+        };
+      });
   }
 }
 

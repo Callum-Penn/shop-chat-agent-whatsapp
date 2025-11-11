@@ -1,868 +1,697 @@
-Nov 10 16:32:39  [shopify-api/INFO] version 11.12.0, environment Remix
-Nov 10 16:32:39  [remix-serve] http://localhost:8080 (http://10.244.16.218:8080)
-Nov 10 16:33:04  GET /api/conversation-followup 200 - - 55.971 ms
-Nov 10 16:34:05  GET /api/conversation-followup 200 - - 47.487 ms
-Nov 10 16:34:07  GET /chat?history=true&conversation_id=web_customer_23312945217918 200 - - 13.372 ms
-Nov 10 16:34:13  Linked conversation to user: cmh4xt8mv0000vd4n8aemc7yw
-Nov 10 16:34:13  Using hardcoded customer MCP endpoint for vapelocal.co.uk
-Nov 10 16:34:13  Connecting to MCP server at https://vapelocal.co.uk/api/mcp
-Nov 10 16:34:13  Connecting to MCP server at https://account.vapelocal.co.uk/customer/api/mcp
-Nov 10 16:34:13  Customer MCP server tools response: [
-Nov 10 16:34:13    {
-Nov 10 16:34:13      "name": "get_most_recent_order_status",
-Nov 10 16:34:13      "description": "Gets the status of the customer's most recent order.",
-Nov 10 16:34:13      "inputSchema": {
-Nov 10 16:34:13        "type": "object",
-Nov 10 16:34:13        "properties": {}
-Nov 10 16:34:13      }
-Nov 10 16:34:13    },
-Nov 10 16:34:13    {
-Nov 10 16:34:13      "name": "get_order_status",
-Nov 10 16:34:13      "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Nov 10 16:34:13      "inputSchema": {
-Nov 10 16:34:13        "type": "object",
-Nov 10 16:34:13        "properties": {
-Nov 10 16:34:13          "order_number": {
-Nov 10 16:34:13            "type": "string",
-Nov 10 16:34:13            "description": "Number of the order to look up"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        },
-Nov 10 16:34:13        "required": [
-Nov 10 16:34:13          "order_number"
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      }
-Nov 10 16:34:13    },
-Nov 10 16:34:13    {
-Nov 10 16:34:13      "name": "get_store_credit_balances",
-Nov 10 16:34:13      "description": "Fetches the customer's store credit balances if they have any.",
-Nov 10 16:34:13      "inputSchema": {
-Nov 10 16:34:13        "type": "object",
-Nov 10 16:34:13        "properties": {}
-Nov 10 16:34:13      }
-Nov 10 16:34:13    },
-Nov 10 16:34:13    {
-Nov 10 16:34:13      "name": "request_return",
-Nov 10 16:34:13      "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Nov 10 16:34:13      "inputSchema": {
-Nov 10 16:34:13        "type": "object",
-Nov 10 16:34:13        "properties": {
-Nov 10 16:34:13          "order_id": {
-Nov 10 16:34:13            "type": "string",
-Nov 10 16:34:13            "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "order_number": {
-Nov 10 16:34:13            "type": "string",
-Nov 10 16:34:13            "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "line_items": {
-Nov 10 16:34:13            "type": "array",
-Nov 10 16:34:13            "description": "List of items to return",
-Nov 10 16:34:13            "items": {
-Nov 10 16:34:13              "type": "object",
-Nov 10 16:34:13              "properties": {
-Nov 10 16:34:13                "line_item_id": {
-Nov 10 16:34:13                  "type": "string",
-Nov 10 16:34:13                  "description": "ID of the line item to return"
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "quantity": {
-Nov 10 16:34:13                  "type": "integer",
-Nov 10 16:34:13                  "description": "Quantity to return"
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "return_reason": {
-Nov 10 16:34:13                  "type": "string",
-Nov 10 16:34:13                  "description": "Reason for return",
-Nov 10 16:34:13                  "enum": [
-Nov 10 16:34:13                    "SIZE_TOO_SMALL",
-Nov 10 16:34:13                    "SIZE_TOO_LARGE",
-Nov 10 16:34:13                    "UNWANTED",
-Nov 10 16:34:13                    "NOT_AS_DESCRIBED",
-Nov 10 16:34:13                    "WRONG_ITEM",
-Nov 10 16:34:13                    "DEFECTIVE",
-Nov 10 16:34:13                    "STYLE",
-Nov 10 16:34:13                    "COLOR",
-Nov 10 16:34:13                    "OTHER",
-Nov 10 16:34:13                    "UNKNOWN"
-Nov 10 16:34:13                  ]
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "customer_note": {
-Nov 10 16:34:13                  "type": "string",
-Nov 10 16:34:13                  "description": "Additional notes about the return"
-Nov 10 16:34:13                }
-Nov 10 16:34:13              },
-Nov 10 16:34:13              "required": [
-Nov 10 16:34:13                "line_item_id",
-Nov 10 16:34:13                "quantity",
-Nov 10 16:34:13                "return_reason"
-Nov 10 16:34:13              ]
-Nov 10 16:34:13            }
-Nov 10 16:34:13          }
-Nov 10 16:34:13        },
-Nov 10 16:34:13        "required": [
-Nov 10 16:34:13          "line_items"
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      }
-Nov 10 16:34:13    }
-Nov 10 16:34:13  ]
-Nov 10 16:34:13  Connected to MCP with 5 tools
-Nov 10 16:34:13  Connected to customer MCP with 4 tools
-Nov 10 16:34:13  Available customer tools: [
-Nov 10 16:34:13    'get_most_recent_order_status',
-Nov 10 16:34:13    'get_order_status',
-Nov 10 16:34:13    'get_store_credit_balances',
-Nov 10 16:34:13    'request_return'
-Nov 10 16:34:13  ]
-Nov 10 16:34:13  [Claude Payload Summary] {
-Nov 10 16:34:13    operation: 'streamConversation',
-Nov 10 16:34:13    promptType: 'enthusiasticAssistant',
-Nov 10 16:34:13    model: 'claude-sonnet-4-20250514',
-Nov 10 16:34:13    maxTokens: 2000,
-Nov 10 16:34:13    messageCount: 12,
-Nov 10 16:34:13    totalContentChars: 1814,
-Nov 10 16:34:13    toolCount: 11,
-Nov 10 16:34:13    toolNames: [
-Nov 10 16:34:13      'search_shop_catalog',
-Nov 10 16:34:13      'get_cart',
-Nov 10 16:34:13      'update_cart',
-Nov 10 16:34:13      'search_shop_policies_and_faqs',
-Nov 10 16:34:13      'get_product_details',
-Nov 10 16:34:13      'validate_product_quantity',
-Nov 10 16:34:13      'escalate_to_customer_service',
-Nov 10 16:34:13      'get_most_recent_order_status',
-Nov 10 16:34:13      'get_order_status',
-Nov 10 16:34:13      'get_store_credit_balances',
-Nov 10 16:34:13      'request_return'
-Nov 10 16:34:13    ]
-Nov 10 16:34:13  }
-Nov 10 16:34:13  [Claude Payload] {
-Nov 10 16:34:13    "model": "claude-sonnet-4-20250514",
-Nov 10 16:34:13    "max_tokens": 2000,
-Nov 10 16:34:13    "system": "You are Zara, a direct and professional sales assistant. You're straightforward with customers and focus on closing sales, but always maintain courtesy and professionalism. Be concise and outcome-focused — do not describe internal steps or tools.\n\n**PERSONALITY:**\n- Direct and professional - no unnecessary chatter\n- Sales-focused with clear objectives\n- Straightforward answers without being rude\n- Persuasive language like 'these are selling well, you should get these'\n- Courteous and helpful ton...",
-Nov 10 16:34:13    "messages": [
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "user",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Can you add the IVG 2400 Rechargeable Kit banana edition to my cart"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Perfect! Found the **[IVG 2400 Rechargeable Kit Banana Edition](https://vapelocal.co.uk/products/ivg-2400-rechargeable-kit-banana-edition)** at £4.40.\n\n**Important:** This product requires you to order in multiples of 5 (5, 10, 15, etc.).\n\nHow many would you like? I'll need to add at least 5 units to your cart.\n\nThis is a great choice - Post June 2025 Ban Compliant with a rechargeable 1750mAh battery and refillable pods. Smart buy!"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "user",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Can you add 7"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "I need to add exactly 5 or 10 units since this product requires multiples of 5. \n\nWould you like:\n- **5 units** for £22.00, or  \n- **10 units** for £44.00?\n\nThe IVG 2400 Banana Edition is selling well - you should stock up while it's available!"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "user",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "10 pls"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Let me check the exact product details for the IVG 2400 Banana Edition:"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Perfect! Now I'll add 10 units of the IVG 2400 Banana Edition to your cart:"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "✅ **Added to Cart!**\n\n**10x IVG 2400 Rechargeable Kit Banana Edition** - £44.00\n\n**Cart Total:** £44.00  \n**Your Store Credit:** £500.00\n\nGreat choice! These are Post June 2025 Ban Compliant with rechargeable 1750mAh batteries - perfect timing.\n\nHave you found everything you need? With your £500 credit, you could add some refill pods or grab other bestsellers while you're here.\n\nReady to checkout or want to add anything else?"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "assistant",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "role": "user",
-Nov 10 16:34:13        "content": [
-Nov 10 16:34:13          {
-Nov 10 16:34:13            "type": "text",
-Nov 10 16:34:13            "text": "Hello"
-Nov 10 16:34:13          }
-Nov 10 16:34:13        ]
-Nov 10 16:34:13      }
-Nov 10 16:34:13    ],
-Nov 10 16:34:13    "tools": [
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "search_shop_catalog",
-Nov 10 16:34:13        "description": "Search for products from the online store, hosted on Shopify.\n\nThis tool can be used to search for products using natural language queries, specific filter criteria, or both.\n\nBest practices:\n- Searches return available_filters which can be used for refined follow-up searches\n- When filtering, use ONLY the filters from available_filters in follow-up searches\n- For specific filter searches (category, variant option, product type, etc.), use simple terms without the filter name (e.g., \"red\" not \"red color\")\n- For filter-specific searches (e.g., \"find burton in snowboards\" or \"show me all available products in gray / green color\"), use a two-step approach:\n  1. Perform a normal search to discover available filters\n  2. If relevant filters are returned, do a second search using the proper filter (productType, category, variantOption, etc.) with just the specific search term\n- Results are paginated, with initial results limited to improve experience\n- Use the after parameter with endCursor to fetch additional pages when users request more results\n\nThe response includes product details, available variants, filter options, and pagination info.\n",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "query": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "A natural language query."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "filters": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Filters to apply to the search. Only apply filters from the available_filters returned in a previous response.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "available": {
-Nov 10 16:34:13                    "type": "boolean",
-Nov 10 16:34:13                    "description": "Filter on if the product is available for sale",
-Nov 10 16:34:13                    "default": true
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "category": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Category ID to filter by",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "id": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "Category ID to filter by"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "price": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Price range to filter by",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "min": {
-Nov 10 16:34:13                        "type": "number",
-Nov 10 16:34:13                        "description": "Minimum price to filter by, represented as a float, e.g. 50.0"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "max": {
-Nov 10 16:34:13                        "type": "number",
-Nov 10 16:34:13                        "description": "Maximum price to filter by, represented as a float, e.g. 100.0"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "productMetafield": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Filter on a product metafield",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "key": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The key of the metafield to filter by"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "namespace": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The namespace of the metafield to filter by"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "value": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The value of the metafield to filter by"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "productType": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "Product type to filter by"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "productVendor": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "Product vendor to filter by"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "tag": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "Tag to filter by"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "taxonomyMetafield": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Taxonomy metafield to filter by",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "key": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "namespace": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "value": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "variantMetafield": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Variant metafield to filter by",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "key": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The key of the metafield to filter by"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "namespace": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The namespace of the metafield to filter by"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "value": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "The value of the metafield to filter by"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "variantOption": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "description": "Variant option to filter by",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "name": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "Name of the variant option to filter by"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "value": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "Value of the variant option to filter by"
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "country": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "ISO 3166-1 alpha-2 country code for which to return localized results (e.g., 'US', 'CA', 'GB')."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "language": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "ISO 639-1 language code for which to return localized results (e.g., 'EN', 'FR', 'DE')."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "limit": {
-Nov 10 16:34:13              "type": "integer",
-Nov 10 16:34:13              "description": "Maximum number of products to return. Defaults to 10, maximum is 250. For better user experience, use the default of 10 and ask the user if they want to see more results.",
-Nov 10 16:34:13              "default": 10
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "after": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Pagination cursor to fetch the next page of results. Use the endCursor from the previous response. Only use this when the user explicitly asks to see more results."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "context": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Additional information about the request such as user demographics, mood, location, or other relevant details that could help in tailoring the response appropriately."
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "query",
-Nov 10 16:34:13            "context"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "get_cart",
-Nov 10 16:34:13        "description": "Get the cart including items, shipping options, discount info, and checkout url for a given cart id",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "cart_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Shopify cart id, formatted like: gid://shopify/Cart/c1-66330c6d752c2b242bb8487474949791?key=fa8913e951098d30d68033cf6b7b50f3"
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "cart_id"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "update_cart",
-Nov 10 16:34:13        "description": "Perform updates to a cart, including adding/removing/updating line items, buyer information, shipping details, discount codes, gift cards and notes in one consolidated call. Shipping options become available after adding items and delivery address. When creating a new cart, only addItems is required.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "cart_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Identifier for the cart being updated. If not provided, a new cart will be created."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "add_items": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Items to add to the cart. Required when creating a new cart.",
-Nov 10 16:34:13              "required": [
-Nov 10 16:34:13                "items"
-Nov 10 16:34:13              ],
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "required": [
-Nov 10 16:34:13                  "product_variant_id",
-Nov 10 16:34:13                  "quantity"
-Nov 10 16:34:13                ],
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "product_variant_id": {
-Nov 10 16:34:13                    "type": "string"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "quantity": {
-Nov 10 16:34:13                    "type": "integer",
-Nov 10 16:34:13                    "minimum": 1
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "update_items": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Existing cart line items to update quantities for. Use quantity 0 to remove an item.",
-Nov 10 16:34:13              "required": [
-Nov 10 16:34:13                "items"
-Nov 10 16:34:13              ],
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "required": [
-Nov 10 16:34:13                  "id",
-Nov 10 16:34:13                  "quantity"
-Nov 10 16:34:13                ],
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "id": {
-Nov 10 16:34:13                    "type": "string"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "quantity": {
-Nov 10 16:34:13                    "type": "integer",
-Nov 10 16:34:13                    "minimum": 0
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "remove_line_ids": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "required": [
-Nov 10 16:34:13                "items"
-Nov 10 16:34:13              ],
-Nov 10 16:34:13              "description": "List of line item IDs to remove explicitly.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "string"
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "buyer_identity": {
-Nov 10 16:34:13              "type": "object",
-Nov 10 16:34:13              "description": "Information about the buyer including email, phone, and delivery address.",
-Nov 10 16:34:13              "additionalProperties": false,
-Nov 10 16:34:13              "properties": {
-Nov 10 16:34:13                "email": {
-Nov 10 16:34:13                  "type": "string",
-Nov 10 16:34:13                  "format": "email"
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "phone": {
-Nov 10 16:34:13                  "type": "string"
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "country_code": {
-Nov 10 16:34:13                  "type": "string",
-Nov 10 16:34:13                  "description": "ISO country code, used for regional pricing."
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "delivery_addresses_to_add": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Information about the delivery addresses to add.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "selected": {
-Nov 10 16:34:13                    "type": "boolean",
-Nov 10 16:34:13                    "description": "Optional - should this address be selected for delivery (first address defaults true)."
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "delivery_address": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "first_name": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "last_name": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "phone": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "address1": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "address2": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "city": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "province_code": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "zip": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "country_code": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "ISO country code, used for regional pricing."
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "delivery_addresses_to_replace": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Delivery addresses to apply to the cart, replaces all existing cart delivery addresses. Removes all delivery addresses when empty.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "selected": {
-Nov 10 16:34:13                    "type": "boolean",
-Nov 10 16:34:13                    "description": "Optional - should this address be selected for delivery (first address defaults true)."
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "delivery_address": {
-Nov 10 16:34:13                    "type": "object",
-Nov 10 16:34:13                    "properties": {
-Nov 10 16:34:13                      "first_name": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "last_name": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "phone": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "address1": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "address2": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "city": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "province_code": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "zip": {
-Nov 10 16:34:13                        "type": "string"
-Nov 10 16:34:13                      },
-Nov 10 16:34:13                      "country_code": {
-Nov 10 16:34:13                        "type": "string",
-Nov 10 16:34:13                        "description": "ISO country code, used for regional pricing."
-Nov 10 16:34:13                      }
-Nov 10 16:34:13                    }
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "selected_delivery_options": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "The delivery options to select for the cart.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "required": [
-Nov 10 16:34:13                  "group_id",
-Nov 10 16:34:13                  "option_handle"
-Nov 10 16:34:13                ],
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "group_id": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "The ID of the delivery group to select."
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "option_handle": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "The handle of the delivery option to select."
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                }
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "discount_codes": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Discount or promo codes to apply to the cart. Only prompt if customer mentions having a discount code.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "string"
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "gift_card_codes": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "Gift card codes to apply to the cart. Only prompt if customer mentions having a gift card.",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "string"
-Nov 10 16:34:13              }
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "note": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "A note or special instructions for the cart. Optional - can ask if customer wants to add special instructions."
-Nov 10 16:34:13            }
-Nov 10 16:34:13          }
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "search_shop_policies_and_faqs",
-Nov 10 16:34:13        "description": "Used to get facts about the stores policies, products, or services.\nSome examples of questions you can ask are:\n  - What is your return policy?\n  - What is your shipping policy?\n  - What is your phone number?\n  - What are your hours of operation?\"\n",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "query": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "A natural language query."
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "context": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Additional information about the request such as user demographics, mood, location, or other relevant details that could help in tailoring the response appropriately."
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "query"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "get_product_details",
-Nov 10 16:34:13        "description": "Look up a product by ID and optionally specify variant options to select a specific variant.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "product_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "The product ID, e.g. gid://shopify/Product/123"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "options": {
-Nov 10 16:34:13              "type": "object",
-Nov 10 16:34:13              "description": "Optional variant options to select a specific variant, e.g. {\"Size\": \"10\", \"Color\": \"Black\"}"
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "product_id"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "validate_product_quantity",
-Nov 10 16:34:13        "description": "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "product_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "The product ID to check (can be GID or product title)"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "product_title": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Optional product title to check if ID not found"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "variant_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Optional variant ID to check variant-level increment"
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "product_id"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "escalate_to_customer_service",
-Nov 10 16:34:13        "description": "Escalate the conversation to a human customer service representative. Use this when the customer explicitly requests to speak with a person, needs help beyond the bot's capabilities, or is frustrated. The customer must provide their name, email, and phone number before this tool can be used. IMPORTANT: Only one support ticket can be created per conversation within a 24-hour period. If a ticket was created less than 24 hours ago, inform the customer that their request is already being processed and the team will be in touch soon. After 24 hours, a new ticket can be created if needed.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "customer_name": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "The customer's full name"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "customer_email": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "The customer's email address"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "customer_phone": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "The customer's phone number"
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "reason": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Brief reason for the handoff (optional)"
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "customer_name",
-Nov 10 16:34:13            "customer_email",
-Nov 10 16:34:13            "customer_phone"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "get_most_recent_order_status",
-Nov 10 16:34:13        "description": "Gets the status of the customer's most recent order.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {}
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "get_order_status",
-Nov 10 16:34:13        "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "order_number": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Number of the order to look up"
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "order_number"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "get_store_credit_balances",
-Nov 10 16:34:13        "description": "Fetches the customer's store credit balances if they have any.",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {}
-Nov 10 16:34:13        }
-Nov 10 16:34:13      },
-Nov 10 16:34:13      {
-Nov 10 16:34:13        "name": "request_return",
-Nov 10 16:34:13        "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"size too large\" instead of \"SIZE_TOO_LARGE\")\n",
-Nov 10 16:34:13        "input_schema": {
-Nov 10 16:34:13          "type": "object",
-Nov 10 16:34:13          "properties": {
-Nov 10 16:34:13            "order_id": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "ID of the order to return, e.g. \"gid://Shopify/Order/1234567890\""
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "order_number": {
-Nov 10 16:34:13              "type": "string",
-Nov 10 16:34:13              "description": "Buyer-facing number of the order to return (alternative to order_id), e.g. \"#MX1001\""
-Nov 10 16:34:13            },
-Nov 10 16:34:13            "line_items": {
-Nov 10 16:34:13              "type": "array",
-Nov 10 16:34:13              "description": "List of items to return",
-Nov 10 16:34:13              "items": {
-Nov 10 16:34:13                "type": "object",
-Nov 10 16:34:13                "properties": {
-Nov 10 16:34:13                  "line_item_id": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "ID of the line item to return"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "quantity": {
-Nov 10 16:34:13                    "type": "integer",
-Nov 10 16:34:13                    "description": "Quantity to return"
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "return_reason": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "Reason for return",
-Nov 10 16:34:13                    "enum": [
-Nov 10 16:34:13                      "SIZE_TOO_SMALL",
-Nov 10 16:34:13                      "SIZE_TOO_LARGE",
-Nov 10 16:34:13                      "UNWANTED",
-Nov 10 16:34:13                      "NOT_AS_DESCRIBED",
-Nov 10 16:34:13                      "WRONG_ITEM",
-Nov 10 16:34:13                      "DEFECTIVE",
-Nov 10 16:34:13                      "STYLE",
-Nov 10 16:34:13                      "COLOR",
-Nov 10 16:34:13                      "OTHER",
-Nov 10 16:34:13                      "UNKNOWN"
-Nov 10 16:34:13                    ]
-Nov 10 16:34:13                  },
-Nov 10 16:34:13                  "customer_note": {
-Nov 10 16:34:13                    "type": "string",
-Nov 10 16:34:13                    "description": "Additional notes about the return"
-Nov 10 16:34:13                  }
-Nov 10 16:34:13                },
-Nov 10 16:34:13                "required": [
-Nov 10 16:34:13                  "line_item_id",
-Nov 10 16:34:13                  "quantity",
-Nov 10 16:34:13                  "return_reason"
-Nov 10 16:34:13                ]
-Nov 10 16:34:13              }
-Nov 10 16:34:13            }
-Nov 10 16:34:13          },
-Nov 10 16:34:13          "required": [
-Nov 10 16:34:13            "line_items"
-Nov 10 16:34:13          ]
-Nov 10 16:34:13        }
-Nov 10 16:34:13      }
-Nov 10 16:34:13    ],
-Nov 10 16:34:13    "promptType": "enthusiasticAssistant"
-Nov 10 16:34:13  }
-Nov 10 16:34:14  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.528 ms
-Nov 10 16:34:14  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.223 ms
-Nov 10 16:34:14  Error processing streaming request: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"promptType: Extra inputs are not permitted"},"request_id":"req_011CUzXotT4xv54dsAttmHgB"}
-Nov 10 16:34:14      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
-Nov 10 16:34:14      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
-Nov 10 16:34:14      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
-Nov 10 16:34:14      at processTicksAndRejections (node:internal/process/task_queues:105:5) {
-Nov 10 16:34:14    status: 400,
-Nov 10 16:34:14    headers: {
-Nov 10 16:34:14      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
-Nov 10 16:34:14      'cf-cache-status': 'DYNAMIC',
-Nov 10 16:34:14      'cf-ray': '99c6f4c54aba654c-LHR',
-Nov 10 16:34:14      connection: 'keep-alive',
-Nov 10 16:34:14      'content-length': '156',
-Nov 10 16:34:14      'content-type': 'application/json',
-Nov 10 16:34:14      date: 'Mon, 10 Nov 2025 16:34:14 GMT',
-Nov 10 16:34:14      'request-id': 'req_011CUzXotT4xv54dsAttmHgB',
-Nov 10 16:34:14      server: 'cloudflare',
-Nov 10 16:34:14      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
-Nov 10 16:34:14      'x-envoy-upstream-service-time': '309',
-Nov 10 16:34:14      'x-robots-tag': 'none',
-Nov 10 16:34:14      'x-should-retry': 'false'
-Nov 10 16:34:14    },
-Nov 10 16:34:14    request_id: 'req_011CUzXotT4xv54dsAttmHgB',
-Nov 10 16:34:14    error: {
-Nov 10 16:34:14      type: 'error',
-Nov 10 16:34:14      error: {
-Nov 10 16:34:14        type: 'invalid_request_error',
-Nov 10 16:34:14        message: 'promptType: Extra inputs are not permitted'
-Nov 10 16:34:14      },
-Nov 10 16:34:14      request_id: 'req_011CUzXotT4xv54dsAttmHgB'
-Nov 10 16:34:14    }
-Nov 10 16:34:14  }
-Nov 10 16:34:14  POST /chat 200 - - 101.791 ms
-Nov 10 16:35:06  GET /api/conversation-followup 200 - - 28.002 ms
-Nov 10 16:35:14  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 9.009 ms
-Nov 10 16:35:14  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.494 ms
-Nov 10 16:36:05  GET /api/conversation-followup 200 - - 19.299 ms
-Nov 10 16:36:14  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 12.441 ms
-Nov 10 16:36:14  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.466 ms
+Nov 11 09:19:50  [Claude Payload Summary] {
+Nov 11 09:19:50    operation: 'streamConversation',
+Nov 11 09:19:50    promptType: 'enthusiasticAssistant',
+Nov 11 09:19:50    model: 'claude-sonnet-4-20250514',
+Nov 11 09:19:50    maxTokens: 2000,
+Nov 11 09:19:50    messageCount: 13,
+Nov 11 09:19:50    totalContentChars: 1900,
+Nov 11 09:19:50    toolCount: 11,
+Nov 11 09:19:50    toolNames: [
+Nov 11 09:19:50      'search_shop_catalog',
+Nov 11 09:19:50      'get_cart',
+Nov 11 09:19:50      'update_cart',
+Nov 11 09:19:50      'search_shop_policies_and_faqs',
+Nov 11 09:19:50      'get_product_details',
+Nov 11 09:19:50      'validate_product_quantity',
+Nov 11 09:19:50      'escalate_to_customer_service',
+Nov 11 09:19:50      'get_most_recent_order_status',
+Nov 11 09:19:50      'get_order_status',
+Nov 11 09:19:50      'get_store_credit_balances',
+Nov 11 09:19:50      'request_return'
+Nov 11 09:19:50    ]
+Nov 11 09:19:50  }
+Nov 11 09:19:50  [Claude Payload] {
+Nov 11 09:19:50    "model": "claude-sonnet-4-20250514",
+Nov 11 09:19:50    "max_tokens": 2000,
+Nov 11 09:19:50    "system": "You are Zara, a direct and professional sales assistant. You're straightforward with customers and focus on closing sales, but always maintain courtesy and professionalism. Be concise and outcome-focused — do not describe internal steps or tools.\n\n**PERSONALITY:**\n- Direct and professional - no unnecessary chatter\n- Sales-focused with clear objectives\n- Straightforward answers without being rude\n- Persuasive language like 'these are selling well, you should get these'\n- Courteous and helpful ton...",
+Nov 11 09:19:50    "messages": [
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Perfect! Found the **[IVG 2400 Rechargeable Kit Banana Edition](https://vapelocal.co.uk/products/ivg-2400-rechargeable-kit-banana-edition)** at £4.40.\n\n**Important:** This product requires you to order in multiples of 5 (5, 10, 15, etc.).\n\nHow many would you like? I'll need to add at least 5 units to your cart.\n\nThis is a great choice - Post June 2025 Ban Compliant with a rechargeable 1750mAh battery and refillable pods. Smart buy!"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "user",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Can you add 7"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "I need to add exactly 5 or 10 units since this product requires multiples of 5. \n\nWould you like:\n- **5 units** for £22.00, or  \n- **10 units** for £44.00?\n\nThe IVG 2400 Banana Edition is selling well - you should stock up while it's available!"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "user",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "10 pls"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Let me check the exact product details for the IVG 2400 Banana Edition:"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Perfect! Now I'll add 10 units of the IVG 2400 Banana Edition to your cart:"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "✅ **Added to Cart!**\n\n**10x IVG 2400 Rechargeable Kit Banana Edition** - £44.00\n\n**Cart Total:** £44.00  \n**Your Store Credit:** £500.00\n\nGreat choice! These are Post June 2025 Ban Compliant with rechargeable 1750mAh batteries - perfect timing.\n\nHave you found everything you need? With your £500 credit, you could add some refill pods or grab other bestsellers while you're here.\n\nReady to checkout or want to add anything else?"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "user",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Hello"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need any further help, just send me a message back here."
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "assistant",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news."
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "role": "user",
+Nov 11 09:19:50        "content": [
+Nov 11 09:19:50          {
+Nov 11 09:19:50            "type": "text",
+Nov 11 09:19:50            "text": "Hi"
+Nov 11 09:19:50          }
+Nov 11 09:19:50        ]
+Nov 11 09:19:50      }
+Nov 11 09:19:50    ],
+Nov 11 09:19:50    "tools": [
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "search_shop_catalog",
+Nov 11 09:19:50        "description": "Search for products from the online store, hosted on Shopify.\n\nThis tool can be used to search for products using natural language queries, specific filter cri…",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "query": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "filters": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "available": {
+Nov 11 09:19:50                    "type": "boolean",
+Nov 11 09:19:50                    "default": true
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "category": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "id": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "price": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "min": {
+Nov 11 09:19:50                        "type": "number"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "max": {
+Nov 11 09:19:50                        "type": "number"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "productMetafield": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "key": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "namespace": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "value": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "productType": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "productVendor": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "tag": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "taxonomyMetafield": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "key": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "namespace": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "value": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "variantMetafield": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "key": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "namespace": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "value": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "variantOption": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "name": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "value": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "country": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "language": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "limit": {
+Nov 11 09:19:50              "type": "integer",
+Nov 11 09:19:50              "default": 10
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "after": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "context": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "query",
+Nov 11 09:19:50            "context"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "get_cart",
+Nov 11 09:19:50        "description": "Get the cart including items, shipping options, discount info, and checkout url for a given cart id",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "cart_id": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "cart_id"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "update_cart",
+Nov 11 09:19:50        "description": "Perform updates to a cart, including adding/removing/updating line items, buyer information, shipping details, discount codes, gift cards and notes in one cons…",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "cart_id": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "add_items": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "required": [
+Nov 11 09:19:50                "items"
+Nov 11 09:19:50              ],
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "required": [
+Nov 11 09:19:50                  "product_variant_id",
+Nov 11 09:19:50                  "quantity"
+Nov 11 09:19:50                ],
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "product_variant_id": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "quantity": {
+Nov 11 09:19:50                    "type": "integer",
+Nov 11 09:19:50                    "minimum": 1
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "update_items": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "required": [
+Nov 11 09:19:50                "items"
+Nov 11 09:19:50              ],
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "required": [
+Nov 11 09:19:50                  "id",
+Nov 11 09:19:50                  "quantity"
+Nov 11 09:19:50                ],
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "id": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "quantity": {
+Nov 11 09:19:50                    "type": "integer",
+Nov 11 09:19:50                    "minimum": 0
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "remove_line_ids": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "required": [
+Nov 11 09:19:50                "items"
+Nov 11 09:19:50              ],
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "string"
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "buyer_identity": {
+Nov 11 09:19:50              "type": "object",
+Nov 11 09:19:50              "additionalProperties": false,
+Nov 11 09:19:50              "properties": {
+Nov 11 09:19:50                "email": {
+Nov 11 09:19:50                  "type": "string",
+Nov 11 09:19:50                  "format": "email"
+Nov 11 09:19:50                },
+Nov 11 09:19:50                "phone": {
+Nov 11 09:19:50                  "type": "string"
+Nov 11 09:19:50                },
+Nov 11 09:19:50                "country_code": {
+Nov 11 09:19:50                  "type": "string"
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "delivery_addresses_to_add": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "selected": {
+Nov 11 09:19:50                    "type": "boolean"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "delivery_address": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "first_name": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "last_name": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "phone": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "address1": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "address2": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "city": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "province_code": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "zip": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "country_code": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "delivery_addresses_to_replace": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "selected": {
+Nov 11 09:19:50                    "type": "boolean"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "delivery_address": {
+Nov 11 09:19:50                    "type": "object",
+Nov 11 09:19:50                    "properties": {
+Nov 11 09:19:50                      "first_name": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "last_name": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "phone": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "address1": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "address2": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "city": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "province_code": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "zip": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      },
+Nov 11 09:19:50                      "country_code": {
+Nov 11 09:19:50                        "type": "string"
+Nov 11 09:19:50                      }
+Nov 11 09:19:50                    }
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "selected_delivery_options": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "required": [
+Nov 11 09:19:50                  "group_id",
+Nov 11 09:19:50                  "option_handle"
+Nov 11 09:19:50                ],
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "group_id": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "option_handle": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                }
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "discount_codes": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "string"
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "gift_card_codes": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "string"
+Nov 11 09:19:50              }
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "note": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          }
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "search_shop_policies_and_faqs",
+Nov 11 09:19:50        "description": "Used to get facts about the stores policies, products, or services.\nSome examples of questions you can ask are:\n  - What is your return policy?\n  - What is you…",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "query": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "context": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "query"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "get_product_details",
+Nov 11 09:19:50        "description": "Look up a product by ID and optionally specify variant options to select a specific variant.",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "product_id": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "options": {
+Nov 11 09:19:50              "type": "object"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "product_id"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "validate_product_quantity",
+Nov 11 09:19:50        "description": "Check quantity requirements before adding products to cart. Returns the correct increment to use.",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "product_id": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "The product ID to check (can be GID or product title)"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "product_title": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "Optional product title to check if ID not found"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "variant_id": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "Optional variant ID to check variant-level increment"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "product_id"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "escalate_to_customer_service",
+Nov 11 09:19:50        "description": "Create a customer service ticket after collecting the customer's name, email, and phone number (limit: one ticket every 24h).",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "customer_name": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "The customer's full name"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "customer_email": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "The customer's email address"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "customer_phone": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "The customer's phone number"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "reason": {
+Nov 11 09:19:50              "type": "string",
+Nov 11 09:19:50              "description": "Brief reason for the handoff (optional)"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "customer_name",
+Nov 11 09:19:50            "customer_email",
+Nov 11 09:19:50            "customer_phone"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "get_most_recent_order_status",
+Nov 11 09:19:50        "description": "Gets the status of the customer's most recent order.",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {}
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "get_order_status",
+Nov 11 09:19:50        "description": "Fetches a specific order by order number for a logged-in customer and returns status details about the order.",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "order_number": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "order_number"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "get_store_credit_balances",
+Nov 11 09:19:50        "description": "Fetches the customer's store credit balances if they have any.",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {}
+Nov 11 09:19:50        }
+Nov 11 09:19:50      },
+Nov 11 09:19:50      {
+Nov 11 09:19:50        "name": "request_return",
+Nov 11 09:19:50        "description": "Allows a customer to request a return for an order.\nEither an order_id or an order_number is required.\n\nUse human-readable names for the return reasons (e.g. \"…",
+Nov 11 09:19:50        "input_schema": {
+Nov 11 09:19:50          "type": "object",
+Nov 11 09:19:50          "properties": {
+Nov 11 09:19:50            "order_id": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "order_number": {
+Nov 11 09:19:50              "type": "string"
+Nov 11 09:19:50            },
+Nov 11 09:19:50            "line_items": {
+Nov 11 09:19:50              "type": "array",
+Nov 11 09:19:50              "items": {
+Nov 11 09:19:50                "type": "object",
+Nov 11 09:19:50                "properties": {
+Nov 11 09:19:50                  "line_item_id": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "quantity": {
+Nov 11 09:19:50                    "type": "integer"
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "return_reason": {
+Nov 11 09:19:50                    "type": "string",
+Nov 11 09:19:50                    "enum": [
+Nov 11 09:19:50                      "SIZE_TOO_SMALL",
+Nov 11 09:19:50                      "SIZE_TOO_LARGE",
+Nov 11 09:19:50                      "UNWANTED",
+Nov 11 09:19:50                      "NOT_AS_DESCRIBED",
+Nov 11 09:19:50                      "WRONG_ITEM",
+Nov 11 09:19:50                      "DEFECTIVE",
+Nov 11 09:19:50                      "STYLE",
+Nov 11 09:19:50                      "COLOR",
+Nov 11 09:19:50                      "OTHER",
+Nov 11 09:19:50                      "UNKNOWN"
+Nov 11 09:19:50                    ]
+Nov 11 09:19:50                  },
+Nov 11 09:19:50                  "customer_note": {
+Nov 11 09:19:50                    "type": "string"
+Nov 11 09:19:50                  }
+Nov 11 09:19:50                },
+Nov 11 09:19:50                "required": [
+Nov 11 09:19:50                  "line_item_id",
+Nov 11 09:19:50                  "quantity",
+Nov 11 09:19:50                  "return_reason"
+Nov 11 09:19:50                ]
+Nov 11 09:19:50              }
+Nov 11 09:19:50            }
+Nov 11 09:19:50          },
+Nov 11 09:19:50          "required": [
+Nov 11 09:19:50            "line_items"
+Nov 11 09:19:50          ]
+Nov 11 09:19:50        }
+Nov 11 09:19:50      }
+Nov 11 09:19:50    ],
+Nov 11 09:19:50    "promptType": "enthusiasticAssistant"
+Nov 11 09:19:50  }
+Nov 11 09:19:51  Error processing streaming request: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"promptType: Extra inputs are not permitted"},"request_id":"req_011CV1rVb3XnQ6uauemjkXBT"}
+Nov 11 09:19:51      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Nov 11 09:19:51      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Nov 11 09:19:51      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Nov 11 09:19:51      at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+Nov 11 09:19:51    status: 400,
+Nov 11 09:19:51    headers: {
+Nov 11 09:19:51      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Nov 11 09:19:51      'cf-cache-status': 'DYNAMIC',
+Nov 11 09:19:51      'cf-ray': '99ccb5d7acda001e-LHR',
+Nov 11 09:19:51      connection: 'keep-alive',
+Nov 11 09:19:51      'content-length': '156',
+Nov 11 09:19:51      'content-type': 'application/json',
+Nov 11 09:19:51      date: 'Tue, 11 Nov 2025 09:19:51 GMT',
+Nov 11 09:19:51      'request-id': 'req_011CV1rVb3XnQ6uauemjkXBT',
+Nov 11 09:19:51      server: 'cloudflare',
+Nov 11 09:19:51      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Nov 11 09:19:51      'x-envoy-upstream-service-time': '78',
+Nov 11 09:19:51      'x-robots-tag': 'none',
+Nov 11 09:19:51      'x-should-retry': 'false'
+Nov 11 09:19:51    },
+Nov 11 09:19:51    request_id: 'req_011CV1rVb3XnQ6uauemjkXBT',
+Nov 11 09:19:51    error: {
+Nov 11 09:19:51      type: 'error',
+Nov 11 09:19:51      error: {
+Nov 11 09:19:51        type: 'invalid_request_error',
+Nov 11 09:19:51        message: 'promptType: Extra inputs are not permitted'
+Nov 11 09:19:51      },
+Nov 11 09:19:51      request_id: 'req_011CV1rVb3XnQ6uauemjkXBT'
+Nov 11 09:19:51    }
+Nov 11 09:19:51  }
+Nov 11 09:19:51  POST /chat 200 - - 73.936 ms
