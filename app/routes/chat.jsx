@@ -281,10 +281,11 @@ async function handleChatSession({
     while (finalMessage.stop_reason !== "end_turn" && !handoffCompleted) {
       // Truncate conversation history before each API call to prevent unbounded growth
       const truncatedHistory = truncateConversationHistory(conversationHistory, MAX_CONVERSATION_MESSAGES);
+      const historyForClaude = ensureToolUsePairs(truncatedHistory);
       
       finalMessage = await claudeService.streamConversation(
         {
-          messages: truncatedHistory,
+          messages: historyForClaude,
           promptType,
           tools: mcpClient.tools
         },
@@ -789,4 +790,53 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
     console.error('Error in handleUserCreationAndLinking:', error);
     throw error;
   }
+}
+
+/**
+ * Ensure tool_result blocks have matching tool_use messages immediately before them
+ * @param {Array} messages - Conversation history intended for Claude
+ * @returns {Array} Sanitized conversation history
+ */
+function ensureToolUsePairs(messages) {
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return messages;
+  }
+
+  const sanitized = [];
+
+  for (let i = 0; i < messages.length; i++) {
+    const message = messages[i];
+
+    if (!Array.isArray(message?.content)) {
+      sanitized.push(message);
+      continue;
+    }
+
+    if (message.role === 'user') {
+      const prevMessage = sanitized[sanitized.length - 1] || null;
+
+      const filteredContent = message.content.filter(block => {
+        if (block.type !== 'tool_result') {
+          return true;
+        }
+
+        if (!prevMessage || prevMessage.role !== 'assistant' || !Array.isArray(prevMessage.content)) {
+          return false;
+        }
+
+        return prevMessage.content.some(prevBlock => prevBlock.type === 'tool_use' && prevBlock.id === block.tool_use_id);
+      });
+
+      if (filteredContent.length > 0) {
+        sanitized.push({
+          ...message,
+          content: filteredContent
+        });
+      }
+    } else {
+      sanitized.push(message);
+    }
+  }
+
+  return sanitized;
 }
