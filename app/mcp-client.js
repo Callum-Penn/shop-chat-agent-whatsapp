@@ -545,21 +545,16 @@ class MCPClient {
           headers
         );
 
-        // Check if response contains an error (JSON-RPC can return errors in 200 OK responses)
-        if (response.error) {
-          return {
-            error: {
-              type: "internal_error",
-              code: response.error.code,
-              message: response.error.message,
-              data: response.error.data || response.error.message,
-              toolName: toolName
-            }
-          };
-        }
-
         return response.result || response;
       } catch (error) {
+        console.error('Customer MCP tool call error:', error);
+        console.error('Error details:', {
+          message: error.message,
+          status: error.status,
+          code: error.code,
+          data: error.data
+        });
+        
         // Handle 401 specifically to trigger authentication
         if (error.status === 401) {
           try {
@@ -602,41 +597,11 @@ class MCPClient {
         throw error;
       }
     } catch (error) {
-      // Try to extract JSON-RPC error details if available
-      let errorCode = null;
-      let errorData = error.message;
-      
-      // If error has code or data properties, preserve them
-      if (error.code !== undefined) {
-        errorCode = error.code;
-      }
-      if (error.data) {
-        errorData = error.data;
-      }
-      
-      // Check if error message contains JSON-RPC error info
-      try {
-        const errorText = error.message || '';
-        // Try to parse as JSON if it looks like JSON-RPC error
-        if (errorText.includes('{') || error.status === 200) {
-          // Response might be JSON even if status is not OK
-          const parsedError = JSON.parse(errorText);
-          if (parsedError.error) {
-            errorCode = parsedError.error.code;
-            errorData = parsedError.error.data || parsedError.error.message;
-          }
-        }
-      } catch (e) {
-        // Not JSON, use original error message
-      }
-      
+      console.error(`Error calling tool ${toolName}:`, error);
       return {
         error: {
           type: "internal_error",
-          code: errorCode,
-          message: error.message,
-          data: errorData || `Error calling tool ${toolName}: ${error.message}`,
-          toolName: toolName
+          data: `Error calling tool ${toolName}: ${error.message}`
         }
       };
     }
@@ -665,23 +630,14 @@ class MCPClient {
       }),
     });
 
-    // Get response text first (can only read body once)
-    const responseText = await response.text();
-    
-    // Parse JSON response even if status is not OK (JSON-RPC errors can be in body)
-    let jsonResponse;
-    try {
-      jsonResponse = JSON.parse(responseText);
-    } catch (e) {
-      // If JSON parsing fails, throw an error with the response text
-      const errorObj = new Error(`Failed to parse JSON response: ${response.status} ${responseText}`);
+    if (!response.ok) {
+      const error = await response.text();
+      const errorObj = new Error(`Request failed: ${response.status} ${error}`);
       errorObj.status = response.status;
       throw errorObj;
     }
 
-    // Return the response even if it contains an error (caller will handle it)
-    // JSON-RPC spec allows errors in 200 OK responses
-    return jsonResponse;
+    return await response.json();
   }
 
   /**

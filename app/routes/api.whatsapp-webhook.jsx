@@ -521,16 +521,6 @@ export const action = async ({ request }) => {
                       }
                     } else {
                       // Handle other tool errors
-                      // Check if this is get_most_recent_order_status with an internal error
-                      // This often indicates the order is cancelled or doesn't exist
-                      let errorMessage;
-                      if (toolName === "get_most_recent_order_status" && 
-                          (toolResponse.error.type === "internal_error" || toolResponse.error.code === -32603)) {
-                        errorMessage = "Your most recent order appears to be cancelled or no longer available. Cancelled orders cannot be retrieved. If you need help with a specific order, please provide the order number.";
-                      } else {
-                        errorMessage = `Error: ${toolResponse.error.data || toolResponse.error.message || toolResponse.error}`;
-                      }
-                      
                       const errorConversation = [
                         ...conversationHistory,
                         {
@@ -542,7 +532,7 @@ export const action = async ({ request }) => {
                           content: [{
                             type: 'tool_result',
                             tool_use_id: content.id,
-                            content: errorMessage
+                            content: `Error: ${toolResponse.error}`
                           }]
                         }
                       ];

@@ -32,17 +32,7 @@ export function createToolService() {
       return { stopConversation: true };
     } else {
       console.log("Tool use error", toolUseResponse.error);
-      
-      // Check if this is get_most_recent_order_status with an internal error
-      // This often indicates the order is cancelled or doesn't exist
-      if (toolName === "get_most_recent_order_status" && 
-          (toolUseResponse.error.type === "internal_error" || toolUseResponse.error.code === -32603)) {
-        const errorMessage = "Your most recent order appears to be cancelled or no longer available. Cancelled orders cannot be retrieved. If you need help with a specific order, please provide the order number.";
-        await addToolResultToHistory(conversationHistory, toolUseId, errorMessage, conversationId);
-      } else {
-        await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data || toolUseResponse.error.message || "An error occurred", conversationId);
-      }
-      
+      await addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.error.data, conversationId);
       return { stopConversation: false };
     }
   };
