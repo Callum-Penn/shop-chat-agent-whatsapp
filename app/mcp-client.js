@@ -384,10 +384,16 @@ class MCPClient {
       // Enforce quantity increments on cart updates server-side for safety
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
         try {
+          console.warn(`[CART] update_cart invoked with ${toolArgs.add_items.length} item(s)`);
           for (const item of toolArgs.add_items) {
             const variantId = item.product_variant_id || item.variant_id;
             const productId = item.product_id;
             let increment = null;
+
+            // Require a product identifier (variant or product)
+            if (!variantId && !productId) {
+              throw new Error('update_cart requires product_variant_id or product_id for each item');
+            }
 
             // Check database for increment
             if (variantId) {
@@ -396,6 +402,7 @@ class MCPClient {
               });
               if (incrementRecord) {
                 increment = incrementRecord.increment;
+                console.warn(`[CART] Increment for variant ${variantId}: ${increment}`);
               }
             }
             
@@ -405,6 +412,7 @@ class MCPClient {
               });
               if (incrementRecord) {
                 increment = incrementRecord.increment;
+                console.warn(`[CART] Increment for product ${productId}: ${increment}`);
               }
             }
 
@@ -418,6 +426,9 @@ class MCPClient {
                 const entity = variantId || productId;
                 console.warn(`[CART] Adjusted quantity for ${entity}: requested=${requested}, increment=${increment}, adjusted=${adjusted}`);
               }
+            } else {
+              const entity = variantId || productId;
+              console.warn(`[CART] No increment found for ${entity}; using requested quantity`);
             }
           }
         } catch (e) {
