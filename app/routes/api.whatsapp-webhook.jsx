@@ -246,6 +246,11 @@ export const action = async ({ request }) => {
       const shopDomain = 'https://vapelocal.co.uk';
       const shopId = 'vapelocal';
       
+      // Allowed host for checkout links
+      let allowedHost = '';
+      try { allowedHost = new URL(shopDomain).host; } catch {}
+      const urlRegex = /(https?:\/\/[^\s)]+)\)?/gi;
+      
       // Get cached MCP client
       const mcpClient = await getCachedMCPClient(shopDomain, conversationId, shopId);
       
@@ -293,6 +298,9 @@ export const action = async ({ request }) => {
       let turnCount = 0;
       const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
       
+      // Track whether checkout URL was generated this turn
+      let checkoutLinkAuthorized = false;
+
       try {
         while (!conversationComplete && turnCount < maxTurns) {
           turnCount++;
@@ -320,6 +328,11 @@ export const action = async ({ request }) => {
                 try {
                   // Call the tool directly
                   const toolResponse = await mcpClient.callTool(toolName, toolArgs);
+                  
+                  // If checkout URL successfully generated, authorize links this turn
+                  if (!toolResponse.error && toolName === 'get_cart_checkout_url') {
+                    checkoutLinkAuthorized = true;
+                  }
                   
                   // Handle custom tools (like send_order_template)
                   if (toolResponse.isCustomTool && toolName === 'send_order_template') {
@@ -645,6 +658,22 @@ export const action = async ({ request }) => {
             // No content in response, conversation is complete
             conversationComplete = true;
           }
+        }
+        
+        // Sanitize unauthorized/foreign checkout links before sending
+        if (aiResponse) {
+          aiResponse = aiResponse.replace(urlRegex, (match) => {
+            try {
+              const u = new URL(match);
+              const isAllowed = allowedHost && u.host === allowedHost;
+              if (!checkoutLinkAuthorized || !isAllowed) {
+                return '';
+              }
+              return match;
+            } catch {
+              return match;
+            }
+          });
         }
         
         if (turnCount >= maxTurns) {

@@ -415,6 +415,8 @@ class MCPClient {
               const adjusted = multiples * increment;
               if (adjusted !== requested) {
                 item.quantity = adjusted;
+                const entity = variantId || productId;
+                console.warn(`[CART] Adjusted quantity for ${entity}: requested=${requested}, increment=${increment}, adjusted=${adjusted}`);
               }
             }
           }

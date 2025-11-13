@@ -200,6 +200,31 @@ async function handleChatSession({
 
   console.log(`[CHAT][IN] (${conversationId}) ${userMessage}`);
 
+  // Determine allowed checkout domain from Origin header
+  const origin = request.headers.get("Origin") || "";
+  let allowedHost = "";
+  try {
+    if (origin) allowedHost = new URL(origin).host;
+  } catch {}
+
+  // Helper: sanitize streamed chunks to strip unauthorized checkout URLs
+  const urlRegex = /(https?:\/\/[^\s)]+)\)?/gi;
+  function sanitizeChunk(chunk, isCheckoutAuthorized) {
+    if (!chunk || typeof chunk !== 'string') return chunk;
+    return chunk.replace(urlRegex, (match) => {
+      try {
+        const u = new URL(match);
+        const isAllowed = allowedHost && u.host === allowedHost;
+        if (!isCheckoutAuthorized || !isAllowed) {
+          return "[Generating secure checkout link…]"; // suppress fabricated/foreign links
+        }
+        return match;
+      } catch {
+        return match;
+      }
+    });
+  }
+
   // Initialize MCP client
   const shopId = request.headers.get("X-Shopify-Shop-Id");
   const shopDomain = request.headers.get("Origin");
@@ -278,6 +303,9 @@ async function handleChatSession({
     let handoffCompleted = false;
     const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
 
+    // Track whether a valid checkout link was generated this turn
+    let checkoutLinkAuthorized = false;
+
     while (finalMessage.stop_reason !== "end_turn" && !handoffCompleted) {
       // Truncate conversation history before each API call to prevent unbounded growth
       const truncatedHistory = truncateConversationHistory(conversationHistory, MAX_CONVERSATION_MESSAGES);
@@ -292,9 +320,11 @@ async function handleChatSession({
         {
           // Handle text chunks
           onText: (textDelta) => {
+            // Sanitize chunks to avoid fabricated/foreign checkout links unless authorized
+            const safeDelta = sanitizeChunk(textDelta, checkoutLinkAuthorized);
             stream.sendMessage({
               type: 'chunk',
-              chunk: textDelta
+              chunk: safeDelta
             });
           },
 
@@ -344,6 +374,11 @@ async function handleChatSession({
             // Call the tool
             const toolUseResponse = await mcpClient.callTool(toolName, toolArgs);
             
+            // If checkout URL was generated successfully this turn, authorize link streaming
+            if (!toolUseResponse.error && toolName === 'get_cart_checkout_url') {
+              checkoutLinkAuthorized = true;
+            }
+
             // Handle escalate_to_customer_service custom tool
             if (toolUseResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
               
