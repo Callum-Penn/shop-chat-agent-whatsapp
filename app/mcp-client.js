@@ -54,7 +54,7 @@ class MCPClient {
     
     this.customTools.push({
       name: "validate_product_quantity",
-      description: "MANDATORY: You MUST call this tool for EVERY product BEFORE calling update_cart. This tool checks quantity requirements (minimum or increment) for products. NEVER call update_cart without first calling this tool for each product. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc. This is a required step - skipping it will result in incorrect quantities being added to the cart.",
+      description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
       input_schema: {
         type: "object",
         properties: {

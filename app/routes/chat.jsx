@@ -334,13 +334,6 @@ async function handleChatSession({
             const toolArgs = content.input;
             const toolUseId = content.id;
 
-            console.log(`[TOOL] Calling tool: ${toolName}`, JSON.stringify(toolArgs, null, 2));
-            
-            // Warn if update_cart is called - validation should have happened first
-            if (toolName === 'update_cart') {
-              console.warn(`[VALIDATION CHECK] update_cart called. Ensure validate_product_quantity was called for each product first.`);
-            }
-            
             const toolUseMessage = `Calling tool: ${toolName} with arguments: ${JSON.stringify(toolArgs)}`;
 
             stream.sendMessage({
