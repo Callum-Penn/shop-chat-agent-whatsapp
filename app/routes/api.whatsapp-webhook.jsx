@@ -300,7 +300,7 @@ export const action = async ({ request }) => {
       
       // Track whether checkout URL was generated this turn
       let checkoutLinkAuthorized = false;
-
+      
       try {
         while (!conversationComplete && turnCount < maxTurns) {
           turnCount++;

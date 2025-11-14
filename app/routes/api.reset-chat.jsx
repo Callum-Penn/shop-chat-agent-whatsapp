@@ -23,10 +23,11 @@ export const action = async ({ request }) => {
     // Delete all messages for this conversation
     await deleteConversationHistory(conversation_id);
 
-    // Reset handoff flag to allow new tickets after reset
+    // Reset handoff flags and clear any persisted cart_id
     await updateConversationMetadata(conversation_id, {
       handoff_requested: false,
-      handoff_at: null
+      handoff_at: null,
+      cart_id: null
     });
 
     console.log(`Chat reset: Cleared conversation history and reset handoff flag for ${conversation_id}`);
@@ -41,12 +42,13 @@ export const action = async ({ request }) => {
   } catch (error) {
     console.error('Error resetting chat:', error);
     return json({ 
-      error: "Failed to reset chat", 
-      details: error.message 
-    }, { 
-      status: 500,
-      headers: getCorsHeaders(request)
-    });
+        error: "Failed to reset chat", 
+        details: error.message 
+      }, { 
+        status: 500,
+        headers: getCorsHeaders(request)
+      }
+    );
   }
 };
 

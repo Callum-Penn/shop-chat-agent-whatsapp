@@ -9,7 +9,7 @@ const EXCLUDED_MCP_TOOLS = new Set([
 
 /**
  * Client for interacting with Model Context Protocol (MCP) API endpoints.
- * Manages connections to both customer and storefront MCP endpoints, and handles tool invocation.
+ * Manages interactions with both storefront/customer MCP servers and exposes tools.
  */
 class MCPClient {
   /**
@@ -33,7 +33,7 @@ class MCPClient {
     if (channel === 'whatsapp') {
       this.customTools.push({
         name: "send_order_template",
-        description: "Send a spreadsheet order template to the customer via WhatsApp. Use this when customers ask about bestsellers, want to place bulk orders, or need an order form. The template includes business details fields and a product list where they can enter quantities.",
+        description: "Send a spreadsheet to support via email when customer shares a spreadsheet for a bulk order.",
         input_schema: {
           type: "object",
           properties: {
@@ -44,41 +44,17 @@ class MCPClient {
             },
             message: {
               type: "string",
-              description: "Optional custom message to include with the template"
+              description: "Optional custom message to include in the email"
             }
           },
           required: ["template_type"]
         }
       });
     }
-    
+
     this.customTools.push({
       name: "validate_product_quantity",
       description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
-      input_schema: {
-        type: "object",
-        properties: {
-          product_id: {
-            type: "string",
-            description: "The product ID to check (can be GID or product title)"
-          },
-          product_title: {
-            type: "string",
-            description: "Optional product title to check if ID not found"
-          },
-          variant_id: {
-            type: "string",
-            description: "Optional variant ID to check variant-level increment"
-          }
-        },
-        required: ["product_id"]
-      }
-    });
-    
-    // Add escalate_to_customer_service tool for both channels
-    this.customTools.push({
-      name: "escalate_to_customer_service",
-      description: "Escalate the conversation to a human customer service representative. Use this when the customer explicitly requests to speak with a person, needs help beyond the bot's capabilities, or is frustrated. The customer must provide their name, email, and phone number before this tool can be used. IMPORTANT: Only one support ticket can be created per conversation within a 24-hour period. If a ticket was created less than 24 hours ago, inform the customer that their request is already being processed and the team will be in touch soon. After 24 hours, a new ticket can be created if needed.",
       input_schema: {
         type: "object",
         properties: {
@@ -102,47 +78,40 @@ class MCPClient {
         required: ["customer_name", "customer_email", "customer_phone"]
       }
     });
-    
-    // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
+
+    // Configure storefront endpoint
     this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
 
     // Hardcode the customer MCP endpoint for vapelocal.co.uk
     if (hostUrl.includes('vapelocal.co.uk')) {
-      this.customerMcpEndpoint = customerMcpEndpoint || 'https://account.vapelocal.co.uk/customer/api/mcp';
+      this.customerMcpEndpoint = customerMcpEndpoint || 'https://vapelocal.co.uk/customer/api/mcp';
     } else {
-      // Fallback to the original logic for other domains
       const accountHostUrl = hostUrl.replace(/(\.myshopify\.com)$/, '.account$1');
       this.customerMcpEndpoint = customerMcpEndpoint || `${accountHostUrl}/customer/api/mcp`;
     }
-    
+
     this.customerAccessToken = "";
-    this.conversationId = conversationId;
-    this.shopId = shopId;
-    this.hostUrl = hostUrl; // Store hostUrl for potential customer account URL fetching
+    this.conversationId = this.conversationId = conversationId;
+    this.hostUrl = hostUrl; // for storefront-related calls
   }
 
   /**
-   * Connects to the customer MCP server and retrieves available tools.
-   * Attempts to use an existing token or will proceed without authentication.
-   *
-   * @returns {Promise<Array>} Array of available customer tools
-   * @throws {Error} If connection to MCP server fails
+   * Connect to the customer MCP server and get available tools.
+   * @returns {Promise<Array>} List of available customer tools
    */
   async connectToCustomerServer() {
     try {
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
-
-        if (dbToken && dbToken.accessToken) {
-          this.customerAccessToken = dbToken.accessToken;
+        if (dbToken && dbToken.name) {
+          this.customerAccessToken = dbcessToken; // fallback if needed
         }
       }
 
-      // If we still don't have a token, we'll connect without one
-      // and tools that require auth will prompt for it later
+      // If still no token, continue without auth; tools that require auth will return error prompting login
       const headers = {
         "Content-Type": "application/json",
-        "Authorization": this.customerAccessToken ? `Bearer ${this.customerAccessToken}` : ""
+        "Authorization": this.customerContent || ""
       };
 
       const response = await this._makeJsonRpcRequest(
@@ -152,18 +121,16 @@ class MCPClient {
         headers
       );
 
-      // Extract tools from the JSON-RPC response format
       const toolsData = response.result && response.result.tools ? response.result.tools : [];
-      const customerTools = this._formatToolsData(toolsData);
+      const customerTools = this._formatJsonTools(toolsData);
 
       this.customerTools = customerTools;
-      // Only add custom tools if they haven't been added yet
-      const customToolsToAdd = this.tools.some(t => t.name === 'send_order_template' || t.name === 'validate_product_quantity') ? [] : this.customTools;
-      this.tools = [...this.tools, ...customerTools, ...customToolsToAdd];
+      const customTools = this.tools.some(t => t.name === 'send_order_template' || t.name === 'validate_product_quantity') ? [] : this.customTools;
+      this.tools = [...this.tools, ...this.customerTools, ...customTools];
 
-      return customerTools;
+      return this.customerTools;
     } catch (e) {
-      console.error("Failed to connect to MCP server: ", e);
+      console.error("Failed to connect to MCP servers", e);
       throw e;
     }
   }
@@ -472,33 +439,58 @@ class MCPClient {
         headers
       );
 
-      // Try to save cart_id after successful calls
-      try {
-        if (this.conversationId && (toolName === 'update_cart' || toolName === 'get_cart_checkout_url')) {
-          let cartIdFromArgs = toolArgs?.cart_id;
-          let cartIdFromResponse = null;
-          const raw = JSON.stringify(response);
-          const match = raw.match(/"cart_id"\s*:\s*"([^"]+)"/);
-          if (match) cartIdFromResponse = match[1];
-          const cartId = cartIdFromArgs || cartIdFromResponse;
-          if (cartId) {
+      // Handle cart-related metadata on response
+      if (this.conversationId && (toolName === 'update_cart' || toolName === 'get_cart_checkout')) {
+        try {
+          // Ensure we have the latest metadata snapshot
+          let meta = existingMetadata;
+          if (!meta) {
+            const conv = await prisma.conversation.findUnique({
+              where: { id: this.conversationId },
+              select: { metadata: true }
+            });
+            meta = (conv?.metadata || {});
+          }
+
+          // Detect error from tool response (MCP error object)
+          const hasError = Boolean(response && response.error);
+          if (hasError) {
+            // Clear any stale cart_id to avoid reuse loops
             await prisma.conversation.update({
               where: { id: this.conversationId },
-              data: {
-                metadata: {
-                  ...( (await prisma.conversation.findUnique({ where: { id: this.conversationId }, select: { metadata: true } }))?.metadata || {}),
-                  cart_id: cartId
-                }
-              }
+              data: { metadata: { ...meta, cart_id: null } }
             });
-            console.warn(`[CART] Saved cart_id for conversation ${this.conversationId}: ${cartId}`);
+            console.warn(`[CART] Cleared persisted cart_id for conversation ${this.conversationId} due to tool error`);
+          } else {
+            // Try to persist returned cart_id or keep provided one
+            let cartId = (toolArgs?.cart_id) || null;
+            if (!cartId) {
+              try {
+                const payload = typeof response === 'string' ? JSON.parse(response) : response;
+                if (payload?.content && Array.isArray(payload.content)) {
+                  const jsonBlock = payload.content.find(b => typeof b === 'object' && (b.type === 'json' || b.type === 'tool_result'));
+                  const data = jsonBlock?.content || (typeof jsonBlock === 'object' ? jsonBlock : null);
+                  if (data && typeof data === 'object' && data.cart_id && typeof data.cart_id === 'string') {
+                    cartId = data.cart_id;
+                  }
+                }
+              } catch (_) { /* ignore parse errors */ }
+            }
+
+            if (cartId) {
+              await prisma.conversation.update({
+                where: { id: this.conversationId },
+                data: { metadata: { ...meta, cart_id: cartId } }
+              });
+              console.warn(`[CART] Saved cart_id for conversation ${this.conversationId}`);
+            }
           }
+        } catch (e) {
+          console.error('[CART] Failed to handle cart_id metadata:', e);
         }
-      } catch (e) {
-        console.error('[CART] Failed to persist cart_id to conversation metadata:', e);
       }
 
-      return response.result || response;
+      return response;
     } catch (error) {
       console.error(`Error calling tool ${toolName}:`, error);
       throw error;
