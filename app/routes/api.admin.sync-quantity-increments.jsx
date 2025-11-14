@@ -91,6 +91,21 @@ export async function loader({ request }) {
       cursor = edges.length > 0 ? edges[edges.length - 1].cursor : null;
     }
 
+    // Summaries for verification
+    const totalCount = incrementsToSave.length;
+    const productCount = incrementsToSave.filter(i => i.entityType === 'product').length;
+    const variantCount = incrementsToSave.filter(i => i.entityType === 'variant').length;
+    const sample = incrementsToSave.slice(0, 10).map(i => ({ entityId: i.entityId, increment: i.increment, entityType: i.entityType, productTitle: i.productTitle }));
+    const fumiSample = incrementsToSave.filter(i => (i.productTitle || '').toLowerCase().includes('fumi')).slice(0, 10).map(i => ({ entityId: i.entityId, increment: i.increment, entityType: i.entityType, productTitle: i.productTitle }));
+
+    console.log(`[SYNC] Quantity increments: total=${totalCount}, product=${productCount}, variant=${variantCount}`);
+    if (sample.length > 0) {
+      console.log('[SYNC] Sample (first 10):', sample);
+    }
+    if (fumiSample.length > 0) {
+      console.log('[SYNC] Sample matching "fumi" (first 10):', fumiSample);
+    }
+
     // Clear existing increments and save new ones to database
     await prisma.productQuantityIncrement.deleteMany({});
     
