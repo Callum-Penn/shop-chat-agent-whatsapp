@@ -613,62 +613,79 @@
         if (!element || !element.dataset.rawText) return;
 
         const rawText = element.dataset.rawText;
+        let processedText = rawText; // start from original text
 
-        // Process the text with various Markdown features
-        let processedText = rawText;
+        // Helper to normalize an href: if it matches current origin, convert to relative path; otherwise keep absolute
+        const toSafeHref = (href) => {
+          try {
+            const u = new URL(href, window.location.origin);
+            const isSameHost = (u.host === window.location.host);
+            const normalized = isSameHost ? (u.pathname + (u.search || '') + (u.hash || '')) : u.toString();
+            return normalized;
+          } catch (e) {
+            // If parsing fails, leave as-is (do not inject placeholder text into URLs)
+            return href;
+          }
+        };
 
-        // Process Markdown images FIRST (before links to avoid conflicts)
-        const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+        // 1) Replace Markdown-style images first to avoid interfering with link parsing
+        const markdownImageRegex = /!\[([^\]]*)\]\(([^)\s]+)\)/g;
         processedText = processedText.replace(markdownImageRegex, (match, alt, url) => {
-          return '<img src="' + url + '" alt="' + (alt || 'Image') + '" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />';
+          const safeSrc = toSafeHref(url);
+          return '<img src="' + safeSrc + '" alt="' + (alt || 'Image') + '" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />';
         });
 
-        // Process Markdown links
-        const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        // 2) Replace Markdown links [text](url)
+        const markdownLinkRegex = /\[([^\]]+)\]\(([^)\s]+)\)/g;
         processedText = processedText.replace(markdownLinkRegex, (match, text, url) => {
-          // Check if it's an auth URL (broadened to any domain)
-          if ((url.includes('/authentication') || url.includes('oauth/authorize'))) {
-            // Store the auth URL in a global variable for later use - this avoids issues with onclick handlers
-            window.shopAuthUrl = url;
-            // Return a short link that will be handled by the document click handler
-            return '<a href="#auth" class="shop-auth-trigger">' + (text && text.trim() ? text : 'Click here to authorize') + '</a>';
-          }
-          // If it's a checkout link, replace the text
-          else if (url.includes('/cart') || url.includes('checkout')) {
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">click here to proceed to checkout</a>';
-          } else {
-            // For normal links, preserve the original text
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
+          const href = toSafeHref(url);
+          const displayText = (text && text.trim()) ? text : href;
+          // For checkout links, force a friendly label
+          try {
+            const u = new URL(href, window.location.origin);
+            const pathWithQuery = (u.pathname + (u.search || '') + (u.hash || ''));
+            const isCheckout = /^(\/)?(cart|checkout)/.test(pathWithQuery) || /\/checkout/.test(pathWithQuery);
+            const finalHref = (u.host === window.location.host) ? pathWithQuery : u.toString();
+            const label = isNaN(displayText.length) ? 'click here to proceed to checkout' : displayText;
+            return '<a href="' + finalHref + '" target="_blank" rel="noopener noreferrer">' + (isCheckout ? 'click here to proceed to a check out' : displayText) + '</a>';
+          } catch (e) {
+            return '<a href="' + href + '" target="_blank" rel="noopener noreferrer">' + displayText + '</a>';
           }
         });
 
-        // Convert bare URLs to short, friendly links while avoiding replacements inside existing HTML
-        const urlRegex = /(https?:\/\/[^\s<]+)/g;
+        // 3) Convert bare URLs to links (avoid matching inside brackets or parentheses)
+        const bareUrlRegex = /(https?:\/\/[\w\-._~:/?#@!$&'()*+,;=%]+)/g;
         const formatBareUrl = (url) => {
-          // Auth URLs → short trigger link
-          if (url.includes('/authentication') || url.includes('oauth/authorize')) {
-            window.shopAuthUrl = url;
-            return '<a href="#auth" class="shop-auth-trigger">Click here to authorize</a>';
-          }
-          // Checkout/cart URLs → friendly text
-          if (url.includes('/cart') || url.includes('checkout')) {
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">click here to proceed to checkout</a>';
-          }
-          // Otherwise show a shortened display (domain + truncated path)
-          let display = 'link';
           try {
             const u = new URL(url);
-            display = u.hostname + (u.pathname && u.pathname !== '/' ? u.pathname : '');
-            if (display.length > 28) display = display.slice(0, 28) + '…';
-          } catch (e) {}
-          return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + display + '</a>';
+            const isSameHost = (u.host === window.location.host);
+            const isCheckout = /^(\/)?(cart|checkout)/.test(u.pathname) || u.pathname.includes('/checkout');
+            const finalHref = isSameHost ? (u.pathname + (u.search || '') + (u.hash || '')) : u.toString();
+            if (isCheckout) {
+              return '<a href="' + finalHref + '" target="_blank" rel="noopener noreferrer">click here to proceed to checkout</a>';
+            }
+            // Use a short display label for non-checkout links
+            let display = u.hostname + (u.pathname && u.pathname !== '/' ? u.pathname : '');
+            if (display.length > 60) {
+              display = display.slice(0, 60) + '…';
+            }
+            return '<a href="' + finalHref + '" target="_blank" rel="noopener noreferrer">' + display + '</a>';
+          } catch (e) {
+            return url; // leave as plain text if not a valid URL
+          }
         };
+
+        // Only replace bare URLs that are not already part of an HTML tag or markdown link
         processedText = processedText
-          .split(/(<[^>]+>)/g)
-          .map(part => part.startsWith('<') ? part : part.replace(urlRegex, (m) => formatBareUrl(m)))
+          .split(/(<[^>]+>|\[[^\]]*\]\([^)]*\))/g)
+          .map(part => {
+            // Skip HTML tags or complete markdown links
+            if (!part || part.startsWith('<') || part.startsWith('[')) return part || '';
+            return part.replace(bareUrlRegex, (m) => formatBareUrl(m));
+          })
           .join('');
 
-        // Convert text to HTML with proper list handling
+        // 4) Convert simple newlines to paragraphs/line breaks
         processedText = this.convertMarkdownToHtml(processedText);
 
         // Apply the formatted HTML
