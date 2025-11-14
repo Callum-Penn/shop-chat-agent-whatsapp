@@ -56,10 +56,14 @@ export async function loader({ request }) {
       for (const edge of edges) {
         const product = edge.node;
 
+        // Track product-level increment (if present)
+        let productIncrement = null;
+
         // Product-level metafield
         if (product.metafield && product.metafield.value != null) {
           const increment = parseInt(product.metafield.value, 10);
           if (!isNaN(increment)) {
+            productIncrement = increment;
             incrementsToSave.push({
               entityId: product.id,
               increment,
@@ -69,7 +73,7 @@ export async function loader({ request }) {
           }
         }
 
-        // Variant-level metafield
+        // Variant-level metafield (or fallback to product-level increment)
         if (product.variants && product.variants.edges) {
           for (const { node: variant } of product.variants.edges) {
             if (variant.metafield && variant.metafield.value != null) {
@@ -82,6 +86,14 @@ export async function loader({ request }) {
                   productTitle: product.title
                 });
               }
+            } else if (productIncrement != null) {
+              // Propagate product-level increment to this variant if none set at variant level
+              incrementsToSave.push({
+                entityId: variant.id,
+                increment: productIncrement,
+                entityType: 'variant',
+                productTitle: product.title
+              });
             }
           }
         }
