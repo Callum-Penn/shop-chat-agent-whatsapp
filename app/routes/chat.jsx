@@ -305,7 +305,7 @@ async function handleChatSession({
     };
 
     let handoffCompleted = false;
-    const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
+    const MAX_CONVERSATION_MESSAGES = 20; // Keep a larger recent window to maintain context across turns
 
     // Track whether a valid checkout link was generated this turn
     let checkoutLinkAuthorized = false;
@@ -724,40 +724,18 @@ function cleanConversationHistory(conversationHistory) {
       continue;
     }
     
-    // If this is a user message with tool_result blocks, remove them
-    // because they're meant to be paired with tool_use from previous assistant messages
-    if (message.role === 'user') {
-      const filteredContent = message.content.filter(block => {
-        if (block.type === 'tool_result') {
-          return false;
-        }
-        return true;
-      });
-      
-      if (filteredContent.length > 0) {
-        cleaned.push({
-          ...message,
-          content: filteredContent
-        });
-      }
-    } 
-    // If this is an assistant message with tool_use blocks, remove them
+    // If this is an assistant message with tool_use blocks, remove the tool_use markers only
     // because we don't have their corresponding tool_result yet
-    else if (message.role === 'assistant') {
+    if (message.role === 'assistant') {
       const filteredContent = message.content.filter(block => {
-        if (block.type === 'tool_use') {
-          return false;
-        }
-        return true;
+        return block.type !== 'tool_use';
       });
       
       if (filteredContent.length > 0) {
-        cleaned.push({
-          ...message,
-          content: filteredContent
-        });
+        cleaned.push({ ...message, content: filteredContent });
       }
     } else {
+      // For user or tool roles, keep content as-is (including tool_result blocks)
       cleaned.push(message);
     }
   }
