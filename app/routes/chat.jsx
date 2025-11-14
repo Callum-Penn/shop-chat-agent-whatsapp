@@ -208,19 +208,23 @@ async function handleChatSession({
   } catch {}
 
   // Helper: sanitize streamed chunks to strip unauthorized checkout URLs
-  const urlRegex = /(https?:\/\/[^\s)]+)\)?/gi;
+  const urlRegex = /(https?:\/\/[^\s)]+)/gi;
   function sanitizeChunk(chunk, isCheckoutAuthorized) {
     if (!chunk || typeof chunk !== 'string') return chunk;
-    return chunk.replace(urlRegex, (match) => {
+    return chunk.replace(urlRegex, (url) => {
       try {
-        const u = new URL(match);
-        const isAllowed = allowedHost && u.host === allowedHost;
-        if (!isCheckoutAuthorized || !isAllowed) {
-          return "[Generating secure checkout link…]"; // suppress fabricated/foreign links
+        const u = new URL(url);
+        const sameHost = !!(allowedHost && u.host === allowedHost);
+        const isCheckoutPath = u.pathname.startsWith('/checkout') || u.pathname.startsWith('/cart');
+        // Only block checkout/cart links when not yet authorized or pointing to a different host
+        if (isCheckoutPath && (!isCheckoutAuthorized || !sameHost)) {
+          return "[Generating secure checkout…]";
         }
-        return match;
+        // Leave other links intact; no replacement here
+        return url;
       } catch {
-        return match;
+        // If parsing fails, leave the text as-is
+        return url;
       }
     });
   }
