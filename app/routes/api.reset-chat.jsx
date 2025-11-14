@@ -23,10 +23,13 @@ export const action = async ({ request }) => {
     // Delete all messages for this conversation
     await deleteConversationHistory(conversation_id);
 
-    // Reset handoff flag to allow new tickets after reset
+    // Reset handoff flag and clear any persisted cart metadata so old carts aren’t reused
     await updateConversationMetadata(conversation_id, {
       handoff_requested: false,
-      handoff_at: null
+      handoff_at: null,
+      last_cart_id: null,
+      last_checkout_url: null,
+      last_cart_updated_at: null
     });
 
     console.log(`Chat reset: Cleared conversation history and reset handoff flag for ${conversation_id}`);

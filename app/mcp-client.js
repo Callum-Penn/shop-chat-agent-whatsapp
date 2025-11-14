@@ -300,7 +300,8 @@ class MCPClient {
     // If still not found, try resolving IDs via storefront search
     if (quantity_increment == null) {
       try {
-        const query = product_title || product_id;
+        // Try to resolve by any identifier we have; include variant_id as a last-resort query
+        const query = (product_title || product_id || variant_id);
         if (query && typeof query === 'string') {
           const searchResponse = await this.callStorefrontTool('search_shop_catalog', {
             query,
@@ -410,39 +411,58 @@ class MCPClient {
 
             // Require a product identifier (variant or product)
             if (!variantId && !productId) {
-              throw new Error('update_cart requires product_variant_id or product_id for each item');
+                throw new Error('update_cart requires product_variant_id or product_id for each item');
             }
 
-            // Check database for increment
-            if (variantId) {
-              const incrementRecord = await prisma.productQuantityIncrement.findUnique({
+            // Check database for increment (variant first)
+            if (typeof variantId === 'string' && variantId) {
+              const incVar = await prisma.productQuantityIncrement.findUnique({
                 where: { entityId: variantId }
               });
-              if (incrementRecord) {
-                increment = incrementRecord.increment;
+              if (incVar) {
+                increment = incVar.increment;
                 console.warn(`[CART] Increment for variant ${variantId}: ${increment}`);
               }
             }
-            
-            if (!increment && productId) {
-              const incrementRecord = await prisma.productQuantityIncrement.findUnique({
+
+            if (!increment && typeof productId === 'string' && productId) {
+              const incProd = await prisma.productQuantityIncrement.findUnique({
                 where: { entityId: productId }
               });
-              if (incrementRecord) {
-                increment = incrementRecord.increment;
+              if (incProd) {
+                increment = incProd.increment;
                 console.warn(`[CART] Increment for product ${productId}: ${increment}`);
+              }
+            }
+
+            if (!increment) {
+              try {
+                const vq = await this.handleValidateProductQuantity({
+                  product_id: productId || '',
+                  product_title: '',
+                  variant_id: variantId || ''
+                });
+                if (vq && Array.isArray(vq.content) && vq.content[0] && vq.content[0].text) {
+                  const parsed = typeof vq.content[0].text === 'string' ? JSON.parse(vq.content[0].text) : vq.content[0].text;
+                  const maybeInc = parseInt(String(parsed?.quantity_increment ?? ''), 10);
+                  if (!Number.isNaN(maybeInc) && maybeInc > 0) {
+                    increment = maybeInc;
+                    console.warn(`[CART] Resolved increment via validate_product_quantity for ${variantId || productId}: ${increment}`);
+                  }
+                }
+              } catch (err) {
+                console.warn('validate_product_quantity fallback failed:', err && err.message ? err.message : String(err));
               }
             }
 
             if (increment && !Number.isNaN(increment)) {
               const requested = Number(item.quantity) || 0;
-              // If requested is less than 1 or not a multiple, round up to next valid multiple
-              const multiples = Math.ceil(Math.max(requested, increment) / increment);
-              const adjusted = multiples * increment;
+              const multiples = Math.ceil(Math.max(requested, Number(increment)) / Number(increment));
+              const adjusted = Number(multiples) * Number(increment);
               if (adjusted !== requested) {
                 item.quantity = adjusted;
                 const entity = variantId || productId;
-                console.warn(`[CART] Adjusted quantity for ${entity}: requested=${requested}, increment=${increment}, adjusted=${adjusted}`);
+                console.warn(`[CART] Adjusted quantity for ${entity}: ${requested} -> ${adjusted}`);
               }
             } else {
               const entity = variantId || productId;

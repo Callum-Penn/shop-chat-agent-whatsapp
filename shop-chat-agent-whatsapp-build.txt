@@ -1,3 +1,13 @@
-Nov 14 16:23:36  Product: FUMi Tangy Apple Strong - Please ensure MCP server returns metafields
-Nov 14 16:23:36  Formatted product: FUMi Tangy Apple Strong, increment: null
-Nov 14 16:23:36  WARNING: Product has no metafield data. Structure: {
+Nov 14 16:49:07  [CHAT][IN] (web_customer_23312945217918) Add pink lemonade to my cart
+Nov 14 16:49:14  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5HkqVUChhEbbplukBjqLL?key=898d2f0cca4fef95e64d1050cce4ee17
+Nov 14 16:49:14  [CART] update_cart invoked with 1 item(s)
+Nov 14 16:49:14  [CART] No increment found for gid://shopify/ProductVariant/48879847899422; using requested quantity
+Nov 14 16:49:14  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
+Nov 14 16:49:17  [CHAT][OUT] (web_customer_23312945217918) I'm having trouble adding that specific variant of the Pink Lemonade. Let me get the correct product details and try again.
+Nov 14 16:49:21  [CHAT][OUT] (web_customer_23312945217918) Let me search for Lost Mary BM6000 Pink Lemonade again to get the correct product information.
+Nov 14 16:49:25  [CHAT][OUT] (web_customer_23312945217918) Perfect! Now I can add the correct Lost Mary BM6000 Pink Lemonade replacement pod to your cart.
+Nov 14 16:49:25  [CART] update_cart invoked with 1 item(s)
+Nov 14 16:49:25  [CART] Increment for variant gid://shopify/ProductVariant/55639324688766: 5
+Nov 14 16:49:25  [CART] Adjusted quantity for gid://shopify/ProductVariant/55639324688766: requested=1, increment=5, adjusted=5
+Nov 14 16:49:26  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
+Nov 14 16:49:31  [CHAT][OUT] (web_customer_23312945217918) Perfect! I've added 5x Lost Mary BM6000 Replacement Pods Pink Lemonade (£15.75) to your cart.
