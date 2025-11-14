@@ -381,6 +381,28 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
+      // Persist and reuse cart_id between turns
+      if (!toolArgs || typeof toolArgs !== 'object') {
+        toolArgs = {};
+      }
+
+      // If updating cart and no cart_id provided, try to reuse from conversation metadata
+      if (toolName === 'update_cart' && !toolArgs.cart_id && this.conversationId) {
+        try {
+          const conv = await prisma.conversation.findUnique({
+            where: { id: this.conversationId },
+            select: { metadata: true }
+          });
+          const existingCartId = conv?.metadata?.cart_id;
+          if (existingCartId) {
+            toolArgs.cart_id = existingCartId;
+            console.warn(`[CART] Reusing existing cart_id for conversation ${this.conversationId}: ${existingCartId}`);
+          }
+        } catch (e) {
+          console.error('[CART] Failed to read conversation metadata for cart_id:', e);
+        }
+      }
+
       // Enforce quantity increments on cart updates server-side for safety
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
         try {
@@ -449,6 +471,32 @@ class MCPClient {
         },
         headers
       );
+
+      // Try to save cart_id after successful calls
+      try {
+        if (this.conversationId && (toolName === 'update_cart' || toolName === 'get_cart_checkout_url')) {
+          let cartIdFromArgs = toolArgs?.cart_id;
+          let cartIdFromResponse = null;
+          const raw = JSON.stringify(response);
+          const match = raw.match(/"cart_id"\s*:\s*"([^"]+)"/);
+          if (match) cartIdFromResponse = match[1];
+          const cartId = cartIdFromArgs || cartIdFromResponse;
+          if (cartId) {
+            await prisma.conversation.update({
+              where: { id: this.conversationId },
+              data: {
+                metadata: {
+                  ...( (await prisma.conversation.findUnique({ where: { id: this.conversationId }, select: { metadata: true } }))?.metadata || {}),
+                  cart_id: cartId
+                }
+              }
+            });
+            console.warn(`[CART] Saved cart_id for conversation ${this.conversationId}: ${cartId}`);
+          }
+        }
+      } catch (e) {
+        console.error('[CART] Failed to persist cart_id to conversation metadata:', e);
+      }
 
       return response.result || response;
     } catch (error) {
