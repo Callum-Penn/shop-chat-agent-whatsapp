@@ -4,7 +4,6 @@
  */
 import { saveMessage } from "../db.server";
 import AppConfig from "./config.server";
-import quantityIncrements from "../config/quantity-increments.json";
 
 /**
  * Creates a tool service instance
@@ -51,38 +50,6 @@ export function createToolService() {
     if (toolName === AppConfig.tools.productSearchName) {
       const formattedProducts = processProductSearchResult(toolUseResponse);
       productsToDisplay.push(...formattedProducts);
-      
-      // Modify the tool response to include quantity_increment information for Claude
-      if (toolUseResponse.content && Array.isArray(toolUseResponse.content) && toolUseResponse.content[0]) {
-        try {
-          const content = toolUseResponse.content[0].text;
-          let responseData;
-          
-          if (typeof content === 'object') {
-            responseData = content;
-          } else if (typeof content === 'string') {
-            responseData = JSON.parse(content);
-          }
-          
-          // Add quantity_increment to each product in the response data
-          if (responseData?.products && Array.isArray(responseData.products)) {
-            formattedProducts.forEach((formattedProduct, index) => {
-              if (responseData.products[index] && formattedProduct.quantity_increment) {
-                responseData.products[index].quantity_increment = formattedProduct.quantity_increment;
-                console.log(`Added quantity_increment=${formattedProduct.quantity_increment} to product in tool response`);
-              }
-            });
-            
-            // Update the tool response content with the modified data
-            toolUseResponse.content[0].text = typeof content === 'object' ? responseData : JSON.stringify(responseData);
-            
-            // Log the modified response to verify quantity_increment is present
-            console.log('Modified tool response with quantity_increment:', JSON.stringify(toolUseResponse.content[0].text, null, 2).substring(0, 500));
-          }
-        } catch (e) {
-          console.error('Error adding quantity_increment to tool response:', e);
-        }
-      }
     }
 
     addToolResultToHistory(conversationHistory, toolUseId, toolUseResponse.content, conversationId);
@@ -95,7 +62,6 @@ export function createToolService() {
    */
   const processProductSearchResult = (toolUseResponse) => {
     try {
-      console.log("Processing product search result");
       let products = [];
 
       if (toolUseResponse.content && toolUseResponse.content.length > 0) {
@@ -114,16 +80,15 @@ export function createToolService() {
               .slice(0, AppConfig.tools.maxProductsToDisplay)
               .map(formatProductData);
 
-            console.log(`Found ${products.length} products to display`);
+            /* build preview list only; avoid noisy logs */
           }
         } catch (e) {
-          console.error("Error parsing product data:", e);
+          /* ignore parse errors */
         }
       }
 
       return products;
     } catch (error) {
-      console.error("Error processing product search results:", error);
       return [];
     }
   };
@@ -140,63 +105,6 @@ export function createToolService() {
         ? `${product.variants[0].currency} ${product.variants[0].price}`
         : 'Price not available');
 
-    // Extract quantity increment from custom metafield or config
-    let quantity_increment = null;
-
-    // Log the full product structure for debugging (only if no metafield found)
-    if (!product.metafield && !product.metafields) {
-      console.log('WARNING: Product has no metafield data. Structure:', JSON.stringify(product, null, 2));
-      console.log('Product:', product.title, '- Please ensure MCP server returns metafields');
-    }
-    
-    // Fallback: Check local configuration file for product ID or title
-    if (!quantity_increment) {
-      const productId = product.product_id || product.id;
-      const productTitle = product.title;
-      
-      if (quantityIncrements[productId]) {
-        quantity_increment = quantityIncrements[productId];
-        console.log(`Found increment in config by product_id: ${quantity_increment}`);
-      } else if (quantityIncrements[productTitle]) {
-        quantity_increment = quantityIncrements[productTitle];
-        console.log(`Found increment in config by product title: ${quantity_increment}`);
-      }
-    }
-
-    // Check custom metafield for quantity increment
-    if (product.metafield?.custom?.quantity_increment) {
-      quantity_increment = product.metafield.custom.quantity_increment;
-      console.log('Found increment in product.metafield.custom.quantity_increment:', quantity_increment);
-    }
-
-    // Check if metafield is at root level (alternate format)
-    if (!quantity_increment && product.metafield?.quantity_increment) {
-      quantity_increment = product.metafield.quantity_increment;
-      console.log('Found increment in product.metafield.quantity_increment:', quantity_increment);
-    }
-
-    // Check metafields array format
-    if (!quantity_increment && product.metafields && Array.isArray(product.metafields)) {
-      const metafield = product.metafields.find(m => m.key === 'quantity_increment' || m.key === 'custom.quantity_increment');
-      if (metafield) {
-        quantity_increment = metafield.value;
-        console.log('Found increment in metafields array:', quantity_increment);
-      }
-    }
-
-    // Check variant metafields
-    if (!quantity_increment && product.variants && product.variants.length > 0) {
-      const variant = product.variants[0];
-      if (variant.metafield?.custom?.quantity_increment) {
-        quantity_increment = variant.metafield.custom.quantity_increment;
-        console.log('Found increment in variant.metafield.custom.quantity_increment:', quantity_increment);
-      }
-      if (variant.metafield?.quantity_increment) {
-        quantity_increment = variant.metafield.quantity_increment;
-        console.log('Found increment in variant.metafield.quantity_increment:', quantity_increment);
-      }
-    }
-
     const formattedProduct = {
       id: product.product_id || `product-${Math.random().toString(36).substring(7)}`,
       title: product.title || 'Product',
@@ -205,13 +113,6 @@ export function createToolService() {
       description: product.description || '',
       url: product.url || ''
     };
-
-    // Only add quantity increment if it has a value
-    if (quantity_increment !== null) {
-      formattedProduct.quantity_increment = quantity_increment;
-    }
-
-    console.log(`Formatted product: ${product.title}, increment: ${quantity_increment}`);
 
     return formattedProduct;
   };
