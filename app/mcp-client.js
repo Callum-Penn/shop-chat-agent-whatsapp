@@ -381,6 +381,24 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
+      // Attempt to inject last known cart_id when missing
+      try {
+        const CART_TOOLS = new Set(['update_cart', 'get_cart', 'get_cart_checkout_url']);
+        if (CART_TOOLS.has(toolName) && toolArgs && typeof toolArgs === 'object' && !('cart_id' in toolArgs) && !('cartId' in toolArgs)) {
+          const conversation = await prisma.conversation.findUnique({
+            where: { id: this.conversationId },
+            select: { metadata: true }
+          });
+          const lastCartId = conversation?.metadata?.last_cart_id;
+          if (lastCartId) {
+            toolArgs.cart_id = lastCartId;
+            console.warn(`[CART] Injected saved cart_id into ${toolName}: ${lastCartId}`);
+          }
+        }
+      } catch (metaErr) {
+        console.error('Failed to inject saved cart_id:', metaErr);
+      }
+
       // Enforce quantity increments on cart updates server-side for safety
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
         try {
@@ -450,7 +468,22 @@ class MCPClient {
         headers
       );
 
-      return response.result || response;
+      const result = response.result || response;
+
+      // After successful cart-related calls, persist last cart info
+      try {
+        const CART_TOOLS = new Set(['update_cart', 'get_cart', 'get_cart_checkout_url', 'get_cart']);
+        if (CART_TOOLS.has(toolName) && result) {
+          const { cartId, checkoutUrl } = this._extractCartInfo(result);
+          if (cartId || checkoutUrl) {
+            await this._updateLastCartMetadata({ cartId, checkoutUrl });
+          }
+        }
+      } catch (persistErr) {
+        console.error('Failed to persist last cart metadata:', persistErr);
+      }
+
+      return result;
     } catch (error) {
       console.error(`Error calling tool ${toolName}:`, error);
       throw error;
@@ -670,6 +703,97 @@ class MCPClient {
           input_schema: tool.inputSchema || tool.input_schema,
         };
       });
+  }
+
+  /**
+   * Extract cart id and checkout url from a tool response
+   * @private
+   * @param {Object} toolResponse
+   * @returns {{cartId: string|null, checkoutUrl: string|null}}
+   */
+  _extractCartInfo(toolResponse) {
+    let cartId = null;
+    let checkoutUrl = null;
+    try {
+      const contentBlock = Array.isArray(toolResponse?.content) ? toolResponse.content[0] : null;
+      let payload = contentBlock?.text ?? contentBlock ?? toolResponse;
+      if (typeof payload === 'string') {
+        try {
+          payload = JSON.parse(payload);
+        } catch {
+          // leave as string
+        }
+      }
+
+      const obj = payload && typeof payload === 'object' ? payload : {};
+
+      // Common shapes
+      // 1) { cart: { id, checkout_url } }
+      if (obj.cart && typeof obj.cart === 'object') {
+        cartId = obj.cart.id || obj.cart.cart_id || null;
+        checkoutUrl = obj.cart.checkout_url || obj.cart.checkoutUrl || obj.cart.webUrl || null;
+      }
+
+      // 2) flat fields { id, checkout_url } or { cart_id, checkout_url }
+      if (!cartId) {
+        cartId = obj.cart_id || obj.cartId || obj.id || null;
+      }
+      if (!checkoutUrl) {
+        checkoutUrl = obj.checkout_url || obj.checkoutUrl || obj.webUrl || null;
+      }
+
+      // Heuristic: only accept plausible cart GIDs/ids
+      if (cartId && typeof cartId === 'string') {
+        // keep as-is
+      } else {
+        cartId = null;
+      }
+      if (checkoutUrl && typeof checkoutUrl === 'string') {
+        // keep as-is
+      } else {
+        checkoutUrl = null;
+      }
+    } catch (e) {
+      // ignore parse errors
+    }
+    return { cartId, checkoutUrl };
+  }
+
+  /**
+   * Persist last cart info on the conversation metadata
+   * @private
+   * @param {{cartId?: string|null, checkoutUrl?: string|null}} info
+   */
+  async _updateLastCartMetadata({ cartId, checkoutUrl }) {
+    try {
+      const existing = await prisma.conversation.findUnique({
+        where: { id: this.conversationId },
+        select: { metadata: true }
+      });
+      const metadata = { ...(existing?.metadata || {}) };
+      let changed = false;
+      if (cartId && metadata.last_cart_id !== cartId) {
+        metadata.last_cart_id = cartId;
+        changed = true;
+      }
+      if (checkoutUrl && metadata.last_checkout_url !== checkoutUrl) {
+        metadata.last_checkout_url = checkoutUrl;
+        changed = true;
+      }
+      if (changed) {
+        metadata.last_cart_updated_at = new Date().toISOString();
+        await prisma.conversation.update({
+          where: { id: this.conversationId },
+          data: {
+            metadata,
+            updatedAt: new Date()
+          }
+        });
+        console.warn(`[CART] Persisted last cart info: id=${metadata.last_cart_id || 'n/a'} checkout=${metadata.last_checkout_url ? 'yes' : 'no'}`);
+      }
+    } catch (e) {
+      console.error('Failed updating conversation metadata with cart info:', e);
+    }
   }
 }
 
