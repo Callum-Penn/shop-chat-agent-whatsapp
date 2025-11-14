@@ -600,6 +600,38 @@ export const action = async ({ request }) => {
                       content: toolResultText
                     }]
                   });
+
+                  // If this was a cart update, automatically fetch and send a checkout link
+                  if (toolName === 'update_cart') {
+                    try {
+                      const { getConversation } = await import("../db.server");
+                      const conv = await getConversation(conversationId);
+                      const lastCartId = conv?.metadata?.last_cart_id;
+                      const followupArgs = lastCartId ? { cart_id: lastCartId } : {};
+                      
+                      const checkoutResp = await mcpClient.callTool('get_cart_checkout_url', followupArgs);
+                      if (!checkoutResp.error) {
+                        checkoutLinkAuthorized = true;
+                        
+                        // Extract URL
+                        let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
+                        try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
+                        const url =
+                          payload?.checkout_url ||
+                          payload?.checkoutUrl ||
+                          payload?.cart?.checkout_url ||
+                          payload?.cart?.checkoutUrl;
+                        
+                        if (url) {
+                          aiResponse = `Here’s your checkout link: ${url}`;
+                          conversationComplete = true;
+                          break;
+                        }
+                      }
+                    } catch (autoErr) {
+                      console.warn('WhatsApp auto-checkout-link fetch failed:', autoErr?.message || autoErr);
+                    }
+                  }
                   
                   // Continue to next turn to see if AI wants to use more tools
                   break; // Break out of tool loop, continue to next conversation turn

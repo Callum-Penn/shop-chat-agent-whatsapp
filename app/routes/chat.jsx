@@ -565,6 +565,39 @@ async function handleChatSession({
                 productsToDisplay,
                 conversationId
               );
+
+              // After a successful cart update, automatically fetch and stream a checkout link
+              if (toolName === 'update_cart') {
+                try {
+                  const conversation = await getConversation(conversationId);
+                  const lastCartId = conversation?.metadata?.last_cart_id;
+                  const followupArgs = lastCartId ? { cart_id: lastCartId } : {};
+                  
+                  const checkoutResp = await mcpClient.callTool('get_cart_checkout_url', followupArgs);
+                  if (!checkoutResp.error) {
+                    // Authorize checkout links for this turn
+                    checkoutLinkAuthorized = true;
+                    
+                    // Extract URL from response
+                    let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
+                    try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
+                    const checkoutUrl =
+                      payload?.checkout_url ||
+                      payload?.checkoutUrl ||
+                      payload?.cart?.checkout_url ||
+                      payload?.cart?.checkoutUrl;
+                    
+                    if (checkoutUrl) {
+                      stream.sendMessage({
+                        type: 'chunk',
+                        chunk: `You can click here to proceed to checkout: ${checkoutUrl}`
+                      });
+                    }
+                  }
+                } catch (autoErr) {
+                  console.warn('Auto-checkout-link fetch failed:', autoErr?.message || autoErr);
+                }
+              }
             }
 
             // Signal new message to client
