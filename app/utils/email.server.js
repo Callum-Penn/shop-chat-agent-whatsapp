@@ -128,7 +128,8 @@ export function generateHandoffEmailHTML(handoffData) {
     channel, 
     conversationId,
     conversationSummary,
-    lastMessages 
+    lastMessages,
+    ticketReference
   } = handoffData;
   
   return `
@@ -159,6 +160,10 @@ export function generateHandoffEmailHTML(handoffData) {
             <h2>New Customer Service Handoff Request</h2>
           </div>
           <div class="content">
+            <div class="info-row">
+              <div class="label">Ticket Reference:</div>
+              <div>${ticketReference ? `#${ticketReference}` : 'Pending assignment'}</div>
+            </div>
             <div class="info-row">
               <div class="label">Customer Name:</div>
               <div>${customerName || 'Not provided'}</div>
@@ -225,12 +230,14 @@ export function generateHandoffEmailText(handoffData) {
     channel, 
     conversationId,
     conversationSummary,
-    lastMessages 
+    lastMessages,
+    ticketReference
   } = handoffData;
   
   return `
 New Customer Service Handoff Request
 
+Ticket Reference: ${ticketReference ? `#${ticketReference}` : 'Pending assignment'}
 Customer Name: ${customerName || 'Not provided'}
 Customer Email: ${customerEmail || 'Not provided'}
 Customer Phone: ${customerPhone || 'Not provided'}
@@ -260,13 +267,13 @@ ${text}
  * Generate confirmation HTML email for the customer after a ticket is created
  * @param {Object} data - Confirmation data
  * @param {string} [data.customerName] - Name to greet
- * @param {string} data.ticketId - Ticket reference/conversation ID
+ * @param {string} data.ticketReference - Ticket reference number
  * @param {string} [data.supportHours] - Support hours string
  * @returns {string} HTML email content
  */
 export function generateTicketReceiptEmailHTML({
   customerName,
-  ticketId,
+  ticketReference,
   supportHours = TICKET_RECEIPT_SUPPORT_HOURS
 }) {
   const greetingName = customerName || "there";
@@ -290,7 +297,7 @@ export function generateTicketReceiptEmailHTML({
             <p>Hi ${greetingName},</p>
             <p>Thanks for reaching out. We've opened a support ticket and our team will be in touch shortly.</p>
             <div class="ticket">
-              Reference: ${ticketId}
+              Reference: #${ticketReference}
             </div>
             <div class="hours">
               <strong>Customer service hours</strong>
@@ -309,13 +316,13 @@ export function generateTicketReceiptEmailHTML({
  * Generate confirmation text email for the customer after a ticket is created
  * @param {Object} data - Confirmation data
  * @param {string} [data.customerName] - Name to greet
- * @param {string} data.ticketId - Ticket reference/conversation ID
+ * @param {string} data.ticketReference - Ticket reference number
  * @param {string} [data.supportHours] - Support hours string
  * @returns {string} Plain text email content
  */
 export function generateTicketReceiptEmailText({
   customerName,
-  ticketId,
+  ticketReference,
   supportHours = TICKET_RECEIPT_SUPPORT_HOURS
 }) {
   const greetingName = customerName || "there";
@@ -325,7 +332,7 @@ Hi ${greetingName},
 
 Thanks for reaching out. We've opened a support ticket for you and our team will respond shortly.
 
-Reference: ${ticketId}
+Reference: #${ticketReference}
 
 Customer service hours:
 ${supportHours}

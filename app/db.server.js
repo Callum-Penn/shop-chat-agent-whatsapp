@@ -655,6 +655,35 @@ export async function updateConversationMetadata(conversationId, metadataUpdate)
 }
 
 /**
+ * Generate a unique 3-digit ticket reference for support handoffs
+ * @returns {Promise<string>} - Unique ticket reference (e.g., "123")
+ */
+export async function generateUniqueTicketReference() {
+  const MAX_ATTEMPTS = 25;
+
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const candidate = String(Math.floor(Math.random() * 900) + 100);
+
+    const existingConversation = await prisma.conversation.findFirst({
+      where: {
+        metadata: {
+          path: ['handoff_ticket_reference'],
+          equals: candidate
+        }
+      },
+      select: { id: true }
+    });
+
+    if (!existingConversation) {
+      return candidate;
+    }
+  }
+
+  // Fallback: still return a 3-digit string even if uniqueness couldn't be confirmed
+  return String(Math.floor(Math.random() * 900) + 100);
+}
+
+/**
  * Archive old conversations that haven't been updated recently
  * @param {number} daysInactive - Number of days of inactivity before archiving (default: 30)
  * @returns {Promise<number>} - Number of conversations archived

@@ -140,7 +140,10 @@ export const action = async ({ request }) => {
     linkConversationToUser,
     getUserByPhoneNumber,
     deleteConversationHistory,
-    updateConversationMetadata
+    updateConversationMetadata,
+    getConversation,
+    generateUniqueTicketReference,
+    updateUser
   } = await import("../db.server");
   
   const body = await request.json();
@@ -281,6 +284,7 @@ export const action = async ({ request }) => {
           await updateConversationMetadata(conversationId, {
             handoff_requested: false,
             handoff_at: null,
+            handoff_ticket_reference: null,
             last_cart_id: null,
             last_checkout_url: null,
             last_cart_updated_at: null
@@ -484,10 +488,10 @@ export const action = async ({ request }) => {
                   // Handle escalate_to_customer_service custom tool
                   if (toolResponse.isCustomTool && toolName === 'escalate_to_customer_service') {
                     // Check if a handoff has already been requested
-                    const { getConversation, updateConversationMetadata } = await import("../db.server");
                     const conversation = await getConversation(conversationId);
                     const handoffRequested = conversation?.metadata?.handoff_requested === true;
                     const handoffAt = conversation?.metadata?.handoff_at;
+                    const existingTicketReference = conversation?.metadata?.handoff_ticket_reference;
                     
                     // Allow new ticket if 24 hours have passed since last handoff
                     const HANDOFF_COOLDOWN_HOURS = 24;
@@ -502,7 +506,8 @@ export const action = async ({ request }) => {
                         // Clear the old handoff flag
                         await updateConversationMetadata(conversationId, {
                           handoff_requested: false,
-                          handoff_at: null
+                          handoff_at: null,
+                          handoff_ticket_reference: null
                         });
                       }
                     }
@@ -511,7 +516,8 @@ export const action = async ({ request }) => {
                       console.warn('WhatsApp: Handoff already requested for this conversation');
                       
                       // Return message to user via WhatsApp
-                      aiResponse = "I've already created a support ticket for you. Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.";
+                      const referenceNote = existingTicketReference ? ` Your reference is Ticket #${existingTicketReference}.` : '';
+                      aiResponse = `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`;
                       conversationComplete = true;
                       break;
                     }
@@ -531,9 +537,10 @@ export const action = async ({ request }) => {
                       
                       // Send email to customer service
                       const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
+                      const ticketReference = await generateUniqueTicketReference();
                       await sendEmail({
                         to: supportEmail,
-                        subject: `New Customer Service Handoff - WhatsApp Chat`,
+                        subject: `New Customer Service Handoff - WhatsApp Chat (#${ticketReference})`,
                         html: generateHandoffEmailHTML({
                           customerName: customer_name,
                           customerEmail: customer_email,
@@ -541,7 +548,8 @@ export const action = async ({ request }) => {
                           channel: 'whatsapp',
                           conversationId,
                           conversationSummary,
-                          lastMessages
+                          lastMessages,
+                          ticketReference
                         }),
                         text: generateHandoffEmailText({
                           customerName: customer_name,
@@ -550,7 +558,8 @@ export const action = async ({ request }) => {
                           channel: 'whatsapp',
                           conversationId,
                           conversationSummary,
-                          lastMessages
+                          lastMessages,
+                          ticketReference
                         })
                       });
 
@@ -558,14 +567,14 @@ export const action = async ({ request }) => {
                         try {
                           await sendEmail({
                             to: customer_email,
-                            subject: `We've received your support request (${conversationId})`,
+                            subject: `We've received your support request (Ticket #${ticketReference})`,
                             html: generateTicketReceiptEmailHTML({
                               customerName: customer_name,
-                              ticketId: conversationId
+                              ticketReference
                             }),
                             text: generateTicketReceiptEmailText({
                               customerName: customer_name,
-                              ticketId: conversationId
+                              ticketReference
                             })
                           });
                         } catch (customerEmailError) {
@@ -574,7 +583,6 @@ export const action = async ({ request }) => {
                       }
                       
                       // Update user info in database
-                      const { getUserByPhoneNumber, updateUser } = await import("../db.server");
                       const user = await getUserByPhoneNumber(from);
                       if (user) {
                         await updateUser(user.id, {
@@ -584,10 +592,10 @@ export const action = async ({ request }) => {
                       }
                       
                       // Mark conversation metadata
-                      const { updateConversationMetadata } = await import("../db.server");
                       await updateConversationMetadata(conversationId, {
                         handoff_requested: true,
-                        handoff_at: new Date().toISOString()
+                        handoff_at: new Date().toISOString(),
+                        handoff_ticket_reference: ticketReference
                       });
                       
                       // Update conversation history
@@ -600,11 +608,11 @@ export const action = async ({ request }) => {
                         content: [{
                           type: 'tool_result',
                           tool_use_id: content.id,
-                          content: `Customer service handoff completed. Email sent to ${supportEmail}.`
+                          content: `Customer service handoff completed. Ticket #${ticketReference}. Email sent to ${supportEmail}.`
                         }]
                       });
                       
-                      aiResponse = "Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is: " + conversationId;
+                      aiResponse = `Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is Ticket #${ticketReference}.`;
                       conversationComplete = true;
                       break;
                       
@@ -725,7 +733,6 @@ export const action = async ({ request }) => {
                       console.warn('WhatsApp: Failed to summarize cart lines:', summErr);
                     }
                     try {
-                      const { getConversation } = await import("../db.server");
                       const conv = await getConversation(conversationId);
                       const lastCartId = conv?.metadata?.last_cart_id;
                       const argsPrimary = lastCartId ? { cart_id: lastCartId } : {};

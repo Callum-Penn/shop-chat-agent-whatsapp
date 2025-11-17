@@ -197,7 +197,8 @@ async function handleChatSession({
     updateConversationMetadata,
     getUserById,
     updateUser,
-    getConversation
+    getConversation,
+    generateUniqueTicketReference
   } = await import("../db.server");
   
   // Initialize services
@@ -396,6 +397,7 @@ async function handleChatSession({
               const conversation = await getConversation(conversationId);
               const handoffRequested = conversation?.metadata?.handoff_requested === true;
               const handoffAt = conversation?.metadata?.handoff_at;
+              const existingTicketReference = conversation?.metadata?.handoff_ticket_reference;
               
               // Allow new ticket if 24 hours have passed since last handoff
               const HANDOFF_COOLDOWN_HOURS = 24;
@@ -410,7 +412,8 @@ async function handleChatSession({
                   // Clear the old handoff flag
                   await updateConversationMetadata(conversationId, {
                     handoff_requested: false,
-                    handoff_at: null
+                    handoff_at: null,
+                    handoff_ticket_reference: null
                   });
                 }
               }
@@ -435,9 +438,10 @@ async function handleChatSession({
                 });
                 
                 // Stream response to user
+                const referenceNote = existingTicketReference ? ` Your reference is Ticket #${existingTicketReference}.` : '';
                 const cooldownMessage = hoursRemaining > 0 
-                  ? `I've already created a support ticket for you. Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`
-                  : "I've already created a support ticket for you. Our customer service team will be in touch soon. Please wait for their response - there's no need to submit another ticket.";
+                  ? `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`
+                  : `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. Please wait for their response - there's no need to submit another ticket.`;
                 
                 stream.sendMessage({
                   type: 'chunk',
@@ -449,7 +453,7 @@ async function handleChatSession({
                 return;
               }
               
-              const { customer_name, customer_email, customer_phone, reason } = toolArgs;
+                const { customer_name, customer_email, customer_phone, reason } = toolArgs;
               
               try {
                 // Get conversation history for summary
@@ -464,9 +468,10 @@ async function handleChatSession({
                 
                 // Send email to customer service
                 const supportEmail = process.env.SUPPORT_EMAIL || 'support@vapelocal.co.uk';
+                const ticketReference = await generateUniqueTicketReference();
                 await sendEmail({
                   to: supportEmail,
-                  subject: `New Customer Service Handoff - Web Chat`,
+                  subject: `New Customer Service Handoff - Web Chat (#${ticketReference})`,
                   html: generateHandoffEmailHTML({
                     customerName: customer_name,
                     customerEmail: customer_email,
@@ -474,7 +479,8 @@ async function handleChatSession({
                     channel: 'web',
                     conversationId,
                     conversationSummary,
-                    lastMessages
+                    lastMessages,
+                    ticketReference
                   }),
                   text: generateHandoffEmailText({
                     customerName: customer_name,
@@ -483,7 +489,8 @@ async function handleChatSession({
                     channel: 'web',
                     conversationId,
                     conversationSummary,
-                    lastMessages
+                    lastMessages,
+                    ticketReference
                   })
                 });
 
@@ -491,14 +498,14 @@ async function handleChatSession({
                   try {
                     await sendEmail({
                       to: customer_email,
-                      subject: `We've received your support request (${conversationId})`,
+                      subject: `We've received your support request (Ticket #${ticketReference})`,
                       html: generateTicketReceiptEmailHTML({
                         customerName: customer_name,
-                        ticketId: conversationId
+                        ticketReference
                       }),
                       text: generateTicketReceiptEmailText({
                         customerName: customer_name,
-                        ticketId: conversationId
+                        ticketReference
                       })
                     });
                   } catch (customerEmailError) {
@@ -521,7 +528,8 @@ async function handleChatSession({
                 // Mark conversation metadata
                 await updateConversationMetadata(conversationId, {
                   handoff_requested: true,
-                  handoff_at: new Date().toISOString()
+                  handoff_at: new Date().toISOString(),
+                  handoff_ticket_reference: ticketReference
                 });
                 
                 // Update conversation history
@@ -534,14 +542,14 @@ async function handleChatSession({
                   content: [{
                     type: 'tool_result',
                     tool_use_id: toolUseId,
-                    content: `Customer service handoff completed. Email sent to ${supportEmail}.`
+                      content: `Customer service handoff completed. Ticket #${ticketReference}. Email sent to ${supportEmail}.`
                   }]
                 });
                 
                 // Stream response to user
                 stream.sendMessage({
                   type: 'chunk',
-                  chunk: "Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is: " + conversationId
+                  chunk: `Thank you for providing your details. I've notified our customer service team and they'll contact you shortly. Your reference is Ticket #${ticketReference}.`
                 });
                 
                 // Mark handoff as completed to stop the loop
