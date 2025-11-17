@@ -12,7 +12,7 @@ const mcpCache = new Map();
 
 // Helper to get or create cached MCP client
 async function getCachedMCPClient(shopDomain, conversationId, shopId) {
-  const cacheKey = `${shopDomain}_${shopId}`;
+  const cacheKey = `${shopDomain}_${shopId}_${conversationId}`;
   
   if (mcpCache.has(cacheKey)) {
     return mcpCache.get(cacheKey);
