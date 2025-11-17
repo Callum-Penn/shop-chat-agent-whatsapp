@@ -510,6 +510,22 @@ class MCPClient {
       const result = response.result || response;
       console.log(`${this.logPrefix} RESULT storefront.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
 
+      if (result?.isError) {
+        const message = this._extractErrorMessage(result);
+        if (['update_cart', 'get_cart'].includes(toolName)) {
+          if (/invalid\s+cart_id/i.test(message)) {
+            await this._clearLastCartMetadata();
+          }
+        }
+        return {
+          error: {
+            type: 'tool_error',
+            data: message
+          },
+          rawResult: result
+        };
+      }
+
       // After successful cart-related calls, persist last cart info
       try {
         const CART_TOOLS = new Set(['update_cart', 'get_cart']);
@@ -634,6 +650,16 @@ class MCPClient {
 
         const result = response.result || response;
         console.log(`${this.logPrefix} RESULT customer.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
+        if (result?.isError) {
+          const message = this._extractErrorMessage(result);
+          return {
+            error: {
+              type: 'tool_error',
+              data: message
+            },
+            rawResult: result
+          };
+        }
         return result;
       } catch (error) {
         console.error(`${this.logPrefix} ERROR customer.${toolName}:`, error);
@@ -785,15 +811,12 @@ class MCPClient {
         checkoutUrl = obj.checkout_url || obj.checkoutUrl || obj.webUrl || null;
       }
 
-      // Heuristic: only accept plausible cart GIDs/ids
+      // Heuristic: ensure cartId is a trimmed string (keep ?key intact for Shopify)
       if (cartId && typeof cartId === 'string') {
-        // Normalize: strip any query params accidentally included (e.g., ?key=...)
-        const qIndex = cartId.indexOf('?');
-        if (qIndex !== -1) {
-          cartId = cartId.slice(0, qIndex);
-        }
         cartId = cartId.trim();
-        // keep as-is
+        if (!cartId) {
+          cartId = null;
+        }
       } else {
         cartId = null;
       }
@@ -852,6 +875,50 @@ class MCPClient {
   }
 
   /**
+   * Clear cached and persisted cart metadata (e.g., when Shopify rejects the cart_id)
+   * @private
+   */
+  async _clearLastCartMetadata() {
+    try {
+      this.lastCartId = null;
+      this.lastCheckoutUrl = null;
+      const existing = await prisma.conversation.findUnique({
+        where: { id: this.conversationId },
+        select: { metadata: true }
+      });
+      if (!existing?.metadata) {
+        return;
+      }
+      const metadata = { ...existing.metadata };
+      let changed = false;
+      if (metadata.last_cart_id) {
+        metadata.last_cart_id = null;
+        changed = true;
+      }
+      if (metadata.last_checkout_url) {
+        metadata.last_checkout_url = null;
+        changed = true;
+      }
+      if (metadata.last_cart_updated_at) {
+        metadata.last_cart_updated_at = null;
+        changed = true;
+      }
+      if (changed) {
+        await prisma.conversation.update({
+          where: { id: this.conversationId },
+          data: {
+            metadata,
+            updatedAt: new Date()
+          }
+        });
+        console.warn(`${this.logPrefix} Cleared saved cart metadata after invalid cart_id`);
+      }
+    } catch (err) {
+      console.error('Failed clearing conversation cart metadata:', err);
+    }
+  }
+
+  /**
    * Safely serialize data for logging
    * @private
    * @param {any} data
@@ -875,6 +942,24 @@ class MCPClient {
     } catch (err) {
       return '[Unserializable payload]';
     }
+  }
+
+  /**
+   * Extract a human-friendly error message from MCP error responses
+   * @private
+   * @param {Object} result
+   * @returns {string}
+   */
+  _extractErrorMessage(result) {
+    if (!result) return 'Unknown MCP error';
+    if (typeof result === 'string') return result;
+    if (Array.isArray(result?.content) && result.content[0]) {
+      const block = result.content[0];
+      if (typeof block === 'string') return block;
+      if (typeof block?.text === 'string') return block.text;
+    }
+    if (result?.error?.message) return result.error.message;
+    return this._serializeForLog(result, 400);
   }
 }
 
