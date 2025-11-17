@@ -572,6 +572,7 @@ async function handleChatSession({
                   const conversation = await getConversation(conversationId);
                   const lastCartId = conversation?.metadata?.last_cart_id;
                   const followupArgs = lastCartId ? { cart_id: lastCartId } : {};
+                  console.warn(`[CHECKOUT][AUTO][WEB] update_cart success; attempting get_cart with cart_id=${followupArgs.cart_id || 'none'}`);
                   // Primary: use get_cart to retrieve checkout URL
                   let url;
                   try {
@@ -580,6 +581,7 @@ async function handleChatSession({
                       let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
                       try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
                       url = gp?.checkout_url || gp?.checkoutUrl || gp?.cart?.checkout_url || gp?.cart?.checkoutUrl;
+                      console.warn(`[CHECKOUT][AUTO][WEB] get_cart returned url=${url ? 'yes' : 'no'}`);
                     }
                   } catch (e2) {
                     console.warn('Auto-checkout-link get_cart failed:', e2?.message || e2);
@@ -587,10 +589,15 @@ async function handleChatSession({
                   // Fallback: use persisted metadata
                   if (!url) {
                     url = conversation?.metadata?.last_checkout_url || null;
+                    if (url) {
+                      console.warn('[CHECKOUT][AUTO][WEB] Using cached checkout URL from conversation metadata');
+                    }
                   }
                   if (url) {
                     checkoutLinkAuthorized = true;
                     stream.sendMessage({ type: 'checkout_link', url });
+                  } else {
+                    console.warn('[CHECKOUT][AUTO][WEB] No checkout URL available after update_cart');
                   }
                 } catch (autoErr) {
                   console.warn('Auto-checkout-link fetch failed:', autoErr?.message || autoErr);

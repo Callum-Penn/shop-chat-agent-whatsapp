@@ -27,6 +27,8 @@ class MCPClient {
     this.storefrontTools = [];
     this.lastCartId = null;
     this.lastCheckoutUrl = null;
+    this.channel = channel;
+    this.logPrefix = `[MCP][${channel === 'whatsapp' ? 'WA' : 'WEB'}][${conversationId}]`;
 
     // Add custom tools that aren't from MCP servers
     // Only add send_order_template for WhatsApp channel
@@ -384,6 +386,7 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
+      console.log(`${this.logPrefix} CALL storefront.${toolName} args=${this._serializeForLog(toolArgs)}`);
       // Attempt to inject last known cart_id when missing
       try {
         const CART_TOOLS = new Set(['update_cart', 'get_cart']);
@@ -505,6 +508,7 @@ class MCPClient {
       );
 
       const result = response.result || response;
+      console.log(`${this.logPrefix} RESULT storefront.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
 
       // After successful cart-related calls, persist last cart info
       try {
@@ -521,7 +525,7 @@ class MCPClient {
 
       return result;
     } catch (error) {
-      console.error(`Error calling tool ${toolName}:`, error);
+      console.error(`${this.logPrefix} ERROR storefront.${toolName}:`, error);
       throw error;
     }
   }
@@ -560,6 +564,7 @@ class MCPClient {
    */
   async callCustomerTool(toolName, toolArgs) {
     try {
+      console.log(`${this.logPrefix} CALL customer.${toolName} args=${this._serializeForLog(toolArgs)}`);
       // First try to get a token from the database for this conversation
       let accessToken = this.customerAccessToken;
 
@@ -627,9 +632,11 @@ class MCPClient {
           headers
         );
 
-        return response.result || response;
+        const result = response.result || response;
+        console.log(`${this.logPrefix} RESULT customer.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
+        return result;
       } catch (error) {
-        console.error('Customer MCP tool call error:', error);
+        console.error(`${this.logPrefix} ERROR customer.${toolName}:`, error);
         console.error('Error details:', {
           message: error.message,
           status: error.status,
@@ -842,6 +849,32 @@ class MCPClient {
       } catch (e) {
         console.error('Failed updating conversation metadata with cart info:', e);
       }
+  }
+
+  /**
+   * Safely serialize data for logging
+   * @private
+   * @param {any} data
+   * @param {number} maxLength
+   */
+  _serializeForLog(data, maxLength = 1200) {
+    try {
+      const json = JSON.stringify(
+        data,
+        (key, value) => {
+          if (typeof value === 'string' && /(token|secret|password|key)/i.test(key)) {
+            return '[REDACTED]';
+          }
+          return value;
+        }
+      );
+      if (typeof json === 'string' && json.length > maxLength) {
+        return `${json.slice(0, maxLength)}…`;
+      }
+      return json;
+    } catch (err) {
+      return '[Unserializable payload]';
+    }
   }
 }
 

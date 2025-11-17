@@ -651,6 +651,7 @@ export const action = async ({ request }) => {
                       const argsPrimary = lastCartId ? { cart_id: lastCartId } : {};
                       const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
                       let url;
+                      console.warn(`[CHECKOUT][AUTO][WA] update_cart success; attempting get_cart with cart_id=${argsPrimary.cart_id || 'none'}`);
                       try {
                         const gr = await mcpClient.callTool('get_cart', argsPrimary);
                         if (!gr.error) {
@@ -660,6 +661,7 @@ export const action = async ({ request }) => {
                           if (candidate) {
                             url = toStoreHost(candidate);
                           }
+                          console.warn(`[CHECKOUT][AUTO][WA] get_cart returned url=${candidate ? 'yes' : 'no'}`);
                         }
                       } catch (e2) {
                         console.warn('WhatsApp auto-checkout-link get_cart failed:', e2?.message || e2);
@@ -668,6 +670,7 @@ export const action = async ({ request }) => {
                         let metaUrl = conv?.metadata?.last_checkout_url || null;
                         if (metaUrl) {
                           url = toStoreHost(metaUrl);
+                          console.warn('[CHECKOUT][AUTO][WA] Using cached checkout URL from conversation metadata');
                         }
                       }
                       if (url) {
@@ -675,6 +678,8 @@ export const action = async ({ request }) => {
                         aiResponse = `Here’s your checkout link: ${url}`;
                         conversationComplete = true;
                         break;
+                      } else {
+                        console.warn('[CHECKOUT][AUTO][WA] No checkout URL available after update_cart');
                       }
                     } catch (autoErr) {
                       console.warn('WhatsApp auto-checkout-link fetch failed:', autoErr?.message || autoErr);
