@@ -649,12 +649,12 @@ export const action = async ({ request }) => {
                         let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
                         try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
                         let url = payload?.checkout_url || payload?.checkoutUrl || (payload?.cart && (payload.cart.checkout_url || payload.cart.checkoutUrl));
-                        const isMyShopify = (href) => { try { const h = new URL(href).host; return /\.myshopify\.com$/i.test(h); } catch { return false; } };
-                        const toMyShopify = (href) => { try { const u = new URL(href); u.host = `${shopId}.myshopify.com`; return u.toString(); } catch { return href; } };
-                        if (url && !isMyShopify(url)) {
-                          url = toMyShopify(url);
+                        // Force URL to storefront domain (allowedHost)
+                        const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
+                        if (url) {
+                          url = toStoreHost(url);
                         }
-                        if (url && isMyShopify(url)) {
+                        if (url) {
                           aiResponse = `Here’s your checkout link: ${url}`;
                           conversationComplete = true;
                           break;
@@ -667,8 +667,7 @@ export const action = async ({ request }) => {
                         const conv2 = await getConversation(conversationId);
                         const lastCartId2 = conv2?.metadata?.last_cart_id;
                         const args2 = lastCartId2 ? { cart_id: lastCartId2 } : {};
-                        const isMyShopify = (href) => { try { const h = new URL(href).host; return /\.myshopify\.com$/i.test(h); } catch { return false; } };
-                        const toMyShopify = (href) => { try { const u = new URL(href); u.host = `${shopId}.myshopify.com`; return u.toString(); } catch { return href; } };
+                        const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
                         let url;
                         try {
                           const gr = await mcpClient.callTool('get_cart', args2);
@@ -677,12 +676,7 @@ export const action = async ({ request }) => {
                             try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
                             let candidate = gp?.checkout_url || gp?.checkoutUrl || (gp?.cart && (gp.cart.checkout_url || gp.cart.checkoutUrl));
                             if (candidate) {
-                              if (!isMyShopify(candidate)) {
-                                candidate = toMyShopify(candidate);
-                              }
-                              if (isMyShopify(candidate)) {
-                                url = candidate;
-                              }
+                              url = toStoreHost(candidate);
                             }
                           }
                         } catch (e2) {
@@ -691,12 +685,7 @@ export const action = async ({ request }) => {
                         if (!url) {
                           let metaUrl = conv2?.metadata?.last_checkout_url || null;
                           if (metaUrl) {
-                            if (!isMyShopify(metaUrl)) {
-                              metaUrl = toMyShopify(metaUrl);
-                            }
-                            if (isMyShopify(metaUrl)) {
-                              url = metaUrl;
-                            }
+                            url = toStoreHost(metaUrl);
                           }
                         }
                         if (url) {
@@ -775,8 +764,8 @@ export const action = async ({ request }) => {
           aiResponse = aiResponse.replace(urlRegex, (match) => {
             try {
               const u = new URL(match);
-              const isMyShopify = /\.myshopify\.com$/i.test(u.host);
-              return isMyShopify ? match : '';
+              const isAllowed = allowedHost && u.host === allowedHost;
+              return isAllowed ? match : '';
             } catch {
               return match;
             }
