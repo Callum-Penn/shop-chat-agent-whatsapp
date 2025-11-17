@@ -390,7 +390,10 @@ class MCPClient {
       // Attempt to inject last known cart_id when missing
       try {
         const CART_TOOLS = new Set(['update_cart', 'get_cart']);
-        if (CART_TOOLS.has(toolName) && toolArgs && typeof toolArgs === 'object' && !('cart_id' in toolArgs) && !('cartId' in toolArgs)) {
+        if (CART_TOOLS.has(toolName)) {
+          if (!toolArgs || typeof toolArgs !== 'object') {
+            toolArgs = {};
+          }
           let lastCartId = this.lastCartId;
           if (!lastCartId) {
             const conversation = await prisma.conversation.findUnique({
@@ -403,6 +406,9 @@ class MCPClient {
             }
           }
           if (lastCartId) {
+            if (toolArgs.cart_id && toolArgs.cart_id !== lastCartId) {
+              console.warn(`[CART] Overriding provided cart_id for ${toolName}; using persisted id ${lastCartId}`);
+            }
             toolArgs.cart_id = lastCartId;
             console.warn(`[CART] Injected saved cart_id into ${toolName}: ${lastCartId}`);
           }
