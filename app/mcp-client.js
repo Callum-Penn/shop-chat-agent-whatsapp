@@ -384,7 +384,7 @@ class MCPClient {
     try {
       // Attempt to inject last known cart_id when missing
       try {
-        const CART_TOOLS = new Set(['update_cart', 'get_cart', 'get_cart_checkout_url']);
+        const CART_TOOLS = new Set(['update_cart', 'get_cart']);
         if (CART_TOOLS.has(toolName) && toolArgs && typeof toolArgs === 'object' && !('cart_id' in toolArgs) && !('cartId' in toolArgs)) {
           const conversation = await prisma.conversation.findUnique({
             where: { id: this.conversationId },
@@ -500,7 +500,7 @@ class MCPClient {
 
       // After successful cart-related calls, persist last cart info
       try {
-        const CART_TOOLS = new Set(['update_cart', 'get_cart', 'get_cart_checkout_url', 'get_cart']);
+        const CART_TOOLS = new Set(['update_cart', 'get_cart']);
         if (CART_TOOLS.has(toolName) && result) {
           const { cartId, checkoutUrl } = this._extractCartInfo(result);
           if (cartId || checkoutUrl) {

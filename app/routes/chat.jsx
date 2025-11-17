@@ -379,7 +379,7 @@ async function handleChatSession({
             const toolUseResponse = await mcpClient.callTool(toolName, toolArgs);
             
             // If checkout URL was generated successfully this turn, authorize link streaming
-            if (!toolUseResponse.error && toolName === 'get_cart_checkout_url') {
+            if (!toolUseResponse.error && toolName === 'get_cart') {
               checkoutLinkAuthorized = true;
             }
 
@@ -572,43 +572,28 @@ async function handleChatSession({
                   const conversation = await getConversation(conversationId);
                   const lastCartId = conversation?.metadata?.last_cart_id;
                   const followupArgs = lastCartId ? { cart_id: lastCartId } : {};
-                  const checkoutResp = await mcpClient.callTool('get_cart_checkout_url', followupArgs);
-                  if (!checkoutResp.error) {
-                    checkoutLinkAuthorized = true;
-                    let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
-                    try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
-                    const checkoutUrl = (typeof payload === 'object' ? (payload.checkout_url || payload.checkoutUrl || (payload.cart && (payload.cart.checkout_url || payload.cart.checkoutUrl))) : undefined);
-                    if (checkoutUrl) {
-                      stream.sendMessage({ type: 'checkout_link', url: checkoutUrl });
+                  // Primary: use get_cart to retrieve checkout URL
+                  let url;
+                  try {
+                    const gr = await mcpClient.callTool('get_cart', followupArgs);
+                    if (!gr.error) {
+                      let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
+                      try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
+                      url = gp?.checkout_url || gp?.checkoutUrl || gp?.cart?.checkout_url || gp?.cart?.checkoutUrl;
                     }
+                  } catch (e2) {
+                    console.warn('Auto-checkout-link get_cart failed:', e2?.message || e2);
+                  }
+                  // Fallback: use persisted metadata
+                  if (!url) {
+                    url = conversation?.metadata?.last_checkout_url || null;
+                  }
+                  if (url) {
+                    checkoutLinkAuthorized = true;
+                    stream.sendMessage({ type: 'checkout_link', url });
                   }
                 } catch (autoErr) {
                   console.warn('Auto-checkout-link fetch failed:', autoErr?.message || autoErr);
-                  try {
-                    const conv = await getConversation(conversationId);
-                    const lastCartId2 = conv?.metadata?.last_cart_id;
-                    const args2 = lastCartId2 ? { cart_id: lastCartId2 } : {};
-                    let url;
-                    try {
-                      const gr = await mcpClient.callTool('get_cart', args2);
-                      if (!gr.error) {
-                        let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
-                        try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
-                        url = gp?.checkout_url || gp?.checkoutUrl || gp?.cart?.checkout_url || gp?.cart?.checkoutUrl;
-                      }
-                    } catch (e2) {
-                      console.warn('Auto-checkout-link get_cart fallback failed:', e2?.message || e2);
-                    }
-                    if (!url) {
-                      url = conv?.metadata?.last_checkout_url || null;
-                    }
-                    if (url) {
-                      checkoutLinkAuthorized = true;
-                      stream.sendMessage({ type: 'checkout_link', url });
-                    }
-                  } catch (e3) {
-                    console.warn('Auto-checkout-link metadata fallback failed:', e3?.message || e3);
-                  }
                 }
               }
             }

@@ -365,7 +365,7 @@ export const action = async ({ request }) => {
                   const toolResponse = await mcpClient.callTool(toolName, toolArgs);
                   
                   // If checkout URL successfully generated, authorize links this turn
-                  if (!toolResponse.error && toolName === 'get_cart_checkout_url') {
+                  if (!toolResponse.error && toolName === 'get_cart') {
                     checkoutLinkAuthorized = true;
                   }
                   
@@ -643,60 +643,35 @@ export const action = async ({ request }) => {
                       const conv = await getConversation(conversationId);
                       const lastCartId = conv?.metadata?.last_cart_id;
                       const argsPrimary = lastCartId ? { cart_id: lastCartId } : {};
-                      const checkoutResp = await mcpClient.callTool('get_cart_checkout_url', argsPrimary);
-                      if (!checkoutResp.error) {
+                      const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
+                      let url;
+                      try {
+                        const gr = await mcpClient.callTool('get_cart', argsPrimary);
+                        if (!gr.error) {
+                          let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
+                          try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
+                          let candidate = gp?.checkout_url || gp?.checkoutUrl || (gp?.cart && (gp.cart.checkout_url || gp.cart.checkoutUrl));
+                          if (candidate) {
+                            url = toStoreHost(candidate);
+                          }
+                        }
+                      } catch (e2) {
+                        console.warn('WhatsApp auto-checkout-link get_cart failed:', e2?.message || e2);
+                      }
+                      if (!url) {
+                        let metaUrl = conv?.metadata?.last_checkout_url || null;
+                        if (metaUrl) {
+                          url = toStoreHost(metaUrl);
+                        }
+                      }
+                      if (url) {
                         checkoutLinkAuthorized = true;
-                        let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
-                        try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
-                        let url = payload?.checkout_url || payload?.checkoutUrl || (payload?.cart && (payload.cart.checkout_url || payload.cart.checkoutUrl));
-                        // Force URL to storefront domain (allowedHost)
-                        const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
-                        if (url) {
-                          url = toStoreHost(url);
-                        }
-                        if (url) {
-                          aiResponse = `Here’s your checkout link: ${url}`;
-                          conversationComplete = true;
-                          break;
-                        }
+                        aiResponse = `Here’s your checkout link: ${url}`;
+                        conversationComplete = true;
+                        break;
                       }
                     } catch (autoErr) {
-                      console.warn('WhatsApp auto-checkout-link failed:', autoErr?.message || autoErr);
-                      try {
-                        const { getConversation } = await import("../db.server");
-                        const conv2 = await getConversation(conversationId);
-                        const lastCartId2 = conv2?.metadata?.last_cart_id;
-                        const args2 = lastCartId2 ? { cart_id: lastCartId2 } : {};
-                        const toStoreHost = (href) => { try { const u = new URL(href); u.protocol = 'https:'; if (allowedHost) u.host = allowedHost; return u.toString(); } catch { return href; } };
-                        let url;
-                        try {
-                          const gr = await mcpClient.callTool('get_cart', args2);
-                          if (!gr.error) {
-                            let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
-                            try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
-                            let candidate = gp?.checkout_url || gp?.checkoutUrl || (gp?.cart && (gp.cart.checkout_url || gp.cart.checkoutUrl));
-                            if (candidate) {
-                              url = toStoreHost(candidate);
-                            }
-                          }
-                        } catch (e2) {
-                          console.warn('WhatsApp auto-checkout-link get_cart fallback failed:', e2?.message || e2);
-                        }
-                        if (!url) {
-                          let metaUrl = conv2?.metadata?.last_checkout_url || null;
-                          if (metaUrl) {
-                            url = toStoreHost(metaUrl);
-                          }
-                        }
-                        if (url) {
-                          checkoutLinkAuthorized = true;
-                          aiResponse = `Here’s your checkout link: ${url}`;
-                          conversationComplete = true;
-                          break;
-                        }
-                      } catch (e3) {
-                        console.warn('WhatsApp auto-checkout-link metadata fallback failed:', e3?.message || e3);
-                      }
+                      console.warn('WhatsApp auto-checkout-link fetch failed:', autoErr?.message || autoErr);
                     }
                   }
                   
