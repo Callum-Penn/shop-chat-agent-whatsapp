@@ -649,8 +649,11 @@ export const action = async ({ request }) => {
                         let payload = Array.isArray(checkoutResp.content) ? checkoutResp.content[0]?.text : checkoutResp;
                         try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
                         let url = payload?.checkout_url || payload?.checkoutUrl || (payload?.cart && (payload.cart.checkout_url || payload.cart.checkoutUrl));
-                        // Accept only myshopify checkout links
                         const isMyShopify = (href) => { try { const h = new URL(href).host; return /\.myshopify\.com$/i.test(h); } catch { return false; } };
+                        const toMyShopify = (href) => { try { const u = new URL(href); u.host = `${shopId}.myshopify.com`; return u.toString(); } catch { return href; } };
+                        if (url && !isMyShopify(url)) {
+                          url = toMyShopify(url);
+                        }
                         if (url && isMyShopify(url)) {
                           aiResponse = `Here’s your checkout link: ${url}`;
                           conversationComplete = true;
@@ -665,24 +668,35 @@ export const action = async ({ request }) => {
                         const lastCartId2 = conv2?.metadata?.last_cart_id;
                         const args2 = lastCartId2 ? { cart_id: lastCartId2 } : {};
                         const isMyShopify = (href) => { try { const h = new URL(href).host; return /\.myshopify\.com$/i.test(h); } catch { return false; } };
+                        const toMyShopify = (href) => { try { const u = new URL(href); u.host = `${shopId}.myshopify.com`; return u.toString(); } catch { return href; } };
                         let url;
                         try {
                           const gr = await mcpClient.callTool('get_cart', args2);
                           if (!gr.error) {
                             let gp = Array.isArray(gr.content) ? gr.content[0]?.text : gr;
                             try { if (typeof gp === 'string') gp = JSON.parse(gp); } catch {}
-                            const candidate = gp?.checkout_url || gp?.checkoutUrl || (gp?.cart && (gp.cart.checkout_url || gp.cart.checkoutUrl));
-                            if (candidate && isMyShopify(candidate)) {
-                              url = candidate;
+                            let candidate = gp?.checkout_url || gp?.checkoutUrl || (gp?.cart && (gp.cart.checkout_url || gp.cart.checkoutUrl));
+                            if (candidate) {
+                              if (!isMyShopify(candidate)) {
+                                candidate = toMyShopify(candidate);
+                              }
+                              if (isMyShopify(candidate)) {
+                                url = candidate;
+                              }
                             }
                           }
                         } catch (e2) {
                           console.warn('WhatsApp auto-checkout-link get_cart fallback failed:', e2?.message || e2);
                         }
                         if (!url) {
-                          const metaUrl = conv2?.metadata?.last_checkout_url || null;
-                          if (metaUrl && isMyShopify(metaUrl)) {
-                            url = metaUrl;
+                          let metaUrl = conv2?.metadata?.last_checkout_url || null;
+                          if (metaUrl) {
+                            if (!isMyShopify(metaUrl)) {
+                              metaUrl = toMyShopify(metaUrl);
+                            }
+                            if (isMyShopify(metaUrl)) {
+                              url = metaUrl;
+                            }
                           }
                         }
                         if (url) {

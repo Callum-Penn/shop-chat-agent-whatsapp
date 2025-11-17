@@ -1,26 +1,13 @@
-Nov 17 09:43:39  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
-Nov 17 09:43:42  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.398 ms
-Nov 17 09:43:42  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 12.571 ms
-Nov 17 09:43:42  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.864 ms
-Nov 17 09:43:42  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.968 ms
-Nov 17 09:43:50  WhatsApp: Sending message to 447891689332
-Nov 17 09:43:50  WhatsApp: Message content: I found the IVG 2400 Cherry Edition! This product requires a minimum quantity of 5 units (due to sto...
-Nov 17 09:43:50  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkYzNzkwRTMyQzYyQjJFOTA1AA=="}]}
-Nov 17 09:43:50  [WHATSAPP][OUT] (whatsapp_447891689332) I found the IVG 2400 Cherry Edition! This product requires a minimum quantity of 5 units (due to store policy for bulk items). 
-Nov 17 09:43:50  
-Nov 17 09:43:50  Would you like me to add 5 units to your cart for £22.00 total, or would you prefer a different quantity (10, 15, etc.)?
-Nov 17 09:43:50  POST /api/whatsapp-webhook 200 - - 10742.762 ms
-Nov 17 09:43:51  POST /api/whatsapp-webhook 200 - - 2.690 ms
-Nov 17 09:43:52  POST /api/whatsapp-webhook 200 - - 5.232 ms
-Nov 17 09:44:05  GET /api/conversation-followup 200 - - 34.146 ms
-Nov 17 09:44:06  [WHATSAPP][IN] (whatsapp_447891689332) Add 10
-Nov 17 09:44:12  WhatsApp: Sending message to 447891689332
-Nov 17 09:44:12  WhatsApp: Message content: Perfect! I've added 10 units of IVG 2400 Cherry Edition to your cart for £44.00 total.
-Nov 17 09:44:12  
-Nov 17 09:44:12  You can proc...
-Nov 17 09:44:12  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSMUE4RTFCNjQzRDk4NTM1NzJGAA=="}]}
-Nov 17 09:44:12  [WHATSAPP][OUT] (whatsapp_447891689332) Perfect! I've added 10 units of IVG 2400 Cherry Edition to your cart for £44.00 total.
-Nov 17 09:44:12  
-Nov 17 09:44:12  You can proceed to checkout using this link: 
-Nov 17 09:44:12  
-Nov 17 09:44:12  Is there anything else you'd like to add to your order?
+Nov 17 10:42:42  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
+Nov 17 10:42:52  [CART] update_cart invoked with 1 item(s)
+Nov 17 10:42:52  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
+Nov 17 10:42:52  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5ORmoueYBoVLiQ2saTo0Z?key=2a2082b99e49649d74d7ca3519ed8c3a checkout=yes
+Nov 17 10:42:52  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 10:43:01  WhatsApp: Sending message to 447891689332
+Nov 17 10:43:01  WhatsApp: Message content: I've added 5x IVG 2400 Cherry Edition to your cart (£22.00). This product has a minimum order of 5 u...
+Nov 17 10:43:02  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkRCNDc0QkFBOUUxN0EyQjZEAA=="}]}
+Nov 17 10:43:02  [WHATSAPP][OUT] (whatsapp_447891689332) I've added 5x IVG 2400 Cherry Edition to your cart (£22.00). This product has a minimum order of 5 units.
+Nov 17 10:43:02  
+Nov 17 10:43:02  Have you found everything you need, or would you like to add anything else to your order?
+Nov 17 10:43:02  
+Nov 17 10:43:02  When you're ready, you can [checkout here](.
