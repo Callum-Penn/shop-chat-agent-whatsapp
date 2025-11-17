@@ -579,7 +579,7 @@ async function handleChatSession({
                     try { if (typeof payload === 'string') payload = JSON.parse(payload); } catch {}
                     const checkoutUrl = (typeof payload === 'object' ? (payload.checkout_url || payload.checkoutUrl || (payload.cart && (payload.cart.checkout_url || payload.cart.checkoutUrl))) : undefined);
                     if (checkoutUrl) {
-                      stream.sendMessage({ type: 'chunk', chunk: `You can click here to proceed to checkout: ${checkoutUrl}` });
+                      stream.sendMessage({ type: 'checkout_link', url: checkoutUrl });
                     }
                   }
                 } catch (autoErr) {
@@ -604,7 +604,7 @@ async function handleChatSession({
                     }
                     if (url) {
                       checkoutLinkAuthorized = true;
-                      stream.sendMessage({ type: 'chunk', chunk: `You can click here to proceed to checkout: ${url}` });
+                      stream.sendMessage({ type: 'checkout_link', url });
                     }
                   } catch (e3) {
                     console.warn('Auto-checkout-link metadata fallback failed:', e3?.message || e3);

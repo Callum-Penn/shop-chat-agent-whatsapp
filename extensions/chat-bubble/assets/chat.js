@@ -92,6 +92,7 @@
       isMobile: false,
       isStreaming: false, // Track if a response is currently streaming
       displayedMessageIds: new Set(), // Track IDs of messages we've already displayed to prevent duplicates
+      checkoutLink: null,
 
       /**
        * Initialize UI elements and event listeners
@@ -112,6 +113,33 @@
           messagesContainer: container.querySelector('.shop-ai-chat-messages')
         };
 
+        // Create a fixed checkout button inside the chat window
+        const checkoutBtn = document.createElement('a');
+        checkoutBtn.className = 'shop-ai-checkout-fixed';
+        checkoutBtn.href = '#';
+        checkoutBtn.target = '_blank';
+        checkoutBtn.rel = 'noopener noreferrer';
+        checkoutBtn.textContent = 'Checkout now';
+        checkoutBtn.style.display = 'none';
+        checkoutBtn.style.position = 'sticky';
+        checkoutBtn.style.bottom = '0';
+        checkoutBtn.style.zIndex = '10';
+        checkoutBtn.style.marginTop = '8px';
+        checkoutBtn.style.padding = '10px 12px';
+        checkoutBtn.style.background = '#111827';
+        checkoutBtn.style.color = '#ffffff';
+        checkoutBtn.style.textAlign = 'center';
+        checkoutBtn.style.borderRadius = '8px';
+        checkoutBtn.style.textDecoration = 'none';
+        // Insert just after messages to keep it at the bottom area
+        const { chatWindow, messagesContainer } = this.elements;
+        if (chatWindow) {
+          chatWindow.appendChild(checkoutBtn);
+        } else if (messagesContainer) {
+          messagesContainer.parentElement.appendChild(checkoutBtn);
+        }
+        this.elements.checkoutButton = checkoutBtn;
+
         // Detect mobile device
         this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -121,6 +149,38 @@
         // Fix for iOS Safari viewport height issues
         if (this.isMobile) {
           this.setupMobileViewport();
+        }
+      },
+
+      /**
+       * Show/hide and update the fixed checkout button
+       * @param {string|null} url - Checkout URL or null to hide
+       */
+      setCheckoutLink: function(url) {
+        const { checkoutButton } = this.elements;
+        if (!checkoutButton) return;
+
+        // Normalize to relative path if same-origin
+        const toSafeHref = (href) => {
+          try {
+            const u = new URL(href, window.location.origin);
+            return (u.host === window.location.host)
+              ? (u.pathname + (u.search || '') + (u.hash || ''))
+              : u.toString();
+          } catch {
+            return href;
+          }
+        };
+
+        if (url && typeof url === 'string') {
+          const safeHref = toSafeHref(url);
+          this.checkoutLink = safeHref;
+          checkoutButton.href = safeHref;
+          checkoutButton.style.display = 'block';
+        } else {
+          this.checkoutLink = null;
+          checkoutButton.href = '#';
+          checkoutButton.style.display = 'none';
         }
       },
 
@@ -164,6 +224,8 @@
         // Reset chat when clicking reset button
         resetButton.addEventListener('click', () => {
           ShopAIChat.Message.resetChat(messagesContainer);
+          // Hide checkout button on reset
+          this.setCheckoutLink(null);
         });
 
         // Handle window resize to adjust scrolling
@@ -912,6 +974,13 @@
 
           case 'product_results':
             ShopAIChat.UI.displayProductResults(data.products);
+            break;
+
+          case 'checkout_link':
+            // Update fixed checkout button; do not inject raw link text in chat
+            if (data.url) {
+              ShopAIChat.UI.setCheckoutLink(data.url);
+            }
             break;
 
           case 'tool_use':
