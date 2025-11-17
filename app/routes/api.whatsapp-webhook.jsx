@@ -39,6 +39,47 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId) {
   }
 }
 
+// Helper to parse cart payloads from MCP responses
+function parseCartPayload(toolResponse) {
+  if (!toolResponse) return null;
+  let payload = toolResponse;
+  if (Array.isArray(toolResponse.content) && toolResponse.content[0]) {
+    const block = toolResponse.content[0];
+    if (typeof block.text !== 'undefined') {
+      payload = block.text;
+    } else {
+      payload = block;
+    }
+  }
+  if (typeof payload === 'string') {
+    try {
+      return JSON.parse(payload);
+    } catch {
+      return null;
+    }
+  }
+  return payload;
+}
+
+// Helper to summarize cart lines for user-facing confirmations
+function summarizeCartLines(cart) {
+  if (!cart || !Array.isArray(cart.lines)) {
+    return '';
+  }
+  const summaries = cart.lines.map((line) => {
+    const qty = line.quantity ?? line.merchandise?.quantity ?? null;
+    const title = line.merchandise?.product?.title || line.merchandise?.title || 'item';
+    if (qty && title) {
+      return `${qty} × ${title}`;
+    }
+    if (title) {
+      return title;
+    }
+    return null;
+  }).filter(Boolean);
+  return summaries.length ? summaries.join(', ') : '';
+}
+
 // Helper to truncate conversation history to reduce tokens
 function truncateConversationHistory(messages, maxMessages = 10) {
   if (messages.length <= maxMessages) {
@@ -341,6 +382,7 @@ export const action = async ({ request }) => {
       
       // Track whether checkout URL was generated this turn
       let checkoutLinkAuthorized = false;
+      let lastCartSummary = null;
       
       try {
         while (!conversationComplete && turnCount < maxTurns) {
@@ -645,6 +687,17 @@ export const action = async ({ request }) => {
                   // If this was a cart update, automatically fetch and send a checkout link
                   if (toolName === 'update_cart') {
                     try {
+                      const parsedPayload = parseCartPayload(toolResponse);
+                      if (parsedPayload?.cart) {
+                        const summary = summarizeCartLines(parsedPayload.cart);
+                        if (summary) {
+                          lastCartSummary = summary;
+                        }
+                      }
+                    } catch (summErr) {
+                      console.warn('WhatsApp: Failed to summarize cart lines:', summErr);
+                    }
+                    try {
                       const { getConversation } = await import("../db.server");
                       const conv = await getConversation(conversationId);
                       const lastCartId = conv?.metadata?.last_cart_id;
@@ -675,7 +728,10 @@ export const action = async ({ request }) => {
                       }
                       if (url) {
                         checkoutLinkAuthorized = true;
-                        aiResponse = `Here’s your checkout link: ${url}`;
+                        const summaryText = lastCartSummary
+                          ? `Cart updated (${lastCartSummary}). `
+                          : 'Cart updated. ';
+                        aiResponse = `${summaryText}Here’s your checkout link: ${url}`;
                         conversationComplete = true;
                         break;
                       } else {
