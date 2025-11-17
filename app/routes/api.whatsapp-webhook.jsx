@@ -89,7 +89,9 @@ export const action = async ({ request }) => {
     getCustomerToken,
     createOrGetUser,
     linkConversationToUser,
-    getUserByPhoneNumber
+    getUserByPhoneNumber,
+    deleteConversationHistory,
+    updateConversationMetadata
   } = await import("../db.server");
   
   const body = await request.json();
@@ -214,6 +216,39 @@ export const action = async ({ request }) => {
     // Use the phone number as conversation ID for WhatsApp
     const conversationId = `whatsapp_${from}`;
     
+    // Early command handling: allow user to reset chat via simple commands
+    try {
+      const normalized = (userMessage || '').trim().toLowerCase();
+      const resetIntents = [
+        /^\/?reset(\s+(chat|conversation))?$/, // reset, /reset, reset chat
+        /^(clear|restart)(\s+(chat|conversation))?$/, // clear chat, restart conversation
+        /^(start\s+over|start\s+again|new\s+chat|new\s+conversation)$/
+      ];
+      const shouldReset = resetIntents.some((rx) => rx.test(normalized)) ||
+        normalized.includes('reset chat') || normalized.includes('clear chat');
+      if (shouldReset) {
+        try {
+          await deleteConversationHistory(conversationId);
+          await updateConversationMetadata(conversationId, {
+            handoff_requested: false,
+            handoff_at: null,
+            last_cart_id: null,
+            last_checkout_url: null,
+            last_cart_updated_at: null
+          });
+          await sendWhatsAppMessage(from, 'I\'ve cleared our chat and reset your cart. How can I help now?');
+          return json({ success: true, message: 'Conversation reset' });
+        } catch (resetErr) {
+          console.error('WhatsApp: Error resetting conversation:', resetErr);
+          await sendWhatsAppMessage(from, '❌ Sorry, I couldn\'t reset our chat right now. Please try again.');
+          return json({ success: false, error: 'Reset failed' });
+        }
+      }
+    } catch (cmdErr) {
+      console.warn('WhatsApp: Command handling error:', cmdErr);
+      // continue to normal flow
+    }
+
     try {
       console.log(`[WHATSAPP][IN] (${conversationId}) ${userMessage}`);
       

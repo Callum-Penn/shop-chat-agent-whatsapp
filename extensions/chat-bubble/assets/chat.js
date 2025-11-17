@@ -126,10 +126,11 @@
         checkoutBtn.style.zIndex = '10';
         checkoutBtn.style.marginTop = '8px';
         checkoutBtn.style.padding = '10px 12px';
-        checkoutBtn.style.background = '#111827';
+        checkoutBtn.style.background = '#2fa500';
         checkoutBtn.style.color = '#ffffff';
         checkoutBtn.style.textAlign = 'center';
-        checkoutBtn.style.borderRadius = '8px';
+        checkoutBtn.style.borderBottomRightRadius = '8px';
+        checkoutBtn.style.borderBottomLeftRadius = '8px';
         checkoutBtn.style.textDecoration = 'none';
         // Insert just after messages to keep it at the bottom area
         const { chatWindow, messagesContainer } = this.elements;
