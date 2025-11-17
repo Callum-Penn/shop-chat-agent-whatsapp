@@ -5,7 +5,15 @@ import MCPClient from "../mcp-client";
 import AppConfig from "../services/config.server";
 import { generateAuthUrl } from "../auth.server";
 import { sendWhatsAppMessage, downloadWhatsAppMedia, sendWhatsAppDocumentFromUrl } from "../utils/whatsapp.server";
-import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText, generateSpreadsheetEmailHTML, generateSpreadsheetEmailText } from "../utils/email.server";
+import {
+  sendEmail,
+  generateHandoffEmailHTML,
+  generateHandoffEmailText,
+  generateSpreadsheetEmailHTML,
+  generateSpreadsheetEmailText,
+  generateTicketReceiptEmailHTML,
+  generateTicketReceiptEmailText
+} from "../utils/email.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -545,6 +553,25 @@ export const action = async ({ request }) => {
                           lastMessages
                         })
                       });
+
+                      if (customer_email) {
+                        try {
+                          await sendEmail({
+                            to: customer_email,
+                            subject: `We've received your support request (${conversationId})`,
+                            html: generateTicketReceiptEmailHTML({
+                              customerName: customer_name,
+                              ticketId: conversationId
+                            }),
+                            text: generateTicketReceiptEmailText({
+                              customerName: customer_name,
+                              ticketId: conversationId
+                            })
+                          });
+                        } catch (customerEmailError) {
+                          console.error('WhatsApp: Failed to send ticket receipt to customer:', customerEmailError);
+                        }
+                      }
                       
                       // Update user info in database
                       const { getUserByPhoneNumber, updateUser } = await import("../db.server");

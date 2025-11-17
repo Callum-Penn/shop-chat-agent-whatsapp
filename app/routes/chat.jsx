@@ -9,7 +9,13 @@ import { createSseStream } from "../services/streaming.server";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
 import { unauthenticated } from "../shopify.server";
-import { sendEmail, generateHandoffEmailHTML, generateHandoffEmailText } from "../utils/email.server";
+import {
+  sendEmail,
+  generateHandoffEmailHTML,
+  generateHandoffEmailText,
+  generateTicketReceiptEmailHTML,
+  generateTicketReceiptEmailText
+} from "../utils/email.server";
 
 
 /**
@@ -480,6 +486,25 @@ async function handleChatSession({
                     lastMessages
                   })
                 });
+
+                if (customer_email) {
+                  try {
+                    await sendEmail({
+                      to: customer_email,
+                      subject: `We've received your support request (${conversationId})`,
+                      html: generateTicketReceiptEmailHTML({
+                        customerName: customer_name,
+                        ticketId: conversationId
+                      }),
+                      text: generateTicketReceiptEmailText({
+                        customerName: customer_name,
+                        ticketId: conversationId
+                      })
+                    });
+                  } catch (customerEmailError) {
+                    console.error('Web: Failed to send ticket receipt to customer:', customerEmailError);
+                  }
+                }
                 
                 // Get conversation to find user (already fetched above, but need it again for user update)
                 const conversationForUser = await getConversation(conversationId);

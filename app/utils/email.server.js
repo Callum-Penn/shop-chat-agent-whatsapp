@@ -13,6 +13,8 @@ import { Resend } from 'resend';
  * @param {Array} [emailData.attachments] - Array of attachment objects with { filename, content, type }
  * @returns {Promise<Object>} Response from email service
  */
+const TICKET_RECEIPT_SUPPORT_HOURS = "Mon - Fri 9am to 5pm";
+
 export async function sendEmail({ to, subject, html, text, attachments }) {
   // Check if we have the Resend API key configured
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -251,6 +253,86 @@ ${text}
 `;
 }).join('')}
 ` : ''}
+  `.trim();
+}
+
+/**
+ * Generate confirmation HTML email for the customer after a ticket is created
+ * @param {Object} data - Confirmation data
+ * @param {string} [data.customerName] - Name to greet
+ * @param {string} data.ticketId - Ticket reference/conversation ID
+ * @param {string} [data.supportHours] - Support hours string
+ * @returns {string} HTML email content
+ */
+export function generateTicketReceiptEmailHTML({
+  customerName,
+  ticketId,
+  supportHours = TICKET_RECEIPT_SUPPORT_HOURS
+}) {
+  const greetingName = customerName || "there";
+
+  return `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f5f5f5; }
+          .container { max-width: 560px; margin: 0 auto; padding: 24px; }
+          .card { background-color: #ffffff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+          .ticket { margin: 16px 0; padding: 12px; border-left: 4px solid #1766ff; background-color: #f0f5ff; font-weight: bold; }
+          .hours { margin-top: 20px; padding: 12px; background-color: #fafafa; border-radius: 6px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="card">
+            <p>Hi ${greetingName},</p>
+            <p>Thanks for reaching out. We've opened a support ticket and our team will be in touch shortly.</p>
+            <div class="ticket">
+              Reference: ${ticketId}
+            </div>
+            <div class="hours">
+              <strong>Customer service hours</strong>
+              <p>${supportHours}</p>
+            </div>
+            <p>If you have any new details to share, just reply to this email and we'll add it to your ticket.</p>
+            <p>- The Team</p>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+}
+
+/**
+ * Generate confirmation text email for the customer after a ticket is created
+ * @param {Object} data - Confirmation data
+ * @param {string} [data.customerName] - Name to greet
+ * @param {string} data.ticketId - Ticket reference/conversation ID
+ * @param {string} [data.supportHours] - Support hours string
+ * @returns {string} Plain text email content
+ */
+export function generateTicketReceiptEmailText({
+  customerName,
+  ticketId,
+  supportHours = TICKET_RECEIPT_SUPPORT_HOURS
+}) {
+  const greetingName = customerName || "there";
+
+  return `
+Hi ${greetingName},
+
+Thanks for reaching out. We've opened a support ticket for you and our team will respond shortly.
+
+Reference: ${ticketId}
+
+Customer service hours:
+${supportHours}
+
+If you have more details to share, reply to this email and we'll add it to your ticket.
+
+- The Team
   `.trim();
 }
 
