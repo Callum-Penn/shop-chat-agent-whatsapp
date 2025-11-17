@@ -299,6 +299,12 @@ export const action = async ({ request }) => {
         let content;
         try {
           content = JSON.parse(dbMessage.content);
+          if (!Array.isArray(content)) {
+            content = [{
+              type: "text",
+              text: String(content)
+            }];
+          }
         } catch (e) {
           // If JSON parsing fails, wrap the content in a text block format
           content = [{

@@ -1,23 +1,143 @@
-Nov 17 14:05:59  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
-Nov 17 14:06:05  GET /api/conversation-followup 200 - - 27.410 ms
-Nov 17 14:06:11  [CART] update_cart invoked with 1 item(s)
-Nov 17 14:06:11  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
-Nov 17 14:06:12  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5OmODFKJ9z3fEpGTH0IiZ checkout=yes
-Nov 17 14:06:12  WhatsApp: Sending message to 447891689332
-Nov 17 14:06:12  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622a...
-Nov 17 14:06:13  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSOTEyMjUwNTQ4QkY0QjBBRDU4AA=="}]}
-Nov 17 14:06:13  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622adf687ed4fb27e76dbc9
-Nov 17 14:06:13  POST /api/whatsapp-webhook 200 - - 13510.492 ms
-Nov 17 14:06:14  POST /api/whatsapp-webhook 200 - - 3.358 ms
-Nov 17 14:06:14  POST /api/whatsapp-webhook 200 - - 2.062 ms
-Nov 17 14:06:51  [WHATSAPP][IN] (whatsapp_447891689332) I also want to add Fumi strawberry strong to my cart
-Nov 17 14:06:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 8.555 ms
-Nov 17 14:06:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.378 ms
-Nov 17 14:06:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.541 ms
-Nov 17 14:06:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.501 ms
-Nov 17 14:07:01  [CART] update_cart invoked with 1 item(s)
-Nov 17 14:07:01  [CART] Increment for variant gid://shopify/ProductVariant/55639298867582: 10
-Nov 17 14:07:01  WhatsApp: Sending message to 447891689332
-Nov 17 14:07:01  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622a...
-Nov 17 14:07:02  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRjlDRUUwNTNCQkZGRDMzMDJDAA=="}]}
-Nov 17 14:07:02  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622adf687ed4fb27e76dbc9
+Nov 17 14:29:52  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
+Nov 17 14:29:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.932 ms
+Nov 17 14:29:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.898 ms
+Nov 17 14:29:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.889 ms
+Nov 17 14:30:04  WhatsApp: Sending message to 447891689332
+Nov 17 14:30:04  WhatsApp: Message content: I found the IVG 2400 Cherry Edition! This product has a quantity requirement - it must be ordered in...
+Nov 17 14:30:05  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSODJBNEJBM0Y4OUM1NzM5OTQ1AA=="}]}
+Nov 17 14:30:05  [WHATSAPP][OUT] (whatsapp_447891689332) I found the IVG 2400 Cherry Edition! This product has a quantity requirement - it must be ordered in multiples of 5.
+Nov 17 14:30:05  
+Nov 17 14:30:05  **IVG 2400 Rechargeable Kit Cherry Edition** - £4.40 each
+Nov 17 14:30:05  
+Nov 17 14:30:05  This is a Post June 2025 Ban Compliant device with a 1750mAh battery, rechargeable functionality, and refillable pods.
+Nov 17 14:30:05  
+Nov 17 14:30:05  How many would you like to add? (minimum 5, or multiples like 10, 15, 20, etc.)
+Nov 17 14:30:05  POST /api/whatsapp-webhook 200 - - 13271.313 ms
+Nov 17 14:30:06  POST /api/whatsapp-webhook 200 - - 2.794 ms
+Nov 17 14:30:07  POST /api/whatsapp-webhook 200 - - 2.063 ms
+Nov 17 14:30:15  GET /api/conversation-followup 200 - - 22.623 ms
+Nov 17 14:30:19  [WHATSAPP][IN] (whatsapp_447891689332) Just 5
+Nov 17 14:30:22  [CART] update_cart invoked with 1 item(s)
+Nov 17 14:30:22  [CART] No increment found for gid://shopify/ProductVariant/48743191929156; using requested quantity
+Nov 17 14:30:31  [CART] update_cart invoked with 1 item(s)
+Nov 17 14:30:31  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
+Nov 17 14:30:31  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5Oor1mwh3nS1B7OcUy94d checkout=yes
+Nov 17 14:30:31  WhatsApp: Sending message to 447891689332
+Nov 17 14:30:31  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5Oor1mwh3nS1B7OcUy94d?key=f67df33d74767...
+Nov 17 14:30:32  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQjQ4MEZCMzE4Mjc2ODg4Q0EyAA=="}]}
+Nov 17 14:30:32  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5Oor1mwh3nS1B7OcUy94d?key=f67df33d74767bcd5fffdb4a518ec8f5
+Nov 17 14:30:32  POST /api/whatsapp-webhook 200 - - 12547.351 ms
+Nov 17 14:30:33  POST /api/whatsapp-webhook 200 - - 1.775 ms
+Nov 17 14:30:33  POST /api/whatsapp-webhook 200 - - 2.516 ms
+Nov 17 14:30:34  POST /api/whatsapp-webhook 200 - - 2.104 ms
+Nov 17 14:30:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.043 ms
+Nov 17 14:30:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.231 ms
+Nov 17 14:30:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.255 ms
+Nov 17 14:30:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.457 ms
+Nov 17 14:31:04  GET /api/conversation-followup 200 - - 24.715 ms
+Nov 17 14:31:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 13.625 ms
+Nov 17 14:31:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 40.942 ms
+Nov 17 14:31:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.691 ms
+Nov 17 14:31:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 17.940 ms
+Nov 17 14:31:54  [WHATSAPP][IN] (whatsapp_447891689332) I also want to add Fumi strawberry strong to my cart
+Nov 17 14:32:04  WhatsApp: Sending message to 447891689332
+Nov 17 14:32:04  WhatsApp: Message content: I found the **FUMi Tangy Strawberry Strong** for £1.69 each!
+Nov 17 14:32:04  
+Nov 17 14:32:04  This nicotine pouch has a quantity req...
+Nov 17 14:32:05  GET /api/conversation-followup 200 - - 29.622 ms
+Nov 17 14:32:05  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNDI2MjYwMTUyNkEyOEQxQkU1AA=="}]}
+Nov 17 14:32:05  [WHATSAPP][OUT] (whatsapp_447891689332) I found the **FUMi Tangy Strawberry Strong** for £1.69 each!
+Nov 17 14:32:05  
+Nov 17 14:32:05  This nicotine pouch has a quantity requirement - it must be ordered in multiples of 10.
+Nov 17 14:32:05  
+Nov 17 14:32:05  How many would you like to add? (10, 20, 30, etc.)
+Nov 17 14:32:05  POST /api/whatsapp-webhook 200 - - 10661.646 ms
+Nov 17 14:32:06  POST /api/whatsapp-webhook 200 - - 1.919 ms
+Nov 17 14:32:07  POST /api/whatsapp-webhook 200 - - 1.599 ms
+Nov 17 14:32:17  [WHATSAPP][IN] (whatsapp_447891689332) 10
+Nov 17 14:32:18  WhatsApp: Claude API error: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.5.content: Input should be a valid list"},"request_id":"req_011CVDdAzGY6pCSUjsXSpbtr"}
+Nov 17 14:32:18      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Nov 17 14:32:18      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Nov 17 14:32:18      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Nov 17 14:32:18      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 17 14:32:18      at Object.getConversationResponse (file:///workspace/build/server/index.js?t=315532801000:1318:22)
+Nov 17 14:32:18      at action$7 (file:///workspace/build/server/index.js?t=315532801000:2734:28)
+Nov 17 14:32:18      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Nov 17 14:32:18      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Nov 17 14:32:18      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Nov 17 14:32:18      at async Promise.all (index 0) {
+Nov 17 14:32:18    status: 400,
+Nov 17 14:32:18    headers: {
+Nov 17 14:32:18      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Nov 17 14:32:18      'cf-cache-status': 'DYNAMIC',
+Nov 17 14:32:18      'cf-ray': '99ffefc70c4663e9-LHR',
+Nov 17 14:32:18      connection: 'keep-alive',
+Nov 17 14:32:18      'content-length': '162',
+Nov 17 14:32:18      'content-type': 'application/json',
+Nov 17 14:32:18      date: 'Mon, 17 Nov 2025 14:32:17 GMT',
+Nov 17 14:32:18      'request-id': 'req_011CVDdAzGY6pCSUjsXSpbtr',
+Nov 17 14:32:18      server: 'cloudflare',
+Nov 17 14:32:18      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Nov 17 14:32:18      'x-envoy-upstream-service-time': '38',
+Nov 17 14:32:18      'x-robots-tag': 'none',
+Nov 17 14:32:18      'x-should-retry': 'false'
+Nov 17 14:32:18    },
+Nov 17 14:32:18    request_id: 'req_011CVDdAzGY6pCSUjsXSpbtr',
+Nov 17 14:32:18    error: {
+Nov 17 14:32:18      type: 'error',
+Nov 17 14:32:18      error: {
+Nov 17 14:32:18        type: 'invalid_request_error',
+Nov 17 14:32:18        message: 'messages.5.content: Input should be a valid list'
+Nov 17 14:32:18      },
+Nov 17 14:32:18      request_id: 'req_011CVDdAzGY6pCSUjsXSpbtr'
+Nov 17 14:32:18    }
+Nov 17 14:32:18  }
+Nov 17 14:32:18  WhatsApp: Sending message to 447891689332
+Nov 17 14:32:18  WhatsApp: Message content: Sorry, I'm having trouble processing your request right now. Please try again....
+Nov 17 14:32:18  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNEM1NUI0MUY5QzM0Q0Y2RDJFAA=="}]}
+Nov 17 14:32:18  [WHATSAPP][OUT] (whatsapp_447891689332) Sorry, I'm having trouble processing your request right now. Please try again.
+Nov 17 14:32:18  POST /api/whatsapp-webhook 200 - - 1051.428 ms
+Nov 17 14:32:19  POST /api/whatsapp-webhook 200 - - 1.478 ms
+Nov 17 14:32:20  POST /api/whatsapp-webhook 200 - - 1.932 ms
+Nov 17 14:32:20  POST /api/whatsapp-webhook 200 - - 1.788 ms
+Nov 17 14:32:44  [WHATSAPP][IN] (whatsapp_447891689332) Just 10
+Nov 17 14:32:44  WhatsApp: Claude API error: BadRequestError: 400 {"type":"error","error":{"type":"invalid_request_error","message":"messages.3.content: Input should be a valid list"},"request_id":"req_011CVDdCy2RqDuCtd2i9iUrk"}
+Nov 17 14:32:44      at APIError.generate (file:///workspace/node_modules/@anthropic-ai/sdk/src/error.ts:63:14)
+Nov 17 14:32:44      at Anthropic.makeStatusError (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:473:21)
+Nov 17 14:32:44      at Anthropic.makeRequest (file:///workspace/node_modules/@anthropic-ai/sdk/src/core.ts:537:24)
+Nov 17 14:32:44      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Nov 17 14:32:44      at Object.getConversationResponse (file:///workspace/build/server/index.js?t=315532801000:1318:22)
+Nov 17 14:32:44      at action$7 (file:///workspace/build/server/index.js?t=315532801000:2734:28)
+Nov 17 14:32:44      at Object.callRouteAction (/workspace/node_modules/@remix-run/server-runtime/dist/data.js:36:16)
+Nov 17 14:32:44      at /workspace/node_modules/@remix-run/router/router.ts:4934:19
+Nov 17 14:32:44      at callLoaderOrAction (/workspace/node_modules/@remix-run/router/router.ts:4998:16)
+Nov 17 14:32:44      at async Promise.all (index 0) {
+Nov 17 14:32:44    status: 400,
+Nov 17 14:32:44    headers: {
+Nov 17 14:32:44      'anthropic-organization-id': '27b0bb35-c6e6-4cbc-ad74-16667159f3ca',
+Nov 17 14:32:44      'cf-cache-status': 'DYNAMIC',
+Nov 17 14:32:44      'cf-ray': '99fff06eee4263db-LHR',
+Nov 17 14:32:44      connection: 'keep-alive',
+Nov 17 14:32:44      'content-length': '162',
+Nov 17 14:32:44      'content-type': 'application/json',
+Nov 17 14:32:44      date: 'Mon, 17 Nov 2025 14:32:44 GMT',
+Nov 17 14:32:44      'request-id': 'req_011CVDdCy2RqDuCtd2i9iUrk',
+Nov 17 14:32:44      server: 'cloudflare',
+Nov 17 14:32:44      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+Nov 17 14:32:44      'x-envoy-upstream-service-time': '40',
+Nov 17 14:32:44      'x-robots-tag': 'none',
+Nov 17 14:32:44      'x-should-retry': 'false'
+Nov 17 14:32:44    },
+Nov 17 14:32:44    request_id: 'req_011CVDdCy2RqDuCtd2i9iUrk',
+Nov 17 14:32:44    error: {
+Nov 17 14:32:44      type: 'error',
+Nov 17 14:32:44      error: {
+Nov 17 14:32:44        type: 'invalid_request_error',
+Nov 17 14:32:44        message: 'messages.3.content: Input should be a valid list'
+Nov 17 14:32:44      },
+Nov 17 14:32:44      request_id: 'req_011CVDdCy2RqDuCtd2i9iUrk'
+Nov 17 14:32:44    }
+Nov 17 14:32:44  }
+Nov 17 14:32:44  WhatsApp: Sending message to 447891689332
+Nov 17 14:32:44  WhatsApp: Message content: Sorry, I'm having trouble processing your request right now. Please try again....
+Nov 17 14:32:45  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkM0MDYwOTMwOEM3M0Y0NUEyAA=="}]}
