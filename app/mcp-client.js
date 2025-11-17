@@ -25,7 +25,9 @@ class MCPClient {
     this.tools = [];
     this.customerTools = [];
     this.storefrontTools = [];
-    
+    this.lastCartId = null;
+    this.lastCheckoutUrl = null;
+
     // Add custom tools that aren't from MCP servers
     // Only add send_order_template for WhatsApp channel
     this.customTools = [];
@@ -386,11 +388,17 @@ class MCPClient {
       try {
         const CART_TOOLS = new Set(['update_cart', 'get_cart']);
         if (CART_TOOLS.has(toolName) && toolArgs && typeof toolArgs === 'object' && !('cart_id' in toolArgs) && !('cartId' in toolArgs)) {
-          const conversation = await prisma.conversation.findUnique({
-            where: { id: this.conversationId },
-            select: { metadata: true }
-          });
-          const lastCartId = conversation?.metadata?.last_cart_id;
+          let lastCartId = this.lastCartId;
+          if (!lastCartId) {
+            const conversation = await prisma.conversation.findUnique({
+              where: { id: this.conversationId },
+              select: { metadata: true }
+            });
+            lastCartId = conversation?.metadata?.last_cart_id;
+            if (lastCartId) {
+              this.lastCartId = lastCartId;
+            }
+          }
           if (lastCartId) {
             toolArgs.cart_id = lastCartId;
             console.warn(`[CART] Injected saved cart_id into ${toolName}: ${lastCartId}`);
@@ -725,12 +733,12 @@ class MCPClient {
     return toolsData
       .filter((tool) => !EXCLUDED_MCP_TOOLS.has(tool.name))
       .map((tool) => {
-        return {
-          name: tool.name,
-          description: tool.description,
-          input_schema: tool.inputSchema || tool.input_schema,
-        };
-      });
+      return {
+        name: tool.name,
+        description: tool.description,
+        input_schema: tool.inputSchema || tool.input_schema,
+      };
+    });
   }
 
   /**
@@ -799,35 +807,41 @@ class MCPClient {
    * @param {{cartId?: string|null, checkoutUrl?: string|null}} info
    */
   async _updateLastCartMetadata({ cartId, checkoutUrl }) {
-    try {
-      const existing = await prisma.conversation.findUnique({
-        where: { id: this.conversationId },
-        select: { metadata: true }
-      });
-      const metadata = { ...(existing?.metadata || {}) };
-      let changed = false;
-      if (cartId && metadata.last_cart_id !== cartId) {
-        metadata.last_cart_id = cartId;
-        changed = true;
-      }
-      if (checkoutUrl && metadata.last_checkout_url !== checkoutUrl) {
-        metadata.last_checkout_url = checkoutUrl;
-        changed = true;
-      }
-      if (changed) {
-        metadata.last_cart_updated_at = new Date().toISOString();
-        await prisma.conversation.update({
+      try {
+        if (cartId) {
+          this.lastCartId = cartId;
+        }
+        if (checkoutUrl) {
+          this.lastCheckoutUrl = checkoutUrl;
+        }
+        const existing = await prisma.conversation.findUnique({
           where: { id: this.conversationId },
-          data: {
-            metadata,
-            updatedAt: new Date()
-          }
+          select: { metadata: true }
         });
-        console.warn(`[CART] Persisted last cart info: id=${metadata.last_cart_id || 'n/a'} checkout=${metadata.last_checkout_url ? 'yes' : 'no'}`);
+        const metadata = { ...(existing?.metadata || {}) };
+        let changed = false;
+        if (cartId && metadata.last_cart_id !== cartId) {
+          metadata.last_cart_id = cartId;
+          changed = true;
+        }
+        if (checkoutUrl && metadata.last_checkout_url !== checkoutUrl) {
+          metadata.last_checkout_url = checkoutUrl;
+          changed = true;
+        }
+        if (changed) {
+          metadata.last_cart_updated_at = new Date().toISOString();
+          await prisma.conversation.update({
+            where: { id: this.conversationId },
+            data: {
+              metadata,
+              updatedAt: new Date()
+            }
+          });
+          console.warn(`[CART] Persisted last cart info: id=${metadata.last_cart_id || 'n/a'} checkout=${metadata.last_checkout_url ? 'yes' : 'no'}`);
+        }
+      } catch (e) {
+        console.error('Failed updating conversation metadata with cart info:', e);
       }
-    } catch (e) {
-      console.error('Failed updating conversation metadata with cart info:', e);
-    }
   }
 }
 

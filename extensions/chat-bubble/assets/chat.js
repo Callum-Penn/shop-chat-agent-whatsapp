@@ -124,7 +124,6 @@
         checkoutBtn.style.position = 'sticky';
         checkoutBtn.style.bottom = '0';
         checkoutBtn.style.zIndex = '10';
-        checkoutBtn.style.marginTop = '8px';
         checkoutBtn.style.padding = '10px 12px';
         checkoutBtn.style.background = '#2fa500';
         checkoutBtn.style.color = '#ffffff';

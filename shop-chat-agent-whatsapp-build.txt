@@ -1,111 +1,23 @@
-Nov 17 12:17:59  [CHAT][IN] (web_customer_23312945217918) Can you add IVG 2400 Cherry Edition to my cart
-Nov 17 12:18:02  [CHAT][OUT] (web_customer_23312945217918) I'll search for the IVG 2400 Cherry Edition for you.
-Nov 17 12:18:05  GET /api/conversation-followup 200 - - 59.776 ms
-Nov 17 12:18:07  [CHAT][OUT] (web_customer_23312945217918) Perfect! I found the **[IVG 2400 Rechargeable Kit Cherry Edition](https://vapelocal.co.uk/products/ivg-2400-rechargeable-kit-cherry-edition)** for £4.40. Let me check the quantity requirements and then add it to your cart.
-Nov 17 12:18:10  [CHAT][OUT] (web_customer_23312945217918) This product requires a minimum quantity of 5 units. Would you like me to add 5 IVG 2400 Cherry Edition kits to your cart for £22.00 total?
-Nov 17 12:18:10  POST /chat 200 - - 21.052 ms
-Nov 17 12:18:20  [CHAT][IN] (web_customer_23312945217918) Add 5
-Nov 17 12:18:23  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:18:24  [CART] No increment found for gid://shopify/ProductVariant/45736815288541; using requested quantity
-Nov 17 12:18:24  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:18:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 9.939 ms
-Nov 17 12:18:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 46.035 ms
-Nov 17 12:18:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.813 ms
-Nov 17 12:18:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 32.426 ms
-Nov 17 12:18:27  [CHAT][OUT] (web_customer_23312945217918) I need to search for the correct variant ID for the IVG 2400 Cherry Edition. Let me get the product details first.
-Nov 17 12:18:31  [CHAT][OUT] (web_customer_23312945217918) Let me search again to get the correct product information:
-Nov 17 12:18:35  [CHAT][OUT] (web_customer_23312945217918) Perfect! Now I have the correct variant ID. Let me add 5 IVG 2400 Cherry Edition kits to your cart:
-Nov 17 12:18:35  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:18:35  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
-Nov 17 12:18:36  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT checkout=yes
-Nov 17 12:18:36  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:18:39  [CHAT][OUT] (web_customer_23312945217918) Great! I've added 5 IVG 2400 Rechargeable Kit Cherry Edition to your cart for £22.00.
-Nov 17 12:18:39  
-Nov 17 12:18:39  Have you found everything you need, or would you like to add anything else to your order?
-Nov 17 12:18:39  POST /chat 200 - - 16.687 ms
-Nov 17 12:18:47  [CHAT][IN] (web_customer_23312945217918) I also want to add Fumi strawberry strong to my cart
-Nov 17 12:18:51  [CHAT][OUT] (web_customer_23312945217918) Let me search for the Fumi strawberry strong product for you.
-Nov 17 12:19:03  GET /api/conversation-followup 200 - - 46.260 ms
-Nov 17 12:19:05  [CHAT][OUT] (web_customer_23312945217918) Perfect! I found the FUMi Tangy Strawberry Strong nicotine pouches. Let me check for any quantity requirements and then add it to your cart.
-Nov 17 12:19:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.510 ms
-Nov 17 12:19:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.461 ms
-Nov 17 12:19:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.015 ms
-Nov 17 12:19:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.595 ms
-Nov 17 12:20:08  [CHAT][OUT] (web_customer_23312945217918) I found the FUMi Tangy Strawberry Strong nicotine pouches for £1.69. However, this product requires a minimum quantity of 10 pouches per order.
-Nov 17 12:20:08  
-Nov 17 12:20:08  Would you like me to add 10 FUMi Tangy Strawberry Strong pouches to your cart?
-Nov 17 12:20:08  POST /chat 200 - - 16.723 ms
-Nov 17 12:20:08  GET /api/conversation-followup 200 - - 22.553 ms
-Nov 17 12:20:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.760 ms
-Nov 17 12:20:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.433 ms
-Nov 17 12:20:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.784 ms
-Nov 17 12:20:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 34.256 ms
-Nov 17 12:20:32  [CHAT][IN] (web_customer_23312945217918) Add 10
-Nov 17 12:20:35  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:35  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:35  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:36  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:38  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:38  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:38  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:39  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:41  [CHAT][OUT] (web_customer_23312945217918) Let me create a new cart with both items:
-Nov 17 12:20:41  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:41  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:42  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:42  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:44  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:44  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:44  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:45  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:47  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:47  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:47  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:47  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:51  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:51  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:51  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:54  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:54  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:54  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:20:57  [CART] Injected saved cart_id into update_cart: gid://shopify/Cart/hWN5ObUDbnQ8muzfcAsEUMnT
-Nov 17 12:20:57  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:20:57  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:20:57  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:21:00  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:21:01  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:21:01  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:21:04  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:21:04  GET /api/conversation-followup 200 - - 21.851 ms
-Nov 17 12:21:04  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:21:04  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:21:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.962 ms
-Nov 17 12:21:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 8.336 ms
-Nov 17 12:21:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.250 ms
-Nov 17 12:21:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.959 ms
-Nov 17 12:22:05  GET /api/conversation-followup 200 - - 31.310 ms
-Nov 17 12:22:07  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:07  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:07  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:10  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:11  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:11  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:14  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:14  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:14  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:18  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:18  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:18  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:21  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:21  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:21  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:25  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:25  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:25  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
-Nov 17 12:22:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.409 ms
-Nov 17 12:22:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.276 ms
-Nov 17 12:22:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.756 ms
-Nov 17 12:22:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.702 ms
-Nov 17 12:22:28  [CART] update_cart invoked with 1 item(s)
-Nov 17 12:22:28  [CART] No increment found for gid://shopify/ProductVariant/48077846348074; using requested quantity
-Nov 17 12:22:28  Auto-checkout-link fetch failed: Tool get_cart_checkout_url not found
+Nov 17 14:05:59  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
+Nov 17 14:06:05  GET /api/conversation-followup 200 - - 27.410 ms
+Nov 17 14:06:11  [CART] update_cart invoked with 1 item(s)
+Nov 17 14:06:11  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
+Nov 17 14:06:12  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5OmODFKJ9z3fEpGTH0IiZ checkout=yes
+Nov 17 14:06:12  WhatsApp: Sending message to 447891689332
+Nov 17 14:06:12  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622a...
+Nov 17 14:06:13  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSOTEyMjUwNTQ4QkY0QjBBRDU4AA=="}]}
+Nov 17 14:06:13  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622adf687ed4fb27e76dbc9
+Nov 17 14:06:13  POST /api/whatsapp-webhook 200 - - 13510.492 ms
+Nov 17 14:06:14  POST /api/whatsapp-webhook 200 - - 3.358 ms
+Nov 17 14:06:14  POST /api/whatsapp-webhook 200 - - 2.062 ms
+Nov 17 14:06:51  [WHATSAPP][IN] (whatsapp_447891689332) I also want to add Fumi strawberry strong to my cart
+Nov 17 14:06:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 8.555 ms
+Nov 17 14:06:53  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.378 ms
+Nov 17 14:06:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.541 ms
+Nov 17 14:06:53  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.501 ms
+Nov 17 14:07:01  [CART] update_cart invoked with 1 item(s)
+Nov 17 14:07:01  [CART] Increment for variant gid://shopify/ProductVariant/55639298867582: 10
+Nov 17 14:07:01  WhatsApp: Sending message to 447891689332
+Nov 17 14:07:01  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622a...
+Nov 17 14:07:02  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRjlDRUUwNTNCQkZGRDMzMDJDAA=="}]}
+Nov 17 14:07:02  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OmODFKJ9z3fEpGTH0IiZ?key=9609d9c04622adf687ed4fb27e76dbc9
