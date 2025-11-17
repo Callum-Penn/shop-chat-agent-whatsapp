@@ -1,25 +1,48 @@
-Nov 17 11:19:25  [WHATSAPP][IN] (whatsapp_447891689332) Can you also add Fumi strawberry strong to my cart too
-Nov 17 11:19:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 11.576 ms
-Nov 17 11:19:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.953 ms
-Nov 17 11:19:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.928 ms
-Nov 17 11:19:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.445 ms
-Nov 17 11:19:36  [CART] update_cart invoked with 1 item(s)
-Nov 17 11:19:36  [CART] Increment for variant gid://shopify/ProductVariant/55639298867582: 10
-Nov 17 11:19:36  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5OVVcbYhiAs3SVDeljfP9 checkout=yes
-Nov 17 11:19:36  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
-Nov 17 11:19:37  WhatsApp: Sending message to 447891689332
-Nov 17 11:19:37  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OVVcbYhiAs3SVDeljfP9?key=e7277556f529b...
-Nov 17 11:19:37  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRkNBQThFMzIxMDc1RjlEMEMwAA=="}]}
-Nov 17 11:19:37  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OVVcbYhiAs3SVDeljfP9?key=e7277556f529bd4b11a2695b61eb0df3
-Nov 17 11:19:38  POST /api/whatsapp-webhook 200 - - 12718.983 ms
-Nov 17 11:19:38  POST /api/whatsapp-webhook 200 - - 2.463 ms
-Nov 17 11:19:39  POST /api/whatsapp-webhook 200 - - 2.573 ms
-Nov 17 11:20:08  GET /api/conversation-followup 200 - - 54.318 ms
-Nov 17 11:20:15  [WHATSAPP][IN] (whatsapp_447891689332) Can you also add IVG 2400 Cherry Edition to my cart
-Nov 17 11:20:24  [CART] update_cart invoked with 1 item(s)
-Nov 17 11:20:24  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
-Nov 17 11:20:25  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
-Nov 17 11:20:25  WhatsApp: Sending message to 447891689332
-Nov 17 11:20:25  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OVVcbYhiAs3SVDeljfP9?key=e7277556f529b...
-Nov 17 11:20:25  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNjZGMDI3QURDMUM3MDNENDFGAA=="}]}
-Nov 17 11:20:25  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OVVcbYhiAs3SVDeljfP9?key=e7277556f529bd4b11a2695b61eb0df3
+Nov 17 11:30:25  [WHATSAPP][IN] (whatsapp_447891689332) Can you add Fumi strawberry strong to my cart
+Nov 17 11:30:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.178 ms
+Nov 17 11:30:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 39.282 ms
+Nov 17 11:30:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.265 ms
+Nov 17 11:30:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.153 ms
+Nov 17 11:30:35  WhatsApp: Sending message to 447891689332
+Nov 17 11:30:35  WhatsApp: Message content: I found the FUMi Tangy Strawberry Strong. This product requires a minimum quantity of 10 units. Woul...
+Nov 17 11:30:36  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkZBQjAwMDU3M0ZFOTZCMUU2AA=="}]}
+Nov 17 11:30:36  [WHATSAPP][OUT] (whatsapp_447891689332) I found the FUMi Tangy Strawberry Strong. This product requires a minimum quantity of 10 units. Would you like me to add 10 to your cart for £16.90?
+Nov 17 11:30:36  POST /api/whatsapp-webhook 200 - - 11174.306 ms
+Nov 17 11:30:37  POST /api/whatsapp-webhook 200 - - 2.541 ms
+Nov 17 11:30:37  POST /api/whatsapp-webhook 200 - - 2.618 ms
+Nov 17 11:30:48  [WHATSAPP][IN] (whatsapp_447891689332) yes add 10
+Nov 17 11:30:51  [CART] update_cart invoked with 1 item(s)
+Nov 17 11:30:52  [CART] No increment found for gid://shopify/ProductVariant/45707397693756; using requested quantity
+Nov 17 11:30:52  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 11:31:04  [CART] update_cart invoked with 1 item(s)
+Nov 17 11:31:04  [CART] Increment for variant gid://shopify/ProductVariant/55639298867582: 10
+Nov 17 11:31:04  GET /api/conversation-followup 200 - - 22.605 ms
+Nov 17 11:31:04  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5OWfdRVp9ks8aYdyIKP3b checkout=yes
+Nov 17 11:31:04  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 11:31:04  WhatsApp: Sending message to 447891689332
+Nov 17 11:31:04  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OWfdRVp9ks8aYdyIKP3b?key=1d7a67f0e23e0...
+Nov 17 11:31:05  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRjZCOEJERkU1QUVEMzc0Q0E3AA=="}]}
+Nov 17 11:31:05  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OWfdRVp9ks8aYdyIKP3b?key=1d7a67f0e23e04ba00b7d42742875b6c
+Nov 17 11:31:05  POST /api/whatsapp-webhook 200 - - 16450.380 ms
+Nov 17 11:31:06  POST /api/whatsapp-webhook 200 - - 4.116 ms
+Nov 17 11:31:06  POST /api/whatsapp-webhook 200 - - 3.469 ms
+Nov 17 11:31:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.822 ms
+Nov 17 11:31:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 32.177 ms
+Nov 17 11:31:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.356 ms
+Nov 17 11:31:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 11.844 ms
+Nov 17 11:31:33  [WHATSAPP][IN] (whatsapp_447891689332) Can you also add IVG 2400 Cherry Edition to my cart
+Nov 17 11:31:42  WhatsApp: Sending message to 447891689332
+Nov 17 11:31:42  WhatsApp: Message content: I found the IVG 2400 Rechargeable Kit Cherry Edition for £4.40. This product requires quantities in ...
+Nov 17 11:31:42  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQTRBQ0UwMjhGQTc5REY4MDE1AA=="}]}
+Nov 17 11:31:42  [WHATSAPP][OUT] (whatsapp_447891689332) I found the IVG 2400 Rechargeable Kit Cherry Edition for £4.40. This product requires quantities in increments of 5. Would you like me to add 5 units to your cart for £22.00?
+Nov 17 11:31:42  POST /api/whatsapp-webhook 200 - - 9235.817 ms
+Nov 17 11:31:43  POST /api/whatsapp-webhook 200 - - 2.376 ms
+Nov 17 11:31:44  POST /api/whatsapp-webhook 200 - - 2.712 ms
+Nov 17 11:31:56  [WHATSAPP][IN] (whatsapp_447891689332) yes add 5
+Nov 17 11:32:00  [CART] update_cart invoked with 1 item(s)
+Nov 17 11:32:00  [CART] No increment found for gid://shopify/ProductVariant/47704799363369; using requested quantity
+Nov 17 11:32:00  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 11:32:00  WhatsApp: Sending message to 447891689332
+Nov 17 11:32:00  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OWfdRVp9ks8aYdyIKP3b?key=1d7a67f0e23e0...
+Nov 17 11:32:01  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSN0FFQkI4OTZEMEJGQ0NDMEQzAA=="}]}
+Nov 17 11:32:01  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OWfdRVp9ks8aYdyIKP3b?key=1d7a67f0e23e04ba00b7d42742875b6c

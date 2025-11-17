@@ -405,6 +405,14 @@ class MCPClient {
         try {
           console.warn(`[CART] update_cart invoked with ${toolArgs.add_items.length} item(s)`);
           for (const item of toolArgs.add_items) {
+            // Normalize expected field names for variant id
+            if (item && item.product_variant_id && !item.variant_id) {
+              item.variant_id = item.product_variant_id;
+            }
+            if (item && item.productVariantId && !item.variant_id) {
+              item.variant_id = item.productVariantId;
+            }
+
             const variantId = item.product_variant_id || item.variant_id;
             const productId = item.product_id;
             let increment = null;
