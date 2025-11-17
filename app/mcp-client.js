@@ -764,6 +764,12 @@ class MCPClient {
 
       // Heuristic: only accept plausible cart GIDs/ids
       if (cartId && typeof cartId === 'string') {
+        // Normalize: strip any query params accidentally included (e.g., ?key=...)
+        const qIndex = cartId.indexOf('?');
+        if (qIndex !== -1) {
+          cartId = cartId.slice(0, qIndex);
+        }
+        cartId = cartId.trim();
         // keep as-is
       } else {
         cartId = null;

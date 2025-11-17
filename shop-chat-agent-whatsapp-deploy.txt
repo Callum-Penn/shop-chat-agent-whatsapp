@@ -1,13 +1,46 @@
-Nov 17 10:42:42  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
-Nov 17 10:42:52  [CART] update_cart invoked with 1 item(s)
-Nov 17 10:42:52  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
-Nov 17 10:42:52  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5ORmoueYBoVLiQ2saTo0Z?key=2a2082b99e49649d74d7ca3519ed8c3a checkout=yes
-Nov 17 10:42:52  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
-Nov 17 10:43:01  WhatsApp: Sending message to 447891689332
-Nov 17 10:43:01  WhatsApp: Message content: I've added 5x IVG 2400 Cherry Edition to your cart (£22.00). This product has a minimum order of 5 u...
-Nov 17 10:43:02  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkRCNDc0QkFBOUUxN0EyQjZEAA=="}]}
-Nov 17 10:43:02  [WHATSAPP][OUT] (whatsapp_447891689332) I've added 5x IVG 2400 Cherry Edition to your cart (£22.00). This product has a minimum order of 5 units.
-Nov 17 10:43:02  
-Nov 17 10:43:02  Have you found everything you need, or would you like to add anything else to your order?
-Nov 17 10:43:02  
-Nov 17 10:43:02  When you're ready, you can [checkout here](.
+Nov 17 11:06:44  [WHATSAPP][IN] (whatsapp_447891689332) Can you add IVG 2400 Cherry Edition to my cart
+Nov 17 11:06:54  WhatsApp: Sending message to 447891689332
+Nov 17 11:06:54  WhatsApp: Message content: I found the IVG 2400 Rechargeable Kit Cherry Edition for £4.40. This product requires quantities in ...
+Nov 17 11:06:54  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSOUE0QTlFQjk3QTU2QTY2ODgxAA=="}]}
+Nov 17 11:06:54  [WHATSAPP][OUT] (whatsapp_447891689332) I found the IVG 2400 Rechargeable Kit Cherry Edition for £4.40. This product requires quantities in multiples of 5, so I can add 5, 10, 15, etc.
+Nov 17 11:06:54  
+Nov 17 11:06:54  How many would you like? (Must be 5 or a multiple of 5)
+Nov 17 11:06:54  POST /api/whatsapp-webhook 200 - - 10630.934 ms
+Nov 17 11:06:55  POST /api/whatsapp-webhook 200 - - 2.270 ms
+Nov 17 11:06:56  POST /api/whatsapp-webhook 200 - - 3.846 ms
+Nov 17 11:07:04  GET /api/conversation-followup 200 - - 28.120 ms
+Nov 17 11:07:04  [WHATSAPP][IN] (whatsapp_447891689332) Yes add 5
+Nov 17 11:07:13  [CART] update_cart invoked with 1 item(s)
+Nov 17 11:07:13  [CART] Increment for variant gid://shopify/ProductVariant/55400926642558: 5
+Nov 17 11:07:14  [CART] Persisted last cart info: id=gid://shopify/Cart/hWN5OUFrDzVuoQgUdnX9FVeV?key=cdf1b9b99e7c938aecffee13ba7a821e checkout=yes
+Nov 17 11:07:14  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 11:07:14  WhatsApp: Sending message to 447891689332
+Nov 17 11:07:14  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OUFrDzVuoQgUdnX9FVeV?key=cdf1b9b99e7c9...
+Nov 17 11:07:14  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQjNDQzBDRjE3QUJGRDBFQjU5AA=="}]}
+Nov 17 11:07:14  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OUFrDzVuoQgUdnX9FVeV?key=cdf1b9b99e7c938aecffee13ba7a821e
+Nov 17 11:07:14  POST /api/whatsapp-webhook 200 - - 10140.278 ms
+Nov 17 11:07:15  POST /api/whatsapp-webhook 200 - - 2.840 ms
+Nov 17 11:07:16  POST /api/whatsapp-webhook 200 - - 2.452 ms
+Nov 17 11:07:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.976 ms
+Nov 17 11:07:27  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 40.213 ms
+Nov 17 11:07:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.237 ms
+Nov 17 11:07:27  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.153 ms
+Nov 17 11:07:45  [WHATSAPP][IN] (whatsapp_447891689332) Can you also add Fumi strawberry strong to my cart too
+Nov 17 11:07:54  WhatsApp: Sending message to 447891689332
+Nov 17 11:07:54  WhatsApp: Message content: I found the FUMi Tangy Strawberry Strong for £1.69. This product requires quantities in multiples of...
+Nov 17 11:07:55  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRkI1MEU0QzAxODIzOEYxNDk2AA=="}]}
+Nov 17 11:07:55  [WHATSAPP][OUT] (whatsapp_447891689332) I found the FUMi Tangy Strawberry Strong for £1.69. This product requires quantities in multiples of 10, so I can add 10, 20, 30, etc.
+Nov 17 11:07:55  
+Nov 17 11:07:55  How many would you like? (Must be 10 or a multiple of 10)
+Nov 17 11:07:55  POST /api/whatsapp-webhook 200 - - 10085.136 ms
+Nov 17 11:07:56  POST /api/whatsapp-webhook 200 - - 3.221 ms
+Nov 17 11:07:56  POST /api/whatsapp-webhook 200 - - 2.044 ms
+Nov 17 11:08:04  [WHATSAPP][IN] (whatsapp_447891689332) Add 10
+Nov 17 11:08:05  GET /api/conversation-followup 200 - - 22.872 ms
+Nov 17 11:08:08  [CART] update_cart invoked with 1 item(s)
+Nov 17 11:08:08  [CART] No increment found for gid://shopify/ProductVariant/41635529572403; using requested quantity
+Nov 17 11:08:08  WhatsApp auto-checkout-link failed: Tool get_cart_checkout_url not found
+Nov 17 11:08:08  WhatsApp: Sending message to 447891689332
+Nov 17 11:08:08  WhatsApp: Message content: Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OUFrDzVuoQgUdnX9FVeV?key=cdf1b9b99e7c9...
+Nov 17 11:08:09  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQkNCRTI4RDc3OTJCRDdERkUzAA=="}]}
+Nov 17 11:08:09  [WHATSAPP][OUT] (whatsapp_447891689332) Here’s your checkout link: https://vapelocal.co.uk/cart/c/hWN5OUFrDzVuoQgUdnX9FVeV?key=cdf1b9b99e7c938aecffee13ba7a821e
