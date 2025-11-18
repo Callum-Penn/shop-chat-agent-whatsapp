@@ -1,142 +1,261 @@
-Nov 18 14:59:01  [WHATSAPP][IN] (whatsapp_447891689332) Can you add the top 5 IVG 2400 kits to my cart
-Nov 18 14:59:03  GET /api/conversation-followup 200 - - 20.979 ms
-Nov 18 14:59:04  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"IVG 2400 kits","context":"Customer wants to add top 5 IVG 2400 kits to cart","available_for_sale":1}
-Nov 18 14:59:04  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[{\"product_id\":\"gid://shopify/Product/15056747233662\",\"title\":\"IVG 2400 Rechargeable Kit Cherry Edition\",\"description\":\"These products are Post June 2025 Ban Compliant. Buy with ConfidenceThe new IVG 2400 maintains all the key elements that made the original product successful: 1750mAh Battery: Users can still enjoy a strong battery life. Same Flavours: IVG ensures the flavour quality remains unchanged, offering a consistent taste. Rechargeable Functionality: With the addition of a rechargeable feature, users can now refill the device, making it a longer-lasting choice. Pods for Reusability: IVG has introduced pods that allow users to refill their devices, making the IVG 2400 not only compliant but also more sustainable.\",\"url\":\"https://vapelocal.co.uk/products/ivg-2400-rechargeable-kit-cherry-edition\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0904/7362/8030/files/IVG_0043_24008mlThumbnailCherryEdition_df655cc0-e4a1-4ecb-b576-68375e87b5fc.webp?v=1752482823\",\"price_range\":{\"min\":\"4.4\",\"max\":\"4.4\",\"currency\":\"GBP\"},\"product_type\":\"Legal Big Puffs\",\"tags\":[],\"variants\":[{\"variant_id\":\"gi…
-Nov 18 14:59:13  WhatsApp: Sending message to 447891689332
-Nov 18 14:59:13  WhatsApp: Message content: I found several IVG 2400 kits available. However, these products have a minimum quantity requirement...
-Nov 18 14:59:14  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQzMxQkZFNzU3MTUzQkYwODAxAA=="}]}
-Nov 18 14:59:14  [WHATSAPP][OUT] (whatsapp_447891689332) I found several IVG 2400 kits available. However, these products have a minimum quantity requirement of 5 units each due to wholesale packaging. 
-Nov 18 14:59:14  
-Nov 18 14:59:14  Here are the top available IVG 2400 kits:
-Nov 18 14:59:14  
-Nov 18 14:59:14  1. **IVG 2400 Rechargeable Kit Cherry Edition** - £4.40 each
-Nov 18 14:59:14  2. **IVG 2400 Rechargeable Kit Special Edition** - £4.40 each
-Nov 18 14:59:14  3. **IVG 2400 Rechargeable Kit Tropical Edition** - £4.40 each
-Nov 18 14:59:14  4. **IVG 2400 Rechargeable Kit Berry Edition** - £4.40 each
-Nov 18 14:59:14  5. **IVG 2400 Rechargeable Kit Blue Edition** - £4.40 each
-Nov 18 14:59:14  
-Nov 18 14:58:12  ...
-Nov 18 14:58:13  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSQzBFOEZFRjlFREM3REU2NDlEAA=="}]}
-Nov 18 14:58:13  [WHATSAPP][OUT] (whatsapp_447891689332) Based on our current inventory, here are some of the top nicotine pouch brands and popular options:
-Nov 18 14:58:13  
-Nov 18 14:58:13  **Popular Brands & Best Sellers:**
-Nov 18 14:58:13  
-Nov 18 14:58:13  • **on!® mini** - Starting at £3.60, mint flavors in various strengths (3mg regular to extra strong)
-Nov 18 14:58:13  • **White Fox Double Mint** - £2.31, strong 16mg pouches, very popular choice  
-Nov 18 14:58:13  • **Siberia Super Slim** - £2.31, extremely strong 33mg for experienced users
-Nov 18 14:58:13  • **KLINT** - Premium options with unique flavors like Freeze Mint and Honeymelon
-Nov 18 14:58:13  • **VOLT** - Various s…
-Nov 18 14:58:13  POST /api/whatsapp-webhook 200 - - 17716.314 ms
-Nov 18 14:58:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.191 ms
-Nov 18 14:58:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.686 ms
-Nov 18 14:58:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.350 ms
-Nov 18 14:58:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.894 ms
-Nov 18 14:58:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 12.593 ms
-Nov 18 14:58:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.388 ms
-Nov 18 14:59:14  Sinc…
-Nov 18 14:59:14  POST /api/whatsapp-webhook 200 - - 13251.908 ms
-Nov 18 14:59:15  POST /api/whatsapp-webhook 200 - - 3.429 ms
-Nov 18 14:59:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.489 ms
-Nov 18 14:59:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.014 ms
-Nov 18 14:59:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.916 ms
-Nov 18 14:59:39  [WHATSAPP][IN] (whatsapp_447891689332) Yes 5 of each
-Nov 18 14:59:43  [MCP][WA][whatsapp_447891689332] CALL storefront.update_cart args={"add_items":[{"product_variant_id":"gid://shopify/ProductVariant/48680815886638","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48680815919406","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48680815952174","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48680815820910","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48680815853678","quantity":5}]}
-Nov 18 14:59:43  [CART] update_cart invoked with 5 item(s)
-Nov 18 14:59:43  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48680815886638","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 14:59:43  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 14:59:43  [CART] No increment found for gid://shopify/ProductVariant/48680815886638; using requested quantity
-Nov 18 14:59:43  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48680815919406","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 14:59:44  [CART] No increment found for gid://shopify/ProductVariant/48680815919406; using requested quantity
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48680815952174","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 14:59:16  POST /api/whatsapp-webhook 200 - - 2.072 ms
-Nov 18 14:59:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.986 ms
-Nov 18 14:59:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.082 ms
-Nov 18 14:59:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.428 ms
-Nov 18 14:59:51  POST /api/whatsapp-webhook 200 - - 1.685 ms
-Nov 18 15:00:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.583 ms
-Nov 18 15:00:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.779 ms
-Nov 18 15:00:20  GET /api/conversation-followup 200 - - 31.218 ms
-Nov 18 15:00:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 9.256 ms
-Nov 18 15:00:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 4.890 ms
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 14:59:44  [CART] No increment found for gid://shopify/ProductVariant/48680815952174; using requested quantity
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48680815820910","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 14:59:44  [CART] No increment found for gid://shopify/ProductVariant/48680815820910; using requested quantity
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48680815853678","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 14:59:44  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 14:59:44  [CART] No increment found for gid://shopify/ProductVariant/48680815853678; using requested quantity
-Nov 18 14:59:45  [MCP][WA][whatsapp_447891689332] RESULT storefront.update_cart OK payload={"content":[{"type":"text","text":"{\"instructions\":\"Ask if the customer has found everything they need. If they're ready to check out:\\n\\n1. First help them complete their cart with any additional items they might need\\n2. If the cart contains shipping-eligible items, prompt them to select a shipping option from those available\\n3. Ask if they'd like to add any special instructions or notes to their order (optional)\\n4. Check if they have any discount codes or gift cards they'd like to apply (only if they mention them)\\n5. Assist them in navigating to checkout by providing a markdown link to the checkout URL\\n\\nRemember that buyer information helps calculate accurate shipping rates but isn't required to proceed.\\n\",\"cart\":{},\"errors\":[{\"field\":[\"add_items\",\"0\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/48680815886638 does not exist.\"},{\"field\":[\"add_items\",\"1\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/48680815919406 does not exist.\"},{\"field\":[\"add_items\",\"2\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/4…
-Nov 18 14:59:45  WhatsApp: Tool returned error: {
-Nov 18 14:59:45    type: 'tool_error',
-Nov 18 14:59:45    data: `{"instructions":"Ask if the customer has found everything they need. If they're ready to check out:\\n\\n1. First help them complete their cart with any additional items they might need\\n2. If the cart contains shipping-eligible items, prompt them to select a shipping option from those available\\n3. Ask if they'd like to add any special instructions or notes to their order (optional)\\n4. Check if they have any discount codes or gift cards they'd like to apply (only if they mention them)\\n5. Assist them in navigating to checkout by providing a markdown link to the checkout URL\\n\\nRemember that buyer information helps calculate accurate shipping rates but isn't required to proceed.\\n","cart":{},"errors":[{"field":["add_items","0","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48680815886638 does not exist."},{"field":["add_items","1","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48680815919406 does not exist."},{"field":["add_items","2","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48680815952174 does not exist."},{"field":["add_items","3","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48680815820910 does not exist."},{"field":["add_items","4","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48680815853678 does not exist."}]}`
-Nov 18 14:59:45  }
-Nov 18 14:59:48  WhatsApp: Sending message to 447891689332
-Nov 18 14:59:48  WhatsApp: Message content: Sorry, I couldn't generate a response....
-Nov 18 14:59:49  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSMkIyMTdGQzU1NjM0RDQyRUQwAA=="}]}
-Nov 18 14:59:49  [WHATSAPP][OUT] (whatsapp_447891689332) Sorry, I couldn't generate a response.
-Nov 18 14:59:49  POST /api/whatsapp-webhook 200 - - 10125.510 ms
-Nov 18 14:59:50  POST /api/whatsapp-webhook 200 - - 4.487 ms
-Nov 18 15:00:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.703 ms
-Nov 18 15:00:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 8.589 ms
-Nov 18 15:01:03  GET /api/conversation-followup 200 - - 26.339 ms
-Nov 18 15:01:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 92.642 ms
-Nov 18 15:01:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 87.675 ms
-Nov 18 15:01:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.745 ms
-Nov 18 15:01:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.316 ms
-Nov 18 15:01:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.125 ms
-Nov 18 15:01:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.774 ms
-Nov 18 15:02:04  GET /api/conversation-followup 200 - - 25.591 ms
-Nov 18 15:02:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.553 ms
-Nov 18 15:02:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 50.070 ms
-Nov 18 15:02:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 6.412 ms
-Nov 18 15:02:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.009 ms
-Nov 18 15:02:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.771 ms
-Nov 18 15:02:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 5.126 ms
-Nov 18 15:03:03  WhatsApp: Sending message to 447891689332
-Nov 18 15:03:03  WhatsApp: Message content: It looks like you may have stepped away. Don't worry I'll remember our conversation and if you need ...
-Nov 18 15:03:03  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNkVFMENDNEI1MUZGRjM1NjdBAA=="}]}
-Nov 18 15:03:03  Sent first follow-up to conversation whatsapp_447891689332
-Nov 18 15:03:03  GET /api/conversation-followup 200 - - 467.408 ms
-Nov 18 15:03:04  POST /api/whatsapp-webhook 200 - - 2.709 ms
-Nov 18 15:03:05  POST /api/whatsapp-webhook 200 - - 1.578 ms
-Nov 18 15:03:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.104 ms
-Nov 18 15:03:19  OPTIONS /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 7.345 ms
-Nov 18 15:03:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 4.169 ms
-Nov 18 15:03:19  GET /api/unread-messages?conversation_id=web_anon_1762250331221_nuy2n9tyd 200 - - 5.033 ms
-Nov 18 15:03:33  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.388 ms
-Nov 18 15:03:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.591 ms
-Nov 18 15:03:40  [WHATSAPP][IN] (whatsapp_447891689332) Yes 5 of each
-Nov 18 15:03:44  [MCP][WA][whatsapp_447891689332] CALL storefront.update_cart args={"add_items":[{"product_variant_id":"gid://shopify/ProductVariant/48669220274455","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48669220307223","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48669220339991","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48669220372759","quantity":5},{"product_variant_id":"gid://shopify/ProductVariant/48669220405527","quantity":5}]}
-Nov 18 15:03:44  [CART] update_cart invoked with 5 item(s)
-Nov 18 15:03:44  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48669220274455","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 15:03:45  [CART] No increment found for gid://shopify/ProductVariant/48669220274455; using requested quantity
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48669220307223","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 15:03:45  [CART] No increment found for gid://shopify/ProductVariant/48669220307223; using requested quantity
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48669220339991","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 15:03:45  [CART] No increment found for gid://shopify/ProductVariant/48669220339991; using requested quantity
-Nov 18 15:03:45  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48669220372759","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 15:03:46  [CART] No increment found for gid://shopify/ProductVariant/48669220372759; using requested quantity
-Nov 18 15:03:46  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 15:03:46  [MCP][WA][whatsapp_447891689332] CALL storefront.search_shop_catalog args={"query":"gid://shopify/ProductVariant/48669220405527","context":"Resolve product for quantity increment validation","available_for_sale":1}
-Nov 18 15:03:46  [MCP][WA][whatsapp_447891689332] RESULT storefront.search_shop_catalog OK payload={"content":[{"type":"text","text":"{\"products\":[],\"pagination\":{\"hasNextPage\":false,\"hasPreviousPage\":false,\"startCursor\":null,\"endCursor\":null,\"currentPage\":1,\"nextPage\":null,\"maxPages\":2500,\"limitReached\":false},\"available_filters\":[{\"label\":\"Price\",\"values\":{\"label\":[\"Price\"],\"input_options\":[{\"label\":\"Price\",\"input\":{\"price\":{\"min\":0,\"max\":0.0}}}]}}],\"instructions\":\"No products were found matching your search. Please try again with a different query or more specific terms.\\n\\n- Try simpler search terms without filter names (e.g., \\\"wool\\\" instead of \\\"wool material\\\")\\n- If searching for a product in a category (e.g., \\\"burton in snowboards\\\"), try:\\n  1. First search to discover available filters\\n  2. Then search for the product using the appropriate filter\\n- Check available_filters for options relevant to what the user is seeking\\n- Consider suggesting broader search terms or categories\\n- If the user was specific about a particular feature, try searching for just that feature\\n\"}"}],"isError":false}
-Nov 18 15:03:46  [CART] No increment found for gid://shopify/ProductVariant/48669220405527; using requested quantity
-Nov 18 15:03:46  [MCP][WA][whatsapp_447891689332] RESULT storefront.update_cart OK payload={"content":[{"type":"text","text":"{\"instructions\":\"Ask if the customer has found everything they need. If they're ready to check out:\\n\\n1. First help them complete their cart with any additional items they might need\\n2. If the cart contains shipping-eligible items, prompt them to select a shipping option from those available\\n3. Ask if they'd like to add any special instructions or notes to their order (optional)\\n4. Check if they have any discount codes or gift cards they'd like to apply (only if they mention them)\\n5. Assist them in navigating to checkout by providing a markdown link to the checkout URL\\n\\nRemember that buyer information helps calculate accurate shipping rates but isn't required to proceed.\\n\",\"cart\":{},\"errors\":[{\"field\":[\"add_items\",\"0\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/48669220274455 does not exist.\"},{\"field\":[\"add_items\",\"1\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/48669220307223 does not exist.\"},{\"field\":[\"add_items\",\"2\",\"product_variant_id\"],\"message\":\"The merchandise with id gid://shopify/ProductVariant/4…
-Nov 18 15:03:46  WhatsApp: Tool returned error: {
-Nov 18 15:03:46    type: 'tool_error',
-Nov 18 15:03:46    data: `{"instructions":"Ask if the customer has found everything they need. If they're ready to check out:\\n\\n1. First help them complete their cart with any additional items they might need\\n2. If the cart contains shipping-eligible items, prompt them to select a shipping option from those available\\n3. Ask if they'd like to add any special instructions or notes to their order (optional)\\n4. Check if they have any discount codes or gift cards they'd like to apply (only if they mention them)\\n5. Assist them in navigating to checkout by providing a markdown link to the checkout URL\\n\\nRemember that buyer information helps calculate accurate shipping rates but isn't required to proceed.\\n","cart":{},"errors":[{"field":["add_items","0","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48669220274455 does not exist."},{"field":["add_items","1","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48669220307223 does not exist."},{"field":["add_items","2","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48669220339991 does not exist."},{"field":["add_items","3","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48669220372759 does not exist."},{"field":["add_items","4","product_variant_id"],"message":"The merchandise with id gid://shopify/ProductVariant/48669220405527 does not exist."}]}`
-Nov 18 15:03:46  }
-Nov 18 15:03:50  Cleaned up 1 old messages for conversation whatsapp_447891689332
-Nov 18 15:03:50  WhatsApp: Sending message to 447891689332
-Nov 18 15:03:50  WhatsApp: Message content: Let me add those 5 IVG 2400 kits to your cart:
-Nov 18 15:03:50  
-Nov 18 15:03:50  I apologize, but I need to complete that response. L...
-Nov 18 15:03:50  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSODFCMTNDNUEzRjBEQzVEMDcwAA=="}]}
-Nov 18 15:03:50  [WHATSAPP][OUT] (whatsapp_447891689332) Let me add those 5 IVG 2400 kits to your cart:
-Nov 18 15:03:50  
-Nov 18 15:03:50  I apologize, but I need to complete that response. Let me provide you with the full information you requested.
-Nov 18 15:03:50  POST /api/whatsapp-webhook 200 - - 10288.269 ms
+Nov 18 15:54:44  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Nov 18 15:54:44  [34m│[0m [34m › fetching app source code[0m
+Nov 18 15:54:44  [34m│[0m => Selecting branch "main"
+Nov 18 15:54:44  [34m│[0m => Checking out commit "c71d92670c4324cfedd5077e27923e16f2af1001"
+Nov 18 15:54:44  [34m│[0m 
+Nov 18 15:54:44  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Nov 18 15:54:44  [34m╰────────────────────────────────────────╼[0m
+Nov 18 15:54:44  
+Nov 18 15:54:45  [34m › configuring build-time app environment variables:[0m
+Nov 18 15:54:45       SHOPIFY_APP_URL SHOPIFY_API_SECRET DIRECT_URL ORDER_TEMPLATE_BESTSELLERS_URL SHOPIFY_API_KEY WHATSAPP_VERIFY_TOKEN RESEND_API_KEY WHATSAPP_PHONE_NUMBER_ID ORDER_TEMPLATE_GENERAL_URL APP_URL ARCHIVING_API_KEY STAFF_WHATSAPP_NUMBER CLAUDE_API_KEY SHOPIFY_CHAT_BUBBLE_ID WHATSAPP_TOKEN REDIRECT_URL FOLLOWUP_SECRET MAIL_SERVICE_API SUPPORT_EMAIL
+Nov 18 15:54:45  
+Nov 18 15:54:45  [34m › configuring custom build command to be run at the end of the build:[0m
+Nov 18 15:54:45     [34m│[0m npm run build
+Nov 18 15:54:45  
+Nov 18 15:54:45  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Nov 18 15:54:45  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Nov 18 15:54:46  [34m│[0m Detected the following buildpacks suitable to build your app:
+Nov 18 15:54:46  [34m│[0m 
+Nov 18 15:54:46  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Nov 18 15:54:46  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Nov 18 15:54:46  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Nov 18 15:54:46  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Nov 18 15:54:46  [34m╰─────────────────────────────────────────────╼[0m
+Nov 18 15:54:46  
+Nov 18 15:54:46  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Nov 18 15:54:46  [34m│[0m [34m › checking for cache from a previous build[0m
+Nov 18 15:54:46  [34m│[0m Timer: Analyzer started at 2025-11-18T15:54:46Z
+Nov 18 15:54:47  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Nov 18 15:54:47  [34m│[0m Timer: Analyzer ran for 618.419181ms and ended at 2025-11-18T15:54:47Z
+Nov 18 15:54:47  [34m│[0m Timer: Restorer started at 2025-11-18T15:54:47Z
+Nov 18 15:54:47  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Nov 18 15:54:57  [34m│[0m Timer: Restorer ran for 9.608038588s and ended at 2025-11-18T15:54:57Z
+Nov 18 15:54:57  [34m╰───────────────────────────────────────╼[0m
+Nov 18 15:54:57  
+Nov 18 15:54:57  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Nov 18 15:54:57  [34m│[0m Timer: Builder started at 2025-11-18T15:54:57Z
+Nov 18 15:54:57  [34m│[0m        
+Nov 18 15:54:57  [34m│[0m -----> Creating runtime environment
+Nov 18 15:54:57  [34m│[0m        
+Nov 18 15:54:57  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Nov 18 15:54:57  [34m│[0m        NODE_VERBOSE=false
+Nov 18 15:54:57  [34m│[0m        NODE_ENV=
+Nov 18 15:54:57  [34m│[0m        NODE_MODULES_CACHE=true
+Nov 18 15:54:57  [34m│[0m        
+Nov 18 15:54:57  [34m│[0m -----> Installing binaries
+Nov 18 15:54:57  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Nov 18 15:54:57  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Nov 18 15:54:57  [34m│[0m        
+Nov 18 15:54:57  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Nov 18 15:54:57  [34m│[0m        Downloading and installing node 24.2.0...
+Nov 18 15:55:03  [34m│[0m        Using default npm version: 11.3.0
+Nov 18 15:55:03  [34m│[0m        
+Nov 18 15:55:03  [34m│[0m -----> Restoring cache
+Nov 18 15:55:03  [34m│[0m        - npm cache
+Nov 18 15:55:03  [34m│[0m        
+Nov 18 15:55:03  [34m│[0m -----> Installing dependencies
+Nov 18 15:55:03  [34m│[0m        Installing node modules
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        added 1230 packages, and audited 1231 packages in 20s
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        304 packages are looking for funding
+Nov 18 15:55:23  [34m│[0m          run `npm fund` for details
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        21 vulnerabilities (7 low, 9 moderate, 4 high, 1 critical)
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        To address issues that do not require attention, run:
+Nov 18 15:55:23  [34m│[0m          npm audit fix
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        To address all issues possible (including breaking changes), run:
+Nov 18 15:55:23  [34m│[0m          npm audit fix --force
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        Some issues need review, and may require choosing
+Nov 18 15:55:23  [34m│[0m        a different dependency.
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m        Run `npm audit` for details.
+Nov 18 15:55:23  [34m│[0m        
+Nov 18 15:55:23  [34m│[0m -----> Build
+Nov 18 15:55:24  [34m│[0m        
+Nov 18 15:55:24  [34m│[0m -----> Caching build
+Nov 18 15:55:24  [34m│[0m        - npm cache
+Nov 18 15:55:24  [34m│[0m        
+Nov 18 15:55:24  [34m│[0m -----> Pruning devDependencies
+Nov 18 15:55:24  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Nov 18 15:55:24  [34m│[0m        
+Nov 18 15:55:24  [34m│[0m -----> Build succeeded!
+Nov 18 15:55:24  [34m│[0m Running custom build command: npm run build
+Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 18 15:55:24  [34m│[0m 
+Nov 18 15:55:24  [34m│[0m > shop-chat-agent@1.0.41 build
+Nov 18 15:55:24  [34m│[0m > prisma generate && remix vite:build
+Nov 18 15:55:24  [34m│[0m 
+Nov 18 15:55:25  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Nov 18 15:55:25  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 18 15:55:25  [34m│[0m 
+Nov 18 15:55:25  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 63ms
+Nov 18 15:55:25  [34m│[0m 
+Nov 18 15:55:25  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 18 15:55:25  [34m│[0m 
+Nov 18 15:55:25  [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+Nov 18 15:55:25  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m The following routes all define the same Route ID, only the first one will be used
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m 🟢 routes/uploads.$filename.jsx
+Nov 18 15:55:26  [34m│[0m ⭕️️ routes/uploads.$filename.ts
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m The following routes all define the same Route ID, only the first one will be used
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m 🟢 routes/uploads.$filename.jsx
+Nov 18 15:55:26  [34m│[0m ⭕️️ routes/uploads.$filename.ts
+Nov 18 15:55:26  [34m│[0m 
+Nov 18 15:55:26  [34m│[0m vite v6.3.3 building for production...
+Nov 18 15:55:26  [34m│[0m transforming...
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:os" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:util" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:os" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:util" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/stream.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/stream.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+Nov 18 15:55:27  [34m│[0m ✓ 95 modules transformed.
+Nov 18 15:55:27  [34m│[0m ✗ Build failed in 476ms
+Nov 18 15:55:27  [34m│[0m [commonjs--resolver] Server-only module referenced by client
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m     '../shopify.server' imported by route 'app/routes/chat.jsx'
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m   Remix automatically removes server-code from these exports:
+Nov 18 15:55:27  [34m│[0m     `loader`, `action`, `headers`
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../shopify.server'.
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
+Nov 18 15:55:27  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 18 15:55:27  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 18 15:55:27  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 18 15:55:27  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
+Nov 18 15:55:27  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 18 15:55:27  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 18 15:55:27  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 18 15:55:27  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
+Nov 18 15:55:27  [34m│[0m   code: 'PLUGIN_ERROR',
+Nov 18 15:55:27  [34m│[0m   plugin: 'commonjs--resolver',
+Nov 18 15:55:27  [34m│[0m   hook: 'resolveId',
+Nov 18 15:55:27  [34m│[0m   watchFiles: [
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/root.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/uploads.$filename.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Nov 18 15:55:27  [34m│[0m     '/workspace/package.json',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/dev.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/styles.css',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errors.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/invariant.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fog-of-war.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router/dist/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/router/dist/router.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/links.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/globals.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/markup.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/implementations.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/stream.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routeModules.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/data.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fallback.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/warnings.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/turbo-stream/dist/turbo-stream.mjs',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/cookie/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@web3-storage/multipart-parser/esm/src/index.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/errors.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/entry.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/headers.js',
+Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/invariant.js'
+Nov 18 15:55:27  [34m│[0m   ]
+Nov 18 15:55:27  [34m│[0m }
+Nov 18 15:55:27  [34m│[0m npm notice
+Nov 18 15:55:27  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
+Nov 18 15:55:27  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+Nov 18 15:55:27  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
+Nov 18 15:55:27  [34m│[0m npm notice
+Nov 18 15:55:27  [34m│[0m building: exit status 1
+Nov 18 15:55:27  [34m│[0m Timer: Builder ran for 29.976932362s and ended at 2025-11-18T15:55:27Z
+Nov 18 15:55:27  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m 
+Nov 18 15:55:27  [34m│[0m [31m ✘ build failed[0m

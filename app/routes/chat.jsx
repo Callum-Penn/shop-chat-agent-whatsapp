@@ -16,11 +16,6 @@ import {
   generateTicketReceiptEmailHTML,
   generateTicketReceiptEmailText
 } from "../utils/email.server";
-import {
-  resolveCustomerMcpEndpoint,
-  normalizeStorefrontDomain,
-  getPreferredStoreDomain
-} from "../utils/mcp.server";
 
 
 /**
@@ -203,6 +198,11 @@ async function handleChatSession({
     getConversation,
     generateUniqueTicketReference
   } = await import("../db.server");
+  const {
+    resolveCustomerMcpEndpoint,
+    normalizeStorefrontDomain,
+    getPreferredStoreDomain
+  } = await import("../utils/mcp.server");
   
   // Initialize services
   const claudeService = createClaudeService();
@@ -212,11 +212,8 @@ async function handleChatSession({
 
   // Determine allowed checkout domain from Origin header
   const originHeader = request.headers.get("Origin");
-  const origin =
-    originHeader ||
-    normalizeStorefrontDomain(originHeader) ||
-    getPreferredStoreDomain() ||
-    "";
+  const normalizedOrigin = normalizeStorefrontDomain(originHeader);
+  const origin = originHeader || normalizedOrigin || getPreferredStoreDomain() || "";
   let allowedHost = "";
   try {
     if (origin) allowedHost = new URL(origin).host;
@@ -246,7 +243,6 @@ async function handleChatSession({
 
   // Initialize MCP client
   const shopId = request.headers.get("X-Shopify-Shop-Id");
-  const normalizedOrigin = normalizeStorefrontDomain(originHeader);
   const resolvedStoreDomain =
     normalizedOrigin ||
     getPreferredStoreDomain() ||

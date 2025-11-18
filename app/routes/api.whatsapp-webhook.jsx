@@ -14,29 +14,18 @@ import {
   generateTicketReceiptEmailHTML,
   generateTicketReceiptEmailText
 } from "../utils/email.server";
-import {
-  resolveCustomerMcpEndpoint,
-  normalizeStorefrontDomain,
-  getPreferredStoreDomain,
-  getConfiguredShopId
-} from "../utils/mcp.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
 
 // Helper to get or create cached MCP client
-async function getCachedMCPClient(shopDomain, conversationId, shopId) {
-  const cacheKey = `${shopDomain}_${shopId}_${conversationId}`;
+async function getCachedMCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint) {
+  const cacheKey = `${shopDomain}_${shopId}_${conversationId}_${customerMcpEndpoint || 'none'}`;
   
   if (mcpCache.has(cacheKey)) {
     return mcpCache.get(cacheKey);
   }
-  
-  const customerMcpEndpoint = await resolveCustomerMcpEndpoint(
-    shopDomain,
-    conversationId
-  );
-  
+
   if (!customerMcpEndpoint) {
     throw new Error(
       "Unable to resolve customer MCP endpoint for WhatsApp conversation."
@@ -162,6 +151,12 @@ export const action = async ({ request }) => {
     generateUniqueTicketReference,
     updateUser
   } = await import("../db.server");
+  const {
+    resolveCustomerMcpEndpoint,
+    normalizeStorefrontDomain,
+    getPreferredStoreDomain,
+    getConfiguredShopId
+  } = await import("../utils/mcp.server");
   
   const body = await request.json();
   const message = body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
@@ -368,7 +363,19 @@ export const action = async ({ request }) => {
       const urlRegex = /(https?:\/\/[^\s)]+)\)?/gi;
       
       // Get cached MCP client
-      const mcpClient = await getCachedMCPClient(shopDomain, conversationId, shopId);
+      const customerMcpEndpoint = await resolveCustomerMcpEndpoint(
+        shopDomain,
+        conversationId
+      );
+      if (!customerMcpEndpoint) {
+        throw new Error("WhatsApp: Unable to resolve customer MCP endpoint.");
+      }
+      const mcpClient = await getCachedMCPClient(
+        shopDomain,
+        conversationId,
+        shopId,
+        customerMcpEndpoint
+      );
       
       // Save user message to database
       await saveMessage(conversationId, 'user', userMessage);
