@@ -515,11 +515,22 @@ export const action = async ({ request }) => {
                     if (handoffRequested && !allowNewTicket) {
                       console.warn('WhatsApp: Handoff already requested for this conversation');
                       
-                      // Return message to user via WhatsApp
-                      const referenceNote = existingTicketReference ? ` Your reference is Ticket #${existingTicketReference}.` : '';
-                      aiResponse = `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`;
-                      conversationComplete = true;
-                      break;
+                      const referenceNote = existingTicketReference ? ` Ticket reference: #${existingTicketReference}.` : '';
+                      conversationHistory.push({
+                        role: 'assistant',
+                        content: [content]
+                      });
+                      conversationHistory.push({
+                        role: 'user',
+                        content: [{
+                          type: 'tool_result',
+                          tool_use_id: content.id,
+                          content: `Support ticket already exists.${referenceNote} Waiting for team follow-up.`
+                        }]
+                      });
+                      
+                      // Continue normal response generation instead of stopping the chat
+                      return;
                     }
                     
                     const { customer_name, customer_email, customer_phone, reason } = toolArgs;

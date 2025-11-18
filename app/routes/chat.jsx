@@ -422,8 +422,11 @@ async function handleChatSession({
                 const handoffTime = handoffAt ? new Date(handoffAt) : null;
                 const hoursSinceHandoff = handoffTime ? (Date.now() - handoffTime.getTime()) / (1000 * 60 * 60) : 0;
                 const hoursRemaining = Math.ceil(HANDOFF_COOLDOWN_HOURS - hoursSinceHandoff);
-                
-                // Add tool result to conversation history
+                const referenceNote = existingTicketReference ? ` Ticket reference: #${existingTicketReference}.` : '';
+                const cooldownMessage = hoursRemaining > 0 
+                  ? `Support ticket already exists.${referenceNote} Team ETA within ${hoursRemaining}h.`
+                  : `Support ticket already exists.${referenceNote} Awaiting team response.`;
+
                 conversationHistory.push({
                   role: 'assistant',
                   content: [content]
@@ -433,23 +436,11 @@ async function handleChatSession({
                   content: [{
                     type: 'tool_result',
                     tool_use_id: toolUseId,
-                    content: `A support ticket has already been created for this conversation. Our team will be in touch soon. Please wait for their response.`
+                    content: cooldownMessage
                   }]
                 });
-                
-                // Stream response to user
-                const referenceNote = existingTicketReference ? ` Your reference is Ticket #${existingTicketReference}.` : '';
-                const cooldownMessage = hoursRemaining > 0 
-                  ? `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. If you still need help after 24 hours, you can request another ticket.`
-                  : `I've already created a support ticket for you.${referenceNote} Our customer service team will be in touch soon. Please wait for their response - there's no need to submit another ticket.`;
-                
-                stream.sendMessage({
-                  type: 'chunk',
-                  chunk: cooldownMessage
-                });
-                
-                // Mark handoff as completed to stop the loop
-                handoffCompleted = true;
+
+                // Let Claude continue replying to the user's actual request
                 return;
               }
               
