@@ -386,6 +386,16 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
+      // Enforce availability filters for product search
+      if (toolName === 'search_shop_catalog') {
+        if (!toolArgs || typeof toolArgs !== 'object') {
+          toolArgs = {};
+        }
+        if (typeof toolArgs.available_for_sale === 'undefined') {
+          toolArgs.available_for_sale = 1;
+        }
+      }
+
       console.log(`${this.logPrefix} CALL storefront.${toolName} args=${this._serializeForLog(toolArgs)}`);
       // Attempt to inject last known cart_id when missing
       try {

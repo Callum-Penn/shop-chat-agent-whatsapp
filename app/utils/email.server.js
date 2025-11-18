@@ -293,17 +293,19 @@ export function generateTicketReceiptEmailHTML({
         <div class="container">
           <div class="card">
             <p>Hi ${greetingName},</p>
-            <p>Thanks for reaching out. This email confirms we've received your support request and have created ticket #${ticketReference} for you.</p>
-            <p>Our team is reviewing your message and will get back to you within 1 - 2 business days.</p>
+            <p>Thanks for reaching out. This email confirms we've received your support request and have created ticket <b>#${ticketReference}</b> for you.</p>
+            <p>Our team is reviewing your message and will get back to you within <b>1 - 2 business days</b>.</p>
             <div class="hours">
               <strong>Customer service hours</strong>
-              <p>Monday 9 am - 5 pm</p>
-              <p>Tuesday 9 am - 5 pm</p>
-              <p>Wednesday 9 am - 5 pm</p>
-              <p>Thursday 9 am - 5 pm</p>
-              <p>Friday 9 am - 5 pm</p>
-              <p>Saturday Closed</p>
-              <p>Sunday Closed</p>
+              <ul style="list-style:none;margin:0px;padding:0px">
+                <li>Monday 9 am - 5 pm</li>
+                <li>Tuesday 9 am - 5 pm</li>
+                <li>Wednesday 9 am - 5 pm</li>
+                <li>Thursday 9 am - 5 pm</li>
+                <li>Friday 9 am - 5 pm</li>
+                <li>Saturday Closed</li>
+                <li>Sunday Closed</li>
+              </ul>
             </div>
             <p>We'll be in touch as soon as possible, thank you for your patience.</p>
             <p>Vape Local Team</p>
