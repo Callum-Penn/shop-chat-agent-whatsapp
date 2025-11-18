@@ -13,7 +13,6 @@ import { Resend } from 'resend';
  * @param {Array} [emailData.attachments] - Array of attachment objects with { filename, content, type }
  * @returns {Promise<Object>} Response from email service
  */
-const TICKET_RECEIPT_SUPPORT_HOURS = "Mon - Fri 9am to 5pm";
 
 export async function sendEmail({ to, subject, html, text, attachments }) {
   // Check if we have the Resend API key configured
@@ -274,7 +273,6 @@ ${text}
 export function generateTicketReceiptEmailHTML({
   customerName,
   ticketReference,
-  supportHours = TICKET_RECEIPT_SUPPORT_HOURS
 }) {
   const greetingName = customerName || "there";
 
@@ -295,16 +293,20 @@ export function generateTicketReceiptEmailHTML({
         <div class="container">
           <div class="card">
             <p>Hi ${greetingName},</p>
-            <p>Thanks for reaching out. We've opened a support ticket and our team will be in touch shortly.</p>
-            <div class="ticket">
-              Reference: #${ticketReference}
-            </div>
+            <p>Thanks for reaching out. This email confirms we've received your support request and have created ticket #${ticketReference} for you.</p>
+            <p>Our team is reviewing your message and will get back to you within 1 - 2 business days.</p>
             <div class="hours">
               <strong>Customer service hours</strong>
-              <p>${supportHours}</p>
+              <p>Monday 9 am - 5 pm</p>
+              <p>Tuesday 9 am - 5 pm</p>
+              <p>Wednesday 9 am - 5 pm</p>
+              <p>Thursday 9 am - 5 pm</p>
+              <p>Friday 9 am - 5 pm</p>
+              <p>Saturday Closed</p>
+              <p>Sunday Closed</p>
             </div>
-            <p>If you have any new details to share, just reply to this email and we'll add it to your ticket.</p>
-            <p>- The Team</p>
+            <p>We'll be in touch as soon as possible, thank you for your patience.</p>
+            <p>Vape Local Team</p>
           </div>
         </div>
       </body>
@@ -323,23 +325,18 @@ export function generateTicketReceiptEmailHTML({
 export function generateTicketReceiptEmailText({
   customerName,
   ticketReference,
-  supportHours = TICKET_RECEIPT_SUPPORT_HOURS
 }) {
   const greetingName = customerName || "there";
 
   return `
 Hi ${greetingName},
 
-Thanks for reaching out. We've opened a support ticket for you and our team will respond shortly.
+Thanks for reaching out. This email confirms we've received your support request and have created ticket #${ticketReference} for you.
 
-Reference: #${ticketReference}
+Our team is reviewing your message and will get back to you within 1 - 2 business days.
 
-Customer service hours:
-${supportHours}
-
-If you have more details to share, reply to this email and we'll add it to your ticket.
-
-- The Team
+We'll be in touch as soon as possible, thank you for your patience.
+Vape Local Team
   `.trim();
 }
 
