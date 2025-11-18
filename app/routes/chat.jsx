@@ -8,7 +8,6 @@ import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
 import { createClaudeService } from "../services/claude.server";
 import { createToolService } from "../services/tool.server";
-import { unauthenticated } from "../shopify.server";
 import {
   sendEmail,
   generateHandoffEmailHTML,

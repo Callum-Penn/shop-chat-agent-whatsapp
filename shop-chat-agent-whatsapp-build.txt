@@ -1,261 +1,223 @@
-Nov 18 15:54:44  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Nov 18 15:54:44  [34m│[0m [34m › fetching app source code[0m
-Nov 18 15:54:44  [34m│[0m => Selecting branch "main"
-Nov 18 15:54:44  [34m│[0m => Checking out commit "c71d92670c4324cfedd5077e27923e16f2af1001"
-Nov 18 15:54:44  [34m│[0m 
-Nov 18 15:54:44  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Nov 18 15:54:44  [34m╰────────────────────────────────────────╼[0m
-Nov 18 15:54:44  
-Nov 18 15:54:45  [34m › configuring build-time app environment variables:[0m
-Nov 18 15:54:45       SHOPIFY_APP_URL SHOPIFY_API_SECRET DIRECT_URL ORDER_TEMPLATE_BESTSELLERS_URL SHOPIFY_API_KEY WHATSAPP_VERIFY_TOKEN RESEND_API_KEY WHATSAPP_PHONE_NUMBER_ID ORDER_TEMPLATE_GENERAL_URL APP_URL ARCHIVING_API_KEY STAFF_WHATSAPP_NUMBER CLAUDE_API_KEY SHOPIFY_CHAT_BUBBLE_ID WHATSAPP_TOKEN REDIRECT_URL FOLLOWUP_SECRET MAIL_SERVICE_API SUPPORT_EMAIL
-Nov 18 15:54:45  
-Nov 18 15:54:45  [34m › configuring custom build command to be run at the end of the build:[0m
-Nov 18 15:54:45     [34m│[0m npm run build
-Nov 18 15:54:45  
-Nov 18 15:54:45  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Nov 18 15:54:45  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Nov 18 15:54:46  [34m│[0m Detected the following buildpacks suitable to build your app:
-Nov 18 15:54:46  [34m│[0m 
-Nov 18 15:54:46  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Nov 18 15:54:46  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Nov 18 15:54:46  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Nov 18 15:54:46  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Nov 18 15:54:46  [34m╰─────────────────────────────────────────────╼[0m
-Nov 18 15:54:46  
-Nov 18 15:54:46  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Nov 18 15:54:46  [34m│[0m [34m › checking for cache from a previous build[0m
-Nov 18 15:54:46  [34m│[0m Timer: Analyzer started at 2025-11-18T15:54:46Z
-Nov 18 15:54:47  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Nov 18 15:54:47  [34m│[0m Timer: Analyzer ran for 618.419181ms and ended at 2025-11-18T15:54:47Z
-Nov 18 15:54:47  [34m│[0m Timer: Restorer started at 2025-11-18T15:54:47Z
-Nov 18 15:54:47  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Nov 18 15:54:57  [34m│[0m Timer: Restorer ran for 9.608038588s and ended at 2025-11-18T15:54:57Z
-Nov 18 15:54:57  [34m╰───────────────────────────────────────╼[0m
-Nov 18 15:54:57  
-Nov 18 15:54:57  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Nov 18 15:54:57  [34m│[0m Timer: Builder started at 2025-11-18T15:54:57Z
-Nov 18 15:54:57  [34m│[0m        
-Nov 18 15:54:57  [34m│[0m -----> Creating runtime environment
-Nov 18 15:54:57  [34m│[0m        
-Nov 18 15:54:57  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Nov 18 15:54:57  [34m│[0m        NODE_VERBOSE=false
-Nov 18 15:54:57  [34m│[0m        NODE_ENV=
-Nov 18 15:54:57  [34m│[0m        NODE_MODULES_CACHE=true
-Nov 18 15:54:57  [34m│[0m        
-Nov 18 15:54:57  [34m│[0m -----> Installing binaries
-Nov 18 15:54:57  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Nov 18 15:54:57  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Nov 18 15:54:57  [34m│[0m        
-Nov 18 15:54:57  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Nov 18 15:54:57  [34m│[0m        Downloading and installing node 24.2.0...
-Nov 18 15:55:03  [34m│[0m        Using default npm version: 11.3.0
-Nov 18 15:55:03  [34m│[0m        
-Nov 18 15:55:03  [34m│[0m -----> Restoring cache
-Nov 18 15:55:03  [34m│[0m        - npm cache
-Nov 18 15:55:03  [34m│[0m        
-Nov 18 15:55:03  [34m│[0m -----> Installing dependencies
-Nov 18 15:55:03  [34m│[0m        Installing node modules
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        added 1230 packages, and audited 1231 packages in 20s
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        304 packages are looking for funding
-Nov 18 15:55:23  [34m│[0m          run `npm fund` for details
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        21 vulnerabilities (7 low, 9 moderate, 4 high, 1 critical)
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        To address issues that do not require attention, run:
-Nov 18 15:55:23  [34m│[0m          npm audit fix
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        To address all issues possible (including breaking changes), run:
-Nov 18 15:55:23  [34m│[0m          npm audit fix --force
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        Some issues need review, and may require choosing
-Nov 18 15:55:23  [34m│[0m        a different dependency.
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m        Run `npm audit` for details.
-Nov 18 15:55:23  [34m│[0m        
-Nov 18 15:55:23  [34m│[0m -----> Build
-Nov 18 15:55:24  [34m│[0m        
-Nov 18 15:55:24  [34m│[0m -----> Caching build
-Nov 18 15:55:24  [34m│[0m        - npm cache
-Nov 18 15:55:24  [34m│[0m        
-Nov 18 15:55:24  [34m│[0m -----> Pruning devDependencies
-Nov 18 15:55:24  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Nov 18 15:55:24  [34m│[0m        
-Nov 18 15:55:24  [34m│[0m -----> Build succeeded!
-Nov 18 15:55:24  [34m│[0m Running custom build command: npm run build
-Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Nov 18 15:55:24  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Nov 18 15:55:24  [34m│[0m 
-Nov 18 15:55:24  [34m│[0m > shop-chat-agent@1.0.41 build
-Nov 18 15:55:24  [34m│[0m > prisma generate && remix vite:build
-Nov 18 15:55:24  [34m│[0m 
-Nov 18 15:55:25  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Nov 18 15:55:25  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Nov 18 15:55:25  [34m│[0m 
-Nov 18 15:55:25  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 63ms
-Nov 18 15:55:25  [34m│[0m 
-Nov 18 15:55:25  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Nov 18 15:55:25  [34m│[0m 
-Nov 18 15:55:25  [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
-Nov 18 15:55:25  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m The following routes all define the same Route ID, only the first one will be used
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m 🟢 routes/uploads.$filename.jsx
-Nov 18 15:55:26  [34m│[0m ⭕️️ routes/uploads.$filename.ts
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m The following routes all define the same Route ID, only the first one will be used
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m 🟢 routes/uploads.$filename.jsx
-Nov 18 15:55:26  [34m│[0m ⭕️️ routes/uploads.$filename.ts
-Nov 18 15:55:26  [34m│[0m 
-Nov 18 15:55:26  [34m│[0m vite v6.3.3 building for production...
-Nov 18 15:55:26  [34m│[0m transforming...
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:os" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:util" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:os" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:path" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:util" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/stream.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m [plugin vite:resolve] Module "node:stream" has been externalized for browser compatibility, imported by "/workspace/node_modules/@remix-run/node/dist/stream.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
-Nov 18 15:55:27  [34m│[0m ✓ 95 modules transformed.
-Nov 18 15:55:27  [34m│[0m ✗ Build failed in 476ms
-Nov 18 15:55:27  [34m│[0m [commonjs--resolver] Server-only module referenced by client
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m     '../shopify.server' imported by route 'app/routes/chat.jsx'
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m   Remix automatically removes server-code from these exports:
-Nov 18 15:55:27  [34m│[0m     `loader`, `action`, `headers`
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../shopify.server'.
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
-Nov 18 15:55:27  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 18 15:55:27  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 18 15:55:27  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 18 15:55:27  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
-Nov 18 15:55:27  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 18 15:55:27  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 18 15:55:27  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 18 15:55:27  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
-Nov 18 15:55:27  [34m│[0m   code: 'PLUGIN_ERROR',
-Nov 18 15:55:27  [34m│[0m   plugin: 'commonjs--resolver',
-Nov 18 15:55:27  [34m│[0m   hook: 'resolveId',
-Nov 18 15:55:27  [34m│[0m   watchFiles: [
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/root.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/uploads.$filename.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Nov 18 15:55:27  [34m│[0m     '/workspace/package.json',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/dev.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/styles.css',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errors.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/invariant.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fog-of-war.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/react-router/dist/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/router/dist/router.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/links.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/globals.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/markup.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/sessions/fileStorage.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/upload/fileUploadHandler.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/implementations.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/stream.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routeModules.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/data.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fallback.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/warnings.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/turbo-stream/dist/turbo-stream.mjs',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/cookie/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@web3-storage/multipart-parser/esm/src/index.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/errors.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/entry.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/headers.js',
-Nov 18 15:55:27  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/invariant.js'
-Nov 18 15:55:27  [34m│[0m   ]
-Nov 18 15:55:27  [34m│[0m }
-Nov 18 15:55:27  [34m│[0m npm notice
-Nov 18 15:55:27  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
-Nov 18 15:55:27  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
-Nov 18 15:55:27  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
-Nov 18 15:55:27  [34m│[0m npm notice
-Nov 18 15:55:27  [34m│[0m building: exit status 1
-Nov 18 15:55:27  [34m│[0m Timer: Builder ran for 29.976932362s and ended at 2025-11-18T15:55:27Z
-Nov 18 15:55:27  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m 
-Nov 18 15:55:27  [34m│[0m [31m ✘ build failed[0m
+Nov 18 16:10:24  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+Nov 18 16:10:24  [34m│[0m [34m › fetching app source code[0m
+Nov 18 16:10:24  [34m│[0m => Selecting branch "main"
+Nov 18 16:10:25  [34m│[0m => Checking out commit "66b0165f80a903f32718701bdca47b4988de1c0e"
+Nov 18 16:10:25  [34m│[0m 
+Nov 18 16:10:25  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
+Nov 18 16:10:25  [34m╰────────────────────────────────────────╼[0m
+Nov 18 16:10:25  
+Nov 18 16:10:25  [34m › configuring build-time app environment variables:[0m
+Nov 18 16:10:25       SHOPIFY_API_KEY MAIL_SERVICE_API STAFF_WHATSAPP_NUMBER WHATSAPP_VERIFY_TOKEN SHOPIFY_APP_URL ARCHIVING_API_KEY SUPPORT_EMAIL SHOPIFY_CHAT_BUBBLE_ID DIRECT_URL ORDER_TEMPLATE_GENERAL_URL ORDER_TEMPLATE_BESTSELLERS_URL REDIRECT_URL SHOPIFY_API_SECRET APP_URL RESEND_API_KEY CLAUDE_API_KEY WHATSAPP_TOKEN FOLLOWUP_SECRET WHATSAPP_PHONE_NUMBER_ID
+Nov 18 16:10:25  
+Nov 18 16:10:25  [34m › configuring custom build command to be run at the end of the build:[0m
+Nov 18 16:10:25     [34m│[0m npm run build
+Nov 18 16:10:25  
+Nov 18 16:10:25  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
+Nov 18 16:10:25  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
+Nov 18 16:10:26  [34m│[0m Detected the following buildpacks suitable to build your app:
+Nov 18 16:10:26  [34m│[0m 
+Nov 18 16:10:26  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
+Nov 18 16:10:26  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
+Nov 18 16:10:26  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
+Nov 18 16:10:26  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
+Nov 18 16:10:26  [34m╰─────────────────────────────────────────────╼[0m
+Nov 18 16:10:26  
+Nov 18 16:10:26  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
+Nov 18 16:10:26  [34m│[0m [34m › checking for cache from a previous build[0m
+Nov 18 16:10:26  [34m│[0m Timer: Analyzer started at 2025-11-18T16:10:26Z
+Nov 18 16:10:27  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
+Nov 18 16:10:27  [34m│[0m Timer: Analyzer ran for 696.1604ms and ended at 2025-11-18T16:10:27Z
+Nov 18 16:10:27  [34m│[0m Timer: Restorer started at 2025-11-18T16:10:27Z
+Nov 18 16:10:27  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
+Nov 18 16:10:39  [34m│[0m Timer: Restorer ran for 11.751201089s and ended at 2025-11-18T16:10:39Z
+Nov 18 16:10:39  [34m╰───────────────────────────────────────╼[0m
+Nov 18 16:10:39  
+Nov 18 16:10:39  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
+Nov 18 16:10:39  [34m│[0m Timer: Builder started at 2025-11-18T16:10:39Z
+Nov 18 16:10:40  [34m│[0m        
+Nov 18 16:10:40  [34m│[0m -----> Creating runtime environment
+Nov 18 16:10:40  [34m│[0m        
+Nov 18 16:10:40  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
+Nov 18 16:10:40  [34m│[0m        NODE_VERBOSE=false
+Nov 18 16:10:40  [34m│[0m        NODE_ENV=
+Nov 18 16:10:40  [34m│[0m        NODE_MODULES_CACHE=true
+Nov 18 16:10:40  [34m│[0m        
+Nov 18 16:10:40  [34m│[0m -----> Installing binaries
+Nov 18 16:10:40  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
+Nov 18 16:10:40  [34m│[0m        engines.npm (package.json):    unspecified (use default)
+Nov 18 16:10:40  [34m│[0m        
+Nov 18 16:10:40  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
+Nov 18 16:10:40  [34m│[0m        Downloading and installing node 24.2.0...
+Nov 18 16:10:46  [34m│[0m        Using default npm version: 11.3.0
+Nov 18 16:10:47  [34m│[0m        
+Nov 18 16:10:47  [34m│[0m -----> Restoring cache
+Nov 18 16:10:47  [34m│[0m        - npm cache
+Nov 18 16:10:47  [34m│[0m        
+Nov 18 16:10:47  [34m│[0m -----> Installing dependencies
+Nov 18 16:10:47  [34m│[0m        Installing node modules
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        added 1230 packages, and audited 1231 packages in 37s
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        304 packages are looking for funding
+Nov 18 16:11:24  [34m│[0m          run `npm fund` for details
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        21 vulnerabilities (7 low, 9 moderate, 4 high, 1 critical)
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        To address issues that do not require attention, run:
+Nov 18 16:11:24  [34m│[0m          npm audit fix
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        To address all issues possible (including breaking changes), run:
+Nov 18 16:11:24  [34m│[0m          npm audit fix --force
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        Some issues need review, and may require choosing
+Nov 18 16:11:24  [34m│[0m        a different dependency.
+Nov 18 16:11:24  [34m│[0m        
+Nov 18 16:11:24  [34m│[0m        Run `npm audit` for details.
+Nov 18 16:11:25  [34m│[0m        
+Nov 18 16:11:25  [34m│[0m -----> Build
+Nov 18 16:11:25  [34m│[0m        
+Nov 18 16:11:25  [34m│[0m -----> Caching build
+Nov 18 16:11:25  [34m│[0m        - npm cache
+Nov 18 16:11:25  [34m│[0m        
+Nov 18 16:11:25  [34m│[0m -----> Pruning devDependencies
+Nov 18 16:11:25  [34m│[0m        Skipping because NODE_ENV is not 'production'
+Nov 18 16:11:25  [34m│[0m        
+Nov 18 16:11:25  [34m│[0m -----> Build succeeded!
+Nov 18 16:11:26  [34m│[0m Running custom build command: npm run build
+Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 18 16:11:26  [34m│[0m 
+Nov 18 16:11:26  [34m│[0m > shop-chat-agent@1.0.41 build
+Nov 18 16:11:26  [34m│[0m > prisma generate && remix vite:build
+Nov 18 16:11:26  [34m│[0m 
+Nov 18 16:11:27  [34m│[0m Prisma schema loaded from prisma/schema.prisma
+Nov 18 16:11:27  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 18 16:11:27  [34m│[0m 
+Nov 18 16:11:27  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 78ms
+Nov 18 16:11:27  [34m│[0m 
+Nov 18 16:11:27  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 18 16:11:27  [34m│[0m 
+Nov 18 16:11:27  [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+Nov 18 16:11:27  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m The following routes all define the same Route ID, only the first one will be used
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m 🟢 routes/uploads.$filename.jsx
+Nov 18 16:11:28  [34m│[0m ⭕️️ routes/uploads.$filename.ts
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m The following routes all define the same Route ID, only the first one will be used
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m 🟢 routes/uploads.$filename.jsx
+Nov 18 16:11:28  [34m│[0m ⭕️️ routes/uploads.$filename.ts
+Nov 18 16:11:28  [34m│[0m 
+Nov 18 16:11:28  [34m│[0m vite v6.3.3 building for production...
+Nov 18 16:11:28  [34m│[0m transforming...
+Nov 18 16:11:29  [34m│[0m ✓ 89 modules transformed.
+Nov 18 16:11:29  [34m│[0m ✗ Build failed in 606ms
+Nov 18 16:11:29  [34m│[0m [commonjs--resolver] Server-only module referenced by client
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m     '../shopify.server' imported by route 'app/routes/chat.jsx'
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m   Remix automatically removes server-code from these exports:
+Nov 18 16:11:29  [34m│[0m     `loader`, `action`, `headers`
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../shopify.server'.
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
+Nov 18 16:11:29  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 18 16:11:29  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 18 16:11:29  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 18 16:11:29  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
+Nov 18 16:11:29  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
+Nov 18 16:11:29  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
+Nov 18 16:11:29  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
+Nov 18 16:11:29  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
+Nov 18 16:11:29  [34m│[0m   code: 'PLUGIN_ERROR',
+Nov 18 16:11:29  [34m│[0m   plugin: 'commonjs--resolver',
+Nov 18 16:11:29  [34m│[0m   hook: 'resolveId',
+Nov 18 16:11:29  [34m│[0m   watchFiles: [
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/root.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/uploads.$filename.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/_index.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/chat.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app._index.jsx',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/package.json',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/dev.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/cjs/react-dom.production.min.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errors.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/invariant.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fog-of-war.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/router/dist/router.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router/dist/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/links.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/markup.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/index.js',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs',
+Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs'
+Nov 18 16:11:29  [34m│[0m   ]
+Nov 18 16:11:29  [34m│[0m }
+Nov 18 16:11:29  [34m│[0m npm notice
+Nov 18 16:11:29  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
+Nov 18 16:11:29  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+Nov 18 16:11:29  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
+Nov 18 16:11:29  [34m│[0m npm notice
+Nov 18 16:11:29  [34m│[0m building: exit status 1
+Nov 18 16:11:29  [34m│[0m Timer: Builder ran for 49.437761725s and ended at 2025-11-18T16:11:29Z
+Nov 18 16:11:29  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m 
+Nov 18 16:11:29  [34m│[0m [31m ✘ build failed[0m
