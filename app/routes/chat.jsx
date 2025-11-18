@@ -16,6 +16,11 @@ import {
   generateTicketReceiptEmailHTML,
   generateTicketReceiptEmailText
 } from "../utils/email.server";
+import {
+  resolveCustomerMcpEndpoint,
+  normalizeStorefrontDomain,
+  getPreferredStoreDomain
+} from "../utils/mcp.server";
 
 
 /**
@@ -189,8 +194,6 @@ async function handleChatSession({
   const { 
     saveMessage, 
     getConversationHistory, 
-    storeCustomerAccountUrl, 
-    getCustomerAccountUrl,
     createOrGetUser,
     linkConversationToUser,
     getUserByShopifyCustomerId,
@@ -208,7 +211,12 @@ async function handleChatSession({
   console.log(`[CHAT][IN] (${conversationId}) ${userMessage}`);
 
   // Determine allowed checkout domain from Origin header
-  const origin = request.headers.get("Origin") || "";
+  const originHeader = request.headers.get("Origin");
+  const origin =
+    originHeader ||
+    normalizeStorefrontDomain(originHeader) ||
+    getPreferredStoreDomain() ||
+    "";
   let allowedHost = "";
   try {
     if (origin) allowedHost = new URL(origin).host;
@@ -238,10 +246,30 @@ async function handleChatSession({
 
   // Initialize MCP client
   const shopId = request.headers.get("X-Shopify-Shop-Id");
-  const shopDomain = request.headers.get("Origin");
-  const customerMcpEndpoint = await getCustomerMcpEndpoint(shopDomain, conversationId);
+  const normalizedOrigin = normalizeStorefrontDomain(originHeader);
+  const resolvedStoreDomain =
+    normalizedOrigin ||
+    getPreferredStoreDomain() ||
+    normalizeStorefrontDomain(process.env.MCP_STOREFRONT_URL);
+
+  if (!resolvedStoreDomain) {
+    throw new Error(
+      "Unable to resolve storefront domain. Set STOREFRONT_DOMAIN or MCP_STOREFRONT_URL."
+    );
+  }
+
+  const customerMcpEndpoint = await resolveCustomerMcpEndpoint(
+    resolvedStoreDomain,
+    conversationId
+  );
+
+  if (!customerMcpEndpoint) {
+    throw new Error(
+      "Unable to resolve customer MCP endpoint. Set MCP_CUSTOMER_URL or configure customer accounts."
+    );
+  }
   const mcpClient = new MCPClient(
-    shopDomain,
+    resolvedStoreDomain,
     conversationId,
     shopId,
     customerMcpEndpoint,
@@ -426,7 +454,7 @@ async function handleChatSession({
                 const cooldownMessage = hoursRemaining > 0 
                   ? `Support ticket already exists.${referenceNote} Team ETA within ${hoursRemaining}h.`
                   : `Support ticket already exists.${referenceNote} Awaiting team response.`;
-
+                
                 conversationHistory.push({
                   role: 'assistant',
                   content: [content]
@@ -439,12 +467,12 @@ async function handleChatSession({
                     content: cooldownMessage
                   }]
                 });
-
+                
                 // Let Claude continue replying to the user's actual request
                 return;
               }
               
-                const { customer_name, customer_email, customer_phone, reason } = toolArgs;
+              const { customer_name, customer_email, customer_phone, reason } = toolArgs;
               
               try {
                 // Get conversation history for summary
@@ -659,55 +687,6 @@ async function handleChatSession({
   } catch (error) {
     // The streaming handler takes care of error handling
     throw error;
-  }
-}
-
-/**
- * Get the customer MCP endpoint for a shop
- * @param {string} shopDomain - The shop domain
- * @param {string} conversationId - The conversation ID
- * @returns {string} The customer MCP endpoint
- */
-async function getCustomerMcpEndpoint(shopDomain, conversationId) {
-  try {
-    // Hardcode the customer MCP endpoint for vapelocal.co.uk
-    if (shopDomain.includes('vapelocal.co.uk')) {
-      return 'https://account.vapelocal.co.uk/customer/api/mcp';
-    }
-
-    // Check if the customer account URL exists in the DB
-    const existingUrl = await getCustomerAccountUrl(conversationId);
-
-    // If URL exists, return early with the MCP endpoint
-    if (existingUrl) {
-      return `${existingUrl}/customer/api/mcp`;
-    }
-
-    // If not, query for it from the Shopify API
-    const { hostname } = new URL(shopDomain);
-    const { storefront } = await unauthenticated.storefront(
-      hostname
-    );
-
-    const response = await storefront.graphql(
-      `#graphql
-      query shop {
-        shop {
-          customerAccountUrl
-        }
-      }`,
-    );
-
-    const body = await response.json();
-    const customerAccountUrl = body.data.shop.customerAccountUrl;
-
-    // Store the customer account URL with conversation ID in the DB
-    await storeCustomerAccountUrl(conversationId, customerAccountUrl);
-
-    return `${customerAccountUrl}/customer/api/mcp`;
-  } catch (error) {
-    console.error("Error getting customer MCP endpoint:", error);
-    return null;
   }
 }
 

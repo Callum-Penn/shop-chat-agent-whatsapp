@@ -14,6 +14,12 @@ import {
   generateTicketReceiptEmailHTML,
   generateTicketReceiptEmailText
 } from "../utils/email.server";
+import {
+  resolveCustomerMcpEndpoint,
+  normalizeStorefrontDomain,
+  getPreferredStoreDomain,
+  getConfiguredShopId
+} from "../utils/mcp.server";
 
 // Cache for MCP connections to avoid reconnecting on every message
 const mcpCache = new Map();
@@ -26,13 +32,24 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId) {
     return mcpCache.get(cacheKey);
   }
   
-  // Hardcode customer MCP endpoint for vapelocal.co.uk
-  let customerMcpEndpoint = null;
-  if (shopDomain.includes('vapelocal.co.uk')) {
-    customerMcpEndpoint = 'https://account.vapelocal.co.uk/customer/api/mcp';
+  const customerMcpEndpoint = await resolveCustomerMcpEndpoint(
+    shopDomain,
+    conversationId
+  );
+  
+  if (!customerMcpEndpoint) {
+    throw new Error(
+      "Unable to resolve customer MCP endpoint for WhatsApp conversation."
+    );
   }
   
-  const mcpClient = new MCPClient(shopDomain, conversationId, shopId, customerMcpEndpoint, 'whatsapp');
+  const mcpClient = new MCPClient(
+    shopDomain,
+    conversationId,
+    shopId,
+    customerMcpEndpoint,
+    'whatsapp'
+  );
   
   // Connect to MCP servers once and cache
   try {
@@ -330,9 +347,20 @@ export const action = async ({ request }) => {
       const claudeService = createClaudeService();
       const toolService = createToolService();
       
-      // HARDCODED: Use the actual store URL for now
-      const shopDomain = 'https://vapelocal.co.uk';
-      const shopId = 'vapelocal';
+      const preferredDomain =
+        normalizeStorefrontDomain(process.env.STOREFRONT_DOMAIN) ||
+        normalizeStorefrontDomain(process.env.MCP_STOREFRONT_URL) ||
+        getPreferredStoreDomain();
+      if (!preferredDomain) {
+        throw new Error(
+          "WhatsApp: STOREFRONT_DOMAIN or MCP_STOREFRONT_URL must be configured."
+        );
+      }
+      const shopId = getConfiguredShopId(process.env.SHOP_ID, preferredDomain);
+      if (!shopId) {
+        throw new Error("WhatsApp: Unable to determine shopId. Set SHOP_ID.");
+      }
+      const shopDomain = preferredDomain;
       
       // Allowed host for checkout links
       let allowedHost = '';

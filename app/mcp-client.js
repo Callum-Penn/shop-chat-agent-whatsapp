@@ -1,6 +1,10 @@
 import { generateAuthUrl } from "./auth.server";
 import { getCustomerToken } from "./db.server";
 import prisma from "./db.server";
+import {
+  getStorefrontMcpEndpoint,
+  normalizeStorefrontDomain
+} from "./utils/mcp.server";
 
 const EXCLUDED_MCP_TOOLS = new Set([
   "get_store_credit_balances",
@@ -107,22 +111,21 @@ class MCPClient {
       }
     });
     
-    // TODO: Make this dynamic, for that first we need to allow access of mcp tools on password proteted demo stores.
-    this.storefrontMcpEndpoint = `${hostUrl}/api/mcp`;
-
-    // Hardcode the customer MCP endpoint for vapelocal.co.uk
-    if (hostUrl.includes('vapelocal.co.uk')) {
-      this.customerMcpEndpoint = customerMcpEndpoint || 'https://account.vapelocal.co.uk/customer/api/mcp';
-    } else {
-      // Fallback to the original logic for other domains
-      const accountHostUrl = hostUrl.replace(/(\.myshopify\.com)$/, '.account$1');
-      this.customerMcpEndpoint = customerMcpEndpoint || `${accountHostUrl}/customer/api/mcp`;
+    const normalizedHostUrl = normalizeStorefrontDomain(hostUrl);
+    this.storefrontMcpEndpoint = getStorefrontMcpEndpoint(normalizedHostUrl);
+    if (!this.storefrontMcpEndpoint) {
+      throw new Error(
+        "Storefront MCP endpoint could not be resolved. Set MCP_STOREFRONT_URL or provide a valid storefront domain."
+      );
     }
+
+    this.customerMcpEndpoint =
+      customerMcpEndpoint || process.env.MCP_CUSTOMER_URL?.trim() || null;
     
     this.customerAccessToken = "";
     this.conversationId = conversationId;
     this.shopId = shopId;
-    this.hostUrl = hostUrl; // Store hostUrl for potential customer account URL fetching
+    this.hostUrl = normalizedHostUrl || hostUrl || null; // Store hostUrl for potential customer account URL fetching
   }
 
   /**
@@ -134,6 +137,9 @@ class MCPClient {
    */
   async connectToCustomerServer() {
     try {
+      if (!this.customerMcpEndpoint) {
+        throw new Error("Customer MCP endpoint is not configured.");
+      }
       if (this.conversationId) {
         const dbToken = await getCustomerToken(this.conversationId);
 
@@ -574,9 +580,8 @@ class MCPClient {
       return true;
     }
 
-    // Check if this is vapelocal.co.uk domain - use hardcoded URL
-    if (this.hostUrl && this.hostUrl.includes('vapelocal.co.uk')) {
-      return true; // We have a hardcoded URL available
+    if (this.customerMcpEndpoint) {
+      return true;
     }
 
     // If not available, we need to fetch it from Shopify
