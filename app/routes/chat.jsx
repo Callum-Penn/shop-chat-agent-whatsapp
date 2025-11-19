@@ -379,22 +379,17 @@ async function handleChatSession({
               }
             }
 
-            // Save message and notify client when persistence completes
+            // Save message in background and send completion immediately
             saveMessage(conversationId, message.role, JSON.stringify(message.content))
-              .then(savedMessage => {
-                stream.sendMessage({ 
-                  type: 'message_complete',
-                  timestamp: savedMessage?.createdAt || new Date().toISOString(),
-                  messageId: savedMessage?.id
-                });
-              })
               .catch(error => {
                 console.error("Error saving message to database:", error);
-                stream.sendMessage({ 
-                  type: 'message_complete',
-                  timestamp: new Date().toISOString()
-                });
               });
+
+            // Send completion message immediately - don't wait for save
+            stream.sendMessage({ 
+              type: 'message_complete',
+              timestamp: new Date().toISOString()
+            });
           },
 
           // Handle tool use requests

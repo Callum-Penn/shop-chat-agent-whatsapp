@@ -256,22 +256,6 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
-
-.shop-ai-message-meta {
-  margin-top: 6px;
-  font-size: 11px;
-  opacity: 0.7;
-}
-
-.shop-ai-message.assistant .shop-ai-message-meta {
-  color: #6b7280;
-  text-align: left;
-}
-
-.shop-ai-message.user .shop-ai-message-meta {
-  color: rgba(255, 255, 255, 0.85);
-  text-align: right;
-}
   
   @media (max-width: 480px) {
     .shop-ai-chat-messages {

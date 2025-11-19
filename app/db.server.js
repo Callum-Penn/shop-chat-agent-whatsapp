@@ -204,8 +204,7 @@ export async function saveMessage(conversationId, role, content) {
       data: {
         conversationId,
         role,
-        content,
-        readAt: role === 'assistant' ? null : new Date()
+        content
       }
     });
 
@@ -234,50 +233,6 @@ export async function saveMessage(conversationId, role, content) {
   } catch (error) {
     console.error('Error saving message:', error);
     throw error;
-  }
-}
-
-/**
- * Mark unread assistant messages as read
- * @param {string} conversationId
- * @returns {Promise<number>} Number of messages updated
- */
-export async function markAssistantMessagesAsRead(conversationId) {
-  try {
-    const result = await prisma.message.updateMany({
-      where: {
-        conversationId,
-        role: 'assistant',
-        readAt: null
-      },
-      data: {
-        readAt: new Date()
-      }
-    });
-    return result.count;
-  } catch (error) {
-    console.error('Error marking assistant messages as read:', error);
-    return 0;
-  }
-}
-
-/**
- * Get unread assistant message count
- * @param {string} conversationId
- * @returns {Promise<number>}
- */
-export async function getUnreadAssistantMessageCount(conversationId) {
-  try {
-    return await prisma.message.count({
-      where: {
-        conversationId,
-        role: 'assistant',
-        readAt: null
-      }
-    });
-  } catch (error) {
-    console.error('Error counting unread assistant messages:', error);
-    return 0;
   }
 }
 

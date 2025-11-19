@@ -93,7 +93,6 @@ model Message {
   role           String       // "user" or "assistant"
   content        String
   createdAt      DateTime     @default(now())
-  readAt         DateTime?
 
   @@index([conversationId])
   @@index([createdAt])
