@@ -105,9 +105,43 @@ export function createClaudeService(apiKey = process.env.CLAUDE_API_KEY) {
    * @param {string} promptType - The prompt type to retrieve
    * @returns {string} The system prompt content
    */
+  const getPolicyGuidance = () => {
+    const shippingUrl = process.env.SHIPPING_POLICY_URL?.trim();
+    const faqUrl = process.env.FAQ_URL?.trim();
+
+    const guidelines = [];
+    if (shippingUrl) {
+      guidelines.push(
+        `- Shipping policy: Direct shoppers to ${shippingUrl} for the canonical, up-to-date details. ` +
+        `You may summarize high-level info briefly, but always encourage them to review that page for the definitive policy.`
+      );
+    }
+    if (faqUrl) {
+      guidelines.push(
+        `- FAQs: When customers ask about general store FAQs, inform them that the latest answers live at ${faqUrl} ` +
+        `and suggest they review that page for anything beyond what you can answer directly.`
+      );
+    }
+
+    if (!guidelines.length) {
+      return '';
+    }
+
+    return [
+      '**POLICY LINKS & RELIABILITY**',
+      'If shoppers ask about shipping policies, delivery coverage, or general FAQs, do not rely on cached policy text.',
+      ...guidelines
+    ].join('\n');
+  };
+
   const getSystemPrompt = (promptType) => {
-    const prompt = systemPrompts.systemPrompts[promptType]?.content ||
+    let prompt = systemPrompts.systemPrompts[promptType]?.content ||
       systemPrompts.systemPrompts[AppConfig.api.defaultPromptType].content;
+
+    const policyGuidance = getPolicyGuidance();
+    if (policyGuidance) {
+      prompt = `${prompt}\n\n${policyGuidance}`;
+    }
     
     // Truncate system prompt to reduce token usage
     const maxLength = AppConfig.conversation.maxSystemPromptLength;
