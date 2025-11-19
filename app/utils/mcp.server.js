@@ -36,7 +36,10 @@ export function normalizeStorefrontDomain(domainOrUrl) {
 export function getPreferredStoreDomain(preferredDomain) {
   return (
     normalizeStorefrontDomain(process.env.STOREFRONT_DOMAIN) ||
+    normalizeStorefrontDomain(process.env.MCP_STOREFRONT_URL) ||
     normalizeStorefrontDomain(process.env.SHOP_CUSTOM_DOMAIN) ||
+    normalizeStorefrontDomain(process.env.SHOPIFY_APP_URL) ||
+    normalizeStorefrontDomain(process.env.APP_URL) ||
     normalizeStorefrontDomain(preferredDomain) ||
     null
   );

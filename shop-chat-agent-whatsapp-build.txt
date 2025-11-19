@@ -1,223 +1,88 @@
-Nov 18 16:10:24  [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
-Nov 18 16:10:24  [34m│[0m [34m › fetching app source code[0m
-Nov 18 16:10:24  [34m│[0m => Selecting branch "main"
-Nov 18 16:10:25  [34m│[0m => Checking out commit "66b0165f80a903f32718701bdca47b4988de1c0e"
-Nov 18 16:10:25  [34m│[0m 
-Nov 18 16:10:25  [34m│[0m [32m ✔ cloned repo to [35m/workspace[0m[0m
-Nov 18 16:10:25  [34m╰────────────────────────────────────────╼[0m
-Nov 18 16:10:25  
-Nov 18 16:10:25  [34m › configuring build-time app environment variables:[0m
-Nov 18 16:10:25       SHOPIFY_API_KEY MAIL_SERVICE_API STAFF_WHATSAPP_NUMBER WHATSAPP_VERIFY_TOKEN SHOPIFY_APP_URL ARCHIVING_API_KEY SUPPORT_EMAIL SHOPIFY_CHAT_BUBBLE_ID DIRECT_URL ORDER_TEMPLATE_GENERAL_URL ORDER_TEMPLATE_BESTSELLERS_URL REDIRECT_URL SHOPIFY_API_SECRET APP_URL RESEND_API_KEY CLAUDE_API_KEY WHATSAPP_TOKEN FOLLOWUP_SECRET WHATSAPP_PHONE_NUMBER_ID
-Nov 18 16:10:25  
-Nov 18 16:10:25  [34m › configuring custom build command to be run at the end of the build:[0m
-Nov 18 16:10:25     [34m│[0m npm run build
-Nov 18 16:10:25  
-Nov 18 16:10:25  [34m╭────────────[34m[30m[44m buildpack detection [0m[0m[34m───────────╼[0m
-Nov 18 16:10:25  [34m│[0m [34m › using Ubuntu 22.04 stack[0m
-Nov 18 16:10:26  [34m│[0m Detected the following buildpacks suitable to build your app:
-Nov 18 16:10:26  [34m│[0m 
-Nov 18 16:10:26  [34m│[0m    digitalocean/nodejs-appdetect  v0.0.6    
-Nov 18 16:10:26  [34m│[0m    heroku/nodejs                  v0.296.5  (Node.js)
-Nov 18 16:10:26  [34m│[0m    digitalocean/procfile          v0.1.0    (Procfile)
-Nov 18 16:10:26  [34m│[0m    digitalocean/custom            v0.2.0    (Custom Build Command)
-Nov 18 16:10:26  [34m╰─────────────────────────────────────────────╼[0m
-Nov 18 16:10:26  
-Nov 18 16:10:26  [34m╭────────────[34m[30m[44m build caching [0m[0m[34m───────────╼[0m
-Nov 18 16:10:26  [34m│[0m [34m › checking for cache from a previous build[0m
-Nov 18 16:10:26  [34m│[0m Timer: Analyzer started at 2025-11-18T16:10:26Z
-Nov 18 16:10:27  [34m│[0m Restoring metadata for "heroku/nodejs:shim" from cache
-Nov 18 16:10:27  [34m│[0m Timer: Analyzer ran for 696.1604ms and ended at 2025-11-18T16:10:27Z
-Nov 18 16:10:27  [34m│[0m Timer: Restorer started at 2025-11-18T16:10:27Z
-Nov 18 16:10:27  [34m│[0m Restoring data for "heroku/nodejs:shim" from cache
-Nov 18 16:10:39  [34m│[0m Timer: Restorer ran for 11.751201089s and ended at 2025-11-18T16:10:39Z
-Nov 18 16:10:39  [34m╰───────────────────────────────────────╼[0m
-Nov 18 16:10:39  
-Nov 18 16:10:39  [34m╭────────────[34m[30m[44m app build [0m[0m[34m───────────╼[0m
-Nov 18 16:10:39  [34m│[0m Timer: Builder started at 2025-11-18T16:10:39Z
-Nov 18 16:10:40  [34m│[0m        
-Nov 18 16:10:40  [34m│[0m -----> Creating runtime environment
-Nov 18 16:10:40  [34m│[0m        
-Nov 18 16:10:40  [34m│[0m        NPM_CONFIG_LOGLEVEL=error
-Nov 18 16:10:40  [34m│[0m        NODE_VERBOSE=false
-Nov 18 16:10:40  [34m│[0m        NODE_ENV=
-Nov 18 16:10:40  [34m│[0m        NODE_MODULES_CACHE=true
-Nov 18 16:10:40  [34m│[0m        
-Nov 18 16:10:40  [34m│[0m -----> Installing binaries
-Nov 18 16:10:40  [34m│[0m        engines.node (package.json):   ^18.20 || ^20.10 || >=21.0.0
-Nov 18 16:10:40  [34m│[0m        engines.npm (package.json):    unspecified (use default)
-Nov 18 16:10:40  [34m│[0m        
-Nov 18 16:10:40  [34m│[0m        Resolving node version ^18.20 || ^20.10 || >=21.0.0...
-Nov 18 16:10:40  [34m│[0m        Downloading and installing node 24.2.0...
-Nov 18 16:10:46  [34m│[0m        Using default npm version: 11.3.0
-Nov 18 16:10:47  [34m│[0m        
-Nov 18 16:10:47  [34m│[0m -----> Restoring cache
-Nov 18 16:10:47  [34m│[0m        - npm cache
-Nov 18 16:10:47  [34m│[0m        
-Nov 18 16:10:47  [34m│[0m -----> Installing dependencies
-Nov 18 16:10:47  [34m│[0m        Installing node modules
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        added 1230 packages, and audited 1231 packages in 37s
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        304 packages are looking for funding
-Nov 18 16:11:24  [34m│[0m          run `npm fund` for details
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        21 vulnerabilities (7 low, 9 moderate, 4 high, 1 critical)
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        To address issues that do not require attention, run:
-Nov 18 16:11:24  [34m│[0m          npm audit fix
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        To address all issues possible (including breaking changes), run:
-Nov 18 16:11:24  [34m│[0m          npm audit fix --force
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        Some issues need review, and may require choosing
-Nov 18 16:11:24  [34m│[0m        a different dependency.
-Nov 18 16:11:24  [34m│[0m        
-Nov 18 16:11:24  [34m│[0m        Run `npm audit` for details.
-Nov 18 16:11:25  [34m│[0m        
-Nov 18 16:11:25  [34m│[0m -----> Build
-Nov 18 16:11:25  [34m│[0m        
-Nov 18 16:11:25  [34m│[0m -----> Caching build
-Nov 18 16:11:25  [34m│[0m        - npm cache
-Nov 18 16:11:25  [34m│[0m        
-Nov 18 16:11:25  [34m│[0m -----> Pruning devDependencies
-Nov 18 16:11:25  [34m│[0m        Skipping because NODE_ENV is not 'production'
-Nov 18 16:11:25  [34m│[0m        
-Nov 18 16:11:25  [34m│[0m -----> Build succeeded!
-Nov 18 16:11:26  [34m│[0m Running custom build command: npm run build
-Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
-Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
-Nov 18 16:11:26  [34m│[0m npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
-Nov 18 16:11:26  [34m│[0m 
-Nov 18 16:11:26  [34m│[0m > shop-chat-agent@1.0.41 build
-Nov 18 16:11:26  [34m│[0m > prisma generate && remix vite:build
-Nov 18 16:11:26  [34m│[0m 
-Nov 18 16:11:27  [34m│[0m Prisma schema loaded from prisma/schema.prisma
-Nov 18 16:11:27  [34m│[0m Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
-Nov 18 16:11:27  [34m│[0m 
-Nov 18 16:11:27  [34m│[0m ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 78ms
-Nov 18 16:11:27  [34m│[0m 
-Nov 18 16:11:27  [34m│[0m Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-Nov 18 16:11:27  [34m│[0m 
-Nov 18 16:11:27  [34m│[0m Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
-Nov 18 16:11:27  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m The following routes all define the same Route ID, only the first one will be used
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m 🟢 routes/uploads.$filename.jsx
-Nov 18 16:11:28  [34m│[0m ⭕️️ routes/uploads.$filename.ts
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m ⚠️ Route ID Collision: "routes/uploads.$filename"
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m The following routes all define the same Route ID, only the first one will be used
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m 🟢 routes/uploads.$filename.jsx
-Nov 18 16:11:28  [34m│[0m ⭕️️ routes/uploads.$filename.ts
-Nov 18 16:11:28  [34m│[0m 
-Nov 18 16:11:28  [34m│[0m vite v6.3.3 building for production...
-Nov 18 16:11:28  [34m│[0m transforming...
-Nov 18 16:11:29  [34m│[0m ✓ 89 modules transformed.
-Nov 18 16:11:29  [34m│[0m ✗ Build failed in 606ms
-Nov 18 16:11:29  [34m│[0m [commonjs--resolver] Server-only module referenced by client
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m     '../shopify.server' imported by route 'app/routes/chat.jsx'
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m   Remix automatically removes server-code from these exports:
-Nov 18 16:11:29  [34m│[0m     `loader`, `action`, `headers`
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m   But other route exports in 'app/routes/chat.jsx' depend on '../shopify.server'.
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m   See https://remix.run/docs/en/main/guides/vite#splitting-up-client-and-server-code
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m     at Object.resolveId (/workspace/node_modules/@remix-run/dev/dist/vite/plugin.js:982:15)
-Nov 18 16:11:29  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 18 16:11:29  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 18 16:11:29  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 18 16:11:29  [34m│[0m     at Object.resolveId (file:///workspace/node_modules/vite/dist/node/chunks/dep-BMIURPaQ.js:2835:10)
-Nov 18 16:11:29  [34m│[0m     at PluginDriver.hookFirstAndGetPlugin (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:22075:28)
-Nov 18 16:11:29  [34m│[0m     at resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20557:26)
-Nov 18 16:11:29  [34m│[0m     at ModuleLoader.resolveId (file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:20993:15)
-Nov 18 16:11:29  [34m│[0m     at file:///workspace/node_modules/rollup/dist/es/shared/node-entry.js:21293:50 {
-Nov 18 16:11:29  [34m│[0m   code: 'PLUGIN_ERROR',
-Nov 18 16:11:29  [34m│[0m   plugin: 'commonjs--resolver',
-Nov 18 16:11:29  [34m│[0m   hook: 'resolveId',
-Nov 18 16:11:29  [34m│[0m   watchFiles: [
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/root.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.admin.sync-quantity-increments.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.conversation-followup.tsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.send-whatsapp-invite.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.broadcast.web-users.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.whatsapp-webhook.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.recent-messages.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.unread-messages.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.broadcast.log.ts',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.token-status.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/uploads.$filename.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.reset-chat.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.archiving.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.callback.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/api.webhooks.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.login/route.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/_index.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/auth.$.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/chat.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app.broadcast.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/app/routes/app._index.jsx',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/jsx-runtime.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/client.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/package.json',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/browser.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/server.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/components.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router-dom/dist/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/scroll-restoration.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/cjs/react-jsx-runtime.production.min.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react/cjs/react.production.min.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errorBoundaries.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router-dom/server.mjs',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/routes.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/single-fetch.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/formData.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/responses.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/cookies.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/single-fetch.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/server.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/server-runtime/dist/esm/dev.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-dom/cjs/react-dom.production.min.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/errors.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/invariant.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/fog-of-war.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/router/dist/router.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/react-router/dist/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/links.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/node/dist/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@remix-run/react/dist/esm/markup.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/app-bridge-react/build/esm/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/polaris/build/esm/index.js',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/server/index.mjs',
-Nov 18 16:11:29  [34m│[0m     '/workspace/node_modules/@shopify/shopify-app-remix/dist/esm/react/index.mjs'
-Nov 18 16:11:29  [34m│[0m   ]
-Nov 18 16:11:29  [34m│[0m }
-Nov 18 16:11:29  [34m│[0m npm notice
-Nov 18 16:11:29  [34m│[0m npm notice New minor version of npm available! 11.3.0 -> 11.6.2
-Nov 18 16:11:29  [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
-Nov 18 16:11:29  [34m│[0m npm notice To update run: npm install -g npm@11.6.2
-Nov 18 16:11:29  [34m│[0m npm notice
-Nov 18 16:11:29  [34m│[0m building: exit status 1
-Nov 18 16:11:29  [34m│[0m Timer: Builder ran for 49.437761725s and ended at 2025-11-18T16:11:29Z
-Nov 18 16:11:29  [34m│[0m [31;1mERROR: [0mfailed to build: exit status 1
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m 
-Nov 18 16:11:29  [34m│[0m [31m ✘ build failed[0m
+Nov 18 16:37:03  [shopify-api/INFO] version 11.12.0, environment Remix
+Nov 18 16:37:03  [remix-serve] http://localhost:8080 (http://10.244.48.186:8080)
+Nov 18 16:37:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 26.031 ms
+Nov 18 16:36:34  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 27.654 ms
+Nov 18 16:37:34  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 14.103 ms
+Nov 18 16:38:34  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 10.609 ms
+Nov 18 16:39:03  GET /api/conversation-followup 200 - - 43.078 ms
+Nov 18 16:40:07  GET /api/conversation-followup 200 - - 33.566 ms
+Nov 18 16:40:12  Deleted 0 messages for conversation whatsapp_447891689332
+Nov 18 16:40:12  WhatsApp: Sending message to 447891689332
+Nov 18 16:40:12  WhatsApp: Message content: I've cleared our chat and reset your cart. How can I help now?...
+Nov 18 16:40:13  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSREQ4RjFFMUVDQThFQ0NCNzg4AA=="}]}
+Nov 18 16:40:13  POST /api/whatsapp-webhook 200 - - 638.984 ms
+Nov 18 16:40:26  POST /api/whatsapp-webhook 200 - - 2.307 ms
+Nov 18 16:40:28  POST /api/whatsapp-webhook 200 - - 2.471 ms
+Nov 18 16:40:30  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 18 16:40:30  Stored customer token in database for conversation: whatsapp_447891689332
+Nov 18 16:40:30  WhatsApp: Sending message to 447891689332
+Nov 18 16:40:30  WhatsApp: Message content: ✅ Authentication successful! You can now ask me about your orders. Try asking: 'What's the status of...
+Nov 18 16:40:31  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSOTE4Nzk3NzI2RTM0RDIxQzc4AA=="}]}
+Nov 18 16:40:31  WhatsApp: Sent success message to 447891689332
+Nov 18 16:38:04  GET /api/conversation-followup 200 - - 51.414 ms
+Nov 18 16:38:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.499 ms
+Nov 18 16:39:34  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 12.077 ms
+Nov 18 16:39:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 8.011 ms
+Nov 18 16:40:14  POST /api/whatsapp-webhook 200 - - 16.464 ms
+Nov 18 16:40:15  POST /api/whatsapp-webhook 200 - - 2.279 ms
+Nov 18 16:40:21  [WHATSAPP][IN] (whatsapp_447891689332) whats' the status of my order?
+Nov 18 16:40:24  [MCP][WA][whatsapp_447891689332] CALL customer.get_most_recent_order_status args={}
+Nov 18 16:40:24  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 18 16:40:24  WhatsApp: Tool returned error: {
+Nov 18 16:40:24    type: 'auth_required',
+Nov 18 16:40:24    data: 'https://account.vapelocal.co.uk/authentication/oauth/authorize?client_id=bb777035a5b42a698c53d509643126c5&redirect_uri=https%3A%2F%2Fshop-chat-agent-whatsapp-j6ftf.ondigitalocean.app%2Fauth%2Fcallback&response_type=code&scope=customer-account-mcp-api%3Afull&state=a21371cc6a81f23bfce21ccae59baaf4-whatsapp_447891689332-vapelocal.co.uk&code_challenge=JKVA-BNz9p2IuZR7m5ruAHjvzMHA1Czu-mp0E9E47mw&code_challenge_method=S256'
+Nov 18 16:40:24  }
+Nov 18 16:40:24  WhatsApp: Authentication required for customer tool
+Nov 18 16:40:24  Using hardcoded customer account URL for vapelocal.co.uk
+Nov 18 16:40:24  WhatsApp: Sending message to 447891689332
+Nov 18 16:40:24  WhatsApp: Message content: To access your order information, please authorize the app by clicking this link: https://account.va...
+Nov 18 16:40:25  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSRUY0Mzk4OUYxRTA3MzIxRkNGAA=="}]}
+Nov 18 16:40:25  POST /api/whatsapp-webhook 200 - - 4367.357 ms
+Nov 18 16:40:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 11.077 ms
+Nov 18 16:40:53  POST /api/whatsapp-webhook 200 - - 9.285 ms
+Nov 18 16:41:34  GET /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 7.893 ms
+Nov 18 16:41:54  [WHATSAPP][IN] (whatsapp_447891689332) Can you check VL-33643
+Nov 18 16:41:56  [MCP][WA][whatsapp_447891689332] CALL customer.get_order_status args={"order_number":"VL-33643"}
+Nov 18 16:40:31  GET /auth/callback?code=shcac_NFQ4NisxYXpqbUZ2c2FQYUVOUmVOa0hUd2hjazN2OTRvWFV3RE5OTkcvRWRRbjFsR0kzRnNkMGxPcTM0MS9NaGZ0SDlJQVJveXRMYmt0RzRsNkVGdFphRStHR245U3lZMDlqZ2pBYkM3MmxJUkRWajRySlBjZXhZRno1cUU4bWJVNCsrelZCYlp6QVFiODJ2VjNoeWMxYXFEc0JnTUxzdGcrajBYT1pQeGZ1U2hXOGhtSEFNdiszd2N5V1kxYWZKbXJWUmZwTkNhQ0g0K0xqL2N3NmVQakFMaUk5SVpDcUJiZ1BWMTJFeXVkcXpjUFdUSjROSWNNc2MvMldhTWxGdGEwU29ZMFI0L3hTdm1ZOVhaaDNiWEh0ejJLWGVENVJiMEFrVlAxRXBhTUFtaTI4Q1JONTlLYm9ENUI2dnVCVFRnTkR6dC9uVVRlUkI4ZFZjazBYZ0h0V0kxendsTG1XVDJzVEJCRHhoc2x0eUY1aHVXdmQ3N2JwbzU4aW1NbE1pNUFTYjljM3dwU3FzdnRwZ25JNjNIQ3NjVTZ3aDcrT1dBTVNRaTBSTTlrVis3NEtQZmJHZTdYUXhucWV0ZFdpY3E1WFpQVEwzdUFTOVdDWVJhalBnY1puTGlVMG54OTc2MW5za0o5allMNHIveGN5TUt1TVdWOFZ3eHQ4QlV2VVEvZW1TS3dvSGc2WitHQXBXTlhleFY1V1VFRllJbGljNkpuTFNkQ1JNNE1WOVNkdk52c3pPVjJIM0Jhd2VXV3VYVUNBSmRHcCtIaERLTkJOaUJiWnVtTXVxNndkc01uaTRndkdPMk9rVXdQR0hUTXhqK09BUVQ5Q1NXVHJTVVpBcklDTzFneUw1MlNMRWJJL0FpSVRSd2FyandnNTNrVTBLV1dMU29MKy9Falpma01ZYXIyek0zTXY4SDJid3U2RWNaTEVqZDkvWVF6cW5xRWd1WHlMb2FqeitpUnd5VlBUNUZ5WmIyVnlKSnR1bHdOZnNERFhncy9IYnR3eUROaFAzMU93aS9CQ3pRZm41alFsditxenV1aU1NQzRlT1FzN2JYZVZtK3RCcEMyZnhCSUYvdUhPWnNLdmZ3eitoMkxER2dnOTdrem5zV1ZuU0o5OEE5VlRkTFdMMGF2aGZyTGlyZFZONEx5KzUtLVJTUTc1OGEyYk5zbEExQ3YtLW1rUFZRODFJbEVvTWFmYTFJL0M1aUE9PQ&state=9e145ec106b47a87fac6e678d8c6f943-whatsapp_447891689332-vapelocal.co.uk 200 - - 1135.757 ms
+Nov 18 16:40:32  POST /api/whatsapp-webhook 200 - - 2.778 ms
+Nov 18 16:40:32  POST /api/whatsapp-webhook 200 - - 2.273 ms
+Nov 18 16:40:34  OPTIONS /api/unread-messages?conversation_id=web_customer_23312945217918 200 - - 6.793 ms
+Nov 18 16:40:43  [WHATSAPP][IN] (whatsapp_447891689332) 'What's the status of my recent order?
+Nov 18 16:40:45  [MCP][WA][whatsapp_447891689332] CALL customer.get_most_recent_order_status args={}
+Nov 18 16:40:46  [MCP][WA][whatsapp_447891689332] RESULT customer.get_most_recent_order_status ERROR payload={"jsonrpc":"2.0","id":1,"error":{"code":-32603,"message":"Internal error","data":"Internal error calling tool get_most_recent_order_status"}}
+Nov 18 16:40:46  WhatsApp: Tool returned error: {
+Nov 18 16:40:46    code: -32603,
+Nov 18 16:40:46    message: 'Internal error',
+Nov 18 16:40:46    data: 'Internal error calling tool get_most_recent_order_status'
+Nov 18 16:40:46  }
+Nov 18 16:40:51  WhatsApp: Sending message to 447891689332
+Nov 18 16:40:51  WhatsApp: Message content: I'm unable to access your order information at the moment. This could be because:
+Nov 18 16:40:51  
+Nov 18 16:40:51  1. You haven't au...
+Nov 18 16:40:52  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNUZDOUQwNTQ2NzE2QTQ4RTM2AA=="}]}
+Nov 18 16:40:52  [WHATSAPP][OUT] (whatsapp_447891689332) I'm unable to access your order information at the moment. This could be because:
+Nov 18 16:40:52  
+Nov 18 16:40:52  1. You haven't authorized the app yet, or
+Nov 18 16:40:52  2. There's a temporary system issue
+Nov 18 16:40:52  
+Nov 18 16:40:52  Please try authorizing the app first using this link: 
+Nov 18 16:40:52  
+Nov 18 16:40:52  If you continue to have issues after authorizing, or if you have a specific order number you'd like me to check, please let me know and I can help you further.
+Nov 18 16:41:57  [MCP][WA][whatsapp_447891689332] RESULT customer.get_order_status OK payload={"content":[{"type":"text","text":"{\"id\":\"gid:\\/\\/shopify\\/Order\\/12542951391614\",\"order_number\":\"VL-33643\",\"created_at\":\"2025-10-23T16:51:43Z\",\"total_price\":\"19.19 GBP\",\"status\":\"PAID\",\"cancelled_at\":null,\"cancel_reason\":null,\"fulfillment_status\":\"FULFILLED\",\"requires_shipping\":true,\"status_page_url\":\"https:\\/\\/vapelocal.co.uk\\/90473628030\\/orders\\/c9fc73ba3ece85cb94a0a422d35166e6\\/authenticate?key=6d2a58f46a9985c990cf506a98c9af50\",\"refund_total\":\"0 GBP\",\"fulfillments\":[{\"status\":\"SUCCESS\",\"estimated_delivery_at\":null,\"is_picked_up\":false,\"shipment_status\":\"CONFIRMED\",\"requires_shipping\":true,\"tracking\":{\"company\":\"Other\",\"number\":\"6951659294\",\"url\":null},\"items\":[{\"id\":\"gid:\\/\\/shopify\\/LineItem\\/36328464449918\",\"name\":\"Bar Juice Blue Razz Lemonade 20mg\",\"quantity\":10}]}]}"}],"isError":false}
+Nov 18 16:42:01  WhatsApp: Sending message to 447891689332
+Nov 18 16:42:01  WhatsApp: Message content: Great! Here's the status of your order VL-33643:
+Nov 18 16:42:01  
+Nov 18 16:42:01  **Order Status**: FULFILLED & PAID ✅  
+Nov 18 16:42:01  **Total**: ...
+Nov 18 16:42:02  WhatsApp: Message sent successfully: {"messaging_product":"whatsapp","contacts":[{"input":"447891689332","wa_id":"447891689332"}],"messages":[{"id":"wamid.HBgMNDQ3ODkxNjg5MzMyFQIAERgSNTc5NkI2OTI4OEIzNjAyOENEAA=="}]}
+Nov 18 16:42:02  [WHATSAPP][OUT] (whatsapp_447891689332) Great! Here's the status of your order VL-33643:
+Nov 18 16:42:02  
+Nov 18 16:42:02  **Order Status**: FULFILLED & PAID ✅  
+Nov 18 16:42:02  **Total**: £19.19  
+Nov 18 16:42:02  **Order Date**: October 23, 2025
+Nov 18 16:42:02  
+Nov 18 16:42:02  **Items**: 10x Bar Juice Blue Razz Lemonade 20mg
+Nov 18 16:42:02  
+Nov 18 16:42:02  **Shipping**: Your order has been confirmed for shipping with tracking number **6951659294**.
+Nov 18 16:42:02  
+Nov 18 16:42:02  Your order is fully processed and on its way! You can also view your order status directly at: https://vapelocal.co.uk/90473628030/orders/c9fc73ba3ece85cb94a0a422d35166e6/authenticate?key=6d2a58f46a9985c990cf506a…
