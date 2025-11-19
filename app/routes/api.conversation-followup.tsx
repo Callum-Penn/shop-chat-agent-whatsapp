@@ -114,7 +114,7 @@ export async function loader({ request }) {
     // Send second follow-up messages (WhatsApp community invite)
     for (const conversation of conversationsForSecondFollowup) {
       try {
-        const message = "Do you want to get notified on best sellers, restocks deals and more? Then join our WhatsApp community here and be the first to hear about all the latest news.";
+        const message = "Do you want to get notified on best sellers, restocks, deals and more?\n\nJoin our WhatsApp community here and be the first to hear about all the latest news: https://chat.whatsapp.com/FKAfXRmPh0bBdI8Syd0lzN";
         
         // Save the message to conversation history WITHOUT updating lastMessageAt
         await prisma.message.create({
