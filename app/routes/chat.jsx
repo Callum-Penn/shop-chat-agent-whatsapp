@@ -792,50 +792,28 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
   try {
     let user = null;
 
-    // Determine if this is a web customer or anonymous user
-    if (shopifyCustomerId) {
-      // Try to find existing user by Shopify customer ID
-      user = await getUserByShopifyCustomerId(shopifyCustomerId);
-      
-      if (!user) {
-        // Create new user linked to Shopify customer
-        user = await createOrGetUser({
-          type: 'web',
-          shopifyCustomerId: shopifyCustomerId,
-          metadata: {
-            firstSeen: new Date().toISOString(),
-            source: 'web_chat'
-          }
-        });
-      }
-    } else if (conversationId.startsWith('web_anon_')) {
-      // Anonymous web user - create or get user
-      user = await createOrGetUser({
+    const ensureUserForCustomer = async (customerId) => {
+      if (!customerId) return null;
+      let existing = await getUserByShopifyCustomerId(customerId);
+      if (existing) return existing;
+      return createOrGetUser({
         type: 'web',
+        shopifyCustomerId: customerId,
         metadata: {
           firstSeen: new Date().toISOString(),
-          source: 'web_chat',
-          anonymous: true
+          source: 'web_chat'
         }
       });
+    };
+
+    if (shopifyCustomerId) {
+      user = await ensureUserForCustomer(shopifyCustomerId);
     } else if (conversationId.startsWith('web_customer_')) {
-      // Extract customer ID from conversation ID
       const extractedCustomerId = conversationId.replace('web_customer_', '');
-      user = await getUserByShopifyCustomerId(extractedCustomerId);
-      
-      if (!user) {
-        user = await createOrGetUser({
-          type: 'web',
-          shopifyCustomerId: extractedCustomerId,
-          metadata: {
-            firstSeen: new Date().toISOString(),
-            source: 'web_chat'
-          }
-        });
-      }
+      user = await ensureUserForCustomer(extractedCustomerId);
     }
 
-    // Link conversation to user if we have one
+    // Only link conversations when we have an authenticated customer
     if (user) {
       await linkConversationToUser(conversationId, user.id, 'web');
     }
