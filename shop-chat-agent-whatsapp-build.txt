@@ -1,1 +1,44 @@
-Nov 19 09:33:56  [MCP][WEB][web_customer_23312945217918] RESULT storefront.search_shop_policies_and_faqs OK payload={"content":[{"type":"text","text":"[{\"question\":\"What is the return policy?\",\"answer\":\"Returns are available; customers should consult the Returns page or contact customer service to initiate a return and obtain instructions/labels. Specific conditions are provided via support.\\nRepair services available\"},{\"question\":\"What countries do you ship to?\",\"answer\":\"The store ships to the following locations: AE, AT, AU, BE, BG, CA, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HK, HR, HU, IE, IL, IT, JP, KR, LT, LU, LV, MT, MY, NL, NO, NZ, PL, PT, RO, SE, SG, SI, SK, US\"},{\"question\":\"What shipping options and policies do you offer?\",\"answer\":\"Express shipping available\"}]"}],"isError":false}
+Nov 19 15:02:56  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 19 15:02:56  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 19 15:02:56  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 19 15:02:57  
+Nov 19 15:02:57  > shop-chat-agent@1.0.41 start
+Nov 19 15:02:57  > npx prisma generate && npx prisma db push && remix-serve ./build/server/index.js --host 0.0.0.0 --port $PORT
+Nov 19 15:02:57  
+Nov 19 15:02:57  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 19 15:02:57  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 19 15:02:57  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 19 15:02:57  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 19 15:02:57  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 19 15:02:57  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 19 15:03:00  Prisma schema loaded from prisma/schema.prisma
+Nov 19 15:03:00  Warning: You did not specify an output path for your `generator` in schema.prisma. This behavior is deprecated and will no longer be supported in Prisma 7.0.0. To learn more visit https://pris.ly/cli/output-path
+Nov 19 15:03:00  
+Nov 19 15:03:00  ✔ Generated Prisma Client (v6.6.0) to ./node_modules/@prisma/client in 401ms
+Nov 19 15:03:00  
+Nov 19 15:03:00  Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Nov 19 15:03:00  
+Nov 19 15:03:00  Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+Nov 19 15:03:00  
+Nov 19 15:03:02  npm warn Unknown env config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 19 15:03:02  npm warn Unknown env config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 19 15:03:02  npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 19 15:03:02  npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm.
+Nov 19 15:03:02  npm warn Unknown user config "shamefully-hoist". This will stop working in the next major version of npm.
+Nov 19 15:03:02  npm warn Unknown user config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+Nov 19 15:03:04  Prisma schema loaded from prisma/schema.prisma
+Nov 19 15:03:04  Datasource "db": PostgreSQL database "defaultdb", schema "public" at "shop-chat-agent-db-do-user-24130937-0.e.db.ondigitalocean.com:25060"
+Nov 19 15:03:05  
+Nov 19 15:03:05  ⚠️  There might be data loss when applying the changes:
+Nov 19 15:03:05  
+Nov 19 15:03:05    • You are about to drop the column `readAt` on the `Message` table, which still contains 767 non-null values.
+Nov 19 15:03:05  
+Nov 19 15:03:05  
+Nov 19 15:03:05  Error: Use the --accept-data-loss flag to ignore the data loss warnings like prisma db push --accept-data-loss
+Nov 19 15:03:05  npm notice
+Nov 19 15:03:05  npm notice New minor version of npm available! 11.3.0 -> 11.6.2
+Nov 19 15:03:05  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+Nov 19 15:03:05  npm notice To update run: npm install -g npm@11.6.2
+Nov 19 15:03:05  npm notice
+Nov 19 15:02:57  ERROR failed health checks after 10 attempts with error Readiness probe failed: dial tcp 10.244.39.79:8080: connect: connection refused
+Nov 19 15:03:05  ERROR component terminated with non-zero exit code: 1,
