@@ -392,6 +392,11 @@ class MCPClient {
    */
   async callStorefrontTool(toolName, toolArgs) {
     try {
+      const policyOverride = this._maybeHandlePolicyTool(toolName);
+      if (policyOverride) {
+        return policyOverride;
+      }
+
       // Enforce availability filters for product search
       if (toolName === 'search_shop_catalog') {
         if (!toolArgs || typeof toolArgs !== 'object') {
@@ -566,6 +571,50 @@ class MCPClient {
       console.error(`${this.logPrefix} ERROR storefront.${toolName}:`, error);
       throw error;
     }
+  }
+
+  _maybeHandlePolicyTool(toolName) {
+    if (toolName !== 'search_shop_policies_and_faqs') {
+      return null;
+    }
+
+    const shippingUrl = process.env.SHIPPING_POLICY_URL?.trim();
+    const faqUrl = process.env.FAQ_URL?.trim();
+    const returnUrl = process.env.RETURNS_POLICY_URL?.trim();
+
+    const entries = [];
+
+    if (shippingUrl) {
+      entries.push({
+        question: "Where can I read the shipping policy?",
+        answer: `Please review our latest shipping details here: ${shippingUrl}`
+      });
+    }
+
+    if (returnUrl) {
+      entries.push({
+        question: "How do returns work?",
+        answer: `Our full returns process is outlined here: ${returnUrl}`
+      });
+    }
+
+    if (faqUrl) {
+      entries.push({
+        question: "Do you have an FAQ page?",
+        answer: `Yes — you can find answers to the most common questions at ${faqUrl}`
+      });
+    }
+
+    if (entries.length === 0) {
+      return null;
+    }
+
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify(entries)
+      }]
+    };
   }
 
   /**
