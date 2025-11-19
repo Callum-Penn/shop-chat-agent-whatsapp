@@ -25,7 +25,7 @@ async function getCachedMCPClient(shopDomain, conversationId, shopId, customerMc
   if (mcpCache.has(cacheKey)) {
     return mcpCache.get(cacheKey);
   }
-
+  
   if (!customerMcpEndpoint) {
     throw new Error(
       "Unable to resolve customer MCP endpoint for WhatsApp conversation."

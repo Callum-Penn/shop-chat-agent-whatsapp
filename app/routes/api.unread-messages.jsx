@@ -1,5 +1,10 @@
 import { json } from "@remix-run/node";
-import { getConversationHistory } from "../db.server";
+import {
+  getUnreadAssistantMessageCount,
+  markAssistantMessagesAsRead
+} from "../db.server";
+
+const ALLOWED_METHODS = "GET, POST, OPTIONS";
 
 /**
  * Get CORS headers for responses
@@ -8,13 +13,20 @@ function getCorsHeaders(request) {
   const origin = request.headers.get("Origin") || "*";
   return {
     "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Methods": ALLOWED_METHODS,
     "Access-Control-Allow-Headers": "Content-Type, Accept",
     "Access-Control-Allow-Credentials": "true",
   };
 }
 
 export const loader = async ({ request }) => {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: getCorsHeaders(request)
+    });
+  }
+
   try {
     const url = new URL(request.url);
     const conversationId = url.searchParams.get('conversation_id');
@@ -25,42 +37,7 @@ export const loader = async ({ request }) => {
       });
     }
 
-    // Get conversation history (returns in chronological order - oldest first)
-    const messages = await getConversationHistory(conversationId);
-    
-    // Find the last user message timestamp to determine what's unread
-    let lastUserMessageTime = null;
-    // Iterate from the end to find the most recent user message
-    for (let i = messages.length - 1; i >= 0; i--) {
-      if (messages[i].role === 'user') {
-        lastUserMessageTime = new Date(messages[i].createdAt);
-        break;
-      }
-    }
-    
-    // Count assistant messages created after the last user message
-    let unreadCount = 0;
-    
-    if (lastUserMessageTime) {
-      // Only count messages after the last user interaction
-      for (const message of messages) {
-        if (message.role === 'assistant' && new Date(message.createdAt) > lastUserMessageTime) {
-          unreadCount++;
-        }
-      }
-    } else {
-      // If no user messages yet, count all assistant messages from last 7 days
-      const now = new Date();
-      for (const message of messages) {
-        if (message.role === 'assistant') {
-          const messageTime = new Date(message.createdAt);
-          const hoursDiff = (now - messageTime) / (1000 * 60 * 60);
-          if (hoursDiff <= 168) { // 7 days = 168 hours
-            unreadCount++;
-          }
-        }
-      }
-    }
+    const unreadCount = await getUnreadAssistantMessageCount(conversationId);
     
     return json({ unread_count: unreadCount }, {
       headers: getCorsHeaders(request)
@@ -70,5 +47,46 @@ export const loader = async ({ request }) => {
     return json({ unread_count: 0 }, {
       headers: getCorsHeaders(request)
     });
+  }
+};
+
+export const action = async ({ request }) => {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: getCorsHeaders(request)
+    });
+  }
+
+  if (request.method !== "POST") {
+    return json(
+      { success: false, message: "Method not allowed" },
+      { status: 405, headers: getCorsHeaders(request) }
+    );
+  }
+
+  try {
+    const body = await request.json();
+    const conversationId = body?.conversation_id || body?.conversationId;
+
+    if (!conversationId) {
+      return json(
+        { success: false, message: "conversation_id is required" },
+        { status: 400, headers: getCorsHeaders(request) }
+      );
+    }
+
+    const updated = await markAssistantMessagesAsRead(conversationId);
+
+    return json(
+      { success: true, updated },
+      { headers: getCorsHeaders(request) }
+    );
+  } catch (error) {
+    console.error('Error marking messages as read:', error);
+    return json(
+      { success: false, message: 'Failed to mark messages as read' },
+      { status: 500, headers: getCorsHeaders(request) }
+    );
   }
 };

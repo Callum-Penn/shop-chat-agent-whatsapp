@@ -379,17 +379,22 @@ async function handleChatSession({
               }
             }
 
-            // Save message in background and send completion immediately
+            // Save message and notify client when persistence completes
             saveMessage(conversationId, message.role, JSON.stringify(message.content))
+              .then(savedMessage => {
+                stream.sendMessage({ 
+                  type: 'message_complete',
+                  timestamp: savedMessage?.createdAt || new Date().toISOString(),
+                  messageId: savedMessage?.id
+                });
+              })
               .catch(error => {
                 console.error("Error saving message to database:", error);
+                stream.sendMessage({ 
+                  type: 'message_complete',
+                  timestamp: new Date().toISOString()
+                });
               });
-
-            // Send completion message immediately - don't wait for save
-            stream.sendMessage({ 
-              type: 'message_complete',
-              timestamp: new Date().toISOString()
-            });
           },
 
           // Handle tool use requests
@@ -797,13 +802,13 @@ async function handleUserCreationAndLinking(conversationId, shopifyCustomerId, r
       let existing = await getUserByShopifyCustomerId(customerId);
       if (existing) return existing;
       return createOrGetUser({
-        type: 'web',
+          type: 'web',
         shopifyCustomerId: customerId,
-        metadata: {
-          firstSeen: new Date().toISOString(),
-          source: 'web_chat'
-        }
-      });
+          metadata: {
+            firstSeen: new Date().toISOString(),
+            source: 'web_chat'
+          }
+        });
     };
 
     if (shopifyCustomerId) {

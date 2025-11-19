@@ -7,6 +7,9 @@
 (function() {
   'use strict';
 
+  const DEFAULT_API_BASE = "https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app";
+  const API_BASE_URL = window.shopChatApiBaseUrl || DEFAULT_API_BASE;
+
   /**
    * Cookie utility functions for persistent storage
    */
@@ -274,6 +277,11 @@
           }
           // Always scroll messages to bottom when opening
           this.scrollToBottom();
+
+          const conversationId = CookieUtils.get('shopAiConversationId');
+          if (conversationId) {
+            ShopAIChat.API.markMessagesAsRead(conversationId);
+          }
         } else {
           // Remove body class when closing
           document.body.classList.remove('shop-ai-chat-open');
@@ -475,7 +483,9 @@
         const conversationId = CookieUtils.get('shopAiConversationId');
 
         // Add user message to chat
-        this.add(userMessage, 'user', messagesContainer);
+        this.add(userMessage, 'user', messagesContainer, {
+          timestamp: new Date().toISOString()
+        });
 
         // Clear input
         chatInput.value = '';
@@ -505,13 +515,13 @@
         }
 
         // Show confirmation dialog
-        if (!confirm('Are you sure you want to reset the chat? This will clear all conversation history.')) {
+        if (!confirm('Are you sure you want to reset the chat? This will clear all conversation history and any active carts you have created within the chat.')) {
           return;
         }
 
         try {
           // Call the reset API
-          const response = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/reset-chat', {
+          const response = await fetch(`${API_BASE_URL}/api/reset-chat`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -553,26 +563,74 @@
        * @param {string} text - Message content
        * @param {string} sender - Message sender ('user' or 'assistant')
        * @param {HTMLElement} messagesContainer - The messages container
+       * @param {Object} [options] - Additional options
+       * @param {string} [options.timestamp] - ISO string timestamp to display
+       * @param {boolean} [options.silent=false] - Skip playing notification sound
        * @returns {HTMLElement} The created message element
        */
-      add: function(text, sender, messagesContainer) {
+      add: function(text, sender, messagesContainer, options = {}) {
+        const resolvedTimestamp = options.timestamp || new Date().toISOString();
         const messageElement = document.createElement('div');
         messageElement.classList.add('shop-ai-message', sender);
+        messageElement.dataset.timestamp = resolvedTimestamp;
 
         if (sender === 'assistant') {
           messageElement.dataset.rawText = text;
           ShopAIChat.Formatting.formatMessageContent(messageElement);
           
-          // Play notification sound for all assistant messages
-          ShopAIChat.playNotificationSound();
+          if (!options.silent) {
+            ShopAIChat.playNotificationSound();
+          }
         } else {
           messageElement.textContent = text;
         }
+
+        ShopAIChat.Message.updateTimestampElement(messageElement, resolvedTimestamp);
 
         messagesContainer.appendChild(messageElement);
         ShopAIChat.UI.scrollToBottom();
 
         return messageElement;
+      },
+
+      /**
+       * Update or insert a timestamp element on a message
+       * @param {HTMLElement} messageElement - Target message element
+       * @param {string} timestamp - ISO string timestamp
+       */
+      updateTimestampElement: function(messageElement, timestamp) {
+        if (!messageElement || !timestamp) return;
+
+        messageElement.dataset.timestamp = timestamp;
+        const formatted = this.formatTimestamp(timestamp);
+        if (!formatted) return;
+
+        let meta = messageElement.querySelector('.shop-ai-message-meta');
+        if (!meta) {
+          meta = document.createElement('div');
+          meta.classList.add('shop-ai-message-meta');
+          messageElement.appendChild(meta);
+        }
+        meta.textContent = formatted;
+      },
+
+      /**
+       * Format a timestamp for display
+       * @param {string} timestamp - ISO string timestamp
+       * @returns {string} - Formatted label
+       */
+      formatTimestamp: function(timestamp) {
+        if (!timestamp) return '';
+        const date = new Date(timestamp);
+        if (Number.isNaN(date.getTime())) return '';
+
+        const now = new Date();
+        const isSameDay = date.toDateString() === now.toDateString();
+        const options = isSameDay
+          ? { hour: 'numeric', minute: '2-digit' }
+          : { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+
+        return new Intl.DateTimeFormat(undefined, options).format(date);
       },
 
       /**
@@ -654,12 +712,7 @@
        * @param {HTMLElement} messagesContainer - The messages container
        */
       showBotMessage: function(text, messagesContainer) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('shop-ai-message', 'assistant');
-        messageElement.dataset.rawText = text;
-        ShopAIChat.Formatting.formatMessageContent(messageElement);
-        messagesContainer.appendChild(messageElement);
-        ShopAIChat.UI.scrollToBottom();
+        this.add(text, 'assistant', messagesContainer);
       }
     },
 
@@ -846,7 +899,7 @@
             shopify_customer_id: window.Shopify && window.Shopify.customer ? window.Shopify.customer.id : null
           });
 
-          const streamUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat';
+          const streamUrl = `${API_BASE_URL}/chat`;
           const shopId = window.shopId;
 
           const response = await fetch(streamUrl, {
@@ -884,8 +937,14 @@
               if (line.startsWith('data: ')) {
                 try {
                   const data = JSON.parse(line.slice(6));
-                  this.handleStreamEvent(data, currentMessageElement, messagesContainer, userMessage,
-                    (newElement) => { currentMessageElement = newElement; });
+                  this.handleStreamEvent(
+                    data,
+                    currentMessageElement,
+                    messagesContainer,
+                    userMessage,
+                    (newElement) => { currentMessageElement = newElement; },
+                    conversationId
+                  );
                 } catch (e) {
                   console.error('Error parsing event data:', e, line);
                 }
@@ -912,7 +971,14 @@
        * @param {string} userMessage - The original user message
        * @param {Function} updateCurrentElement - Callback to update the current element reference
        */
-      handleStreamEvent: function(data, currentMessageElement, messagesContainer, userMessage, updateCurrentElement) {
+      handleStreamEvent: function(
+        data,
+        currentMessageElement,
+        messagesContainer,
+        userMessage,
+        updateCurrentElement,
+        conversationId
+      ) {
         switch (data.type) {
           case 'id':
             if (data.conversation_id) {
@@ -942,6 +1008,10 @@
             const newTimestamp = data.timestamp || new Date().toISOString();
             console.log('[STREAM DEBUG] message_complete received, setting lastMessageTimestamp to:', newTimestamp);
             ShopAIChat.UI.lastMessageTimestamp = newTimestamp;
+            ShopAIChat.Message.updateTimestampElement(currentMessageElement, newTimestamp);
+            if (conversationId) {
+              ShopAIChat.API.markMessagesAsRead(conversationId);
+            }
             break;
 
           case 'end_turn':
@@ -1017,7 +1087,7 @@
        */
       checkUnreadMessages: async function(conversationId, uiInstance) {
         try {
-          const unreadUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/unread-messages?conversation_id=${encodeURIComponent(conversationId)}`;
+          const unreadUrl = `${API_BASE_URL}/api/unread-messages?conversation_id=${encodeURIComponent(conversationId)}`;
           
           const response = await fetch(unreadUrl, {
             method: 'GET',
@@ -1039,6 +1109,28 @@
       },
 
       /**
+       * Mark assistant messages as read
+       * @param {string} conversationId - Conversation ID
+       */
+      markMessagesAsRead: async function(conversationId) {
+        if (!conversationId) return;
+
+        try {
+          await fetch(`${API_BASE_URL}/api/unread-messages`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ conversation_id: conversationId }),
+            mode: 'cors'
+          });
+        } catch (error) {
+          console.error('Error marking messages as read:', error);
+        }
+      },
+
+      /**
        * Check for recent assistant messages (e.g., follow-ups)
        * @param {string} conversationId - Conversation ID
        * @param {string} sinceTimestamp - ISO timestamp of last check
@@ -1047,7 +1139,7 @@
        */
       checkRecentMessages: async function(conversationId, sinceTimestamp, messagesContainer) {
         try {
-          const recentUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/recent-messages?conversation_id=${encodeURIComponent(conversationId)}&since=${encodeURIComponent(sinceTimestamp)}`;
+          const recentUrl = `${API_BASE_URL}/api/recent-messages?conversation_id=${encodeURIComponent(conversationId)}&since=${encodeURIComponent(sinceTimestamp)}`;
           
           const response = await fetch(recentUrl, {
             method: 'GET',
@@ -1070,6 +1162,7 @@
             // Add new messages to the chat
             if (data.messages && data.messages.length > 0) {
               console.log('[POLL DEBUG] Checking', data.messages.length, 'messages from poll');
+              let addedMessages = false;
               data.messages.forEach(message => {
                 console.log('[POLL DEBUG] Message has id:', message.id);
                 console.log('[POLL DEBUG] displayedMessageIds:', Array.from(ShopAIChat.UI.displayedMessageIds));
@@ -1088,19 +1181,28 @@
                 
                 try {
                   const messageContents = JSON.parse(message.content);
+                  const options = { timestamp: message.createdAt };
                   for (const contentBlock of messageContents) {
                     if (contentBlock.type === 'text') {
                       console.log('[POLL DEBUG] Adding message:', contentBlock.text.substring(0, 50) + '...');
-                      ShopAIChat.Message.add(contentBlock.text, 'assistant', messagesContainer);
+                      ShopAIChat.Message.add(contentBlock.text, 'assistant', messagesContainer, options);
+                      addedMessages = true;
                     }
                   }
                 } catch (e) {
                   console.log('[POLL DEBUG] Adding message (fallback):', message.content.substring(0, 50) + '...');
-                  ShopAIChat.Message.add(message.content, 'assistant', messagesContainer);
+                  ShopAIChat.Message.add(message.content, 'assistant', messagesContainer, {
+                    timestamp: message.createdAt
+                  });
+                  addedMessages = true;
                 }
               });
               
               ShopAIChat.UI.scrollToBottom();
+
+              if (addedMessages) {
+                await ShopAIChat.API.markMessagesAsRead(conversationId);
+              }
             }
             
             return data.latestTimestamp;
@@ -1126,7 +1228,7 @@
           messagesContainer.appendChild(loadingMessage);
 
           // Fetch history from the server
-          const historyUrl = `https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
+          const historyUrl = `${API_BASE_URL}/chat?history=true&conversation_id=${encodeURIComponent(conversationId)}`;
           console.log('Fetching history from:', historyUrl);
 
           const response = await fetch(historyUrl, {
@@ -1163,13 +1265,17 @@
             
             try {
               const messageContents = JSON.parse(message.content);
+              const options = { timestamp: message.createdAt, silent: true };
               for (const contentBlock of messageContents) {
                 if (contentBlock.type === 'text') {
-                  ShopAIChat.Message.add(contentBlock.text, message.role, messagesContainer);
+                  ShopAIChat.Message.add(contentBlock.text, message.role, messagesContainer, options);
                 }
               }
             } catch (e) {
-              ShopAIChat.Message.add(message.content, message.role, messagesContainer);
+              ShopAIChat.Message.add(message.content, message.role, messagesContainer, {
+                timestamp: message.createdAt,
+                silent: true
+              });
             }
           });
 
@@ -1181,6 +1287,7 @@
 
           // Scroll to bottom
           ShopAIChat.UI.scrollToBottom();
+          await ShopAIChat.API.markMessagesAsRead(conversationId);
 
         } catch (error) {
           console.error('Error fetching chat history:', error);
@@ -1284,8 +1391,7 @@
           attemptCount++;
 
           try {
-            const tokenUrl = 'https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/auth/token-status?conversation_id=' +
-              encodeURIComponent(conversationId);
+            const tokenUrl = `${API_BASE_URL}/auth/token-status?conversation_id=${encodeURIComponent(conversationId)}`;
             const response = await fetch(tokenUrl);
 
             if (!response.ok) {
@@ -1745,7 +1851,7 @@
         
         try {
           // Call backend to send WhatsApp invite
-          const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+          const res = await fetch(`${API_BASE_URL}/api/send-whatsapp-invite`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phoneNumber })
@@ -1900,7 +2006,7 @@
         }
         try {
         // Call backend to send WhatsApp invite
-        const res = await fetch('https://shop-chat-agent-whatsapp-j6ftf.ondigitalocean.app/api/send-whatsapp-invite', {
+        const res = await fetch(`${API_BASE_URL}/api/send-whatsapp-invite`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phoneNumber })
