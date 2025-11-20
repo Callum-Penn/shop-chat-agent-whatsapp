@@ -246,6 +246,11 @@ async function handleChatSession({
     normalizedOrigin ||
     getPreferredStoreDomain() ||
     normalizeStorefrontDomain(process.env.MCP_STOREFRONT_URL);
+  console.log('[CHAT][DOMAIN]', {
+    originHeader,
+    normalizedOrigin,
+    resolvedStoreDomain
+  });
 
   if (!resolvedStoreDomain) {
     throw new Error(

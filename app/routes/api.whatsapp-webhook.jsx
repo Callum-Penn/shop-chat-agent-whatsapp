@@ -356,6 +356,11 @@ export const action = async ({ request }) => {
         throw new Error("WhatsApp: Unable to determine shopId. Set SHOP_ID.");
       }
       const shopDomain = preferredDomain;
+      console.log('[WA][DOMAIN]', {
+        storefrontEnv: process.env.STOREFRONT_DOMAIN,
+        mcpEnv: process.env.MCP_STOREFRONT_URL,
+        resolvedShopDomain: shopDomain
+      });
       
       // Allowed host for checkout links
       let allowedHost = '';

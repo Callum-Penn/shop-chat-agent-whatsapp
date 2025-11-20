@@ -407,6 +407,9 @@ class MCPClient {
         if (typeof toolArgs.available_for_sale === 'undefined') {
           toolArgs.available_for_sale = 1;
         }
+        if (typeof toolArgs.limit === 'undefined') {
+          toolArgs.limit = 10;
+        }
       }
 
       console.log(`${this.logPrefix} CALL storefront.${toolName} args=${this._serializeForLog(toolArgs)}`);
@@ -544,7 +547,7 @@ class MCPClient {
       console.log(`${this.logPrefix} RESULT storefront.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
 
       if (!result?.error && (toolName === 'search_shop_catalog' || toolName === 'get_product_details')) {
-        this._cacheProductsFromResult(result);
+        await this._cacheProductsFromResult(result);
       }
 
       if (result?.isError) {
@@ -1061,14 +1064,8 @@ class MCPClient {
     if (this.productCache.has(productId)) {
       return this.productCache.get(productId);
     }
-    try {
-      const details = await this._callStorefrontToolRaw('get_product_details', { product_id: productId });
-      this._cacheProductsFromResult(details);
-      return this.productCache.get(productId) || null;
-    } catch (error) {
-      console.warn(`[PRODUCT] Failed to fetch product details for ${productId}:`, error);
-      return null;
-    }
+    await this._fetchAndCacheProductDetails(productId);
+    return this.productCache.get(productId) || null;
   }
 
   async _callStorefrontToolRaw(toolName, toolArgs) {
@@ -1087,13 +1084,35 @@ class MCPClient {
     return response.result || response;
   }
 
-  _cacheProductsFromResult(result) {
+  async _cacheProductsFromResult(result) {
     const products = this._extractProductsFromResult(result);
     if (!products || products.length === 0) {
       return;
     }
     for (const product of products) {
+      const productId = product?.product_id || product?.id;
       this._cacheProductEntry(product);
+      const cached = productId ? this.productCache.get(productId) : null;
+      if (productId && (!cached?.variants || cached.variants.length === 0)) {
+        await this._fetchAndCacheProductDetails(productId);
+      }
+    }
+  }
+
+  async _fetchAndCacheProductDetails(productId) {
+    if (!productId) {
+      return null;
+    }
+    try {
+      const details = await this._callStorefrontToolRaw('get_product_details', { product_id: productId });
+      const products = this._extractProductsFromResult(details);
+      if (products && products.length > 0) {
+        products.forEach((product) => this._cacheProductEntry(product));
+      }
+      return this.productCache.get(productId) || null;
+    } catch (error) {
+      console.warn(`[PRODUCT] Failed to fetch product details for ${productId}:`, error);
+      return null;
     }
   }
 
