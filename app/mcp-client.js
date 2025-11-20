@@ -62,7 +62,7 @@ class MCPClient {
     
     this.customTools.push({
       name: "validate_product_quantity",
-      description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc.",
+      description: "Check if a product has quantity requirements (minimum or increment). ALWAYS call this before adding products to cart. If a quantity_increment exists, you MUST use that value or a multiple of it as the quantity. Example: if increment is 5, use 5, 10, 15, etc. Provide the exact Shopify `product_id` or `variant_id` returned by your latest search/get_product_details call; if you don't have a canonical ID yet, run the lookup again instead of guessing.",
       input_schema: {
         type: "object",
         properties: {
