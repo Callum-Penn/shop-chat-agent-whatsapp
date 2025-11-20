@@ -128,6 +128,7 @@ class MCPClient {
     this.hostUrl = normalizedHostUrl || hostUrl || null; // Store hostUrl for potential customer account URL fetching
     this.productCache = new Map();
     this.variantToProductMap = new Map();
+    this.lastSearchProductIds = [];
   }
 
   /**
@@ -547,7 +548,10 @@ class MCPClient {
       console.log(`${this.logPrefix} RESULT storefront.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
 
       if (!result?.error && (toolName === 'search_shop_catalog' || toolName === 'get_product_details')) {
-        await this._cacheProductsFromResult(result);
+        const productIds = await this._cacheProductsFromResult(result);
+        if (toolName === 'search_shop_catalog' && productIds && productIds.length) {
+          this.lastSearchProductIds = productIds;
+        }
       }
 
       if (result?.isError) {
@@ -1005,9 +1009,21 @@ class MCPClient {
     if (!Array.isArray(addItems) || addItems.length === 0) {
       return null;
     }
+
+    const usedVariantIds = new Set(
+      addItems
+        .map((item) => item?.product_variant_id || item?.variant_id)
+        .filter(Boolean)
+    );
+    const fallbackVariants = await this._collectFallbackVariants(addItems.length, usedVariantIds);
+    let fallbackIndex = 0;
+
     for (let idx = 0; idx < addItems.length; idx++) {
       const item = addItems[idx] || {};
-      const resolvedVariantId = await this._resolveVariantIdForCartItem(item);
+      let resolvedVariantId = await this._resolveVariantIdForCartItem(item);
+      if (!resolvedVariantId && fallbackIndex < fallbackVariants.length) {
+        resolvedVariantId = fallbackVariants[fallbackIndex++];
+      }
       if (!resolvedVariantId) {
         const productLabel = item.product_id || item.product_title || item.title || `item ${idx + 1}`;
         const message = `Unable to resolve a valid product_variant_id for ${productLabel}. Re-run the product lookup to fetch the latest Shopify IDs before updating the cart.`;
@@ -1016,6 +1032,7 @@ class MCPClient {
       }
       item.product_variant_id = resolvedVariantId;
       item.variant_id = resolvedVariantId;
+      usedVariantIds.add(resolvedVariantId);
       if (!item.product_id) {
         const inferredProductId = this.variantToProductMap.get(resolvedVariantId);
         if (inferredProductId) {
@@ -1087,16 +1104,21 @@ class MCPClient {
   async _cacheProductsFromResult(result) {
     const products = this._extractProductsFromResult(result);
     if (!products || products.length === 0) {
-      return;
+      return [];
     }
+    const productIds = [];
     for (const product of products) {
       const productId = product?.product_id || product?.id;
       this._cacheProductEntry(product);
+      if (productId) {
+        productIds.push(productId);
+      }
       const cached = productId ? this.productCache.get(productId) : null;
       if (productId && (!cached?.variants || cached.variants.length === 0)) {
         await this._fetchAndCacheProductDetails(productId);
       }
     }
+    return productIds;
   }
 
   async _fetchAndCacheProductDetails(productId) {
@@ -1191,6 +1213,29 @@ class MCPClient {
       return product.productVariants;
     }
     return [];
+  }
+
+  async _collectFallbackVariants(countNeeded, usedVariantIds) {
+    if (!Array.isArray(this.lastSearchProductIds) || this.lastSearchProductIds.length === 0) {
+      return [];
+    }
+    const collected = [];
+    for (const productId of this.lastSearchProductIds) {
+      if (!productId) continue;
+      const product = await this._ensureProductCached(productId);
+      if (!product || !Array.isArray(product.variants)) continue;
+      for (const variant of product.variants) {
+        if (!variant?.id || usedVariantIds.has(variant.id)) {
+          continue;
+        }
+        collected.push(variant.id);
+        usedVariantIds.add(variant.id);
+        if (collected.length >= countNeeded) {
+          return collected;
+        }
+      }
+    }
+    return collected;
   }
 
   _buildToolError(message) {
