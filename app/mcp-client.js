@@ -126,6 +126,8 @@ class MCPClient {
     this.conversationId = conversationId;
     this.shopId = shopId;
     this.hostUrl = normalizedHostUrl || hostUrl || null; // Store hostUrl for potential customer account URL fetching
+    this.productCache = new Map();
+    this.variantToProductMap = new Map();
   }
 
   /**
@@ -438,8 +440,12 @@ class MCPClient {
         console.error('Failed to inject saved cart_id:', metaErr);
       }
 
-      // Enforce quantity increments on cart updates server-side for safety
+      // Enforce canonical variant IDs and quantity increments on cart updates
       if (toolName === 'update_cart' && toolArgs && Array.isArray(toolArgs.add_items)) {
+        const variantGuardError = await this._ensureCanonicalVariants(toolArgs.add_items);
+        if (variantGuardError) {
+          return variantGuardError;
+        }
         try {
           console.warn(`[CART] update_cart invoked with ${toolArgs.add_items.length} item(s)`);
           for (const item of toolArgs.add_items) {
@@ -536,6 +542,10 @@ class MCPClient {
 
       const result = response.result || response;
       console.log(`${this.logPrefix} RESULT storefront.${toolName} ${result?.error ? 'ERROR' : 'OK'} payload=${this._serializeForLog(result)}`);
+
+      if (!result?.error && (toolName === 'search_shop_catalog' || toolName === 'get_product_details')) {
+        this._cacheProductsFromResult(result);
+      }
 
       if (result?.isError) {
         const message = this._extractErrorMessage(result);
@@ -986,6 +996,191 @@ class MCPClient {
     } catch (err) {
       console.error('Failed clearing conversation cart metadata:', err);
     }
+  }
+
+  async _ensureCanonicalVariants(addItems) {
+    if (!Array.isArray(addItems) || addItems.length === 0) {
+      return null;
+    }
+    for (let idx = 0; idx < addItems.length; idx++) {
+      const item = addItems[idx] || {};
+      const resolvedVariantId = await this._resolveVariantIdForCartItem(item);
+      if (!resolvedVariantId) {
+        const productLabel = item.product_id || item.product_title || item.title || `item ${idx + 1}`;
+        const message = `Unable to resolve a valid product_variant_id for ${productLabel}. Re-run the product lookup to fetch the latest Shopify IDs before updating the cart.`;
+        console.warn(`[CART] ${message}`);
+        return this._buildToolError(message);
+      }
+      item.product_variant_id = resolvedVariantId;
+      item.variant_id = resolvedVariantId;
+      if (!item.product_id) {
+        const inferredProductId = this.variantToProductMap.get(resolvedVariantId);
+        if (inferredProductId) {
+          item.product_id = inferredProductId;
+        }
+      }
+    }
+    return null;
+  }
+
+  async _resolveVariantIdForCartItem(item) {
+    if (!item) {
+      return null;
+    }
+    const requestedVariantId = item.product_variant_id || item.variant_id || null;
+    let productId = item.product_id || null;
+    if (!productId && requestedVariantId) {
+      productId = this.variantToProductMap.get(requestedVariantId) || null;
+    }
+
+    if (requestedVariantId && this.variantToProductMap.has(requestedVariantId)) {
+      return requestedVariantId;
+    }
+
+    if (productId) {
+      const product = await this._ensureProductCached(productId);
+      if (product && Array.isArray(product.variants) && product.variants.length > 0) {
+        if (requestedVariantId) {
+          const matchedVariant = product.variants.find((variant) => variant.id === requestedVariantId);
+          if (matchedVariant) {
+            return matchedVariant.id;
+          }
+        }
+        console.warn(`[CART] Requested variant ${requestedVariantId || 'none'} not found for product ${productId}; using default variant ${product.variants[0].id}`);
+        return product.variants[0].id;
+      }
+    }
+
+    return null;
+  }
+
+  async _ensureProductCached(productId) {
+    if (!productId) {
+      return null;
+    }
+    if (this.productCache.has(productId)) {
+      return this.productCache.get(productId);
+    }
+    try {
+      const details = await this._callStorefrontToolRaw('get_product_details', { product_id: productId });
+      this._cacheProductsFromResult(details);
+      return this.productCache.get(productId) || null;
+    } catch (error) {
+      console.warn(`[PRODUCT] Failed to fetch product details for ${productId}:`, error);
+      return null;
+    }
+  }
+
+  async _callStorefrontToolRaw(toolName, toolArgs) {
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const response = await this._makeJsonRpcRequest(
+      this.storefrontMcpEndpoint,
+      "tools/call",
+      {
+        name: toolName,
+        arguments: toolArgs || {}
+      },
+      headers
+    );
+    return response.result || response;
+  }
+
+  _cacheProductsFromResult(result) {
+    const products = this._extractProductsFromResult(result);
+    if (!products || products.length === 0) {
+      return;
+    }
+    for (const product of products) {
+      this._cacheProductEntry(product);
+    }
+  }
+
+  _cacheProductEntry(product) {
+    if (!product) {
+      return;
+    }
+    const productId = product.product_id || product.id;
+    if (!productId) {
+      return;
+    }
+    const variantsRaw = this._extractVariantArray(product);
+    const normalizedVariants = variantsRaw
+      .map((variant) => {
+        const variantId = variant?.variant_id || variant?.id;
+        if (!variantId) {
+          return null;
+        }
+        return {
+          id: variantId,
+          title: variant?.title || variant?.name || variant?.sku || ''
+        };
+      })
+      .filter(Boolean);
+
+    this.productCache.set(productId, {
+      id: productId,
+      title: product.title || product.name || '',
+      variants: normalizedVariants
+    });
+
+    normalizedVariants.forEach((variant) => {
+      this.variantToProductMap.set(variant.id, productId);
+    });
+  }
+
+  _extractProductsFromResult(result) {
+    if (!result) {
+      return [];
+    }
+    let payload = result;
+    if (Array.isArray(result.content) && result.content[0]) {
+      const block = result.content[0];
+      payload = typeof block.text !== 'undefined' ? block.text : block;
+    }
+    if (typeof payload === 'string') {
+      try {
+        payload = JSON.parse(payload);
+      } catch {
+        return [];
+      }
+    }
+    if (payload?.products && Array.isArray(payload.products)) {
+      return payload.products;
+    }
+    if (payload?.product) {
+      return [payload.product];
+    }
+    return [];
+  }
+
+  _extractVariantArray(product) {
+    if (!product) {
+      return [];
+    }
+    if (Array.isArray(product.variants?.edges)) {
+      return product.variants.edges.map((edge) => edge?.node || {}).filter(Boolean);
+    }
+    if (Array.isArray(product.variants?.nodes)) {
+      return product.variants.nodes.filter(Boolean);
+    }
+    if (Array.isArray(product.variants)) {
+      return product.variants;
+    }
+    if (Array.isArray(product.productVariants)) {
+      return product.productVariants;
+    }
+    return [];
+  }
+
+  _buildToolError(message) {
+    return {
+      error: {
+        type: 'tool_error',
+        data: message
+      }
+    };
   }
 
   /**
