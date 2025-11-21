@@ -84,14 +84,26 @@ function summarizeCartLines(cart) {
     const qty = line.quantity ?? line.merchandise?.quantity ?? null;
     const title = line.merchandise?.product?.title || line.merchandise?.title || 'item';
     if (qty && title) {
-      return `${qty} × ${title}`;
+      return `- ${qty} × ${title}`;
     }
     if (title) {
-      return title;
+      return `- ${title}`;
     }
     return null;
   }).filter(Boolean);
-  return summaries.length ? summaries.join(', ') : '';
+  return summaries.length ? summaries.join('\n') : '';
+}
+
+// Normalize markdown-style formatting for WhatsApp (single asterisks, compact spacing)
+function formatForWhatsApp(text) {
+  if (!text || typeof text !== 'string') {
+    return text;
+  }
+  let formatted = text.replace(/\r\n/g, '\n');
+  formatted = formatted.replace(/\*\*(.*?)\*\*/gs, '*$1*');
+  formatted = formatted.replace(/__(.*?)__/gs, '*$1*');
+  formatted = formatted.replace(/\n{3,}/g, '\n\n');
+  return formatted.trim();
 }
 
 // Helper to truncate conversation history to reduce tokens
@@ -803,8 +815,8 @@ export const action = async ({ request }) => {
                       if (url) {
                         checkoutLinkAuthorized = true;
                         const summaryText = lastCartSummary
-                          ? `Cart updated (${lastCartSummary}). `
-                          : 'Cart updated. ';
+                          ? `*Cart updated:*\n${lastCartSummary}\n\n`
+                          : '*Cart updated.*\n\n';
                         aiResponse = `${summaryText}Here’s your checkout link: ${url}`;
                         conversationComplete = true;
                         break;
@@ -902,6 +914,7 @@ export const action = async ({ request }) => {
       if (aiResponse.trim().endsWith(':') || aiResponse.trim().endsWith('...')) {
         finalResponse = aiResponse + '\n\nI apologize, but I need to complete that response. Let me provide you with the full information you requested.';
       }
+      finalResponse = formatForWhatsApp(finalResponse);
       
       // Truncate response if it's too long for WhatsApp (4096 character limit)
       const maxWhatsAppLength = 4000; // Leave some buffer
