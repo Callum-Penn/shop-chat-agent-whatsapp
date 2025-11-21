@@ -414,23 +414,12 @@ export const action = async ({ request }) => {
       // Truncate conversation history to reduce token usage
       conversationHistory = truncateConversationHistory(conversationHistory, 6);
       
-      // Clean conversation history to remove any corrupted tool_use/tool_result pairs
-      conversationHistory = conversationHistory.filter(message => {
-        // Remove any messages with corrupted tool_use or tool_result blocks
-        if (message.content && Array.isArray(message.content)) {
-          return message.content.every(content => 
-            content.type !== 'tool_use' && content.type !== 'tool_result'
-          );
-        }
-        return true;
-      });
-      
       // Multi-turn conversation loop (matching web chat behavior)
       let aiResponse = "Sorry, I couldn't generate a response.";
       let conversationComplete = false;
-      let maxTurns = 5; // Prevent infinite loops
+      let maxTurns = 12; // Align more closely with web behavior
       let turnCount = 0;
-      const MAX_CONVERSATION_MESSAGES = 10; // Limit conversation history to prevent unbounded growth
+      const MAX_CONVERSATION_MESSAGES = 20; // Match web history window
       
       // Track whether checkout URL was generated this turn
       let checkoutLinkAuthorized = false;
